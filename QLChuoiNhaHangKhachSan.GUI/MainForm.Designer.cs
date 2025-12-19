@@ -62,7 +62,7 @@
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlSidebar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.pnlSidebar.Location = new System.Drawing.Point(0, 0);
-            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(2);
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.ShadowDecoration.Enabled = true;
             this.pnlSidebar.Size = new System.Drawing.Size(193, 808);
@@ -73,7 +73,7 @@
             this.guna2Separator1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.guna2Separator1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.guna2Separator1.Location = new System.Drawing.Point(9, 84);
-            this.guna2Separator1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Separator1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Separator1.Name = "guna2Separator1";
             this.guna2Separator1.Size = new System.Drawing.Size(176, 8);
             this.guna2Separator1.TabIndex = 11;
@@ -94,7 +94,7 @@
             this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.ForeColor = System.Drawing.Color.White;
             this.btnLogout.Location = new System.Drawing.Point(0, 771);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(193, 37);
             this.btnLogout.TabIndex = 10;
@@ -117,7 +117,7 @@
             this.btnReports.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReports.ForeColor = System.Drawing.Color.White;
             this.btnReports.Location = new System.Drawing.Point(24, 619);
-            this.btnReports.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnReports.Margin = new System.Windows.Forms.Padding(2);
             this.btnReports.Name = "btnReports";
             this.btnReports.Size = new System.Drawing.Size(135, 37);
             this.btnReports.TabIndex = 9;
@@ -140,7 +140,7 @@
             this.btnPayments.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPayments.ForeColor = System.Drawing.Color.White;
             this.btnPayments.Location = new System.Drawing.Point(24, 552);
-            this.btnPayments.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPayments.Margin = new System.Windows.Forms.Padding(2);
             this.btnPayments.Name = "btnPayments";
             this.btnPayments.Size = new System.Drawing.Size(135, 37);
             this.btnPayments.TabIndex = 8;
@@ -163,13 +163,14 @@
             this.btnInventory.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.btnInventory.ForeColor = System.Drawing.Color.White;
             this.btnInventory.Location = new System.Drawing.Point(24, 483);
-            this.btnInventory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnInventory.Margin = new System.Windows.Forms.Padding(2);
             this.btnInventory.Name = "btnInventory";
             this.btnInventory.Size = new System.Drawing.Size(135, 37);
             this.btnInventory.TabIndex = 7;
             this.btnInventory.Text = "Kho";
             this.btnInventory.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnInventory.TextOffset = new System.Drawing.Point(20, 0);
+            this.btnInventory.Click += new System.EventHandler(this.btnKho_Click);
             // 
             // btnHotels
             // 
@@ -186,7 +187,7 @@
             this.btnHotels.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHotels.ForeColor = System.Drawing.Color.White;
             this.btnHotels.Location = new System.Drawing.Point(24, 338);
-            this.btnHotels.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnHotels.Margin = new System.Windows.Forms.Padding(2);
             this.btnHotels.Name = "btnHotels";
             this.btnHotels.Size = new System.Drawing.Size(135, 37);
             this.btnHotels.TabIndex = 6;
@@ -209,7 +210,7 @@
             this.btnRestaurants.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRestaurants.ForeColor = System.Drawing.Color.White;
             this.btnRestaurants.Location = new System.Drawing.Point(24, 411);
-            this.btnRestaurants.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRestaurants.Margin = new System.Windows.Forms.Padding(2);
             this.btnRestaurants.Name = "btnRestaurants";
             this.btnRestaurants.Size = new System.Drawing.Size(135, 37);
             this.btnRestaurants.TabIndex = 5;
@@ -232,7 +233,7 @@
             this.btnCustomers.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCustomers.ForeColor = System.Drawing.Color.White;
             this.btnCustomers.Location = new System.Drawing.Point(24, 264);
-            this.btnCustomers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCustomers.Margin = new System.Windows.Forms.Padding(2);
             this.btnCustomers.Name = "btnCustomers";
             this.btnCustomers.Size = new System.Drawing.Size(135, 37);
             this.btnCustomers.TabIndex = 4;
@@ -255,7 +256,7 @@
             this.btnEmplyees.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.btnEmplyees.ForeColor = System.Drawing.Color.White;
             this.btnEmplyees.Location = new System.Drawing.Point(24, 196);
-            this.btnEmplyees.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEmplyees.Margin = new System.Windows.Forms.Padding(2);
             this.btnEmplyees.Name = "btnEmplyees";
             this.btnEmplyees.Size = new System.Drawing.Size(135, 37);
             this.btnEmplyees.TabIndex = 3;
@@ -281,7 +282,7 @@
             this.btnHome.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnHome.ImageSize = new System.Drawing.Size(25, 25);
             this.btnHome.Location = new System.Drawing.Point(24, 125);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(2);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(135, 37);
             this.btnHome.TabIndex = 2;

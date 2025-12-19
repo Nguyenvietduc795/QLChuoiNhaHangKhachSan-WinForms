@@ -27,6 +27,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
             MessageBox.Show(connStr);
         }
 
-      
+        private void btnKho_Click(object sender, EventArgs e)
+        {
+ 
+        }
     }
 }
