@@ -72,14 +72,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="..\..\Form3.cs">
-      <SubType>Form</SubType>
-      <Link>Form3.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
-      <Link>Form3.Designer.cs</Link>
-    </Compile>
     <Compile Include="FormInventory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,10 +91,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
-      <Link>Form3.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInventory.resx">
       <DependentUpon>FormInventory.cs</DependentUpon>
