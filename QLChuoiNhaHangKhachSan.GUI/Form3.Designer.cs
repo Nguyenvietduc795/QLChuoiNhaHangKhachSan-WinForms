@@ -1,6 +1,6 @@
 ﻿namespace QLChuoiNhaHangKhachSan.GUI
 {
-    partial class FrmQuanlyban
+    partial class Form3
     {
         /// <summary>
         /// Required designer variable.
