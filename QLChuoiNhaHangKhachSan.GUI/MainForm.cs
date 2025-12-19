@@ -27,6 +27,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
             MessageBox.Show(connStr);
         }
 
-      
+        private void lblUserRole_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Chip4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
