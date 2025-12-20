@@ -132,7 +132,7 @@
             this.guna2Panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnlSidebar
+            // btnCardValue
             // 
             this.pnlSidebar.Controls.Add(this.flpSidebar);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
@@ -196,7 +196,7 @@
             this.lblSubLogo.Text = "Management System";
             this.lblSubLogo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // guna2Separator1
+            // btnIconRevenue
             // 
             this.guna2Separator1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.guna2Separator1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -514,7 +514,7 @@
             this.btnRoomList.TextOffset = new System.Drawing.Point(20, 0);
             this.btnRoomList.Click += new System.EventHandler(this.btnRoomList_Click);
             // 
-            // btnHotels
+            // guna2HtmlLabel2
             // 
             this.btnHotels.BorderColor = System.Drawing.Color.AliceBlue;
             this.btnHotels.BorderRadius = 10;
@@ -983,7 +983,14 @@
             this.btnLogout.TextOffset = new System.Drawing.Point(20, 0);
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // pnlHeader
+            this.guna2HtmlLabel4.BackColor = System.Drawing.Color.White;
+            this.guna2HtmlLabel4.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(1136, 255);
+            this.guna2HtmlLabel4.Margin = new System.Windows.Forms.Padding(4);
+            this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(60, 42);
+            this.guna2HtmlLabel4.TabIndex = 15;
+            this.guna2HtmlLabel4.Text = "725";
             // 
             this.pnlHeader.Controls.Add(this.lblUserRole);
             this.pnlHeader.Controls.Add(this.lblUserName);
@@ -1040,7 +1047,26 @@
             this.picUserAvt.TabIndex = 3;
             this.picUserAvt.TabStop = false;
             // 
-            // btnNotification
+            this.guna2Button4.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Button4.BorderRadius = 15;
+            this.guna2Button4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button4.FillColor = System.Drawing.Color.White;
+            this.guna2Button4.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button4.ForeColor = System.Drawing.Color.White;
+            this.guna2Button4.HoverState.BorderColor = System.Drawing.Color.Gainsboro;
+            this.guna2Button4.HoverState.FillColor = System.Drawing.Color.White;
+            this.guna2Button4.Location = new System.Drawing.Point(1116, 165);
+            this.guna2Button4.Margin = new System.Windows.Forms.Padding(4);
+            this.guna2Button4.Name = "guna2Button4";
+            this.guna2Button4.ShadowDecoration.BorderRadius = 15;
+            this.guna2Button4.ShadowDecoration.Color = System.Drawing.Color.Gainsboro;
+            this.guna2Button4.ShadowDecoration.Enabled = true;
+            this.guna2Button4.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(10);
+            this.guna2Button4.Size = new System.Drawing.Size(355, 208);
+            this.guna2Button4.TabIndex = 12;
             // 
             this.btnNotification.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNotification.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1082,7 +1108,21 @@
             this.lblWelcomeTitle.TabIndex = 0;
             this.lblWelcomeTitle.Text = "Welcome Back!";
             // 
-            // btnCardValue
+            this.guna2Button5.BorderRadius = 10;
+            this.guna2Button5.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button5.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button5.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button5.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(254)))));
+            this.guna2Button5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button5.ForeColor = System.Drawing.Color.White;
+            this.guna2Button5.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button5.Image")));
+            this.guna2Button5.ImageSize = new System.Drawing.Size(25, 25);
+            this.guna2Button5.Location = new System.Drawing.Point(1539, 174);
+            this.guna2Button5.Margin = new System.Windows.Forms.Padding(4);
+            this.guna2Button5.Name = "guna2Button5";
+            this.guna2Button5.Size = new System.Drawing.Size(60, 55);
+            this.guna2Button5.TabIndex = 18;
             // 
             this.btnCardValue.BackColor = System.Drawing.Color.Transparent;
             this.btnCardValue.BorderRadius = 15;
@@ -1105,7 +1145,26 @@
             this.btnCardValue.Size = new System.Drawing.Size(331, 208);
             this.btnCardValue.TabIndex = 2;
             // 
-            // btnIconRevenue
+            this.guna2Button6.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Button6.BorderRadius = 15;
+            this.guna2Button6.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button6.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button6.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button6.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button6.FillColor = System.Drawing.Color.White;
+            this.guna2Button6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button6.ForeColor = System.Drawing.Color.White;
+            this.guna2Button6.HoverState.BorderColor = System.Drawing.Color.Gainsboro;
+            this.guna2Button6.HoverState.FillColor = System.Drawing.Color.White;
+            this.guna2Button6.Location = new System.Drawing.Point(1519, 165);
+            this.guna2Button6.Margin = new System.Windows.Forms.Padding(4);
+            this.guna2Button6.Name = "guna2Button6";
+            this.guna2Button6.ShadowDecoration.BorderRadius = 15;
+            this.guna2Button6.ShadowDecoration.Color = System.Drawing.Color.Gainsboro;
+            this.guna2Button6.ShadowDecoration.Enabled = true;
+            this.guna2Button6.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(10);
+            this.guna2Button6.Size = new System.Drawing.Size(349, 208);
+            this.guna2Button6.TabIndex = 17;
             // 
             this.btnIconRevenue.BorderRadius = 10;
             this.btnIconRevenue.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1123,7 +1182,32 @@
             this.btnIconRevenue.Size = new System.Drawing.Size(60, 55);
             this.btnIconRevenue.TabIndex = 3;
             // 
-            // chipTrendRevenue
+            this.btnReports.BorderColor = System.Drawing.Color.AliceBlue;
+            this.btnReports.BorderRadius = 10;
+            this.btnReports.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnReports.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
+            this.btnReports.CustomImages.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            this.btnReports.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
+            this.btnReports.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
+            this.btnReports.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnReports.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnReports.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnReports.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnReports.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnReports.FocusedColor = System.Drawing.Color.Transparent;
+            this.btnReports.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReports.ForeColor = System.Drawing.Color.White;
+            this.btnReports.Image = ((System.Drawing.Image)(resources.GetObject("btnReports.Image")));
+            this.btnReports.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnReports.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnReports.Location = new System.Drawing.Point(32, 762);
+            this.btnReports.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReports.Name = "btnReports";
+            this.btnReports.Size = new System.Drawing.Size(198, 46);
+            this.btnReports.TabIndex = 9;
+            this.btnReports.Text = "Báo cáo";
+            this.btnReports.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnReports.TextOffset = new System.Drawing.Point(20, 0);
             // 
             this.chipTrendRevenue.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(247)))), ((int)(((byte)(227)))));
             this.chipTrendRevenue.Font = new System.Drawing.Font("Segoe UI", 9.5F);
@@ -1135,7 +1219,26 @@
             this.chipTrendRevenue.TabIndex = 4;
             this.chipTrendRevenue.Text = "12,5%";
             // 
-            // lblStatValue
+            this.pnlSidebar.Controls.Add(this.guna2Separator2);
+            this.pnlSidebar.Controls.Add(this.btnLogout);
+            this.pnlSidebar.Controls.Add(this.btnReports);
+            this.pnlSidebar.Controls.Add(this.btnPayments);
+            this.pnlSidebar.Controls.Add(this.btnInventory);
+            this.pnlSidebar.Controls.Add(this.btnHotels);
+            this.pnlSidebar.Controls.Add(this.btnRestaurents);
+            this.pnlSidebar.Controls.Add(this.btnCustomers);
+            this.pnlSidebar.Controls.Add(this.btnEmployees);
+            this.pnlSidebar.Controls.Add(this.btnHome);
+            this.pnlSidebar.Controls.Add(this.lblSubLogo);
+            this.pnlSidebar.Controls.Add(this.lblLogo);
+            this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlSidebar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.pnlSidebar.Location = new System.Drawing.Point(0, 0);
+            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlSidebar.Name = "pnlSidebar";
+            this.pnlSidebar.ShadowDecoration.Enabled = true;
+            this.pnlSidebar.Size = new System.Drawing.Size(257, 1033);
+            this.pnlSidebar.TabIndex = 22;
             // 
             this.lblStatValue.BackColor = System.Drawing.Color.White;
             this.lblStatValue.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1146,7 +1249,13 @@
             this.lblStatValue.TabIndex = 5;
             this.lblStatValue.Text = "$45,232";
             // 
-            // lblStatTitle
+            this.guna2Separator2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.guna2Separator2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.guna2Separator2.Location = new System.Drawing.Point(12, 103);
+            this.guna2Separator2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Separator2.Name = "guna2Separator2";
+            this.guna2Separator2.Size = new System.Drawing.Size(235, 10);
+            this.guna2Separator2.TabIndex = 11;
             // 
             this.lblStatTitle.BackColor = System.Drawing.Color.White;
             this.lblStatTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1158,7 +1267,31 @@
             this.lblStatTitle.TabIndex = 6;
             this.lblStatTitle.Text = "Tổng doanh thu";
             // 
-            // guna2HtmlLabel1
+            this.btnLogout.BorderColor = System.Drawing.Color.AliceBlue;
+            this.btnLogout.BorderRadius = 10;
+            this.btnLogout.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnLogout.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
+            this.btnLogout.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnLogout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnLogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnLogout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnLogout.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnLogout.FocusedColor = System.Drawing.Color.Transparent;
+            this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.ForeColor = System.Drawing.Color.White;
+            this.btnLogout.Image = ((System.Drawing.Image)(resources.GetObject("btnLogout.Image")));
+            this.btnLogout.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnLogout.ImageOffset = new System.Drawing.Point(15, 0);
+            this.btnLogout.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnLogout.Location = new System.Drawing.Point(0, 987);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(257, 46);
+            this.btnLogout.TabIndex = 10;
+            this.btnLogout.Text = "Đăng xuất";
+            this.btnLogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnLogout.TextOffset = new System.Drawing.Point(20, 0);
             // 
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1170,7 +1303,32 @@
             this.guna2HtmlLabel1.TabIndex = 11;
             this.guna2HtmlLabel1.Text = "Số khách hàng";
             // 
-            // guna2HtmlLabel2
+            this.btnPayments.BorderColor = System.Drawing.Color.AliceBlue;
+            this.btnPayments.BorderRadius = 10;
+            this.btnPayments.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnPayments.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
+            this.btnPayments.CustomImages.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.btnPayments.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
+            this.btnPayments.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
+            this.btnPayments.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnPayments.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnPayments.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnPayments.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnPayments.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnPayments.FocusedColor = System.Drawing.Color.Transparent;
+            this.btnPayments.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPayments.ForeColor = System.Drawing.Color.White;
+            this.btnPayments.Image = ((System.Drawing.Image)(resources.GetObject("btnPayments.Image")));
+            this.btnPayments.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnPayments.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnPayments.Location = new System.Drawing.Point(32, 679);
+            this.btnPayments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPayments.Name = "btnPayments";
+            this.btnPayments.Size = new System.Drawing.Size(198, 46);
+            this.btnPayments.TabIndex = 8;
+            this.btnPayments.Text = "Thanh toán";
+            this.btnPayments.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnPayments.TextOffset = new System.Drawing.Point(20, 0);
             // 
             this.guna2HtmlLabel2.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel2.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1181,7 +1339,32 @@
             this.guna2HtmlLabel2.TabIndex = 10;
             this.guna2HtmlLabel2.Text = "1.883";
             // 
-            // guna2Chip1
+            this.btnInventory.BorderColor = System.Drawing.Color.AliceBlue;
+            this.btnInventory.BorderRadius = 10;
+            this.btnInventory.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnInventory.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
+            this.btnInventory.CustomImages.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            this.btnInventory.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
+            this.btnInventory.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
+            this.btnInventory.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnInventory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnInventory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnInventory.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnInventory.FocusedColor = System.Drawing.Color.Transparent;
+            this.btnInventory.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btnInventory.ForeColor = System.Drawing.Color.White;
+            this.btnInventory.Image = ((System.Drawing.Image)(resources.GetObject("btnInventory.Image")));
+            this.btnInventory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnInventory.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnInventory.Location = new System.Drawing.Point(32, 594);
+            this.btnInventory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnInventory.Name = "btnInventory";
+            this.btnInventory.Size = new System.Drawing.Size(198, 46);
+            this.btnInventory.TabIndex = 7;
+            this.btnInventory.Text = "Kho";
+            this.btnInventory.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnInventory.TextOffset = new System.Drawing.Point(20, 0);
             // 
             this.guna2Chip1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(247)))), ((int)(((byte)(227)))));
             this.guna2Chip1.Font = new System.Drawing.Font("Segoe UI", 9.5F);
@@ -1193,7 +1376,32 @@
             this.guna2Chip1.TabIndex = 9;
             this.guna2Chip1.Text = "8,5%";
             // 
-            // guna2Button1
+            this.btnHotels.BorderColor = System.Drawing.Color.AliceBlue;
+            this.btnHotels.BorderRadius = 10;
+            this.btnHotels.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnHotels.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
+            this.btnHotels.CustomImages.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
+            this.btnHotels.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
+            this.btnHotels.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
+            this.btnHotels.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnHotels.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnHotels.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnHotels.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnHotels.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnHotels.FocusedColor = System.Drawing.Color.Transparent;
+            this.btnHotels.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btnHotels.ForeColor = System.Drawing.Color.White;
+            this.btnHotels.Image = ((System.Drawing.Image)(resources.GetObject("btnHotels.Image")));
+            this.btnHotels.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnHotels.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnHotels.Location = new System.Drawing.Point(32, 416);
+            this.btnHotels.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHotels.Name = "btnHotels";
+            this.btnHotels.Size = new System.Drawing.Size(198, 46);
+            this.btnHotels.TabIndex = 6;
+            this.btnHotels.Text = "Khách sạn";
+            this.btnHotels.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnHotels.TextOffset = new System.Drawing.Point(20, 0);
             // 
             this.guna2Button1.BorderRadius = 10;
             this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1211,7 +1419,7 @@
             this.guna2Button1.Size = new System.Drawing.Size(60, 55);
             this.guna2Button1.TabIndex = 8;
             // 
-            // guna2Button2
+            // btnCustomers
             // 
             this.guna2Button2.BackColor = System.Drawing.Color.Transparent;
             this.guna2Button2.BorderRadius = 15;
@@ -1234,7 +1442,34 @@
             this.guna2Button2.Size = new System.Drawing.Size(349, 208);
             this.guna2Button2.TabIndex = 7;
             // 
-            // guna2HtmlLabel3
+            // btnEmployees
+            // 
+            this.btnEmployees.BorderColor = System.Drawing.Color.AliceBlue;
+            this.btnEmployees.BorderRadius = 10;
+            this.btnEmployees.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnEmployees.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
+            this.btnEmployees.CustomImages.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image6")));
+            this.btnEmployees.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
+            this.btnEmployees.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
+            this.btnEmployees.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnEmployees.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnEmployees.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnEmployees.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnEmployees.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnEmployees.FocusedColor = System.Drawing.Color.Transparent;
+            this.btnEmployees.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btnEmployees.ForeColor = System.Drawing.Color.White;
+            this.btnEmployees.Image = ((System.Drawing.Image)(resources.GetObject("btnEmployees.Image")));
+            this.btnEmployees.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnEmployees.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnEmployees.Location = new System.Drawing.Point(32, 241);
+            this.btnEmployees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnEmployees.Name = "btnEmployees";
+            this.btnEmployees.Size = new System.Drawing.Size(198, 46);
+            this.btnEmployees.TabIndex = 3;
+            this.btnEmployees.Text = "Nhân viên";
+            this.btnEmployees.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnEmployees.TextOffset = new System.Drawing.Point(20, 0);
             // 
             this.guna2HtmlLabel3.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1246,7 +1481,29 @@
             this.guna2HtmlLabel3.TabIndex = 16;
             this.guna2HtmlLabel3.Text = "Booking khách sạn";
             // 
-            // guna2HtmlLabel4
+            this.btnHome.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnHome.BorderRadius = 10;
+            this.btnHome.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnHome.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
+            this.btnHome.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnHome.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnHome.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnHome.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnHome.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnHome.FocusedColor = System.Drawing.Color.Transparent;
+            this.btnHome.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btnHome.ForeColor = System.Drawing.Color.White;
+            this.btnHome.Image = ((System.Drawing.Image)(resources.GetObject("btnHome.Image")));
+            this.btnHome.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnHome.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnHome.Location = new System.Drawing.Point(32, 154);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(198, 46);
+            this.btnHome.TabIndex = 2;
+            this.btnHome.Text = "Trang chủ";
+            this.btnHome.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnHome.TextOffset = new System.Drawing.Point(20, 0);
             // 
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel4.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1257,7 +1514,15 @@
             this.guna2HtmlLabel4.TabIndex = 15;
             this.guna2HtmlLabel4.Text = "725";
             // 
-            // guna2Chip2
+            this.lblSubLogo.AutoSize = true;
+            this.lblSubLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.lblSubLogo.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubLogo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblSubLogo.Location = new System.Drawing.Point(37, 64);
+            this.lblSubLogo.Name = "lblSubLogo";
+            this.lblSubLogo.Size = new System.Drawing.Size(182, 23);
+            this.lblSubLogo.TabIndex = 1;
+            this.lblSubLogo.Text = "Management System";
             // 
             this.guna2Chip2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(247)))), ((int)(((byte)(227)))));
             this.guna2Chip2.Font = new System.Drawing.Font("Segoe UI", 9.5F);
@@ -1269,7 +1534,15 @@
             this.guna2Chip2.TabIndex = 14;
             this.guna2Chip2.Text = "3,2%";
             // 
-            // guna2Button3
+            this.lblLogo.AutoSize = true;
+            this.lblLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.lblLogo.Font = new System.Drawing.Font("Microsoft YaHei UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLogo.ForeColor = System.Drawing.Color.White;
+            this.lblLogo.Location = new System.Drawing.Point(24, 9);
+            this.lblLogo.Name = "lblLogo";
+            this.lblLogo.Size = new System.Drawing.Size(206, 44);
+            this.lblLogo.TabIndex = 0;
+            this.lblLogo.Text = "RH-GROUP";
             // 
             this.guna2Button3.BorderRadius = 10;
             this.guna2Button3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1287,7 +1560,20 @@
             this.guna2Button3.Size = new System.Drawing.Size(60, 55);
             this.guna2Button3.TabIndex = 13;
             // 
-            // guna2Button4
+            this.pnlHeader.Controls.Add(this.lblUserRole);
+            this.pnlHeader.Controls.Add(this.lblUserName);
+            this.pnlHeader.Controls.Add(this.picUserAvt);
+            this.pnlHeader.Controls.Add(this.btnNotification);
+            this.pnlHeader.Controls.Add(this.lblWelcomeSubtitle);
+            this.pnlHeader.Controls.Add(this.lblWelcomeTitle);
+            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeader.Location = new System.Drawing.Point(257, 0);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlHeader.Name = "pnlHeader";
+            this.pnlHeader.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.pnlHeader.ShadowDecoration.Enabled = true;
+            this.pnlHeader.Size = new System.Drawing.Size(1645, 140);
+            this.pnlHeader.TabIndex = 23;
             // 
             this.guna2Button4.BackColor = System.Drawing.Color.Transparent;
             this.guna2Button4.BorderRadius = 15;
@@ -1310,7 +1596,16 @@
             this.guna2Button4.Size = new System.Drawing.Size(339, 208);
             this.guna2Button4.TabIndex = 12;
             // 
-            // guna2HtmlLabel5
+            this.lblUserRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUserRole.AutoSize = true;
+            this.lblUserRole.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserRole.ForeColor = System.Drawing.Color.Gray;
+            this.lblUserRole.Location = new System.Drawing.Point(1505, 65);
+            this.lblUserRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUserRole.Name = "lblUserRole";
+            this.lblUserRole.Size = new System.Drawing.Size(93, 19);
+            this.lblUserRole.TabIndex = 5;
+            this.lblUserRole.Text = "Administrator";
             // 
             this.guna2HtmlLabel5.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel5.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1322,7 +1617,15 @@
             this.guna2HtmlLabel5.TabIndex = 21;
             this.guna2HtmlLabel5.Text = "Booking nhà hàng";
             // 
-            // guna2HtmlLabel6
+            this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.Location = new System.Drawing.Point(1505, 36);
+            this.lblUserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(67, 24);
+            this.lblUserName.TabIndex = 4;
+            this.lblUserName.Text = "Admin";
             // 
             this.guna2HtmlLabel6.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel6.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1333,7 +1636,17 @@
             this.guna2HtmlLabel6.TabIndex = 20;
             this.guna2HtmlLabel6.Text = "365";
             // 
-            // guna2Chip3
+            this.picUserAvt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picUserAvt.Image = ((System.Drawing.Image)(resources.GetObject("picUserAvt.Image")));
+            this.picUserAvt.ImageRotate = 0F;
+            this.picUserAvt.Location = new System.Drawing.Point(1422, 32);
+            this.picUserAvt.Margin = new System.Windows.Forms.Padding(4);
+            this.picUserAvt.Name = "picUserAvt";
+            this.picUserAvt.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.picUserAvt.Size = new System.Drawing.Size(75, 69);
+            this.picUserAvt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picUserAvt.TabIndex = 3;
+            this.picUserAvt.TabStop = false;
             // 
             this.guna2Chip3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.guna2Chip3.Font = new System.Drawing.Font("Segoe UI", 9.5F);
@@ -1345,7 +1658,21 @@
             this.guna2Chip3.TabIndex = 19;
             this.guna2Chip3.Text = "2,2%";
             // 
-            // guna2Button5
+            this.btnNotification.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNotification.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnNotification.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnNotification.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnNotification.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnNotification.FillColor = System.Drawing.Color.Transparent;
+            this.btnNotification.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnNotification.ForeColor = System.Drawing.Color.White;
+            this.btnNotification.Image = ((System.Drawing.Image)(resources.GetObject("btnNotification.Image")));
+            this.btnNotification.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnNotification.Location = new System.Drawing.Point(1331, 57);
+            this.btnNotification.Margin = new System.Windows.Forms.Padding(4);
+            this.btnNotification.Name = "btnNotification";
+            this.btnNotification.Size = new System.Drawing.Size(33, 31);
+            this.btnNotification.TabIndex = 2;
             // 
             this.guna2Button5.BorderRadius = 10;
             this.guna2Button5.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1363,7 +1690,15 @@
             this.guna2Button5.Size = new System.Drawing.Size(60, 55);
             this.guna2Button5.TabIndex = 18;
             // 
-            // guna2Button6
+            this.lblWelcomeSubtitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblWelcomeSubtitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcomeSubtitle.ForeColor = System.Drawing.Color.Gray;
+            this.lblWelcomeSubtitle.Location = new System.Drawing.Point(31, 79);
+            this.lblWelcomeSubtitle.Margin = new System.Windows.Forms.Padding(4);
+            this.lblWelcomeSubtitle.Name = "lblWelcomeSubtitle";
+            this.lblWelcomeSubtitle.Size = new System.Drawing.Size(366, 22);
+            this.lblWelcomeSubtitle.TabIndex = 1;
+            this.lblWelcomeSubtitle.Text = "Here\'s what\'s happening with your business today";
             // 
             this.guna2Button6.BackColor = System.Drawing.Color.Transparent;
             this.guna2Button6.BorderRadius = 15;

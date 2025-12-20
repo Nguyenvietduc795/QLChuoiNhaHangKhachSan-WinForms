@@ -45,14 +45,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
             pnlLogout_group.Height = 50;
         }
 
-        private void lblUserRole_Click(object sender, EventArgs e)
+        private void btnKho_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void guna2Chip4_Click(object sender, EventArgs e)
-        {
-
+ 
         }
         private void SetActiveButton(object sender)
         {
