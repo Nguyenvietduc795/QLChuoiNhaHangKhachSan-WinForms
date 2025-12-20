@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -4793,10 +4793,10 @@
         2pv1lvx/y2e4bBe4GmYAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="guna2Button12.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnQuick_CheckInventory.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vQAADr0BR/uQrQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAFcKSURBVHhe7d0J
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAFcKSURBVHhe7d0J
         tB1XeSf6z8Z4xgMeZBvjeTaypVNHkucBEzzSmXDSCWCy3lvLnc57CTOGEGgS8joG0p2YwcGEEALdpBF0
         6IAn4kEeZenWrnst2fI84EmWLc/yPN23PruKSH/tujrDV1V7V/1/a/3XAlm6VXtX3V37nKranwgRVWkH
         EfnPIvJzEXlARF4SkRfz/61/9oci8nb8R0RERBSnrUXkL0XkGRGZ3kD07+jf1X9DREREEdpIRM4Ukfs8
@@ -5171,10 +5171,10 @@
         QuQ/e67WQcDtk53/H+uDexjdpGQPAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="guna2Button10.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnQuick_CreateReport.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vQAADr0BR/uQrQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAFncSURBVHhe7Z0H
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAFncSURBVHhe7Z0H
         tCVVlb83KhkkCQqiooKKCNK3XoMMBhRMKIgBdRQYcwADhpHx74iYMWLOYcxOm8MggtiITNt0nXpNt7SD
         IAgIkoNkROj/+kE1Nrv3e31fv31CVf2+tb61WE33PbvuOVW1b9U5+4gQQgghhBBCCCGEEEIIIYQQQggh
         hBBCCCGEJOBuIrKdiDxZRA4UkVeIyBtF5O0icjSllBbou0XkCBF5pYi8UEQOEJFdRGQ9fYEjhNzBuiLy
@@ -5561,10 +5561,10 @@
         EEIIIYQQQgghhBCyWv4/BhRdrcCdX8kAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="guna2Button8.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnQuick_AddStaff.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vQAADr0BR/uQrQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAEHJSURBVHhe7d15
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAEHJSURBVHhe7d15
         vCVVdff/1Q0yT+LAoAxqC2gL9K19brcNqK0hcR4SgxqNaGJE4xA0JmKIIkpU4hCj/oJiFAXndh5QYsRG
         bZvuW2ufpontQCOIIoPILDP0+b0WFD6w2A132FWnzqnP+/X6/vEQn177VtXZtc+pXXuLAB0XVLeZnJpa
         GFSfHlT/Pqi+K6ieHFS/WcT446D6s6B6aVC9osptQXVQ5c7/dllQ/UVQPTOonlrEeEpQfU9QfW0R4zMn
@@ -5848,7 +5848,7 @@
         35xTvbFgmx/ZinvvE5GjReRvqpUP9xaRzX0jgDb7/wE3KmeYRpgPlwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="btnNewBooking.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnQuick_NewBooking.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAEkLSURBVHhe7d0J
