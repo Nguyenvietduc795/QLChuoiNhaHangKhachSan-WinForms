@@ -41,6 +41,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Properties.Resources.Designer.cs">
+      <HintPath>obj\Debug\TempPE\Properties.Resources.Designer.cs.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -72,6 +75,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormBookinng.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBookinng.Designer.cs">
+      <DependentUpon>FormBookinng.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormInventory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +107,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormBookinng.resx">
+      <DependentUpon>FormBookinng.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormInventory.resx">
       <DependentUpon>FormInventory.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,6 +127,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -135,6 +148,27 @@
       <Project>{4e25be4c-85e3-45de-81c5-52a8c8d0b030}</Project>
       <Name>QLChuoiNhaHangKhachSan.BLL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngtree-green-check-mark-png-image_6525691 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OIP.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OIP %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngtree-clock-icon-vector-line-perfect-png-image_11999891.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngtree-tick-vector-icon-png-image_964008.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\021dc1fb9e-01.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
