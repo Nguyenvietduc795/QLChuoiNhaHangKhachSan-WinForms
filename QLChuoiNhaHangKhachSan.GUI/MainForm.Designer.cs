@@ -1,4 +1,4 @@
-﻿namespace QLChuoiNhaHangKhachSan.GUI
+namespace QLChuoiNhaHangKhachSan.GUI
 {
     partial class MainForm
     {
@@ -96,25 +96,45 @@
             this.guna2Chip4 = new Guna.UI2.WinForms.Guna2Chip();
             this.guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
             this.pnlQuickAction = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2HtmlLabel12 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel13 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2Button12 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button13 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel11 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2Button10 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button11 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2Button8 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button9 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lblQuick_Title = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.btnNewBooking = new Guna.UI2.WinForms.Guna2Button();
+            this.lblQuick_StockLevel = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblQuick_CheckInventory = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.btnQuick_CheckInventory = new Guna.UI2.WinForms.Guna2Button();
+            this.btnContainer_CheckInventory = new Guna.UI2.WinForms.Guna2Button();
+            this.lblQuick_ViewAnalytics = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblQuick_CreateReport = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.btnQuick_CreateReport = new Guna.UI2.WinForms.Guna2Button();
+            this.btnContainer_CreateReport = new Guna.UI2.WinForms.Guna2Button();
+            this.lblQuick_RegisterSatff = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblQuick_AddStaff = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.btnQuick_AddStaff = new Guna.UI2.WinForms.Guna2Button();
+            this.btnContainer_AddStaff = new Guna.UI2.WinForms.Guna2Button();
+            this.lblQuick_CreateReservation = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblQuick_NewBooking = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.btnQuick_NewBooking = new Guna.UI2.WinForms.Guna2Button();
             this.lblQuickActions = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnContainer_NewBooking = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2HtmlLabel22 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.pnlRecentActivities = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblRecentActiviy = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.dotBlue = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.lblActivities_BookingTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblActivities_BookingDes = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblActivities_BookingTime = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2Button8 = new Guna.UI2.WinForms.Guna2Button();
+            this.lblActivities_IventoryTime = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblActivities_InventoryDes = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblActivities_InventoryTitile = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.dotRed = new Guna.UI2.WinForms.Guna2Button();
+            this.lblActivities_PaymentTime = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblActivities_PaymentDes = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblActivities_PaymentTitile = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.dotYellow = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.guna2Button10 = new Guna.UI2.WinForms.Guna2Button();
+            this.lblActivities_StaffTime = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblActivities_StaffDes = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblActivities_StaffTitile = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.dotGreen = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.guna2Button11 = new Guna.UI2.WinForms.Guna2Button();
             this.pnlSidebar.SuspendLayout();
             this.flpSidebar.SuspendLayout();
             this.pnlHome.SuspendLayout();
@@ -129,10 +149,14 @@
             this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picUserAvt)).BeginInit();
             this.pnlQuickAction.SuspendLayout();
-            this.guna2Panel1.SuspendLayout();
+            this.pnlRecentActivities.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dotBlue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dotYellow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dotGreen)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnCardValue
+            // pnlSidebar
             // 
             this.pnlSidebar.Controls.Add(this.flpSidebar);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
@@ -196,7 +220,7 @@
             this.lblSubLogo.Text = "Management System";
             this.lblSubLogo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnIconRevenue
+            // guna2Separator1
             // 
             this.guna2Separator1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.guna2Separator1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -514,7 +538,7 @@
             this.btnRoomList.TextOffset = new System.Drawing.Point(20, 0);
             this.btnRoomList.Click += new System.EventHandler(this.btnRoomList_Click);
             // 
-            // guna2HtmlLabel2
+            // btnHotels
             // 
             this.btnHotels.BorderColor = System.Drawing.Color.AliceBlue;
             this.btnHotels.BorderRadius = 10;
@@ -983,14 +1007,7 @@
             this.btnLogout.TextOffset = new System.Drawing.Point(20, 0);
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            this.guna2HtmlLabel4.BackColor = System.Drawing.Color.White;
-            this.guna2HtmlLabel4.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(1136, 255);
-            this.guna2HtmlLabel4.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(60, 42);
-            this.guna2HtmlLabel4.TabIndex = 15;
-            this.guna2HtmlLabel4.Text = "725";
+            // pnlHeader
             // 
             this.pnlHeader.Controls.Add(this.lblUserRole);
             this.pnlHeader.Controls.Add(this.lblUserName);
@@ -1047,26 +1064,7 @@
             this.picUserAvt.TabIndex = 3;
             this.picUserAvt.TabStop = false;
             // 
-            this.guna2Button4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button4.BorderRadius = 15;
-            this.guna2Button4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button4.FillColor = System.Drawing.Color.White;
-            this.guna2Button4.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button4.ForeColor = System.Drawing.Color.White;
-            this.guna2Button4.HoverState.BorderColor = System.Drawing.Color.Gainsboro;
-            this.guna2Button4.HoverState.FillColor = System.Drawing.Color.White;
-            this.guna2Button4.Location = new System.Drawing.Point(1116, 165);
-            this.guna2Button4.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2Button4.Name = "guna2Button4";
-            this.guna2Button4.ShadowDecoration.BorderRadius = 15;
-            this.guna2Button4.ShadowDecoration.Color = System.Drawing.Color.Gainsboro;
-            this.guna2Button4.ShadowDecoration.Enabled = true;
-            this.guna2Button4.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(10);
-            this.guna2Button4.Size = new System.Drawing.Size(355, 208);
-            this.guna2Button4.TabIndex = 12;
+            // btnNotification
             // 
             this.btnNotification.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNotification.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1108,21 +1106,7 @@
             this.lblWelcomeTitle.TabIndex = 0;
             this.lblWelcomeTitle.Text = "Welcome Back!";
             // 
-            this.guna2Button5.BorderRadius = 10;
-            this.guna2Button5.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button5.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button5.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button5.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(254)))));
-            this.guna2Button5.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button5.ForeColor = System.Drawing.Color.White;
-            this.guna2Button5.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button5.Image")));
-            this.guna2Button5.ImageSize = new System.Drawing.Size(25, 25);
-            this.guna2Button5.Location = new System.Drawing.Point(1539, 174);
-            this.guna2Button5.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2Button5.Name = "guna2Button5";
-            this.guna2Button5.Size = new System.Drawing.Size(60, 55);
-            this.guna2Button5.TabIndex = 18;
+            // btnCardValue
             // 
             this.btnCardValue.BackColor = System.Drawing.Color.Transparent;
             this.btnCardValue.BorderRadius = 15;
@@ -1145,26 +1129,7 @@
             this.btnCardValue.Size = new System.Drawing.Size(331, 208);
             this.btnCardValue.TabIndex = 2;
             // 
-            this.guna2Button6.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button6.BorderRadius = 15;
-            this.guna2Button6.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button6.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button6.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button6.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button6.FillColor = System.Drawing.Color.White;
-            this.guna2Button6.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button6.ForeColor = System.Drawing.Color.White;
-            this.guna2Button6.HoverState.BorderColor = System.Drawing.Color.Gainsboro;
-            this.guna2Button6.HoverState.FillColor = System.Drawing.Color.White;
-            this.guna2Button6.Location = new System.Drawing.Point(1519, 165);
-            this.guna2Button6.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2Button6.Name = "guna2Button6";
-            this.guna2Button6.ShadowDecoration.BorderRadius = 15;
-            this.guna2Button6.ShadowDecoration.Color = System.Drawing.Color.Gainsboro;
-            this.guna2Button6.ShadowDecoration.Enabled = true;
-            this.guna2Button6.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(10);
-            this.guna2Button6.Size = new System.Drawing.Size(349, 208);
-            this.guna2Button6.TabIndex = 17;
+            // btnIconRevenue
             // 
             this.btnIconRevenue.BorderRadius = 10;
             this.btnIconRevenue.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1182,32 +1147,7 @@
             this.btnIconRevenue.Size = new System.Drawing.Size(60, 55);
             this.btnIconRevenue.TabIndex = 3;
             // 
-            this.btnReports.BorderColor = System.Drawing.Color.AliceBlue;
-            this.btnReports.BorderRadius = 10;
-            this.btnReports.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnReports.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
-            this.btnReports.CustomImages.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.btnReports.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
-            this.btnReports.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
-            this.btnReports.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnReports.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnReports.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnReports.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnReports.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.btnReports.FocusedColor = System.Drawing.Color.Transparent;
-            this.btnReports.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReports.ForeColor = System.Drawing.Color.White;
-            this.btnReports.Image = ((System.Drawing.Image)(resources.GetObject("btnReports.Image")));
-            this.btnReports.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnReports.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnReports.Location = new System.Drawing.Point(32, 762);
-            this.btnReports.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(198, 46);
-            this.btnReports.TabIndex = 9;
-            this.btnReports.Text = "Báo cáo";
-            this.btnReports.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnReports.TextOffset = new System.Drawing.Point(20, 0);
+            // chipTrendRevenue
             // 
             this.chipTrendRevenue.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(247)))), ((int)(((byte)(227)))));
             this.chipTrendRevenue.Font = new System.Drawing.Font("Segoe UI", 9.5F);
@@ -1219,26 +1159,7 @@
             this.chipTrendRevenue.TabIndex = 4;
             this.chipTrendRevenue.Text = "12,5%";
             // 
-            this.pnlSidebar.Controls.Add(this.guna2Separator2);
-            this.pnlSidebar.Controls.Add(this.btnLogout);
-            this.pnlSidebar.Controls.Add(this.btnReports);
-            this.pnlSidebar.Controls.Add(this.btnPayments);
-            this.pnlSidebar.Controls.Add(this.btnInventory);
-            this.pnlSidebar.Controls.Add(this.btnHotels);
-            this.pnlSidebar.Controls.Add(this.btnRestaurents);
-            this.pnlSidebar.Controls.Add(this.btnCustomers);
-            this.pnlSidebar.Controls.Add(this.btnEmployees);
-            this.pnlSidebar.Controls.Add(this.btnHome);
-            this.pnlSidebar.Controls.Add(this.lblSubLogo);
-            this.pnlSidebar.Controls.Add(this.lblLogo);
-            this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlSidebar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.pnlSidebar.Location = new System.Drawing.Point(0, 0);
-            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnlSidebar.Name = "pnlSidebar";
-            this.pnlSidebar.ShadowDecoration.Enabled = true;
-            this.pnlSidebar.Size = new System.Drawing.Size(257, 1033);
-            this.pnlSidebar.TabIndex = 22;
+            // lblStatValue
             // 
             this.lblStatValue.BackColor = System.Drawing.Color.White;
             this.lblStatValue.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1249,13 +1170,7 @@
             this.lblStatValue.TabIndex = 5;
             this.lblStatValue.Text = "$45,232";
             // 
-            this.guna2Separator2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.guna2Separator2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.guna2Separator2.Location = new System.Drawing.Point(12, 103);
-            this.guna2Separator2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.guna2Separator2.Name = "guna2Separator2";
-            this.guna2Separator2.Size = new System.Drawing.Size(235, 10);
-            this.guna2Separator2.TabIndex = 11;
+            // lblStatTitle
             // 
             this.lblStatTitle.BackColor = System.Drawing.Color.White;
             this.lblStatTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1267,31 +1182,7 @@
             this.lblStatTitle.TabIndex = 6;
             this.lblStatTitle.Text = "Tổng doanh thu";
             // 
-            this.btnLogout.BorderColor = System.Drawing.Color.AliceBlue;
-            this.btnLogout.BorderRadius = 10;
-            this.btnLogout.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnLogout.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
-            this.btnLogout.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnLogout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnLogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnLogout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnLogout.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.btnLogout.FocusedColor = System.Drawing.Color.Transparent;
-            this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Image = ((System.Drawing.Image)(resources.GetObject("btnLogout.Image")));
-            this.btnLogout.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.btnLogout.ImageOffset = new System.Drawing.Point(15, 0);
-            this.btnLogout.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnLogout.Location = new System.Drawing.Point(0, 987);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(257, 46);
-            this.btnLogout.TabIndex = 10;
-            this.btnLogout.Text = "Đăng xuất";
-            this.btnLogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnLogout.TextOffset = new System.Drawing.Point(20, 0);
+            // guna2HtmlLabel1
             // 
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1303,32 +1194,7 @@
             this.guna2HtmlLabel1.TabIndex = 11;
             this.guna2HtmlLabel1.Text = "Số khách hàng";
             // 
-            this.btnPayments.BorderColor = System.Drawing.Color.AliceBlue;
-            this.btnPayments.BorderRadius = 10;
-            this.btnPayments.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnPayments.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
-            this.btnPayments.CustomImages.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
-            this.btnPayments.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
-            this.btnPayments.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
-            this.btnPayments.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnPayments.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnPayments.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnPayments.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnPayments.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.btnPayments.FocusedColor = System.Drawing.Color.Transparent;
-            this.btnPayments.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPayments.ForeColor = System.Drawing.Color.White;
-            this.btnPayments.Image = ((System.Drawing.Image)(resources.GetObject("btnPayments.Image")));
-            this.btnPayments.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnPayments.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnPayments.Location = new System.Drawing.Point(32, 679);
-            this.btnPayments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnPayments.Name = "btnPayments";
-            this.btnPayments.Size = new System.Drawing.Size(198, 46);
-            this.btnPayments.TabIndex = 8;
-            this.btnPayments.Text = "Thanh toán";
-            this.btnPayments.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnPayments.TextOffset = new System.Drawing.Point(20, 0);
+            // guna2HtmlLabel2
             // 
             this.guna2HtmlLabel2.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel2.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1339,32 +1205,7 @@
             this.guna2HtmlLabel2.TabIndex = 10;
             this.guna2HtmlLabel2.Text = "1.883";
             // 
-            this.btnInventory.BorderColor = System.Drawing.Color.AliceBlue;
-            this.btnInventory.BorderRadius = 10;
-            this.btnInventory.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnInventory.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
-            this.btnInventory.CustomImages.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
-            this.btnInventory.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
-            this.btnInventory.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
-            this.btnInventory.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnInventory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnInventory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnInventory.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.btnInventory.FocusedColor = System.Drawing.Color.Transparent;
-            this.btnInventory.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.btnInventory.ForeColor = System.Drawing.Color.White;
-            this.btnInventory.Image = ((System.Drawing.Image)(resources.GetObject("btnInventory.Image")));
-            this.btnInventory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnInventory.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnInventory.Location = new System.Drawing.Point(32, 594);
-            this.btnInventory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnInventory.Name = "btnInventory";
-            this.btnInventory.Size = new System.Drawing.Size(198, 46);
-            this.btnInventory.TabIndex = 7;
-            this.btnInventory.Text = "Kho";
-            this.btnInventory.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnInventory.TextOffset = new System.Drawing.Point(20, 0);
+            // guna2Chip1
             // 
             this.guna2Chip1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(247)))), ((int)(((byte)(227)))));
             this.guna2Chip1.Font = new System.Drawing.Font("Segoe UI", 9.5F);
@@ -1376,32 +1217,7 @@
             this.guna2Chip1.TabIndex = 9;
             this.guna2Chip1.Text = "8,5%";
             // 
-            this.btnHotels.BorderColor = System.Drawing.Color.AliceBlue;
-            this.btnHotels.BorderRadius = 10;
-            this.btnHotels.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnHotels.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
-            this.btnHotels.CustomImages.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
-            this.btnHotels.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
-            this.btnHotels.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
-            this.btnHotels.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnHotels.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnHotels.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnHotels.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnHotels.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.btnHotels.FocusedColor = System.Drawing.Color.Transparent;
-            this.btnHotels.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.btnHotels.ForeColor = System.Drawing.Color.White;
-            this.btnHotels.Image = ((System.Drawing.Image)(resources.GetObject("btnHotels.Image")));
-            this.btnHotels.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnHotels.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnHotels.Location = new System.Drawing.Point(32, 416);
-            this.btnHotels.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnHotels.Name = "btnHotels";
-            this.btnHotels.Size = new System.Drawing.Size(198, 46);
-            this.btnHotels.TabIndex = 6;
-            this.btnHotels.Text = "Khách sạn";
-            this.btnHotels.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnHotels.TextOffset = new System.Drawing.Point(20, 0);
+            // guna2Button1
             // 
             this.guna2Button1.BorderRadius = 10;
             this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1419,7 +1235,7 @@
             this.guna2Button1.Size = new System.Drawing.Size(60, 55);
             this.guna2Button1.TabIndex = 8;
             // 
-            // btnCustomers
+            // guna2Button2
             // 
             this.guna2Button2.BackColor = System.Drawing.Color.Transparent;
             this.guna2Button2.BorderRadius = 15;
@@ -1442,34 +1258,7 @@
             this.guna2Button2.Size = new System.Drawing.Size(349, 208);
             this.guna2Button2.TabIndex = 7;
             // 
-            // btnEmployees
-            // 
-            this.btnEmployees.BorderColor = System.Drawing.Color.AliceBlue;
-            this.btnEmployees.BorderRadius = 10;
-            this.btnEmployees.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnEmployees.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
-            this.btnEmployees.CustomImages.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image6")));
-            this.btnEmployees.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
-            this.btnEmployees.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
-            this.btnEmployees.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnEmployees.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnEmployees.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnEmployees.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnEmployees.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.btnEmployees.FocusedColor = System.Drawing.Color.Transparent;
-            this.btnEmployees.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.btnEmployees.ForeColor = System.Drawing.Color.White;
-            this.btnEmployees.Image = ((System.Drawing.Image)(resources.GetObject("btnEmployees.Image")));
-            this.btnEmployees.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnEmployees.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnEmployees.Location = new System.Drawing.Point(32, 241);
-            this.btnEmployees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnEmployees.Name = "btnEmployees";
-            this.btnEmployees.Size = new System.Drawing.Size(198, 46);
-            this.btnEmployees.TabIndex = 3;
-            this.btnEmployees.Text = "Nhân viên";
-            this.btnEmployees.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnEmployees.TextOffset = new System.Drawing.Point(20, 0);
+            // guna2HtmlLabel3
             // 
             this.guna2HtmlLabel3.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1481,29 +1270,7 @@
             this.guna2HtmlLabel3.TabIndex = 16;
             this.guna2HtmlLabel3.Text = "Booking khách sạn";
             // 
-            this.btnHome.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.btnHome.BorderRadius = 10;
-            this.btnHome.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnHome.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
-            this.btnHome.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnHome.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnHome.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnHome.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnHome.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.btnHome.FocusedColor = System.Drawing.Color.Transparent;
-            this.btnHome.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.btnHome.ForeColor = System.Drawing.Color.White;
-            this.btnHome.Image = ((System.Drawing.Image)(resources.GetObject("btnHome.Image")));
-            this.btnHome.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnHome.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnHome.Location = new System.Drawing.Point(32, 154);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(198, 46);
-            this.btnHome.TabIndex = 2;
-            this.btnHome.Text = "Trang chủ";
-            this.btnHome.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnHome.TextOffset = new System.Drawing.Point(20, 0);
+            // guna2HtmlLabel4
             // 
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel4.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1514,15 +1281,7 @@
             this.guna2HtmlLabel4.TabIndex = 15;
             this.guna2HtmlLabel4.Text = "725";
             // 
-            this.lblSubLogo.AutoSize = true;
-            this.lblSubLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.lblSubLogo.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubLogo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblSubLogo.Location = new System.Drawing.Point(37, 64);
-            this.lblSubLogo.Name = "lblSubLogo";
-            this.lblSubLogo.Size = new System.Drawing.Size(182, 23);
-            this.lblSubLogo.TabIndex = 1;
-            this.lblSubLogo.Text = "Management System";
+            // guna2Chip2
             // 
             this.guna2Chip2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(247)))), ((int)(((byte)(227)))));
             this.guna2Chip2.Font = new System.Drawing.Font("Segoe UI", 9.5F);
@@ -1534,15 +1293,7 @@
             this.guna2Chip2.TabIndex = 14;
             this.guna2Chip2.Text = "3,2%";
             // 
-            this.lblLogo.AutoSize = true;
-            this.lblLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.lblLogo.Font = new System.Drawing.Font("Microsoft YaHei UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogo.ForeColor = System.Drawing.Color.White;
-            this.lblLogo.Location = new System.Drawing.Point(24, 9);
-            this.lblLogo.Name = "lblLogo";
-            this.lblLogo.Size = new System.Drawing.Size(206, 44);
-            this.lblLogo.TabIndex = 0;
-            this.lblLogo.Text = "RH-GROUP";
+            // guna2Button3
             // 
             this.guna2Button3.BorderRadius = 10;
             this.guna2Button3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1560,20 +1311,7 @@
             this.guna2Button3.Size = new System.Drawing.Size(60, 55);
             this.guna2Button3.TabIndex = 13;
             // 
-            this.pnlHeader.Controls.Add(this.lblUserRole);
-            this.pnlHeader.Controls.Add(this.lblUserName);
-            this.pnlHeader.Controls.Add(this.picUserAvt);
-            this.pnlHeader.Controls.Add(this.btnNotification);
-            this.pnlHeader.Controls.Add(this.lblWelcomeSubtitle);
-            this.pnlHeader.Controls.Add(this.lblWelcomeTitle);
-            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader.Location = new System.Drawing.Point(257, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4);
-            this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
-            this.pnlHeader.ShadowDecoration.Enabled = true;
-            this.pnlHeader.Size = new System.Drawing.Size(1645, 140);
-            this.pnlHeader.TabIndex = 23;
+            // guna2Button4
             // 
             this.guna2Button4.BackColor = System.Drawing.Color.Transparent;
             this.guna2Button4.BorderRadius = 15;
@@ -1596,16 +1334,7 @@
             this.guna2Button4.Size = new System.Drawing.Size(339, 208);
             this.guna2Button4.TabIndex = 12;
             // 
-            this.lblUserRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblUserRole.AutoSize = true;
-            this.lblUserRole.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserRole.ForeColor = System.Drawing.Color.Gray;
-            this.lblUserRole.Location = new System.Drawing.Point(1505, 65);
-            this.lblUserRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblUserRole.Name = "lblUserRole";
-            this.lblUserRole.Size = new System.Drawing.Size(93, 19);
-            this.lblUserRole.TabIndex = 5;
-            this.lblUserRole.Text = "Administrator";
+            // guna2HtmlLabel5
             // 
             this.guna2HtmlLabel5.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel5.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1617,15 +1346,7 @@
             this.guna2HtmlLabel5.TabIndex = 21;
             this.guna2HtmlLabel5.Text = "Booking nhà hàng";
             // 
-            this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblUserName.AutoSize = true;
-            this.lblUserName.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(1505, 36);
-            this.lblUserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(67, 24);
-            this.lblUserName.TabIndex = 4;
-            this.lblUserName.Text = "Admin";
+            // guna2HtmlLabel6
             // 
             this.guna2HtmlLabel6.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel6.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1636,17 +1357,7 @@
             this.guna2HtmlLabel6.TabIndex = 20;
             this.guna2HtmlLabel6.Text = "365";
             // 
-            this.picUserAvt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picUserAvt.Image = ((System.Drawing.Image)(resources.GetObject("picUserAvt.Image")));
-            this.picUserAvt.ImageRotate = 0F;
-            this.picUserAvt.Location = new System.Drawing.Point(1422, 32);
-            this.picUserAvt.Margin = new System.Windows.Forms.Padding(4);
-            this.picUserAvt.Name = "picUserAvt";
-            this.picUserAvt.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.picUserAvt.Size = new System.Drawing.Size(75, 69);
-            this.picUserAvt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picUserAvt.TabIndex = 3;
-            this.picUserAvt.TabStop = false;
+            // guna2Chip3
             // 
             this.guna2Chip3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.guna2Chip3.Font = new System.Drawing.Font("Segoe UI", 9.5F);
@@ -1658,21 +1369,7 @@
             this.guna2Chip3.TabIndex = 19;
             this.guna2Chip3.Text = "2,2%";
             // 
-            this.btnNotification.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNotification.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnNotification.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnNotification.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnNotification.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnNotification.FillColor = System.Drawing.Color.Transparent;
-            this.btnNotification.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnNotification.ForeColor = System.Drawing.Color.White;
-            this.btnNotification.Image = ((System.Drawing.Image)(resources.GetObject("btnNotification.Image")));
-            this.btnNotification.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnNotification.Location = new System.Drawing.Point(1331, 57);
-            this.btnNotification.Margin = new System.Windows.Forms.Padding(4);
-            this.btnNotification.Name = "btnNotification";
-            this.btnNotification.Size = new System.Drawing.Size(33, 31);
-            this.btnNotification.TabIndex = 2;
+            // guna2Button5
             // 
             this.guna2Button5.BorderRadius = 10;
             this.guna2Button5.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1690,15 +1387,7 @@
             this.guna2Button5.Size = new System.Drawing.Size(60, 55);
             this.guna2Button5.TabIndex = 18;
             // 
-            this.lblWelcomeSubtitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblWelcomeSubtitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcomeSubtitle.ForeColor = System.Drawing.Color.Gray;
-            this.lblWelcomeSubtitle.Location = new System.Drawing.Point(31, 79);
-            this.lblWelcomeSubtitle.Margin = new System.Windows.Forms.Padding(4);
-            this.lblWelcomeSubtitle.Name = "lblWelcomeSubtitle";
-            this.lblWelcomeSubtitle.Size = new System.Drawing.Size(366, 22);
-            this.lblWelcomeSubtitle.TabIndex = 1;
-            this.lblWelcomeSubtitle.Text = "Here\'s what\'s happening with your business today";
+            // guna2Button6
             // 
             this.guna2Button6.BackColor = System.Drawing.Color.Transparent;
             this.guna2Button6.BorderRadius = 15;
@@ -1756,25 +1445,25 @@
             // 
             this.pnlQuickAction.BackColor = System.Drawing.Color.Transparent;
             this.pnlQuickAction.BorderRadius = 15;
-            this.pnlQuickAction.Controls.Add(this.guna2HtmlLabel12);
-            this.pnlQuickAction.Controls.Add(this.guna2HtmlLabel13);
-            this.pnlQuickAction.Controls.Add(this.guna2Button12);
-            this.pnlQuickAction.Controls.Add(this.guna2Button13);
-            this.pnlQuickAction.Controls.Add(this.guna2HtmlLabel10);
-            this.pnlQuickAction.Controls.Add(this.guna2HtmlLabel11);
-            this.pnlQuickAction.Controls.Add(this.guna2Button10);
-            this.pnlQuickAction.Controls.Add(this.guna2Button11);
-            this.pnlQuickAction.Controls.Add(this.guna2HtmlLabel8);
-            this.pnlQuickAction.Controls.Add(this.guna2HtmlLabel9);
-            this.pnlQuickAction.Controls.Add(this.guna2Button8);
-            this.pnlQuickAction.Controls.Add(this.guna2Button9);
-            this.pnlQuickAction.Controls.Add(this.guna2HtmlLabel7);
-            this.pnlQuickAction.Controls.Add(this.lblQuick_Title);
-            this.pnlQuickAction.Controls.Add(this.btnNewBooking);
+            this.pnlQuickAction.Controls.Add(this.lblQuick_StockLevel);
+            this.pnlQuickAction.Controls.Add(this.lblQuick_CheckInventory);
+            this.pnlQuickAction.Controls.Add(this.btnQuick_CheckInventory);
+            this.pnlQuickAction.Controls.Add(this.btnContainer_CheckInventory);
+            this.pnlQuickAction.Controls.Add(this.lblQuick_ViewAnalytics);
+            this.pnlQuickAction.Controls.Add(this.lblQuick_CreateReport);
+            this.pnlQuickAction.Controls.Add(this.btnQuick_CreateReport);
+            this.pnlQuickAction.Controls.Add(this.btnContainer_CreateReport);
+            this.pnlQuickAction.Controls.Add(this.lblQuick_RegisterSatff);
+            this.pnlQuickAction.Controls.Add(this.lblQuick_AddStaff);
+            this.pnlQuickAction.Controls.Add(this.btnQuick_AddStaff);
+            this.pnlQuickAction.Controls.Add(this.btnContainer_AddStaff);
+            this.pnlQuickAction.Controls.Add(this.lblQuick_CreateReservation);
+            this.pnlQuickAction.Controls.Add(this.lblQuick_NewBooking);
+            this.pnlQuickAction.Controls.Add(this.btnQuick_NewBooking);
             this.pnlQuickAction.Controls.Add(this.lblQuickActions);
             this.pnlQuickAction.Controls.Add(this.btnContainer_NewBooking);
             this.pnlQuickAction.FillColor = System.Drawing.Color.White;
-            this.pnlQuickAction.Location = new System.Drawing.Point(296, 430);
+            this.pnlQuickAction.Location = new System.Drawing.Point(288, 438);
             this.pnlQuickAction.Name = "pnlQuickAction";
             this.pnlQuickAction.ShadowDecoration.BorderRadius = 10;
             this.pnlQuickAction.ShadowDecoration.Color = System.Drawing.Color.LightGray;
@@ -1782,222 +1471,222 @@
             this.pnlQuickAction.Size = new System.Drawing.Size(744, 532);
             this.pnlQuickAction.TabIndex = 25;
             // 
-            // guna2HtmlLabel12
+            // lblQuick_StockLevel
             // 
-            this.guna2HtmlLabel12.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel12.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel12.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel12.Location = new System.Drawing.Point(414, 455);
-            this.guna2HtmlLabel12.Name = "guna2HtmlLabel12";
-            this.guna2HtmlLabel12.Size = new System.Drawing.Size(66, 21);
-            this.guna2HtmlLabel12.TabIndex = 18;
-            this.guna2HtmlLabel12.Text = "Định mức";
+            this.lblQuick_StockLevel.BackColor = System.Drawing.Color.Transparent;
+            this.lblQuick_StockLevel.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuick_StockLevel.ForeColor = System.Drawing.Color.Gray;
+            this.lblQuick_StockLevel.Location = new System.Drawing.Point(414, 455);
+            this.lblQuick_StockLevel.Name = "lblQuick_StockLevel";
+            this.lblQuick_StockLevel.Size = new System.Drawing.Size(58, 19);
+            this.lblQuick_StockLevel.TabIndex = 18;
+            this.lblQuick_StockLevel.Text = "Định mức";
             // 
-            // guna2HtmlLabel13
+            // lblQuick_CheckInventory
             // 
-            this.guna2HtmlLabel13.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel13.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel13.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.guna2HtmlLabel13.Location = new System.Drawing.Point(414, 423);
-            this.guna2HtmlLabel13.Name = "guna2HtmlLabel13";
-            this.guna2HtmlLabel13.Size = new System.Drawing.Size(83, 26);
-            this.guna2HtmlLabel13.TabIndex = 17;
-            this.guna2HtmlLabel13.Text = "Kiểm kho";
+            this.lblQuick_CheckInventory.BackColor = System.Drawing.Color.Transparent;
+            this.lblQuick_CheckInventory.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuick_CheckInventory.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.lblQuick_CheckInventory.Location = new System.Drawing.Point(414, 423);
+            this.lblQuick_CheckInventory.Name = "lblQuick_CheckInventory";
+            this.lblQuick_CheckInventory.Size = new System.Drawing.Size(83, 26);
+            this.lblQuick_CheckInventory.TabIndex = 17;
+            this.lblQuick_CheckInventory.Text = "Kiểm kho";
             // 
-            // guna2Button12
+            // btnQuick_CheckInventory
             // 
-            this.guna2Button12.BorderRadius = 10;
-            this.guna2Button12.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button12.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button12.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button12.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button12.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(254)))));
-            this.guna2Button12.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button12.ForeColor = System.Drawing.Color.White;
-            this.guna2Button12.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button12.Image")));
-            this.guna2Button12.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button12.Location = new System.Drawing.Point(408, 342);
-            this.guna2Button12.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2Button12.Name = "guna2Button12";
-            this.guna2Button12.Size = new System.Drawing.Size(60, 55);
-            this.guna2Button12.TabIndex = 16;
+            this.btnQuick_CheckInventory.BorderRadius = 10;
+            this.btnQuick_CheckInventory.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnQuick_CheckInventory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnQuick_CheckInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnQuick_CheckInventory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnQuick_CheckInventory.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(254)))));
+            this.btnQuick_CheckInventory.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnQuick_CheckInventory.ForeColor = System.Drawing.Color.White;
+            this.btnQuick_CheckInventory.Image = ((System.Drawing.Image)(resources.GetObject("btnQuick_CheckInventory.Image")));
+            this.btnQuick_CheckInventory.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnQuick_CheckInventory.Location = new System.Drawing.Point(408, 342);
+            this.btnQuick_CheckInventory.Margin = new System.Windows.Forms.Padding(4);
+            this.btnQuick_CheckInventory.Name = "btnQuick_CheckInventory";
+            this.btnQuick_CheckInventory.Size = new System.Drawing.Size(60, 55);
+            this.btnQuick_CheckInventory.TabIndex = 16;
             // 
-            // guna2Button13
+            // btnContainer_CheckInventory
             // 
-            this.guna2Button13.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
-            this.guna2Button13.BorderRadius = 15;
-            this.guna2Button13.BorderThickness = 1;
-            this.guna2Button13.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button13.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button13.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button13.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button13.FillColor = System.Drawing.Color.FloralWhite;
-            this.guna2Button13.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button13.ForeColor = System.Drawing.Color.White;
-            this.guna2Button13.Location = new System.Drawing.Point(397, 330);
-            this.guna2Button13.Name = "guna2Button13";
-            this.guna2Button13.ShadowDecoration.BorderRadius = 10;
-            this.guna2Button13.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.guna2Button13.Size = new System.Drawing.Size(303, 168);
-            this.guna2Button13.TabIndex = 15;
+            this.btnContainer_CheckInventory.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
+            this.btnContainer_CheckInventory.BorderRadius = 15;
+            this.btnContainer_CheckInventory.BorderThickness = 1;
+            this.btnContainer_CheckInventory.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnContainer_CheckInventory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnContainer_CheckInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnContainer_CheckInventory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnContainer_CheckInventory.FillColor = System.Drawing.Color.FloralWhite;
+            this.btnContainer_CheckInventory.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnContainer_CheckInventory.ForeColor = System.Drawing.Color.White;
+            this.btnContainer_CheckInventory.Location = new System.Drawing.Point(397, 330);
+            this.btnContainer_CheckInventory.Name = "btnContainer_CheckInventory";
+            this.btnContainer_CheckInventory.ShadowDecoration.BorderRadius = 10;
+            this.btnContainer_CheckInventory.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btnContainer_CheckInventory.Size = new System.Drawing.Size(303, 168);
+            this.btnContainer_CheckInventory.TabIndex = 15;
             // 
-            // guna2HtmlLabel10
+            // lblQuick_ViewAnalytics
             // 
-            this.guna2HtmlLabel10.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel10.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel10.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel10.Location = new System.Drawing.Point(54, 455);
-            this.guna2HtmlLabel10.Name = "guna2HtmlLabel10";
-            this.guna2HtmlLabel10.Size = new System.Drawing.Size(98, 21);
-            this.guna2HtmlLabel10.TabIndex = 14;
-            this.guna2HtmlLabel10.Text = "Xem doanh thu";
+            this.lblQuick_ViewAnalytics.BackColor = System.Drawing.Color.Transparent;
+            this.lblQuick_ViewAnalytics.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuick_ViewAnalytics.ForeColor = System.Drawing.Color.Gray;
+            this.lblQuick_ViewAnalytics.Location = new System.Drawing.Point(54, 455);
+            this.lblQuick_ViewAnalytics.Name = "lblQuick_ViewAnalytics";
+            this.lblQuick_ViewAnalytics.Size = new System.Drawing.Size(92, 19);
+            this.lblQuick_ViewAnalytics.TabIndex = 14;
+            this.lblQuick_ViewAnalytics.Text = "Xem doanh thu";
             // 
-            // guna2HtmlLabel11
+            // lblQuick_CreateReport
             // 
-            this.guna2HtmlLabel11.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel11.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel11.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.guna2HtmlLabel11.Location = new System.Drawing.Point(54, 423);
-            this.guna2HtmlLabel11.Name = "guna2HtmlLabel11";
-            this.guna2HtmlLabel11.Size = new System.Drawing.Size(107, 26);
-            this.guna2HtmlLabel11.TabIndex = 13;
-            this.guna2HtmlLabel11.Text = "Lập báo cáo";
+            this.lblQuick_CreateReport.BackColor = System.Drawing.Color.Transparent;
+            this.lblQuick_CreateReport.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuick_CreateReport.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.lblQuick_CreateReport.Location = new System.Drawing.Point(54, 423);
+            this.lblQuick_CreateReport.Name = "lblQuick_CreateReport";
+            this.lblQuick_CreateReport.Size = new System.Drawing.Size(107, 26);
+            this.lblQuick_CreateReport.TabIndex = 13;
+            this.lblQuick_CreateReport.Text = "Lập báo cáo";
             // 
-            // guna2Button10
+            // btnQuick_CreateReport
             // 
-            this.guna2Button10.BorderRadius = 10;
-            this.guna2Button10.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button10.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button10.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button10.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button10.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(254)))));
-            this.guna2Button10.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button10.ForeColor = System.Drawing.Color.White;
-            this.guna2Button10.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button10.Image")));
-            this.guna2Button10.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button10.Location = new System.Drawing.Point(48, 342);
-            this.guna2Button10.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2Button10.Name = "guna2Button10";
-            this.guna2Button10.Size = new System.Drawing.Size(60, 55);
-            this.guna2Button10.TabIndex = 12;
+            this.btnQuick_CreateReport.BorderRadius = 10;
+            this.btnQuick_CreateReport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnQuick_CreateReport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnQuick_CreateReport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnQuick_CreateReport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnQuick_CreateReport.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(254)))));
+            this.btnQuick_CreateReport.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnQuick_CreateReport.ForeColor = System.Drawing.Color.White;
+            this.btnQuick_CreateReport.Image = ((System.Drawing.Image)(resources.GetObject("btnQuick_CreateReport.Image")));
+            this.btnQuick_CreateReport.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnQuick_CreateReport.Location = new System.Drawing.Point(48, 342);
+            this.btnQuick_CreateReport.Margin = new System.Windows.Forms.Padding(4);
+            this.btnQuick_CreateReport.Name = "btnQuick_CreateReport";
+            this.btnQuick_CreateReport.Size = new System.Drawing.Size(60, 55);
+            this.btnQuick_CreateReport.TabIndex = 12;
             // 
-            // guna2Button11
+            // btnContainer_CreateReport
             // 
-            this.guna2Button11.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
-            this.guna2Button11.BorderRadius = 15;
-            this.guna2Button11.BorderThickness = 1;
-            this.guna2Button11.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button11.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button11.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button11.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button11.FillColor = System.Drawing.Color.FloralWhite;
-            this.guna2Button11.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button11.ForeColor = System.Drawing.Color.White;
-            this.guna2Button11.Location = new System.Drawing.Point(37, 330);
-            this.guna2Button11.Name = "guna2Button11";
-            this.guna2Button11.ShadowDecoration.BorderRadius = 10;
-            this.guna2Button11.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.guna2Button11.Size = new System.Drawing.Size(303, 168);
-            this.guna2Button11.TabIndex = 11;
+            this.btnContainer_CreateReport.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
+            this.btnContainer_CreateReport.BorderRadius = 15;
+            this.btnContainer_CreateReport.BorderThickness = 1;
+            this.btnContainer_CreateReport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnContainer_CreateReport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnContainer_CreateReport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnContainer_CreateReport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnContainer_CreateReport.FillColor = System.Drawing.Color.FloralWhite;
+            this.btnContainer_CreateReport.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnContainer_CreateReport.ForeColor = System.Drawing.Color.White;
+            this.btnContainer_CreateReport.Location = new System.Drawing.Point(37, 330);
+            this.btnContainer_CreateReport.Name = "btnContainer_CreateReport";
+            this.btnContainer_CreateReport.ShadowDecoration.BorderRadius = 10;
+            this.btnContainer_CreateReport.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btnContainer_CreateReport.Size = new System.Drawing.Size(303, 168);
+            this.btnContainer_CreateReport.TabIndex = 11;
             // 
-            // guna2HtmlLabel8
+            // lblQuick_RegisterSatff
             // 
-            this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel8.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel8.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel8.Location = new System.Drawing.Point(414, 252);
-            this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            this.guna2HtmlLabel8.Size = new System.Drawing.Size(143, 21);
-            this.guna2HtmlLabel8.TabIndex = 10;
-            this.guna2HtmlLabel8.Text = "Đăng kí nhân viên mới";
+            this.lblQuick_RegisterSatff.BackColor = System.Drawing.Color.Transparent;
+            this.lblQuick_RegisterSatff.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuick_RegisterSatff.ForeColor = System.Drawing.Color.Gray;
+            this.lblQuick_RegisterSatff.Location = new System.Drawing.Point(414, 252);
+            this.lblQuick_RegisterSatff.Name = "lblQuick_RegisterSatff";
+            this.lblQuick_RegisterSatff.Size = new System.Drawing.Size(132, 19);
+            this.lblQuick_RegisterSatff.TabIndex = 10;
+            this.lblQuick_RegisterSatff.Text = "Đăng kí nhân viên mới";
             // 
-            // guna2HtmlLabel9
+            // lblQuick_AddStaff
             // 
-            this.guna2HtmlLabel9.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel9.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel9.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.guna2HtmlLabel9.Location = new System.Drawing.Point(414, 220);
-            this.guna2HtmlLabel9.Name = "guna2HtmlLabel9";
-            this.guna2HtmlLabel9.Size = new System.Drawing.Size(139, 26);
-            this.guna2HtmlLabel9.TabIndex = 9;
-            this.guna2HtmlLabel9.Text = "Thêm nhân viên";
+            this.lblQuick_AddStaff.BackColor = System.Drawing.Color.Transparent;
+            this.lblQuick_AddStaff.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuick_AddStaff.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.lblQuick_AddStaff.Location = new System.Drawing.Point(414, 220);
+            this.lblQuick_AddStaff.Name = "lblQuick_AddStaff";
+            this.lblQuick_AddStaff.Size = new System.Drawing.Size(139, 26);
+            this.lblQuick_AddStaff.TabIndex = 9;
+            this.lblQuick_AddStaff.Text = "Thêm nhân viên";
             // 
-            // guna2Button8
+            // btnQuick_AddStaff
             // 
-            this.guna2Button8.BorderRadius = 10;
-            this.guna2Button8.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button8.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button8.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button8.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button8.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(254)))));
-            this.guna2Button8.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button8.ForeColor = System.Drawing.Color.White;
-            this.guna2Button8.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button8.Image")));
-            this.guna2Button8.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button8.Location = new System.Drawing.Point(408, 139);
-            this.guna2Button8.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2Button8.Name = "guna2Button8";
-            this.guna2Button8.Size = new System.Drawing.Size(60, 55);
-            this.guna2Button8.TabIndex = 8;
+            this.btnQuick_AddStaff.BorderRadius = 10;
+            this.btnQuick_AddStaff.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnQuick_AddStaff.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnQuick_AddStaff.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnQuick_AddStaff.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnQuick_AddStaff.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(254)))));
+            this.btnQuick_AddStaff.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnQuick_AddStaff.ForeColor = System.Drawing.Color.White;
+            this.btnQuick_AddStaff.Image = ((System.Drawing.Image)(resources.GetObject("btnQuick_AddStaff.Image")));
+            this.btnQuick_AddStaff.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnQuick_AddStaff.Location = new System.Drawing.Point(408, 139);
+            this.btnQuick_AddStaff.Margin = new System.Windows.Forms.Padding(4);
+            this.btnQuick_AddStaff.Name = "btnQuick_AddStaff";
+            this.btnQuick_AddStaff.Size = new System.Drawing.Size(60, 55);
+            this.btnQuick_AddStaff.TabIndex = 8;
             // 
-            // guna2Button9
+            // btnContainer_AddStaff
             // 
-            this.guna2Button9.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
-            this.guna2Button9.BorderRadius = 15;
-            this.guna2Button9.BorderThickness = 1;
-            this.guna2Button9.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button9.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button9.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button9.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button9.FillColor = System.Drawing.Color.FloralWhite;
-            this.guna2Button9.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button9.ForeColor = System.Drawing.Color.White;
-            this.guna2Button9.Location = new System.Drawing.Point(397, 127);
-            this.guna2Button9.Name = "guna2Button9";
-            this.guna2Button9.ShadowDecoration.BorderRadius = 10;
-            this.guna2Button9.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.guna2Button9.Size = new System.Drawing.Size(303, 168);
-            this.guna2Button9.TabIndex = 7;
+            this.btnContainer_AddStaff.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
+            this.btnContainer_AddStaff.BorderRadius = 15;
+            this.btnContainer_AddStaff.BorderThickness = 1;
+            this.btnContainer_AddStaff.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnContainer_AddStaff.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnContainer_AddStaff.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnContainer_AddStaff.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnContainer_AddStaff.FillColor = System.Drawing.Color.FloralWhite;
+            this.btnContainer_AddStaff.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnContainer_AddStaff.ForeColor = System.Drawing.Color.White;
+            this.btnContainer_AddStaff.Location = new System.Drawing.Point(397, 127);
+            this.btnContainer_AddStaff.Name = "btnContainer_AddStaff";
+            this.btnContainer_AddStaff.ShadowDecoration.BorderRadius = 10;
+            this.btnContainer_AddStaff.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btnContainer_AddStaff.Size = new System.Drawing.Size(303, 168);
+            this.btnContainer_AddStaff.TabIndex = 7;
             // 
-            // guna2HtmlLabel7
+            // lblQuick_CreateReservation
             // 
-            this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel7.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel7.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel7.Location = new System.Drawing.Point(54, 252);
-            this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            this.guna2HtmlLabel7.Size = new System.Drawing.Size(82, 21);
-            this.guna2HtmlLabel7.TabIndex = 6;
-            this.guna2HtmlLabel7.Text = "Tạo đặt chỗ";
+            this.lblQuick_CreateReservation.BackColor = System.Drawing.Color.Transparent;
+            this.lblQuick_CreateReservation.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuick_CreateReservation.ForeColor = System.Drawing.Color.Gray;
+            this.lblQuick_CreateReservation.Location = new System.Drawing.Point(54, 252);
+            this.lblQuick_CreateReservation.Name = "lblQuick_CreateReservation";
+            this.lblQuick_CreateReservation.Size = new System.Drawing.Size(73, 19);
+            this.lblQuick_CreateReservation.TabIndex = 6;
+            this.lblQuick_CreateReservation.Text = "Tạo đặt chỗ";
             // 
-            // lblQuick_Title
+            // lblQuick_NewBooking
             // 
-            this.lblQuick_Title.BackColor = System.Drawing.Color.Transparent;
-            this.lblQuick_Title.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuick_Title.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.lblQuick_Title.Location = new System.Drawing.Point(54, 220);
-            this.lblQuick_Title.Name = "lblQuick_Title";
-            this.lblQuick_Title.Size = new System.Drawing.Size(73, 26);
-            this.lblQuick_Title.TabIndex = 5;
-            this.lblQuick_Title.Text = "Đặt mới";
+            this.lblQuick_NewBooking.BackColor = System.Drawing.Color.Transparent;
+            this.lblQuick_NewBooking.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuick_NewBooking.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.lblQuick_NewBooking.Location = new System.Drawing.Point(54, 220);
+            this.lblQuick_NewBooking.Name = "lblQuick_NewBooking";
+            this.lblQuick_NewBooking.Size = new System.Drawing.Size(73, 26);
+            this.lblQuick_NewBooking.TabIndex = 5;
+            this.lblQuick_NewBooking.Text = "Đặt mới";
             // 
-            // btnNewBooking
+            // btnQuick_NewBooking
             // 
-            this.btnNewBooking.BorderRadius = 10;
-            this.btnNewBooking.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnNewBooking.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnNewBooking.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnNewBooking.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnNewBooking.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(254)))));
-            this.btnNewBooking.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnNewBooking.ForeColor = System.Drawing.Color.White;
-            this.btnNewBooking.Image = ((System.Drawing.Image)(resources.GetObject("btnNewBooking.Image")));
-            this.btnNewBooking.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnNewBooking.Location = new System.Drawing.Point(48, 139);
-            this.btnNewBooking.Margin = new System.Windows.Forms.Padding(4);
-            this.btnNewBooking.Name = "btnNewBooking";
-            this.btnNewBooking.Size = new System.Drawing.Size(60, 55);
-            this.btnNewBooking.TabIndex = 4;
+            this.btnQuick_NewBooking.BorderRadius = 10;
+            this.btnQuick_NewBooking.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnQuick_NewBooking.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnQuick_NewBooking.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnQuick_NewBooking.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnQuick_NewBooking.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(254)))));
+            this.btnQuick_NewBooking.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnQuick_NewBooking.ForeColor = System.Drawing.Color.White;
+            this.btnQuick_NewBooking.Image = ((System.Drawing.Image)(resources.GetObject("btnQuick_NewBooking.Image")));
+            this.btnQuick_NewBooking.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnQuick_NewBooking.Location = new System.Drawing.Point(48, 139);
+            this.btnQuick_NewBooking.Margin = new System.Windows.Forms.Padding(4);
+            this.btnQuick_NewBooking.Name = "btnQuick_NewBooking";
+            this.btnQuick_NewBooking.Size = new System.Drawing.Size(60, 55);
+            this.btnQuick_NewBooking.TabIndex = 4;
             // 
             // lblQuickActions
             // 
@@ -2028,36 +1717,306 @@
             this.btnContainer_NewBooking.Size = new System.Drawing.Size(303, 168);
             this.btnContainer_NewBooking.TabIndex = 0;
             // 
-            // guna2Panel1
+            // pnlRecentActivities
             // 
-            this.guna2Panel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Panel1.BorderRadius = 15;
-            this.guna2Panel1.Controls.Add(this.guna2HtmlLabel22);
-            this.guna2Panel1.FillColor = System.Drawing.Color.White;
-            this.guna2Panel1.Location = new System.Drawing.Point(1111, 430);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.ShadowDecoration.BorderRadius = 10;
-            this.guna2Panel1.ShadowDecoration.Color = System.Drawing.Color.LightGray;
-            this.guna2Panel1.ShadowDecoration.Enabled = true;
-            this.guna2Panel1.Size = new System.Drawing.Size(714, 532);
-            this.guna2Panel1.TabIndex = 26;
+            this.pnlRecentActivities.BackColor = System.Drawing.Color.Transparent;
+            this.pnlRecentActivities.BorderColor = System.Drawing.Color.Black;
+            this.pnlRecentActivities.BorderRadius = 15;
+            this.pnlRecentActivities.Controls.Add(this.lblActivities_StaffTime);
+            this.pnlRecentActivities.Controls.Add(this.lblActivities_StaffDes);
+            this.pnlRecentActivities.Controls.Add(this.lblActivities_StaffTitile);
+            this.pnlRecentActivities.Controls.Add(this.dotGreen);
+            this.pnlRecentActivities.Controls.Add(this.guna2Button11);
+            this.pnlRecentActivities.Controls.Add(this.lblActivities_PaymentTime);
+            this.pnlRecentActivities.Controls.Add(this.lblActivities_PaymentDes);
+            this.pnlRecentActivities.Controls.Add(this.lblActivities_PaymentTitile);
+            this.pnlRecentActivities.Controls.Add(this.dotYellow);
+            this.pnlRecentActivities.Controls.Add(this.guna2Button10);
+            this.pnlRecentActivities.Controls.Add(this.lblActivities_IventoryTime);
+            this.pnlRecentActivities.Controls.Add(this.lblActivities_InventoryDes);
+            this.pnlRecentActivities.Controls.Add(this.lblActivities_InventoryTitile);
+            this.pnlRecentActivities.Controls.Add(this.guna2CirclePictureBox1);
+            this.pnlRecentActivities.Controls.Add(this.dotRed);
+            this.pnlRecentActivities.Controls.Add(this.lblActivities_BookingTime);
+            this.pnlRecentActivities.Controls.Add(this.lblActivities_BookingDes);
+            this.pnlRecentActivities.Controls.Add(this.lblActivities_BookingTitle);
+            this.pnlRecentActivities.Controls.Add(this.dotBlue);
+            this.pnlRecentActivities.Controls.Add(this.guna2Button8);
+            this.pnlRecentActivities.Controls.Add(this.lblRecentActiviy);
+            this.pnlRecentActivities.FillColor = System.Drawing.Color.White;
+            this.pnlRecentActivities.Location = new System.Drawing.Point(1115, 402);
+            this.pnlRecentActivities.Name = "pnlRecentActivities";
+            this.pnlRecentActivities.ShadowDecoration.BorderRadius = 10;
+            this.pnlRecentActivities.ShadowDecoration.Color = System.Drawing.Color.LightGray;
+            this.pnlRecentActivities.ShadowDecoration.Enabled = true;
+            this.pnlRecentActivities.Size = new System.Drawing.Size(714, 608);
+            this.pnlRecentActivities.TabIndex = 26;
             // 
-            // guna2HtmlLabel22
+            // lblRecentActiviy
             // 
-            this.guna2HtmlLabel22.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel22.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel22.Location = new System.Drawing.Point(33, 39);
-            this.guna2HtmlLabel22.Name = "guna2HtmlLabel22";
-            this.guna2HtmlLabel22.Size = new System.Drawing.Size(269, 38);
-            this.guna2HtmlLabel22.TabIndex = 1;
-            this.guna2HtmlLabel22.Text = "Hoạt động gần đây";
+            this.lblRecentActiviy.BackColor = System.Drawing.Color.Transparent;
+            this.lblRecentActiviy.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecentActiviy.Location = new System.Drawing.Point(33, 26);
+            this.lblRecentActiviy.Name = "lblRecentActiviy";
+            this.lblRecentActiviy.Size = new System.Drawing.Size(269, 38);
+            this.lblRecentActiviy.TabIndex = 1;
+            this.lblRecentActiviy.Text = "Hoạt động gần đây";
+            // 
+            // dotBlue
+            // 
+            this.dotBlue.FillColor = System.Drawing.Color.RoyalBlue;
+            this.dotBlue.ImageRotate = 0F;
+            this.dotBlue.Location = new System.Drawing.Point(62, 99);
+            this.dotBlue.Name = "dotBlue";
+            this.dotBlue.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.dotBlue.Size = new System.Drawing.Size(10, 10);
+            this.dotBlue.TabIndex = 12;
+            this.dotBlue.TabStop = false;
+            // 
+            // lblActivities_BookingTitle
+            // 
+            this.lblActivities_BookingTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblActivities_BookingTitle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActivities_BookingTitle.Location = new System.Drawing.Point(94, 96);
+            this.lblActivities_BookingTitle.Name = "lblActivities_BookingTitle";
+            this.lblActivities_BookingTitle.Size = new System.Drawing.Size(193, 22);
+            this.lblActivities_BookingTitle.TabIndex = 13;
+            this.lblActivities_BookingTitle.Text = "Đặt chỗ mới được xác nhận";
+            this.lblActivities_BookingTitle.Click += new System.EventHandler(this.guna2HtmlLabel7_Click);
+            // 
+            // lblActivities_BookingDes
+            // 
+            this.lblActivities_BookingDes.BackColor = System.Drawing.Color.Transparent;
+            this.lblActivities_BookingDes.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActivities_BookingDes.ForeColor = System.Drawing.Color.Gray;
+            this.lblActivities_BookingDes.Location = new System.Drawing.Point(94, 133);
+            this.lblActivities_BookingDes.Name = "lblActivities_BookingDes";
+            this.lblActivities_BookingDes.Size = new System.Drawing.Size(227, 19);
+            this.lblActivities_BookingDes.TabIndex = 14;
+            this.lblActivities_BookingDes.Text = "Phòng 305 - Nhận phòng: 24 tháng 12";
+            // 
+            // lblActivities_BookingTime
+            // 
+            this.lblActivities_BookingTime.BackColor = System.Drawing.Color.Transparent;
+            this.lblActivities_BookingTime.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActivities_BookingTime.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.lblActivities_BookingTime.Location = new System.Drawing.Point(94, 160);
+            this.lblActivities_BookingTime.Name = "lblActivities_BookingTime";
+            this.lblActivities_BookingTime.Size = new System.Drawing.Size(75, 19);
+            this.lblActivities_BookingTime.TabIndex = 15;
+            this.lblActivities_BookingTime.Text = "5 phút trước";
+            // 
+            // guna2Button8
+            // 
+            this.guna2Button8.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
+            this.guna2Button8.BorderRadius = 15;
+            this.guna2Button8.BorderThickness = 1;
+            this.guna2Button8.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button8.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button8.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button8.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button8.FillColor = System.Drawing.Color.FloralWhite;
+            this.guna2Button8.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button8.ForeColor = System.Drawing.Color.White;
+            this.guna2Button8.Location = new System.Drawing.Point(28, 78);
+            this.guna2Button8.Name = "guna2Button8";
+            this.guna2Button8.ShadowDecoration.BorderRadius = 10;
+            this.guna2Button8.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.guna2Button8.Size = new System.Drawing.Size(370, 114);
+            this.guna2Button8.TabIndex = 8;
+            // 
+            // lblActivities_IventoryTime
+            // 
+            this.lblActivities_IventoryTime.BackColor = System.Drawing.Color.Transparent;
+            this.lblActivities_IventoryTime.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActivities_IventoryTime.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.lblActivities_IventoryTime.Location = new System.Drawing.Point(94, 280);
+            this.lblActivities_IventoryTime.Name = "lblActivities_IventoryTime";
+            this.lblActivities_IventoryTime.Size = new System.Drawing.Size(68, 19);
+            this.lblActivities_IventoryTime.TabIndex = 20;
+            this.lblActivities_IventoryTime.Text = "1 giờ trước";
+            // 
+            // lblActivities_InventoryDes
+            // 
+            this.lblActivities_InventoryDes.BackColor = System.Drawing.Color.Transparent;
+            this.lblActivities_InventoryDes.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActivities_InventoryDes.ForeColor = System.Drawing.Color.Gray;
+            this.lblActivities_InventoryDes.Location = new System.Drawing.Point(94, 253);
+            this.lblActivities_InventoryDes.Name = "lblActivities_InventoryDes";
+            this.lblActivities_InventoryDes.Size = new System.Drawing.Size(113, 19);
+            this.lblActivities_InventoryDes.TabIndex = 19;
+            this.lblActivities_InventoryDes.Text = "Hạt cà phê sắp hết";
+            // 
+            // lblActivities_InventoryTitile
+            // 
+            this.lblActivities_InventoryTitile.BackColor = System.Drawing.Color.Transparent;
+            this.lblActivities_InventoryTitile.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActivities_InventoryTitile.Location = new System.Drawing.Point(94, 216);
+            this.lblActivities_InventoryTitile.Name = "lblActivities_InventoryTitile";
+            this.lblActivities_InventoryTitile.Size = new System.Drawing.Size(266, 22);
+            this.lblActivities_InventoryTitile.TabIndex = 18;
+            this.lblActivities_InventoryTitile.Text = "Cảnh báo hàng tồn kho: Tồn kho thấp";
+            // 
+            // guna2CirclePictureBox1
+            // 
+            this.guna2CirclePictureBox1.FillColor = System.Drawing.Color.Crimson;
+            this.guna2CirclePictureBox1.ImageRotate = 0F;
+            this.guna2CirclePictureBox1.Location = new System.Drawing.Point(62, 219);
+            this.guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
+            this.guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.guna2CirclePictureBox1.Size = new System.Drawing.Size(10, 10);
+            this.guna2CirclePictureBox1.TabIndex = 17;
+            this.guna2CirclePictureBox1.TabStop = false;
+            // 
+            // dotRed
+            // 
+            this.dotRed.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
+            this.dotRed.BorderRadius = 15;
+            this.dotRed.BorderThickness = 1;
+            this.dotRed.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.dotRed.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.dotRed.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.dotRed.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.dotRed.FillColor = System.Drawing.Color.FloralWhite;
+            this.dotRed.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dotRed.ForeColor = System.Drawing.Color.White;
+            this.dotRed.Location = new System.Drawing.Point(28, 198);
+            this.dotRed.Name = "dotRed";
+            this.dotRed.ShadowDecoration.BorderRadius = 10;
+            this.dotRed.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dotRed.Size = new System.Drawing.Size(370, 114);
+            this.dotRed.TabIndex = 16;
+            // 
+            // lblActivities_PaymentTime
+            // 
+            this.lblActivities_PaymentTime.BackColor = System.Drawing.Color.Transparent;
+            this.lblActivities_PaymentTime.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActivities_PaymentTime.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.lblActivities_PaymentTime.Location = new System.Drawing.Point(94, 401);
+            this.lblActivities_PaymentTime.Name = "lblActivities_PaymentTime";
+            this.lblActivities_PaymentTime.Size = new System.Drawing.Size(68, 19);
+            this.lblActivities_PaymentTime.TabIndex = 25;
+            this.lblActivities_PaymentTime.Text = "2 giờ trước";
+            // 
+            // lblActivities_PaymentDes
+            // 
+            this.lblActivities_PaymentDes.BackColor = System.Drawing.Color.Transparent;
+            this.lblActivities_PaymentDes.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActivities_PaymentDes.ForeColor = System.Drawing.Color.Gray;
+            this.lblActivities_PaymentDes.Location = new System.Drawing.Point(94, 374);
+            this.lblActivities_PaymentDes.Name = "lblActivities_PaymentDes";
+            this.lblActivities_PaymentDes.Size = new System.Drawing.Size(145, 19);
+            this.lblActivities_PaymentDes.TabIndex = 24;
+            this.lblActivities_PaymentDes.Text = "Hóa đơn #3421 - $2,450";
+            // 
+            // lblActivities_PaymentTitile
+            // 
+            this.lblActivities_PaymentTitile.BackColor = System.Drawing.Color.Transparent;
+            this.lblActivities_PaymentTitile.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActivities_PaymentTitile.Location = new System.Drawing.Point(94, 337);
+            this.lblActivities_PaymentTitile.Name = "lblActivities_PaymentTitile";
+            this.lblActivities_PaymentTitile.Size = new System.Drawing.Size(182, 22);
+            this.lblActivities_PaymentTitile.TabIndex = 23;
+            this.lblActivities_PaymentTitile.Text = "Thanh toán đã nhận được";
+            // 
+            // dotYellow
+            // 
+            this.dotYellow.FillColor = System.Drawing.Color.Olive;
+            this.dotYellow.ImageRotate = 0F;
+            this.dotYellow.Location = new System.Drawing.Point(62, 350);
+            this.dotYellow.Name = "dotYellow";
+            this.dotYellow.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.dotYellow.Size = new System.Drawing.Size(10, 10);
+            this.dotYellow.TabIndex = 22;
+            this.dotYellow.TabStop = false;
+            // 
+            // guna2Button10
+            // 
+            this.guna2Button10.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
+            this.guna2Button10.BorderRadius = 15;
+            this.guna2Button10.BorderThickness = 1;
+            this.guna2Button10.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button10.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button10.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button10.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button10.FillColor = System.Drawing.Color.FloralWhite;
+            this.guna2Button10.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button10.ForeColor = System.Drawing.Color.White;
+            this.guna2Button10.Location = new System.Drawing.Point(28, 319);
+            this.guna2Button10.Name = "guna2Button10";
+            this.guna2Button10.ShadowDecoration.BorderRadius = 10;
+            this.guna2Button10.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.guna2Button10.Size = new System.Drawing.Size(370, 114);
+            this.guna2Button10.TabIndex = 21;
+            // 
+            // lblActivities_StaffTime
+            // 
+            this.lblActivities_StaffTime.BackColor = System.Drawing.Color.Transparent;
+            this.lblActivities_StaffTime.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActivities_StaffTime.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.lblActivities_StaffTime.Location = new System.Drawing.Point(94, 528);
+            this.lblActivities_StaffTime.Name = "lblActivities_StaffTime";
+            this.lblActivities_StaffTime.Size = new System.Drawing.Size(68, 19);
+            this.lblActivities_StaffTime.TabIndex = 30;
+            this.lblActivities_StaffTime.Text = "3 giờ trước";
+            // 
+            // lblActivities_StaffDes
+            // 
+            this.lblActivities_StaffDes.BackColor = System.Drawing.Color.Transparent;
+            this.lblActivities_StaffDes.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActivities_StaffDes.ForeColor = System.Drawing.Color.Gray;
+            this.lblActivities_StaffDes.Location = new System.Drawing.Point(94, 501);
+            this.lblActivities_StaffDes.Name = "lblActivities_StaffDes";
+            this.lblActivities_StaffDes.Size = new System.Drawing.Size(141, 19);
+            this.lblActivities_StaffDes.TabIndex = 29;
+            this.lblActivities_StaffDes.Text = "Hồng Gấm- Bếp trưởng";
+            // 
+            // lblActivities_StaffTitile
+            // 
+            this.lblActivities_StaffTitile.BackColor = System.Drawing.Color.Transparent;
+            this.lblActivities_StaffTitile.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActivities_StaffTitile.Location = new System.Drawing.Point(94, 464);
+            this.lblActivities_StaffTitile.Name = "lblActivities_StaffTitile";
+            this.lblActivities_StaffTitile.Size = new System.Drawing.Size(146, 22);
+            this.lblActivities_StaffTitile.TabIndex = 28;
+            this.lblActivities_StaffTitile.Text = "Thêm nhân viên mới";
+            // 
+            // dotGreen
+            // 
+            this.dotGreen.FillColor = System.Drawing.Color.Green;
+            this.dotGreen.ImageRotate = 0F;
+            this.dotGreen.Location = new System.Drawing.Point(62, 469);
+            this.dotGreen.Name = "dotGreen";
+            this.dotGreen.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.dotGreen.Size = new System.Drawing.Size(10, 10);
+            this.dotGreen.TabIndex = 27;
+            this.dotGreen.TabStop = false;
+            // 
+            // guna2Button11
+            // 
+            this.guna2Button11.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
+            this.guna2Button11.BorderRadius = 15;
+            this.guna2Button11.BorderThickness = 1;
+            this.guna2Button11.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button11.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button11.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button11.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button11.FillColor = System.Drawing.Color.FloralWhite;
+            this.guna2Button11.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button11.ForeColor = System.Drawing.Color.White;
+            this.guna2Button11.Location = new System.Drawing.Point(28, 446);
+            this.guna2Button11.Name = "guna2Button11";
+            this.guna2Button11.ShadowDecoration.BorderRadius = 10;
+            this.guna2Button11.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.guna2Button11.Size = new System.Drawing.Size(370, 114);
+            this.guna2Button11.TabIndex = 26;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1902, 1055);
-            this.Controls.Add(this.guna2Panel1);
+            this.Controls.Add(this.pnlRecentActivities);
             this.Controls.Add(this.pnlQuickAction);
             this.Controls.Add(this.guna2Chip4);
             this.Controls.Add(this.guna2Button7);
@@ -2105,8 +2064,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.picUserAvt)).EndInit();
             this.pnlQuickAction.ResumeLayout(false);
             this.pnlQuickAction.PerformLayout();
-            this.guna2Panel1.ResumeLayout(false);
-            this.guna2Panel1.PerformLayout();
+            this.pnlRecentActivities.ResumeLayout(false);
+            this.pnlRecentActivities.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dotBlue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dotYellow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dotGreen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2156,25 +2119,25 @@
         private Guna.UI2.WinForms.Guna2Chip guna2Chip4;
         private Guna.UI2.WinForms.Guna2Button guna2Button7;
         private Guna.UI2.WinForms.Guna2Panel pnlQuickAction;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblQuick_Title;
-        private Guna.UI2.WinForms.Guna2Button btnNewBooking;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblQuick_NewBooking;
+        private Guna.UI2.WinForms.Guna2Button btnQuick_NewBooking;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblQuickActions;
         private Guna.UI2.WinForms.Guna2Button btnContainer_NewBooking;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel12;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel13;
-        private Guna.UI2.WinForms.Guna2Button guna2Button12;
-        private Guna.UI2.WinForms.Guna2Button guna2Button13;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel10;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel11;
-        private Guna.UI2.WinForms.Guna2Button guna2Button10;
-        private Guna.UI2.WinForms.Guna2Button guna2Button11;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel9;
-        private Guna.UI2.WinForms.Guna2Button guna2Button8;
-        private Guna.UI2.WinForms.Guna2Button guna2Button9;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel22;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblQuick_StockLevel;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblQuick_CheckInventory;
+        private Guna.UI2.WinForms.Guna2Button btnQuick_CheckInventory;
+        private Guna.UI2.WinForms.Guna2Button btnContainer_CheckInventory;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblQuick_ViewAnalytics;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblQuick_CreateReport;
+        private Guna.UI2.WinForms.Guna2Button btnQuick_CreateReport;
+        private Guna.UI2.WinForms.Guna2Button btnContainer_CreateReport;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblQuick_RegisterSatff;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblQuick_AddStaff;
+        private Guna.UI2.WinForms.Guna2Button btnQuick_AddStaff;
+        private Guna.UI2.WinForms.Guna2Button btnContainer_AddStaff;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblQuick_CreateReservation;
+        private Guna.UI2.WinForms.Guna2Panel pnlRecentActivities;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblRecentActiviy;
         private System.Windows.Forms.FlowLayoutPanel flpSidebar;
         private Guna.UI2.WinForms.Guna2Panel pnlHome;
         private Guna.UI2.WinForms.Guna2Panel pnlStaff_group;
@@ -2200,6 +2163,26 @@
         private Guna.UI2.WinForms.Guna2Button btnInvoice;
         private Guna.UI2.WinForms.Guna2Button btnTotalCustomer;
         private Guna.UI2.WinForms.Guna2Button btnFinancial;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox dotBlue;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblActivities_BookingTime;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblActivities_BookingDes;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblActivities_BookingTitle;
+        private Guna.UI2.WinForms.Guna2Button guna2Button8;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblActivities_StaffTime;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblActivities_StaffDes;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblActivities_StaffTitile;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox dotGreen;
+        private Guna.UI2.WinForms.Guna2Button guna2Button11;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblActivities_PaymentTime;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblActivities_PaymentDes;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblActivities_PaymentTitile;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox dotYellow;
+        private Guna.UI2.WinForms.Guna2Button guna2Button10;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblActivities_IventoryTime;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblActivities_InventoryDes;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblActivities_InventoryTitile;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
+        private Guna.UI2.WinForms.Guna2Button dotRed;
     }
 }
 
