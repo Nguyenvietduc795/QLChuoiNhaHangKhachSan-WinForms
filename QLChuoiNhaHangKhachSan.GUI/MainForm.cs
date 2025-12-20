@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,9 +45,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
             pnlLogout_group.Height = 50;
         }
 
-        private void btnKho_Click(object sender, EventArgs e)
+        private void lblUserRole_Click(object sender, EventArgs e)
         {
- 
+
+        }
+
+        private void guna2Chip4_Click(object sender, EventArgs e)
+        {
+
         }
         private void SetActiveButton(object sender)
         {
@@ -288,6 +293,16 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void btnLogout_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender); // Highlight nút cha
+        }
+
+        private void btnDotBlue_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
