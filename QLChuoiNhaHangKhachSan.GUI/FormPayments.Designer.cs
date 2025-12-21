@@ -150,10 +150,11 @@
             this.Gn2pnlPaymentMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Gn2pnlPaymentMain.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Gn2pnlPaymentMain.Location = new System.Drawing.Point(0, 0);
+            this.Gn2pnlPaymentMain.Margin = new System.Windows.Forms.Padding(2);
             this.Gn2pnlPaymentMain.Name = "Gn2pnlPaymentMain";
             this.Gn2pnlPaymentMain.ShadowDecoration.BorderRadius = 15;
             this.Gn2pnlPaymentMain.ShadowDecoration.Enabled = true;
-            this.Gn2pnlPaymentMain.Size = new System.Drawing.Size(1752, 875);
+            this.Gn2pnlPaymentMain.Size = new System.Drawing.Size(1314, 711);
             this.Gn2pnlPaymentMain.TabIndex = 2;
             this.Gn2pnlPaymentMain.Paint += new System.Windows.Forms.PaintEventHandler(this.Gn2pnlPaymentMain_Paint);
             // 
@@ -163,10 +164,11 @@
             this.pnlSummary.Controls.Add(this.lblHeaderSub);
             this.pnlSummary.Controls.Add(this.lblPaymentTitle);
             this.pnlSummary.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSummary.Location = new System.Drawing.Point(309, 0);
+            this.pnlSummary.Location = new System.Drawing.Point(232, 0);
+            this.pnlSummary.Margin = new System.Windows.Forms.Padding(2);
             this.pnlSummary.Name = "pnlSummary";
-            this.pnlSummary.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlSummary.Size = new System.Drawing.Size(1443, 90);
+            this.pnlSummary.Padding = new System.Windows.Forms.Padding(8);
+            this.pnlSummary.Size = new System.Drawing.Size(1082, 73);
             this.pnlSummary.TabIndex = 13;
             // 
             // btnCreateInvoice
@@ -185,12 +187,12 @@
             this.btnCreateInvoice.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(124)))), ((int)(((byte)(255)))));
             this.btnCreateInvoice.HoverState.ForeColor = System.Drawing.Color.White;
             this.btnCreateInvoice.ImageSize = new System.Drawing.Size(10, 10);
-            this.btnCreateInvoice.Location = new System.Drawing.Point(1124, 10);
-            this.btnCreateInvoice.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.btnCreateInvoice.Location = new System.Drawing.Point(843, 8);
+            this.btnCreateInvoice.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.btnCreateInvoice.Name = "btnCreateInvoice";
             this.btnCreateInvoice.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(102)))), ((int)(((byte)(245)))));
             this.btnCreateInvoice.ShadowDecoration.BorderRadius = 10;
-            this.btnCreateInvoice.Size = new System.Drawing.Size(300, 70);
+            this.btnCreateInvoice.Size = new System.Drawing.Size(225, 57);
             this.btnCreateInvoice.TabIndex = 1;
             this.btnCreateInvoice.Text = "+ Tạo hóa đơn mới";
             this.btnCreateInvoice.Click += new System.EventHandler(this.btnCreateInvoice_Click);
@@ -200,9 +202,10 @@
             this.lblHeaderSub.AutoSize = true;
             this.lblHeaderSub.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblHeaderSub.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.lblHeaderSub.Location = new System.Drawing.Point(74, 55);
+            this.lblHeaderSub.Location = new System.Drawing.Point(56, 45);
+            this.lblHeaderSub.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHeaderSub.Name = "lblHeaderSub";
-            this.lblHeaderSub.Size = new System.Drawing.Size(169, 25);
+            this.lblHeaderSub.Size = new System.Drawing.Size(140, 20);
             this.lblHeaderSub.TabIndex = 2;
             this.lblHeaderSub.Text = "Theo dõi tình trạng ";
             this.lblHeaderSub.Click += new System.EventHandler(this.lblHeaderSub_Click);
@@ -213,9 +216,10 @@
             this.lblPaymentTitle.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblPaymentTitle.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblPaymentTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblPaymentTitle.Location = new System.Drawing.Point(10, 10);
+            this.lblPaymentTitle.Location = new System.Drawing.Point(8, 8);
+            this.lblPaymentTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPaymentTitle.Name = "lblPaymentTitle";
-            this.lblPaymentTitle.Size = new System.Drawing.Size(368, 45);
+            this.lblPaymentTitle.Size = new System.Drawing.Size(303, 37);
             this.lblPaymentTitle.TabIndex = 0;
             this.lblPaymentTitle.Text = "Thanh toán &  Giao dịch";
             this.lblPaymentTitle.Click += new System.EventHandler(this.lblPaymentTitle_Click);
@@ -237,18 +241,20 @@
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.guna2Panel2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.guna2Panel2.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel2.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.ShadowDecoration.Enabled = true;
-            this.guna2Panel2.Size = new System.Drawing.Size(309, 875);
+            this.guna2Panel2.Size = new System.Drawing.Size(232, 711);
             this.guna2Panel2.TabIndex = 12;
             // 
             // guna2Separator2
             // 
             this.guna2Separator2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.guna2Separator2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.guna2Separator2.Location = new System.Drawing.Point(12, 104);
+            this.guna2Separator2.Location = new System.Drawing.Point(9, 84);
+            this.guna2Separator2.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Separator2.Name = "guna2Separator2";
-            this.guna2Separator2.Size = new System.Drawing.Size(255, 10);
+            this.guna2Separator2.Size = new System.Drawing.Size(191, 8);
             this.guna2Separator2.TabIndex = 11;
             // 
             // guna2Button9
@@ -269,9 +275,10 @@
             this.guna2Button9.FocusedColor = System.Drawing.Color.Transparent;
             this.guna2Button9.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2Button9.ForeColor = System.Drawing.Color.White;
-            this.guna2Button9.Location = new System.Drawing.Point(0, 830);
+            this.guna2Button9.Location = new System.Drawing.Point(0, 674);
+            this.guna2Button9.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button9.Name = "guna2Button9";
-            this.guna2Button9.Size = new System.Drawing.Size(309, 45);
+            this.guna2Button9.Size = new System.Drawing.Size(232, 37);
             this.guna2Button9.TabIndex = 10;
             this.guna2Button9.Text = "Đăng xuất";
             this.guna2Button9.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -298,9 +305,10 @@
             this.guna2Button10.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2Button10.ImageOffset = new System.Drawing.Point(10, 0);
             this.guna2Button10.ImageSize = new System.Drawing.Size(25, 25);
-            this.guna2Button10.Location = new System.Drawing.Point(32, 762);
+            this.guna2Button10.Location = new System.Drawing.Point(24, 619);
+            this.guna2Button10.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button10.Name = "guna2Button10";
-            this.guna2Button10.Size = new System.Drawing.Size(198, 45);
+            this.guna2Button10.Size = new System.Drawing.Size(148, 37);
             this.guna2Button10.TabIndex = 9;
             this.guna2Button10.Text = "Báo cáo";
             this.guna2Button10.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -327,9 +335,10 @@
             this.guna2Button11.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2Button11.ImageOffset = new System.Drawing.Point(10, 0);
             this.guna2Button11.ImageSize = new System.Drawing.Size(25, 25);
-            this.guna2Button11.Location = new System.Drawing.Point(32, 679);
+            this.guna2Button11.Location = new System.Drawing.Point(24, 552);
+            this.guna2Button11.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button11.Name = "guna2Button11";
-            this.guna2Button11.Size = new System.Drawing.Size(198, 45);
+            this.guna2Button11.Size = new System.Drawing.Size(148, 37);
             this.guna2Button11.TabIndex = 8;
             this.guna2Button11.Text = "Thanh toán";
             this.guna2Button11.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -356,9 +365,10 @@
             this.guna2Button12.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2Button12.ImageOffset = new System.Drawing.Point(10, 0);
             this.guna2Button12.ImageSize = new System.Drawing.Size(25, 25);
-            this.guna2Button12.Location = new System.Drawing.Point(32, 594);
+            this.guna2Button12.Location = new System.Drawing.Point(24, 483);
+            this.guna2Button12.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button12.Name = "guna2Button12";
-            this.guna2Button12.Size = new System.Drawing.Size(198, 45);
+            this.guna2Button12.Size = new System.Drawing.Size(148, 37);
             this.guna2Button12.TabIndex = 7;
             this.guna2Button12.Text = "Kho";
             this.guna2Button12.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -385,9 +395,10 @@
             this.guna2Button13.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2Button13.ImageOffset = new System.Drawing.Point(10, 0);
             this.guna2Button13.ImageSize = new System.Drawing.Size(25, 25);
-            this.guna2Button13.Location = new System.Drawing.Point(32, 416);
+            this.guna2Button13.Location = new System.Drawing.Point(24, 338);
+            this.guna2Button13.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button13.Name = "guna2Button13";
-            this.guna2Button13.Size = new System.Drawing.Size(198, 45);
+            this.guna2Button13.Size = new System.Drawing.Size(148, 37);
             this.guna2Button13.TabIndex = 6;
             this.guna2Button13.Text = "Khách sạn";
             this.guna2Button13.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -414,9 +425,10 @@
             this.guna2Button14.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2Button14.ImageOffset = new System.Drawing.Point(10, 0);
             this.guna2Button14.ImageSize = new System.Drawing.Size(25, 25);
-            this.guna2Button14.Location = new System.Drawing.Point(32, 506);
+            this.guna2Button14.Location = new System.Drawing.Point(24, 411);
+            this.guna2Button14.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button14.Name = "guna2Button14";
-            this.guna2Button14.Size = new System.Drawing.Size(198, 45);
+            this.guna2Button14.Size = new System.Drawing.Size(148, 37);
             this.guna2Button14.TabIndex = 5;
             this.guna2Button14.Text = "Nhà hàng";
             this.guna2Button14.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -443,9 +455,10 @@
             this.guna2Button15.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2Button15.ImageOffset = new System.Drawing.Point(10, 0);
             this.guna2Button15.ImageSize = new System.Drawing.Size(25, 25);
-            this.guna2Button15.Location = new System.Drawing.Point(32, 325);
+            this.guna2Button15.Location = new System.Drawing.Point(24, 264);
+            this.guna2Button15.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button15.Name = "guna2Button15";
-            this.guna2Button15.Size = new System.Drawing.Size(198, 45);
+            this.guna2Button15.Size = new System.Drawing.Size(148, 37);
             this.guna2Button15.TabIndex = 4;
             this.guna2Button15.Text = "Khách hàng";
             this.guna2Button15.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -473,9 +486,10 @@
             this.guna2Button16.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2Button16.ImageOffset = new System.Drawing.Point(10, 0);
             this.guna2Button16.ImageSize = new System.Drawing.Size(25, 25);
-            this.guna2Button16.Location = new System.Drawing.Point(32, 241);
+            this.guna2Button16.Location = new System.Drawing.Point(24, 196);
+            this.guna2Button16.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button16.Name = "guna2Button16";
-            this.guna2Button16.Size = new System.Drawing.Size(198, 45);
+            this.guna2Button16.Size = new System.Drawing.Size(148, 37);
             this.guna2Button16.TabIndex = 3;
             this.guna2Button16.Text = "Nhân viên";
             this.guna2Button16.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -501,9 +515,10 @@
             this.guna2Button17.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2Button17.ImageOffset = new System.Drawing.Point(10, 0);
             this.guna2Button17.ImageSize = new System.Drawing.Size(25, 25);
-            this.guna2Button17.Location = new System.Drawing.Point(32, 154);
+            this.guna2Button17.Location = new System.Drawing.Point(24, 125);
+            this.guna2Button17.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button17.Name = "guna2Button17";
-            this.guna2Button17.Size = new System.Drawing.Size(198, 45);
+            this.guna2Button17.Size = new System.Drawing.Size(148, 37);
             this.guna2Button17.TabIndex = 2;
             this.guna2Button17.Text = "Trang chủ";
             this.guna2Button17.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -515,9 +530,10 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label3.Location = new System.Drawing.Point(38, 64);
+            this.label3.Location = new System.Drawing.Point(28, 52);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(182, 23);
+            this.label3.Size = new System.Drawing.Size(151, 20);
             this.label3.TabIndex = 1;
             this.label3.Text = "Management System";
             // 
@@ -527,9 +543,10 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.label4.Font = new System.Drawing.Font("Microsoft YaHei UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(24, 9);
+            this.label4.Location = new System.Drawing.Point(18, 7);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(206, 44);
+            this.label4.Size = new System.Drawing.Size(169, 36);
             this.label4.TabIndex = 0;
             this.label4.Text = "RH-GROUP";
             // 
@@ -547,10 +564,11 @@
             this.gpnlQuickActions.Controls.Add(this.guna2Button3);
             this.gpnlQuickActions.Controls.Add(this.lbQuickAction);
             this.gpnlQuickActions.FillColor = System.Drawing.Color.White;
-            this.gpnlQuickActions.Location = new System.Drawing.Point(1333, 325);
+            this.gpnlQuickActions.Location = new System.Drawing.Point(1000, 264);
+            this.gpnlQuickActions.Margin = new System.Windows.Forms.Padding(2);
             this.gpnlQuickActions.Name = "gpnlQuickActions";
             this.gpnlQuickActions.ShadowDecoration.Enabled = true;
-            this.gpnlQuickActions.Size = new System.Drawing.Size(361, 241);
+            this.gpnlQuickActions.Size = new System.Drawing.Size(271, 196);
             this.gpnlQuickActions.TabIndex = 2;
             // 
             // guna2Button18
@@ -564,9 +582,10 @@
             this.guna2Button18.ForeColor = System.Drawing.Color.White;
             this.guna2Button18.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button18.Image")));
             this.guna2Button18.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button18.Location = new System.Drawing.Point(254, 157);
+            this.guna2Button18.Location = new System.Drawing.Point(190, 128);
+            this.guna2Button18.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button18.Name = "guna2Button18";
-            this.guna2Button18.Size = new System.Drawing.Size(77, 56);
+            this.guna2Button18.Size = new System.Drawing.Size(58, 46);
             this.guna2Button18.TabIndex = 6;
             // 
             // guna2Button6
@@ -580,9 +599,10 @@
             this.guna2Button6.ForeColor = System.Drawing.Color.White;
             this.guna2Button6.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button6.Image")));
             this.guna2Button6.ImageSize = new System.Drawing.Size(50, 50);
-            this.guna2Button6.Location = new System.Drawing.Point(177, 157);
+            this.guna2Button6.Location = new System.Drawing.Point(133, 128);
+            this.guna2Button6.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button6.Name = "guna2Button6";
-            this.guna2Button6.Size = new System.Drawing.Size(77, 56);
+            this.guna2Button6.Size = new System.Drawing.Size(58, 46);
             this.guna2Button6.TabIndex = 2;
             // 
             // gnbtnPayment
@@ -596,9 +616,10 @@
             this.gnbtnPayment.ForeColor = System.Drawing.Color.White;
             this.gnbtnPayment.Image = ((System.Drawing.Image)(resources.GetObject("gnbtnPayment.Image")));
             this.gnbtnPayment.ImageSize = new System.Drawing.Size(30, 30);
-            this.gnbtnPayment.Location = new System.Drawing.Point(98, 157);
+            this.gnbtnPayment.Location = new System.Drawing.Point(74, 128);
+            this.gnbtnPayment.Margin = new System.Windows.Forms.Padding(2);
             this.gnbtnPayment.Name = "gnbtnPayment";
-            this.gnbtnPayment.Size = new System.Drawing.Size(66, 56);
+            this.gnbtnPayment.Size = new System.Drawing.Size(50, 46);
             this.gnbtnPayment.TabIndex = 5;
             // 
             // gnbtnVisa
@@ -612,18 +633,20 @@
             this.gnbtnVisa.ForeColor = System.Drawing.Color.White;
             this.gnbtnVisa.Image = ((System.Drawing.Image)(resources.GetObject("gnbtnVisa.Image")));
             this.gnbtnVisa.ImageSize = new System.Drawing.Size(30, 30);
-            this.gnbtnVisa.Location = new System.Drawing.Point(8, 157);
+            this.gnbtnVisa.Location = new System.Drawing.Point(6, 128);
+            this.gnbtnVisa.Margin = new System.Windows.Forms.Padding(2);
             this.gnbtnVisa.Name = "gnbtnVisa";
-            this.gnbtnVisa.Size = new System.Drawing.Size(84, 56);
+            this.gnbtnVisa.Size = new System.Drawing.Size(63, 46);
             this.gnbtnVisa.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label1.Location = new System.Drawing.Point(29, 112);
+            this.label1.Location = new System.Drawing.Point(22, 91);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(222, 25);
+            this.label1.Size = new System.Drawing.Size(181, 20);
             this.label1.TabIndex = 3;
             this.label1.Text = "Phương thức thanh toán";
             // 
@@ -643,10 +666,11 @@
             this.guna2Button3.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button3.Image")));
             this.guna2Button3.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2Button3.ImageSize = new System.Drawing.Size(24, 24);
-            this.guna2Button3.Location = new System.Drawing.Point(31, 50);
+            this.guna2Button3.Location = new System.Drawing.Point(23, 41);
+            this.guna2Button3.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button3.Name = "guna2Button3";
-            this.guna2Button3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.guna2Button3.Size = new System.Drawing.Size(157, 42);
+            this.guna2Button3.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.guna2Button3.Size = new System.Drawing.Size(118, 34);
             this.guna2Button3.TabIndex = 2;
             this.guna2Button3.Text = "Tải báo cáo";
             this.guna2Button3.TextOffset = new System.Drawing.Point(10, 0);
@@ -655,9 +679,10 @@
             // 
             this.lbQuickAction.AutoSize = true;
             this.lbQuickAction.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbQuickAction.Location = new System.Drawing.Point(29, 12);
+            this.lbQuickAction.Location = new System.Drawing.Point(22, 10);
+            this.lbQuickAction.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbQuickAction.Name = "lbQuickAction";
-            this.lbQuickAction.Size = new System.Drawing.Size(159, 28);
+            this.lbQuickAction.Size = new System.Drawing.Size(128, 21);
             this.lbQuickAction.TabIndex = 0;
             this.lbQuickAction.Text = "Thao tác nhanh";
             // 
@@ -672,11 +697,12 @@
             this.panelTransaction.Controls.Add(this.dgvTransaction);
             this.panelTransaction.Controls.Add(this.lblTransactionTitle);
             this.panelTransaction.FillColor = System.Drawing.Color.White;
-            this.panelTransaction.Location = new System.Drawing.Point(395, 325);
+            this.panelTransaction.Location = new System.Drawing.Point(296, 264);
+            this.panelTransaction.Margin = new System.Windows.Forms.Padding(2);
             this.panelTransaction.Name = "panelTransaction";
-            this.panelTransaction.Padding = new System.Windows.Forms.Padding(12);
+            this.panelTransaction.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.panelTransaction.ShadowDecoration.Enabled = true;
-            this.panelTransaction.Size = new System.Drawing.Size(909, 379);
+            this.panelTransaction.Size = new System.Drawing.Size(682, 308);
             this.panelTransaction.TabIndex = 6;
             // 
             // dataGridView5
@@ -695,7 +721,8 @@
             this.dataGridViewTextBoxColumn8,
             this.colSta});
             this.dataGridView5.EnableHeadersVisualStyles = false;
-            this.dataGridView5.Location = new System.Drawing.Point(15, 324);
+            this.dataGridView5.Location = new System.Drawing.Point(11, 263);
+            this.dataGridView5.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.ReadOnly = true;
             this.dataGridView5.RowHeadersVisible = false;
@@ -703,7 +730,7 @@
             this.dataGridView5.RowTemplate.Height = 24;
             this.dataGridView5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView5.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView5.Size = new System.Drawing.Size(879, 43);
+            this.dataGridView5.Size = new System.Drawing.Size(659, 35);
             this.dataGridView5.TabIndex = 16;
             this.dataGridView5.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellContentClick);
             // 
@@ -765,7 +792,8 @@
             this.dataGridViewTextBoxColumn4,
             this.colStat});
             this.dataGridView4.GridColor = System.Drawing.Color.White;
-            this.dataGridView4.Location = new System.Drawing.Point(19, 259);
+            this.dataGridView4.Location = new System.Drawing.Point(14, 210);
+            this.dataGridView4.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.ReadOnly = true;
             this.dataGridView4.RowHeadersVisible = false;
@@ -775,7 +803,7 @@
             this.dataGridView4.RowTemplate.Height = 24;
             this.dataGridView4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView4.Size = new System.Drawing.Size(875, 108);
+            this.dataGridView4.Size = new System.Drawing.Size(656, 88);
             this.dataGridView4.TabIndex = 15;
             this.dataGridView4.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellContentClick);
             // 
@@ -834,7 +862,8 @@
             this.colMon,
             this.colStus});
             this.dataGridView3.EnableHeadersVisualStyles = false;
-            this.dataGridView3.Location = new System.Drawing.Point(19, 181);
+            this.dataGridView3.Location = new System.Drawing.Point(14, 147);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RowHeadersVisible = false;
@@ -842,7 +871,7 @@
             this.dataGridView3.RowTemplate.Height = 24;
             this.dataGridView3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView3.Size = new System.Drawing.Size(878, 186);
+            this.dataGridView3.Size = new System.Drawing.Size(658, 151);
             this.dataGridView3.TabIndex = 14;
             this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
@@ -912,7 +941,8 @@
             this.colMoney,
             this.colStatus});
             this.dataGridView1.GridColor = System.Drawing.Color.White;
-            this.dataGridView1.Location = new System.Drawing.Point(23, 111);
+            this.dataGridView1.Location = new System.Drawing.Point(17, 90);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
@@ -922,7 +952,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(874, 256);
+            this.dataGridView1.Size = new System.Drawing.Size(656, 208);
             this.dataGridView1.TabIndex = 13;
             // 
             // colId
@@ -995,14 +1025,15 @@
             this.dgvStatus});
             this.dgvTransaction.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTransaction.EnableHeadersVisualStyles = false;
-            this.dgvTransaction.Location = new System.Drawing.Point(12, 50);
+            this.dgvTransaction.Location = new System.Drawing.Point(9, 40);
+            this.dgvTransaction.Margin = new System.Windows.Forms.Padding(2);
             this.dgvTransaction.Name = "dgvTransaction";
             this.dgvTransaction.ReadOnly = true;
             this.dgvTransaction.RowHeadersVisible = false;
             this.dgvTransaction.RowHeadersWidth = 51;
             this.dgvTransaction.RowTemplate.Height = 24;
             this.dgvTransaction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTransaction.Size = new System.Drawing.Size(885, 317);
+            this.dgvTransaction.Size = new System.Drawing.Size(664, 258);
             this.dgvTransaction.TabIndex = 1;
             // 
             // dgvInvoiceID
@@ -1064,9 +1095,10 @@
             this.lblTransactionTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblTransactionTitle.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblTransactionTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblTransactionTitle.Location = new System.Drawing.Point(12, 12);
+            this.lblTransactionTitle.Location = new System.Drawing.Point(9, 10);
+            this.lblTransactionTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTransactionTitle.Name = "lblTransactionTitle";
-            this.lblTransactionTitle.Size = new System.Drawing.Size(236, 38);
+            this.lblTransactionTitle.Size = new System.Drawing.Size(186, 30);
             this.lblTransactionTitle.TabIndex = 0;
             this.lblTransactionTitle.Text = "Lịch sử giao dịch";
             // 
@@ -1080,12 +1112,12 @@
             this.pnlSuccessfulPaymentTitle.Controls.Add(this.guna2Button2);
             this.pnlSuccessfulPaymentTitle.Controls.Add(this.label2);
             this.pnlSuccessfulPaymentTitle.FillColor = System.Drawing.Color.White;
-            this.pnlSuccessfulPaymentTitle.Location = new System.Drawing.Point(1294, 154);
-            this.pnlSuccessfulPaymentTitle.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.pnlSuccessfulPaymentTitle.Location = new System.Drawing.Point(970, 125);
+            this.pnlSuccessfulPaymentTitle.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.pnlSuccessfulPaymentTitle.Name = "pnlSuccessfulPaymentTitle";
             this.pnlSuccessfulPaymentTitle.ShadowDecoration.BorderRadius = 15;
             this.pnlSuccessfulPaymentTitle.ShadowDecoration.Enabled = true;
-            this.pnlSuccessfulPaymentTitle.Size = new System.Drawing.Size(343, 143);
+            this.pnlSuccessfulPaymentTitle.Size = new System.Drawing.Size(257, 116);
             this.pnlSuccessfulPaymentTitle.TabIndex = 5;
             // 
             // iconSuccessfulPayment
@@ -1096,10 +1128,11 @@
             this.iconSuccessfulPayment.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.iconSuccessfulPayment.IconColor = System.Drawing.Color.MediumSeaGreen;
             this.iconSuccessfulPayment.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconSuccessfulPayment.IconSize = 27;
-            this.iconSuccessfulPayment.Location = new System.Drawing.Point(313, 111);
+            this.iconSuccessfulPayment.IconSize = 20;
+            this.iconSuccessfulPayment.Location = new System.Drawing.Point(235, 90);
+            this.iconSuccessfulPayment.Margin = new System.Windows.Forms.Padding(2);
             this.iconSuccessfulPayment.Name = "iconSuccessfulPayment";
-            this.iconSuccessfulPayment.Size = new System.Drawing.Size(27, 29);
+            this.iconSuccessfulPayment.Size = new System.Drawing.Size(20, 24);
             this.iconSuccessfulPayment.TabIndex = 8;
             this.iconSuccessfulPayment.TabStop = false;
             // 
@@ -1109,8 +1142,9 @@
             this.guna2Panel7.Dock = System.Windows.Forms.DockStyle.Left;
             this.guna2Panel7.FillColor = System.Drawing.Color.Firebrick;
             this.guna2Panel7.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel7.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel7.Name = "guna2Panel7";
-            this.guna2Panel7.Size = new System.Drawing.Size(10, 143);
+            this.guna2Panel7.Size = new System.Drawing.Size(8, 116);
             this.guna2Panel7.TabIndex = 7;
             // 
             // lblSuccessfulPayment
@@ -1118,9 +1152,10 @@
             this.lblSuccessfulPayment.AutoSize = true;
             this.lblSuccessfulPayment.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblSuccessfulPayment.ForeColor = System.Drawing.Color.Gray;
-            this.lblSuccessfulPayment.Location = new System.Drawing.Point(69, 101);
+            this.lblSuccessfulPayment.Location = new System.Drawing.Point(52, 82);
+            this.lblSuccessfulPayment.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSuccessfulPayment.Name = "lblSuccessfulPayment";
-            this.lblSuccessfulPayment.Size = new System.Drawing.Size(114, 23);
+            this.lblSuccessfulPayment.Size = new System.Drawing.Size(94, 19);
             this.lblSuccessfulPayment.TabIndex = 6;
             this.lblSuccessfulPayment.Text = "1 Minute Ago";
             // 
@@ -1133,9 +1168,10 @@
             this.guna2Button2.FillColor = System.Drawing.Color.White;
             this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.guna2Button2.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button2.Location = new System.Drawing.Point(22, 51);
+            this.guna2Button2.Location = new System.Drawing.Point(16, 41);
+            this.guna2Button2.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(97, 36);
+            this.guna2Button2.Size = new System.Drawing.Size(73, 29);
             this.guna2Button2.TabIndex = 3;
             this.guna2Button2.Text = "98%";
             // 
@@ -1144,9 +1180,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(16, 14);
+            this.label2.Location = new System.Drawing.Point(12, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(264, 31);
+            this.label2.Size = new System.Drawing.Size(219, 25);
             this.label2.TabIndex = 0;
             this.label2.Text = "Thanh toán thành công";
             // 
@@ -1160,12 +1197,12 @@
             this.guna2Panel4.Controls.Add(this.guna2Button1);
             this.guna2Panel4.Controls.Add(this.lblPendingInvoiceTitle);
             this.guna2Panel4.FillColor = System.Drawing.Color.White;
-            this.guna2Panel4.Location = new System.Drawing.Point(848, 154);
-            this.guna2Panel4.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.guna2Panel4.Location = new System.Drawing.Point(636, 125);
+            this.guna2Panel4.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.guna2Panel4.Name = "guna2Panel4";
             this.guna2Panel4.ShadowDecoration.BorderRadius = 15;
             this.guna2Panel4.ShadowDecoration.Enabled = true;
-            this.guna2Panel4.Size = new System.Drawing.Size(292, 143);
+            this.guna2Panel4.Size = new System.Drawing.Size(219, 116);
             this.guna2Panel4.TabIndex = 4;
             // 
             // iconPendingInvoice
@@ -1176,10 +1213,11 @@
             this.iconPendingInvoice.IconChar = FontAwesome.Sharp.IconChar.FileInvoice;
             this.iconPendingInvoice.IconColor = System.Drawing.Color.MediumSeaGreen;
             this.iconPendingInvoice.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPendingInvoice.IconSize = 27;
-            this.iconPendingInvoice.Location = new System.Drawing.Point(262, 111);
+            this.iconPendingInvoice.IconSize = 20;
+            this.iconPendingInvoice.Location = new System.Drawing.Point(196, 90);
+            this.iconPendingInvoice.Margin = new System.Windows.Forms.Padding(2);
             this.iconPendingInvoice.Name = "iconPendingInvoice";
-            this.iconPendingInvoice.Size = new System.Drawing.Size(27, 29);
+            this.iconPendingInvoice.Size = new System.Drawing.Size(20, 24);
             this.iconPendingInvoice.TabIndex = 8;
             this.iconPendingInvoice.TabStop = false;
             // 
@@ -1189,8 +1227,9 @@
             this.guna2Panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.guna2Panel5.FillColor = System.Drawing.Color.DodgerBlue;
             this.guna2Panel5.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel5.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel5.Name = "guna2Panel5";
-            this.guna2Panel5.Size = new System.Drawing.Size(10, 143);
+            this.guna2Panel5.Size = new System.Drawing.Size(8, 116);
             this.guna2Panel5.TabIndex = 7;
             // 
             // lblPendingInvoice
@@ -1198,9 +1237,10 @@
             this.lblPendingInvoice.AutoSize = true;
             this.lblPendingInvoice.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblPendingInvoice.ForeColor = System.Drawing.Color.Gray;
-            this.lblPendingInvoice.Location = new System.Drawing.Point(52, 101);
+            this.lblPendingInvoice.Location = new System.Drawing.Point(39, 82);
+            this.lblPendingInvoice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPendingInvoice.Name = "lblPendingInvoice";
-            this.lblPendingInvoice.Size = new System.Drawing.Size(142, 23);
+            this.lblPendingInvoice.Size = new System.Drawing.Size(116, 19);
             this.lblPendingInvoice.TabIndex = 6;
             this.lblPendingInvoice.Text = "Active Customers";
             // 
@@ -1213,9 +1253,10 @@
             this.guna2Button1.FillColor = System.Drawing.Color.White;
             this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.guna2Button1.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button1.Location = new System.Drawing.Point(16, 51);
+            this.guna2Button1.Location = new System.Drawing.Point(12, 41);
+            this.guna2Button1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(120, 36);
+            this.guna2Button1.Size = new System.Drawing.Size(90, 29);
             this.guna2Button1.TabIndex = 3;
             this.guna2Button1.Text = "15";
             // 
@@ -1224,9 +1265,10 @@
             this.lblPendingInvoiceTitle.AutoSize = true;
             this.lblPendingInvoiceTitle.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblPendingInvoiceTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblPendingInvoiceTitle.Location = new System.Drawing.Point(16, 14);
+            this.lblPendingInvoiceTitle.Location = new System.Drawing.Point(12, 11);
+            this.lblPendingInvoiceTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPendingInvoiceTitle.Name = "lblPendingInvoiceTitle";
-            this.lblPendingInvoiceTitle.Size = new System.Drawing.Size(152, 31);
+            this.lblPendingInvoiceTitle.Size = new System.Drawing.Size(127, 25);
             this.lblPendingInvoiceTitle.TabIndex = 0;
             this.lblPendingInvoiceTitle.Text = "Hóa đơn chờ";
             // 
@@ -1240,11 +1282,12 @@
             this.guna2Panel1.Controls.Add(this.iconRevenue);
             this.guna2Panel1.Controls.Add(this.lblRevenueTitle);
             this.guna2Panel1.FillColor = System.Drawing.Color.White;
-            this.guna2Panel1.Location = new System.Drawing.Point(410, 153);
+            this.guna2Panel1.Location = new System.Drawing.Point(308, 124);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.ShadowDecoration.BorderRadius = 15;
             this.guna2Panel1.ShadowDecoration.Enabled = true;
-            this.guna2Panel1.Size = new System.Drawing.Size(292, 143);
+            this.guna2Panel1.Size = new System.Drawing.Size(219, 116);
             this.guna2Panel1.TabIndex = 1;
             this.guna2Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel1_Paint);
             // 
@@ -1256,10 +1299,11 @@
             this.iconStatus.IconChar = FontAwesome.Sharp.IconChar.ArrowTrendUp;
             this.iconStatus.IconColor = System.Drawing.Color.MediumSeaGreen;
             this.iconStatus.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconStatus.IconSize = 29;
-            this.iconStatus.Location = new System.Drawing.Point(253, 111);
+            this.iconStatus.IconSize = 24;
+            this.iconStatus.Location = new System.Drawing.Point(190, 90);
+            this.iconStatus.Margin = new System.Windows.Forms.Padding(2);
             this.iconStatus.Name = "iconStatus";
-            this.iconStatus.Size = new System.Drawing.Size(36, 29);
+            this.iconStatus.Size = new System.Drawing.Size(27, 24);
             this.iconStatus.TabIndex = 8;
             this.iconStatus.TabStop = false;
             // 
@@ -1269,8 +1313,9 @@
             this.pnlLeftAccent.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeftAccent.FillColor = System.Drawing.Color.MediumSeaGreen;
             this.pnlLeftAccent.Location = new System.Drawing.Point(0, 0);
+            this.pnlLeftAccent.Margin = new System.Windows.Forms.Padding(2);
             this.pnlLeftAccent.Name = "pnlLeftAccent";
-            this.pnlLeftAccent.Size = new System.Drawing.Size(10, 143);
+            this.pnlLeftAccent.Size = new System.Drawing.Size(8, 116);
             this.pnlLeftAccent.TabIndex = 7;
             // 
             // lblTotalRevenueTitle
@@ -1278,9 +1323,10 @@
             this.lblTotalRevenueTitle.AutoSize = true;
             this.lblTotalRevenueTitle.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblTotalRevenueTitle.ForeColor = System.Drawing.Color.Gray;
-            this.lblTotalRevenueTitle.Location = new System.Drawing.Point(53, 102);
+            this.lblTotalRevenueTitle.Location = new System.Drawing.Point(40, 83);
+            this.lblTotalRevenueTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotalRevenueTitle.Name = "lblTotalRevenueTitle";
-            this.lblTotalRevenueTitle.Size = new System.Drawing.Size(116, 23);
+            this.lblTotalRevenueTitle.Size = new System.Drawing.Size(94, 19);
             this.lblTotalRevenueTitle.TabIndex = 6;
             this.lblTotalRevenueTitle.Text = "Total Revenue";
             // 
@@ -1293,9 +1339,10 @@
             this.iconRevenue.FillColor = System.Drawing.Color.White;
             this.iconRevenue.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.iconRevenue.ForeColor = System.Drawing.Color.Black;
-            this.iconRevenue.Location = new System.Drawing.Point(23, 52);
+            this.iconRevenue.Location = new System.Drawing.Point(17, 42);
+            this.iconRevenue.Margin = new System.Windows.Forms.Padding(2);
             this.iconRevenue.Name = "iconRevenue";
-            this.iconRevenue.Size = new System.Drawing.Size(220, 47);
+            this.iconRevenue.Size = new System.Drawing.Size(165, 38);
             this.iconRevenue.TabIndex = 3;
             this.iconRevenue.Text = "$45,231";
             this.iconRevenue.Click += new System.EventHandler(this.iconRevenue_Click);
@@ -1305,19 +1352,21 @@
             this.lblRevenueTitle.AutoSize = true;
             this.lblRevenueTitle.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblRevenueTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblRevenueTitle.Location = new System.Drawing.Point(17, 15);
+            this.lblRevenueTitle.Location = new System.Drawing.Point(13, 12);
+            this.lblRevenueTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRevenueTitle.Name = "lblRevenueTitle";
-            this.lblRevenueTitle.Size = new System.Drawing.Size(186, 31);
+            this.lblRevenueTitle.Size = new System.Drawing.Size(156, 25);
             this.lblRevenueTitle.TabIndex = 0;
             this.lblRevenueTitle.Text = "Tổng doanh thu";
             this.lblRevenueTitle.Click += new System.EventHandler(this.lblRevenueTitle_Click);
             // 
             // FormPayments
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1752, 875);
+            this.ClientSize = new System.Drawing.Size(1314, 711);
             this.Controls.Add(this.Gn2pnlPaymentMain);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormPayments";
             this.Text = "FormPayments";
             this.Gn2pnlPaymentMain.ResumeLayout(false);

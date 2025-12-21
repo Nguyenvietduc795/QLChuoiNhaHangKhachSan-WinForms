@@ -1,3 +1,4 @@
+using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +13,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 {
     public partial class FormInventory : Form
     {
-        
+
 
 
         public FormInventory()
@@ -189,7 +190,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             DGCanhbaotonkho.AutoGenerateColumns = true;
             DGCanhbaotonkho.DataSource = dt;
 
-         
+
 
             // Chỉ còn 2 cột, set tỷ lệ giống UI
             DGCanhbaotonkho.Columns["Info"].FillWeight = 85;
@@ -248,11 +249,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
         }
 
 
-
-
-
     }
 
-    
+
 
 }
