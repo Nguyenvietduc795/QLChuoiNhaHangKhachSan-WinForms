@@ -63,29 +63,24 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customers.cs">
+    <Compile Include="BookingManager.cs" />
+    <Compile Include="BooKing_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customers.Designer.cs">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <Compile Include="BooKing_Form.Designer.cs">
+      <DependentUpon>BooKing_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="ListRoom.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ListRoom.Designer.cs">
+      <DependentUpon>ListRoom.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormBookinng.cs">
+    <Compile Include="BookingRoom_Details.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormBookinng.Designer.cs">
-      <DependentUpon>FormBookinng.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormInventory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormInventory.Designer.cs">
-      <DependentUpon>FormInventory.cs</DependentUpon>
+    <Compile Include="BookingRoom_Details.Designer.cs">
+      <DependentUpon>BookingRoom_Details.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -95,17 +90,26 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Customers.resx">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <Compile Include="Room_Details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Room_Details.Designer.cs">
+      <DependentUpon>Room_Details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcRoom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcRoom.Designer.cs">
+      <DependentUpon>UcRoom.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BooKing_Form.resx">
+      <DependentUpon>BooKing_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="ListRoom.resx">
+      <DependentUpon>ListRoom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormBookinng.resx">
-      <DependentUpon>FormBookinng.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormInventory.resx">
-      <DependentUpon>FormInventory.cs</DependentUpon>
+    <EmbeddedResource Include="BookingRoom_Details.resx">
+      <DependentUpon>BookingRoom_Details.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -120,6 +124,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Room_Details.resx">
+      <DependentUpon>Room_Details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcRoom.resx">
+      <DependentUpon>UcRoom.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -160,6 +170,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\021dc1fb9e-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngtree-green-check-mark-png-image_6525691 %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\021dc1fb9e-011.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngtree-clock-icon-vector-line-perfect-png-image_119998911.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_user.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tải xuống.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\z7350371373382_065c71962eaa217926d25ccb50c32e90.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\z7350371373390_18bf60a259e7bfe87dc788c41c49ab57.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\z7350371373399_f69f1d034fcf9c0866448c7c59b4398b.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\so-dien-thoai.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngtree-logo-lokasi-simbol-ikon-komputer-location-pin-in-black-colour-with-png-image_6425746.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngtree-vector-illustration-of-single-passport-icon-personal-nationalities-illustration-vector-png-image_7587796.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\png-clipart-gender-symbol-female-computer-icons-male-and-female-symbols-miscellaneous-woman.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
