@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomersList));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gnVIPCustomers = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.lblVIPCount = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -42,8 +42,8 @@
             this.pnHeader2 = new Guna.UI2.WinForms.Guna2Panel();
             this.gnTotalCustomers = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
-            this.lblTotalCustomerCount = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblTotalCustomerCountNumber = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblTotalCustomerCount = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnUpdateCustomers = new Guna.UI2.WinForms.Guna2Button();
             this.btnDelectCustomers = new Guna.UI2.WinForms.Guna2Button();
             this.btnFind = new Guna.UI2.WinForms.Guna2Button();
@@ -229,6 +229,17 @@
             this.guna2Button3.TabIndex = 5;
             this.guna2Button3.Click += new System.EventHandler(this.guna2Button3_Click);
             // 
+            // lblTotalCustomerCountNumber
+            // 
+            this.lblTotalCustomerCountNumber.BackColor = System.Drawing.Color.White;
+            this.lblTotalCustomerCountNumber.Font = new System.Drawing.Font("Microsoft YaHei UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalCustomerCountNumber.ForeColor = System.Drawing.Color.Black;
+            this.lblTotalCustomerCountNumber.Location = new System.Drawing.Point(12, 52);
+            this.lblTotalCustomerCountNumber.Name = "lblTotalCustomerCountNumber";
+            this.lblTotalCustomerCountNumber.Size = new System.Drawing.Size(26, 52);
+            this.lblTotalCustomerCountNumber.TabIndex = 2;
+            this.lblTotalCustomerCountNumber.Text = "0";
+            // 
             // lblTotalCustomerCount
             // 
             this.lblTotalCustomerCount.AutoSize = false;
@@ -241,17 +252,6 @@
             this.lblTotalCustomerCount.TabIndex = 0;
             this.lblTotalCustomerCount.Text = "Tổng khách hàng";
             this.lblTotalCustomerCount.Click += new System.EventHandler(this.lblTotalCustomerCount_Click);
-            // 
-            // lblTotalCustomerCountNumber
-            // 
-            this.lblTotalCustomerCountNumber.BackColor = System.Drawing.Color.White;
-            this.lblTotalCustomerCountNumber.Font = new System.Drawing.Font("Microsoft YaHei UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalCustomerCountNumber.ForeColor = System.Drawing.Color.Black;
-            this.lblTotalCustomerCountNumber.Location = new System.Drawing.Point(12, 52);
-            this.lblTotalCustomerCountNumber.Name = "lblTotalCustomerCountNumber";
-            this.lblTotalCustomerCountNumber.Size = new System.Drawing.Size(26, 52);
-            this.lblTotalCustomerCountNumber.TabIndex = 2;
-            this.lblTotalCustomerCountNumber.Text = "0";
             // 
             // btnUpdateCustomers
             // 
@@ -389,19 +389,19 @@
             // 
             // dgvListCustomers
             // 
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.White;
-            this.dgvListCustomers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvListCustomers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvListCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvListCustomers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvListCustomers.ColumnHeadersHeight = 40;
             this.dgvListCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CustomersID,
@@ -409,14 +409,14 @@
             this.CustomersPhone,
             this.CustomersAddress,
             this.CustomersType});
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListCustomers.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListCustomers.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvListCustomers.GridColor = System.Drawing.Color.Black;
             this.dgvListCustomers.Location = new System.Drawing.Point(11, 106);
             this.dgvListCustomers.Name = "dgvListCustomers";
