@@ -60,11 +60,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customers.cs">
+    <Compile Include="CustomerAdd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customers.Designer.cs">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <Compile Include="CustomerAdd.Designer.cs">
+      <DependentUpon>CustomerAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomersList.Designer.cs">
+      <DependentUpon>CustomersList.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -79,15 +85,33 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="PromotionAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PromotionsCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PromotionsCustomers.Designer.cs">
+      <DependentUpon>PromotionsCustomers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Customers.resx">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <EmbeddedResource Include="CustomerAdd.resx">
+      <DependentUpon>CustomerAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomersList.resx">
+      <DependentUpon>CustomersList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PromotionAdd.resx">
+      <DependentUpon>PromotionAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PromotionsCustomers.resx">
+      <DependentUpon>PromotionsCustomers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
