@@ -75,5 +75,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // keep the original padding so headers stay visible
             this.Padding = _designPadding;
         }
+
+        private void dgvSalaryEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // để trống cũng được
+        }
+
     }
 }
