@@ -398,12 +398,12 @@
             this.dtpGioKetThuc.FillColor = System.Drawing.Color.White;
             this.dtpGioKetThuc.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpGioKetThuc.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpGioKetThuc.Location = new System.Drawing.Point(0, 29);
+            this.dtpGioKetThuc.Location = new System.Drawing.Point(0, 20);
             this.dtpGioKetThuc.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpGioKetThuc.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpGioKetThuc.Name = "dtpGioKetThuc";
             this.dtpGioKetThuc.ShowUpDown = true;
-            this.dtpGioKetThuc.Size = new System.Drawing.Size(156, 41);
+            this.dtpGioKetThuc.Size = new System.Drawing.Size(156, 50);
             this.dtpGioKetThuc.TabIndex = 16;
             this.dtpGioKetThuc.Value = new System.DateTime(2025, 12, 21, 11, 4, 26, 608);
             // 
@@ -427,12 +427,12 @@
             this.dtpGioBatDau.FillColor = System.Drawing.Color.White;
             this.dtpGioBatDau.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpGioBatDau.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpGioBatDau.Location = new System.Drawing.Point(0, 26);
+            this.dtpGioBatDau.Location = new System.Drawing.Point(0, 20);
             this.dtpGioBatDau.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpGioBatDau.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpGioBatDau.Name = "dtpGioBatDau";
             this.dtpGioBatDau.ShowUpDown = true;
-            this.dtpGioBatDau.Size = new System.Drawing.Size(149, 41);
+            this.dtpGioBatDau.Size = new System.Drawing.Size(149, 47);
             this.dtpGioBatDau.TabIndex = 16;
             this.dtpGioBatDau.Value = new System.DateTime(2025, 12, 21, 11, 4, 26, 608);
             // 

@@ -236,7 +236,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 try
                 {
                     var listForm = Application.OpenForms.OfType<ListRoom>().FirstOrDefault();
-                    listForm?.RefreshFromBookings();
+                    if (listForm != null)
+                    {
+                        // Chỉ refresh đúng phòng vừa thanh toán, không ảnh hưởng phòng khác
+                        listForm.RefreshFromBookings(new[] { labMaphong.Text });
+                    }
                 }
                 catch { }
             }

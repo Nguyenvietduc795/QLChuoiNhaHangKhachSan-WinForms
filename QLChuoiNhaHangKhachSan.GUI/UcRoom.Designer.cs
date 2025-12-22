@@ -147,7 +147,7 @@
             this.lblStatus.BackColor = System.Drawing.Color.Transparent;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.Color.White;
-            this.lblStatus.Location = new System.Drawing.Point(83, 67);
+            this.lblStatus.Location = new System.Drawing.Point(59, 67);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(165, 31);
             this.lblStatus.TabIndex = 1;
@@ -171,7 +171,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.pngtree_green_check_mark_png_image_6525691__1_;
-            this.pictureBox1.Location = new System.Drawing.Point(47, 66);
+            this.pictureBox1.Location = new System.Drawing.Point(32, 67);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(30, 30);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

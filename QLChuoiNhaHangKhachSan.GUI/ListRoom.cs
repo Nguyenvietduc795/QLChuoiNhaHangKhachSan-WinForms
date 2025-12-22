@@ -169,7 +169,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         }
 
         // Refresh UI of rooms according to BookingManager
-        private void RefreshBookingStates()
+        private void RefreshBookingStates(HashSet<string> filterRoomCodes = null)
         {
             var now = DateTime.Now;
             foreach (Control ctr in LayoutPhong.Controls)
@@ -178,6 +178,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 {
                     var code = room.labRoomNumber.Text?.Trim().ToUpper();
                     if (string.IsNullOrEmpty(code)) continue;
+
+                    // Nếu có danh sách filter thì chỉ cập nhật các phòng trong danh sách đó
+                    if (filterRoomCodes != null && !filterRoomCodes.Contains(code))
+                        continue;
 
                     if (BookingManager.TryGetBooking(code, out var info))
                     {
@@ -334,6 +338,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
         public void RefreshFromBookings()
         {
             RefreshBookingStates();
+        }
+
+        public void RefreshFromBookings(IEnumerable<string> roomCodes)
+        {
+            var set = roomCodes == null
+                ? null
+                : new HashSet<string>(roomCodes.Where(r => !string.IsNullOrWhiteSpace(r)).Select(r => r.Trim().ToUpper()));
+            RefreshBookingStates(set);
         }
     }
 }
