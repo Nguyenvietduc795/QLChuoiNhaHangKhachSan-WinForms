@@ -1,32 +1,86 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
-    public partial class MainForm : Form
+    public partial class FormDashBoard : Form
     {
-        public MainForm()
+        // Form con đang hiển thị
+        private Form activeChildForm = null;
+        // Panel chứa nội dung form con (EmployeeForm, ...)
+        private Panel pnlContentHost;
+
+        public FormDashBoard()
         {
             InitializeComponent();
+            CreateContentHost(); // Tạo panel chứa form con, giữ nguyên sidebar
 
-            // gán event cho nút Khách hàng
-           
+            // Đảm bảo sự kiện click được gắn (phòng khi designer không gắn)
+            this.btnListStaff.Click += btnListStaff_Click;
+            this.btnSalaryManage.Click += btnSalaryManage_Click;
+            this.btnHome.Click += btnHome_Click;
         }
 
+        // Khởi tạo panel host cho form con
+        private void CreateContentHost()
+        {
+            pnlContentHost = new Panel
+            {
+                Name = "pnlContentHost",
+                Dock = DockStyle.Fill,
+                BackColor = System.Drawing.Color.White,
+                Visible = false
+            };
+            // Đặt host lên trên các control khác (trừ sidebar dock left)
+            this.Controls.Add(pnlContentHost);
+            this.Controls.SetChildIndex(pnlContentHost, 0);
+            pnlContentHost.BringToFront();
+        }
+
+        // Hiển thị một form con bên trong host
+        private void ShowChild(Form child)
+        {
+            // Đóng form con cũ nếu còn
+            if (activeChildForm != null && !activeChildForm.IsDisposed)
+            {
+                activeChildForm.Close();
+                activeChildForm.Dispose();
+            }
+
+            activeChildForm = child;
+            child.TopLevel = false;
+            child.FormBorderStyle = FormBorderStyle.None;
+            child.Dock = DockStyle.Fill;
+
+            // Tắt đổ bóng viền cho form nhúng
+            if (child is SalaryManageForm smf) smf.EnableEmbedMode();
+            if (child is EmployeeForm ef) ef.EnableEmbedMode();
+
+            pnlContentHost.Controls.Clear();
+            pnlContentHost.Controls.Add(child);
+            pnlContentHost.Visible = true;
+            pnlContentHost.BringToFront();
+            child.Show();
+        }
+
+        // Ẩn form con, quay lại nội dung dashboard
+        private void HideChild()
+        {
+            if (activeChildForm != null && !activeChildForm.IsDisposed)
+            {
+                activeChildForm.Close();
+                activeChildForm = null;
+            }
+            pnlContentHost.Visible = false;
+        }
+
+        // Khi load dashboard: thu gọn submenu, đọc cấu hình (nếu có)
         private void Form1_Load(object sender, EventArgs e)
         {
-            // 1. Khởi tạo trạng thái Sidebar: Đóng tất cả các panel nhóm
             CloseAllSubMenus();
 
-            // Cấu hình kết nối (giữ nguyên của bạn)
             try
             {
                 string connStr = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
@@ -34,7 +88,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
             catch { }
         }
-       
+
+        // Thu gọn toàn bộ menu con
         private void CloseAllSubMenus()
         {
             pnlStaff_group.Height = 50;
@@ -49,16 +104,15 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void lblUserRole_Click(object sender, EventArgs e)
         {
-
         }
 
         private void guna2Chip4_Click(object sender, EventArgs e)
         {
-
         }
+
+        // Đổi trạng thái nút được chọn, tắt highlight các nút khác
         private void SetActiveButton(object sender)
         {
-            // Duyệt qua flpSidebar để reset trạng thái Checked của tất cả các nút
             foreach (Control container in flpSidebar.Controls)
             {
                 if (container is Panel || container is Guna.UI2.WinForms.Guna2Panel)
@@ -74,91 +128,99 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 }
             }
 
-            // Bật màu cho nút vừa nhấn
             if (sender is Guna.UI2.WinForms.Guna2Button clickedBtn)
             {
                 clickedBtn.Checked = true;
             }
         }
-        // Xử lý sự kiện click cho các nút
-        //nút home
+
+        // Nút Trang chủ: thu gọn submenu và ẩn form con
         private void btnHome_Click(object sender, EventArgs e)
         {
-            SetActiveButton(sender); // Chỉ nút này sáng màu
-            CloseAllSubMenus();      // Các nút con của Nhân viên... sẽ bị thu lại
+            SetActiveButton(sender);
+            CloseAllSubMenus();
+            HideChild();
         }
+
         /************************************************************************************************************/
-        //nút nhân viên
+        // Nhóm Nhân viên: mở/đóng submenu
         bool isStaffExpanded = false; // Biến trạng thái mở rộng của nhóm Nhân viên
         private void btnStaff_Click(object sender, EventArgs e)
         {
-
-            SetActiveButton(sender); // Highlight nút cha
+            SetActiveButton(sender);
 
             if (pnlStaff_group.Height == 50)
             {
-                CloseAllSubMenus(); // Đóng các nhóm khác trước khi mở nhóm này
+                CloseAllSubMenus();
                 pnlStaff_group.Height = 130; // Mở rộng
             }
             else
             {
-                pnlStaff_group.Height = 50; // Đóng lại
+                pnlStaff_group.Height = 50; // Thu gọn
             }
         }
 
+        // Danh sách nhân viên: mở EmployeeForm trong khu vực nội dung
         private void btnListStaff_Click(object sender, EventArgs e)
         {
-            SetActiveButton(sender); // Chỉ đổi màu highlight cho nút con
-                                 // Gọi UserControl hoặc Form danh sách tại đây
+            SetActiveButton(sender);
+            ShowChild(new EmployeeForm());
         }
 
-        private void btnPayRoll_Click(object sender, EventArgs e)
+        // Bảng lương (chưa gắn form cụ thể)
+        private void btnSalaryManage_Click(object sender, EventArgs e)
         {
-            SetActiveButton(sender); // Chỉ đổi màu highlight cho nút con
-                                     // Gọi UserControl hoặc Form danh sách tại đây
+            SetActiveButton(sender);
+            ShowChild(new SalaryManageForm());
         }
 
         /************************************************************************************************************/
-        //nút khách hàng
+        // Nhóm Khách hàng: mở/đóng submenu
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            SetActiveButton(sender); // Highlight nút cha
+            SetActiveButton(sender);
 
-             var f = new CustomersList();
-            f.StartPosition = FormStartPosition.CenterScreen;
-            f.Show(); // hoặc f.ShowDialog(this)
+            if (pnlCustomer_group.Height == 50)
+            {
+                CloseAllSubMenus();
+                pnlCustomer_group.Height = 130;
+            }
+            else
+            {
+                pnlCustomer_group.Height = 50;
+            }
         }
 
         private void btnCustomerList_Click(object sender, EventArgs e)
         {
-            SetActiveButton(sender); // Chỉ đổi màu highlight cho nút con
-                                     // Gọi UserControl hoặc Form danh sách tại đây
+            SetActiveButton(sender);
+            // TODO: ShowChild(new CustomerListForm());
         }
 
         private void btnLoyaltyProgram_Click(object sender, EventArgs e)
         {
-            SetActiveButton(sender); // Chỉ đổi màu highlight cho nút con
-                                     // Gọi UserControl hoặc Form danh sách tại đây
+            SetActiveButton(sender);
+            // TODO: ShowChild(new LoyaltyProgramForm());
         }
 
         private void pnlSidebar_Paint(object sender, PaintEventArgs e)
         {
-
         }
+
         /************************************************************************************************************/
-        //nút khách sạn
+        // Nhóm Khách sạn
         private void btnHotels_Click(object sender, EventArgs e)
         {
-            SetActiveButton(sender); // Highlight nút cha
+            SetActiveButton(sender);
 
             if (pnlHotel_group.Height == 50)
             {
-                CloseAllSubMenus(); // Đóng các nhóm khác trước khi mở nhóm này
-                pnlHotel_group.Height = 130; // Mở rộng
+                CloseAllSubMenus();
+                pnlHotel_group.Height = 130;
             }
             else
             {
-                pnlHotel_group.Height = 50; // Đóng lại
+                pnlHotel_group.Height = 50;
             }
         }
 
@@ -174,20 +236,21 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             SetActiveButton(sender);
         }
-/************************************************************************************************************/
-        //nút nhà hàng
+
+        /************************************************************************************************************/
+        // Nhóm Nhà hàng
         private void btnRestaurants_Click(object sender, EventArgs e)
         {
-            SetActiveButton(sender); // Highlight nút cha
+            SetActiveButton(sender);
 
             if (pnlRestaurent_group.Height == 50)
             {
-                CloseAllSubMenus(); // Đóng các nhóm khác trước khi mở nhóm này
-                pnlRestaurent_group.Height = 130; // Mở rộng
+                CloseAllSubMenus();
+                pnlRestaurent_group.Height = 130;
             }
             else
             {
-                pnlRestaurent_group.Height = 50; // Đóng lại
+                pnlRestaurent_group.Height = 50;
             }
         }
 
@@ -201,23 +264,20 @@ namespace QLChuoiNhaHangKhachSan.GUI
             SetActiveButton(sender);
         }
 
-
-
         /************************************************************************************************************/
-
-        //nút kho
+        // Nhóm Kho
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            SetActiveButton(sender); // Highlight nút cha
+            SetActiveButton(sender);
 
             if (pnlInvetory_group.Height == 50)
             {
-                CloseAllSubMenus(); // Đóng các nhóm khác trước khi mở nhóm này
-                pnlInvetory_group.Height = 130; // Mở rộng
+                CloseAllSubMenus();
+                pnlInvetory_group.Height = 130;
             }
             else
             {
-                pnlInvetory_group.Height = 50; // Đóng lại
+                pnlInvetory_group.Height = 50;
             }
 
         }
@@ -232,21 +292,20 @@ namespace QLChuoiNhaHangKhachSan.GUI
             SetActiveButton(sender);
         }
 
-
         /************************************************************************************************************/
-        //nút thanh toán
+        // Nhóm Thanh toán
         private void btnPayments_Click(object sender, EventArgs e)
         {
-            SetActiveButton(sender); // Highlight nút cha
+            SetActiveButton(sender);
 
             if (pnlPayment_group.Height == 50)
             {
-                CloseAllSubMenus(); // Đóng các nhóm khác trước khi mở nhóm này
-                pnlPayment_group.Height = 130; // Mở rộng
+                CloseAllSubMenus();
+                pnlPayment_group.Height = 130;
             }
             else
             {
-                pnlPayment_group.Height = 50; // Đóng lại
+                pnlPayment_group.Height = 50;
             }
         }
 
@@ -259,20 +318,21 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             SetActiveButton(sender);
         }
+
         /************************************************************************************************************/
-        //nút báo cáo
+        // Nhóm Báo cáo
         private void btnReports_Click(object sender, EventArgs e)
         {
-            SetActiveButton(sender); // Highlight nút cha
+            SetActiveButton(sender);
 
             if (pnlReport_group.Height == 50)
             {
-                CloseAllSubMenus(); // Đóng các nhóm khác trước khi mở nhóm này
-                pnlReport_group.Height = 130; // Mở rộng
+                CloseAllSubMenus();
+                pnlReport_group.Height = 130;
             }
             else
             {
-                pnlReport_group.Height = 50; // Đóng lại
+                pnlReport_group.Height = 50;
             }
         }
 
@@ -286,19 +346,24 @@ namespace QLChuoiNhaHangKhachSan.GUI
             SetActiveButton(sender);
         }
 
+        // Đăng xuất
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            SetActiveButton(sender); // Highlight nút cha
+            SetActiveButton(sender);
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
 
+        // Handler trống
         private void btnDotBlue_Click(object sender, EventArgs e)
         {
-
         }
 
         private void guna2HtmlLabel7_Click(object sender, EventArgs e)
         {
-
         }
     }
 
