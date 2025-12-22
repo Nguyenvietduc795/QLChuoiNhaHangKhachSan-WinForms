@@ -50,6 +50,20 @@ namespace QLChuoiNhaHangKhachSan.GUI
             lvPhongTrong.ContextMenuStrip = _menuTrong;
             lvPhongChon.ContextMenuStrip = _menuChon;
 
+            // cấu hình cột nút (Thêm/Xóa) có tiêu đề, canh giữa
+            if (lvPhongTrong.Columns.Count >= 3)
+            {
+                lvPhongTrong.Columns[2].Text = "Thêm";
+                lvPhongTrong.Columns[2].TextAlign = HorizontalAlignment.Center;
+                lvPhongTrong.Columns[2].Width = 60;
+            }
+            if (lvPhongChon.Columns.Count >= 5)
+            {
+                lvPhongChon.Columns[4].Text = "Xóa";
+                lvPhongChon.Columns[4].TextAlign = HorizontalAlignment.Center;
+                lvPhongChon.Columns[4].Width = 60;
+            }
+
             // Inline editor cho cột Số người
             _qtyEditor = new NumericUpDown
             {
@@ -62,6 +76,63 @@ namespace QLChuoiNhaHangKhachSan.GUI
             _qtyEditor.KeyDown += QtyEditor_KeyDown;
             lvPhongChon.Controls.Add(_qtyEditor);
             lvPhongChon.MouseDown += LvPhongChon_MouseDown;
+
+            // clock-style time picker for giờ vào/ra
+            dtpGioBatDau.MouseDown += DtpGioBatDau_MouseDown;
+            dtpGioBatDau.Click += DtpGioBatDau_Click;
+            dtpGioKetThuc.MouseDown += DtpGioKetThuc_MouseDown;
+            dtpGioKetThuc.Click += DtpGioKetThuc_Click;
+
+            // Owner draw icon columns
+            lvPhongTrong.OwnerDraw = true;
+            lvPhongTrong.DrawColumnHeader += Lv_DrawColumnHeader;
+            lvPhongTrong.DrawItem += Lv_DrawItem;
+            lvPhongTrong.DrawSubItem += LvPhongTrong_DrawSubItem;
+            lvPhongTrong.MouseDown += LvPhongTrong_MouseDown;
+
+            lvPhongChon.OwnerDraw = true;
+            lvPhongChon.DrawColumnHeader += Lv_DrawColumnHeader;
+            lvPhongChon.DrawItem += Lv_DrawItem;
+            lvPhongChon.DrawSubItem += LvPhongChon_DrawSubItem;
+            lvPhongChon.MouseDown += LvPhongChon_MouseDown_Remove;
+
+            // dùng cùng ImageList cho icon vẽ tay
+            if (lvPhongChon.SmallImageList == null)
+                lvPhongChon.SmallImageList = imageList1;
+            if (lvPhongTrong.SmallImageList == null)
+                lvPhongTrong.SmallImageList = imageList1;
+        }
+
+        private void DtpGioBatDau_Click(object sender, EventArgs e)
+        {
+            ShowTimePicker(dtpGioBatDau);
+        }
+
+        private void DtpGioBatDau_MouseDown(object sender, MouseEventArgs e)
+        {
+            ShowTimePicker(dtpGioBatDau);
+        }
+
+        private void DtpGioKetThuc_Click(object sender, EventArgs e)
+        {
+            ShowTimePicker(dtpGioKetThuc);
+        }
+
+        private void DtpGioKetThuc_MouseDown(object sender, MouseEventArgs e)
+        {
+            ShowTimePicker(dtpGioKetThuc);
+        }
+
+        private void ShowTimePicker(Guna.UI2.WinForms.Guna2DateTimePicker picker)
+        {
+            if (picker == null) return;
+            using (var clock = new TimePickerForm(picker.Value))
+            {
+                if (clock.ShowDialog(this) == DialogResult.OK)
+                {
+                    picker.Value = clock.SelectedDateTime;
+                }
+            }
         }
 
         private void LvPhongChon_MouseDown(object sender, MouseEventArgs e)
@@ -211,20 +282,34 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 var item = new ListViewItem(r["maphong"].ToString());
                 item.SubItems.Add(r["LoaiPhong"].ToString());
+                var addSub = item.SubItems.Add("+");
+                // plus text is centered via column settings
                 item.Tag = r["LoaiPhong"].ToString();
                 lvPhongTrong.Items.Add(item);
+            }
+            if (lvPhongTrong.Columns.Count > 0)
+            {
+                lvPhongTrong.Columns[lvPhongTrong.Columns.Count - 1].Width = 60;
             }
 
             lvPhongChon.Items.Clear();
             foreach (DataRow r in dtChon.Rows.Cast<DataRow>().OrderBy(r => r["maphong"].ToString()))
             {
                 var item = new ListViewItem(r["maphong"].ToString());
-                // For chosen list, we show columns: mã, số người, ngàyBD, ngàyKT
                 item.SubItems.Add(r.Table.Columns.Contains("Soluong") ? r["Soluong"].ToString() : "1");
                 item.SubItems.Add(DateTime.Now.ToShortDateString());
                 item.SubItems.Add(r["NgayKT"].ToString());
+                var delSub = item.SubItems.Add("X");
+                // delete text centered via column settings
                 lvPhongChon.Items.Add(item);
             }
+            if (lvPhongChon.Columns.Count > 0)
+            {
+                lvPhongChon.Columns[lvPhongChon.Columns.Count - 1].Width = 60;
+            }
+
+            lvPhongTrong.Invalidate();
+            lvPhongChon.Invalidate();
         }
 
         private void MoveSelectedTrongToChon()
@@ -237,16 +322,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             if (lvPhongChon.SelectedItems.Count == 0) return;
             var sel = lvPhongChon.SelectedItems[0];
-            string code = sel.Text;
-
-            // remove from dtChon and add back to dtTrong
-            var row = dtChon.Rows.Cast<DataRow>().FirstOrDefault(r => string.Equals(r["maphong"].ToString(), code, StringComparison.OrdinalIgnoreCase));
-            if (row != null) dtChon.Rows.Remove(row);
-
-            string type = InferRoomType(code);
-            dtTrong.Rows.Add(code, type);
-
-            PopulateListViewsFromDataTables();
+            RemoveChosenItem(sel.Text);
         }
 
         private string InferRoomType(string code)
@@ -439,6 +515,160 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             if (lvPhongTrong.SelectedItems.Count == 0) return;
             MoveRoomToChosen(lvPhongTrong.SelectedItems[0]);
+        }
+
+        private void Lv_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+        {
+            e.DrawDefault = true;
+        }
+
+        private void Lv_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+            // để DrawSubItem xử lý hoặc vẽ mặc định
+            e.DrawDefault = true;
+        }
+
+        private void LvPhongTrong_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+        {
+            if (e.ColumnIndex == lvPhongTrong.Columns.Count - 1)
+            {
+                var bounds = e.Bounds;
+                using (var brush = new SolidBrush(Color.FromArgb(230, 255, 230)))
+                using (var pen = new Pen(Color.ForestGreen, 1))
+                {
+                    e.Graphics.FillRectangle(brush, bounds);
+                    e.Graphics.DrawRectangle(pen, bounds.Left + 2, bounds.Top + 2, bounds.Width - 4, bounds.Height - 4);
+                }
+
+                if (imageList1 != null && imageList1.Images.Count > 0)
+                {
+                    var img = imageList1.Images[0];
+                    int x = bounds.Left + (bounds.Width - img.Width) / 2;
+                    int y = bounds.Top + (bounds.Height - img.Height) / 2;
+                    e.Graphics.DrawImage(img, x, y, img.Width, img.Height);
+                }
+                else
+                {
+                    int cx = bounds.Left + bounds.Width / 2;
+                    int cy = bounds.Top + bounds.Height / 2;
+                    using (var pen = new Pen(Color.ForestGreen, 2))
+                    {
+                        e.Graphics.DrawEllipse(pen, cx - 12, cy - 12, 24, 24);
+                        e.Graphics.DrawLine(pen, cx - 8, cy, cx + 8, cy);
+                        e.Graphics.DrawLine(pen, cx, cy - 8, cx, cy + 8);
+                    }
+                    using (var brush = new SolidBrush(Color.ForestGreen))
+                    using (var font = new Font("Segoe UI", 16, FontStyle.Bold))
+                    {
+                        var size = e.Graphics.MeasureString(e.SubItem.Text, font);
+                        e.Graphics.DrawString(e.SubItem.Text, font, brush, cx - size.Width / 2, cy - size.Height / 2 - 2);
+                    }
+                }
+            }
+            else
+            {
+                e.DrawDefault = true;
+            }
+        }
+
+        private void LvPhongChon_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+        {
+            if (e.ColumnIndex == lvPhongChon.Columns.Count - 1)
+            {
+                var bounds = e.Bounds;
+                using (var brush = new SolidBrush(Color.FromArgb(255, 230, 230)))
+                using (var pen = new Pen(Color.IndianRed, 1))
+                {
+                    e.Graphics.FillRectangle(brush, bounds);
+                    e.Graphics.DrawRectangle(pen, bounds.Left + 2, bounds.Top + 2, bounds.Width - 4, bounds.Height - 4);
+                }
+
+                if (imageList1 != null && imageList1.Images.Count > 1)
+                {
+                    var img = imageList1.Images[1];
+                    int x = bounds.Left + (bounds.Width - img.Width) / 2;
+                    int y = bounds.Top + (bounds.Height - img.Height) / 2;
+                    e.Graphics.DrawImage(img, x, y, img.Width, img.Height);
+                }
+                else
+                {
+                    var b = bounds;
+                    using (var pen = new Pen(Color.IndianRed, 2))
+                    {
+                        e.Graphics.DrawRectangle(pen, b.Left + 6, b.Top + 6, b.Width - 12, b.Height - 12);
+                        e.Graphics.DrawLine(pen, b.Left + 10, b.Top + 10, b.Right - 10, b.Bottom - 10);
+                        e.Graphics.DrawLine(pen, b.Right - 10, b.Top + 10, b.Left + 10, b.Bottom - 10);
+                    }
+                    using (var brush = new SolidBrush(Color.IndianRed))
+                    using (var font = new Font("Segoe UI", 16, FontStyle.Bold))
+                    {
+                        var size = e.Graphics.MeasureString(e.SubItem.Text, font);
+                        e.Graphics.DrawString(e.SubItem.Text, font, brush, b.Left + (b.Width - size.Width) / 2, b.Top + (b.Height - size.Height) / 2 - 2);
+                    }
+                }
+            }
+            else
+            {
+                e.DrawDefault = true;
+            }
+        }
+
+        private void LvPhongTrong_MouseDown(object sender, MouseEventArgs e)
+        {
+            var hit = lvPhongTrong.HitTest(e.Location);
+            var item = hit.Item;
+            if (item == null) return;
+
+            int colIndex = hit.SubItem != null ? item.SubItems.IndexOf(hit.SubItem) : GetColumnIndexAtX(lvPhongTrong, e.X);
+            int actionCol = lvPhongTrong.Columns.Count - 1;
+            if (colIndex == actionCol)
+            {
+                MoveRoomToChosen(item);
+                return;
+            }
+        }
+
+        private void LvPhongChon_MouseDown_Remove(object sender, MouseEventArgs e)
+        {
+            var hit = lvPhongChon.HitTest(e.Location);
+            var item = hit.Item;
+            if (item == null) return;
+
+            int colIndex = hit.SubItem != null ? item.SubItems.IndexOf(hit.SubItem) : GetColumnIndexAtX(lvPhongChon, e.X);
+            int actionCol = lvPhongChon.Columns.Count - 1;
+            if (colIndex == actionCol)
+            {
+                RemoveChosenItem(item.Text);
+                _qtyEditor.Visible = false;
+                return;
+            }
+        }
+
+        private int GetColumnIndexAtX(ListView lv, int x)
+        {
+            int cur = 0;
+            for (int i = 0; i < lv.Columns.Count; i++)
+            {
+                cur += lv.Columns[i].Width;
+                if (x < cur) return i;
+            }
+            return -1;
+        }
+
+        private void RemoveChosenItem(string code)
+        {
+            if (string.IsNullOrWhiteSpace(code)) return;
+            var row = dtChon.Rows.Cast<DataRow>().FirstOrDefault(r => string.Equals(r["maphong"].ToString(), code, StringComparison.OrdinalIgnoreCase));
+            if (row != null) dtChon.Rows.Remove(row);
+
+            // chỉ thêm lại vào phòng trống nếu chưa có
+            bool existsTrong = dtTrong.Rows.Cast<DataRow>().Any(r => string.Equals(r["maphong"].ToString(), code, StringComparison.OrdinalIgnoreCase));
+            if (!existsTrong)
+            {
+                string type = InferRoomType(code);
+                dtTrong.Rows.Add(code, type);
+            }
+            PopulateListViewsFromDataTables();
         }
     }
 }

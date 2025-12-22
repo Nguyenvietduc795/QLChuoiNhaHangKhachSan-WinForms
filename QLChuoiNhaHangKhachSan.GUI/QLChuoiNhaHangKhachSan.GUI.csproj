@@ -96,6 +96,9 @@
     <Compile Include="Room_Details.Designer.cs">
       <DependentUpon>Room_Details.cs</DependentUpon>
     </Compile>
+    <Compile Include="TimePickerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UcRoom.cs">
       <SubType>UserControl</SubType>
     </Compile>

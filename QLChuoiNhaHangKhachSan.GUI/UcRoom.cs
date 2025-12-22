@@ -53,23 +53,29 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     labSanSang.Visible = false;
                     picSanSang.Visible = false;
 
-                    
-                    if (ttHienTai.ToLower().Contains("trống"))
+                    // Cập nhật loại phòng lưu trong Tag để lọc
+                    if (!string.IsNullOrWhiteSpace(frm.SelectedRoomType))
                     {
-                        labTrangthai.Text = "Phòng đã đặt"; // Đổi chữ ở góc nhỏ
-
-                        pnlRoomContainer.FillColor = Color.Green;
-                        lblStatus.ForeColor = Color.Black;     // Chữ đen trên nền vàng
-                        labTrangthai.ForeColor = Color.DarkSlateGray;
+                        this.Tag = frm.SelectedRoomType.ToLower();
                     }
-                    else if (ttHienTai.ToLower().Contains("đã đặt"))
+
+                    string status = frm.SelectedStatus ?? ttHienTai;
+
+                    if (string.IsNullOrWhiteSpace(status))
                     {
-                        labTrangthai.Text = "Đang thuê";
-                        pnlRoomContainer.FillColor = Color.MidnightBlue;
-                        lblStatus.ForeColor = Color.White;     // Chữ trắng trên nền xanh đậm
-                        labRoomNumber.ForeColor = Color.White;
-                        labTrangthai.ForeColor = Color.Yellow; // Trạng thái màu vàng cho nổi bật
-                        this.CapNhatNhanPhong(frm.TenKhach, frm.SoNgay);
+                        SetFree();
+                    }
+                    else if (status.ToLower().Contains("đặt"))
+                    {
+                        SetReserved(frm.TenKhach);
+                    }
+                    else if (status.ToLower().Contains("thuê"))
+                    {
+                        SetRented(frm.TenKhach, frm.SoNgay);
+                    }
+                    else
+                    {
+                        SetFree();
                     }
                 }
             }
@@ -121,7 +127,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             labSanSang.Visible = false;
             picSanSang.Visible = false;
             labTrangthai.Text = "Phòng đã đặt";
-            pnlRoomContainer.FillColor = Color.Khaki;
+            pnlRoomContainer.FillColor = Color.Green;
             lblStatus.ForeColor = Color.Black;
             labTrangthai.ForeColor = Color.DarkSlateGray;
         }
@@ -184,6 +190,16 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 labSanSang.Visible = true;
             }
             if (picSanSang != null) picSanSang.Visible = true;
+        }
+
+        private void lblStatus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UcRoom_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

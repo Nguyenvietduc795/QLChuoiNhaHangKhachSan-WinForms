@@ -183,6 +183,7 @@
             // guna2PictureBox3
             // 
             this.guna2PictureBox3.BackgroundImage = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.so_dien_thoai;
+            this.guna2PictureBox3.FillColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox3.Image = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.so_dien_thoai;
             this.guna2PictureBox3.ImageRotate = 0F;
             this.guna2PictureBox3.Location = new System.Drawing.Point(6, 347);
@@ -194,6 +195,7 @@
             // 
             // guna2PictureBox2
             // 
+            this.guna2PictureBox2.FillColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox2.Image = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.z7350371373390_18bf60a259e7bfe87dc788c41c49ab57;
             this.guna2PictureBox2.ImageFlip = Guna.UI2.WinForms.Enums.FlipOrientation.Horizontal;
             this.guna2PictureBox2.ImageRotate = 0F;
@@ -206,7 +208,7 @@
             // 
             // guna2PictureBox1
             // 
-            this.guna2PictureBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.guna2PictureBox1.FillColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox1.Image = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.z7350371373382_065c71962eaa217926d25ccb50c32e90;
             this.guna2PictureBox1.ImageFlip = Guna.UI2.WinForms.Enums.FlipOrientation.Horizontal;
             this.guna2PictureBox1.ImageRotate = 0F;
@@ -380,8 +382,8 @@
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.groupBox4.Controls.Add(this.dtpGioKetThuc);
-            this.groupBox4.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(1023, 171);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(1023, 168);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(156, 67);
             this.groupBox4.TabIndex = 21;
@@ -396,7 +398,7 @@
             this.dtpGioKetThuc.FillColor = System.Drawing.Color.White;
             this.dtpGioKetThuc.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpGioKetThuc.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpGioKetThuc.Location = new System.Drawing.Point(0, 23);
+            this.dtpGioKetThuc.Location = new System.Drawing.Point(0, 29);
             this.dtpGioKetThuc.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpGioKetThuc.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpGioKetThuc.Name = "dtpGioKetThuc";
@@ -409,7 +411,7 @@
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.groupBox3.Controls.Add(this.dtpGioBatDau);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(794, 168);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(149, 67);
@@ -425,7 +427,7 @@
             this.dtpGioBatDau.FillColor = System.Drawing.Color.White;
             this.dtpGioBatDau.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpGioBatDau.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpGioBatDau.Location = new System.Drawing.Point(0, 23);
+            this.dtpGioBatDau.Location = new System.Drawing.Point(0, 26);
             this.dtpGioBatDau.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpGioBatDau.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpGioBatDau.Name = "dtpGioBatDau";
@@ -438,7 +440,7 @@
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.groupBox2.Controls.Add(this.dtpNgayKetThuc);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(555, 174);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(149, 67);
@@ -452,9 +454,9 @@
             this.dtpNgayKetThuc.BorderRadius = 20;
             this.dtpNgayKetThuc.Checked = true;
             this.dtpNgayKetThuc.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.dtpNgayKetThuc.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtpNgayKetThuc.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpNgayKetThuc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpNgayKetThuc.Location = new System.Drawing.Point(0, 21);
+            this.dtpNgayKetThuc.Location = new System.Drawing.Point(0, 22);
             this.dtpNgayKetThuc.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpNgayKetThuc.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpNgayKetThuc.Name = "dtpNgayKetThuc";
@@ -466,7 +468,7 @@
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.groupBox1.Controls.Add(this.dtpNgayBatDau);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(367, 174);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(149, 64);
@@ -480,9 +482,9 @@
             this.dtpNgayBatDau.BorderRadius = 20;
             this.dtpNgayBatDau.Checked = true;
             this.dtpNgayBatDau.FillColor = System.Drawing.Color.White;
-            this.dtpNgayBatDau.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtpNgayBatDau.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpNgayBatDau.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpNgayBatDau.Location = new System.Drawing.Point(0, 21);
+            this.dtpNgayBatDau.Location = new System.Drawing.Point(0, 22);
             this.dtpNgayBatDau.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpNgayBatDau.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpNgayBatDau.Name = "dtpNgayBatDau";
@@ -594,6 +596,7 @@
             this.txtHoTen.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtHoTen.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtHoTen.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHoTen.ForeColor = System.Drawing.Color.Blue;
             this.txtHoTen.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtHoTen.Location = new System.Drawing.Point(57, 208);
             this.txtHoTen.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -671,7 +674,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.Highlight;
             this.label1.Location = new System.Drawing.Point(472, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(204, 45);
+            this.label1.Size = new System.Drawing.Size(199, 44);
             this.label1.TabIndex = 0;
             this.label1.Text = "Đặt Phòng";
             // 
