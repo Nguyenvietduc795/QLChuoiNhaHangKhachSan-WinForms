@@ -115,13 +115,18 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 if (f.ShowDialog(this) == DialogResult.OK)
                 {
+                    string timeRange = string.Format("{0:dd/MM/yyyy} - {1:dd/MM/yyyy}", f.StartDate, f.EndDate);
+                    string status = string.IsNullOrWhiteSpace(f.PromotionStatus)
+                        ? "Còn"
+                        : f.PromotionStatus.Trim();
+
                     _promotionTable.Rows.Add(
                         f.PromotionId,
                         f.PromotionName,
                         f.PromotionType,
                         f.PromotionObject,
-                        f.PromotionTime,
-                        f.PromotionStatus
+                        timeRange,
+                        status
                     );
                     BindGrid();
                 }
