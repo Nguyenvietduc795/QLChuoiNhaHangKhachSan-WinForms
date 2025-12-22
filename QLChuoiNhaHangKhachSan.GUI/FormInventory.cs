@@ -185,8 +185,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             DataTable dt = new DataTable();
 
             // 2 cột thôi: trái (2 dòng text), phải (badge số)
-            dt.Columns.Add("Info");          // "NL001 · Cà phê hạt\nNH01 · Ngưỡng: 10"
-            dt.Columns.Add("Badge", typeof(int));
+            dt.Columns.Add("Mặt hàng");          // "NL001 · Cà phê hạt\nNH01 · Ngưỡng: 10"
+            dt.Columns.Add("Lượng Tồn", typeof(int));
 
             dt.Rows.Add("NL001 · Hạt cà phê \nNH01 · Ngưỡng: 10", 8);
             dt.Rows.Add("TB011 · Máy hút bụi\nKS01 · Ngưỡng: 5", 3);
@@ -204,7 +204,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // Format cột Info: cho xuống dòng
             DGCanhbaotonkho.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             DGCanhbaotonkho.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            //DGCanhbaotonkho.RowTemplate.MinimumHeight = 52;
+            DGCanhbaotonkho.RowTemplate.MinimumHeight = 52;
 
             // Canh badge giữa
             //DGCanhbaotonkho.Columns["Badge"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
