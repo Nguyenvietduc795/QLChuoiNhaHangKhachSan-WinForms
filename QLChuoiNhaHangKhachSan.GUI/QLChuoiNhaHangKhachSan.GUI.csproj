@@ -41,7 +41,6 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -61,17 +60,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customers.cs">
+    <Compile Include="AddEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customers.Designer.cs">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <Compile Include="AddEmployeeForm.Designer.cs">
+      <DependentUpon>AddEmployeeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="EmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="EmployeeForm.Designer.cs">
+      <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormBookinng.cs">
       <SubType>Form</SubType>
@@ -111,13 +110,31 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDashBoard.Designer.cs">
+      <DependentUpon>FormDashBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Restaurant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Restaurant.Designer.cs">
+      <DependentUpon>Restaurant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalaryManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalaryManageForm.Designer.cs">
+      <DependentUpon>SalaryManageForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Customers.resx">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <EmbeddedResource Include="AddEmployeeForm.resx">
+      <DependentUpon>AddEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="EmployeeForm.resx">
+      <DependentUpon>EmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBookinng.resx">
       <DependentUpon>FormBookinng.cs</DependentUpon>
@@ -139,6 +156,15 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDashBoard.resx">
+      <DependentUpon>FormDashBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Restaurant.resx">
+      <DependentUpon>Restaurant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalaryManageForm.resx">
+      <DependentUpon>SalaryManageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -147,7 +173,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -168,27 +193,6 @@
       <Project>{4e25be4c-85e3-45de-81c5-52a8c8d0b030}</Project>
       <Name>QLChuoiNhaHangKhachSan.BLL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pngtree-green-check-mark-png-image_6525691 %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\OIP.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\OIP %281%29.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\search.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pngtree-clock-icon-vector-line-perfect-png-image_11999891.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pngtree-tick-vector-icon-png-image_964008.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\021dc1fb9e-01.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
