@@ -141,7 +141,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             DGdanhsachtonkho.AutoGenerateColumns = true; // cho nó tự sinh cột theo DataTable
             DGdanhsachtonkho.DataSource = dt;
             //
-            FixGridTonKhoLayout();
+           
 
             // 4) Format cơ bản cho giống web
             DGdanhsachtonkho.Columns["Giá Nhập"].DefaultCellStyle.Format = "N0";
