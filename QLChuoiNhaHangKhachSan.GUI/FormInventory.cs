@@ -92,6 +92,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         "Tất cả"
             });
             cboDonVi.SelectedIndex = 2; // mặc định Tất cả
+
+            DGdanhsachtonkho.RowTemplate.Height = 60;
+            DGdanhsachtonkho.ColumnHeadersHeight = 48;
+            DGCanhbaotonkho.RowTemplate.Height = 44;
+            DGCanhbaotonkho.ColumnHeadersHeight = 48;
             LoadFakeTonKho();
             LoadFakeCanhBao();
 
@@ -145,7 +150,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             DGdanhsachtonkho.Columns["Trạng Thái"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // (tuỳ chọn) chỉnh chiều cao dòng cho đẹp
-            DGdanhsachtonkho.RowTemplate.Height = 60;
+            
             DGdanhsachtonkho.DefaultCellStyle.SelectionBackColor = Color.White;
             DGdanhsachtonkho.DefaultCellStyle.SelectionForeColor = Color.Black;
         }
@@ -193,16 +198,16 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
 
             // Chỉ còn 2 cột, set tỷ lệ giống UI
-            DGCanhbaotonkho.Columns["Info"].FillWeight = 85;
-            DGCanhbaotonkho.Columns["Badge"].FillWeight = 15;
+           // DGCanhbaotonkho.Columns["Info"].FillWeight = 85;
+            //DGCanhbaotonkho.Columns["Badge"].FillWeight = 15;
 
             // Format cột Info: cho xuống dòng
             DGCanhbaotonkho.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             DGCanhbaotonkho.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            DGCanhbaotonkho.RowTemplate.MinimumHeight = 52;
+            //DGCanhbaotonkho.RowTemplate.MinimumHeight = 52;
 
             // Canh badge giữa
-            DGCanhbaotonkho.Columns["Badge"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //DGCanhbaotonkho.Columns["Badge"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // Font đẹp hơn
             DGCanhbaotonkho.DefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
@@ -211,42 +216,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         }
 
-        private void FixGridTonKhoLayout()
-        {
-            var g = DGdanhsachtonkho;
-
-            // Layout cột đều như web
-            g.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            g.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-
-            g.RowHeadersVisible = false;
-            g.AllowUserToResizeColumns = false;
-            g.AllowUserToResizeRows = false;
-
-            g.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            g.ColumnHeadersHeight = 44;
-            g.RowTemplate.Height = 44;
-
-            // Trọng số (đều, không bị lệch)
-            g.Columns["Mã"].FillWeight = 10;
-            g.Columns["Tên"].FillWeight = 22;
-            g.Columns["Đơn vị"].FillWeight = 12;
-            g.Columns["Tồn"].FillWeight = 8;
-            g.Columns["Giá Nhập"].FillWeight = 12;
-            g.Columns["Ngày Nhập"].FillWeight = 12;
-            g.Columns["NH/KS"].FillWeight = 10;
-            g.Columns["Trạng Thái"].FillWeight = 14;
-
-            // Canh + format
-            g.Columns["Tồn"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            g.Columns["Giá Nhập"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            g.Columns["Ngày Nhập"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            g.Columns["NH/KS"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            g.Columns["Trạng Thái"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            g.Columns["Giá Nhập"].DefaultCellStyle.Format = "N0";
-            g.Columns["Ngày Nhập"].DefaultCellStyle.Format = "dd/MM/yyyy";
-        }
+       
 
 
     }

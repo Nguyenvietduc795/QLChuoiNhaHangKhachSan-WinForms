@@ -93,10 +93,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.lbsptitleCanhbaotonkho = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lbCanhbaoton = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.DGCanhbaotonkho = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.btnTransaction = new Guna.UI2.WinForms.Guna2Button();
-            this.btnInvoice = new Guna.UI2.WinForms.Guna2Button();
-            this.btnTotalCustomer = new Guna.UI2.WinForms.Guna2Button();
-            this.btnFinancial = new Guna.UI2.WinForms.Guna2Button();
             this.pnlSidebar = new Guna.UI2.WinForms.Guna2Panel();
             this.flpSidebar = new System.Windows.Forms.FlowLayoutPanel();
             this.lblLogo = new System.Windows.Forms.Label();
@@ -125,8 +121,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.btnIngredient = new Guna.UI2.WinForms.Guna2Button();
             this.btnInventory = new Guna.UI2.WinForms.Guna2Button();
             this.pnlPayment_group = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnTransaction = new Guna.UI2.WinForms.Guna2Button();
+            this.btnInvoice = new Guna.UI2.WinForms.Guna2Button();
             this.btnPayments = new Guna.UI2.WinForms.Guna2Button();
             this.pnlReport_group = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnTotalCustomer = new Guna.UI2.WinForms.Guna2Button();
+            this.btnFinancial = new Guna.UI2.WinForms.Guna2Button();
             this.btnReports = new Guna.UI2.WinForms.Guna2Button();
             this.pnlLogout_group = new Guna.UI2.WinForms.Guna2Panel();
             this.btnLogout = new Guna.UI2.WinForms.Guna2Button();
@@ -176,7 +176,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.pnlTopbar.Name = "pnlTopbar";
             this.pnlTopbar.ShadowDecoration.Depth = 1;
             this.pnlTopbar.ShadowDecoration.Enabled = true;
-            this.pnlTopbar.Size = new System.Drawing.Size(1663, 92);
+            this.pnlTopbar.Size = new System.Drawing.Size(1724, 92);
             this.pnlTopbar.TabIndex = 2;
             // 
             // lblUserRole
@@ -186,7 +186,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.lblUserRole.BackColor = System.Drawing.Color.White;
             this.lblUserRole.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserRole.ForeColor = System.Drawing.Color.Gray;
-            this.lblUserRole.Location = new System.Drawing.Point(1510, 45);
+            this.lblUserRole.Location = new System.Drawing.Point(1571, 45);
             this.lblUserRole.Name = "lblUserRole";
             this.lblUserRole.Size = new System.Drawing.Size(79, 16);
             this.lblUserRole.TabIndex = 5;
@@ -219,7 +219,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.lblUserName.AutoSize = true;
             this.lblUserName.BackColor = System.Drawing.Color.White;
             this.lblUserName.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(1510, 21);
+            this.lblUserName.Location = new System.Drawing.Point(1571, 21);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(56, 19);
             this.lblUserName.TabIndex = 4;
@@ -231,7 +231,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.picUserAvt.BackColor = System.Drawing.Color.White;
             this.picUserAvt.Image = ((System.Drawing.Image)(resources.GetObject("picUserAvt.Image")));
             this.picUserAvt.ImageRotate = 0F;
-            this.picUserAvt.Location = new System.Drawing.Point(1447, 18);
+            this.picUserAvt.Location = new System.Drawing.Point(1508, 18);
             this.picUserAvt.Name = "picUserAvt";
             this.picUserAvt.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.picUserAvt.Size = new System.Drawing.Size(56, 56);
@@ -252,7 +252,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.btnNotification.ForeColor = System.Drawing.Color.White;
             this.btnNotification.Image = ((System.Drawing.Image)(resources.GetObject("btnNotification.Image")));
             this.btnNotification.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnNotification.Location = new System.Drawing.Point(1379, 38);
+            this.btnNotification.Location = new System.Drawing.Point(1440, 38);
             this.btnNotification.Name = "btnNotification";
             this.btnNotification.Size = new System.Drawing.Size(25, 25);
             this.btnNotification.TabIndex = 2;
@@ -504,7 +504,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.spFilter.BorderRadius = 14;
             this.spFilter.Controls.Add(this.tlpFilter);
             this.spFilter.FillColor = System.Drawing.Color.White;
-            this.spFilter.Location = new System.Drawing.Point(46, 212);
+            this.spFilter.Location = new System.Drawing.Point(46, 214);
             this.spFilter.Name = "spFilter";
             this.spFilter.ShadowDecoration.BorderRadius = 16;
             this.spFilter.ShadowDecoration.Color = System.Drawing.Color.Gray;
@@ -710,7 +710,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.lbDSTonkho.ShadowDecoration.BorderRadius = 12;
             this.lbDSTonkho.ShadowDecoration.Depth = 1;
             this.lbDSTonkho.ShadowDecoration.Enabled = true;
-            this.lbDSTonkho.Size = new System.Drawing.Size(2553, 869);
+            this.lbDSTonkho.Size = new System.Drawing.Size(2553, 931);
             this.lbDSTonkho.TabIndex = 3;
             this.lbDSTonkho.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMainWrapper_Paint);
             // 
@@ -727,7 +727,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.guna2Button4.ForeColor = System.Drawing.Color.White;
             this.guna2Button4.Location = new System.Drawing.Point(1833, 0);
             this.guna2Button4.Name = "guna2Button4";
-            this.guna2Button4.Size = new System.Drawing.Size(180, 869);
+            this.guna2Button4.Size = new System.Drawing.Size(180, 931);
             this.guna2Button4.TabIndex = 18;
             this.guna2Button4.Text = "Lọc";
             // 
@@ -744,7 +744,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.guna2Button3.ForeColor = System.Drawing.Color.White;
             this.guna2Button3.Location = new System.Drawing.Point(2013, 0);
             this.guna2Button3.Name = "guna2Button3";
-            this.guna2Button3.Size = new System.Drawing.Size(180, 869);
+            this.guna2Button3.Size = new System.Drawing.Size(180, 931);
             this.guna2Button3.TabIndex = 17;
             this.guna2Button3.Text = "Lọc";
             // 
@@ -761,7 +761,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.guna2Button2.ForeColor = System.Drawing.Color.White;
             this.guna2Button2.Location = new System.Drawing.Point(2193, 0);
             this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(180, 869);
+            this.guna2Button2.Size = new System.Drawing.Size(180, 931);
             this.guna2Button2.TabIndex = 16;
             this.guna2Button2.Text = "Lọc";
             // 
@@ -778,7 +778,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.guna2Button1.ForeColor = System.Drawing.Color.White;
             this.guna2Button1.Location = new System.Drawing.Point(2373, 0);
             this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(180, 869);
+            this.guna2Button1.Size = new System.Drawing.Size(180, 931);
             this.guna2Button1.TabIndex = 15;
             this.guna2Button1.Text = "Lọc";
             // 
@@ -1152,118 +1152,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.DGCanhbaotonkho.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.DGCanhbaotonkho.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
-            // btnTransaction
-            // 
-            this.btnTransaction.BorderColor = System.Drawing.Color.AliceBlue;
-            this.btnTransaction.BorderRadius = 10;
-            this.btnTransaction.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnTransaction.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
-            this.btnTransaction.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
-            this.btnTransaction.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
-            this.btnTransaction.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnTransaction.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnTransaction.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnTransaction.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnTransaction.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnTransaction.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.btnTransaction.FocusedColor = System.Drawing.Color.Transparent;
-            this.btnTransaction.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.btnTransaction.ForeColor = System.Drawing.Color.White;
-            this.btnTransaction.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnTransaction.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnTransaction.Location = new System.Drawing.Point(0, 65);
-            this.btnTransaction.Margin = new System.Windows.Forms.Padding(2);
-            this.btnTransaction.Name = "btnTransaction";
-            this.btnTransaction.Size = new System.Drawing.Size(176, 28);
-            this.btnTransaction.TabIndex = 12;
-            this.btnTransaction.Text = "Giao dịch";
-            this.btnTransaction.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnTransaction.TextOffset = new System.Drawing.Point(20, 0);
-            // 
-            // btnInvoice
-            // 
-            this.btnInvoice.BorderColor = System.Drawing.Color.AliceBlue;
-            this.btnInvoice.BorderRadius = 10;
-            this.btnInvoice.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnInvoice.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
-            this.btnInvoice.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
-            this.btnInvoice.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
-            this.btnInvoice.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnInvoice.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnInvoice.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnInvoice.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnInvoice.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnInvoice.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.btnInvoice.FocusedColor = System.Drawing.Color.Transparent;
-            this.btnInvoice.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.btnInvoice.ForeColor = System.Drawing.Color.White;
-            this.btnInvoice.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnInvoice.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnInvoice.Location = new System.Drawing.Point(0, 37);
-            this.btnInvoice.Margin = new System.Windows.Forms.Padding(2);
-            this.btnInvoice.Name = "btnInvoice";
-            this.btnInvoice.Size = new System.Drawing.Size(176, 28);
-            this.btnInvoice.TabIndex = 11;
-            this.btnInvoice.Text = "Hóa đơn";
-            this.btnInvoice.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnInvoice.TextOffset = new System.Drawing.Point(20, 0);
-            // 
-            // btnTotalCustomer
-            // 
-            this.btnTotalCustomer.BorderColor = System.Drawing.Color.AliceBlue;
-            this.btnTotalCustomer.BorderRadius = 10;
-            this.btnTotalCustomer.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnTotalCustomer.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
-            this.btnTotalCustomer.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
-            this.btnTotalCustomer.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
-            this.btnTotalCustomer.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnTotalCustomer.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnTotalCustomer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnTotalCustomer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnTotalCustomer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnTotalCustomer.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.btnTotalCustomer.FocusedColor = System.Drawing.Color.Transparent;
-            this.btnTotalCustomer.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.btnTotalCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnTotalCustomer.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnTotalCustomer.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnTotalCustomer.Location = new System.Drawing.Point(0, 65);
-            this.btnTotalCustomer.Margin = new System.Windows.Forms.Padding(2);
-            this.btnTotalCustomer.Name = "btnTotalCustomer";
-            this.btnTotalCustomer.Size = new System.Drawing.Size(176, 28);
-            this.btnTotalCustomer.TabIndex = 13;
-            this.btnTotalCustomer.Text = "Tổng lượng khách";
-            this.btnTotalCustomer.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnTotalCustomer.TextOffset = new System.Drawing.Point(20, 0);
-            // 
-            // btnFinancial
-            // 
-            this.btnFinancial.BorderColor = System.Drawing.Color.AliceBlue;
-            this.btnFinancial.BorderRadius = 10;
-            this.btnFinancial.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.btnFinancial.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
-            this.btnFinancial.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
-            this.btnFinancial.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
-            this.btnFinancial.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnFinancial.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnFinancial.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnFinancial.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnFinancial.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnFinancial.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
-            this.btnFinancial.FocusedColor = System.Drawing.Color.Transparent;
-            this.btnFinancial.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.btnFinancial.ForeColor = System.Drawing.Color.White;
-            this.btnFinancial.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnFinancial.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnFinancial.Location = new System.Drawing.Point(0, 37);
-            this.btnFinancial.Margin = new System.Windows.Forms.Padding(2);
-            this.btnFinancial.Name = "btnFinancial";
-            this.btnFinancial.Size = new System.Drawing.Size(176, 28);
-            this.btnFinancial.TabIndex = 12;
-            this.btnFinancial.Text = "Doanh thu";
-            this.btnFinancial.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnFinancial.TextOffset = new System.Drawing.Point(20, 0);
-            // 
             // pnlSidebar
             // 
             this.pnlSidebar.Controls.Add(this.flpSidebar);
@@ -1273,7 +1161,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.pnlSidebar.Margin = new System.Windows.Forms.Padding(2);
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.ShadowDecoration.Enabled = true;
-            this.pnlSidebar.Size = new System.Drawing.Size(193, 893);
+            this.pnlSidebar.Size = new System.Drawing.Size(193, 990);
             this.pnlSidebar.TabIndex = 25;
             // 
             // flpSidebar
@@ -1875,6 +1763,62 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.pnlPayment_group.Size = new System.Drawing.Size(176, 106);
             this.pnlPayment_group.TabIndex = 15;
             // 
+            // btnTransaction
+            // 
+            this.btnTransaction.BorderColor = System.Drawing.Color.AliceBlue;
+            this.btnTransaction.BorderRadius = 10;
+            this.btnTransaction.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnTransaction.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
+            this.btnTransaction.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
+            this.btnTransaction.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
+            this.btnTransaction.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnTransaction.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnTransaction.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnTransaction.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnTransaction.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnTransaction.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnTransaction.FocusedColor = System.Drawing.Color.Transparent;
+            this.btnTransaction.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btnTransaction.ForeColor = System.Drawing.Color.White;
+            this.btnTransaction.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnTransaction.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnTransaction.Location = new System.Drawing.Point(0, 65);
+            this.btnTransaction.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTransaction.Name = "btnTransaction";
+            this.btnTransaction.Size = new System.Drawing.Size(176, 28);
+            this.btnTransaction.TabIndex = 12;
+            this.btnTransaction.Text = "Giao dịch";
+            this.btnTransaction.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnTransaction.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // btnInvoice
+            // 
+            this.btnInvoice.BorderColor = System.Drawing.Color.AliceBlue;
+            this.btnInvoice.BorderRadius = 10;
+            this.btnInvoice.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnInvoice.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
+            this.btnInvoice.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
+            this.btnInvoice.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
+            this.btnInvoice.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnInvoice.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnInvoice.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnInvoice.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnInvoice.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnInvoice.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnInvoice.FocusedColor = System.Drawing.Color.Transparent;
+            this.btnInvoice.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btnInvoice.ForeColor = System.Drawing.Color.White;
+            this.btnInvoice.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnInvoice.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnInvoice.Location = new System.Drawing.Point(0, 37);
+            this.btnInvoice.Margin = new System.Windows.Forms.Padding(2);
+            this.btnInvoice.Name = "btnInvoice";
+            this.btnInvoice.Size = new System.Drawing.Size(176, 28);
+            this.btnInvoice.TabIndex = 11;
+            this.btnInvoice.Text = "Hóa đơn";
+            this.btnInvoice.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnInvoice.TextOffset = new System.Drawing.Point(20, 0);
+            // 
             // btnPayments
             // 
             this.btnPayments.BorderColor = System.Drawing.Color.AliceBlue;
@@ -1915,6 +1859,62 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.pnlReport_group.Name = "pnlReport_group";
             this.pnlReport_group.Size = new System.Drawing.Size(176, 100);
             this.pnlReport_group.TabIndex = 16;
+            // 
+            // btnTotalCustomer
+            // 
+            this.btnTotalCustomer.BorderColor = System.Drawing.Color.AliceBlue;
+            this.btnTotalCustomer.BorderRadius = 10;
+            this.btnTotalCustomer.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnTotalCustomer.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
+            this.btnTotalCustomer.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
+            this.btnTotalCustomer.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
+            this.btnTotalCustomer.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnTotalCustomer.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnTotalCustomer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnTotalCustomer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnTotalCustomer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnTotalCustomer.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnTotalCustomer.FocusedColor = System.Drawing.Color.Transparent;
+            this.btnTotalCustomer.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btnTotalCustomer.ForeColor = System.Drawing.Color.White;
+            this.btnTotalCustomer.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnTotalCustomer.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnTotalCustomer.Location = new System.Drawing.Point(0, 65);
+            this.btnTotalCustomer.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTotalCustomer.Name = "btnTotalCustomer";
+            this.btnTotalCustomer.Size = new System.Drawing.Size(176, 28);
+            this.btnTotalCustomer.TabIndex = 13;
+            this.btnTotalCustomer.Text = "Tổng lượng khách";
+            this.btnTotalCustomer.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnTotalCustomer.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // btnFinancial
+            // 
+            this.btnFinancial.BorderColor = System.Drawing.Color.AliceBlue;
+            this.btnFinancial.BorderRadius = 10;
+            this.btnFinancial.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnFinancial.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(124)))));
+            this.btnFinancial.CustomImages.ImageOffset = new System.Drawing.Point(8, 0);
+            this.btnFinancial.CustomImages.ImageSize = new System.Drawing.Size(12, 12);
+            this.btnFinancial.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnFinancial.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnFinancial.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnFinancial.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnFinancial.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnFinancial.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnFinancial.FocusedColor = System.Drawing.Color.Transparent;
+            this.btnFinancial.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.btnFinancial.ForeColor = System.Drawing.Color.White;
+            this.btnFinancial.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnFinancial.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnFinancial.Location = new System.Drawing.Point(0, 37);
+            this.btnFinancial.Margin = new System.Windows.Forms.Padding(2);
+            this.btnFinancial.Name = "btnFinancial";
+            this.btnFinancial.Size = new System.Drawing.Size(176, 28);
+            this.btnFinancial.TabIndex = 12;
+            this.btnFinancial.Text = "Doanh thu";
+            this.btnFinancial.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnFinancial.TextOffset = new System.Drawing.Point(20, 0);
             // 
             // btnReports
             // 
@@ -1988,7 +1988,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1854, 893);
+            this.ClientSize = new System.Drawing.Size(1909, 990);
             this.Controls.Add(this.pnlSidebar);
             this.Controls.Add(this.lbDSTonkho);
             this.Controls.Add(this.pnlTopbar);
@@ -2039,9 +2039,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
         }
 
         #endregion
+
         private Guna.UI2.WinForms.Guna2Panel pnlTopbar;
-        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblUserRole;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblSubtitle;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblUserName;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox picUserAvt;
+        private Guna.UI2.WinForms.Guna2Button btnNotification;
         private Guna.UI2.WinForms.Guna2Panel cardTotal;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTotalCaption;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTotal;
@@ -2053,11 +2058,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private Guna.UI2.WinForms.Guna2HtmlLabel lbStockLow;
         private Guna.UI2.WinForms.Guna2Chip cardLow;
         private Guna.UI2.WinForms.Guna2Panel pnsocklow;
+        private FontAwesome.Sharp.IconPictureBox iconWarning;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbHealthyStockCaption;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbHealthyStock;
         private Guna.UI2.WinForms.Guna2Chip cardHealthy;
         private Guna.UI2.WinForms.Guna2Panel pntotalondin;
+        private FontAwesome.Sharp.IconPictureBox iconCheck;
         private Guna.UI2.WinForms.Guna2Panel spFilter;
         private System.Windows.Forms.TableLayoutPanel tlpFilter;
         private Guna.UI2.WinForms.Guna2Button btnReset;
@@ -2069,12 +2076,15 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private Guna.UI2.WinForms.Guna2Button btnLoc;
         private Guna.UI2.WinForms.Guna2TextBox txTimkiem;
         private Guna.UI2.WinForms.Guna2Panel lbDSTonkho;
-        private Guna.UI2.WinForms.Guna2Panel Pnbottom2;
+        private Guna.UI2.WinForms.Guna2Button guna2Button4;
+        private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Panel pnbottom1;
         private System.Windows.Forms.TableLayoutPanel TbDanhsachtonkho;
         private Guna.UI2.WinForms.Guna2HtmlLabel sptthienthi;
         private Guna.UI2.WinForms.Guna2DataGridView DGdanhsachtonkho;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbdanhsachtonkho;
-        private Guna.UI2.WinForms.Guna2Panel pnbottom1;
         private Guna.UI2.WinForms.Guna2Button btnPage1;
         private Guna.UI2.WinForms.Guna2Button btnPage4;
         private Guna.UI2.WinForms.Guna2Button btnPrev;
@@ -2082,28 +2092,19 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private Guna.UI2.WinForms.Guna2Button btnNext;
         private Guna.UI2.WinForms.Guna2Button btnPage2;
         private Guna.UI2.WinForms.Guna2Button btnPage3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button4;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Panel Pnbottom2;
+        private Guna.UI2.WinForms.Guna2Button guna2Button5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbsptitleCanhbaotonkho;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbCanhbaoton;
-        private Guna.UI2.WinForms.Guna2Button guna2Button5;
-        private Guna.UI2.WinForms.Guna2Button btnInventory;
-        private Guna.UI2.WinForms.Guna2Button btnTransaction;
-        private Guna.UI2.WinForms.Guna2Button btnInvoice;
-        private Guna.UI2.WinForms.Guna2Button btnPayments;
-        private Guna.UI2.WinForms.Guna2Button btnTotalCustomer;
-        private Guna.UI2.WinForms.Guna2Button btnFinancial;
-        private Guna.UI2.WinForms.Guna2Button btnReports;
-        private Guna.UI2.WinForms.Guna2Button btnHome;
+        private Guna.UI2.WinForms.Guna2DataGridView DGCanhbaotonkho;
         private Guna.UI2.WinForms.Guna2Panel pnlSidebar;
         private System.Windows.Forms.FlowLayoutPanel flpSidebar;
         private System.Windows.Forms.Label lblLogo;
         private System.Windows.Forms.Label lblSubLogo;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
         private Guna.UI2.WinForms.Guna2Panel pnlHome;
+        private Guna.UI2.WinForms.Guna2Button btnHome;
         private Guna.UI2.WinForms.Guna2Panel pnlStaff_group;
         private Guna.UI2.WinForms.Guna2Button btnPayRoll;
         private Guna.UI2.WinForms.Guna2Button btnListStaff;
@@ -2123,16 +2124,16 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private Guna.UI2.WinForms.Guna2Panel pnlInvetory_group;
         private Guna.UI2.WinForms.Guna2Button btnEquipment;
         private Guna.UI2.WinForms.Guna2Button btnIngredient;
+        private Guna.UI2.WinForms.Guna2Button btnInventory;
         private Guna.UI2.WinForms.Guna2Panel pnlPayment_group;
+        private Guna.UI2.WinForms.Guna2Button btnTransaction;
+        private Guna.UI2.WinForms.Guna2Button btnInvoice;
+        private Guna.UI2.WinForms.Guna2Button btnPayments;
         private Guna.UI2.WinForms.Guna2Panel pnlReport_group;
+        private Guna.UI2.WinForms.Guna2Button btnTotalCustomer;
+        private Guna.UI2.WinForms.Guna2Button btnFinancial;
+        private Guna.UI2.WinForms.Guna2Button btnReports;
         private Guna.UI2.WinForms.Guna2Panel pnlLogout_group;
         private Guna.UI2.WinForms.Guna2Button btnLogout;
-        private Guna.UI2.WinForms.Guna2DataGridView DGCanhbaotonkho;
-        private System.Windows.Forms.Label lblUserRole;
-        private System.Windows.Forms.Label lblUserName;
-        private Guna.UI2.WinForms.Guna2CirclePictureBox picUserAvt;
-        private Guna.UI2.WinForms.Guna2Button btnNotification;
-        private FontAwesome.Sharp.IconPictureBox iconWarning;
-        private FontAwesome.Sharp.IconPictureBox iconCheck;
     }
 }
