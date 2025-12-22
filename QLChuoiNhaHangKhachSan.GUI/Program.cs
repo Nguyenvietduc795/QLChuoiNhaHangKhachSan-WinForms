@@ -16,7 +16,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BooKing_Form());
+            Application.Run(new ListRoom());
 
         }
     }

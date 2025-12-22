@@ -157,7 +157,7 @@
             this.txtTimkiem.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtTimkiem.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtTimkiem.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTimkiem.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtTimkiem.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTimkiem.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtTimkiem.Location = new System.Drawing.Point(20, 15);
             this.txtTimkiem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -172,7 +172,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dtGio);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(161, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(169, 75);
@@ -188,7 +188,7 @@
             this.dtGio.Location = new System.Drawing.Point(6, 27);
             this.dtGio.Name = "dtGio";
             this.dtGio.ShowUpDown = true;
-            this.dtGio.Size = new System.Drawing.Size(146, 27);
+            this.dtGio.Size = new System.Drawing.Size(146, 29);
             this.dtGio.TabIndex = 3;
             this.dtGio.ValueChanged += new System.EventHandler(this.dtGio_ValueChanged);
             // 
@@ -210,7 +210,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dtNgay);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(152, 72);
@@ -272,6 +272,7 @@
             this.grTrangthai.Controls.Add(this.label1);
             this.grTrangthai.Controls.Add(this.radDangthue);
             this.grTrangthai.Controls.Add(this.radTatcaphong);
+            this.grTrangthai.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grTrangthai.Location = new System.Drawing.Point(0, 3);
             this.grTrangthai.Name = "grTrangthai";
             this.grTrangthai.Size = new System.Drawing.Size(308, 385);
@@ -281,11 +282,11 @@
             // radTrong
             // 
             this.radTrong.AutoSize = true;
-            this.radTrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radTrong.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radTrong.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.radTrong.Location = new System.Drawing.Point(42, 220);
             this.radTrong.Name = "radTrong";
-            this.radTrong.Size = new System.Drawing.Size(176, 33);
+            this.radTrong.Size = new System.Drawing.Size(182, 35);
             this.radTrong.TabIndex = 2;
             this.radTrong.TabStop = true;
             this.radTrong.Text = "Phòng trống";
@@ -296,11 +297,11 @@
             // radDadat
             // 
             this.radDadat.AutoSize = true;
-            this.radDadat.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radDadat.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radDadat.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.radDadat.Location = new System.Drawing.Point(42, 72);
             this.radDadat.Name = "radDadat";
-            this.radDadat.Size = new System.Drawing.Size(188, 33);
+            this.radDadat.Size = new System.Drawing.Size(193, 35);
             this.radDadat.TabIndex = 6;
             this.radDadat.TabStop = true;
             this.radDadat.Text = "Phòng đã đặt";
@@ -311,22 +312,22 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.label1.Location = new System.Drawing.Point(20, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 32);
+            this.label1.Size = new System.Drawing.Size(169, 37);
             this.label1.TabIndex = 11;
             this.label1.Text = "Trạng Thái";
             // 
             // radDangthue
             // 
             this.radDangthue.AutoSize = true;
-            this.radDangthue.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radDangthue.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radDangthue.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.radDangthue.Location = new System.Drawing.Point(42, 148);
             this.radDangthue.Name = "radDangthue";
-            this.radDangthue.Size = new System.Drawing.Size(231, 33);
+            this.radDangthue.Size = new System.Drawing.Size(236, 35);
             this.radDangthue.TabIndex = 5;
             this.radDangthue.TabStop = true;
             this.radDangthue.Text = "Phòng đang thuê";
@@ -337,11 +338,11 @@
             // radTatcaphong
             // 
             this.radTatcaphong.AutoSize = true;
-            this.radTatcaphong.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radTatcaphong.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radTatcaphong.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.radTatcaphong.Location = new System.Drawing.Point(44, 293);
             this.radTatcaphong.Name = "radTatcaphong";
-            this.radTatcaphong.Size = new System.Drawing.Size(186, 33);
+            this.radTatcaphong.Size = new System.Drawing.Size(188, 35);
             this.radTatcaphong.TabIndex = 4;
             this.radTatcaphong.Text = "Tất cả phòng";
             this.radTatcaphong.UseVisualStyleBackColor = true;
@@ -551,11 +552,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.label2.Location = new System.Drawing.Point(26, 18);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(169, 32);
+            this.label2.Size = new System.Drawing.Size(174, 37);
             this.label2.TabIndex = 12;
             this.label2.Text = "Loại Phòng";
             // 
@@ -563,11 +564,11 @@
             // 
             this.radTatca.AutoSize = true;
             this.radTatca.Checked = true;
-            this.radTatca.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radTatca.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radTatca.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.radTatca.Location = new System.Drawing.Point(40, 281);
             this.radTatca.Name = "radTatca";
-            this.radTatca.Size = new System.Drawing.Size(236, 33);
+            this.radTatca.Size = new System.Drawing.Size(238, 35);
             this.radTatca.TabIndex = 7;
             this.radTatca.TabStop = true;
             this.radTatca.Text = "Tất cả loại phòng";
@@ -578,11 +579,11 @@
             // radGiadinh
             // 
             this.radGiadinh.AutoSize = true;
-            this.radGiadinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radGiadinh.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radGiadinh.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.radGiadinh.Location = new System.Drawing.Point(42, 208);
             this.radGiadinh.Name = "radGiadinh";
-            this.radGiadinh.Size = new System.Drawing.Size(209, 33);
+            this.radGiadinh.Size = new System.Drawing.Size(212, 35);
             this.radGiadinh.TabIndex = 8;
             this.radGiadinh.TabStop = true;
             this.radGiadinh.Text = "Phòng gia đình";
@@ -593,11 +594,11 @@
             // radDoi
             // 
             this.radDoi.AutoSize = true;
-            this.radDoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radDoi.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radDoi.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.radDoi.Location = new System.Drawing.Point(42, 137);
             this.radDoi.Name = "radDoi";
-            this.radDoi.Size = new System.Drawing.Size(153, 33);
+            this.radDoi.Size = new System.Drawing.Size(155, 35);
             this.radDoi.TabIndex = 9;
             this.radDoi.TabStop = true;
             this.radDoi.Text = "Phòng đôi";
@@ -608,11 +609,11 @@
             // radDon
             // 
             this.radDon.AutoSize = true;
-            this.radDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radDon.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radDon.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.radDon.Location = new System.Drawing.Point(42, 69);
             this.radDon.Name = "radDon";
-            this.radDon.Size = new System.Drawing.Size(160, 33);
+            this.radDon.Size = new System.Drawing.Size(163, 35);
             this.radDon.TabIndex = 3;
             this.radDon.TabStop = true;
             this.radDon.Text = "Phòng đơn";

@@ -148,7 +148,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 f.Text = "Chi tiết phiếu";
                 f.StartPosition = FormStartPosition.CenterParent;
                 f.Size = new Size(800, 500);
-                f.Font = new Font("Segoe UI", 11F, FontStyle.Regular);
+                f.Font = new Font("Microsoft YaHei UI", 11F, FontStyle.Regular);
 
                 var txt = new TextBox
                 {
@@ -156,19 +156,20 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     ReadOnly = true,
                     Dock = DockStyle.Fill,
                     ScrollBars = ScrollBars.Vertical,
-                    Font = new Font("Segoe UI", 12F, FontStyle.Regular)
+                    Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular)
                 };
 
                 string details =
-                    "Số phiếu: " + (row.Cells[0].Value ?? "") + Environment.NewLine +
-                    "Khách: " + (row.Cells[1].Value ?? "") + Environment.NewLine +
-                    "Ngày lập: " + (row.Cells[2].Value ?? "") + Environment.NewLine +
                     "Nhân viên: " + (row.Cells[3].Value ?? "") + Environment.NewLine +
+                    "Số phiếu: " + (row.Cells[0].Value ?? "") + Environment.NewLine +
+                    "Khách Hàng: " + (row.Cells[1].Value ?? "") + Environment.NewLine +
+                    "Ngày lập: " + (row.Cells[2].Value ?? "") + Environment.NewLine +
                     "CCCD: " + cccd + Environment.NewLine +
                     "SĐT: " + sdt + Environment.NewLine +
                     "Giới tính: " + gender + Environment.NewLine +
                     "Quốc tịch: " + nat + Environment.NewLine +
                     "Phòng: " + (row.Cells[4].Value ?? "");
+
 
                 txt.Text = details;
                 f.Controls.Add(txt);
@@ -221,19 +222,20 @@ namespace QLChuoiNhaHangKhachSan.GUI
             row.Cells[2].Value = ngayLap;
             row.Cells[3].Value = "Trường Phi";
             row.Cells[4].Value = phong + " (" + thoigian + ")";
-            row.Cells[5].Value = "X";
+            row.Cells[5].Value = "     X";
 
             row.Tag = new BookingRowInfo
             {
                 Id = id,
                 Customer = khach,
                 Date = ngayLap,
-                Staff = "Trường Phi",
+                Nationality = nat,
                 Detail = phong + " (" + thoigian + ")",
                 CCCD = cccd,
                 SDT = sdt,
                 Gender = gender,
-                Nationality = nat
+                Staff = "Trường Phi"
+                
             };
 
             RefreshAutocompleteSource();

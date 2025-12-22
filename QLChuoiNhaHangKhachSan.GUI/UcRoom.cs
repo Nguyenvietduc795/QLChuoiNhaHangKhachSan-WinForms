@@ -165,12 +165,25 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 Invoke(new Action(() => SetFree()));
                 return;
             }
+            timerCountdown.Stop();
             lblStatus.Text = "Phòng Trống";
             labTrangthai.Text = "Phòng trống";
             pnlRoomContainer.FillColor = Color.LightGray;
             lblStatus.ForeColor = Color.Black;
             labRoomNumber.ForeColor = Color.Black;
             labTrangthai.ForeColor = Color.Black;
+            if (labThoiGian != null)
+            {
+                labThoiGian.Text = "Thời gian";
+                labThoiGian.ForeColor = Color.Black;
+            }
+            if (labSanSang != null)
+            {
+                labSanSang.Text = "Sẵn sàng";
+                labSanSang.ForeColor = Color.Black;
+                labSanSang.Visible = true;
+            }
+            if (picSanSang != null) picSanSang.Visible = true;
         }
     }
 }

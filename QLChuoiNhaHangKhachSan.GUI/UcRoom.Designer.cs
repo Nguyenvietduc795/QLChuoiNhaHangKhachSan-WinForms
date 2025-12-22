@@ -66,10 +66,10 @@
             // 
             this.labTrangthai.AutoSize = true;
             this.labTrangthai.BackColor = System.Drawing.Color.Transparent;
-            this.labTrangthai.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labTrangthai.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labTrangthai.Location = new System.Drawing.Point(165, 29);
             this.labTrangthai.Name = "labTrangthai";
-            this.labTrangthai.Size = new System.Drawing.Size(99, 20);
+            this.labTrangthai.Size = new System.Drawing.Size(109, 23);
             this.labTrangthai.TabIndex = 6;
             this.labTrangthai.Text = "Phòng trống";
             // 
@@ -91,10 +91,10 @@
             // labThoiGian
             // 
             this.labThoiGian.AutoSize = true;
-            this.labThoiGian.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labThoiGian.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labThoiGian.Location = new System.Drawing.Point(43, 23);
             this.labThoiGian.Name = "labThoiGian";
-            this.labThoiGian.Size = new System.Drawing.Size(77, 20);
+            this.labThoiGian.Size = new System.Drawing.Size(84, 23);
             this.labThoiGian.TabIndex = 7;
             this.labThoiGian.Text = "Thời gian";
             // 
@@ -111,10 +111,10 @@
             // labSanSang
             // 
             this.labSanSang.AutoSize = true;
-            this.labSanSang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labSanSang.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labSanSang.Location = new System.Drawing.Point(178, 21);
             this.labSanSang.Name = "labSanSang";
-            this.labSanSang.Size = new System.Drawing.Size(86, 22);
+            this.labSanSang.Size = new System.Drawing.Size(82, 23);
             this.labSanSang.TabIndex = 5;
             this.labSanSang.Text = "Sẵn sàng";
             // 
@@ -132,10 +132,10 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.Location = new System.Drawing.Point(83, 67);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(165, 29);
+            this.lblStatus.Size = new System.Drawing.Size(165, 31);
             this.lblStatus.TabIndex = 1;
             this.lblStatus.Text = "Phòng Trống";
             // 
@@ -143,11 +143,11 @@
             // 
             this.labRoomNumber.AutoSize = true;
             this.labRoomNumber.BackColor = System.Drawing.Color.Transparent;
-            this.labRoomNumber.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labRoomNumber.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labRoomNumber.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.labRoomNumber.Location = new System.Drawing.Point(26, 20);
             this.labRoomNumber.Name = "labRoomNumber";
-            this.labRoomNumber.Size = new System.Drawing.Size(67, 31);
+            this.labRoomNumber.Size = new System.Drawing.Size(71, 31);
             this.labRoomNumber.TabIndex = 0;
             this.labRoomNumber.Text = "P101";
             this.labRoomNumber.Click += new System.EventHandler(this.labRoomNumber_Click);
