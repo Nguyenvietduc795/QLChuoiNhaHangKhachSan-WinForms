@@ -207,5 +207,8 @@
   <ItemGroup>
     <None Include="Resources\png-clipart-gender-symbol-female-computer-icons-male-and-female-symbols-miscellaneous-woman.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lovepik-house-png-image_400195161_wh1200.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
