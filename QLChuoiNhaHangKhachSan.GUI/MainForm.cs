@@ -16,6 +16,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
         public MainForm()
         {
             InitializeComponent();
+
+            // gán event cho nút Khách hàng
+           
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -31,8 +34,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
             catch { }
         }
-
-        // Hàm đóng tất cả các Menu con - Hãy thêm tất cả các Panel nhóm của bạn vào đây
+       
         private void CloseAllSubMenus()
         {
             pnlStaff_group.Height = 50;
@@ -122,15 +124,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             SetActiveButton(sender); // Highlight nút cha
 
-            if (pnlCustomer_group.Height == 50)
-            {
-                CloseAllSubMenus(); // Đóng các nhóm khác trước khi mở nhóm này
-                pnlCustomer_group.Height = 130; // Mở rộng
-            }
-            else
-            {
-                pnlCustomer_group.Height = 50; // Đóng lại
-            }
+             var f = new CustomersList();
+            f.StartPosition = FormStartPosition.CenterScreen;
+            f.Show(); // hoặc f.ShowDialog(this)
         }
 
         private void btnCustomerList_Click(object sender, EventArgs e)
