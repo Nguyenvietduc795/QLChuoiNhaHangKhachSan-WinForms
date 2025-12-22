@@ -55,7 +55,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Net.Http" />   
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -71,6 +72,7 @@
     </Compile>
     <Compile Include="CustomersList.Designer.cs">
       <DependentUpon>CustomersList.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +157,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomersList.resx">
       <DependentUpon>CustomersList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddEmployeeForm.resx">
       <DependentUpon>AddEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -186,6 +189,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PromotionsCustomers.resx">
       <DependentUpon>PromotionsCustomers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDashBoard.resx">
       <DependentUpon>FormDashBoard.cs</DependentUpon>
     </EmbeddedResource>
