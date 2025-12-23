@@ -37,8 +37,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlPaymentHeader = new Guna.UI2.WinForms.Guna2Panel();
-            this.pnlPayment = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btnRemove = new Guna.UI2.WinForms.Guna2Button();
+            this.lblHeaderSub = new System.Windows.Forms.Label();
             this.pnlQLHD = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.pnlPayment = new Guna.UI2.WinForms.Guna2TextBox();
             this.gnbtnALL = new Guna.UI2.WinForms.Guna2Button();
             this.gnbtnDont = new Guna.UI2.WinForms.Guna2Button();
             this.gnbtnDone = new Guna.UI2.WinForms.Guna2Button();
@@ -67,15 +69,66 @@
             // 
             this.pnlPaymentHeader.BackColor = System.Drawing.Color.Transparent;
             this.pnlPaymentHeader.BorderRadius = 20;
-            this.pnlPaymentHeader.Controls.Add(this.pnlPayment);
+            this.pnlPaymentHeader.Controls.Add(this.btnRemove);
+            this.pnlPaymentHeader.Controls.Add(this.lblHeaderSub);
             this.pnlPaymentHeader.Controls.Add(this.pnlQLHD);
+            this.pnlPaymentHeader.Controls.Add(this.pnlPayment);
             this.pnlPaymentHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlPaymentHeader.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.pnlPaymentHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlPaymentHeader.Name = "pnlPaymentHeader";
             this.pnlPaymentHeader.ShadowDecoration.Enabled = true;
-            this.pnlPaymentHeader.Size = new System.Drawing.Size(1577, 107);
+            this.pnlPaymentHeader.Size = new System.Drawing.Size(1805, 107);
             this.pnlPaymentHeader.TabIndex = 0;
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.BorderColor = System.Drawing.Color.White;
+            this.btnRemove.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnRemove.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnRemove.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnRemove.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnRemove.FillColor = System.Drawing.Color.White;
+            this.btnRemove.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.btnRemove.ForeColor = System.Drawing.Color.White;
+            this.btnRemove.Image = ((System.Drawing.Image)(resources.GetObject("btnRemove.Image")));
+            this.btnRemove.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnRemove.Location = new System.Drawing.Point(1435, 36);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.ShadowDecoration.BorderRadius = 10;
+            this.btnRemove.ShadowDecoration.Color = System.Drawing.Color.White;
+            this.btnRemove.ShadowDecoration.Depth = 10;
+            this.btnRemove.ShadowDecoration.Enabled = true;
+            this.btnRemove.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.btnRemove.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0);
+            this.btnRemove.Size = new System.Drawing.Size(34, 26);
+            this.btnRemove.TabIndex = 1;
+            this.btnRemove.UseTransparentBackground = true;
+            // 
+            // lblHeaderSub
+            // 
+            this.lblHeaderSub.AutoSize = true;
+            this.lblHeaderSub.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblHeaderSub.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
+            this.lblHeaderSub.Location = new System.Drawing.Point(205, 70);
+            this.lblHeaderSub.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHeaderSub.Name = "lblHeaderSub";
+            this.lblHeaderSub.Size = new System.Drawing.Size(179, 25);
+            this.lblHeaderSub.TabIndex = 3;
+            this.lblHeaderSub.Text = "Theo dõi tình trạng ";
+            // 
+            // pnlQLHD
+            // 
+            this.pnlQLHD.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pnlQLHD.BackColor = System.Drawing.Color.Transparent;
+            this.pnlQLHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.pnlQLHD.ForeColor = System.Drawing.Color.White;
+            this.pnlQLHD.Location = new System.Drawing.Point(117, 24);
+            this.pnlQLHD.Name = "pnlQLHD";
+            this.pnlQLHD.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
+            this.pnlQLHD.Size = new System.Drawing.Size(379, 61);
+            this.pnlQLHD.TabIndex = 0;
+            this.pnlQLHD.Text = "QUẢN LÝ HÓA ĐƠN";
             // 
             // pnlPayment
             // 
@@ -98,22 +151,10 @@
             this.pnlPayment.Size = new System.Drawing.Size(447, 49);
             this.pnlPayment.TabIndex = 1;
             // 
-            // pnlQLHD
-            // 
-            this.pnlQLHD.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pnlQLHD.BackColor = System.Drawing.Color.Transparent;
-            this.pnlQLHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.pnlQLHD.ForeColor = System.Drawing.Color.White;
-            this.pnlQLHD.Location = new System.Drawing.Point(117, 24);
-            this.pnlQLHD.Name = "pnlQLHD";
-            this.pnlQLHD.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
-            this.pnlQLHD.Size = new System.Drawing.Size(379, 61);
-            this.pnlQLHD.TabIndex = 0;
-            this.pnlQLHD.Text = "QUẢN LÝ HÓA ĐƠN";
-            // 
             // gnbtnALL
             // 
             this.gnbtnALL.AutoRoundedCorners = true;
+            this.gnbtnALL.BorderColor = System.Drawing.Color.Navy;
             this.gnbtnALL.BorderRadius = 21;
             this.gnbtnALL.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.gnbtnALL.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -320,7 +361,7 @@
             this.pnlInvoicedetails.Location = new System.Drawing.Point(1325, 345);
             this.pnlInvoicedetails.Name = "pnlInvoicedetails";
             this.pnlInvoicedetails.ShadowDecoration.Enabled = true;
-            this.pnlInvoicedetails.Size = new System.Drawing.Size(375, 402);
+            this.pnlInvoicedetails.Size = new System.Drawing.Size(458, 421);
             this.pnlInvoicedetails.TabIndex = 7;
             // 
             // btnFix
@@ -331,13 +372,13 @@
             this.btnFix.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnFix.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnFix.FillColor = System.Drawing.Color.White;
-            this.btnFix.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.btnFix.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnFix.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.btnFix.Image = ((System.Drawing.Image)(resources.GetObject("btnFix.Image")));
             this.btnFix.ImageSize = new System.Drawing.Size(30, 30);
             this.btnFix.Location = new System.Drawing.Point(70, 254);
             this.btnFix.Name = "btnFix";
-            this.btnFix.Size = new System.Drawing.Size(176, 37);
+            this.btnFix.Size = new System.Drawing.Size(189, 40);
             this.btnFix.TabIndex = 8;
             this.btnFix.Text = "Sửa Hóa Đơn";
             // 
@@ -349,13 +390,13 @@
             this.btnDeleteInvoice.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnDeleteInvoice.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnDeleteInvoice.FillColor = System.Drawing.Color.White;
-            this.btnDeleteInvoice.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.btnDeleteInvoice.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnDeleteInvoice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.btnDeleteInvoice.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteInvoice.Image")));
             this.btnDeleteInvoice.ImageSize = new System.Drawing.Size(30, 30);
             this.btnDeleteInvoice.Location = new System.Drawing.Point(70, 334);
             this.btnDeleteInvoice.Name = "btnDeleteInvoice";
-            this.btnDeleteInvoice.Size = new System.Drawing.Size(179, 37);
+            this.btnDeleteInvoice.Size = new System.Drawing.Size(192, 40);
             this.btnDeleteInvoice.TabIndex = 3;
             this.btnDeleteInvoice.Text = "Hủy Hóa Đơn";
             // 
@@ -367,15 +408,15 @@
             this.btnExportExcel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnExportExcel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnExportExcel.FillColor = System.Drawing.Color.White;
-            this.btnExportExcel.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.btnExportExcel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnExportExcel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.btnExportExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportExcel.Image")));
             this.btnExportExcel.ImageSize = new System.Drawing.Size(30, 30);
             this.btnExportExcel.Location = new System.Drawing.Point(70, 172);
             this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(149, 37);
+            this.btnExportExcel.Size = new System.Drawing.Size(165, 40);
             this.btnExportExcel.TabIndex = 2;
-            this.btnExportExcel.Text = "Xuất Excel";
+            this.btnExportExcel.Text = " Xuất Excel";
             // 
             // btnPrintInvoice
             // 
@@ -385,20 +426,20 @@
             this.btnPrintInvoice.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnPrintInvoice.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnPrintInvoice.FillColor = System.Drawing.Color.White;
-            this.btnPrintInvoice.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.btnPrintInvoice.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnPrintInvoice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.btnPrintInvoice.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintInvoice.Image")));
             this.btnPrintInvoice.ImageSize = new System.Drawing.Size(30, 30);
             this.btnPrintInvoice.Location = new System.Drawing.Point(70, 89);
             this.btnPrintInvoice.Name = "btnPrintInvoice";
-            this.btnPrintInvoice.Size = new System.Drawing.Size(166, 37);
+            this.btnPrintInvoice.Size = new System.Drawing.Size(184, 40);
             this.btnPrintInvoice.TabIndex = 1;
-            this.btnPrintInvoice.Text = " In Hóa Đơn  ";
+            this.btnPrintInvoice.Text = "  In Hóa Đơn  ";
             // 
             // lblTitleInvoicedetails
             // 
-            this.lblTitleInvoicedetails.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblTitleInvoicedetails.Location = new System.Drawing.Point(16, 21);
+            this.lblTitleInvoicedetails.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblTitleInvoicedetails.Location = new System.Drawing.Point(104, 19);
             this.lblTitleInvoicedetails.Name = "lblTitleInvoicedetails";
             this.lblTitleInvoicedetails.Size = new System.Drawing.Size(244, 47);
             this.lblTitleInvoicedetails.TabIndex = 0;
@@ -409,7 +450,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.ClientSize = new System.Drawing.Size(1577, 1009);
+            this.ClientSize = new System.Drawing.Size(1805, 1009);
             this.Controls.Add(this.pnlInvoicedetails);
             this.Controls.Add(this.gnpnlLSHD);
             this.Controls.Add(this.gnbtnOverdue);
@@ -456,5 +497,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvStatus;
         private Guna.UI2.WinForms.Guna2TextBox pnlPayment;
         private Guna.UI2.WinForms.Guna2Button btnFix;
+        private System.Windows.Forms.Label lblHeaderSub;
+        private Guna.UI2.WinForms.Guna2Button btnRemove;
     }
 }

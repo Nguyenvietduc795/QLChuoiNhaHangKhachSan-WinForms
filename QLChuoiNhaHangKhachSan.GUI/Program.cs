@@ -16,7 +16,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormPayments());
+            Application.Run(new FormInvoiceManagement());
 
         }
     }
