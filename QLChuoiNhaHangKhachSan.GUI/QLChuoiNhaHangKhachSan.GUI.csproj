@@ -91,6 +91,7 @@
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BookingManager.cs" />
     <Compile Include="BooKing_Form.cs">
       <SubType>Form</SubType>
@@ -172,6 +173,7 @@
     </Compile>
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Restaurant.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,7 +208,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <!-- ===================== RESX (EMBEDDED RESOURCE) ===================== -->
+    <!-- ===================== RESX (EMBEDDED RESOURCE) ===================== -->
   <ItemGroup>
     <EmbeddedResource Include="CustomerAdd.resx">
       <DependentUpon>CustomerAdd.cs</DependentUpon>
@@ -222,6 +224,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BooKing_Form.resx">
       <DependentUpon>BooKing_Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -266,22 +269,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Restaurant.resx">
       <DependentUpon>Restaurant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SalaryManageForm.resx">
       <DependentUpon>SalaryManageForm.cs</DependentUpon>
     </EmbeddedResource>
+
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
   </ItemGroup>
   <!-- ===================== OTHER NONE FILES ===================== -->
   <ItemGroup>
