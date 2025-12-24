@@ -60,30 +60,65 @@
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
+  <!-- ===================== COMPILE FILES ===================== -->
   <ItemGroup>
-    <Compile Include="Customers.cs">
+    <Compile Include="CustomerAdd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customers.Designer.cs">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <Compile Include="CustomerAdd.Designer.cs">
+      <DependentUpon>CustomerAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="CustomersList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="CustomersList.Designer.cs">
+      <DependentUpon>CustomersList.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormBookinng.cs">
+    <Compile Include="AddEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormBookinng.Designer.cs">
-      <DependentUpon>FormBookinng.cs</DependentUpon>
+    <Compile Include="AddEmployeeForm.Designer.cs">
+      <DependentUpon>AddEmployeeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormInventory.cs">
+    <Compile Include="EmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormInventory.Designer.cs">
-      <DependentUpon>FormInventory.cs</DependentUpon>
+    <Compile Include="EmployeeForm.Designer.cs">
+      <DependentUpon>EmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookingManager.cs" />
+    <Compile Include="BooKing_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BooKing_Form.Designer.cs">
+      <DependentUpon>BooKing_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListRoom.Designer.cs">
+      <DependentUpon>ListRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookingRoom_Details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookingRoom_Details.Designer.cs">
+      <DependentUpon>BookingRoom_Details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Room_Details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Room_Details.Designer.cs">
+      <DependentUpon>Room_Details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimePickerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UcRoom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcRoom.Designer.cs">
+      <DependentUpon>UcRoom.cs</DependentUpon>
     </Compile>
     <Compile Include="FormInventory2.cs">
       <SubType>Form</SubType>
@@ -109,19 +144,74 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDashBoard.Designer.cs">
+      <DependentUpon>FormDashBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Restaurant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Restaurant.Designer.cs">
+      <DependentUpon>Restaurant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalaryManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalaryManageForm.Designer.cs">
+      <DependentUpon>SalaryManageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PromotionAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PromotionsCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PromotionsCustomers.Designer.cs">
+      <DependentUpon>PromotionsCustomers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Customers.resx">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <!-- ===================== RESX (EMBEDDED RESOURCE) ===================== -->
+  <ItemGroup>
+    <EmbeddedResource Include="CustomerAdd.resx">
+      <DependentUpon>CustomerAdd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="CustomersList.resx">
+      <DependentUpon>CustomersList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormBookinng.resx">
-      <DependentUpon>FormBookinng.cs</DependentUpon>
+    <EmbeddedResource Include="AddEmployeeForm.resx">
+      <DependentUpon>AddEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormInventory.resx">
-      <DependentUpon>FormInventory.cs</DependentUpon>
+    <EmbeddedResource Include="EmployeeForm.resx">
+      <DependentUpon>EmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BooKing_Form.resx">
+      <DependentUpon>BooKing_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListRoom.resx">
+      <DependentUpon>ListRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookingRoom_Details.resx">
+      <DependentUpon>BookingRoom_Details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Room_Details.resx">
+      <DependentUpon>Room_Details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcRoom.resx">
+      <DependentUpon>UcRoom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInventory2.resx">
       <DependentUpon>FormInventory2.cs</DependentUpon>
@@ -135,30 +225,55 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PromotionAdd.resx">
+      <DependentUpon>PromotionAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PromotionsCustomers.resx">
+      <DependentUpon>PromotionsCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDashBoard.resx">
+      <DependentUpon>FormDashBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Restaurant.resx">
+      <DependentUpon>Restaurant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalaryManageForm.resx">
+      <DependentUpon>SalaryManageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+  </ItemGroup>
+  <!-- ===================== OTHER NONE FILES ===================== -->
+  <ItemGroup>
     <None Include="packages.config" />
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
+  <!-- ===================== RESOURCE FILES (IMAGES) ===================== -->
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Resources\OIP.jpg" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\pngtree_clock_icon_vector-line_perfect_png_image_11999891.png" />
+    <None Include="Resources\pngtree-tick-vector-icon-png-image_964008.jpg" />
+    <None Include="Resources\021dc1fb9e-01.png" />
+    <None Include="Resources\icon_user.jpg" />
+    <None Include="Resources\tải xuống.png" />
+    <None Include="Resources\z7350371373382_065c71962eaa217926d25ccb50c32e90.jpg" />
+    <None Include="Resources\z7350371373390_18bf60a259e7bfe87dc788c41c49ab57.jpg" />
+    <None Include="Resources\z7350371373399_f69f1d034fcf9c0866448c7c59b4398b.jpg" />
+    <None Include="Resources\so-dien-thoai.jpg" />
+    <None Include="Resources\pngtree-logo-lokasi-simbol-ikon-komputer-location-pin-in-black-colour-with-png-image_6425746.png" />
+    <None Include="Resources\pngtree-vector-illustration-of-single-passport-icon-personal-nationalities-illustration-vector-png-image_7587796.png" />
+    <None Include="Resources\png-clipart-gender-symbol-female-computer-icons-male-and-female-symbols-miscellaneous-woman.png" />
+    <None Include="Resources\lovepik-house-png-image_400195161_wh1200.png" />
   </ItemGroup>
+  <!-- ===================== PROJECT REFERENCES ===================== -->
   <ItemGroup>
     <ProjectReference Include="..\QLChuoiNhaHangKhachSan.BLL\QLChuoiNhaHangKhachSan.BLL.csproj">
       <Project>{4e25be4c-85e3-45de-81c5-52a8c8d0b030}</Project>
@@ -166,25 +281,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pngtree-green-check-mark-png-image_6525691 %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\OIP.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\OIP %281%29.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\search.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pngtree-clock-icon-vector-line-perfect-png-image_11999891.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pngtree-tick-vector-icon-png-image_964008.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\021dc1fb9e-01.png" />
+    <Content Include="Resources\pngtree_green_check_mark_png_image_6525691.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
