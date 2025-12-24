@@ -138,6 +138,12 @@
     <Compile Include="UcRoom.Designer.cs">
       <DependentUpon>UcRoom.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInventory.Designer.cs">
+      <DependentUpon>FormInventory.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormInventory2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UcRoom.resx">
       <DependentUpon>UcRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInventory.resx">
+      <DependentUpon>FormInventory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInventory2.resx">
       <DependentUpon>FormInventory2.cs</DependentUpon>
