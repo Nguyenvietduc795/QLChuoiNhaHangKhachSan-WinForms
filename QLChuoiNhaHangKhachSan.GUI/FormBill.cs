@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
-    public partial class Form2 : Form
+    public partial class frmBill : Form
     {
-        public Form2()
+        public frmBill()
         {
             InitializeComponent();
         }
+
     }
 }

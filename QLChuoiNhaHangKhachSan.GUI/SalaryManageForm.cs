@@ -130,5 +130,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
             EmployeeData.EmployeesChanged -= EmployeeData_EmployeesChanged; // Hủy đăng ký sự kiện khi form đóng
             base.OnFormClosed(e); // Gọi base
         }
+
+        private void dgvSalaryEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // để trống cũng được
+        }
+
     }
 }
