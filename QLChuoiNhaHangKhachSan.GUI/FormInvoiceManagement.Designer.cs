@@ -78,7 +78,7 @@
             this.pnlPaymentHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlPaymentHeader.Name = "pnlPaymentHeader";
             this.pnlPaymentHeader.ShadowDecoration.Enabled = true;
-            this.pnlPaymentHeader.Size = new System.Drawing.Size(1805, 107);
+            this.pnlPaymentHeader.Size = new System.Drawing.Size(1416, 107);
             this.pnlPaymentHeader.TabIndex = 0;
             // 
             // btnRemove
@@ -93,7 +93,7 @@
             this.btnRemove.ForeColor = System.Drawing.Color.White;
             this.btnRemove.Image = ((System.Drawing.Image)(resources.GetObject("btnRemove.Image")));
             this.btnRemove.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnRemove.Location = new System.Drawing.Point(1435, 36);
+            this.btnRemove.Location = new System.Drawing.Point(1162, 37);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.ShadowDecoration.BorderRadius = 10;
             this.btnRemove.ShadowDecoration.Color = System.Drawing.Color.White;
@@ -144,11 +144,11 @@
             this.pnlPayment.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.pnlPayment.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.pnlPayment.IconLeft = ((System.Drawing.Image)(resources.GetObject("pnlPayment.IconLeft")));
-            this.pnlPayment.Location = new System.Drawing.Point(1034, 24);
+            this.pnlPayment.Location = new System.Drawing.Point(831, 24);
             this.pnlPayment.Name = "pnlPayment";
             this.pnlPayment.PlaceholderText = "Nhập Mã Hóa Đơn/Tên Khách...";
             this.pnlPayment.SelectedText = "";
-            this.pnlPayment.Size = new System.Drawing.Size(447, 49);
+            this.pnlPayment.Size = new System.Drawing.Size(376, 49);
             this.pnlPayment.TabIndex = 1;
             // 
             // gnbtnALL
@@ -163,7 +163,7 @@
             this.gnbtnALL.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.gnbtnALL.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gnbtnALL.ForeColor = System.Drawing.Color.White;
-            this.gnbtnALL.Location = new System.Drawing.Point(117, 188);
+            this.gnbtnALL.Location = new System.Drawing.Point(63, 188);
             this.gnbtnALL.Name = "gnbtnALL";
             this.gnbtnALL.Size = new System.Drawing.Size(207, 45);
             this.gnbtnALL.TabIndex = 1;
@@ -182,7 +182,7 @@
             this.gnbtnDont.FillColor = System.Drawing.Color.White;
             this.gnbtnDont.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gnbtnDont.ForeColor = System.Drawing.Color.Black;
-            this.gnbtnDont.Location = new System.Drawing.Point(509, 188);
+            this.gnbtnDont.Location = new System.Drawing.Point(345, 188);
             this.gnbtnDont.Name = "gnbtnDont";
             this.gnbtnDont.Size = new System.Drawing.Size(197, 45);
             this.gnbtnDont.TabIndex = 2;
@@ -201,7 +201,7 @@
             this.gnbtnDone.FillColor = System.Drawing.Color.White;
             this.gnbtnDone.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gnbtnDone.ForeColor = System.Drawing.Color.DarkGreen;
-            this.gnbtnDone.Location = new System.Drawing.Point(902, 188);
+            this.gnbtnDone.Location = new System.Drawing.Point(615, 188);
             this.gnbtnDone.Name = "gnbtnDone";
             this.gnbtnDone.Size = new System.Drawing.Size(194, 45);
             this.gnbtnDone.TabIndex = 3;
@@ -220,7 +220,7 @@
             this.gnbtnOverdue.FillColor = System.Drawing.Color.White;
             this.gnbtnOverdue.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gnbtnOverdue.ForeColor = System.Drawing.Color.Black;
-            this.gnbtnOverdue.Location = new System.Drawing.Point(1256, 188);
+            this.gnbtnOverdue.Location = new System.Drawing.Point(892, 188);
             this.gnbtnOverdue.Name = "gnbtnOverdue";
             this.gnbtnOverdue.Size = new System.Drawing.Size(203, 45);
             this.gnbtnOverdue.TabIndex = 4;
@@ -236,7 +236,7 @@
             this.gnpnlLSHD.Controls.Add(this.lbLSGD);
             this.gnpnlLSHD.Location = new System.Drawing.Point(51, 345);
             this.gnpnlLSHD.Name = "gnpnlLSHD";
-            this.gnpnlLSHD.Size = new System.Drawing.Size(1123, 652);
+            this.gnpnlLSHD.Size = new System.Drawing.Size(861, 652);
             this.gnpnlLSHD.TabIndex = 6;
             // 
             // dgvTransaction
@@ -282,7 +282,7 @@
             this.dgvTransaction.RowHeadersWidth = 51;
             this.dgvTransaction.RowTemplate.Height = 24;
             this.dgvTransaction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTransaction.Size = new System.Drawing.Size(1053, 553);
+            this.dgvTransaction.Size = new System.Drawing.Size(790, 553);
             this.dgvTransaction.TabIndex = 10;
             // 
             // dgvInvoiceID
@@ -358,10 +358,10 @@
             this.pnlInvoicedetails.Controls.Add(this.btnPrintInvoice);
             this.pnlInvoicedetails.Controls.Add(this.lblTitleInvoicedetails);
             this.pnlInvoicedetails.FillColor = System.Drawing.Color.White;
-            this.pnlInvoicedetails.Location = new System.Drawing.Point(1325, 345);
+            this.pnlInvoicedetails.Location = new System.Drawing.Point(1023, 345);
             this.pnlInvoicedetails.Name = "pnlInvoicedetails";
             this.pnlInvoicedetails.ShadowDecoration.Enabled = true;
-            this.pnlInvoicedetails.Size = new System.Drawing.Size(458, 421);
+            this.pnlInvoicedetails.Size = new System.Drawing.Size(350, 421);
             this.pnlInvoicedetails.TabIndex = 7;
             // 
             // btnFix
@@ -439,7 +439,7 @@
             // lblTitleInvoicedetails
             // 
             this.lblTitleInvoicedetails.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblTitleInvoicedetails.Location = new System.Drawing.Point(104, 19);
+            this.lblTitleInvoicedetails.Location = new System.Drawing.Point(39, 18);
             this.lblTitleInvoicedetails.Name = "lblTitleInvoicedetails";
             this.lblTitleInvoicedetails.Size = new System.Drawing.Size(244, 47);
             this.lblTitleInvoicedetails.TabIndex = 0;
@@ -450,7 +450,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.ClientSize = new System.Drawing.Size(1805, 1009);
+            this.ClientSize = new System.Drawing.Size(1416, 1009);
             this.Controls.Add(this.pnlInvoicedetails);
             this.Controls.Add(this.gnpnlLSHD);
             this.Controls.Add(this.gnbtnOverdue);
