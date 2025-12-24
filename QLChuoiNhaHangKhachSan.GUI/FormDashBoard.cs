@@ -1,95 +1,106 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Forms;
-using System.Configuration;
+﻿using System; // Kiểu dữ liệu cơ bản
+using System.Linq; // Dùng LINQ nếu cần
+using System.Windows.Forms; // Thư viện WinForms
+using System.Configuration; // Đọc cấu hình App.config
+using System.Collections.Generic; // Lưu snapshot hover
+using Guna.UI2.WinForms; // Control Guna2
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
-    public partial class FormDashBoard : Form
+    public partial class FormDashBoard : Form // Form dashboard chính
     {
-        // Form con đang hiển thị
-        private Form activeChildForm = null;
-        // Panel chứa nội dung form con (EmployeeForm, ...)
-        private Panel pnlContentHost;
+        private Form activeChildForm = null; // Form con hiện tại đang hiển thị
+        private Panel pnlContentHost; // Panel chứa form con (giữ sidebar nguyên)
+
+        // Lưu kích thước/ vị trí gốc để phóng to thu nhỏ khi hover
+        private readonly Dictionary<Guna2Button, HoverSnapshot> _hoverButtonSnapshots = new Dictionary<Guna2Button, HoverSnapshot>();
+        private const int HoverGrowPixels = 8; // Mỗi chiều tăng thêm khi hover
+        private const int HoverShadowGrow = 4; // Mỗi cạnh shadow tăng thêm khi hover
+        private const int HoverShadowDepthBoost = 2; // Độ sâu shadow tăng khi hover
 
         public FormDashBoard()
         {
-            InitializeComponent();
-            CreateContentHost(); // Tạo panel chứa form con, giữ nguyên sidebar
+            InitializeComponent(); // Khởi tạo UI từ Designer
+            CreateContentHost(); // Tạo panel host cho form con
 
-            // Đảm bảo sự kiện click được gắn (phòng khi designer không gắn)
+            // Đảm bảo gắn sự kiện click cho các nút chính (phòng trường hợp designer chưa gắn)
             this.btnListStaff.Click += btnListStaff_Click;
             this.btnSalaryManage.Click += btnSalaryManage_Click;
             this.btnHome.Click += btnHome_Click;
+
+            // Gắn hiệu ứng hover phóng to nhẹ cho các card thống kê
+            AttachZoomHover(btnCardValue);
+            AttachZoomHover(btnTotalCustomers);
+            AttachZoomHover(btnRoomBooking);
+            AttachZoomHover(btnRestaurentBooking);
         }
 
-        // Khởi tạo panel host cho form con
+        // Khởi tạo panel host đặt form con vào (nội dung thay đổi, sidebar giữ nguyên)
         private void CreateContentHost()
         {
             pnlContentHost = new Panel
             {
-                Name = "pnlContentHost",
-                Dock = DockStyle.Fill,
-                BackColor = System.Drawing.Color.White,
-                Visible = false
+                Name = "pnlContentHost", // Tên control
+                Dock = DockStyle.Fill, // Lấp đầy vùng trống (trừ sidebar dock left)
+                BackColor = System.Drawing.Color.White, // Nền trắng
+                Visible = false // Ban đầu ẩn
             };
-            // Đặt host lên trên các control khác (trừ sidebar dock left)
-            this.Controls.Add(pnlContentHost);
-            this.Controls.SetChildIndex(pnlContentHost, 0);
-            pnlContentHost.BringToFront();
+            this.Controls.Add(pnlContentHost); // Thêm vào form
+            this.Controls.SetChildIndex(pnlContentHost, 0); // Đặt vị trí phía trên các control khác
+            pnlContentHost.BringToFront(); // Đưa lên trên cùng
         }
 
-        // Hiển thị một form con bên trong host
+        // Hiển thị một form con bên trong panel host
         private void ShowChild(Form child)
         {
-            // Đóng form con cũ nếu còn
+            // Nếu đã có form con, đóng và giải phóng
             if (activeChildForm != null && !activeChildForm.IsDisposed)
             {
                 activeChildForm.Close();
                 activeChildForm.Dispose();
             }
 
-            activeChildForm = child;
-            child.TopLevel = false;
-            child.FormBorderStyle = FormBorderStyle.None;
-            child.Dock = DockStyle.Fill;
+            activeChildForm = child; // Lưu form mới
+            child.TopLevel = false; // Không phải top-level (để nhúng)
+            child.FormBorderStyle = FormBorderStyle.None; // Bỏ viền
+            child.Dock = DockStyle.Fill; // Lấp đầy host
 
-            // Tắt đổ bóng viền cho form nhúng
+            // Tắt đổ bóng viền cho form nhúng (nếu form có BorderlessForm)
             if (child is SalaryManageForm smf) smf.EnableEmbedMode();
             if (child is EmployeeForm ef) ef.EnableEmbedMode();
 
-            pnlContentHost.Controls.Clear();
-            pnlContentHost.Controls.Add(child);
-            pnlContentHost.Visible = true;
-            pnlContentHost.BringToFront();
-            child.Show();
+            pnlContentHost.Controls.Clear(); // Xóa control cũ trong host
+            pnlContentHost.Controls.Add(child); // Thêm form con mới
+            pnlContentHost.Visible = true; // Hiển thị host
+            pnlContentHost.BringToFront(); // Đưa host lên trên
+            child.Show(); // Hiển thị form con
         }
 
-        // Ẩn form con, quay lại nội dung dashboard
+        // Ẩn form con, quay về dashboard gốc
         private void HideChild()
         {
             if (activeChildForm != null && !activeChildForm.IsDisposed)
             {
-                activeChildForm.Close();
-                activeChildForm = null;
+                activeChildForm.Close(); // Đóng form con
+                activeChildForm = null; // Xóa tham chiếu
             }
-            pnlContentHost.Visible = false;
+            pnlContentHost.Visible = false; // Ẩn host
         }
 
-        // Khi load dashboard: thu gọn submenu, đọc cấu hình (nếu có)
+        // Khi dashboard load: thu gọn submenu, đọc cấu hình nếu có
         private void Form1_Load(object sender, EventArgs e)
         {
-            CloseAllSubMenus();
+            CloseAllSubMenus(); // Thu gọn tất cả submenu
 
             try
             {
-                string connStr = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
-                // MessageBox.Show(connStr);
+                string connStr = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString; // Lấy chuỗi kết nối (nếu cần)
+                // MessageBox.Show(connStr); // Debug
             }
-            catch { }
+            catch { } // Bỏ qua nếu lỗi cấu hình
         }
 
-        // Thu gọn toàn bộ menu con
+        // Thu gọn toàn bộ các menu con về 50px (ẩn)
         private void CloseAllSubMenus()
         {
             pnlStaff_group.Height = 50;
@@ -102,32 +113,31 @@ namespace QLChuoiNhaHangKhachSan.GUI
             pnlLogout_group.Height = 50;
         }
 
-        private void lblUserRole_Click(object sender, EventArgs e)
-        {
-        }
+        private void lblUserRole_Click(object sender, EventArgs e) { }
+        private void guna2Chip4_Click(object sender, EventArgs e) { }
 
-        private void guna2Chip4_Click(object sender, EventArgs e)
-        {
-        }
-
-        // Đổi trạng thái nút được chọn, tắt highlight các nút khác
+        // Đổi trạng thái nút được chọn, tắt highlight các nút khác trong sidebar
         private void SetActiveButton(object sender)
         {
+            // Duyệt toàn bộ control trong flow layout (sidebar)
             foreach (Control container in flpSidebar.Controls)
             {
+                // Nếu container là Panel/Guna2Panel thì duyệt các button con
                 if (container is Panel || container is Guna.UI2.WinForms.Guna2Panel)
                 {
                     foreach (Control c in container.Controls)
                     {
-                        if (c is Guna.UI2.WinForms.Guna2Button btn) btn.Checked = false;
+                        if (c is Guna.UI2.WinForms.Guna2Button btn) btn.Checked = false; // Bỏ chọn
                     }
                 }
+                // Nếu container trực tiếp là button
                 else if (container is Guna.UI2.WinForms.Guna2Button btn)
                 {
-                    btn.Checked = false;
+                    btn.Checked = false; // Bỏ chọn
                 }
             }
 
+            // Đánh dấu nút vừa click là checked
             if (sender is Guna.UI2.WinForms.Guna2Button clickedBtn)
             {
                 clickedBtn.Checked = true;
@@ -137,19 +147,19 @@ namespace QLChuoiNhaHangKhachSan.GUI
         // Nút Trang chủ: thu gọn submenu và ẩn form con
         private void btnHome_Click(object sender, EventArgs e)
         {
-            SetActiveButton(sender);
-            CloseAllSubMenus();
-            HideChild();
+            SetActiveButton(sender); // Đánh dấu nút
+            CloseAllSubMenus(); // Thu gọn menu
+            HideChild(); // Ẩn form con (trở về dashboard)
         }
 
         /************************************************************************************************************/
-        // Nhóm Nhân viên: mở/đóng submenu
-        bool isStaffExpanded = false; // Biến trạng thái mở rộng của nhóm Nhân viên
+        // Nhóm Nhân viên
+        bool isStaffExpanded = false; // Biến trạng thái (hiện chưa dùng)
         private void btnStaff_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
 
-            if (pnlStaff_group.Height == 50)
+            if (pnlStaff_group.Height == 50) // Nếu đang thu gọn
             {
                 CloseAllSubMenus();
                 pnlStaff_group.Height = 130; // Mở rộng
@@ -160,22 +170,22 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
         }
 
-        // Danh sách nhân viên: mở EmployeeForm trong khu vực nội dung
+        // Danh sách nhân viên: mở EmployeeForm
         private void btnListStaff_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
-            ShowChild(new EmployeeForm());
+            ShowChild(new EmployeeForm()); // Nhúng form danh sách nhân viên
         }
 
-        // Bảng lương (chưa gắn form cụ thể)
+        // Bảng lương: mở SalaryManageForm
         private void btnSalaryManage_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
-            ShowChild(new SalaryManageForm());
+            ShowChild(new SalaryManageForm()); // Nhúng form bảng lương
         }
 
         /************************************************************************************************************/
-        // Nhóm Khách hàng: mở/đóng submenu
+        // Nhóm Khách hàng
         private void btnCustomers_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
@@ -203,9 +213,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // TODO: ShowChild(new LoyaltyProgramForm());
         }
 
-        private void pnlSidebar_Paint(object sender, PaintEventArgs e)
-        {
-        }
+        private void pnlSidebar_Paint(object sender, PaintEventArgs e) { }
 
         /************************************************************************************************************/
         // Nhóm Khách sạn
@@ -346,24 +354,81 @@ namespace QLChuoiNhaHangKhachSan.GUI
             SetActiveButton(sender);
         }
 
-        // Đăng xuất
+        // Đăng xuất: hỏi xác nhận rồi đóng form
         private void btnLogout_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                this.Close();
+                this.Close(); // Đóng dashboard
             }
         }
 
         // Handler trống
-        private void btnDotBlue_Click(object sender, EventArgs e)
+        private void btnDotBlue_Click(object sender, EventArgs e) { }
+        private void guna2HtmlLabel7_Click(object sender, EventArgs e) { }
+
+        // Gắn sự kiện hover phóng to nhẹ cho button card
+        private void AttachZoomHover(Guna2Button btn)
         {
+            if (btn == null || _hoverButtonSnapshots.ContainsKey(btn)) return; // Bỏ nếu null/đã gắn
+            // Lưu trạng thái ban đầu: kích thước, vị trí, shadow
+            _hoverButtonSnapshots[btn] = new HoverSnapshot(btn.Size, btn.Location, btn.ShadowDecoration.Shadow, btn.ShadowDecoration.Depth, btn.ShadowDecoration.Enabled);
+            // Đăng ký sự kiện hover vào/ra
+            btn.MouseEnter += HoverButton_MouseEnter;
+            btn.MouseLeave += HoverButton_MouseLeave;
         }
 
-        private void guna2HtmlLabel7_Click(object sender, EventArgs e)
+        private void HoverButton_MouseEnter(object sender, EventArgs e)
         {
+            var btn = sender as Guna2Button; // Button được hover
+            if (btn == null) return;
+            if (!_hoverButtonSnapshots.TryGetValue(btn, out var snap)) return; // Không có snapshot thì thôi
+
+            // Tăng kích thước nhẹ và dịch tâm để giữ nguyên cảm giác căn giữa
+            btn.Size = new System.Drawing.Size(snap.Size.Width + HoverGrowPixels, snap.Size.Height + HoverGrowPixels);
+            btn.Location = new System.Drawing.Point(snap.Location.X - HoverGrowPixels / 2, snap.Location.Y - HoverGrowPixels / 2);
+
+            // Làm đậm shadow hơn khi hover
+            btn.ShadowDecoration.Enabled = true;
+            btn.ShadowDecoration.Shadow = new Padding(
+                snap.ShadowPadding.Left + HoverShadowGrow,
+                snap.ShadowPadding.Top + HoverShadowGrow,
+                snap.ShadowPadding.Right + HoverShadowGrow,
+                snap.ShadowPadding.Bottom + HoverShadowGrow);
+            btn.ShadowDecoration.Depth = snap.ShadowDepth + HoverShadowDepthBoost;
+        }
+
+        private void HoverButton_MouseLeave(object sender, EventArgs e)
+        {
+            var btn = sender as Guna2Button; // Button được rời chuột
+            if (btn == null) return;
+            if (!_hoverButtonSnapshots.TryGetValue(btn, out var snap)) return; // Không có snapshot thì thôi
+
+            // Khôi phục kích thước, vị trí và shadow gốc
+            btn.Size = snap.Size;
+            btn.Location = snap.Location;
+            btn.ShadowDecoration.Shadow = snap.ShadowPadding;
+            btn.ShadowDecoration.Depth = snap.ShadowDepth;
+            btn.ShadowDecoration.Enabled = snap.ShadowEnabled;
+        }
+
+        private struct HoverSnapshot
+        {
+            public System.Drawing.Size Size { get; } // Kích thước gốc
+            public System.Drawing.Point Location { get; } // Vị trí gốc
+            public Padding ShadowPadding { get; } // Padding shadow gốc
+            public int ShadowDepth { get; } // Độ sâu shadow gốc
+            public bool ShadowEnabled { get; } // Shadow ban đầu bật/tắt
+            public HoverSnapshot(System.Drawing.Size size, System.Drawing.Point location, Padding shadowPadding, int shadowDepth, bool shadowEnabled)
+            {
+                Size = size;
+                Location = location;
+                ShadowPadding = shadowPadding;
+                ShadowDepth = shadowDepth;
+                ShadowEnabled = shadowEnabled;
+            }
         }
     }
 

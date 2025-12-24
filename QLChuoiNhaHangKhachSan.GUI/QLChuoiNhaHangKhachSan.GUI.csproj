@@ -72,6 +72,12 @@
     <Compile Include="EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,12 @@
     </Compile>
     <Compile Include="FormDashBoard.Designer.cs">
       <DependentUpon>FormDashBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterForm.Designer.cs">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SalaryManageForm.cs">
       <SubType>Form</SubType>
@@ -98,11 +110,17 @@
     <EmbeddedResource Include="EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDashBoard.resx">
       <DependentUpon>FormDashBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterForm.resx">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SalaryManageForm.resx">
       <DependentUpon>SalaryManageForm.cs</DependentUpon>
@@ -115,6 +133,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -135,6 +154,39 @@
       <Project>{4e25be4c-85e3-45de-81c5-52a8c8d0b030}</Project>
       <Name>QLChuoiNhaHangKhachSan.BLL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon\add-employees.png" />
+    <Content Include="icon\analytics.png" />
+    <Content Include="icon\available.png" />
+    <Content Include="icon\average_salary.png" />
+    <Content Include="icon\avt.png" />
+    <Content Include="icon\bell.png" />
+    <Content Include="icon\corporation.png" />
+    <Content Include="icon\customer.png" />
+    <Content Include="icon\customers.png" />
+    <Content Include="icon\dropdown.png" />
+    <Content Include="icon\email.png" />
+    <Content Include="icon\employees.png" />
+    <Content Include="icon\HireDate.png" />
+    <Content Include="icon\home.png" />
+    <Content Include="icon\hotel-booking.png" />
+    <Content Include="icon\hotel.png" />
+    <Content Include="icon\inventory.png" />
+    <Content Include="icon\logout.png" />
+    <Content Include="icon\payment.png" />
+    <Content Include="icon\phone.png" />
+    <Content Include="icon\plus.png" />
+    <Content Include="icon\position.png" />
+    <Content Include="icon\report.png" />
+    <Content Include="icon\reports.png" />
+    <Content Include="icon\restaurent-booking.png" />
+    <Content Include="icon\restaurent.png" />
+    <Content Include="icon\salary.png" />
+    <Content Include="icon\staff.png" />
+    <Content Include="icon\total.png" />
+    <Content Include="icon\user-avatar.png" />
+    <None Include="Resources\Screenshot 2025-06-14 185743.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,154 +1,153 @@
-﻿using Guna.UI2.WinForms;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-using static QLChuoiNhaHangKhachSan.GUI.AddEmployeeForm;
+﻿using Guna.UI2.WinForms; // Thư viện UI Guna2
+using System; // Cung cấp kiểu cơ bản
+using System.Drawing; // Làm việc với màu sắc/kích thước
+using System.Windows.Forms; // WinForms core
+using static QLChuoiNhaHangKhachSan.GUI.AddEmployeeForm; // Dùng trực tiếp Employee, EmployeeData
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
-    public partial class EmployeeForm : Form
+    public partial class EmployeeForm : Form // Form hiển thị/ quản lý nhân viên
     {
         public EmployeeForm()
         {
-            InitializeComponent();
-            this.Load += EmployeeForm_Load;
+            InitializeComponent(); // Khởi tạo UI từ Designer
+            this.Load += EmployeeForm_Load; // Đăng ký sự kiện Load của form
         }
 
         // Tắt viền/đổ bóng khi nhúng vào FormDashBoard
-        
-            public void EnableEmbedMode()
+        public void EnableEmbedMode()
         {
-            if (bldManageEmployeeForm != null)
+            if (bldManageEmployeeForm != null) // Nếu BorderlessForm tồn tại
             {
-                bldManageEmployeeForm.Dispose(); // or set HasFormShadow/DockForm as needed
+                bldManageEmployeeForm.Dispose(); // Giải phóng để bỏ hiệu ứng đổ bóng/viền
             }
         }
-        
 
         private void EmployeeForm_Load(object sender, EventArgs e)
         {
-            LoadEmployees();
-            UpdateCardWidths();
+            LoadEmployees();    // Nạp và render thẻ nhân viên
+            UpdateCardWidths(); // Căn chỉnh kích thước thẻ theo chiều rộng panel
         }
 
+        // thêm nhân viên mới
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
-            using (var frm = new AddEmployeeForm())
+            using (var frm = new AddEmployeeForm()) // Mở form thêm mới
             {
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog() == DialogResult.OK) // Nếu lưu thành công
                 {
-                    LoadEmployees(); // refresh after saving
+                    LoadEmployees(); // Refresh danh sách
                 }
             }
         }
 
+        // Cập nhật kích thước thẻ khi panel thay đổi kích thước
         private void flpEmployees_SizeChanged(object sender, EventArgs e)
         {
-            UpdateCardWidths();
+            UpdateCardWidths(); // Khi panel đổi kích thước, cập nhật chiều rộng thẻ
         }
 
+        // Cập nhật chiều rộng thẻ nhân viên dựa trên chiều rộng panel
         private void UpdateCardWidths()
         {
-            if (flpEmployees.Controls.Count == 0) return;
+            if (flpEmployees.Controls.Count == 0) return; // Không có thẻ thì bỏ qua
 
-            int availableWidth = flpEmployees.ClientSize.Width - flpEmployees.Padding.Horizontal;
-            if (availableWidth <= 0) return;
+            int availableWidth = flpEmployees.ClientSize.Width - flpEmployees.Padding.Horizontal; // Chiều rộng còn lại
+            if (availableWidth <= 0) return; // Không đủ rộng thì dừng
 
-            int marginX = pnlCardEmployeeTemplate.Margin.Horizontal; // total horizontal margin of one card
-            int minWidth = Math.Max(pnlCardEmployeeTemplate.MinimumSize.Width, 300);
+            int marginX = pnlCardEmployeeTemplate.Margin.Horizontal; // Tổng margin ngang của card
+            int minWidth = Math.Max(pnlCardEmployeeTemplate.MinimumSize.Width, 300); // Đặt minWidth mặc định >=300
 
-            // Try to fit as many columns as possible while keeping width >= minWidth and minimizing leftover space
-            int bestColumns = 1;
-            int bestWidth = availableWidth;
-            int maxColumns = Math.Max(1, (availableWidth + marginX) / (minWidth + marginX));
-            for (int cols = 1; cols <= maxColumns; cols++)
+            int bestColumns = 1; // Số cột tối ưu mặc định
+            int bestWidth = availableWidth; // Chiều rộng tối ưu mặc định
+            int maxColumns = Math.Max(1, (availableWidth + marginX) / (minWidth + marginX)); // Số cột tối đa có thể thử
+            for (int cols = 1; cols <= maxColumns; cols++) // Duyệt số cột
             {
-                int totalMargin = marginX * (cols);
-                int widthPerCol = (availableWidth - totalMargin) / cols;
-                if (widthPerCol >= minWidth && widthPerCol <= availableWidth)
+                int totalMargin = marginX * (cols); // Tổng margin cho số cột hiện tại
+                int widthPerCol = (availableWidth - totalMargin) / cols; // Chiều rộng mỗi cột
+                if (widthPerCol >= minWidth && widthPerCol <= availableWidth) // Đủ rộng và hợp lệ
                 {
-                    bestColumns = cols;
-                    bestWidth = widthPerCol;
+                    bestColumns = cols; // Chọn số cột này
+                    bestWidth = widthPerCol; // Cập nhật chiều rộng tốt nhất
                 }
             }
 
-            // If even 1 column can’t reach minWidth, fall back to single column with minWidth cap
-            if (bestColumns == 1 && bestWidth < minWidth)
+            if (bestColumns == 1 && bestWidth < minWidth) // Nếu chỉ 1 cột mà vẫn nhỏ hơn minWidth
             {
-                bestWidth = Math.Min(minWidth, availableWidth);
+                bestWidth = Math.Min(minWidth, availableWidth); // Cố định về minWidth hoặc giới hạn khả dụng
             }
 
-            foreach (Control c in flpEmployees.Controls)
+            foreach (Control c in flpEmployees.Controls) // Áp dụng cho từng card
             {
-                c.Width = bestWidth;
-                c.Height = pnlCardEmployeeTemplate.Size.Height;
+                c.Width = bestWidth; // Gán chiều rộng tối ưu
+                c.Height = pnlCardEmployeeTemplate.Size.Height; // Chiều cao theo template
             }
 
-            flpEmployees.PerformLayout();
+            flpEmployees.PerformLayout(); // Yêu cầu bố trí lại
         }
 
-        // Render employee cards from the hidden template panel
+        // Render employee cards từ panel template ẩn
         private void LoadEmployees()
         {
-            flpEmployees.Controls.Clear();
+            flpEmployees.Controls.Clear(); // Xóa thẻ cũ
 
-            var list = EmployeeData.Employees;
-            if (list == null || list.Count == 0) return;
+            var list = EmployeeData.Employees; // Lấy danh sách nhân viên
+            if (list == null || list.Count == 0) return; // Rỗng thì dừng
 
-            foreach (var emp in list)
+            foreach (var emp in list) // Lặp từng nhân viên
             {
-                flpEmployees.Controls.Add(CreateEmployeeCard(emp));
+                flpEmployees.Controls.Add(CreateEmployeeCard(emp)); // Tạo thẻ và thêm vào panel
             }
 
-            UpdateCardWidths();
+            UpdateCardWidths(); // Căn lại kích thước sau khi thêm
         }
 
         private Control CreateEmployeeCard(Employee emp)
         {
-            // clone panel basics
+            // Tạo panel card dựa trên template
             var card = new Guna2Panel
             {
-                BackColor = pnlCardEmployeeTemplate.BackColor,
-                FillColor = pnlCardEmployeeTemplate.FillColor,
-                BorderColor = pnlCardEmployeeTemplate.BorderColor,
-                BorderThickness = pnlCardEmployeeTemplate.BorderThickness,
-                BorderRadius = pnlCardEmployeeTemplate.BorderRadius,
-                Size = pnlCardEmployeeTemplate.Size,
-                Margin = pnlCardEmployeeTemplate.Margin,
+                BackColor = pnlCardEmployeeTemplate.BackColor, // Nền
+                FillColor = pnlCardEmployeeTemplate.FillColor, // Màu fill
+                BorderColor = pnlCardEmployeeTemplate.BorderColor, // Màu viền
+                BorderThickness = pnlCardEmployeeTemplate.BorderThickness, // Độ dày viền
+                BorderRadius = pnlCardEmployeeTemplate.BorderRadius, // Bo góc
+                Size = pnlCardEmployeeTemplate.Size, // Kích thước
+                Margin = pnlCardEmployeeTemplate.Margin, // Margin
                 ShadowDecoration =
                 {
-                    BorderRadius = pnlCardEmployeeTemplate.ShadowDecoration.BorderRadius,
-                    Color = pnlCardEmployeeTemplate.ShadowDecoration.Color,
-                    Depth = pnlCardEmployeeTemplate.ShadowDecoration.Depth,
-                    Enabled = pnlCardEmployeeTemplate.ShadowDecoration.Enabled
+                    BorderRadius = pnlCardEmployeeTemplate.ShadowDecoration.BorderRadius, // Bo góc shadow
+                    Color = pnlCardEmployeeTemplate.ShadowDecoration.Color, // Màu shadow
+                    Depth = pnlCardEmployeeTemplate.ShadowDecoration.Depth, // Độ sâu shadow
+                    Enabled = pnlCardEmployeeTemplate.ShadowDecoration.Enabled // Bật/tắt shadow
                 },
-                MinimumSize = pnlCardEmployeeTemplate.MinimumSize,
-                Visible = true
+                MinimumSize = pnlCardEmployeeTemplate.MinimumSize, // Kích thước tối thiểu
+                Visible = true // Hiển thị
             };
 
-            // avatar
+            // Ảnh đại diện (avatar)
             var avatar = new Guna2CirclePictureBox
             {
-                FillColor = pnlEmployeeAvt.FillColor,
-                Image = pnlEmployeeAvt.Image,
-                ImageRotate = 0F,
-                Location = pnlEmployeeAvt.Location,
-                Size = pnlEmployeeAvt.Size,
-                SizeMode = PictureBoxSizeMode.StretchImage,
-                ShadowDecoration = { Mode = pnlEmployeeAvt.ShadowDecoration.Mode }
+                FillColor = pnlEmployeeAvt.FillColor, // Màu nền avatar
+                Image = pnlEmployeeAvt.Image, // Ảnh từ template
+                ImageRotate = 0F, // Không xoay ảnh
+                Location = pnlEmployeeAvt.Location, // Vị trí
+                Size = pnlEmployeeAvt.Size, // Kích thước
+                SizeMode = PictureBoxSizeMode.StretchImage, // Co giãn vừa khung
+                ShadowDecoration = { Mode = pnlEmployeeAvt.ShadowDecoration.Mode } // Kiểu shadow
             };
 
-            // name
+            // Label tên
             var lblName = new Guna2HtmlLabel
             {
-                Text = emp.FullName,
-                Font = lblEmployeeName.Font,
-                ForeColor = lblEmployeeName.ForeColor,
-                Location = lblEmployeeName.Location,
-                AutoSize = true
+                Text = emp.FullName, // Nội dung tên
+                Font = lblEmployeeName.Font, // Font theo template
+                ForeColor = lblEmployeeName.ForeColor, // Màu chữ
+                Location = lblEmployeeName.Location, // Vị trí
+                AutoSize = true // Tự co giãn theo text
             };
 
-            // position
+            // Label chức vụ
             var lblPos = new Guna2HtmlLabel
             {
                 Text = emp.Position,
@@ -158,7 +157,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 AutoSize = true
             };
 
-            // email
+            // Label email
             var lblMail = new Guna2HtmlLabel
             {
                 Text = emp.Email,
@@ -168,7 +167,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 AutoSize = true
             };
 
-            // department
+            // Label phòng ban
             var lblDept = new Guna2HtmlLabel
             {
                 Text = emp.Department,
@@ -178,8 +177,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 AutoSize = true
             };
 
-            // hire date
-            var hireText = emp.HireDate != default(DateTime) ? emp.HireDate.ToString("MMMM dd, yyyy") : "";
+            // Label ngày vào làm
+            var hireText = emp.HireDate != default(DateTime) ? emp.HireDate.ToString("MMMM dd, yyyy") : ""; // Chuỗi ngày
             var lblHire = new Guna2HtmlLabel
             {
                 Text = hireText,
@@ -189,8 +188,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 AutoSize = true
             };
 
-            // salary
-            var salaryText = emp.Salary > 0 ? emp.Salary.ToString("N0") + " ₫" : "0 ₫";
+            // Lương: định dạng tiền tệ đơn giản
+            var salaryText = emp.Salary > 0 ? emp.Salary.ToString("N0") + " ₫" : "0 ₫"; // Chuỗi lương
             var lblSalary = new Guna2HtmlLabel
             {
                 Text = salaryText,
@@ -201,16 +200,16 @@ namespace QLChuoiNhaHangKhachSan.GUI
             };
             var btnSalary = new Guna2Button
             {
-                Size = btnEmployeeSalary.Size,
-                Location = btnEmployeeSalary.Location,
-                Image = btnEmployeeSalary.Image,
-                FillColor = btnEmployeeSalary.FillColor,
-                DisabledState = btnEmployeeSalary.DisabledState,
-                ImageSize = btnEmployeeSalary.ImageSize
+                Size = btnEmployeeSalary.Size, // Kích thước icon lương
+                Location = btnEmployeeSalary.Location, // Vị trí
+                Image = btnEmployeeSalary.Image, // Icon
+                FillColor = btnEmployeeSalary.FillColor, // Màu nền
+                DisabledState = btnEmployeeSalary.DisabledState, // Trạng thái disable
+                ImageSize = btnEmployeeSalary.ImageSize // Kích thước icon
             };
 
-            // phone
-            var phoneText = string.IsNullOrWhiteSpace(emp.Phone) ? "" : emp.Phone;
+            // Điện thoại
+            var phoneText = string.IsNullOrWhiteSpace(emp.Phone) ? "" : emp.Phone; // Nếu rỗng thì hiển thị trống
             var lblPhone = new Guna2HtmlLabel
             {
                 Text = phoneText,
@@ -229,8 +228,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 ImageSize = btnEmployeePhoneNumber.ImageSize
             };
 
-            // status
-            string status = emp.Status ?? "Active";
+            // Trạng thái: đổi màu nếu không Active
+            string status = emp.Status ?? "Active"; // Mặc định Active nếu null
             var btnStatus = new Guna2Button
             {
                 Text = status,
@@ -241,7 +240,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 ForeColor = status == "Active" ? btnEmployeeStatus.ForeColor : Color.Black
             };
 
-            // mail icon
+            // Icon mail
             var btnMailIcon = new Guna2Button
             {
                 Location = btnEmployeeMail.Location,
@@ -251,7 +250,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 ImageSize = btnEmployeeMail.ImageSize
             };
 
-            // department icon
+            // Icon phòng ban
             var btnDeptIcon = new Guna2Button
             {
                 Location = btnEmployeeDepartment.Location,
@@ -261,7 +260,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 ImageSize = btnEmployeeDepartment.ImageSize
             };
 
-            // hire icon
+            // Icon ngày vào làm
             var btnHireIcon = new Guna2Button
             {
                 Location = btnEmployeeHireDate.Location,
@@ -271,7 +270,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 ImageSize = btnEmployeeHireDate.ImageSize
             };
 
-            // edit
+            // Nút sửa: mở form edit và refresh khi lưu
             var btnEdit = new Guna2Button
             {
                 Text = btnEmployeeEdit.Text,
@@ -280,21 +279,21 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 FillColor = btnEmployeeEdit.FillColor,
                 ForeColor = btnEmployeeEdit.ForeColor,
                 Font = btnEmployeeEdit.Font,
-                Tag = emp
+                Tag = emp // Lưu đối tượng nhân viên để dùng khi click
             };
             btnEdit.Click += (s, e) =>
             {
-                var target = (AddEmployeeForm.Employee)((Control)s).Tag;
-                using (var frm = new AddEmployeeForm(target))
+                var target = (AddEmployeeForm.Employee)((Control)s).Tag; // Lấy nhân viên từ Tag
+                using (var frm = new AddEmployeeForm(target)) // Mở form ở chế độ chỉnh sửa
                 {
-                    if (frm.ShowDialog() == DialogResult.OK)
+                    if (frm.ShowDialog() == DialogResult.OK) // Nếu lưu
                     {
-                        LoadEmployees();
+                        LoadEmployees(); // Refresh danh sách
                     }
                 }
             };
 
-            // delete
+            // Nút xóa: hỏi xác nhận, xóa, bắn sự kiện, refresh
             var btnDelete = new Guna2Button
             {
                 Text = btnEmployeeDelete.Text,
@@ -307,17 +306,18 @@ namespace QLChuoiNhaHangKhachSan.GUI
             };
             btnDelete.Click += (s, e) =>
             {
-                var target = (AddEmployeeForm.Employee)((Control)s).Tag;
+                var target = (AddEmployeeForm.Employee)((Control)s).Tag; // Nhân viên cần xóa
                 var result = MessageBox.Show("Bạn có chắc muốn xóa nhân viên này không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
-                    EmployeeData.Employees.Remove(target);
-                    LoadEmployees();
+                    EmployeeData.Employees.Remove(target); // Xóa khỏi danh sách
+                    EmployeeData.NotifyChanged(); // Thông báo thay đổi
+                    LoadEmployees(); // Refresh danh sách
                     MessageBox.Show("Nhân viên đã được xóa.", "Xóa thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             };
 
-            // assemble
+            // Thêm tất cả control con vào card
             card.Controls.Add(avatar);
             card.Controls.Add(lblName);
             card.Controls.Add(lblPos);
@@ -335,15 +335,17 @@ namespace QLChuoiNhaHangKhachSan.GUI
             card.Controls.Add(btnEdit);
             card.Controls.Add(btnDelete);
 
-            return card;
+            return card; // Trả card hoàn chỉnh
         }
 
         private void lblEmployee_SubTitle_Click(object sender, EventArgs e)
         {
+            
         }
 
         private void btnEmployeeDelete_Click(object sender, EventArgs e)
         {
+            // Handler mẫu cho button template (không dùng khi render thẻ động)
             var result = MessageBox.Show("Bạn có chắc muốn xóa nhân viên này không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
@@ -353,12 +355,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void btnEmployeeEdit_Click(object sender, EventArgs e)
         {
+            // Handler mẫu cho button template (không dùng khi render thẻ động)
             MessageBox.Show("Bạn có chắc muốn chỉnh sửa thông tin nhân viên này không?", "Xác nhận chỉnh sửa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
 
         private void lblEmployeeName_Click(object sender, EventArgs e)
         {
-
+            // Sự kiện click tên (chưa sử dụng)
         }
     }
 }
