@@ -93,6 +93,12 @@
     <Compile Include="BooKing_Form.Designer.cs">
       <DependentUpon>BooKing_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBill.Designer.cs">
+      <DependentUpon>FormBill.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListRoom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,12 @@
     </Compile>
     <Compile Include="BookingRoom_Details.Designer.cs">
       <DependentUpon>BookingRoom_Details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Room_Details.cs">
       <SubType>Form</SubType>
@@ -201,11 +213,17 @@
     <EmbeddedResource Include="BooKing_Form.resx">
       <DependentUpon>BooKing_Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormBill.resx">
+      <DependentUpon>FormBill.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListRoom.resx">
       <DependentUpon>ListRoom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BookingRoom_Details.resx">
       <DependentUpon>BookingRoom_Details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Room_Details.resx">
       <DependentUpon>Room_Details.cs</DependentUpon>
