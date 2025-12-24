@@ -105,19 +105,16 @@
             // 
             // flpEmployees
             // 
+            this.flpEmployees.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flpEmployees.AutoScroll = true;
             this.flpEmployees.Controls.Add(this.pnlCardEmployeeTemplate);
             this.flpEmployees.Location = new System.Drawing.Point(25, 110);
             this.flpEmployees.Name = "flpEmployees";
+            this.flpEmployees.Padding = new System.Windows.Forms.Padding(10);
             this.flpEmployees.Size = new System.Drawing.Size(1150, 580);
             this.flpEmployees.TabIndex = 3;
-            this.flpEmployees.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flpEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpEmployees.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
-            this.flpEmployees.WrapContents = true;
-            this.flpEmployees.Padding = new System.Windows.Forms.Padding(10);
             this.flpEmployees.SizeChanged += new System.EventHandler(this.flpEmployees_SizeChanged);
             // 
             // pnlCardEmployeeTemplate
@@ -143,7 +140,7 @@
             this.pnlCardEmployeeTemplate.Controls.Add(this.lblEmployeeName);
             this.pnlCardEmployeeTemplate.Controls.Add(this.pnlEmployeeAvt);
             this.pnlCardEmployeeTemplate.FillColor = System.Drawing.Color.White;
-            this.pnlCardEmployeeTemplate.Location = new System.Drawing.Point(3, 3);
+            this.pnlCardEmployeeTemplate.Location = new System.Drawing.Point(20, 20);
             this.pnlCardEmployeeTemplate.Margin = new System.Windows.Forms.Padding(10);
             this.pnlCardEmployeeTemplate.MinimumSize = new System.Drawing.Size(320, 360);
             this.pnlCardEmployeeTemplate.Name = "pnlCardEmployeeTemplate";
@@ -300,9 +297,9 @@
             this.btnEmployeeStatus.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(250)))), ((int)(((byte)(229)))));
             this.btnEmployeeStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnEmployeeStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(95)))), ((int)(((byte)(70)))));
-            this.btnEmployeeStatus.Location = new System.Drawing.Point(291, 31);
+            this.btnEmployeeStatus.Location = new System.Drawing.Point(265, 25);
             this.btnEmployeeStatus.Name = "btnEmployeeStatus";
-            this.btnEmployeeStatus.Size = new System.Drawing.Size(76, 28);
+            this.btnEmployeeStatus.Size = new System.Drawing.Size(92, 28);
             this.btnEmployeeStatus.TabIndex = 6;
             this.btnEmployeeStatus.Text = "Active";
             // 

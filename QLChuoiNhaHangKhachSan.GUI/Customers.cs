@@ -1,6 +1,4 @@
 ﻿using System;
-using Guna.UI2.WinForms;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +10,21 @@ using System.Windows.Forms;
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
-    public partial class FormInventory : Form
+    public partial class Customers : Form
     {
-        public FormInventory()
+        public Customers()
         {
             InitializeComponent();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

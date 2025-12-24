@@ -1,6 +1,4 @@
 ﻿using System;
-using Guna.UI2.WinForms;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +10,9 @@ using System.Windows.Forms;
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
-    public partial class FormInventory : Form
+    public partial class Form1 : Form
     {
-        public FormInventory()
+        public Form1()
         {
             InitializeComponent();
         }
