@@ -17,7 +17,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new FormDashBoard());
+            Application.Run(new frmRestaurant());
 
            
 
