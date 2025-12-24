@@ -359,7 +359,6 @@
             this.btnDownload.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnDownload.ForeColor = System.Drawing.Color.Black;
             this.btnDownload.HoverState.FillColor = System.Drawing.Color.Silver;
-            this.btnDownload.Image = ((System.Drawing.Image)(resources.GetObject("btnDownload.Image")));
             this.btnDownload.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDownload.ImageSize = new System.Drawing.Size(30, 30);
             this.btnDownload.Location = new System.Drawing.Point(52, 63);

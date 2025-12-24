@@ -71,7 +71,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.btnLoc = new Guna.UI2.WinForms.Guna2Button();
             this.txTimkiem = new Guna.UI2.WinForms.Guna2TextBox();
             this.lbDSTonkho = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
@@ -124,11 +123,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.pnlTopbar.Controls.Add(this.picUserAvt);
             this.pnlTopbar.Controls.Add(this.btnNotification);
             this.pnlTopbar.FillColor = System.Drawing.Color.White;
-            this.pnlTopbar.Location = new System.Drawing.Point(192, 0);
+            this.pnlTopbar.Location = new System.Drawing.Point(15, 4);
             this.pnlTopbar.Name = "pnlTopbar";
             this.pnlTopbar.ShadowDecoration.Depth = 1;
             this.pnlTopbar.ShadowDecoration.Enabled = true;
-            this.pnlTopbar.Size = new System.Drawing.Size(1724, 92);
+            this.pnlTopbar.Size = new System.Drawing.Size(1631, 92);
             this.pnlTopbar.TabIndex = 2;
             // 
             // lblUserRole
@@ -138,7 +137,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.lblUserRole.BackColor = System.Drawing.Color.White;
             this.lblUserRole.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserRole.ForeColor = System.Drawing.Color.Gray;
-            this.lblUserRole.Location = new System.Drawing.Point(1571, 45);
+            this.lblUserRole.Location = new System.Drawing.Point(1478, 45);
             this.lblUserRole.Name = "lblUserRole";
             this.lblUserRole.Size = new System.Drawing.Size(79, 16);
             this.lblUserRole.TabIndex = 5;
@@ -171,7 +170,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.lblUserName.AutoSize = true;
             this.lblUserName.BackColor = System.Drawing.Color.White;
             this.lblUserName.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(1571, 21);
+            this.lblUserName.Location = new System.Drawing.Point(1478, 21);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(56, 19);
             this.lblUserName.TabIndex = 4;
@@ -183,7 +182,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.picUserAvt.BackColor = System.Drawing.Color.White;
             this.picUserAvt.Image = ((System.Drawing.Image)(resources.GetObject("picUserAvt.Image")));
             this.picUserAvt.ImageRotate = 0F;
-            this.picUserAvt.Location = new System.Drawing.Point(1508, 18);
+            this.picUserAvt.Location = new System.Drawing.Point(1415, 18);
             this.picUserAvt.Name = "picUserAvt";
             this.picUserAvt.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.picUserAvt.Size = new System.Drawing.Size(56, 56);
@@ -204,7 +203,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.btnNotification.ForeColor = System.Drawing.Color.White;
             this.btnNotification.Image = ((System.Drawing.Image)(resources.GetObject("btnNotification.Image")));
             this.btnNotification.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnNotification.Location = new System.Drawing.Point(1440, 38);
+            this.btnNotification.Location = new System.Drawing.Point(1347, 38);
             this.btnNotification.Name = "btnNotification";
             this.btnNotification.Size = new System.Drawing.Size(25, 25);
             this.btnNotification.TabIndex = 2;
@@ -646,7 +645,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // lbDSTonkho
             // 
             this.lbDSTonkho.BackColor = System.Drawing.Color.Transparent;
-            this.lbDSTonkho.Controls.Add(this.guna2Button4);
             this.lbDSTonkho.Controls.Add(this.guna2Button3);
             this.lbDSTonkho.Controls.Add(this.guna2Button2);
             this.lbDSTonkho.Controls.Add(this.guna2Button1);
@@ -657,7 +655,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.lbDSTonkho.Controls.Add(this.guna2Panel1);
             this.lbDSTonkho.Controls.Add(this.cardTotal);
             this.lbDSTonkho.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(251)))));
-            this.lbDSTonkho.Location = new System.Drawing.Point(192, 84);
+            this.lbDSTonkho.Location = new System.Drawing.Point(15, 102);
             this.lbDSTonkho.Name = "lbDSTonkho";
             this.lbDSTonkho.ShadowDecoration.BorderRadius = 12;
             this.lbDSTonkho.ShadowDecoration.Depth = 1;
@@ -665,23 +663,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.lbDSTonkho.Size = new System.Drawing.Size(2553, 931);
             this.lbDSTonkho.TabIndex = 3;
             this.lbDSTonkho.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMainWrapper_Paint);
-            // 
-            // guna2Button4
-            // 
-            this.guna2Button4.BorderRadius = 12;
-            this.guna2Button4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.guna2Button4.FillColor = System.Drawing.Color.Black;
-            this.guna2Button4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button4.ForeColor = System.Drawing.Color.White;
-            this.guna2Button4.Location = new System.Drawing.Point(1833, 0);
-            this.guna2Button4.Name = "guna2Button4";
-            this.guna2Button4.Size = new System.Drawing.Size(180, 931);
-            this.guna2Button4.TabIndex = 18;
-            this.guna2Button4.Text = "Lọc";
             // 
             // guna2Button3
             // 
@@ -1108,7 +1089,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1909, 990);
+            this.ClientSize = new System.Drawing.Size(1665, 857);
             this.Controls.Add(this.lbDSTonkho);
             this.Controls.Add(this.pnlTopbar);
             this.Name = "FormInventory";
@@ -1183,7 +1164,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private Guna.UI2.WinForms.Guna2Button btnLoc;
         private Guna.UI2.WinForms.Guna2TextBox txTimkiem;
         private Guna.UI2.WinForms.Guna2Panel lbDSTonkho;
-        private Guna.UI2.WinForms.Guna2Button guna2Button4;
         private Guna.UI2.WinForms.Guna2Button guna2Button3;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
