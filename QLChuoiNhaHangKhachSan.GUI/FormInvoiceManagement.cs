@@ -62,6 +62,15 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 this.btnFix.Click += BtnFix_Click;
             }
 
+            // Wire new remove (clear) button placed near the search box
+            if (this.btnRemove != null)
+            {
+                this.btnRemove.Click -= BtnRemove_Click;
+                this.btnRemove.Click += BtnRemove_Click;
+                // initial visibility depends on current text
+                this.btnRemove.Visible = !string.IsNullOrWhiteSpace(this.pnlPayment?.Text);
+            }
+
             // Wire status filter buttons (Design area)
             WireStatusFilterButtons();
 
@@ -463,11 +472,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         }
 
-        private void lblHeaderSub_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void guna2Button10_Click(object sender, EventArgs e)
         {
 
@@ -501,6 +505,34 @@ namespace QLChuoiNhaHangKhachSan.GUI
             else if (IsButtonActive(gnbtnDont)) ApplyStatusFilter(IsUnpaidRow);
             else if (IsButtonActive(gnbtnDone)) ApplyStatusFilter(IsPaidRow);
             else if (IsButtonActive(gnbtnOverdue)) ApplyStatusFilter(IsOverdueRow);
+
+            // Toggle visibility of the clear ('x') button placed next to the search box
+            if (this.btnRemove != null)
+            {
+                this.btnRemove.Visible = !string.IsNullOrWhiteSpace(this.pnlPayment.Text);
+            }
+        }
+
+        /// <summary>
+        /// Clear search text when user clicks the small 'x' button beside the search box.
+        /// The designer button is named 'btnRemove'.
+        /// </summary>
+        private void BtnRemove_Click(object sender, EventArgs e)
+        {
+            if (this.pnlPayment == null) return;
+
+            // Clearing text triggers PnlPayment_TextChanged which re-applies filters and hides the button.
+            this.pnlPayment.Text = string.Empty;
+
+            // Return focus to the search box so user can immediately type again.
+            try
+            {
+                this.pnlPayment.Focus();
+            }
+            catch
+            {
+                // ignore focus errors in designer/runtime mismatch
+            }
         }
 
         /// <summary>
@@ -598,8 +630,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             using (var preview = new PrintPreviewDialog())
             {
                 preview.Document = _printDocument;
-                preview.Width = 1000;
-                preview.Height = 700;
+                preview.Width = 1500;
+                preview.Height = 1200;
                 try
                 {
                     preview.ShowDialog(this);
@@ -616,8 +648,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             var margin = e.MarginBounds;
 
             // Larger fonts to better fill the printable area
-            var headerFont = new Font("Segoe UI", 16, FontStyle.Bold);
-            var bodyFont = new Font("Segoe UI", 12);
+            var headerFont = new Font("Segoe UI", 32, FontStyle.Bold);
+            var bodyFont = new Font("Segoe UI", 24);
             var brush = Brushes.Black;
 
             float y = margin.Top;
@@ -954,6 +986,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
             else if (btn == gnbtnOverdue) btn.BorderColor = Color.Maroon;
             else btn.BorderColor = Color.FromArgb(26, 31, 51);
             btn.Font = new Font(btn.Font, FontStyle.Bold);
+        }
+
+        private void btnRemove_Click_1(object sender, EventArgs e)
+        {
+
         }
 
         // -------------------------------------------------------------------------
