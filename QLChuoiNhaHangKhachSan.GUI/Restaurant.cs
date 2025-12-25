@@ -134,7 +134,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
         }
         private void btnGoiMon_Click(object sender, EventArgs e)
         {
-
+            frmMenu Menu = new frmMenu();
+            Menu.ShowDialog();
         }
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
@@ -179,8 +180,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             MessageBox.Show("Đã thiết lập trạng thái 'Đã đặt' cho bàn " + currentSelectedTable.Text, "Thành công");
 
             // Hiện form Menu1 (frmMenu)
-            frmMenu Menu = new frmMenu();
-            Menu.ShowDialog();
+         
 
             // Reset biến chọn (để tránh bấm nhầm lần sau)
             currentSelectedTable = null;
