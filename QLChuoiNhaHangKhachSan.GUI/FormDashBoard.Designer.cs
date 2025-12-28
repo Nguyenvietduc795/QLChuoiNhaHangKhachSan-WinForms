@@ -164,10 +164,10 @@
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlSidebar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.pnlSidebar.Location = new System.Drawing.Point(0, 0);
-            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(2);
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.ShadowDecoration.Enabled = true;
-            this.pnlSidebar.Size = new System.Drawing.Size(257, 1055);
+            this.pnlSidebar.Size = new System.Drawing.Size(193, 857);
             this.pnlSidebar.TabIndex = 0;
             this.pnlSidebar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlSidebar_Paint);
             // 
@@ -188,10 +188,10 @@
             this.flpSidebar.Controls.Add(this.pnlReport_group);
             this.flpSidebar.Controls.Add(this.pnlLogout_group);
             this.flpSidebar.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpSidebar.Location = new System.Drawing.Point(3, 2);
-            this.flpSidebar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flpSidebar.Location = new System.Drawing.Point(2, 2);
+            this.flpSidebar.Margin = new System.Windows.Forms.Padding(2);
             this.flpSidebar.Name = "flpSidebar";
-            this.flpSidebar.Size = new System.Drawing.Size(253, 1055);
+            this.flpSidebar.Size = new System.Drawing.Size(190, 857);
             this.flpSidebar.TabIndex = 12;
             this.flpSidebar.WrapContents = false;
             // 
@@ -201,10 +201,11 @@
             this.lblLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.lblLogo.Font = new System.Drawing.Font("Microsoft YaHei UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogo.ForeColor = System.Drawing.Color.White;
-            this.lblLogo.Location = new System.Drawing.Point(3, 0);
+            this.lblLogo.Location = new System.Drawing.Point(2, 0);
+            this.lblLogo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLogo.Name = "lblLogo";
-            this.lblLogo.Padding = new System.Windows.Forms.Padding(15, 5, 5, 5);
-            this.lblLogo.Size = new System.Drawing.Size(226, 54);
+            this.lblLogo.Padding = new System.Windows.Forms.Padding(11, 4, 4, 4);
+            this.lblLogo.Size = new System.Drawing.Size(184, 44);
             this.lblLogo.TabIndex = 0;
             this.lblLogo.Text = "RH-GROUP";
             this.lblLogo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -215,10 +216,11 @@
             this.lblSubLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.lblSubLogo.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubLogo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblSubLogo.Location = new System.Drawing.Point(3, 54);
+            this.lblSubLogo.Location = new System.Drawing.Point(2, 44);
+            this.lblSubLogo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSubLogo.Name = "lblSubLogo";
-            this.lblSubLogo.Padding = new System.Windows.Forms.Padding(25, 5, 5, 5);
-            this.lblSubLogo.Size = new System.Drawing.Size(212, 33);
+            this.lblSubLogo.Padding = new System.Windows.Forms.Padding(19, 4, 4, 4);
+            this.lblSubLogo.Size = new System.Drawing.Size(174, 28);
             this.lblSubLogo.TabIndex = 1;
             this.lblSubLogo.Text = "Management System";
             this.lblSubLogo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -227,20 +229,20 @@
             // 
             this.guna2Separator1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.guna2Separator1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.guna2Separator1.Location = new System.Drawing.Point(3, 89);
-            this.guna2Separator1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Separator1.Location = new System.Drawing.Point(2, 74);
+            this.guna2Separator1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Separator1.Name = "guna2Separator1";
-            this.guna2Separator1.Size = new System.Drawing.Size(235, 47);
+            this.guna2Separator1.Size = new System.Drawing.Size(176, 38);
             this.guna2Separator1.TabIndex = 11;
             // 
             // pnlHome
             // 
             this.pnlHome.Controls.Add(this.btnHome);
             this.pnlHome.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHome.Location = new System.Drawing.Point(3, 140);
-            this.pnlHome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlHome.Location = new System.Drawing.Point(2, 116);
+            this.pnlHome.Margin = new System.Windows.Forms.Padding(2);
             this.pnlHome.Name = "pnlHome";
-            this.pnlHome.Size = new System.Drawing.Size(235, 41);
+            this.pnlHome.Size = new System.Drawing.Size(184, 33);
             this.pnlHome.TabIndex = 12;
             // 
             // btnHome
@@ -262,9 +264,9 @@
             this.btnHome.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnHome.ImageSize = new System.Drawing.Size(25, 25);
             this.btnHome.Location = new System.Drawing.Point(0, 0);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(2);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(235, 38);
+            this.btnHome.Size = new System.Drawing.Size(184, 31);
             this.btnHome.TabIndex = 2;
             this.btnHome.Text = "Trang chủ";
             this.btnHome.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -277,10 +279,10 @@
             this.pnlStaff_group.Controls.Add(this.btnListStaff);
             this.pnlStaff_group.Controls.Add(this.btnStaff);
             this.pnlStaff_group.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlStaff_group.Location = new System.Drawing.Point(3, 183);
-            this.pnlStaff_group.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.pnlStaff_group.Location = new System.Drawing.Point(2, 151);
+            this.pnlStaff_group.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.pnlStaff_group.Name = "pnlStaff_group";
-            this.pnlStaff_group.Size = new System.Drawing.Size(235, 121);
+            this.pnlStaff_group.Size = new System.Drawing.Size(184, 98);
             this.pnlStaff_group.TabIndex = 13;
             // 
             // btnSalaryManage
@@ -302,10 +304,10 @@
             this.btnSalaryManage.ForeColor = System.Drawing.Color.White;
             this.btnSalaryManage.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSalaryManage.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnSalaryManage.Location = new System.Drawing.Point(0, 76);
-            this.btnSalaryManage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSalaryManage.Location = new System.Drawing.Point(0, 74);
+            this.btnSalaryManage.Margin = new System.Windows.Forms.Padding(2);
             this.btnSalaryManage.Name = "btnSalaryManage";
-            this.btnSalaryManage.Size = new System.Drawing.Size(235, 32);
+            this.btnSalaryManage.Size = new System.Drawing.Size(184, 26);
             this.btnSalaryManage.TabIndex = 5;
             this.btnSalaryManage.Text = "Quản lí tiền lương";
             this.btnSalaryManage.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -331,10 +333,10 @@
             this.btnListStaff.ForeColor = System.Drawing.Color.White;
             this.btnListStaff.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnListStaff.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnListStaff.Location = new System.Drawing.Point(0, 46);
-            this.btnListStaff.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnListStaff.Location = new System.Drawing.Point(0, 50);
+            this.btnListStaff.Margin = new System.Windows.Forms.Padding(2);
             this.btnListStaff.Name = "btnListStaff";
-            this.btnListStaff.Size = new System.Drawing.Size(235, 30);
+            this.btnListStaff.Size = new System.Drawing.Size(184, 24);
             this.btnListStaff.TabIndex = 6;
             this.btnListStaff.Text = "Danh sách nhân viên";
             this.btnListStaff.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -364,9 +366,10 @@
             this.btnStaff.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnStaff.ImageSize = new System.Drawing.Size(25, 25);
             this.btnStaff.Location = new System.Drawing.Point(0, 0);
-            this.btnStaff.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnStaff.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStaff.MinimumSize = new System.Drawing.Size(0, 50);
             this.btnStaff.Name = "btnStaff";
-            this.btnStaff.Size = new System.Drawing.Size(235, 46);
+            this.btnStaff.Size = new System.Drawing.Size(184, 50);
             this.btnStaff.TabIndex = 3;
             this.btnStaff.Text = "Nhân viên";
             this.btnStaff.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -378,10 +381,10 @@
             this.pnlCustomer_group.Controls.Add(this.btnLoyaltyProgram);
             this.pnlCustomer_group.Controls.Add(this.btnCustomerList);
             this.pnlCustomer_group.Controls.Add(this.btnCustomers);
-            this.pnlCustomer_group.Location = new System.Drawing.Point(3, 304);
-            this.pnlCustomer_group.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.pnlCustomer_group.Location = new System.Drawing.Point(2, 249);
+            this.pnlCustomer_group.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.pnlCustomer_group.Name = "pnlCustomer_group";
-            this.pnlCustomer_group.Size = new System.Drawing.Size(235, 124);
+            this.pnlCustomer_group.Size = new System.Drawing.Size(176, 101);
             this.pnlCustomer_group.TabIndex = 14;
             // 
             // btnLoyaltyProgram
@@ -403,10 +406,10 @@
             this.btnLoyaltyProgram.ForeColor = System.Drawing.Color.White;
             this.btnLoyaltyProgram.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnLoyaltyProgram.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnLoyaltyProgram.Location = new System.Drawing.Point(0, 78);
-            this.btnLoyaltyProgram.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLoyaltyProgram.Location = new System.Drawing.Point(0, 79);
+            this.btnLoyaltyProgram.Margin = new System.Windows.Forms.Padding(2);
             this.btnLoyaltyProgram.Name = "btnLoyaltyProgram";
-            this.btnLoyaltyProgram.Size = new System.Drawing.Size(235, 39);
+            this.btnLoyaltyProgram.Size = new System.Drawing.Size(176, 32);
             this.btnLoyaltyProgram.TabIndex = 8;
             this.btnLoyaltyProgram.Text = "Khách hàng thân thiết";
             this.btnLoyaltyProgram.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -432,10 +435,10 @@
             this.btnCustomerList.ForeColor = System.Drawing.Color.White;
             this.btnCustomerList.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnCustomerList.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnCustomerList.Location = new System.Drawing.Point(0, 42);
-            this.btnCustomerList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCustomerList.Location = new System.Drawing.Point(0, 50);
+            this.btnCustomerList.Margin = new System.Windows.Forms.Padding(2);
             this.btnCustomerList.Name = "btnCustomerList";
-            this.btnCustomerList.Size = new System.Drawing.Size(235, 36);
+            this.btnCustomerList.Size = new System.Drawing.Size(176, 29);
             this.btnCustomerList.TabIndex = 7;
             this.btnCustomerList.Text = "Danh sách khách hàng";
             this.btnCustomerList.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -464,9 +467,10 @@
             this.btnCustomers.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnCustomers.ImageSize = new System.Drawing.Size(25, 25);
             this.btnCustomers.Location = new System.Drawing.Point(0, 0);
-            this.btnCustomers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCustomers.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCustomers.MinimumSize = new System.Drawing.Size(0, 50);
             this.btnCustomers.Name = "btnCustomers";
-            this.btnCustomers.Size = new System.Drawing.Size(235, 42);
+            this.btnCustomers.Size = new System.Drawing.Size(176, 50);
             this.btnCustomers.TabIndex = 4;
             this.btnCustomers.Text = "Khách hàng";
             this.btnCustomers.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -478,10 +482,10 @@
             this.pnlHotel_group.Controls.Add(this.btnBookingRoom);
             this.pnlHotel_group.Controls.Add(this.btnRoomList);
             this.pnlHotel_group.Controls.Add(this.btnHotels);
-            this.pnlHotel_group.Location = new System.Drawing.Point(3, 428);
-            this.pnlHotel_group.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.pnlHotel_group.Location = new System.Drawing.Point(2, 350);
+            this.pnlHotel_group.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.pnlHotel_group.Name = "pnlHotel_group";
-            this.pnlHotel_group.Size = new System.Drawing.Size(235, 113);
+            this.pnlHotel_group.Size = new System.Drawing.Size(176, 92);
             this.pnlHotel_group.TabIndex = 15;
             // 
             // btnBookingRoom
@@ -503,10 +507,10 @@
             this.btnBookingRoom.ForeColor = System.Drawing.Color.White;
             this.btnBookingRoom.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnBookingRoom.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnBookingRoom.Location = new System.Drawing.Point(0, 74);
-            this.btnBookingRoom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBookingRoom.Location = new System.Drawing.Point(0, 76);
+            this.btnBookingRoom.Margin = new System.Windows.Forms.Padding(2);
             this.btnBookingRoom.Name = "btnBookingRoom";
-            this.btnBookingRoom.Size = new System.Drawing.Size(235, 31);
+            this.btnBookingRoom.Size = new System.Drawing.Size(176, 25);
             this.btnBookingRoom.TabIndex = 9;
             this.btnBookingRoom.Text = "Đặt phòng";
             this.btnBookingRoom.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -532,10 +536,10 @@
             this.btnRoomList.ForeColor = System.Drawing.Color.White;
             this.btnRoomList.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnRoomList.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnRoomList.Location = new System.Drawing.Point(0, 42);
-            this.btnRoomList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRoomList.Location = new System.Drawing.Point(0, 50);
+            this.btnRoomList.Margin = new System.Windows.Forms.Padding(2);
             this.btnRoomList.Name = "btnRoomList";
-            this.btnRoomList.Size = new System.Drawing.Size(235, 32);
+            this.btnRoomList.Size = new System.Drawing.Size(176, 26);
             this.btnRoomList.TabIndex = 8;
             this.btnRoomList.Text = "Danh sách phòng";
             this.btnRoomList.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -564,9 +568,10 @@
             this.btnHotels.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnHotels.ImageSize = new System.Drawing.Size(25, 25);
             this.btnHotels.Location = new System.Drawing.Point(0, 0);
-            this.btnHotels.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHotels.Margin = new System.Windows.Forms.Padding(2);
+            this.btnHotels.MinimumSize = new System.Drawing.Size(0, 50);
             this.btnHotels.Name = "btnHotels";
-            this.btnHotels.Size = new System.Drawing.Size(235, 42);
+            this.btnHotels.Size = new System.Drawing.Size(176, 50);
             this.btnHotels.TabIndex = 6;
             this.btnHotels.Text = "Khách sạn";
             this.btnHotels.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -578,10 +583,10 @@
             this.pnlRestaurent_group.Controls.Add(this.btnMenu);
             this.pnlRestaurent_group.Controls.Add(this.btnTableList);
             this.pnlRestaurent_group.Controls.Add(this.btnRestaurants);
-            this.pnlRestaurent_group.Location = new System.Drawing.Point(3, 541);
-            this.pnlRestaurent_group.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.pnlRestaurent_group.Location = new System.Drawing.Point(2, 442);
+            this.pnlRestaurent_group.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.pnlRestaurent_group.Name = "pnlRestaurent_group";
-            this.pnlRestaurent_group.Size = new System.Drawing.Size(235, 114);
+            this.pnlRestaurent_group.Size = new System.Drawing.Size(176, 93);
             this.pnlRestaurent_group.TabIndex = 16;
             // 
             // btnMenu
@@ -604,11 +609,11 @@
             this.btnMenu.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnMenu.ImageSize = new System.Drawing.Size(25, 25);
             this.btnMenu.Location = new System.Drawing.Point(0, 81);
-            this.btnMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMenu.Margin = new System.Windows.Forms.Padding(2);
             this.btnMenu.Name = "btnMenu";
-            this.btnMenu.Size = new System.Drawing.Size(235, 30);
+            this.btnMenu.Size = new System.Drawing.Size(176, 24);
             this.btnMenu.TabIndex = 10;
-            this.btnMenu.Text = "Menu";
+            this.btnMenu.Text = "Quản lý món ăn";
             this.btnMenu.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnMenu.TextOffset = new System.Drawing.Point(20, 0);
             this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
@@ -632,10 +637,10 @@
             this.btnTableList.ForeColor = System.Drawing.Color.White;
             this.btnTableList.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnTableList.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnTableList.Location = new System.Drawing.Point(0, 43);
-            this.btnTableList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTableList.Location = new System.Drawing.Point(0, 50);
+            this.btnTableList.Margin = new System.Windows.Forms.Padding(2);
             this.btnTableList.Name = "btnTableList";
-            this.btnTableList.Size = new System.Drawing.Size(235, 38);
+            this.btnTableList.Size = new System.Drawing.Size(176, 31);
             this.btnTableList.TabIndex = 9;
             this.btnTableList.Text = "Danh sách bàn";
             this.btnTableList.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -664,9 +669,10 @@
             this.btnRestaurants.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnRestaurants.ImageSize = new System.Drawing.Size(25, 25);
             this.btnRestaurants.Location = new System.Drawing.Point(0, 0);
-            this.btnRestaurants.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRestaurants.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRestaurants.MinimumSize = new System.Drawing.Size(0, 50);
             this.btnRestaurants.Name = "btnRestaurants";
-            this.btnRestaurants.Size = new System.Drawing.Size(235, 43);
+            this.btnRestaurants.Size = new System.Drawing.Size(176, 50);
             this.btnRestaurants.TabIndex = 5;
             this.btnRestaurants.Text = "Nhà hàng";
             this.btnRestaurants.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -678,10 +684,10 @@
             this.pnlInvetory_group.Controls.Add(this.btnEquipment);
             this.pnlInvetory_group.Controls.Add(this.btnIngredient);
             this.pnlInvetory_group.Controls.Add(this.btnInventory);
-            this.pnlInvetory_group.Location = new System.Drawing.Point(3, 655);
-            this.pnlInvetory_group.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.pnlInvetory_group.Location = new System.Drawing.Point(2, 535);
+            this.pnlInvetory_group.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.pnlInvetory_group.Name = "pnlInvetory_group";
-            this.pnlInvetory_group.Size = new System.Drawing.Size(235, 119);
+            this.pnlInvetory_group.Size = new System.Drawing.Size(176, 97);
             this.pnlInvetory_group.TabIndex = 15;
             // 
             // btnEquipment
@@ -703,10 +709,10 @@
             this.btnEquipment.ForeColor = System.Drawing.Color.White;
             this.btnEquipment.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnEquipment.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnEquipment.Location = new System.Drawing.Point(0, 80);
-            this.btnEquipment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnEquipment.Location = new System.Drawing.Point(0, 78);
+            this.btnEquipment.Margin = new System.Windows.Forms.Padding(2);
             this.btnEquipment.Name = "btnEquipment";
-            this.btnEquipment.Size = new System.Drawing.Size(235, 36);
+            this.btnEquipment.Size = new System.Drawing.Size(176, 29);
             this.btnEquipment.TabIndex = 11;
             this.btnEquipment.Text = "Quản lý phiếu";
             this.btnEquipment.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -732,10 +738,10 @@
             this.btnIngredient.ForeColor = System.Drawing.Color.White;
             this.btnIngredient.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnIngredient.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnIngredient.Location = new System.Drawing.Point(0, 46);
-            this.btnIngredient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnIngredient.Location = new System.Drawing.Point(0, 50);
+            this.btnIngredient.Margin = new System.Windows.Forms.Padding(2);
             this.btnIngredient.Name = "btnIngredient";
-            this.btnIngredient.Size = new System.Drawing.Size(235, 34);
+            this.btnIngredient.Size = new System.Drawing.Size(176, 28);
             this.btnIngredient.TabIndex = 10;
             this.btnIngredient.Text = "Quản lý kho";
             this.btnIngredient.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -764,9 +770,10 @@
             this.btnInventory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnInventory.ImageSize = new System.Drawing.Size(25, 25);
             this.btnInventory.Location = new System.Drawing.Point(0, 0);
-            this.btnInventory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnInventory.Margin = new System.Windows.Forms.Padding(2);
+            this.btnInventory.MinimumSize = new System.Drawing.Size(0, 50);
             this.btnInventory.Name = "btnInventory";
-            this.btnInventory.Size = new System.Drawing.Size(235, 46);
+            this.btnInventory.Size = new System.Drawing.Size(176, 50);
             this.btnInventory.TabIndex = 7;
             this.btnInventory.Text = "Kho";
             this.btnInventory.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -778,10 +785,10 @@
             this.pnlPayment_group.Controls.Add(this.btnTransaction);
             this.pnlPayment_group.Controls.Add(this.btnInvoice);
             this.pnlPayment_group.Controls.Add(this.btnPayments);
-            this.pnlPayment_group.Location = new System.Drawing.Point(3, 774);
-            this.pnlPayment_group.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.pnlPayment_group.Location = new System.Drawing.Point(2, 632);
+            this.pnlPayment_group.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.pnlPayment_group.Name = "pnlPayment_group";
-            this.pnlPayment_group.Size = new System.Drawing.Size(235, 130);
+            this.pnlPayment_group.Size = new System.Drawing.Size(176, 106);
             this.pnlPayment_group.TabIndex = 15;
             // 
             // btnTransaction
@@ -803,10 +810,10 @@
             this.btnTransaction.ForeColor = System.Drawing.Color.White;
             this.btnTransaction.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnTransaction.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnTransaction.Location = new System.Drawing.Point(0, 80);
-            this.btnTransaction.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTransaction.Location = new System.Drawing.Point(0, 78);
+            this.btnTransaction.Margin = new System.Windows.Forms.Padding(2);
             this.btnTransaction.Name = "btnTransaction";
-            this.btnTransaction.Size = new System.Drawing.Size(235, 34);
+            this.btnTransaction.Size = new System.Drawing.Size(176, 28);
             this.btnTransaction.TabIndex = 12;
             this.btnTransaction.Text = "Giao dịch";
             this.btnTransaction.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -832,10 +839,10 @@
             this.btnInvoice.ForeColor = System.Drawing.Color.White;
             this.btnInvoice.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnInvoice.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnInvoice.Location = new System.Drawing.Point(0, 46);
-            this.btnInvoice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnInvoice.Location = new System.Drawing.Point(0, 50);
+            this.btnInvoice.Margin = new System.Windows.Forms.Padding(2);
             this.btnInvoice.Name = "btnInvoice";
-            this.btnInvoice.Size = new System.Drawing.Size(235, 34);
+            this.btnInvoice.Size = new System.Drawing.Size(176, 28);
             this.btnInvoice.TabIndex = 11;
             this.btnInvoice.Text = "Hóa đơn";
             this.btnInvoice.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -864,9 +871,10 @@
             this.btnPayments.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnPayments.ImageSize = new System.Drawing.Size(25, 25);
             this.btnPayments.Location = new System.Drawing.Point(0, 0);
-            this.btnPayments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPayments.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPayments.MinimumSize = new System.Drawing.Size(0, 50);
             this.btnPayments.Name = "btnPayments";
-            this.btnPayments.Size = new System.Drawing.Size(235, 46);
+            this.btnPayments.Size = new System.Drawing.Size(176, 50);
             this.btnPayments.TabIndex = 8;
             this.btnPayments.Text = "Thanh toán";
             this.btnPayments.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -878,10 +886,10 @@
             this.pnlReport_group.Controls.Add(this.btnTotalCustomer);
             this.pnlReport_group.Controls.Add(this.btnFinancial);
             this.pnlReport_group.Controls.Add(this.btnReports);
-            this.pnlReport_group.Location = new System.Drawing.Point(3, 904);
-            this.pnlReport_group.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.pnlReport_group.Location = new System.Drawing.Point(2, 738);
+            this.pnlReport_group.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.pnlReport_group.Name = "pnlReport_group";
-            this.pnlReport_group.Size = new System.Drawing.Size(235, 123);
+            this.pnlReport_group.Size = new System.Drawing.Size(176, 100);
             this.pnlReport_group.TabIndex = 16;
             // 
             // btnTotalCustomer
@@ -903,10 +911,10 @@
             this.btnTotalCustomer.ForeColor = System.Drawing.Color.White;
             this.btnTotalCustomer.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnTotalCustomer.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnTotalCustomer.Location = new System.Drawing.Point(0, 80);
-            this.btnTotalCustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTotalCustomer.Location = new System.Drawing.Point(0, 78);
+            this.btnTotalCustomer.Margin = new System.Windows.Forms.Padding(2);
             this.btnTotalCustomer.Name = "btnTotalCustomer";
-            this.btnTotalCustomer.Size = new System.Drawing.Size(235, 34);
+            this.btnTotalCustomer.Size = new System.Drawing.Size(176, 28);
             this.btnTotalCustomer.TabIndex = 13;
             this.btnTotalCustomer.Text = "Tổng lượng khách";
             this.btnTotalCustomer.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -932,10 +940,10 @@
             this.btnFinancial.ForeColor = System.Drawing.Color.White;
             this.btnFinancial.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnFinancial.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnFinancial.Location = new System.Drawing.Point(0, 46);
-            this.btnFinancial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnFinancial.Location = new System.Drawing.Point(0, 50);
+            this.btnFinancial.Margin = new System.Windows.Forms.Padding(2);
             this.btnFinancial.Name = "btnFinancial";
-            this.btnFinancial.Size = new System.Drawing.Size(235, 34);
+            this.btnFinancial.Size = new System.Drawing.Size(176, 28);
             this.btnFinancial.TabIndex = 12;
             this.btnFinancial.Text = "Doanh thu";
             this.btnFinancial.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -964,9 +972,10 @@
             this.btnReports.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnReports.ImageSize = new System.Drawing.Size(25, 25);
             this.btnReports.Location = new System.Drawing.Point(0, 0);
-            this.btnReports.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReports.Margin = new System.Windows.Forms.Padding(2);
+            this.btnReports.MinimumSize = new System.Drawing.Size(0, 50);
             this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(235, 46);
+            this.btnReports.Size = new System.Drawing.Size(176, 50);
             this.btnReports.TabIndex = 9;
             this.btnReports.Text = "Báo cáo";
             this.btnReports.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -977,10 +986,10 @@
             // 
             this.pnlLogout_group.Controls.Add(this.btnLogout);
             this.pnlLogout_group.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlLogout_group.Location = new System.Drawing.Point(3, 1029);
-            this.pnlLogout_group.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlLogout_group.Location = new System.Drawing.Point(2, 840);
+            this.pnlLogout_group.Margin = new System.Windows.Forms.Padding(2);
             this.pnlLogout_group.Name = "pnlLogout_group";
-            this.pnlLogout_group.Size = new System.Drawing.Size(235, 60);
+            this.pnlLogout_group.Size = new System.Drawing.Size(184, 49);
             this.pnlLogout_group.TabIndex = 17;
             // 
             // btnLogout
@@ -1003,9 +1012,9 @@
             this.btnLogout.ImageOffset = new System.Drawing.Point(15, 0);
             this.btnLogout.ImageSize = new System.Drawing.Size(25, 25);
             this.btnLogout.Location = new System.Drawing.Point(0, 0);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(235, 31);
+            this.btnLogout.Size = new System.Drawing.Size(184, 25);
             this.btnLogout.TabIndex = 10;
             this.btnLogout.Text = "Đăng xuất";
             this.btnLogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1020,12 +1029,11 @@
             this.pnlHeader.Controls.Add(this.picUserAvt);
             this.pnlHeader.Controls.Add(this.btnNotification);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader.Location = new System.Drawing.Point(257, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlHeader.Location = new System.Drawing.Point(193, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.pnlHeader.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
             this.pnlHeader.ShadowDecoration.Enabled = true;
-            this.pnlHeader.Size = new System.Drawing.Size(1596, 140);
+            this.pnlHeader.Size = new System.Drawing.Size(1197, 114);
             this.pnlHeader.TabIndex = 1;
             // 
             // pnlDesktop
@@ -1033,10 +1041,10 @@
             this.pnlDesktop.Controls.Add(this.lblWelcomeSubtitle);
             this.pnlDesktop.Controls.Add(this.lblWelcomeTitle);
             this.pnlDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDesktop.Location = new System.Drawing.Point(27, 0);
-            this.pnlDesktop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlDesktop.Location = new System.Drawing.Point(20, 0);
+            this.pnlDesktop.Margin = new System.Windows.Forms.Padding(2);
             this.pnlDesktop.Name = "pnlDesktop";
-            this.pnlDesktop.Size = new System.Drawing.Size(1542, 140);
+            this.pnlDesktop.Size = new System.Drawing.Size(1157, 114);
             this.pnlDesktop.TabIndex = 6;
             // 
             // lblWelcomeSubtitle
@@ -1044,10 +1052,9 @@
             this.lblWelcomeSubtitle.BackColor = System.Drawing.Color.Transparent;
             this.lblWelcomeSubtitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWelcomeSubtitle.ForeColor = System.Drawing.Color.Gray;
-            this.lblWelcomeSubtitle.Location = new System.Drawing.Point(21, 76);
-            this.lblWelcomeSubtitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lblWelcomeSubtitle.Location = new System.Drawing.Point(16, 62);
             this.lblWelcomeSubtitle.Name = "lblWelcomeSubtitle";
-            this.lblWelcomeSubtitle.Size = new System.Drawing.Size(366, 22);
+            this.lblWelcomeSubtitle.Size = new System.Drawing.Size(294, 19);
             this.lblWelcomeSubtitle.TabIndex = 1;
             this.lblWelcomeSubtitle.Text = "Here\'s what\'s happening with your business today";
             // 
@@ -1056,10 +1063,9 @@
             this.lblWelcomeTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblWelcomeTitle.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWelcomeTitle.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblWelcomeTitle.Location = new System.Drawing.Point(24, 15);
-            this.lblWelcomeTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lblWelcomeTitle.Location = new System.Drawing.Point(18, 12);
             this.lblWelcomeTitle.Name = "lblWelcomeTitle";
-            this.lblWelcomeTitle.Size = new System.Drawing.Size(240, 47);
+            this.lblWelcomeTitle.Size = new System.Drawing.Size(190, 38);
             this.lblWelcomeTitle.TabIndex = 0;
             this.lblWelcomeTitle.Text = "Welcome Back!";
             // 
@@ -1069,10 +1075,9 @@
             this.lblUserRole.AutoSize = true;
             this.lblUserRole.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserRole.ForeColor = System.Drawing.Color.Gray;
-            this.lblUserRole.Location = new System.Drawing.Point(1456, 65);
-            this.lblUserRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUserRole.Location = new System.Drawing.Point(1092, 53);
             this.lblUserRole.Name = "lblUserRole";
-            this.lblUserRole.Size = new System.Drawing.Size(93, 19);
+            this.lblUserRole.Size = new System.Drawing.Size(79, 16);
             this.lblUserRole.TabIndex = 5;
             this.lblUserRole.Text = "Administrator";
             this.lblUserRole.Click += new System.EventHandler(this.lblUserRole_Click);
@@ -1082,10 +1087,9 @@
             this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(1456, 36);
-            this.lblUserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUserName.Location = new System.Drawing.Point(1092, 29);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(67, 24);
+            this.lblUserName.Size = new System.Drawing.Size(56, 19);
             this.lblUserName.TabIndex = 4;
             this.lblUserName.Text = "Admin";
             // 
@@ -1094,11 +1098,10 @@
             this.picUserAvt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picUserAvt.Image = ((System.Drawing.Image)(resources.GetObject("picUserAvt.Image")));
             this.picUserAvt.ImageRotate = 0F;
-            this.picUserAvt.Location = new System.Drawing.Point(1372, 32);
-            this.picUserAvt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.picUserAvt.Location = new System.Drawing.Point(1029, 26);
             this.picUserAvt.Name = "picUserAvt";
             this.picUserAvt.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.picUserAvt.Size = new System.Drawing.Size(75, 69);
+            this.picUserAvt.Size = new System.Drawing.Size(56, 56);
             this.picUserAvt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picUserAvt.TabIndex = 3;
             this.picUserAvt.TabStop = false;
@@ -1115,10 +1118,9 @@
             this.btnNotification.ForeColor = System.Drawing.Color.White;
             this.btnNotification.Image = ((System.Drawing.Image)(resources.GetObject("btnNotification.Image")));
             this.btnNotification.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnNotification.Location = new System.Drawing.Point(1281, 57);
-            this.btnNotification.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNotification.Location = new System.Drawing.Point(961, 46);
             this.btnNotification.Name = "btnNotification";
-            this.btnNotification.Size = new System.Drawing.Size(33, 31);
+            this.btnNotification.Size = new System.Drawing.Size(25, 25);
             this.btnNotification.TabIndex = 2;
             // 
             // btnCardValue
@@ -1135,13 +1137,12 @@
             this.btnCardValue.HoverState.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnCardValue.HoverState.FillColor = System.Drawing.Color.White;
             this.btnCardValue.ImageOffset = new System.Drawing.Point(0, -2);
-            this.btnCardValue.Location = new System.Drawing.Point(296, 161);
-            this.btnCardValue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCardValue.Location = new System.Drawing.Point(222, 131);
             this.btnCardValue.Name = "btnCardValue";
             this.btnCardValue.ShadowDecoration.BorderRadius = 15;
             this.btnCardValue.ShadowDecoration.Color = System.Drawing.Color.Gainsboro;
             this.btnCardValue.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(10);
-            this.btnCardValue.Size = new System.Drawing.Size(331, 208);
+            this.btnCardValue.Size = new System.Drawing.Size(248, 169);
             this.btnCardValue.TabIndex = 2;
             // 
             // btnIconRevenue
@@ -1156,10 +1157,9 @@
             this.btnIconRevenue.ForeColor = System.Drawing.Color.White;
             this.btnIconRevenue.Image = ((System.Drawing.Image)(resources.GetObject("btnIconRevenue.Image")));
             this.btnIconRevenue.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnIconRevenue.Location = new System.Drawing.Point(316, 170);
-            this.btnIconRevenue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIconRevenue.Location = new System.Drawing.Point(237, 138);
             this.btnIconRevenue.Name = "btnIconRevenue";
-            this.btnIconRevenue.Size = new System.Drawing.Size(60, 55);
+            this.btnIconRevenue.Size = new System.Drawing.Size(45, 45);
             this.btnIconRevenue.TabIndex = 3;
             // 
             // chipTrendRevenue
@@ -1167,10 +1167,9 @@
             this.chipTrendRevenue.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(247)))), ((int)(((byte)(227)))));
             this.chipTrendRevenue.Font = new System.Drawing.Font("Segoe UI", 9.5F);
             this.chipTrendRevenue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(182)))), ((int)(((byte)(155)))));
-            this.chipTrendRevenue.Location = new System.Drawing.Point(493, 186);
-            this.chipTrendRevenue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chipTrendRevenue.Location = new System.Drawing.Point(370, 151);
             this.chipTrendRevenue.Name = "chipTrendRevenue";
-            this.chipTrendRevenue.Size = new System.Drawing.Size(113, 39);
+            this.chipTrendRevenue.Size = new System.Drawing.Size(85, 32);
             this.chipTrendRevenue.TabIndex = 4;
             this.chipTrendRevenue.Text = "12,5%";
             // 
@@ -1178,10 +1177,9 @@
             // 
             this.lblStatValue.BackColor = System.Drawing.Color.White;
             this.lblStatValue.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatValue.Location = new System.Drawing.Point(316, 251);
-            this.lblStatValue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lblStatValue.Location = new System.Drawing.Point(237, 204);
             this.lblStatValue.Name = "lblStatValue";
-            this.lblStatValue.Size = new System.Drawing.Size(126, 42);
+            this.lblStatValue.Size = new System.Drawing.Size(100, 33);
             this.lblStatValue.TabIndex = 5;
             this.lblStatValue.Text = "$45,232";
             // 
@@ -1190,10 +1188,9 @@
             this.lblStatTitle.BackColor = System.Drawing.Color.White;
             this.lblStatTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatTitle.ForeColor = System.Drawing.Color.Gray;
-            this.lblStatTitle.Location = new System.Drawing.Point(316, 321);
-            this.lblStatTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lblStatTitle.Location = new System.Drawing.Point(237, 261);
             this.lblStatTitle.Name = "lblStatTitle";
-            this.lblStatTitle.Size = new System.Drawing.Size(119, 22);
+            this.lblStatTitle.Size = new System.Drawing.Size(96, 19);
             this.lblStatTitle.TabIndex = 6;
             this.lblStatTitle.Text = "Tổng doanh thu";
             // 
@@ -1202,10 +1199,9 @@
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(711, 321);
-            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(533, 261);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(108, 22);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(89, 19);
             this.guna2HtmlLabel1.TabIndex = 11;
             this.guna2HtmlLabel1.Text = "Số khách hàng";
             // 
@@ -1213,10 +1209,9 @@
             // 
             this.guna2HtmlLabel2.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel2.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel2.Location = new System.Drawing.Point(711, 251);
-            this.guna2HtmlLabel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2HtmlLabel2.Location = new System.Drawing.Point(533, 204);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(88, 42);
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(70, 33);
             this.guna2HtmlLabel2.TabIndex = 10;
             this.guna2HtmlLabel2.Text = "1.883";
             // 
@@ -1225,10 +1220,9 @@
             this.guna2Chip1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(247)))), ((int)(((byte)(227)))));
             this.guna2Chip1.Font = new System.Drawing.Font("Segoe UI", 9.5F);
             this.guna2Chip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(182)))), ((int)(((byte)(155)))));
-            this.guna2Chip1.Location = new System.Drawing.Point(907, 186);
-            this.guna2Chip1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2Chip1.Location = new System.Drawing.Point(680, 151);
             this.guna2Chip1.Name = "guna2Chip1";
-            this.guna2Chip1.Size = new System.Drawing.Size(113, 39);
+            this.guna2Chip1.Size = new System.Drawing.Size(85, 32);
             this.guna2Chip1.TabIndex = 9;
             this.guna2Chip1.Text = "8,5%";
             // 
@@ -1244,10 +1238,9 @@
             this.guna2Button1.ForeColor = System.Drawing.Color.White;
             this.guna2Button1.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button1.Image")));
             this.guna2Button1.ImageSize = new System.Drawing.Size(25, 25);
-            this.guna2Button1.Location = new System.Drawing.Point(711, 170);
-            this.guna2Button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2Button1.Location = new System.Drawing.Point(533, 138);
             this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(60, 55);
+            this.guna2Button1.Size = new System.Drawing.Size(45, 45);
             this.guna2Button1.TabIndex = 8;
             // 
             // btnTotalCustomers
@@ -1263,25 +1256,24 @@
             this.btnTotalCustomers.ForeColor = System.Drawing.Color.White;
             this.btnTotalCustomers.HoverState.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnTotalCustomers.HoverState.FillColor = System.Drawing.Color.White;
-            this.btnTotalCustomers.Location = new System.Drawing.Point(691, 161);
-            this.btnTotalCustomers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTotalCustomers.Location = new System.Drawing.Point(518, 131);
             this.btnTotalCustomers.Name = "btnTotalCustomers";
             this.btnTotalCustomers.ShadowDecoration.BorderRadius = 15;
             this.btnTotalCustomers.ShadowDecoration.Color = System.Drawing.Color.Gainsboro;
             this.btnTotalCustomers.ShadowDecoration.Enabled = true;
             this.btnTotalCustomers.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(10);
-            this.btnTotalCustomers.Size = new System.Drawing.Size(349, 208);
+            this.btnTotalCustomers.Size = new System.Drawing.Size(262, 169);
             this.btnTotalCustomers.TabIndex = 7;
+            this.btnTotalCustomers.Text = "+";
             // 
             // guna2HtmlLabel3
             // 
             this.guna2HtmlLabel3.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(1123, 322);
-            this.guna2HtmlLabel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2HtmlLabel3.Location = new System.Drawing.Point(842, 262);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(138, 22);
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(114, 19);
             this.guna2HtmlLabel3.TabIndex = 16;
             this.guna2HtmlLabel3.Text = "Booking khách sạn";
             // 
@@ -1289,10 +1281,9 @@
             // 
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel4.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(1123, 254);
-            this.guna2HtmlLabel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(842, 206);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(60, 42);
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(48, 33);
             this.guna2HtmlLabel4.TabIndex = 15;
             this.guna2HtmlLabel4.Text = "725";
             // 
@@ -1301,10 +1292,9 @@
             this.guna2Chip2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(247)))), ((int)(((byte)(227)))));
             this.guna2Chip2.Font = new System.Drawing.Font("Segoe UI", 9.5F);
             this.guna2Chip2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(182)))), ((int)(((byte)(155)))));
-            this.guna2Chip2.Location = new System.Drawing.Point(1300, 188);
-            this.guna2Chip2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2Chip2.Location = new System.Drawing.Point(975, 153);
             this.guna2Chip2.Name = "guna2Chip2";
-            this.guna2Chip2.Size = new System.Drawing.Size(113, 39);
+            this.guna2Chip2.Size = new System.Drawing.Size(85, 32);
             this.guna2Chip2.TabIndex = 14;
             this.guna2Chip2.Text = "3,2%";
             // 
@@ -1320,10 +1310,9 @@
             this.guna2Button3.ForeColor = System.Drawing.Color.White;
             this.guna2Button3.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button3.Image")));
             this.guna2Button3.ImageSize = new System.Drawing.Size(25, 25);
-            this.guna2Button3.Location = new System.Drawing.Point(1123, 172);
-            this.guna2Button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2Button3.Location = new System.Drawing.Point(842, 140);
             this.guna2Button3.Name = "guna2Button3";
-            this.guna2Button3.Size = new System.Drawing.Size(60, 55);
+            this.guna2Button3.Size = new System.Drawing.Size(45, 45);
             this.guna2Button3.TabIndex = 13;
             // 
             // btnRoomBooking
@@ -1339,14 +1328,13 @@
             this.btnRoomBooking.ForeColor = System.Drawing.Color.White;
             this.btnRoomBooking.HoverState.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnRoomBooking.HoverState.FillColor = System.Drawing.Color.White;
-            this.btnRoomBooking.Location = new System.Drawing.Point(1103, 162);
-            this.btnRoomBooking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRoomBooking.Location = new System.Drawing.Point(827, 132);
             this.btnRoomBooking.Name = "btnRoomBooking";
             this.btnRoomBooking.ShadowDecoration.BorderRadius = 15;
             this.btnRoomBooking.ShadowDecoration.Color = System.Drawing.Color.Gainsboro;
             this.btnRoomBooking.ShadowDecoration.Enabled = true;
             this.btnRoomBooking.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(10);
-            this.btnRoomBooking.Size = new System.Drawing.Size(339, 208);
+            this.btnRoomBooking.Size = new System.Drawing.Size(254, 169);
             this.btnRoomBooking.TabIndex = 12;
             // 
             // guna2HtmlLabel5
@@ -1354,10 +1342,9 @@
             this.guna2HtmlLabel5.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel5.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel5.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel5.Location = new System.Drawing.Point(1496, 322);
-            this.guna2HtmlLabel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2HtmlLabel5.Location = new System.Drawing.Point(1122, 262);
             this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            this.guna2HtmlLabel5.Size = new System.Drawing.Size(133, 22);
+            this.guna2HtmlLabel5.Size = new System.Drawing.Size(110, 19);
             this.guna2HtmlLabel5.TabIndex = 21;
             this.guna2HtmlLabel5.Text = "Booking nhà hàng";
             // 
@@ -1365,10 +1352,9 @@
             // 
             this.guna2HtmlLabel6.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel6.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel6.Location = new System.Drawing.Point(1496, 257);
-            this.guna2HtmlLabel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2HtmlLabel6.Location = new System.Drawing.Point(1122, 209);
             this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            this.guna2HtmlLabel6.Size = new System.Drawing.Size(60, 42);
+            this.guna2HtmlLabel6.Size = new System.Drawing.Size(48, 33);
             this.guna2HtmlLabel6.TabIndex = 20;
             this.guna2HtmlLabel6.Text = "365";
             // 
@@ -1377,10 +1363,9 @@
             this.guna2Chip3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.guna2Chip3.Font = new System.Drawing.Font("Segoe UI", 9.5F);
             this.guna2Chip3.ForeColor = System.Drawing.Color.Maroon;
-            this.guna2Chip3.Location = new System.Drawing.Point(1680, 188);
-            this.guna2Chip3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2Chip3.Location = new System.Drawing.Point(1260, 153);
             this.guna2Chip3.Name = "guna2Chip3";
-            this.guna2Chip3.Size = new System.Drawing.Size(113, 39);
+            this.guna2Chip3.Size = new System.Drawing.Size(85, 32);
             this.guna2Chip3.TabIndex = 19;
             this.guna2Chip3.Text = "2,2%";
             // 
@@ -1396,10 +1381,9 @@
             this.guna2Button5.ForeColor = System.Drawing.Color.White;
             this.guna2Button5.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button5.Image")));
             this.guna2Button5.ImageSize = new System.Drawing.Size(25, 25);
-            this.guna2Button5.Location = new System.Drawing.Point(1496, 172);
-            this.guna2Button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2Button5.Location = new System.Drawing.Point(1122, 140);
             this.guna2Button5.Name = "guna2Button5";
-            this.guna2Button5.Size = new System.Drawing.Size(60, 55);
+            this.guna2Button5.Size = new System.Drawing.Size(45, 45);
             this.guna2Button5.TabIndex = 18;
             // 
             // btnRestaurentBooking
@@ -1415,14 +1399,13 @@
             this.btnRestaurentBooking.ForeColor = System.Drawing.Color.White;
             this.btnRestaurentBooking.HoverState.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnRestaurentBooking.HoverState.FillColor = System.Drawing.Color.White;
-            this.btnRestaurentBooking.Location = new System.Drawing.Point(1476, 162);
-            this.btnRestaurentBooking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRestaurentBooking.Location = new System.Drawing.Point(1107, 132);
             this.btnRestaurentBooking.Name = "btnRestaurentBooking";
             this.btnRestaurentBooking.ShadowDecoration.BorderRadius = 15;
             this.btnRestaurentBooking.ShadowDecoration.Color = System.Drawing.Color.Gainsboro;
             this.btnRestaurentBooking.ShadowDecoration.Enabled = true;
             this.btnRestaurentBooking.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(10);
-            this.btnRestaurentBooking.Size = new System.Drawing.Size(349, 208);
+            this.btnRestaurentBooking.Size = new System.Drawing.Size(262, 169);
             this.btnRestaurentBooking.TabIndex = 17;
             // 
             // pnlQuickAction
@@ -1447,13 +1430,13 @@
             this.pnlQuickAction.Controls.Add(this.lblQuickActions);
             this.pnlQuickAction.Controls.Add(this.btnContainer_NewBooking);
             this.pnlQuickAction.FillColor = System.Drawing.Color.White;
-            this.pnlQuickAction.Location = new System.Drawing.Point(288, 438);
-            this.pnlQuickAction.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlQuickAction.Location = new System.Drawing.Point(216, 356);
+            this.pnlQuickAction.Margin = new System.Windows.Forms.Padding(2);
             this.pnlQuickAction.Name = "pnlQuickAction";
             this.pnlQuickAction.ShadowDecoration.BorderRadius = 10;
             this.pnlQuickAction.ShadowDecoration.Color = System.Drawing.Color.LightGray;
             this.pnlQuickAction.ShadowDecoration.Enabled = true;
-            this.pnlQuickAction.Size = new System.Drawing.Size(744, 532);
+            this.pnlQuickAction.Size = new System.Drawing.Size(558, 432);
             this.pnlQuickAction.TabIndex = 25;
             // 
             // lblQuick_StockLevel
@@ -1461,10 +1444,10 @@
             this.lblQuick_StockLevel.BackColor = System.Drawing.Color.Transparent;
             this.lblQuick_StockLevel.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuick_StockLevel.ForeColor = System.Drawing.Color.Gray;
-            this.lblQuick_StockLevel.Location = new System.Drawing.Point(413, 455);
-            this.lblQuick_StockLevel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblQuick_StockLevel.Location = new System.Drawing.Point(310, 370);
+            this.lblQuick_StockLevel.Margin = new System.Windows.Forms.Padding(2);
             this.lblQuick_StockLevel.Name = "lblQuick_StockLevel";
-            this.lblQuick_StockLevel.Size = new System.Drawing.Size(58, 19);
+            this.lblQuick_StockLevel.Size = new System.Drawing.Size(47, 14);
             this.lblQuick_StockLevel.TabIndex = 18;
             this.lblQuick_StockLevel.Text = "Định mức";
             // 
@@ -1473,10 +1456,10 @@
             this.lblQuick_CheckInventory.BackColor = System.Drawing.Color.Transparent;
             this.lblQuick_CheckInventory.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuick_CheckInventory.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.lblQuick_CheckInventory.Location = new System.Drawing.Point(413, 423);
-            this.lblQuick_CheckInventory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblQuick_CheckInventory.Location = new System.Drawing.Point(310, 344);
+            this.lblQuick_CheckInventory.Margin = new System.Windows.Forms.Padding(2);
             this.lblQuick_CheckInventory.Name = "lblQuick_CheckInventory";
-            this.lblQuick_CheckInventory.Size = new System.Drawing.Size(83, 26);
+            this.lblQuick_CheckInventory.Size = new System.Drawing.Size(67, 22);
             this.lblQuick_CheckInventory.TabIndex = 17;
             this.lblQuick_CheckInventory.Text = "Kiểm kho";
             // 
@@ -1492,10 +1475,9 @@
             this.btnQuick_CheckInventory.ForeColor = System.Drawing.Color.White;
             this.btnQuick_CheckInventory.Image = ((System.Drawing.Image)(resources.GetObject("btnQuick_CheckInventory.Image")));
             this.btnQuick_CheckInventory.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnQuick_CheckInventory.Location = new System.Drawing.Point(408, 342);
-            this.btnQuick_CheckInventory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQuick_CheckInventory.Location = new System.Drawing.Point(306, 278);
             this.btnQuick_CheckInventory.Name = "btnQuick_CheckInventory";
-            this.btnQuick_CheckInventory.Size = new System.Drawing.Size(60, 55);
+            this.btnQuick_CheckInventory.Size = new System.Drawing.Size(45, 45);
             this.btnQuick_CheckInventory.TabIndex = 16;
             // 
             // btnContainer_CheckInventory
@@ -1510,12 +1492,12 @@
             this.btnContainer_CheckInventory.FillColor = System.Drawing.Color.FloralWhite;
             this.btnContainer_CheckInventory.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnContainer_CheckInventory.ForeColor = System.Drawing.Color.White;
-            this.btnContainer_CheckInventory.Location = new System.Drawing.Point(397, 330);
-            this.btnContainer_CheckInventory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnContainer_CheckInventory.Location = new System.Drawing.Point(298, 268);
+            this.btnContainer_CheckInventory.Margin = new System.Windows.Forms.Padding(2);
             this.btnContainer_CheckInventory.Name = "btnContainer_CheckInventory";
             this.btnContainer_CheckInventory.ShadowDecoration.BorderRadius = 10;
             this.btnContainer_CheckInventory.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btnContainer_CheckInventory.Size = new System.Drawing.Size(303, 167);
+            this.btnContainer_CheckInventory.Size = new System.Drawing.Size(227, 136);
             this.btnContainer_CheckInventory.TabIndex = 15;
             // 
             // lblQuick_ViewAnalytics
@@ -1523,10 +1505,10 @@
             this.lblQuick_ViewAnalytics.BackColor = System.Drawing.Color.Transparent;
             this.lblQuick_ViewAnalytics.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuick_ViewAnalytics.ForeColor = System.Drawing.Color.Gray;
-            this.lblQuick_ViewAnalytics.Location = new System.Drawing.Point(53, 455);
-            this.lblQuick_ViewAnalytics.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblQuick_ViewAnalytics.Location = new System.Drawing.Point(40, 370);
+            this.lblQuick_ViewAnalytics.Margin = new System.Windows.Forms.Padding(2);
             this.lblQuick_ViewAnalytics.Name = "lblQuick_ViewAnalytics";
-            this.lblQuick_ViewAnalytics.Size = new System.Drawing.Size(92, 19);
+            this.lblQuick_ViewAnalytics.Size = new System.Drawing.Size(73, 14);
             this.lblQuick_ViewAnalytics.TabIndex = 14;
             this.lblQuick_ViewAnalytics.Text = "Xem doanh thu";
             // 
@@ -1535,10 +1517,10 @@
             this.lblQuick_CreateReport.BackColor = System.Drawing.Color.Transparent;
             this.lblQuick_CreateReport.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuick_CreateReport.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.lblQuick_CreateReport.Location = new System.Drawing.Point(53, 423);
-            this.lblQuick_CreateReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblQuick_CreateReport.Location = new System.Drawing.Point(40, 344);
+            this.lblQuick_CreateReport.Margin = new System.Windows.Forms.Padding(2);
             this.lblQuick_CreateReport.Name = "lblQuick_CreateReport";
-            this.lblQuick_CreateReport.Size = new System.Drawing.Size(107, 26);
+            this.lblQuick_CreateReport.Size = new System.Drawing.Size(85, 22);
             this.lblQuick_CreateReport.TabIndex = 13;
             this.lblQuick_CreateReport.Text = "Lập báo cáo";
             // 
@@ -1554,10 +1536,9 @@
             this.btnQuick_CreateReport.ForeColor = System.Drawing.Color.White;
             this.btnQuick_CreateReport.Image = ((System.Drawing.Image)(resources.GetObject("btnQuick_CreateReport.Image")));
             this.btnQuick_CreateReport.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnQuick_CreateReport.Location = new System.Drawing.Point(48, 342);
-            this.btnQuick_CreateReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQuick_CreateReport.Location = new System.Drawing.Point(36, 278);
             this.btnQuick_CreateReport.Name = "btnQuick_CreateReport";
-            this.btnQuick_CreateReport.Size = new System.Drawing.Size(60, 55);
+            this.btnQuick_CreateReport.Size = new System.Drawing.Size(45, 45);
             this.btnQuick_CreateReport.TabIndex = 12;
             // 
             // btnContainer_CreateReport
@@ -1572,12 +1553,12 @@
             this.btnContainer_CreateReport.FillColor = System.Drawing.Color.FloralWhite;
             this.btnContainer_CreateReport.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnContainer_CreateReport.ForeColor = System.Drawing.Color.White;
-            this.btnContainer_CreateReport.Location = new System.Drawing.Point(37, 330);
-            this.btnContainer_CreateReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnContainer_CreateReport.Location = new System.Drawing.Point(28, 268);
+            this.btnContainer_CreateReport.Margin = new System.Windows.Forms.Padding(2);
             this.btnContainer_CreateReport.Name = "btnContainer_CreateReport";
             this.btnContainer_CreateReport.ShadowDecoration.BorderRadius = 10;
             this.btnContainer_CreateReport.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btnContainer_CreateReport.Size = new System.Drawing.Size(303, 167);
+            this.btnContainer_CreateReport.Size = new System.Drawing.Size(227, 136);
             this.btnContainer_CreateReport.TabIndex = 11;
             // 
             // lblQuick_RegisterSatff
@@ -1585,10 +1566,10 @@
             this.lblQuick_RegisterSatff.BackColor = System.Drawing.Color.Transparent;
             this.lblQuick_RegisterSatff.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuick_RegisterSatff.ForeColor = System.Drawing.Color.Gray;
-            this.lblQuick_RegisterSatff.Location = new System.Drawing.Point(413, 252);
-            this.lblQuick_RegisterSatff.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblQuick_RegisterSatff.Location = new System.Drawing.Point(310, 205);
+            this.lblQuick_RegisterSatff.Margin = new System.Windows.Forms.Padding(2);
             this.lblQuick_RegisterSatff.Name = "lblQuick_RegisterSatff";
-            this.lblQuick_RegisterSatff.Size = new System.Drawing.Size(132, 19);
+            this.lblQuick_RegisterSatff.Size = new System.Drawing.Size(104, 14);
             this.lblQuick_RegisterSatff.TabIndex = 10;
             this.lblQuick_RegisterSatff.Text = "Đăng kí nhân viên mới";
             // 
@@ -1597,10 +1578,10 @@
             this.lblQuick_AddStaff.BackColor = System.Drawing.Color.Transparent;
             this.lblQuick_AddStaff.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuick_AddStaff.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.lblQuick_AddStaff.Location = new System.Drawing.Point(413, 220);
-            this.lblQuick_AddStaff.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblQuick_AddStaff.Location = new System.Drawing.Point(310, 179);
+            this.lblQuick_AddStaff.Margin = new System.Windows.Forms.Padding(2);
             this.lblQuick_AddStaff.Name = "lblQuick_AddStaff";
-            this.lblQuick_AddStaff.Size = new System.Drawing.Size(139, 26);
+            this.lblQuick_AddStaff.Size = new System.Drawing.Size(112, 22);
             this.lblQuick_AddStaff.TabIndex = 9;
             this.lblQuick_AddStaff.Text = "Thêm nhân viên";
             // 
@@ -1616,10 +1597,9 @@
             this.btnQuick_AddStaff.ForeColor = System.Drawing.Color.White;
             this.btnQuick_AddStaff.Image = ((System.Drawing.Image)(resources.GetObject("btnQuick_AddStaff.Image")));
             this.btnQuick_AddStaff.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnQuick_AddStaff.Location = new System.Drawing.Point(408, 139);
-            this.btnQuick_AddStaff.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQuick_AddStaff.Location = new System.Drawing.Point(306, 113);
             this.btnQuick_AddStaff.Name = "btnQuick_AddStaff";
-            this.btnQuick_AddStaff.Size = new System.Drawing.Size(60, 55);
+            this.btnQuick_AddStaff.Size = new System.Drawing.Size(45, 45);
             this.btnQuick_AddStaff.TabIndex = 8;
             // 
             // btnContainer_AddStaff
@@ -1634,12 +1614,12 @@
             this.btnContainer_AddStaff.FillColor = System.Drawing.Color.FloralWhite;
             this.btnContainer_AddStaff.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnContainer_AddStaff.ForeColor = System.Drawing.Color.White;
-            this.btnContainer_AddStaff.Location = new System.Drawing.Point(397, 127);
-            this.btnContainer_AddStaff.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnContainer_AddStaff.Location = new System.Drawing.Point(298, 103);
+            this.btnContainer_AddStaff.Margin = new System.Windows.Forms.Padding(2);
             this.btnContainer_AddStaff.Name = "btnContainer_AddStaff";
             this.btnContainer_AddStaff.ShadowDecoration.BorderRadius = 10;
             this.btnContainer_AddStaff.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btnContainer_AddStaff.Size = new System.Drawing.Size(303, 167);
+            this.btnContainer_AddStaff.Size = new System.Drawing.Size(227, 136);
             this.btnContainer_AddStaff.TabIndex = 7;
             // 
             // lblQuick_CreateReservation
@@ -1647,10 +1627,10 @@
             this.lblQuick_CreateReservation.BackColor = System.Drawing.Color.Transparent;
             this.lblQuick_CreateReservation.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuick_CreateReservation.ForeColor = System.Drawing.Color.Gray;
-            this.lblQuick_CreateReservation.Location = new System.Drawing.Point(53, 252);
-            this.lblQuick_CreateReservation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblQuick_CreateReservation.Location = new System.Drawing.Point(40, 205);
+            this.lblQuick_CreateReservation.Margin = new System.Windows.Forms.Padding(2);
             this.lblQuick_CreateReservation.Name = "lblQuick_CreateReservation";
-            this.lblQuick_CreateReservation.Size = new System.Drawing.Size(73, 19);
+            this.lblQuick_CreateReservation.Size = new System.Drawing.Size(56, 14);
             this.lblQuick_CreateReservation.TabIndex = 6;
             this.lblQuick_CreateReservation.Text = "Tạo đặt chỗ";
             // 
@@ -1659,10 +1639,10 @@
             this.lblQuick_NewBooking.BackColor = System.Drawing.Color.Transparent;
             this.lblQuick_NewBooking.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuick_NewBooking.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.lblQuick_NewBooking.Location = new System.Drawing.Point(53, 220);
-            this.lblQuick_NewBooking.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblQuick_NewBooking.Location = new System.Drawing.Point(40, 179);
+            this.lblQuick_NewBooking.Margin = new System.Windows.Forms.Padding(2);
             this.lblQuick_NewBooking.Name = "lblQuick_NewBooking";
-            this.lblQuick_NewBooking.Size = new System.Drawing.Size(73, 26);
+            this.lblQuick_NewBooking.Size = new System.Drawing.Size(58, 22);
             this.lblQuick_NewBooking.TabIndex = 5;
             this.lblQuick_NewBooking.Text = "Đặt mới";
             // 
@@ -1678,20 +1658,19 @@
             this.btnQuick_NewBooking.ForeColor = System.Drawing.Color.White;
             this.btnQuick_NewBooking.Image = ((System.Drawing.Image)(resources.GetObject("btnQuick_NewBooking.Image")));
             this.btnQuick_NewBooking.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnQuick_NewBooking.Location = new System.Drawing.Point(48, 139);
-            this.btnQuick_NewBooking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQuick_NewBooking.Location = new System.Drawing.Point(36, 113);
             this.btnQuick_NewBooking.Name = "btnQuick_NewBooking";
-            this.btnQuick_NewBooking.Size = new System.Drawing.Size(60, 55);
+            this.btnQuick_NewBooking.Size = new System.Drawing.Size(45, 45);
             this.btnQuick_NewBooking.TabIndex = 4;
             // 
             // lblQuickActions
             // 
             this.lblQuickActions.BackColor = System.Drawing.Color.Transparent;
             this.lblQuickActions.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuickActions.Location = new System.Drawing.Point(37, 39);
-            this.lblQuickActions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblQuickActions.Location = new System.Drawing.Point(28, 32);
+            this.lblQuickActions.Margin = new System.Windows.Forms.Padding(2);
             this.lblQuickActions.Name = "lblQuickActions";
-            this.lblQuickActions.Size = new System.Drawing.Size(251, 38);
+            this.lblQuickActions.Size = new System.Drawing.Size(205, 32);
             this.lblQuickActions.TabIndex = 1;
             this.lblQuickActions.Text = "Hành động nhanh";
             // 
@@ -1707,12 +1686,12 @@
             this.btnContainer_NewBooking.FillColor = System.Drawing.Color.FloralWhite;
             this.btnContainer_NewBooking.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnContainer_NewBooking.ForeColor = System.Drawing.Color.White;
-            this.btnContainer_NewBooking.Location = new System.Drawing.Point(37, 127);
-            this.btnContainer_NewBooking.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnContainer_NewBooking.Location = new System.Drawing.Point(28, 103);
+            this.btnContainer_NewBooking.Margin = new System.Windows.Forms.Padding(2);
             this.btnContainer_NewBooking.Name = "btnContainer_NewBooking";
             this.btnContainer_NewBooking.ShadowDecoration.BorderRadius = 10;
             this.btnContainer_NewBooking.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btnContainer_NewBooking.Size = new System.Drawing.Size(303, 167);
+            this.btnContainer_NewBooking.Size = new System.Drawing.Size(227, 136);
             this.btnContainer_NewBooking.TabIndex = 0;
             // 
             // pnlRecentActivities
@@ -1744,13 +1723,13 @@
             this.pnlRecentActivities.Controls.Add(this.guna2Button8);
             this.pnlRecentActivities.Controls.Add(this.lblRecentActiviy);
             this.pnlRecentActivities.FillColor = System.Drawing.Color.White;
-            this.pnlRecentActivities.Location = new System.Drawing.Point(1115, 402);
-            this.pnlRecentActivities.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlRecentActivities.Location = new System.Drawing.Point(836, 327);
+            this.pnlRecentActivities.Margin = new System.Windows.Forms.Padding(2);
             this.pnlRecentActivities.Name = "pnlRecentActivities";
             this.pnlRecentActivities.ShadowDecoration.BorderRadius = 10;
             this.pnlRecentActivities.ShadowDecoration.Color = System.Drawing.Color.LightGray;
             this.pnlRecentActivities.ShadowDecoration.Enabled = true;
-            this.pnlRecentActivities.Size = new System.Drawing.Size(715, 575);
+            this.pnlRecentActivities.Size = new System.Drawing.Size(536, 467);
             this.pnlRecentActivities.TabIndex = 26;
             // 
             // lblActivities_StaffTime
@@ -1758,10 +1737,10 @@
             this.lblActivities_StaffTime.BackColor = System.Drawing.Color.Transparent;
             this.lblActivities_StaffTime.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActivities_StaffTime.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.lblActivities_StaffTime.Location = new System.Drawing.Point(93, 519);
-            this.lblActivities_StaffTime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblActivities_StaffTime.Location = new System.Drawing.Point(70, 422);
+            this.lblActivities_StaffTime.Margin = new System.Windows.Forms.Padding(2);
             this.lblActivities_StaffTime.Name = "lblActivities_StaffTime";
-            this.lblActivities_StaffTime.Size = new System.Drawing.Size(68, 19);
+            this.lblActivities_StaffTime.Size = new System.Drawing.Size(51, 14);
             this.lblActivities_StaffTime.TabIndex = 30;
             this.lblActivities_StaffTime.Text = "3 giờ trước";
             // 
@@ -1770,10 +1749,10 @@
             this.lblActivities_StaffDes.BackColor = System.Drawing.Color.Transparent;
             this.lblActivities_StaffDes.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActivities_StaffDes.ForeColor = System.Drawing.Color.Gray;
-            this.lblActivities_StaffDes.Location = new System.Drawing.Point(93, 495);
-            this.lblActivities_StaffDes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblActivities_StaffDes.Location = new System.Drawing.Point(70, 402);
+            this.lblActivities_StaffDes.Margin = new System.Windows.Forms.Padding(2);
             this.lblActivities_StaffDes.Name = "lblActivities_StaffDes";
-            this.lblActivities_StaffDes.Size = new System.Drawing.Size(141, 19);
+            this.lblActivities_StaffDes.Size = new System.Drawing.Size(109, 14);
             this.lblActivities_StaffDes.TabIndex = 29;
             this.lblActivities_StaffDes.Text = "Hồng Gấm- Bếp trưởng";
             // 
@@ -1781,10 +1760,10 @@
             // 
             this.lblActivities_StaffTitile.BackColor = System.Drawing.Color.Transparent;
             this.lblActivities_StaffTitile.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActivities_StaffTitile.Location = new System.Drawing.Point(93, 457);
-            this.lblActivities_StaffTitile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblActivities_StaffTitile.Location = new System.Drawing.Point(70, 371);
+            this.lblActivities_StaffTitile.Margin = new System.Windows.Forms.Padding(2);
             this.lblActivities_StaffTitile.Name = "lblActivities_StaffTitile";
-            this.lblActivities_StaffTitile.Size = new System.Drawing.Size(146, 22);
+            this.lblActivities_StaffTitile.Size = new System.Drawing.Size(117, 17);
             this.lblActivities_StaffTitile.TabIndex = 28;
             this.lblActivities_StaffTitile.Text = "Thêm nhân viên mới";
             // 
@@ -1792,11 +1771,11 @@
             // 
             this.dotGreen.FillColor = System.Drawing.Color.Green;
             this.dotGreen.ImageRotate = 0F;
-            this.dotGreen.Location = new System.Drawing.Point(61, 464);
-            this.dotGreen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dotGreen.Location = new System.Drawing.Point(46, 377);
+            this.dotGreen.Margin = new System.Windows.Forms.Padding(2);
             this.dotGreen.Name = "dotGreen";
             this.dotGreen.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.dotGreen.Size = new System.Drawing.Size(11, 10);
+            this.dotGreen.Size = new System.Drawing.Size(8, 8);
             this.dotGreen.TabIndex = 27;
             this.dotGreen.TabStop = false;
             // 
@@ -1812,12 +1791,12 @@
             this.guna2Button11.FillColor = System.Drawing.Color.FloralWhite;
             this.guna2Button11.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button11.ForeColor = System.Drawing.Color.White;
-            this.guna2Button11.Location = new System.Drawing.Point(28, 439);
-            this.guna2Button11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Button11.Location = new System.Drawing.Point(21, 357);
+            this.guna2Button11.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button11.Name = "guna2Button11";
             this.guna2Button11.ShadowDecoration.BorderRadius = 10;
             this.guna2Button11.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.guna2Button11.Size = new System.Drawing.Size(371, 107);
+            this.guna2Button11.Size = new System.Drawing.Size(278, 87);
             this.guna2Button11.TabIndex = 26;
             // 
             // lblActivities_PaymentTime
@@ -1825,10 +1804,10 @@
             this.lblActivities_PaymentTime.BackColor = System.Drawing.Color.Transparent;
             this.lblActivities_PaymentTime.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActivities_PaymentTime.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.lblActivities_PaymentTime.Location = new System.Drawing.Point(93, 401);
-            this.lblActivities_PaymentTime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblActivities_PaymentTime.Location = new System.Drawing.Point(70, 326);
+            this.lblActivities_PaymentTime.Margin = new System.Windows.Forms.Padding(2);
             this.lblActivities_PaymentTime.Name = "lblActivities_PaymentTime";
-            this.lblActivities_PaymentTime.Size = new System.Drawing.Size(68, 19);
+            this.lblActivities_PaymentTime.Size = new System.Drawing.Size(51, 14);
             this.lblActivities_PaymentTime.TabIndex = 25;
             this.lblActivities_PaymentTime.Text = "2 giờ trước";
             // 
@@ -1837,10 +1816,10 @@
             this.lblActivities_PaymentDes.BackColor = System.Drawing.Color.Transparent;
             this.lblActivities_PaymentDes.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActivities_PaymentDes.ForeColor = System.Drawing.Color.Gray;
-            this.lblActivities_PaymentDes.Location = new System.Drawing.Point(93, 374);
-            this.lblActivities_PaymentDes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblActivities_PaymentDes.Location = new System.Drawing.Point(70, 304);
+            this.lblActivities_PaymentDes.Margin = new System.Windows.Forms.Padding(2);
             this.lblActivities_PaymentDes.Name = "lblActivities_PaymentDes";
-            this.lblActivities_PaymentDes.Size = new System.Drawing.Size(145, 19);
+            this.lblActivities_PaymentDes.Size = new System.Drawing.Size(108, 14);
             this.lblActivities_PaymentDes.TabIndex = 24;
             this.lblActivities_PaymentDes.Text = "Hóa đơn #3421 - $2,450";
             // 
@@ -1848,10 +1827,10 @@
             // 
             this.lblActivities_PaymentTitile.BackColor = System.Drawing.Color.Transparent;
             this.lblActivities_PaymentTitile.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActivities_PaymentTitile.Location = new System.Drawing.Point(93, 337);
-            this.lblActivities_PaymentTitile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblActivities_PaymentTitile.Location = new System.Drawing.Point(70, 274);
+            this.lblActivities_PaymentTitile.Margin = new System.Windows.Forms.Padding(2);
             this.lblActivities_PaymentTitile.Name = "lblActivities_PaymentTitile";
-            this.lblActivities_PaymentTitile.Size = new System.Drawing.Size(182, 22);
+            this.lblActivities_PaymentTitile.Size = new System.Drawing.Size(145, 17);
             this.lblActivities_PaymentTitile.TabIndex = 23;
             this.lblActivities_PaymentTitile.Text = "Thanh toán đã nhận được";
             // 
@@ -1859,11 +1838,11 @@
             // 
             this.dotYellow.FillColor = System.Drawing.Color.Olive;
             this.dotYellow.ImageRotate = 0F;
-            this.dotYellow.Location = new System.Drawing.Point(61, 350);
-            this.dotYellow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dotYellow.Location = new System.Drawing.Point(46, 284);
+            this.dotYellow.Margin = new System.Windows.Forms.Padding(2);
             this.dotYellow.Name = "dotYellow";
             this.dotYellow.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.dotYellow.Size = new System.Drawing.Size(11, 10);
+            this.dotYellow.Size = new System.Drawing.Size(8, 8);
             this.dotYellow.TabIndex = 22;
             this.dotYellow.TabStop = false;
             // 
@@ -1879,12 +1858,12 @@
             this.guna2Button10.FillColor = System.Drawing.Color.FloralWhite;
             this.guna2Button10.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button10.ForeColor = System.Drawing.Color.White;
-            this.guna2Button10.Location = new System.Drawing.Point(28, 319);
-            this.guna2Button10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Button10.Location = new System.Drawing.Point(21, 259);
+            this.guna2Button10.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button10.Name = "guna2Button10";
             this.guna2Button10.ShadowDecoration.BorderRadius = 10;
             this.guna2Button10.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.guna2Button10.Size = new System.Drawing.Size(371, 114);
+            this.guna2Button10.Size = new System.Drawing.Size(278, 93);
             this.guna2Button10.TabIndex = 21;
             // 
             // lblActivities_IventoryTime
@@ -1892,10 +1871,10 @@
             this.lblActivities_IventoryTime.BackColor = System.Drawing.Color.Transparent;
             this.lblActivities_IventoryTime.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActivities_IventoryTime.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.lblActivities_IventoryTime.Location = new System.Drawing.Point(93, 281);
-            this.lblActivities_IventoryTime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblActivities_IventoryTime.Location = new System.Drawing.Point(70, 228);
+            this.lblActivities_IventoryTime.Margin = new System.Windows.Forms.Padding(2);
             this.lblActivities_IventoryTime.Name = "lblActivities_IventoryTime";
-            this.lblActivities_IventoryTime.Size = new System.Drawing.Size(68, 19);
+            this.lblActivities_IventoryTime.Size = new System.Drawing.Size(51, 14);
             this.lblActivities_IventoryTime.TabIndex = 20;
             this.lblActivities_IventoryTime.Text = "1 giờ trước";
             // 
@@ -1904,10 +1883,10 @@
             this.lblActivities_InventoryDes.BackColor = System.Drawing.Color.Transparent;
             this.lblActivities_InventoryDes.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActivities_InventoryDes.ForeColor = System.Drawing.Color.Gray;
-            this.lblActivities_InventoryDes.Location = new System.Drawing.Point(93, 254);
-            this.lblActivities_InventoryDes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblActivities_InventoryDes.Location = new System.Drawing.Point(70, 206);
+            this.lblActivities_InventoryDes.Margin = new System.Windows.Forms.Padding(2);
             this.lblActivities_InventoryDes.Name = "lblActivities_InventoryDes";
-            this.lblActivities_InventoryDes.Size = new System.Drawing.Size(113, 19);
+            this.lblActivities_InventoryDes.Size = new System.Drawing.Size(86, 14);
             this.lblActivities_InventoryDes.TabIndex = 19;
             this.lblActivities_InventoryDes.Text = "Hạt cà phê sắp hết";
             // 
@@ -1915,10 +1894,10 @@
             // 
             this.lblActivities_InventoryTitile.BackColor = System.Drawing.Color.Transparent;
             this.lblActivities_InventoryTitile.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActivities_InventoryTitile.Location = new System.Drawing.Point(93, 217);
-            this.lblActivities_InventoryTitile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblActivities_InventoryTitile.Location = new System.Drawing.Point(70, 176);
+            this.lblActivities_InventoryTitile.Margin = new System.Windows.Forms.Padding(2);
             this.lblActivities_InventoryTitile.Name = "lblActivities_InventoryTitile";
-            this.lblActivities_InventoryTitile.Size = new System.Drawing.Size(266, 22);
+            this.lblActivities_InventoryTitile.Size = new System.Drawing.Size(208, 17);
             this.lblActivities_InventoryTitile.TabIndex = 18;
             this.lblActivities_InventoryTitile.Text = "Cảnh báo hàng tồn kho: Tồn kho thấp";
             // 
@@ -1926,11 +1905,11 @@
             // 
             this.guna2CirclePictureBox1.FillColor = System.Drawing.Color.Crimson;
             this.guna2CirclePictureBox1.ImageRotate = 0F;
-            this.guna2CirclePictureBox1.Location = new System.Drawing.Point(61, 219);
-            this.guna2CirclePictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2CirclePictureBox1.Location = new System.Drawing.Point(46, 178);
+            this.guna2CirclePictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
             this.guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CirclePictureBox1.Size = new System.Drawing.Size(11, 10);
+            this.guna2CirclePictureBox1.Size = new System.Drawing.Size(8, 8);
             this.guna2CirclePictureBox1.TabIndex = 17;
             this.guna2CirclePictureBox1.TabStop = false;
             // 
@@ -1946,12 +1925,12 @@
             this.dotRed.FillColor = System.Drawing.Color.FloralWhite;
             this.dotRed.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dotRed.ForeColor = System.Drawing.Color.White;
-            this.dotRed.Location = new System.Drawing.Point(29, 199);
-            this.dotRed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dotRed.Location = new System.Drawing.Point(22, 162);
+            this.dotRed.Margin = new System.Windows.Forms.Padding(2);
             this.dotRed.Name = "dotRed";
             this.dotRed.ShadowDecoration.BorderRadius = 10;
             this.dotRed.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dotRed.Size = new System.Drawing.Size(371, 114);
+            this.dotRed.Size = new System.Drawing.Size(278, 93);
             this.dotRed.TabIndex = 16;
             // 
             // guna2HtmlLabel8
@@ -1959,10 +1938,10 @@
             this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel8.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel8.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.guna2HtmlLabel8.Location = new System.Drawing.Point(93, 162);
-            this.guna2HtmlLabel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2HtmlLabel8.Location = new System.Drawing.Point(70, 132);
+            this.guna2HtmlLabel8.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            this.guna2HtmlLabel8.Size = new System.Drawing.Size(75, 19);
+            this.guna2HtmlLabel8.Size = new System.Drawing.Size(58, 14);
             this.guna2HtmlLabel8.TabIndex = 15;
             this.guna2HtmlLabel8.Text = "5 phút trước";
             // 
@@ -1971,10 +1950,10 @@
             this.lblActivities_BookingTime.BackColor = System.Drawing.Color.Transparent;
             this.lblActivities_BookingTime.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActivities_BookingTime.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.lblActivities_BookingTime.Location = new System.Drawing.Point(93, 160);
-            this.lblActivities_BookingTime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblActivities_BookingTime.Location = new System.Drawing.Point(70, 130);
+            this.lblActivities_BookingTime.Margin = new System.Windows.Forms.Padding(2);
             this.lblActivities_BookingTime.Name = "lblActivities_BookingTime";
-            this.lblActivities_BookingTime.Size = new System.Drawing.Size(75, 19);
+            this.lblActivities_BookingTime.Size = new System.Drawing.Size(58, 14);
             this.lblActivities_BookingTime.TabIndex = 15;
             this.lblActivities_BookingTime.Text = "5 phút trước";
             // 
@@ -1983,10 +1962,10 @@
             this.lblActivities_BookingDes.BackColor = System.Drawing.Color.Transparent;
             this.lblActivities_BookingDes.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActivities_BookingDes.ForeColor = System.Drawing.Color.Gray;
-            this.lblActivities_BookingDes.Location = new System.Drawing.Point(93, 133);
-            this.lblActivities_BookingDes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblActivities_BookingDes.Location = new System.Drawing.Point(70, 108);
+            this.lblActivities_BookingDes.Margin = new System.Windows.Forms.Padding(2);
             this.lblActivities_BookingDes.Name = "lblActivities_BookingDes";
-            this.lblActivities_BookingDes.Size = new System.Drawing.Size(227, 19);
+            this.lblActivities_BookingDes.Size = new System.Drawing.Size(175, 14);
             this.lblActivities_BookingDes.TabIndex = 14;
             this.lblActivities_BookingDes.Text = "Phòng 305 - Nhận phòng: 24 tháng 12";
             // 
@@ -1994,10 +1973,10 @@
             // 
             this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel7.Location = new System.Drawing.Point(93, 98);
-            this.guna2HtmlLabel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2HtmlLabel7.Location = new System.Drawing.Point(70, 80);
+            this.guna2HtmlLabel7.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            this.guna2HtmlLabel7.Size = new System.Drawing.Size(193, 22);
+            this.guna2HtmlLabel7.Size = new System.Drawing.Size(156, 17);
             this.guna2HtmlLabel7.TabIndex = 13;
             this.guna2HtmlLabel7.Text = "Đặt chỗ mới được xác nhận";
             this.guna2HtmlLabel7.Click += new System.EventHandler(this.guna2HtmlLabel7_Click);
@@ -2006,10 +1985,10 @@
             // 
             this.lblActivities_BookingTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblActivities_BookingTitle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActivities_BookingTitle.Location = new System.Drawing.Point(93, 96);
-            this.lblActivities_BookingTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblActivities_BookingTitle.Location = new System.Drawing.Point(70, 78);
+            this.lblActivities_BookingTitle.Margin = new System.Windows.Forms.Padding(2);
             this.lblActivities_BookingTitle.Name = "lblActivities_BookingTitle";
-            this.lblActivities_BookingTitle.Size = new System.Drawing.Size(193, 22);
+            this.lblActivities_BookingTitle.Size = new System.Drawing.Size(156, 17);
             this.lblActivities_BookingTitle.TabIndex = 13;
             this.lblActivities_BookingTitle.Text = "Đặt chỗ mới được xác nhận";
             this.lblActivities_BookingTitle.Click += new System.EventHandler(this.guna2HtmlLabel7_Click);
@@ -2018,11 +1997,11 @@
             // 
             this.dotBlue.FillColor = System.Drawing.Color.RoyalBlue;
             this.dotBlue.ImageRotate = 0F;
-            this.dotBlue.Location = new System.Drawing.Point(61, 98);
-            this.dotBlue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dotBlue.Location = new System.Drawing.Point(46, 80);
+            this.dotBlue.Margin = new System.Windows.Forms.Padding(2);
             this.dotBlue.Name = "dotBlue";
             this.dotBlue.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.dotBlue.Size = new System.Drawing.Size(11, 10);
+            this.dotBlue.Size = new System.Drawing.Size(8, 8);
             this.dotBlue.TabIndex = 12;
             this.dotBlue.TabStop = false;
             // 
@@ -2038,29 +2017,30 @@
             this.guna2Button8.FillColor = System.Drawing.Color.FloralWhite;
             this.guna2Button8.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button8.ForeColor = System.Drawing.Color.White;
-            this.guna2Button8.Location = new System.Drawing.Point(28, 78);
-            this.guna2Button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Button8.Location = new System.Drawing.Point(21, 63);
+            this.guna2Button8.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button8.Name = "guna2Button8";
             this.guna2Button8.ShadowDecoration.BorderRadius = 10;
             this.guna2Button8.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.guna2Button8.Size = new System.Drawing.Size(371, 114);
+            this.guna2Button8.Size = new System.Drawing.Size(278, 93);
             this.guna2Button8.TabIndex = 8;
             // 
             // lblRecentActiviy
             // 
             this.lblRecentActiviy.BackColor = System.Drawing.Color.Transparent;
             this.lblRecentActiviy.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecentActiviy.Location = new System.Drawing.Point(29, 17);
-            this.lblRecentActiviy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblRecentActiviy.Location = new System.Drawing.Point(22, 14);
+            this.lblRecentActiviy.Margin = new System.Windows.Forms.Padding(2);
             this.lblRecentActiviy.Name = "lblRecentActiviy";
-            this.lblRecentActiviy.Size = new System.Drawing.Size(269, 38);
+            this.lblRecentActiviy.Size = new System.Drawing.Size(223, 32);
             this.lblRecentActiviy.TabIndex = 1;
             this.lblRecentActiviy.Text = "Hoạt động gần đây";
             // 
             // FormDashBoard
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1853, 1055);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1390, 857);
             this.Controls.Add(this.pnlRecentActivities);
             this.Controls.Add(this.pnlQuickAction);
             this.Controls.Add(this.guna2HtmlLabel5);
@@ -2086,10 +2066,9 @@
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.pnlSidebar);
             this.Location = new System.Drawing.Point(950, 20);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormDashBoard";
-            this.Text = "RESTAURANT-HOTEL GROUP";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Text = "   ";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.pnlSidebar.ResumeLayout(false);
             this.flpSidebar.ResumeLayout(false);
