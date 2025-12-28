@@ -32,6 +32,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.6.6.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
@@ -208,7 +212,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-    <!-- ===================== RESX (EMBEDDED RESOURCE) ===================== -->
+  <!-- ===================== RESX (EMBEDDED RESOURCE) ===================== -->
   <ItemGroup>
     <EmbeddedResource Include="CustomerAdd.resx">
       <DependentUpon>CustomerAdd.cs</DependentUpon>
@@ -276,7 +280,6 @@
     <EmbeddedResource Include="SalaryManageForm.resx">
       <DependentUpon>SalaryManageForm.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -285,6 +288,7 @@
   </ItemGroup>
   <!-- ===================== OTHER NONE FILES ===================== -->
   <ItemGroup>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
