@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PromotionsCustomers));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -81,8 +81,8 @@
             this.guna2Panel1.FillColor = System.Drawing.Color.White;
             this.guna2Panel1.Location = new System.Drawing.Point(12, 24);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.ShadowDecoration.BorderRadius = 10;
-            this.guna2Panel1.ShadowDecoration.Color = System.Drawing.Color.Silver;
+            this.guna2Panel1.ShadowDecoration.BorderRadius = 15;
+            this.guna2Panel1.ShadowDecoration.Color = System.Drawing.Color.DimGray;
             this.guna2Panel1.ShadowDecoration.Enabled = true;
             this.guna2Panel1.Size = new System.Drawing.Size(773, 100);
             this.guna2Panel1.TabIndex = 3;
@@ -121,7 +121,7 @@
             // guna2Panel2
             // 
             this.guna2Panel2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Panel2.BorderRadius = 30;
+            this.guna2Panel2.BorderRadius = 35;
             this.guna2Panel2.Controls.Add(this.guna2HtmlLabel4);
             this.guna2Panel2.Controls.Add(this.guna2HtmlLabel3);
             this.guna2Panel2.Controls.Add(this.guna2HtmlLabel2);
@@ -129,10 +129,10 @@
             this.guna2Panel2.FillColor = System.Drawing.Color.White;
             this.guna2Panel2.Location = new System.Drawing.Point(12, 154);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.ShadowDecoration.BorderRadius = 25;
+            this.guna2Panel2.ShadowDecoration.BorderRadius = 35;
             this.guna2Panel2.ShadowDecoration.Color = System.Drawing.Color.Gray;
             this.guna2Panel2.ShadowDecoration.Enabled = true;
-            this.guna2Panel2.Size = new System.Drawing.Size(475, 162);
+            this.guna2Panel2.Size = new System.Drawing.Size(523, 126);
             this.guna2Panel2.TabIndex = 4;
             // 
             // guna2HtmlLabel4
@@ -141,7 +141,7 @@
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel4.Font = new System.Drawing.Font("Microsoft YaHei UI", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(182, 98);
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(385, 35);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             this.guna2HtmlLabel4.Size = new System.Drawing.Size(43, 64);
             this.guna2HtmlLabel4.TabIndex = 3;
@@ -152,7 +152,7 @@
             this.guna2HtmlLabel3.AutoSize = false;
             this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel3.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(182, 60);
+            this.guna2HtmlLabel3.Location = new System.Drawing.Point(27, 60);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
             this.guna2HtmlLabel3.Size = new System.Drawing.Size(210, 49);
             this.guna2HtmlLabel3.TabIndex = 1;
@@ -163,7 +163,7 @@
             this.guna2HtmlLabel2.AutoSize = false;
             this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel2.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel2.Location = new System.Drawing.Point(182, 19);
+            this.guna2HtmlLabel2.Location = new System.Drawing.Point(27, 19);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             this.guna2HtmlLabel2.Size = new System.Drawing.Size(311, 48);
             this.guna2HtmlLabel2.TabIndex = 0;
@@ -181,13 +181,12 @@
             this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button2.ForeColor = System.Drawing.Color.White;
             this.guna2Button2.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button2.Image")));
-            this.guna2Button2.ImageSize = new System.Drawing.Size(70, 70);
-            this.guna2Button2.Location = new System.Drawing.Point(27, 19);
+            this.guna2Button2.ImageSize = new System.Drawing.Size(40, 40);
+            this.guna2Button2.Location = new System.Drawing.Point(434, 35);
             this.guna2Button2.Name = "guna2Button2";
             this.guna2Button2.ShadowDecoration.BorderRadius = 10;
             this.guna2Button2.ShadowDecoration.Color = System.Drawing.Color.Silver;
-            this.guna2Button2.ShadowDecoration.Enabled = true;
-            this.guna2Button2.Size = new System.Drawing.Size(104, 115);
+            this.guna2Button2.Size = new System.Drawing.Size(71, 74);
             this.guna2Button2.TabIndex = 2;
             // 
             // guna2Panel3
@@ -201,10 +200,10 @@
             this.guna2Panel3.FillColor = System.Drawing.Color.White;
             this.guna2Panel3.Location = new System.Drawing.Point(625, 154);
             this.guna2Panel3.Name = "guna2Panel3";
-            this.guna2Panel3.ShadowDecoration.BorderRadius = 25;
+            this.guna2Panel3.ShadowDecoration.BorderRadius = 35;
             this.guna2Panel3.ShadowDecoration.Color = System.Drawing.Color.Gray;
             this.guna2Panel3.ShadowDecoration.Enabled = true;
-            this.guna2Panel3.Size = new System.Drawing.Size(426, 162);
+            this.guna2Panel3.Size = new System.Drawing.Size(523, 126);
             this.guna2Panel3.TabIndex = 5;
             // 
             // guna2HtmlLabel7
@@ -213,7 +212,7 @@
             this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel7.Font = new System.Drawing.Font("Microsoft YaHei UI", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.guna2HtmlLabel7.Location = new System.Drawing.Point(176, 98);
+            this.guna2HtmlLabel7.Location = new System.Drawing.Point(384, 35);
             this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
             this.guna2HtmlLabel7.Size = new System.Drawing.Size(43, 64);
             this.guna2HtmlLabel7.TabIndex = 3;
@@ -224,7 +223,7 @@
             this.guna2HtmlLabel5.AutoSize = false;
             this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel5.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel5.Location = new System.Drawing.Point(167, 60);
+            this.guna2HtmlLabel5.Location = new System.Drawing.Point(19, 60);
             this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
             this.guna2HtmlLabel5.Size = new System.Drawing.Size(391, 49);
             this.guna2HtmlLabel5.TabIndex = 1;
@@ -235,7 +234,7 @@
             this.guna2HtmlLabel6.AutoSize = false;
             this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel6.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel6.Location = new System.Drawing.Point(167, 19);
+            this.guna2HtmlLabel6.Location = new System.Drawing.Point(19, 16);
             this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
             this.guna2HtmlLabel6.Size = new System.Drawing.Size(359, 48);
             this.guna2HtmlLabel6.TabIndex = 0;
@@ -253,19 +252,18 @@
             this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button3.ForeColor = System.Drawing.Color.White;
             this.guna2Button3.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button3.Image")));
-            this.guna2Button3.ImageSize = new System.Drawing.Size(70, 70);
-            this.guna2Button3.Location = new System.Drawing.Point(27, 19);
+            this.guna2Button3.ImageSize = new System.Drawing.Size(40, 40);
+            this.guna2Button3.Location = new System.Drawing.Point(425, 25);
             this.guna2Button3.Name = "guna2Button3";
             this.guna2Button3.ShadowDecoration.BorderRadius = 10;
             this.guna2Button3.ShadowDecoration.Color = System.Drawing.Color.Silver;
-            this.guna2Button3.ShadowDecoration.Enabled = true;
-            this.guna2Button3.Size = new System.Drawing.Size(104, 115);
+            this.guna2Button3.Size = new System.Drawing.Size(71, 74);
             this.guna2Button3.TabIndex = 2;
             // 
             // guna2Panel4
             // 
             this.guna2Panel4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Panel4.BorderRadius = 30;
+            this.guna2Panel4.BorderRadius = 35;
             this.guna2Panel4.Controls.Add(this.btnDeletePromotion);
             this.guna2Panel4.Controls.Add(this.btnAddPromotion);
             this.guna2Panel4.Controls.Add(this.btnFindPromotion);
@@ -273,7 +271,7 @@
             this.guna2Panel4.FillColor = System.Drawing.Color.White;
             this.guna2Panel4.Location = new System.Drawing.Point(1171, 154);
             this.guna2Panel4.Name = "guna2Panel4";
-            this.guna2Panel4.ShadowDecoration.BorderRadius = 25;
+            this.guna2Panel4.ShadowDecoration.BorderRadius = 35;
             this.guna2Panel4.ShadowDecoration.Color = System.Drawing.Color.Silver;
             this.guna2Panel4.ShadowDecoration.Enabled = true;
             this.guna2Panel4.Size = new System.Drawing.Size(846, 162);
@@ -287,15 +285,16 @@
             this.btnDeletePromotion.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnDeletePromotion.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnDeletePromotion.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnDeletePromotion.FillColor = System.Drawing.Color.DarkRed;
-            this.btnDeletePromotion.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeletePromotion.ForeColor = System.Drawing.Color.White;
+            this.btnDeletePromotion.FillColor = System.Drawing.Color.White;
+            this.btnDeletePromotion.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeletePromotion.ForeColor = System.Drawing.Color.Black;
+            this.btnDeletePromotion.HoverState.FillColor = System.Drawing.Color.Silver;
             this.btnDeletePromotion.Image = ((System.Drawing.Image)(resources.GetObject("btnDeletePromotion.Image")));
             this.btnDeletePromotion.ImageSize = new System.Drawing.Size(30, 30);
             this.btnDeletePromotion.Location = new System.Drawing.Point(435, 85);
             this.btnDeletePromotion.Name = "btnDeletePromotion";
-            this.btnDeletePromotion.ShadowDecoration.BorderRadius = 10;
-            this.btnDeletePromotion.ShadowDecoration.Color = System.Drawing.Color.Silver;
+            this.btnDeletePromotion.ShadowDecoration.BorderRadius = 15;
+            this.btnDeletePromotion.ShadowDecoration.Color = System.Drawing.Color.DimGray;
             this.btnDeletePromotion.ShadowDecoration.Enabled = true;
             this.btnDeletePromotion.Size = new System.Drawing.Size(393, 60);
             this.btnDeletePromotion.TabIndex = 4;
@@ -310,13 +309,14 @@
             this.btnAddPromotion.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnAddPromotion.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnAddPromotion.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnAddPromotion.FillColor = System.Drawing.Color.DarkBlue;
-            this.btnAddPromotion.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddPromotion.ForeColor = System.Drawing.Color.White;
+            this.btnAddPromotion.FillColor = System.Drawing.Color.White;
+            this.btnAddPromotion.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddPromotion.ForeColor = System.Drawing.Color.Black;
+            this.btnAddPromotion.HoverState.FillColor = System.Drawing.Color.Silver;
             this.btnAddPromotion.Location = new System.Drawing.Point(435, 16);
             this.btnAddPromotion.Name = "btnAddPromotion";
-            this.btnAddPromotion.ShadowDecoration.BorderRadius = 10;
-            this.btnAddPromotion.ShadowDecoration.Color = System.Drawing.Color.Silver;
+            this.btnAddPromotion.ShadowDecoration.BorderRadius = 15;
+            this.btnAddPromotion.ShadowDecoration.Color = System.Drawing.Color.DimGray;
             this.btnAddPromotion.ShadowDecoration.Enabled = true;
             this.btnAddPromotion.Size = new System.Drawing.Size(393, 60);
             this.btnAddPromotion.TabIndex = 2;
@@ -337,8 +337,8 @@
             this.btnFindPromotion.Image = ((System.Drawing.Image)(resources.GetObject("btnFindPromotion.Image")));
             this.btnFindPromotion.Location = new System.Drawing.Point(18, 85);
             this.btnFindPromotion.Name = "btnFindPromotion";
-            this.btnFindPromotion.ShadowDecoration.BorderRadius = 10;
-            this.btnFindPromotion.ShadowDecoration.Color = System.Drawing.Color.Silver;
+            this.btnFindPromotion.ShadowDecoration.BorderRadius = 15;
+            this.btnFindPromotion.ShadowDecoration.Color = System.Drawing.Color.DimGray;
             this.btnFindPromotion.ShadowDecoration.Enabled = true;
             this.btnFindPromotion.Size = new System.Drawing.Size(180, 60);
             this.btnFindPromotion.TabIndex = 1;
@@ -367,8 +367,8 @@
             this.tbFindPromotion.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.tbFindPromotion.PlaceholderText = "Tìm kím ưu đãi...";
             this.tbFindPromotion.SelectedText = "";
-            this.tbFindPromotion.ShadowDecoration.BorderRadius = 10;
-            this.tbFindPromotion.ShadowDecoration.Color = System.Drawing.Color.Silver;
+            this.tbFindPromotion.ShadowDecoration.BorderRadius = 15;
+            this.tbFindPromotion.ShadowDecoration.Color = System.Drawing.Color.DimGray;
             this.tbFindPromotion.ShadowDecoration.Enabled = true;
             this.tbFindPromotion.Size = new System.Drawing.Size(387, 60);
             this.tbFindPromotion.TabIndex = 0;
@@ -407,17 +407,17 @@
             // 
             // dgvListPromotion
             // 
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            this.dgvListPromotion.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvListPromotion.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvListPromotion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListPromotion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListPromotion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvListPromotion.ColumnHeadersHeight = 50;
             this.dgvListPromotion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvListPromotion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -427,30 +427,30 @@
             this.PromotionObject,
             this.PromotionTime,
             this.PromotionStatus});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListPromotion.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListPromotion.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvListPromotion.GridColor = System.Drawing.Color.Black;
             this.dgvListPromotion.Location = new System.Drawing.Point(27, 115);
             this.dgvListPromotion.Name = "dgvListPromotion";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListPromotion.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListPromotion.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvListPromotion.RowHeadersVisible = false;
             this.dgvListPromotion.RowHeadersWidth = 51;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvListPromotion.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvListPromotion.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvListPromotion.RowTemplate.Height = 40;
             this.dgvListPromotion.Size = new System.Drawing.Size(1955, 488);
             this.dgvListPromotion.TabIndex = 1;

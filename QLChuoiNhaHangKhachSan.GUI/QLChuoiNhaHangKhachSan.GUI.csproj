@@ -62,6 +62,12 @@
   </ItemGroup>
   <!-- ===================== COMPILE FILES ===================== -->
   <ItemGroup>
+    <Compile Include="AddVipCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddVipCustomers.Designer.cs">
+      <DependentUpon>AddVipCustomers.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,9 +207,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="VipCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VipCustomers.Designer.cs">
+      <DependentUpon>VipCustomers.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
-    <!-- ===================== RESX (EMBEDDED RESOURCE) ===================== -->
+  <!-- ===================== RESX (EMBEDDED RESOURCE) ===================== -->
   <ItemGroup>
+    <EmbeddedResource Include="AddVipCustomers.resx">
+      <DependentUpon>AddVipCustomers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomerAdd.resx">
       <DependentUpon>CustomerAdd.cs</DependentUpon>
     </EmbeddedResource>
@@ -267,11 +282,13 @@
     <EmbeddedResource Include="SalaryManageForm.resx">
       <DependentUpon>SalaryManageForm.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VipCustomers.resx">
+      <DependentUpon>VipCustomers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <!-- ===================== OTHER NONE FILES ===================== -->
