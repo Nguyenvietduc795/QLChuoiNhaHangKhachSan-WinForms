@@ -155,8 +155,7 @@
             this.pnlTopbar2.Controls.Add(this.picUserAvt);
             this.pnlTopbar2.Controls.Add(this.btnNotification);
             this.pnlTopbar2.FillColor = System.Drawing.Color.White;
-            this.pnlTopbar2.Location = new System.Drawing.Point(204, 1);
-            this.pnlTopbar2.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlTopbar2.Location = new System.Drawing.Point(12, 1);
             this.pnlTopbar2.Name = "pnlTopbar2";
             this.pnlTopbar2.ShadowDecoration.Depth = 1;
             this.pnlTopbar2.ShadowDecoration.Enabled = true;
@@ -235,8 +234,7 @@
             this.lbDSTonkho.Controls.Add(this.guna2Panel12);
             this.lbDSTonkho.Controls.Add(this.cardTotal2);
             this.lbDSTonkho.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(251)))));
-            this.lbDSTonkho.Location = new System.Drawing.Point(204, 106);
-            this.lbDSTonkho.Margin = new System.Windows.Forms.Padding(4);
+            this.lbDSTonkho.Location = new System.Drawing.Point(12, 100);
             this.lbDSTonkho.Name = "lbDSTonkho";
             this.lbDSTonkho.ShadowDecoration.BorderRadius = 12;
             this.lbDSTonkho.ShadowDecoration.Depth = 1;
@@ -793,9 +791,9 @@
             this.tlpFilter2.ColumnCount = 5;
             this.tlpFilter2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.75F));
             this.tlpFilter2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.25F));
-            this.tlpFilter2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 549F));
-            this.tlpFilter2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 248F));
-            this.tlpFilter2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 262F));
+            this.tlpFilter2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 412F));
+            this.tlpFilter2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 186F));
+            this.tlpFilter2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
             this.tlpFilter2.Controls.Add(this.btnReset2, 4, 1);
             this.tlpFilter2.Controls.Add(this.lbTimkiem2, 2, 0);
             this.tlpFilter2.Controls.Add(this.lbDonvi2, 1, 0);
@@ -830,10 +828,9 @@
             this.btnReset2.FillColor = System.Drawing.Color.White;
             this.btnReset2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset2.ForeColor = System.Drawing.Color.Black;
-            this.btnReset2.Location = new System.Drawing.Point(1913, 36);
-            this.btnReset2.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReset2.Location = new System.Drawing.Point(1434, 30);
             this.btnReset2.Name = "btnReset2";
-            this.btnReset2.Size = new System.Drawing.Size(255, 49);
+            this.btnReset2.Size = new System.Drawing.Size(192, 40);
             this.btnReset2.TabIndex = 5;
             this.btnReset2.Text = "Tải lại";
             // 
@@ -843,8 +840,7 @@
             this.lbTimkiem2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbTimkiem2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTimkiem2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lbTimkiem2.Location = new System.Drawing.Point(1116, 0);
-            this.lbTimkiem2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbTimkiem2.Location = new System.Drawing.Point(836, 0);
             this.lbTimkiem2.Name = "lbTimkiem2";
             this.lbTimkiem2.Size = new System.Drawing.Size(541, 32);
             this.lbTimkiem2.TabIndex = 2;
@@ -857,10 +853,9 @@
             this.lbDonvi2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbDonvi2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDonvi2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lbDonvi2.Location = new System.Drawing.Point(557, 0);
-            this.lbDonvi2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbDonvi2.Location = new System.Drawing.Point(417, 0);
             this.lbDonvi2.Name = "lbDonvi2";
-            this.lbDonvi2.Size = new System.Drawing.Size(551, 32);
+            this.lbDonvi2.Size = new System.Drawing.Size(413, 27);
             this.lbDonvi2.TabIndex = 1;
             this.lbDonvi2.Text = "Đơn vị (NH/KS)";
             this.lbDonvi2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -874,7 +869,7 @@
             this.lbloaikho2.Location = new System.Drawing.Point(4, 0);
             this.lbloaikho2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbloaikho2.Name = "lbloaikho2";
-            this.lbloaikho2.Size = new System.Drawing.Size(545, 32);
+            this.lbloaikho2.Size = new System.Drawing.Size(408, 27);
             this.lbloaikho2.TabIndex = 0;
             this.lbloaikho2.Text = "  Loại Kho";
             this.lbloaikho2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -896,8 +891,7 @@
             "Kho Thiết bị",
             "Kho Nguyên Liệu",
             "Tất cả"});
-            this.cboLoaiKho2.Location = new System.Drawing.Point(60, 36);
-            this.cboLoaiKho2.Margin = new System.Windows.Forms.Padding(4);
+            this.cboLoaiKho2.Location = new System.Drawing.Point(43, 30);
             this.cboLoaiKho2.Name = "cboLoaiKho2";
             this.cboLoaiKho2.Size = new System.Drawing.Size(489, 36);
             this.cboLoaiKho2.TabIndex = 3;
@@ -919,8 +913,7 @@
             "NH01",
             "KS01",
             "Tất cả"});
-            this.cboDonVi2.Location = new System.Drawing.Point(593, 36);
-            this.cboDonVi2.Margin = new System.Windows.Forms.Padding(4);
+            this.cboDonVi2.Location = new System.Drawing.Point(443, 30);
             this.cboDonVi2.Name = "cboDonVi2";
             this.cboDonVi2.Size = new System.Drawing.Size(515, 36);
             this.cboDonVi2.TabIndex = 4;
@@ -936,8 +929,7 @@
             this.btnLoc2.FillColor = System.Drawing.Color.Black;
             this.btnLoc2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoc2.ForeColor = System.Drawing.Color.White;
-            this.btnLoc2.Location = new System.Drawing.Point(1665, 36);
-            this.btnLoc2.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLoc2.Location = new System.Drawing.Point(1248, 30);
             this.btnLoc2.Name = "btnLoc2";
             this.btnLoc2.Size = new System.Drawing.Size(240, 49);
             this.btnLoc2.TabIndex = 4;
@@ -961,8 +953,7 @@
             this.txTimkiem2.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(102)))), ((int)(((byte)(241)))));
             this.txTimkiem2.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(55)))));
             this.txTimkiem2.HoverState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.txTimkiem2.Location = new System.Drawing.Point(1141, 37);
-            this.txTimkiem2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txTimkiem2.Location = new System.Drawing.Point(855, 30);
             this.txTimkiem2.Name = "txTimkiem2";
             this.txTimkiem2.PlaceholderText = "";
             this.txTimkiem2.SelectedText = "";
@@ -1232,7 +1223,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.ClientSize = new System.Drawing.Size(1781, 920);
             this.Controls.Add(this.lbDSTonkho);
             this.Controls.Add(this.pnlTopbar2);
             this.Margin = new System.Windows.Forms.Padding(4);

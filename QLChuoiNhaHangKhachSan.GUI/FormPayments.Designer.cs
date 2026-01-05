@@ -120,7 +120,7 @@
             this.Gn2pnlPaymentMain.Name = "Gn2pnlPaymentMain";
             this.Gn2pnlPaymentMain.ShadowDecoration.BorderRadius = 15;
             this.Gn2pnlPaymentMain.ShadowDecoration.Enabled = true;
-            this.Gn2pnlPaymentMain.Size = new System.Drawing.Size(1924, 1055);
+            this.Gn2pnlPaymentMain.Size = new System.Drawing.Size(1697, 949);
             this.Gn2pnlPaymentMain.TabIndex = 2;
             this.Gn2pnlPaymentMain.Paint += new System.Windows.Forms.PaintEventHandler(this.Gn2pnlPaymentMain_Paint);
             // 
@@ -134,12 +134,12 @@
             this.pnlUnsuccessful.Controls.Add(this.btnUnsuccessful);
             this.pnlUnsuccessful.Controls.Add(this.lbUnsuccessful);
             this.pnlUnsuccessful.FillColor = System.Drawing.Color.White;
-            this.pnlUnsuccessful.Location = new System.Drawing.Point(2021, 234);
-            this.pnlUnsuccessful.Margin = new System.Windows.Forms.Padding(11, 0, 11, 0);
+            this.pnlUnsuccessful.Location = new System.Drawing.Point(1313, 188);
+            this.pnlUnsuccessful.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.pnlUnsuccessful.Name = "pnlUnsuccessful";
             this.pnlUnsuccessful.ShadowDecoration.BorderRadius = 15;
             this.pnlUnsuccessful.ShadowDecoration.Enabled = true;
-            this.pnlUnsuccessful.Size = new System.Drawing.Size(495, 213);
+            this.pnlUnsuccessful.Size = new System.Drawing.Size(366, 173);
             this.pnlUnsuccessful.TabIndex = 14;
             // 
             // iconPictureBox1
@@ -150,9 +150,9 @@
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.X;
             this.iconPictureBox1.IconColor = System.Drawing.Color.Firebrick;
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 47;
-            this.iconPictureBox1.Location = new System.Drawing.Point(419, 166);
-            this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.iconPictureBox1.IconSize = 38;
+            this.iconPictureBox1.Location = new System.Drawing.Point(309, 135);
+            this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.iconPictureBox1.Name = "iconPictureBox1";
             this.iconPictureBox1.Size = new System.Drawing.Size(56, 47);
             this.iconPictureBox1.TabIndex = 8;
@@ -201,7 +201,8 @@
             this.lbUnsuccessful.AutoSize = true;
             this.lbUnsuccessful.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lbUnsuccessful.ForeColor = System.Drawing.Color.Black;
-            this.lbUnsuccessful.Location = new System.Drawing.Point(23, 28);
+            this.lbUnsuccessful.Location = new System.Drawing.Point(12, 25);
+            this.lbUnsuccessful.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbUnsuccessful.Name = "lbUnsuccessful";
             this.lbUnsuccessful.Size = new System.Drawing.Size(431, 41);
             this.lbUnsuccessful.TabIndex = 0;
@@ -218,8 +219,8 @@
             this.pnlSummary.Location = new System.Drawing.Point(0, 0);
             this.pnlSummary.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlSummary.Name = "pnlSummary";
-            this.pnlSummary.Padding = new System.Windows.Forms.Padding(11, 10, 11, 10);
-            this.pnlSummary.Size = new System.Drawing.Size(1924, 130);
+            this.pnlSummary.Padding = new System.Windows.Forms.Padding(8);
+            this.pnlSummary.Size = new System.Drawing.Size(1697, 106);
             this.pnlSummary.TabIndex = 13;
             // 
             // guna2Button1
@@ -257,8 +258,8 @@
             this.btnCreateInvoice.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(124)))), ((int)(((byte)(255)))));
             this.btnCreateInvoice.HoverState.ForeColor = System.Drawing.Color.White;
             this.btnCreateInvoice.ImageSize = new System.Drawing.Size(10, 10);
-            this.btnCreateInvoice.Location = new System.Drawing.Point(2115, 33);
-            this.btnCreateInvoice.Margin = new System.Windows.Forms.Padding(11, 0, 11, 0);
+            this.btnCreateInvoice.Location = new System.Drawing.Point(1299, 26);
+            this.btnCreateInvoice.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.btnCreateInvoice.Name = "btnCreateInvoice";
             this.btnCreateInvoice.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(102)))), ((int)(((byte)(245)))));
             this.btnCreateInvoice.ShadowDecoration.BorderRadius = 10;
@@ -304,11 +305,11 @@
             this.gpnlQuickActions.Controls.Add(this.chart2);
             this.gpnlQuickActions.Controls.Add(this.lbQuickAction);
             this.gpnlQuickActions.FillColor = System.Drawing.Color.White;
-            this.gpnlQuickActions.Location = new System.Drawing.Point(1593, 575);
-            this.gpnlQuickActions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gpnlQuickActions.Location = new System.Drawing.Point(990, 467);
+            this.gpnlQuickActions.Margin = new System.Windows.Forms.Padding(2);
             this.gpnlQuickActions.Name = "gpnlQuickActions";
             this.gpnlQuickActions.ShadowDecoration.Enabled = true;
-            this.gpnlQuickActions.Size = new System.Drawing.Size(795, 580);
+            this.gpnlQuickActions.Size = new System.Drawing.Size(500, 471);
             this.gpnlQuickActions.TabIndex = 2;
             // 
             // label1
@@ -336,8 +337,7 @@
             this.btnFix.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
             this.btnFix.Image = ((System.Drawing.Image)(resources.GetObject("btnFix.Image")));
             this.btnFix.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnFix.Location = new System.Drawing.Point(444, 78);
-            this.btnFix.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFix.Location = new System.Drawing.Point(275, 63);
             this.btnFix.Name = "btnFix";
             this.btnFix.Size = new System.Drawing.Size(249, 46);
             this.btnFix.TabIndex = 15;
@@ -358,8 +358,8 @@
             this.btnDownload.HoverState.FillColor = System.Drawing.Color.Silver;
             this.btnDownload.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDownload.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnDownload.Location = new System.Drawing.Point(69, 78);
-            this.btnDownload.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDownload.Location = new System.Drawing.Point(28, 63);
+            this.btnDownload.Margin = new System.Windows.Forms.Padding(2);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
             this.btnDownload.Size = new System.Drawing.Size(268, 46);
@@ -373,14 +373,13 @@
             this.chart2.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart2.Legends.Add(legend1);
-            this.chart2.Location = new System.Drawing.Point(107, 229);
-            this.chart2.Margin = new System.Windows.Forms.Padding(4);
+            this.chart2.Location = new System.Drawing.Point(91, 183);
             this.chart2.Name = "chart2";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart2.Series.Add(series1);
-            this.chart2.Size = new System.Drawing.Size(611, 334);
+            this.chart2.Size = new System.Drawing.Size(360, 271);
             this.chart2.TabIndex = 14;
             this.chart2.Text = "chart2";
             // 
@@ -407,7 +406,7 @@
             this.panelTransaction.Name = "panelTransaction";
             this.panelTransaction.Padding = new System.Windows.Forms.Padding(12);
             this.panelTransaction.ShadowDecoration.Enabled = true;
-            this.panelTransaction.Size = new System.Drawing.Size(1277, 580);
+            this.panelTransaction.Size = new System.Drawing.Size(859, 471);
             this.panelTransaction.TabIndex = 6;
             // 
             // guna2Button4
@@ -472,7 +471,7 @@
             this.dgvTransaction.RowHeadersWidth = 51;
             this.dgvTransaction.RowTemplate.Height = 24;
             this.dgvTransaction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTransaction.Size = new System.Drawing.Size(1188, 458);
+            this.dgvTransaction.Size = new System.Drawing.Size(782, 372);
             this.dgvTransaction.TabIndex = 11;
             // 
             // dgvInvoiceID
@@ -550,12 +549,12 @@
             this.pnlSuccessfulPaymentTitle.Controls.Add(this.btnSuccessful);
             this.pnlSuccessfulPaymentTitle.Controls.Add(this.lbSuccessful);
             this.pnlSuccessfulPaymentTitle.FillColor = System.Drawing.Color.White;
-            this.pnlSuccessfulPaymentTitle.Location = new System.Drawing.Point(1361, 234);
-            this.pnlSuccessfulPaymentTitle.Margin = new System.Windows.Forms.Padding(11, 0, 11, 0);
+            this.pnlSuccessfulPaymentTitle.Location = new System.Drawing.Point(892, 190);
+            this.pnlSuccessfulPaymentTitle.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.pnlSuccessfulPaymentTitle.Name = "pnlSuccessfulPaymentTitle";
             this.pnlSuccessfulPaymentTitle.ShadowDecoration.BorderRadius = 15;
             this.pnlSuccessfulPaymentTitle.ShadowDecoration.Enabled = true;
-            this.pnlSuccessfulPaymentTitle.Size = new System.Drawing.Size(503, 213);
+            this.pnlSuccessfulPaymentTitle.Size = new System.Drawing.Size(327, 173);
             this.pnlSuccessfulPaymentTitle.TabIndex = 5;
             // 
             // iconSuccessfulPayment
@@ -566,9 +565,9 @@
             this.iconSuccessfulPayment.IconChar = FontAwesome.Sharp.IconChar.Check;
             this.iconSuccessfulPayment.IconColor = System.Drawing.Color.MediumSeaGreen;
             this.iconSuccessfulPayment.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconSuccessfulPayment.IconSize = 50;
-            this.iconSuccessfulPayment.Location = new System.Drawing.Point(428, 162);
-            this.iconSuccessfulPayment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.iconSuccessfulPayment.IconSize = 41;
+            this.iconSuccessfulPayment.Location = new System.Drawing.Point(271, 132);
+            this.iconSuccessfulPayment.Margin = new System.Windows.Forms.Padding(2);
             this.iconSuccessfulPayment.Name = "iconSuccessfulPayment";
             this.iconSuccessfulPayment.Size = new System.Drawing.Size(59, 50);
             this.iconSuccessfulPayment.TabIndex = 8;
@@ -633,12 +632,12 @@
             this.guna2Panel4.Controls.Add(this.btnPending);
             this.guna2Panel4.Controls.Add(this.lblPendingInvoiceTitle);
             this.guna2Panel4.FillColor = System.Drawing.Color.White;
-            this.guna2Panel4.Location = new System.Drawing.Point(700, 234);
-            this.guna2Panel4.Margin = new System.Windows.Forms.Padding(11, 0, 11, 0);
+            this.guna2Panel4.Location = new System.Drawing.Point(465, 190);
+            this.guna2Panel4.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.guna2Panel4.Name = "guna2Panel4";
             this.guna2Panel4.ShadowDecoration.BorderRadius = 15;
             this.guna2Panel4.ShadowDecoration.Enabled = true;
-            this.guna2Panel4.Size = new System.Drawing.Size(483, 213);
+            this.guna2Panel4.Size = new System.Drawing.Size(329, 173);
             this.guna2Panel4.TabIndex = 4;
             // 
             // iconPendingInvoice
@@ -649,9 +648,9 @@
             this.iconPendingInvoice.IconChar = FontAwesome.Sharp.IconChar.FileInvoice;
             this.iconPendingInvoice.IconColor = System.Drawing.Color.MediumSeaGreen;
             this.iconPendingInvoice.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPendingInvoice.IconSize = 48;
-            this.iconPendingInvoice.Location = new System.Drawing.Point(401, 162);
-            this.iconPendingInvoice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.iconPendingInvoice.IconSize = 39;
+            this.iconPendingInvoice.Location = new System.Drawing.Point(268, 132);
+            this.iconPendingInvoice.Margin = new System.Windows.Forms.Padding(2);
             this.iconPendingInvoice.Name = "iconPendingInvoice";
             this.iconPendingInvoice.Size = new System.Drawing.Size(61, 48);
             this.iconPendingInvoice.TabIndex = 8;
@@ -721,7 +720,7 @@
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.ShadowDecoration.BorderRadius = 15;
             this.guna2Panel1.ShadowDecoration.Enabled = true;
-            this.guna2Panel1.Size = new System.Drawing.Size(479, 213);
+            this.guna2Panel1.Size = new System.Drawing.Size(325, 173);
             this.guna2Panel1.TabIndex = 1;
             this.guna2Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel1_Paint);
             // 
@@ -733,9 +732,9 @@
             this.iconStatus.IconChar = FontAwesome.Sharp.IconChar.ArrowTrendUp;
             this.iconStatus.IconColor = System.Drawing.Color.MediumSeaGreen;
             this.iconStatus.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconStatus.IconSize = 48;
-            this.iconStatus.Location = new System.Drawing.Point(404, 162);
-            this.iconStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.iconStatus.IconSize = 39;
+            this.iconStatus.Location = new System.Drawing.Point(269, 132);
+            this.iconStatus.Margin = new System.Windows.Forms.Padding(2);
             this.iconStatus.Name = "iconStatus";
             this.iconStatus.Size = new System.Drawing.Size(56, 48);
             this.iconStatus.TabIndex = 8;
@@ -796,7 +795,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.ClientSize = new System.Drawing.Size(1697, 949);
             this.Controls.Add(this.Gn2pnlPaymentMain);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormPayments";

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRestaurant));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnTable1 = new System.Windows.Forms.Button();
             this.btnTable2 = new System.Windows.Forms.Button();
             this.btnTable3 = new System.Windows.Forms.Button();
@@ -92,9 +92,6 @@
             this.lblPrice = new System.Windows.Forms.Label();
             this.txtTableNumber = new System.Windows.Forms.TextBox();
             this.lblTableNumber = new System.Windows.Forms.Label();
-            this.plnTitle = new Guna.UI2.WinForms.Guna2Panel();
-            this.blbDecribe = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pnlNote = new Guna.UI2.WinForms.Guna2Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -105,7 +102,6 @@
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDishList)).BeginInit();
-            this.plnTitle.SuspendLayout();
             this.pnlNote.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -119,7 +115,7 @@
             this.btnTable1.FlatAppearance.BorderSize = 0;
             this.btnTable1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable1.Location = new System.Drawing.Point(85, 250);
+            this.btnTable1.Location = new System.Drawing.Point(69, 112);
             this.btnTable1.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable1.Name = "btnTable1";
             this.btnTable1.Size = new System.Drawing.Size(95, 99);
@@ -139,7 +135,7 @@
             this.btnTable2.FlatAppearance.BorderSize = 0;
             this.btnTable2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable2.Location = new System.Drawing.Point(288, 250);
+            this.btnTable2.Location = new System.Drawing.Point(240, 112);
             this.btnTable2.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable2.Name = "btnTable2";
             this.btnTable2.Size = new System.Drawing.Size(95, 99);
@@ -157,7 +153,7 @@
             this.btnTable3.FlatAppearance.BorderSize = 0;
             this.btnTable3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable3.Location = new System.Drawing.Point(496, 250);
+            this.btnTable3.Location = new System.Drawing.Point(424, 112);
             this.btnTable3.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable3.Name = "btnTable3";
             this.btnTable3.Size = new System.Drawing.Size(95, 99);
@@ -175,7 +171,7 @@
             this.btnTable4.FlatAppearance.BorderSize = 0;
             this.btnTable4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable4.Location = new System.Drawing.Point(718, 250);
+            this.btnTable4.Location = new System.Drawing.Point(600, 112);
             this.btnTable4.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable4.Name = "btnTable4";
             this.btnTable4.Size = new System.Drawing.Size(95, 99);
@@ -193,7 +189,7 @@
             this.btnTable5.FlatAppearance.BorderSize = 0;
             this.btnTable5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable5.Location = new System.Drawing.Point(920, 250);
+            this.btnTable5.Location = new System.Drawing.Point(769, 112);
             this.btnTable5.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable5.Name = "btnTable5";
             this.btnTable5.Size = new System.Drawing.Size(95, 99);
@@ -211,7 +207,7 @@
             this.btnTable11.FlatAppearance.BorderSize = 0;
             this.btnTable11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable11.Location = new System.Drawing.Point(920, 376);
+            this.btnTable11.Location = new System.Drawing.Point(769, 238);
             this.btnTable11.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable11.Name = "btnTable11";
             this.btnTable11.Size = new System.Drawing.Size(95, 99);
@@ -223,19 +219,22 @@
             // 
             // btnTable10
             // 
+            this.btnTable10.BackColor = System.Drawing.Color.Transparent;
             this.btnTable10.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable10.BackgroundImage")));
-            this.btnTable10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnTable10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnTable10.CausesValidation = false;
             this.btnTable10.FlatAppearance.BorderSize = 0;
+            this.btnTable10.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.btnTable10.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.btnTable10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable10.Location = new System.Drawing.Point(718, 376);
+            this.btnTable10.Location = new System.Drawing.Point(600, 238);
             this.btnTable10.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable10.Name = "btnTable10";
             this.btnTable10.Size = new System.Drawing.Size(95, 99);
             this.btnTable10.TabIndex = 13;
             this.btnTable10.Text = "9";
-            this.btnTable10.UseVisualStyleBackColor = true;
+            this.btnTable10.UseVisualStyleBackColor = false;
             this.btnTable10.UseWaitCursor = true;
             this.btnTable10.Click += new System.EventHandler(this.Table_Click);
             // 
@@ -248,7 +247,7 @@
             this.btnTable9.FlatAppearance.BorderSize = 0;
             this.btnTable9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable9.Location = new System.Drawing.Point(496, 376);
+            this.btnTable9.Location = new System.Drawing.Point(424, 238);
             this.btnTable9.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable9.Name = "btnTable9";
             this.btnTable9.Size = new System.Drawing.Size(95, 99);
@@ -266,7 +265,7 @@
             this.btnTable8.FlatAppearance.BorderSize = 0;
             this.btnTable8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable8.Location = new System.Drawing.Point(288, 376);
+            this.btnTable8.Location = new System.Drawing.Point(240, 238);
             this.btnTable8.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable8.Name = "btnTable8";
             this.btnTable8.Size = new System.Drawing.Size(95, 99);
@@ -285,7 +284,7 @@
             this.btnTable7.FlatAppearance.BorderSize = 0;
             this.btnTable7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable7.Location = new System.Drawing.Point(85, 376);
+            this.btnTable7.Location = new System.Drawing.Point(69, 238);
             this.btnTable7.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable7.Name = "btnTable7";
             this.btnTable7.Size = new System.Drawing.Size(95, 99);
@@ -303,7 +302,7 @@
             this.btnTable17.FlatAppearance.BorderSize = 0;
             this.btnTable17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable17.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable17.Location = new System.Drawing.Point(920, 517);
+            this.btnTable17.Location = new System.Drawing.Point(769, 379);
             this.btnTable17.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable17.Name = "btnTable17";
             this.btnTable17.Size = new System.Drawing.Size(95, 99);
@@ -321,7 +320,7 @@
             this.btnTable16.FlatAppearance.BorderSize = 0;
             this.btnTable16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable16.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable16.Location = new System.Drawing.Point(718, 517);
+            this.btnTable16.Location = new System.Drawing.Point(600, 379);
             this.btnTable16.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable16.Name = "btnTable16";
             this.btnTable16.Size = new System.Drawing.Size(95, 99);
@@ -339,7 +338,7 @@
             this.btnTable15.FlatAppearance.BorderSize = 0;
             this.btnTable15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable15.Location = new System.Drawing.Point(496, 517);
+            this.btnTable15.Location = new System.Drawing.Point(424, 379);
             this.btnTable15.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable15.Name = "btnTable15";
             this.btnTable15.Size = new System.Drawing.Size(95, 99);
@@ -357,7 +356,7 @@
             this.btnTable14.FlatAppearance.BorderSize = 0;
             this.btnTable14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable14.Location = new System.Drawing.Point(288, 517);
+            this.btnTable14.Location = new System.Drawing.Point(240, 379);
             this.btnTable14.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable14.Name = "btnTable14";
             this.btnTable14.Size = new System.Drawing.Size(95, 99);
@@ -376,7 +375,7 @@
             this.btnTable13.FlatAppearance.BorderSize = 0;
             this.btnTable13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable13.Location = new System.Drawing.Point(85, 517);
+            this.btnTable13.Location = new System.Drawing.Point(69, 379);
             this.btnTable13.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable13.Name = "btnTable13";
             this.btnTable13.Size = new System.Drawing.Size(95, 99);
@@ -394,7 +393,7 @@
             this.btnTable23.FlatAppearance.BorderSize = 0;
             this.btnTable23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable23.Location = new System.Drawing.Point(920, 642);
+            this.btnTable23.Location = new System.Drawing.Point(769, 504);
             this.btnTable23.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable23.Name = "btnTable23";
             this.btnTable23.Size = new System.Drawing.Size(95, 99);
@@ -413,7 +412,7 @@
             this.btnTable22.FlatAppearance.BorderSize = 0;
             this.btnTable22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable22.Location = new System.Drawing.Point(718, 642);
+            this.btnTable22.Location = new System.Drawing.Point(600, 504);
             this.btnTable22.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable22.Name = "btnTable22";
             this.btnTable22.Size = new System.Drawing.Size(95, 99);
@@ -432,7 +431,7 @@
             this.btnTable21.FlatAppearance.BorderSize = 0;
             this.btnTable21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable21.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable21.Location = new System.Drawing.Point(496, 642);
+            this.btnTable21.Location = new System.Drawing.Point(424, 504);
             this.btnTable21.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable21.Name = "btnTable21";
             this.btnTable21.Size = new System.Drawing.Size(95, 99);
@@ -450,7 +449,7 @@
             this.btnTable20.FlatAppearance.BorderSize = 0;
             this.btnTable20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable20.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable20.Location = new System.Drawing.Point(288, 642);
+            this.btnTable20.Location = new System.Drawing.Point(240, 504);
             this.btnTable20.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable20.Name = "btnTable20";
             this.btnTable20.Size = new System.Drawing.Size(95, 99);
@@ -468,7 +467,7 @@
             this.btnTable19.FlatAppearance.BorderSize = 0;
             this.btnTable19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable19.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable19.Location = new System.Drawing.Point(85, 642);
+            this.btnTable19.Location = new System.Drawing.Point(69, 504);
             this.btnTable19.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable19.Name = "btnTable19";
             this.btnTable19.Size = new System.Drawing.Size(95, 99);
@@ -486,7 +485,7 @@
             this.btnTable29.FlatAppearance.BorderSize = 0;
             this.btnTable29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable29.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable29.Location = new System.Drawing.Point(920, 779);
+            this.btnTable29.Location = new System.Drawing.Point(769, 641);
             this.btnTable29.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable29.Name = "btnTable29";
             this.btnTable29.Size = new System.Drawing.Size(95, 99);
@@ -504,7 +503,7 @@
             this.btnTable28.FlatAppearance.BorderSize = 0;
             this.btnTable28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable28.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable28.Location = new System.Drawing.Point(718, 779);
+            this.btnTable28.Location = new System.Drawing.Point(600, 641);
             this.btnTable28.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable28.Name = "btnTable28";
             this.btnTable28.Size = new System.Drawing.Size(95, 99);
@@ -522,7 +521,7 @@
             this.btnTable27.FlatAppearance.BorderSize = 0;
             this.btnTable27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable27.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable27.Location = new System.Drawing.Point(496, 779);
+            this.btnTable27.Location = new System.Drawing.Point(424, 641);
             this.btnTable27.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable27.Name = "btnTable27";
             this.btnTable27.Size = new System.Drawing.Size(95, 99);
@@ -540,7 +539,7 @@
             this.btnTable26.FlatAppearance.BorderSize = 0;
             this.btnTable26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable26.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable26.Location = new System.Drawing.Point(288, 779);
+            this.btnTable26.Location = new System.Drawing.Point(240, 641);
             this.btnTable26.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable26.Name = "btnTable26";
             this.btnTable26.Size = new System.Drawing.Size(95, 99);
@@ -558,7 +557,7 @@
             this.btnTable25.FlatAppearance.BorderSize = 0;
             this.btnTable25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable25.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable25.Location = new System.Drawing.Point(85, 779);
+            this.btnTable25.Location = new System.Drawing.Point(69, 641);
             this.btnTable25.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable25.Name = "btnTable25";
             this.btnTable25.Size = new System.Drawing.Size(95, 99);
@@ -602,10 +601,10 @@
             this.guna2Panel1.Controls.Add(this.txtTableNumber);
             this.guna2Panel1.Controls.Add(this.lblTableNumber);
             this.guna2Panel1.FillColor = System.Drawing.Color.White;
-            this.guna2Panel1.Location = new System.Drawing.Point(1232, 101);
+            this.guna2Panel1.Location = new System.Drawing.Point(1029, -5);
             this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(681, 842);
+            this.guna2Panel1.Size = new System.Drawing.Size(686, 922);
             this.guna2Panel1.TabIndex = 34;
             this.guna2Panel1.UseWaitCursor = true;
             this.guna2Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel1_Paint);
@@ -881,19 +880,19 @@
             // 
             // dgvDishList
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvDishList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvDishList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvDishList.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvDishList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDishList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDishList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvDishList.ColumnHeadersHeight = 18;
             this.dgvDishList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvDishList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -902,22 +901,22 @@
             this.colDonGia,
             this.colSoLuong,
             this.colThanhTien});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDishList.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDishList.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvDishList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvDishList.Location = new System.Drawing.Point(4, 359);
             this.dgvDishList.Margin = new System.Windows.Forms.Padding(2);
             this.dgvDishList.Name = "dgvDishList";
             this.dgvDishList.RowHeadersVisible = false;
             this.dgvDishList.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvDishList.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvDishList.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvDishList.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvDishList.RowTemplate.Height = 24;
             this.dgvDishList.Size = new System.Drawing.Size(677, 237);
@@ -1062,48 +1061,6 @@
             this.lblTableNumber.Text = "Số bàn";
             this.lblTableNumber.UseWaitCursor = true;
             // 
-            // plnTitle
-            // 
-            this.plnTitle.BorderColor = System.Drawing.Color.Black;
-            this.plnTitle.BorderRadius = 10;
-            this.plnTitle.BorderThickness = 1;
-            this.plnTitle.Controls.Add(this.blbDecribe);
-            this.plnTitle.Controls.Add(this.lblTitle);
-            this.plnTitle.Location = new System.Drawing.Point(2, 0);
-            this.plnTitle.Margin = new System.Windows.Forms.Padding(2);
-            this.plnTitle.Name = "plnTitle";
-            this.plnTitle.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.plnTitle.Size = new System.Drawing.Size(1911, 93);
-            this.plnTitle.TabIndex = 35;
-            this.plnTitle.UseWaitCursor = true;
-            // 
-            // blbDecribe
-            // 
-            this.blbDecribe.BackColor = System.Drawing.Color.Transparent;
-            this.blbDecribe.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blbDecribe.ForeColor = System.Drawing.Color.Gray;
-            this.blbDecribe.Location = new System.Drawing.Point(10, 52);
-            this.blbDecribe.Margin = new System.Windows.Forms.Padding(2);
-            this.blbDecribe.Name = "blbDecribe";
-            this.blbDecribe.Size = new System.Drawing.Size(179, 19);
-            this.blbDecribe.TabIndex = 1;
-            this.blbDecribe.Text = "Quản lý đặt bàn và thanh toán";
-            this.blbDecribe.UseWaitCursor = true;
-            this.blbDecribe.Click += new System.EventHandler(this.guna2HtmlLabel2_Click);
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblTitle.Location = new System.Drawing.Point(10, 11);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(2);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(150, 38);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Quản lý bàn";
-            this.lblTitle.UseWaitCursor = true;
-            // 
             // pnlNote
             // 
             this.pnlNote.AutoScrollMargin = new System.Drawing.Size(0, 40);
@@ -1113,7 +1070,7 @@
             this.pnlNote.Controls.Add(this.panel2);
             this.pnlNote.Controls.Add(this.label7);
             this.pnlNote.Controls.Add(this.panel1);
-            this.pnlNote.Location = new System.Drawing.Point(166, 905);
+            this.pnlNote.Location = new System.Drawing.Point(69, 782);
             this.pnlNote.Name = "pnlNote";
             this.pnlNote.Size = new System.Drawing.Size(814, 79);
             this.pnlNote.TabIndex = 36;
@@ -1123,7 +1080,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(540, 34);
+            this.label3.Location = new System.Drawing.Point(608, 33);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 19);
             this.label3.TabIndex = 5;
@@ -1133,7 +1090,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.panel3.Location = new System.Drawing.Point(506, 34);
+            this.panel3.Location = new System.Drawing.Point(574, 33);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(20, 20);
             this.panel3.TabIndex = 4;
@@ -1143,7 +1100,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(352, 34);
+            this.label8.Location = new System.Drawing.Point(420, 33);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 19);
             this.label8.TabIndex = 3;
@@ -1153,7 +1110,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.panel2.Location = new System.Drawing.Point(318, 34);
+            this.panel2.Location = new System.Drawing.Point(386, 33);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(20, 20);
             this.panel2.TabIndex = 2;
@@ -1163,7 +1120,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(109, 34);
+            this.label7.Location = new System.Drawing.Point(177, 33);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(119, 19);
             this.label7.TabIndex = 1;
@@ -1173,7 +1130,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Sienna;
-            this.panel1.Location = new System.Drawing.Point(83, 34);
+            this.panel1.Location = new System.Drawing.Point(151, 33);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(20, 20);
             this.panel1.TabIndex = 0;
@@ -1181,11 +1138,12 @@
             // 
             // guna2PictureBox1
             // 
+            this.guna2PictureBox1.BorderRadius = 5;
             this.guna2PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox1.Image")));
             this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(12, 98);
+            this.guna2PictureBox1.Location = new System.Drawing.Point(-20, -5);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(1216, 912);
+            this.guna2PictureBox1.Size = new System.Drawing.Size(1044, 1005);
             this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.guna2PictureBox1.TabIndex = 37;
             this.guna2PictureBox1.TabStop = false;
@@ -1194,9 +1152,8 @@
             // frmRestaurant
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1924, 1061);
+            this.ClientSize = new System.Drawing.Size(1781, 920);
             this.Controls.Add(this.pnlNote);
-            this.Controls.Add(this.plnTitle);
             this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.btnTable29);
             this.Controls.Add(this.btnTable28);
@@ -1226,14 +1183,14 @@
             this.Controls.Add(this.guna2PictureBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmRestaurant";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý bàn";
             this.UseWaitCursor = true;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form3_Load);
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDishList)).EndInit();
-            this.plnTitle.ResumeLayout(false);
-            this.plnTitle.PerformLayout();
             this.pnlNote.ResumeLayout(false);
             this.pnlNote.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
@@ -1277,9 +1234,6 @@
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.TextBox txtTableNumber;
         private System.Windows.Forms.Label lblTableNumber;
-        private Guna.UI2.WinForms.Guna2Panel plnTitle;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
-        private Guna.UI2.WinForms.Guna2HtmlLabel blbDecribe;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblDetail;
         private Guna.UI2.WinForms.Guna2Button btnTableChoose;
         private System.Windows.Forms.TextBox txtSurcharge;

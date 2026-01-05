@@ -4,6 +4,7 @@ using System.Text;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
@@ -16,24 +17,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.guna2DataGridView1.CellContentClick += Guna2DataGridView1_CellContentClick;
             this.guna2TextBox1.TextChanged += Guna2TextBox1_TextChanged;
             ConfigureSearchAutocomplete();
-            SeedSampleRows();
             RefreshAutocompleteSource();
         }
-
-        // Bạn có thể sửa danh sách mẫu này để đổi dữ liệu mặc định
-        private readonly (string Customer, string Room, string From, string To, string CCCD, string SDT, string Gender, string Nationality)[] _sampleData = new[]
-        {
-            ("Nguyễn Tiến Linh", "P001", "21/12/2025 11:04", "21/12/2025 12:00", "012345678901", "0901234567", "Nam", "Việt Nam"),
-            ("Nguyen Văn Tùng",   "P003", "21/12/2025 13:00", "23/12/2025 14:00", "987654321000", "0912345678", "Nam", "Việt Nam"),
-            ("Tran Thi Hạnh ",     "P012", "22/12/2025 09:00", "24/12/2025 10:00", "112233445566", "0923456789", "Nữ", "Việt Nam"),
-            ("Lê Chí Hải",       "P001", "22/12/2025 10:30", "23/12/2025 11:30", "223344556677", "0934567890", "Nam", "Việt Nam"),
-            ("Phạm Đình Thư",     "P001", "23/12/2025 20:00", "25/12/2025 09:00", "334455667788", "0945678901", "Nam", "Việt Nam"),
-            ("Hoàng Tiến",    "P003", "23/12/2025 14:00", "27/12/2025 15:00", "445566778899", "0956789012", "Nam", "Việt Nam"),
-            ("Nguyễn Anh",       "P011", "24/12/2025 16:00", "25/12/2025 17:00", "556677889900", "0967890123", "Nam", "Việt Nam"),
-            ("Bui Giang",      "P007", "24/12/2025 18:00", "24/12/2025 19:00", "667788990011", "0978901234", "Nam", "Việt Nam"),
-            ("Đặng Hùng",     "P015", "25/12/2025 07:30", "25/12/2025 08:30", "778899001122", "0989012345", "Nam", "Việt Nam"),
-            ("Đỗ Thị Trinh",       "P019", "25/12/2025 09:30", "25/12/2025 10:30", "889900112233", "0990123456", "Nữ", "Việt Nam"),
-        };
 
         private class BookingRowInfo
         {
@@ -46,19 +31,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
             public string SDT { get; set; }
             public string Gender { get; set; }
             public string Nationality { get; set; }
-        }
-
-        private void SeedSampleRows()
-        {
-            // Nếu đã có dữ liệu (bất kỳ dòng nào không phải NewRow) thì không seed nữa
-            bool hasRealRow = guna2DataGridView1.Rows.Cast<DataGridViewRow>().Any(r => !r.IsNewRow);
-            if (hasRealRow) return;
-
-            foreach (var item in _sampleData)
-            {
-                string chitiet = $"{item.Room} ({item.From} - {item.To})";
-                AddBookingRowInternal(item.Customer, item.CCCD, item.SDT, item.Room, chitiet, item.Gender, item.Nationality);
-            }
         }
 
         private string NormalizeText(string input)
@@ -147,32 +119,92 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 f.Text = "Chi tiết phiếu";
                 f.StartPosition = FormStartPosition.CenterParent;
-                f.Size = new Size(800, 500);
-                f.Font = new Font("Microsoft YaHei UI", 11F, FontStyle.Regular);
+                f.Size = new Size(720, 520);
+                f.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular);
+                f.BackColor = Color.WhiteSmoke;
 
-                var txt = new TextBox
+                var container = new Panel
                 {
-                    Multiline = true,
-                    ReadOnly = true,
                     Dock = DockStyle.Fill,
-                    ScrollBars = ScrollBars.Vertical,
-                    Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular)
+                    Padding = new Padding(20),
+                    BackColor = Color.White
                 };
 
-                string details =
-                    "Nhân viên: " + (row.Cells[3].Value ?? "") + Environment.NewLine +
-                    "Số phiếu: " + (row.Cells[0].Value ?? "") + Environment.NewLine +
-                    "Khách Hàng: " + (row.Cells[1].Value ?? "") + Environment.NewLine +
-                    "Ngày lập: " + (row.Cells[2].Value ?? "") + Environment.NewLine +
-                    "CCCD: " + cccd + Environment.NewLine +
-                    "SĐT: " + sdt + Environment.NewLine +
-                    "Giới tính: " + gender + Environment.NewLine +
-                    "Quốc tịch: " + nat + Environment.NewLine +
-                    "Phòng: " + (row.Cells[4].Value ?? "");
+                var header = new Label
+                {
+                    Text = "Chi tiết phiếu",
+                    AutoSize = true,
+                    Font = new Font("Segoe UI", 16F, FontStyle.Bold),
+                    ForeColor = Color.FromArgb(45, 55, 72),
+                    Dock = DockStyle.Top,
+                    Padding = new Padding(0, 0, 0, 14)
+                };
 
+                var table = new TableLayoutPanel
+                {
+                    Dock = DockStyle.Fill,
+                    ColumnCount = 2,
+                    AutoSize = true,
+                    AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                    CellBorderStyle = TableLayoutPanelCellBorderStyle.None,
+                    Padding = new Padding(0, 10, 0, 0)
+                };
+                table.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 140));
+                table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
 
-                txt.Text = details;
-                f.Controls.Add(txt);
+                void AddRow(string title, string value)
+                {
+                    int r = table.RowCount;
+                    table.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+
+                    var lblTitle = new Label
+                    {
+                        Text = title,
+                        AutoSize = true,
+                        Font = new Font("Segoe UI", 10.5F, FontStyle.Bold),
+                        ForeColor = Color.FromArgb(79, 90, 100),
+                        Padding = new Padding(0, 4, 8, 4)
+                    };
+                    var lblValue = new Label
+                    {
+                        Text = value,
+                        AutoSize = true,
+                        Font = new Font("Segoe UI", 11F, FontStyle.Regular),
+                        ForeColor = Color.FromArgb(33, 37, 41),
+                        Padding = new Padding(0, 4, 0, 4),
+                        MaximumSize = new Size(520, 0)
+                    };
+
+                    table.Controls.Add(lblTitle, 0, r);
+                    table.Controls.Add(lblValue, 1, r);
+                    table.RowCount++;
+                }
+
+                AddRow("Nhân viên", Convert.ToString(row.Cells[3].Value));
+                AddRow("Số phiếu", Convert.ToString(row.Cells[0].Value));
+                AddRow("Khách hàng", Convert.ToString(row.Cells[1].Value));
+                AddRow("Ngày lập", Convert.ToString(row.Cells[2].Value));
+                AddRow("CCCD", cccd);
+                AddRow("SĐT", sdt);
+                AddRow("Giới tính", gender);
+                AddRow("Quốc tịch", nat);
+                var infoTag = row.Tag as BookingRowInfo;
+                var detailRaw = infoTag?.Detail ?? Convert.ToString(row.Cells[4].Value);
+                // xuống dòng giữa các phòng/khoảng thời gian
+                var phongText = detailRaw?.Replace(") ", ")\r\n");
+                AddRow("Phòng", phongText);
+
+                var scroll = new Panel
+                {
+                    Dock = DockStyle.Fill,
+                    AutoScroll = true
+                };
+                scroll.Controls.Add(table);
+
+                container.Controls.Add(scroll);
+                container.Controls.Add(header);
+                f.Controls.Add(container);
+
                 f.ShowDialog(this);
             }
         }
@@ -181,6 +213,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             using (var dlg = new BookingRoom_Details())
             {
+                var availableRooms = LoadAvailableRoomsFromDb();
+                dlg.SetAvailableRooms(availableRooms);
+
                 var unavailable = BookingManager.GetAllBookings().Select(kvp => kvp.Key);
                 dlg.SetUnavailableRooms(unavailable);
 
@@ -194,8 +229,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     string nat = dlg.ResultNationality;
                     string phong = dlg.ResultRooms; 
                     string thoigian = dlg.ResultDateRange;
-
-                    AddBookingRowInternal(khach, cccd, sdt, phong, thoigian, gender, nat);
+                    DateTime startDate = dlg.ResultStartDate;
+                    string detailText = dlg.ResultRoomDetails;
+ 
+                    AddBookingRowInternal(khach, cccd, sdt, phong, thoigian, startDate, gender, nat, detailText);
 
                     try
                     {
@@ -211,7 +248,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
         }
 
-        private void AddBookingRowInternal(string khach, string cccd, string sdt, string phong, string thoigian, string gender = "", string nat = "")
+        private List<(string RoomCode, string RoomType)> LoadAvailableRoomsFromDb()
+        {
+            // Database connection removed; return an empty list or populate from another source if available.
+            return new List<(string, string)>();
+        }
+
+        private void AddBookingRowInternal(string khach, string cccd, string sdt, string phong, string thoigian, DateTime? startDate = null, string gender = "", string nat = "", string detailOverride = null)
         {
             int rowIndex = this.guna2DataGridView1.Rows.Add();
             var row = this.guna2DataGridView1.Rows[rowIndex];
@@ -221,7 +264,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             row.Cells[1].Value = khach;
             row.Cells[2].Value = ngayLap;
             row.Cells[3].Value = "Trường Phi";
-            row.Cells[4].Value = phong + " (" + thoigian + ")";
+            string detailText = detailOverride ?? (phong + " (" + thoigian + ")");
+            row.Cells[4].Value = detailText;
             row.Cells[5].Value = "     X";
 
             row.Tag = new BookingRowInfo
@@ -230,7 +274,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 Customer = khach,
                 Date = ngayLap,
                 Nationality = nat,
-                Detail = phong + " (" + thoigian + ")",
+                Detail = detailText,
                 CCCD = cccd,
                 SDT = sdt,
                 Gender = gender,
@@ -248,9 +292,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 Invoke(new Action(() => AddBooking(khach, cccd, sdt, phong, thoigian)));
                 return;
             }
-
+ 
             AddBookingRowInternal(khach, cccd, sdt, phong, thoigian);
             RefreshAutocompleteSource();
         }
-    }
-}
+ }
+ }

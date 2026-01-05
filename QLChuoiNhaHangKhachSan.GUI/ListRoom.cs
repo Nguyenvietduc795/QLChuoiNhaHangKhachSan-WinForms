@@ -18,6 +18,41 @@ namespace QLChuoiNhaHangKhachSan.GUI
             InitializeComponent();
             // Gọi nạp phòng theo phân loại khi mở Form
             NapDanhSachPhongTheoLoai();
+
+            // Autocomplete cho ô tìm kiếm
+            TryInitSearchAutocomplete();
+        }
+
+        private void TryInitSearchAutocomplete()
+        {
+            try
+            {
+                if (txtTimkiem != null)
+                {
+                    txtTimkiem.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    txtTimkiem.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    UpdateSearchAutocomplete();
+                }
+            }
+            catch { }
+        }
+
+        private void UpdateSearchAutocomplete()
+        {
+            if (txtTimkiem == null) return;
+            var src = new AutoCompleteStringCollection();
+            foreach (Control ctr in LayoutPhong.Controls)
+            {
+                if (ctr is UcRoom room)
+                {
+                    var code = room.labRoomNumber.Text;
+                    var guest = room.lblStatus.Text;
+                    if (!string.IsNullOrWhiteSpace(code)) src.Add(code.Trim());
+                    if (!string.IsNullOrWhiteSpace(guest) && !guest.Equals("Phòng Trống", StringComparison.OrdinalIgnoreCase))
+                        src.Add(guest.Trim());
+                }
+            }
+            txtTimkiem.AutoCompleteCustomSource = src;
         }
 
         private void NapDanhSachPhongTheoLoai()
@@ -41,17 +76,29 @@ namespace QLChuoiNhaHangKhachSan.GUI
         // Hàm bổ trợ để tạo phòng theo dải số i
         private void TaoNhomPhong(int start, int end, string loaiPhong)
         {
+            int vipCount = 0;
+            string loaiLower = loaiPhong.ToLower();
+            if (loaiLower.Contains("đơn")) vipCount = 4; // 4 phòng VIP đầu cho phòng đơn
+            else if (loaiLower.Contains("đôi")) vipCount = 3; // 3 phòng VIP đầu cho phòng đôi
+            else if (loaiLower.Contains("gia đình")) vipCount = 3; // 3 phòng VIP đầu cho phòng gia đình
+
             for (int i = start; i <= end; i++)
             {
                 UcRoom room = new UcRoom();
+                room.ViewTimeProvider = () => GetSelectedViewTime();
                 room.labRoomNumber.Text = "P" + i.ToString("D3");
 
-                room.Tag = loaiPhong.ToLower().Trim(); // Lưu loại phòng viết thường vào Tag
+                bool isVip = (i - start) < vipCount;
+                string tagValue = loaiPhong.ToLower().Trim();
+                if (isVip) tagValue += " vip";
+                room.Tag = tagValue; // Lưu loại phòng + vip
+                room.SetVip(isVip);
 
 
                 room.Click += (s, e) => {
                     string ma = room.labRoomNumber.Text; // Ví dụ: "P001"
                     string trangThaiHienTai = room.labTrangthai.Text; // Ví dụ: "Phòng Trống"
+                    var viewTime = GetSelectedViewTime();
 
                     // Build list of currently unavailable rooms from LayoutPhong controls
                     var booked = new List<string>();
@@ -69,7 +116,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     }
 
                     // Open BookingRoom_Details preselecting this room
-                    using (var booking = new BookingRoom_Details(ma))
+                    using (var booking = new BookingRoom_Details(ma, viewTime))
                     {
                         // exclude already booked rooms so available list matches current UI
                         booking.SetUnavailableRooms(booked);
@@ -78,6 +125,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         {
                             // Update this UcRoom UI
                             room.MarkBooked(booking.ResultCustomerName);
+                            room.SetVip(isVip);
 
                             // register booking already handled inside BookingRoom_Details via BookingManager
 
@@ -171,7 +219,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         // Refresh UI of rooms according to BookingManager
         private void RefreshBookingStates(HashSet<string> filterRoomCodes = null)
         {
-            var now = DateTime.Now;
+            var viewTime = GetSelectedViewTime();
             foreach (Control ctr in LayoutPhong.Controls)
             {
                 if (ctr is UcRoom room)
@@ -185,13 +233,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
                     if (BookingManager.TryGetBooking(code, out var info))
                     {
-                        // It's booked; determine state based on dates
-                        if (now < info.Start)
+                        // Determine state based on selected view time
+                        if (viewTime < info.Start)
                         {
                             // Reserved in future
                             room.SetReserved(info.Customer);
                         }
-                        else if (now >= info.Start && now <= info.End)
+                        else if (viewTime >= info.Start && viewTime < info.End)
                         {
                             // Currently rented
                             int days = Math.Max(1, (int)Math.Ceiling((info.End - info.Start).TotalDays));
@@ -210,6 +258,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     }
                 }
             }
+
+            UpdateSearchAutocomplete();
         }
 
         private void txtTimkiem_TextChanged(object sender, EventArgs e)
@@ -287,7 +337,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void dtGio_ValueChanged(object sender, EventArgs e)
         {
-
+            RefreshBookingStates();
         }
 
         private void radDadat_CheckedChanged(object sender, EventArgs e)
@@ -302,8 +352,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void radTatcaphong_CheckedChanged(object sender, EventArgs e)
         {
-            if(radTatcaphong.Checked) LocKetHop();
-        }
+             if(radTatcaphong.Checked) LocKetHop();
+         }
 
         private void radDon_CheckedChanged(object sender, EventArgs e)
         {
@@ -346,6 +396,20 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 ? null
                 : new HashSet<string>(roomCodes.Where(r => !string.IsNullOrWhiteSpace(r)).Select(r => r.Trim().ToUpper()));
             RefreshBookingStates(set);
+        }
+
+        private DateTime GetSelectedViewTime()
+        {
+            if (dtNgay != null && dtGio != null)
+            {
+                return dtNgay.Value.Date + dtGio.Value.TimeOfDay;
+            }
+            return DateTime.Now;
+        }
+
+        private void dtNgay_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshBookingStates();
         }
     }
 }
