@@ -15,8 +15,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void PromotionsCustomers_Load(object sender, EventArgs e)
         {
-            InitPromotionTable();  // khởi tạo dữ liệu 1 lần
-            BindGrid();            // bind lên DataGridView + cập nhật tổng
+            InitPromotionTable();  // chỉ tạo bảng rỗng
+            BindGrid();            // bind ra DataGridView (sẽ trống)
         }
 
         /// <summary>
@@ -38,11 +38,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             _promotionTable.Columns.Add("Thời hạn", typeof(string));
             _promotionTable.Columns.Add("Trạng thái", typeof(string));
 
-            // Dữ liệu mẫu ban đầu
-            _promotionTable.Rows.Add("KM01", "Sale Tết", "10%", "Tất cả", "25/12/2025", "Còn");
-            _promotionTable.Rows.Add("KM02", "Sinh nhật", "Voucher", "VIP", "20/12/2025", "Hết");
-            _promotionTable.Rows.Add("KM03", "Kỷ niệm thành lập", "20%", "Tất cả", "01/01/2026", "Chưa đến");
-            _promotionTable.Rows.Add("KM04", "Sale Tết âm lịch", "15%", "Tất cả", "01/02/2026 đến hết tháng", "Chưa đến");
+            // Không thêm dữ liệu mẫu nữa
+            // _promotionTable.Rows.Add(...);
         }
 
         private void BindGrid()
@@ -87,6 +84,17 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             int totalVip = 0;
 
+            // Danh sách các đối tượng được coi là VIP
+            string[] vipTargets =
+            {
+                "Tất cả khách hàng VIP",
+                "Vip hạng đồng",
+                "Vip hạng bạc",
+                "Vip hạng vàng",
+                "Vip hạng bạch kim",
+                "Vip hạng kim cương"
+            };
+
             foreach (DataGridViewRow row in dgvListPromotion.Rows)
             {
                 if (row.IsNewRow) continue;
@@ -96,14 +104,17 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
                 var target = obj.ToString().Trim();
 
-                // Đếm tất cả ưu đãi có đối tượng áp dụng là "VIP"
-                if (string.Equals(target, "VIP", StringComparison.OrdinalIgnoreCase))
+                // Nếu đối tượng áp dụng trùng với 1 trong các loại VIP (không phân biệt hoa/thường)
+                foreach (var vip in vipTargets)
                 {
-                    totalVip++;
+                    if (string.Equals(target, vip, StringComparison.OrdinalIgnoreCase))
+                    {
+                        totalVip++;
+                        break; // tránh đếm trùng nếu match nhiều cái
+                    }
                 }
             }
 
-            // Hiển thị lên ô “Ưu đãi dành cho khách hàng VIP”
             guna2HtmlLabel7.Text = totalVip.ToString();
         }
 

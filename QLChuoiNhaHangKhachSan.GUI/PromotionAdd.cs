@@ -91,178 +91,253 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.lblId.Location = new System.Drawing.Point(40, 90);
+            this.lblId.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblId.Location = new System.Drawing.Point(38, 90);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(87, 23);
+            this.lblId.Size = new System.Drawing.Size(133, 31);
             this.lblId.TabIndex = 1;
-            this.lblId.Text = "Mã ưu đãi";
+            this.lblId.Text = "Mã ưu đãi*";
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.lblName.Location = new System.Drawing.Point(40, 160);
+            this.lblName.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(38, 213);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(140, 23);
+            this.lblName.Size = new System.Drawing.Size(208, 31);
             this.lblName.TabIndex = 3;
-            this.lblName.Text = "Tên chương trình";
+            this.lblName.Text = "Tên chương trình*";
             // 
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.lblType.Location = new System.Drawing.Point(40, 230);
+            this.lblType.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblType.Location = new System.Drawing.Point(526, 90);
             this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(94, 23);
+            this.lblType.Size = new System.Drawing.Size(144, 31);
             this.lblType.TabIndex = 5;
-            this.lblType.Text = "Loại ưu đãi";
+            this.lblType.Text = "Loại ưu đãi*";
             // 
             // lblObject
             // 
             this.lblObject.AutoSize = true;
-            this.lblObject.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.lblObject.Location = new System.Drawing.Point(40, 300);
+            this.lblObject.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblObject.Location = new System.Drawing.Point(528, 211);
             this.lblObject.Name = "lblObject";
-            this.lblObject.Size = new System.Drawing.Size(156, 23);
+            this.lblObject.Size = new System.Drawing.Size(228, 31);
             this.lblObject.TabIndex = 7;
-            this.lblObject.Text = "Đối tượng áp dụng";
+            this.lblObject.Text = "Đối tượng áp dụng*";
             // 
             // lblStartDate
             // 
             this.lblStartDate.AutoSize = true;
-            this.lblStartDate.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.lblStartDate.Location = new System.Drawing.Point(40, 370);
+            this.lblStartDate.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStartDate.Location = new System.Drawing.Point(47, 336);
             this.lblStartDate.Name = "lblStartDate";
-            this.lblStartDate.Size = new System.Drawing.Size(105, 23);
+            this.lblStartDate.Size = new System.Drawing.Size(168, 31);
             this.lblStartDate.TabIndex = 9;
-            this.lblStartDate.Text = "Ngày bắt đầu";
+            this.lblStartDate.Text = "Ngày bắt đầu*";
+            this.lblStartDate.Click += new System.EventHandler(this.lblStartDate_Click);
             // 
             // lblEndDate
             // 
             this.lblEndDate.AutoSize = true;
-            this.lblEndDate.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.lblEndDate.Location = new System.Drawing.Point(376, 370);
+            this.lblEndDate.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEndDate.Location = new System.Drawing.Point(528, 336);
             this.lblEndDate.Name = "lblEndDate";
-            this.lblEndDate.Size = new System.Drawing.Size(108, 23);
+            this.lblEndDate.Size = new System.Drawing.Size(174, 31);
             this.lblEndDate.TabIndex = 10;
-            this.lblEndDate.Text = "Ngày kết thúc";
+            this.lblEndDate.Text = "Ngày kết thúc*";
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.lblStatus.Location = new System.Drawing.Point(40, 440);
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(47, 468);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(87, 23);
+            this.lblStatus.Size = new System.Drawing.Size(132, 31);
             this.lblStatus.TabIndex = 13;
-            this.lblStatus.Text = "Trạng thái";
+            this.lblStatus.Text = "Trạng thái*";
             // 
             // txtPromotionId
             // 
+            this.txtPromotionId.BackColor = System.Drawing.Color.Transparent;
+            this.txtPromotionId.BorderRadius = 15;
             this.txtPromotionId.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPromotionId.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtPromotionId.Location = new System.Drawing.Point(44, 116);
+            this.txtPromotionId.DefaultText = "";
+            this.txtPromotionId.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPromotionId.ForeColor = System.Drawing.Color.Black;
+            this.txtPromotionId.Location = new System.Drawing.Point(44, 127);
+            this.txtPromotionId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtPromotionId.Name = "txtPromotionId";
-            this.txtPromotionId.Size = new System.Drawing.Size(632, 36);
+            this.txtPromotionId.PlaceholderText = "";
+            this.txtPromotionId.SelectedText = "";
+            this.txtPromotionId.ShadowDecoration.BorderRadius = 15;
+            this.txtPromotionId.ShadowDecoration.Color = System.Drawing.Color.DimGray;
+            this.txtPromotionId.ShadowDecoration.Enabled = true;
+            this.txtPromotionId.Size = new System.Drawing.Size(428, 66);
             this.txtPromotionId.TabIndex = 0;
             // 
             // txtPromotionName
             // 
+            this.txtPromotionName.BackColor = System.Drawing.Color.Transparent;
+            this.txtPromotionName.BorderRadius = 15;
             this.txtPromotionName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPromotionName.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtPromotionName.Location = new System.Drawing.Point(44, 186);
+            this.txtPromotionName.DefaultText = "";
+            this.txtPromotionName.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPromotionName.ForeColor = System.Drawing.Color.Black;
+            this.txtPromotionName.Location = new System.Drawing.Point(44, 250);
+            this.txtPromotionName.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtPromotionName.Name = "txtPromotionName";
-            this.txtPromotionName.Size = new System.Drawing.Size(632, 36);
+            this.txtPromotionName.PlaceholderText = "";
+            this.txtPromotionName.SelectedText = "";
+            this.txtPromotionName.ShadowDecoration.BorderRadius = 15;
+            this.txtPromotionName.ShadowDecoration.Color = System.Drawing.Color.DimGray;
+            this.txtPromotionName.ShadowDecoration.Enabled = true;
+            this.txtPromotionName.Size = new System.Drawing.Size(428, 66);
             this.txtPromotionName.TabIndex = 1;
             // 
             // cboPromotionType
             // 
             this.cboPromotionType.BackColor = System.Drawing.Color.Transparent;
+            this.cboPromotionType.BorderRadius = 15;
             this.cboPromotionType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboPromotionType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPromotionType.FocusedColor = System.Drawing.Color.FromArgb(94, 148, 255);
-            this.cboPromotionType.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cboPromotionType.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboPromotionType.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboPromotionType.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPromotionType.ForeColor = System.Drawing.Color.Black;
-            this.cboPromotionType.ItemHeight = 30;
-            this.cboPromotionType.Items.AddRange(new object[] { "10%", "20%", "30%", "40%", "50%" });
-            this.cboPromotionType.Location = new System.Drawing.Point(44, 256);
+            this.cboPromotionType.ItemHeight = 50;
+            this.cboPromotionType.Items.AddRange(new object[] {
+            "10%",
+            "20%",
+            "30%",
+            "40%",
+            "50%"});
+            this.cboPromotionType.Location = new System.Drawing.Point(532, 127);
             this.cboPromotionType.Name = "cboPromotionType";
-            this.cboPromotionType.Size = new System.Drawing.Size(632, 36);
+            this.cboPromotionType.ShadowDecoration.BorderRadius = 15;
+            this.cboPromotionType.ShadowDecoration.Color = System.Drawing.Color.DimGray;
+            this.cboPromotionType.ShadowDecoration.Enabled = true;
+            this.cboPromotionType.Size = new System.Drawing.Size(428, 56);
             this.cboPromotionType.TabIndex = 2;
             // 
             // cboPromotionObject
             // 
             this.cboPromotionObject.BackColor = System.Drawing.Color.Transparent;
+            this.cboPromotionObject.BorderRadius = 15;
             this.cboPromotionObject.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboPromotionObject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPromotionObject.FocusedColor = System.Drawing.Color.FromArgb(94, 148, 255);
-            this.cboPromotionObject.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cboPromotionObject.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboPromotionObject.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboPromotionObject.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPromotionObject.ForeColor = System.Drawing.Color.Black;
-            this.cboPromotionObject.ItemHeight = 30;
-            this.cboPromotionObject.Items.AddRange(new object[] { "VIP", "Tất cả" });
-            this.cboPromotionObject.Location = new System.Drawing.Point(44, 326);
+            this.cboPromotionObject.ItemHeight = 50;
+            this.cboPromotionObject.Items.AddRange(new object[] {
+            "Tất cả khách hàng VIP",
+            "Tất cả",
+            "Vip hạng đồng",
+            "Vip hạng bạc",
+            "Vip hạng vàng",
+            "Vip hạng bạch kim",
+            "Vip hạng kim cương"});
+            this.cboPromotionObject.Location = new System.Drawing.Point(532, 250);
             this.cboPromotionObject.Name = "cboPromotionObject";
-            this.cboPromotionObject.Size = new System.Drawing.Size(632, 36);
+            this.cboPromotionObject.ShadowDecoration.BorderRadius = 15;
+            this.cboPromotionObject.ShadowDecoration.Color = System.Drawing.Color.DimGray;
+            this.cboPromotionObject.ShadowDecoration.Enabled = true;
+            this.cboPromotionObject.Size = new System.Drawing.Size(428, 56);
             this.cboPromotionObject.TabIndex = 3;
             // 
             // dtpStartDate
             // 
+            this.dtpStartDate.BackColor = System.Drawing.Color.Transparent;
+            this.dtpStartDate.BorderRadius = 15;
             this.dtpStartDate.Checked = true;
-            this.dtpStartDate.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dtpStartDate.FillColor = System.Drawing.Color.White;
+            this.dtpStartDate.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpStartDate.Location = new System.Drawing.Point(44, 396);
+            this.dtpStartDate.Location = new System.Drawing.Point(44, 379);
+            this.dtpStartDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpStartDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpStartDate.Name = "dtpStartDate";
-            this.dtpStartDate.Size = new System.Drawing.Size(300, 36);
+            this.dtpStartDate.ShadowDecoration.BorderRadius = 15;
+            this.dtpStartDate.ShadowDecoration.Color = System.Drawing.Color.DimGray;
+            this.dtpStartDate.ShadowDecoration.Enabled = true;
+            this.dtpStartDate.Size = new System.Drawing.Size(428, 66);
             this.dtpStartDate.TabIndex = 4;
+            this.dtpStartDate.Value = new System.DateTime(2025, 12, 30, 19, 5, 11, 871);
             // 
             // dtpEndDate
             // 
+            this.dtpEndDate.BackColor = System.Drawing.Color.Transparent;
+            this.dtpEndDate.BorderRadius = 15;
             this.dtpEndDate.Checked = true;
-            this.dtpEndDate.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dtpEndDate.FillColor = System.Drawing.Color.White;
+            this.dtpEndDate.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEndDate.Location = new System.Drawing.Point(380, 396);
+            this.dtpEndDate.Location = new System.Drawing.Point(532, 379);
+            this.dtpEndDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpEndDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpEndDate.Name = "dtpEndDate";
-            this.dtpEndDate.Size = new System.Drawing.Size(296, 36);
+            this.dtpEndDate.ShadowDecoration.BorderRadius = 15;
+            this.dtpEndDate.ShadowDecoration.Color = System.Drawing.Color.DimGray;
+            this.dtpEndDate.ShadowDecoration.Enabled = true;
+            this.dtpEndDate.Size = new System.Drawing.Size(428, 66);
             this.dtpEndDate.TabIndex = 5;
+            this.dtpEndDate.Value = new System.DateTime(2025, 12, 30, 19, 5, 11, 922);
             // 
             // cboStatus
             // 
             this.cboStatus.BackColor = System.Drawing.Color.Transparent;
+            this.cboStatus.BorderRadius = 15;
             this.cboStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboStatus.FocusedColor = System.Drawing.Color.FromArgb(94, 148, 255);
+            this.cboStatus.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboStatus.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cboStatus.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.cboStatus.ForeColor = System.Drawing.Color.Black;
-            this.cboStatus.ItemHeight = 30;
-            this.cboStatus.Items.AddRange(new object[] { "Còn", "Kết thúc", "Chưa bắt đầu" });
-            this.cboStatus.Location = new System.Drawing.Point(44, 466);
+            this.cboStatus.ItemHeight = 50;
+            this.cboStatus.Items.AddRange(new object[] {
+            "Còn",
+            "Kết thúc",
+            "Chưa bắt đầu"});
+            this.cboStatus.Location = new System.Drawing.Point(44, 502);
             this.cboStatus.Name = "cboStatus";
-            this.cboStatus.Size = new System.Drawing.Size(632, 36);
+            this.cboStatus.ShadowDecoration.BorderRadius = 15;
+            this.cboStatus.ShadowDecoration.Color = System.Drawing.Color.DimGray;
+            this.cboStatus.ShadowDecoration.Enabled = true;
+            this.cboStatus.Size = new System.Drawing.Size(428, 56);
             this.cboStatus.TabIndex = 6;
             // 
             // btnSave
             // 
-            this.btnSave.BorderRadius = 8;
+            this.btnSave.BackColor = System.Drawing.Color.Transparent;
+            this.btnSave.BorderRadius = 10;
             this.btnSave.FillColor = System.Drawing.Color.DodgerBlue;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(44, 520);
+            this.btnSave.Location = new System.Drawing.Point(615, 587);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(310, 48);
+            this.btnSave.ShadowDecoration.BorderRadius = 10;
+            this.btnSave.ShadowDecoration.Enabled = true;
+            this.btnSave.Size = new System.Drawing.Size(163, 48);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Lưu";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.BorderRadius = 8;
+            this.btnCancel.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancel.BorderRadius = 10;
             this.btnCancel.FillColor = System.Drawing.Color.Gainsboro;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnCancel.ForeColor = System.Drawing.Color.DimGray;
-            this.btnCancel.Location = new System.Drawing.Point(366, 520);
+            this.btnCancel.Location = new System.Drawing.Point(797, 587);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(310, 48);
+            this.btnCancel.ShadowDecoration.BorderRadius = 10;
+            this.btnCancel.ShadowDecoration.Enabled = true;
+            this.btnCancel.Size = new System.Drawing.Size(163, 48);
             this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Hủy";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -272,7 +347,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.guna2HtmlLabel1.AutoSize = false;
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(84, 25);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(-56, 12);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(423, 50);
             this.guna2HtmlLabel1.TabIndex = 0;
@@ -284,7 +359,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(720, 640);
+            this.ClientSize = new System.Drawing.Size(1009, 667);
             this.Controls.Add(this.guna2HtmlLabel1);
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.txtPromotionId);
@@ -308,8 +383,20 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.Name = "PromotionAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Thêm ưu đãi";
+            this.Load += new System.EventHandler(this.PromotionAdd_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+
+        }
+
+        private void PromotionAdd_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblStartDate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
