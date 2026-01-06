@@ -185,7 +185,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
             else
             {
-                TxbCustomersID.ReadOnly = false;
+                TxbCustomersID.ReadOnly = true; // không cho nhập khi thêm
+                TxbCustomersID.Text = string.Empty;
                 guna2HtmlLabel1.Text = "Thêm khách hàng mới";
                 guna2Button1.Text = "Thêm";
             }
@@ -216,8 +217,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(CustomerId) ||
-                string.IsNullOrWhiteSpace(CustomerName) ||
+            if (string.IsNullOrWhiteSpace(CustomerName) ||
                 string.IsNullOrWhiteSpace(PhoneNumber) ||
                 string.IsNullOrWhiteSpace(Address) ||
                 string.IsNullOrWhiteSpace(Email) ||

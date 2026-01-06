@@ -66,12 +66,6 @@
   </ItemGroup>
   <!-- ===================== COMPILE FILES ===================== -->
   <ItemGroup>
-    <Compile Include="AddVipCustomers.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddVipCustomers.Designer.cs">
-      <DependentUpon>AddVipCustomers.cs</DependentUpon>
-    </Compile>
     <Compile Include="CustomerAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,18 +211,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="VipCustomers.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VipCustomers.Designer.cs">
-      <DependentUpon>VipCustomers.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <!-- ===================== RESX (EMBEDDED RESOURCE) ===================== -->
   <ItemGroup>
-    <EmbeddedResource Include="AddVipCustomers.resx">
-      <DependentUpon>AddVipCustomers.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CustomerAdd.resx">
       <DependentUpon>CustomerAdd.cs</DependentUpon>
     </EmbeddedResource>
@@ -300,9 +285,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="VipCustomers.resx">
-      <DependentUpon>VipCustomers.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <!-- ===================== OTHER NONE FILES ===================== -->
   <ItemGroup>
@@ -337,6 +319,10 @@
     <ProjectReference Include="..\QLChuoiNhaHangKhachSan.BLL\QLChuoiNhaHangKhachSan.BLL.csproj">
       <Project>{4e25be4c-85e3-45de-81c5-52a8c8d0b030}</Project>
       <Name>QLChuoiNhaHangKhachSan.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QLChuoiNhaHangKhachSan.DAL\QLChuoiNhaHangKhachSan.DAL.csproj">
+      <Project>{ee2f359f-ed71-4c9a-8859-b1a785caaeae}</Project>
+      <Name>QLChuoiNhaHangKhachSan.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

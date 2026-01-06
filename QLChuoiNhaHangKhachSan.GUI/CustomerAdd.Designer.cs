@@ -64,6 +64,7 @@
             this.TxbCustomersID.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.TxbCustomersID.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.TxbCustomersID.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TxbCustomersID.Enabled = false;
             this.TxbCustomersID.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.TxbCustomersID.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxbCustomersID.ForeColor = System.Drawing.Color.Black;
@@ -72,6 +73,7 @@
             this.TxbCustomersID.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.TxbCustomersID.Name = "TxbCustomersID";
             this.TxbCustomersID.PlaceholderText = "";
+            this.TxbCustomersID.ReadOnly = true;
             this.TxbCustomersID.SelectedText = "";
             this.TxbCustomersID.ShadowDecoration.Color = System.Drawing.Color.Silver;
             this.TxbCustomersID.Size = new System.Drawing.Size(443, 66);

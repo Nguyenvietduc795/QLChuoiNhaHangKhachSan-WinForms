@@ -1,193 +1,248 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
+using QLChuoiNhaHangKhachSan.BLL;
+using QLChuoiNhaHangKhachSan.DAL.Models;
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
     public partial class PromotionsCustomers : Form
     {
-        private DataTable _promotionTable;
+        private readonly PromotionService _promotionService = new PromotionService();
+        private DataTable _promotionsTable;
 
         public PromotionsCustomers()
         {
             InitializeComponent();
+
+            dgvListPromotion.AutoGenerateColumns = false;
+            dgvListPromotion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvListPromotion.MultiSelect = true;
         }
 
         private void PromotionsCustomers_Load(object sender, EventArgs e)
         {
-            InitPromotionTable();  // chỉ tạo bảng rỗng
-            BindGrid();            // bind ra DataGridView (sẽ trống)
+            KhoiTaoBangUuDai();
+            NapDuLieuUuDaiTuSql();
+            HienThiLenGrid();
+
+            CapNhatThongKe(); // nếu muốn hiển thị tổng số ưu đãi, đang chạy...
+        }
+
+        private void KhoiTaoBangUuDai()
+        {
+            _promotionsTable = new DataTable();
+            _promotionsTable.Columns.Add("Id");          // cột 0, ẩn
+            _promotionsTable.Columns.Add("Mã ưu đãi");  // cột 1, hiển thị
+            _promotionsTable.Columns.Add("Tên chương trình");
+            _promotionsTable.Columns.Add("Loại ưu đãi");
+            _promotionsTable.Columns.Add("Đối tượng áp dụng");
+            _promotionsTable.Columns.Add("Thời hạn");
+            _promotionsTable.Columns.Add("Trạng thái");
         }
 
         /// <summary>
         /// Load danh sách ưu đãi vào dgvListPromotion
         /// </summary>
-        private void LoadPromotions()
+        private void NapDuLieuUuDaiTuSql()
         {
-            // Sau này bạn có thể đổi thành đọc từ DB/BLL rồi gán vào _promotionTable
-            BindGrid();
+            if (_promotionsTable == null)
+                KhoiTaoBangUuDai();
+
+            _promotionsTable.Rows.Clear();
+
+            var promotions = _promotionService.GetAllPromotions();
+
+            foreach (var p in promotions)
+            {
+                _promotionsTable.Rows.Add(
+    p.PromotionId.ToString(),   // Id
+    p.PromotionCode,            // Mã ưu đãi hiển thị
+    p.ProgramName,
+    p.PromotionType,
+    p.TargetAudience,
+    p.ExpirationDate?.ToString("dd/MM/yyyy"),
+    p.Status
+);
+            }
         }
 
-        private void InitPromotionTable()
+        private void HienThiLenGrid()
         {
-            _promotionTable = new DataTable();
-            _promotionTable.Columns.Add("Mã ưu đãi", typeof(string));
-            _promotionTable.Columns.Add("Tên chương trình", typeof(string));
-            _promotionTable.Columns.Add("Loại ưu đãi", typeof(string));
-            _promotionTable.Columns.Add("Đối tượng áp dụng", typeof(string));
-            _promotionTable.Columns.Add("Thời hạn", typeof(string));
-            _promotionTable.Columns.Add("Trạng thái", typeof(string));
+            dgvListPromotion.DataSource = _promotionsTable;
 
-            // Không thêm dữ liệu mẫu nữa
-            // _promotionTable.Rows.Add(...);
+            // nếu muốn HIỂN THỊ lại Id thì không set Visible = false
+            if (dgvListPromotion.Columns["Id"] != null)
+            {
+                dgvListPromotion.Columns["Id"].HeaderText = "Mã ưu đãi (ID)";
+            }
         }
 
-        private void BindGrid()
+        private void CapNhatThongKe()
         {
-            dgvListPromotion.AutoGenerateColumns = false;
-            dgvListPromotion.DataSource = _promotionTable;
+            if (_promotionsTable == null) return;
 
-            UpdateTotalRunningPromotions();
-            UpdateTotalVipPromotions();
+            var rows = _promotionsTable.AsEnumerable()
+                                       .Where(r => r.RowState != DataRowState.Deleted);
+
+            int tongUuDai = rows.Count();
+            guna2HtmlLabel4.Text = tongUuDai.ToString();
+
+            // Ví dụ: đếm ưu đãi có "VIP" trong Đối tượng áp dụng
+            int uuDaiVip = rows.Count(r =>
+                (r.Field<string>("Đối tượng áp dụng") ?? "")
+                    .IndexOf("VIP", StringComparison.OrdinalIgnoreCase) >= 0);
+
+            guna2HtmlLabel7.Text = uuDaiVip.ToString();
         }
 
         /// <summary>
         /// Cập nhật số "Tổng số ưu đãi đang chạy" ở label guna2HtmlLabel4
         /// </summary>
-        private void UpdateTotalRunningPromotions()
-        {
-            int totalRunning = 0;
-
-            foreach (DataGridViewRow row in dgvListPromotion.Rows)
-            {
-                if (row.IsNewRow) continue;
-
-                var statusObj = row.Cells["PromotionStatus"].Value;
-                if (statusObj == null) continue;
-
-                var status = statusObj.ToString().Trim();
-
-                // “Còn” => đang chạy
-                if (string.Equals(status, "Còn", StringComparison.OrdinalIgnoreCase))
-                {
-                    totalRunning++;
-                }
-            }
-
-            guna2HtmlLabel4.Text = totalRunning.ToString();
-        }
+        
 
         /// <summary>
         /// Cập nhật số "Ưu đãi dành cho khách hàng VIP" ở label guna2HtmlLabel7
         /// </summary>
-        private void UpdateTotalVipPromotions()
-        {
-            int totalVip = 0;
-
-            // Danh sách các đối tượng được coi là VIP
-            string[] vipTargets =
-            {
-                "Tất cả khách hàng VIP",
-                "Vip hạng đồng",
-                "Vip hạng bạc",
-                "Vip hạng vàng",
-                "Vip hạng bạch kim",
-                "Vip hạng kim cương"
-            };
-
-            foreach (DataGridViewRow row in dgvListPromotion.Rows)
-            {
-                if (row.IsNewRow) continue;
-
-                var obj = row.Cells["PromotionObject"].Value;
-                if (obj == null) continue;
-
-                var target = obj.ToString().Trim();
-
-                // Nếu đối tượng áp dụng trùng với 1 trong các loại VIP (không phân biệt hoa/thường)
-                foreach (var vip in vipTargets)
-                {
-                    if (string.Equals(target, vip, StringComparison.OrdinalIgnoreCase))
-                    {
-                        totalVip++;
-                        break; // tránh đếm trùng nếu match nhiều cái
-                    }
-                }
-            }
-
-            guna2HtmlLabel7.Text = totalVip.ToString();
-        }
+        
 
         private void btnAddPromotion_Click(object sender, EventArgs e)
         {
-            if (_promotionTable == null) return;
+            if (_promotionsTable == null) return;
 
             using (var f = new PromotionAdd())
             {
                 if (f.ShowDialog(this) == DialogResult.OK)
                 {
-                    string timeRange = string.Format("{0:dd/MM/yyyy} - {1:dd/MM/yyyy}", f.StartDate, f.EndDate);
-                    string status = string.IsNullOrWhiteSpace(f.PromotionStatus)
-                        ? "Còn"
-                        : f.PromotionStatus.Trim();
+                    try
+                    {
+                        // 1. Tạo đối tượng Promotion từ form nhập
+                        var promotion = new Promotion
+                        {
+                            PromotionCode  = f.PromotionCode,   // NEW
+                            ProgramName    = f.PromotionName,
+                            PromotionType  = f.PromotionType,
+                            TargetAudience = f.PromotionObject,
+                            ExpirationDate = f.EndDate,
+                            Status         = string.IsNullOrWhiteSpace(f.PromotionStatus)
+                                                ? "Còn"
+                                                : f.PromotionStatus.Trim()
+                        };
 
-                    _promotionTable.Rows.Add(
-                        f.PromotionId,
-                        f.PromotionName,
-                        f.PromotionType,
-                        f.PromotionObject,
-                        timeRange,
-                        status
-                    );
-                    BindGrid();
+                        // 2. Lưu xuống SQL, lấy ra ID mới
+                        int newId = _promotionService.AddPromotion(promotion);
+
+                        // 3. Thêm vào DataTable để hiển thị
+                        string timeRange = string.Format("{0:dd/MM/yyyy} - {1:dd/MM/yyyy}",
+                                                         f.StartDate, f.EndDate);
+
+                        _promotionsTable.Rows.Add(
+    newId.ToString(),           // Id
+    promotion.PromotionCode,    // Mã ưu đãi
+    promotion.ProgramName,
+    promotion.PromotionType,
+    promotion.TargetAudience,
+    timeRange,
+    promotion.Status
+);
+
+                        HienThiLenGrid();
+                        CapNhatThongKe();
+
+                        MessageBox.Show("Đã thêm ưu đãi mới vào cơ sở dữ liệu.",
+                            "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi lưu ưu đãi xuống SQL:\n" + ex.Message,
+                            "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
 
         private void btnDeletePromotion_Click(object sender, EventArgs e)
         {
-            if (_promotionTable == null) return;
-            if (dgvListPromotion.CurrentRow == null) return;
-
-            int rowIndex = dgvListPromotion.CurrentRow.Index;
-            if (rowIndex >= 0 && rowIndex < _promotionTable.Rows.Count)
+            if (_promotionsTable == null) return;
+            if (dgvListPromotion.CurrentRow == null)
             {
-                _promotionTable.Rows.RemoveAt(rowIndex);
+                MessageBox.Show("Vui lòng chọn một ưu đãi để xóa.",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
 
-            BindGrid(); // cập nhật grid + tổng
+            // Lấy DataRow tương ứng với dòng đang chọn
+            var rowView = dgvListPromotion.CurrentRow.DataBoundItem as DataRowView;
+            if (rowView == null)
+            {
+                MessageBox.Show("Không thể lấy thông tin ưu đãi được chọn.",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DataRow row = rowView.Row;
+string idStr = row.Field<string>("Id");
+
+if (!int.TryParse(idStr, out int id))
+{
+    MessageBox.Show("Mã ưu đãi không hợp lệ, không thể xóa.",
+        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    return;
+}
+
+            var confirm = MessageBox.Show(
+                $"Bạn có chắc chắn muốn xóa ưu đãi có mã {idStr}?",
+                "Xác nhận xóa",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirm != DialogResult.Yes) return;
+
+            try
+            {
+                // 1. Xóa trong SQL
+                _promotionService.DeletePromotion(id);
+
+                // 2. Xóa trong DataTable (UI)
+                _promotionsTable.Rows.Remove(row);
+
+                HienThiLenGrid();
+                CapNhatThongKe();
+
+                MessageBox.Show("Đã xóa ưu đãi khỏi cơ sở dữ liệu.",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xóa ưu đãi trong SQL:\n" + ex.Message,
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnFindPromotion_Click(object sender, EventArgs e)
         {
-            if (_promotionTable == null) return;
+            if (_promotionsTable == null) return;
 
             string keyword = tbFindPromotion.Text.Trim();
 
             if (string.IsNullOrEmpty(keyword))
             {
-                // Không nhập gì -> hiển thị lại toàn bộ
-                dgvListPromotion.DataSource = _promotionTable;
-                UpdateTotalRunningPromotions();
-                UpdateTotalVipPromotions();
+                dgvListPromotion.DataSource = _promotionsTable;
+                CapNhatThongKe();
                 return;
             }
 
-            // Lọc theo Mã ưu đãi hoặc Tên chương trình (chứa keyword, không phân biệt hoa thường)
-            // Dùng DataView để filter
-            var view = new DataView(_promotionTable);
-
-            // Escape ' để tránh lỗi filter
+            var view = new DataView(_promotionsTable);
             string safeKeyword = keyword.Replace("'", "''");
 
             view.RowFilter =
                 $"[Mã ưu đãi] LIKE '%{safeKeyword}%' OR [Tên chương trình] LIKE '%{safeKeyword}%'";
-
+            
             dgvListPromotion.DataSource = view;
 
-            // Cập nhật lại 2 tổng dựa trên kết quả đã lọc
-            UpdateTotalRunningPromotions();
-            UpdateTotalVipPromotions();
+            // thống kê lại trên dữ liệu đã lọc
+            CapNhatThongKe();
         }
 
         private void dgvListPromotion_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -199,8 +254,15 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void guna2Button8_Click(object sender, EventArgs e)
         {
-            // Refresh lại grid từ _promotionTable (không tạo dữ liệu mới)
-            BindGrid();
+            // Nạp lại từ SQL rồi hiển thị
+            NapDuLieuUuDaiTuSql();
+            HienThiLenGrid();
+            CapNhatThongKe();
+        }
+
+        private void guna2HtmlLabel7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

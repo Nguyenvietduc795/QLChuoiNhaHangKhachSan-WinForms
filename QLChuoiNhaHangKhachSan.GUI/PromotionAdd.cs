@@ -21,6 +21,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private Guna2DateTimePicker dtpStartDate;
         private Guna2DateTimePicker dtpEndDate;
         private Guna2ComboBox cboStatus;
+        private Guna2TextBox txtPromotionCode;
 
         private Guna2Button btnSave;
         private Guna2HtmlLabel guna2HtmlLabel1;
@@ -33,6 +34,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
         public string PromotionStatus { get; private set; }
+        public string PromotionCode
+        {
+            get => txtPromotionCode.Text.Trim();
+            set => txtPromotionCode.Text = value;
+        }
 
         public PromotionAdd()
         {
@@ -86,6 +92,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
             this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.txtPromotionCode = new Guna.UI2.WinForms.Guna2TextBox();
             this.SuspendLayout();
             // 
             // lblId
@@ -165,12 +172,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.txtPromotionId.BorderRadius = 15;
             this.txtPromotionId.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPromotionId.DefaultText = "";
+            this.txtPromotionId.Enabled = false;
             this.txtPromotionId.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPromotionId.ForeColor = System.Drawing.Color.Black;
             this.txtPromotionId.Location = new System.Drawing.Point(44, 127);
             this.txtPromotionId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtPromotionId.Name = "txtPromotionId";
             this.txtPromotionId.PlaceholderText = "";
+            this.txtPromotionId.ReadOnly = true;
             this.txtPromotionId.SelectedText = "";
             this.txtPromotionId.ShadowDecoration.BorderRadius = 15;
             this.txtPromotionId.ShadowDecoration.Color = System.Drawing.Color.DimGray;
@@ -234,13 +243,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.cboPromotionObject.ForeColor = System.Drawing.Color.Black;
             this.cboPromotionObject.ItemHeight = 50;
             this.cboPromotionObject.Items.AddRange(new object[] {
-            "Tất cả khách hàng VIP",
-            "Tất cả",
-            "Vip hạng đồng",
-            "Vip hạng bạc",
-            "Vip hạng vàng",
-            "Vip hạng bạch kim",
-            "Vip hạng kim cương"});
+            "Khách hàng thường",
+            "Khách hàng Vip",
+            "Tất cả "});
             this.cboPromotionObject.Location = new System.Drawing.Point(532, 250);
             this.cboPromotionObject.Name = "cboPromotionObject";
             this.cboPromotionObject.ShadowDecoration.BorderRadius = 15;
@@ -354,6 +359,19 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.guna2HtmlLabel1.Text = "Thêm Ưu Đãi";
             this.guna2HtmlLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // txtPromotionCode
+            // 
+            this.txtPromotionCode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPromotionCode.DefaultText = "";
+            this.txtPromotionCode.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtPromotionCode.Location = new System.Drawing.Point(0, 0);
+            this.txtPromotionCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPromotionCode.Name = "txtPromotionCode";
+            this.txtPromotionCode.PlaceholderText = "";
+            this.txtPromotionCode.SelectedText = "";
+            this.txtPromotionCode.Size = new System.Drawing.Size(229, 48);
+            this.txtPromotionCode.TabIndex = 14;
+            // 
             // PromotionAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -377,6 +395,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.Controls.Add(this.cboStatus);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.txtPromotionCode);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
