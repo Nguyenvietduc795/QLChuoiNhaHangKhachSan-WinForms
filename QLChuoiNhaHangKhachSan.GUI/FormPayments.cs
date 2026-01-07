@@ -69,22 +69,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.dgvTransaction.DefaultCellStyle.SelectionForeColor = Color.Black;
             this.dgvTransaction.RowHeadersVisible = false;
 
-            // Sample data (replace with real data)
-            _allTransactions = new List<Transaction>
-            {
-                new Transaction("INV-001", "Nguyễn Văn A", new DateTime(2025,12,19), 1250000, TransactionStatus.Success, PaymentMethod.Cash),
-                new Transaction("INV-002", "Trần Thị B", new DateTime(2025,12,20), 450000, TransactionStatus.Pending, PaymentMethod.Card),
-                new Transaction("INV-003", "Lê Văn C", new DateTime(2025,12,21), 230000, TransactionStatus.Success, PaymentMethod.Cash),
-                new Transaction("INV-004", "Phạm Thị D", new DateTime(2025,12,16), 780000, TransactionStatus.Failed, PaymentMethod.Other),
-                new Transaction("INV-005", "Hoàng Văn E", new DateTime(2025,12,10), 950000, TransactionStatus.Pending, PaymentMethod.Card),
-                new Transaction("INV-006", "Lữ Nhựt Linh", new DateTime(2025,12,01), 950000, TransactionStatus.Pending, PaymentMethod.Card),
-                new Transaction("INV-007", "Hứa Mỹ Lam", new DateTime(2025,12,09), 950000, TransactionStatus.Success, PaymentMethod.Cash),
-                new Transaction("INV-008", "Nguyễn Thị Hồng Gấm", new DateTime(2025,12,08), 950000, TransactionStatus.Failed, PaymentMethod.Other),
-                new Transaction("INV-009", "Nguyễn Trường Phi", new DateTime(2025,12,07), 950000, TransactionStatus.Success, PaymentMethod.Cash),
-                new Transaction("INV-010", "Lâm Trí Túa", new DateTime(2025,12,29), 950000, TransactionStatus.Success, PaymentMethod.Cash)
-            };
 
-            _transactions = new List<Transaction>(_allTransactions);
 
             // chart
             ConfigureChart();
