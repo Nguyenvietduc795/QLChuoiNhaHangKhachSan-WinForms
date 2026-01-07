@@ -320,10 +320,6 @@
       <Project>{4e25be4c-85e3-45de-81c5-52a8c8d0b030}</Project>
       <Name>QLChuoiNhaHangKhachSan.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\QLChuoiNhaHangKhachSan.DAL\QLChuoiNhaHangKhachSan.DAL.csproj">
-      <Project>{ee2f359f-ed71-4c9a-8859-b1a785caaeae}</Project>
-      <Name>QLChuoiNhaHangKhachSan.DAL</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon\add-employees.png" />

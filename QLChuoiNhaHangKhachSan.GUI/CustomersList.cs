@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QLChuoiNhaHangKhachSan.BLL;
-using QLChuoiNhaHangKhachSan.DAL.Models;
+using QLChuoiNhaHangKhachSan.BLL.DTOs;
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
@@ -165,7 +165,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
                 if (f.ShowDialog() == DialogResult.OK)
                 {
-                    var customer = new Customer
+                    var customer = new CustomerDto
                     {
                         FullName     = f.CustomerName,
                         Nationality  = f.Nationality,
@@ -336,7 +336,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     try
                     {
                         // 1. Cập nhật xuống SQL
-                        var customer = new Customer
+                        var customer = new CustomerDto
                         {
                             CustomerId   = int.Parse(row.Field<string>("Mã khách hàng")),
                             FullName     = f.CustomerName,

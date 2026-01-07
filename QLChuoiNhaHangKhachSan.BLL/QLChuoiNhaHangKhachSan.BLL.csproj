@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="CustomerService.cs" />
+    <Compile Include="DTOs\CustomerDto.cs" />
+    <Compile Include="DTOs\PromotionDto.cs" />
     <Compile Include="PromotionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -3,7 +3,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using QLChuoiNhaHangKhachSan.BLL;
-using QLChuoiNhaHangKhachSan.DAL.Models;
+using QLChuoiNhaHangKhachSan.BLL.DTOs;
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
@@ -117,8 +117,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 {
                     try
                     {
-                        // 1. Tạo đối tượng Promotion từ form nhập
-                        var promotion = new Promotion
+                        // 1. Tạo đối tượng PromotionDto từ form nhập
+                        var promotion = new PromotionDto
                         {
                             PromotionCode  = f.PromotionCode,   // NEW
                             ProgramName    = f.PromotionName,
