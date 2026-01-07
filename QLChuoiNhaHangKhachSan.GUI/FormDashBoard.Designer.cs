@@ -1121,6 +1121,7 @@
             // 
             // btnCardValue
             // 
+            this.btnCardValue.Animated = true;
             this.btnCardValue.BackColor = System.Drawing.Color.Transparent;
             this.btnCardValue.BorderRadius = 15;
             this.btnCardValue.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1250,6 +1251,7 @@
             // 
             // btnTotalCustomers
             // 
+            this.btnTotalCustomers.Animated = true;
             this.btnTotalCustomers.BackColor = System.Drawing.Color.Transparent;
             this.btnTotalCustomers.BorderRadius = 15;
             this.btnTotalCustomers.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1326,6 +1328,7 @@
             // 
             // btnRoomBooking
             // 
+            this.btnRoomBooking.Animated = true;
             this.btnRoomBooking.BackColor = System.Drawing.Color.Transparent;
             this.btnRoomBooking.BorderRadius = 15;
             this.btnRoomBooking.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1402,6 +1405,7 @@
             // 
             // btnRestaurentBooking
             // 
+            this.btnRestaurentBooking.Animated = true;
             this.btnRestaurentBooking.BackColor = System.Drawing.Color.Transparent;
             this.btnRestaurentBooking.BorderRadius = 15;
             this.btnRestaurentBooking.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1508,6 +1512,7 @@
             // 
             // btnQuick_CheckInventory
             // 
+            this.btnQuick_CheckInventory.Animated = true;
             this.btnQuick_CheckInventory.BorderRadius = 10;
             this.btnQuick_CheckInventory.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnQuick_CheckInventory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -1533,9 +1538,10 @@
             this.btnContainer_CheckInventory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnContainer_CheckInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnContainer_CheckInventory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnContainer_CheckInventory.FillColor = System.Drawing.Color.FloralWhite;
+            this.btnContainer_CheckInventory.FillColor = System.Drawing.Color.White;
             this.btnContainer_CheckInventory.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnContainer_CheckInventory.ForeColor = System.Drawing.Color.White;
+            this.btnContainer_CheckInventory.HoverState.FillColor = System.Drawing.Color.White;
             this.btnContainer_CheckInventory.Location = new System.Drawing.Point(397, 330);
             this.btnContainer_CheckInventory.Name = "btnContainer_CheckInventory";
             this.btnContainer_CheckInventory.ShadowDecoration.BorderRadius = 10;
@@ -1567,6 +1573,7 @@
             // 
             // btnQuick_CreateReport
             // 
+            this.btnQuick_CreateReport.Animated = true;
             this.btnQuick_CreateReport.BorderRadius = 10;
             this.btnQuick_CreateReport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnQuick_CreateReport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -1592,9 +1599,10 @@
             this.btnContainer_CreateReport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnContainer_CreateReport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnContainer_CreateReport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnContainer_CreateReport.FillColor = System.Drawing.Color.FloralWhite;
+            this.btnContainer_CreateReport.FillColor = System.Drawing.Color.White;
             this.btnContainer_CreateReport.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnContainer_CreateReport.ForeColor = System.Drawing.Color.White;
+            this.btnContainer_CreateReport.HoverState.FillColor = System.Drawing.Color.White;
             this.btnContainer_CreateReport.Location = new System.Drawing.Point(37, 330);
             this.btnContainer_CreateReport.Name = "btnContainer_CreateReport";
             this.btnContainer_CreateReport.ShadowDecoration.BorderRadius = 10;
@@ -1626,6 +1634,7 @@
             // 
             // btnQuick_AddStaff
             // 
+            this.btnQuick_AddStaff.Animated = true;
             this.btnQuick_AddStaff.BorderRadius = 10;
             this.btnQuick_AddStaff.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnQuick_AddStaff.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -1641,6 +1650,7 @@
             this.btnQuick_AddStaff.Name = "btnQuick_AddStaff";
             this.btnQuick_AddStaff.Size = new System.Drawing.Size(60, 55);
             this.btnQuick_AddStaff.TabIndex = 8;
+            this.btnQuick_AddStaff.Click += new System.EventHandler(this.btnQuick_AddStaff_Click);
             // 
             // btnContainer_AddStaff
             // 
@@ -1651,9 +1661,10 @@
             this.btnContainer_AddStaff.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnContainer_AddStaff.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnContainer_AddStaff.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnContainer_AddStaff.FillColor = System.Drawing.Color.FloralWhite;
+            this.btnContainer_AddStaff.FillColor = System.Drawing.Color.White;
             this.btnContainer_AddStaff.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnContainer_AddStaff.ForeColor = System.Drawing.Color.White;
+            this.btnContainer_AddStaff.HoverState.FillColor = System.Drawing.Color.White;
             this.btnContainer_AddStaff.Location = new System.Drawing.Point(397, 127);
             this.btnContainer_AddStaff.Name = "btnContainer_AddStaff";
             this.btnContainer_AddStaff.ShadowDecoration.BorderRadius = 10;
@@ -1720,9 +1731,10 @@
             this.btnContainer_NewBooking.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnContainer_NewBooking.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnContainer_NewBooking.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnContainer_NewBooking.FillColor = System.Drawing.Color.FloralWhite;
+            this.btnContainer_NewBooking.FillColor = System.Drawing.Color.White;
             this.btnContainer_NewBooking.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnContainer_NewBooking.ForeColor = System.Drawing.Color.White;
+            this.btnContainer_NewBooking.HoverState.FillColor = System.Drawing.Color.White;
             this.btnContainer_NewBooking.Location = new System.Drawing.Point(37, 127);
             this.btnContainer_NewBooking.Name = "btnContainer_NewBooking";
             this.btnContainer_NewBooking.ShadowDecoration.BorderRadius = 10;
@@ -1812,6 +1824,7 @@
             // 
             // guna2Button11
             // 
+            this.guna2Button11.Animated = true;
             this.guna2Button11.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
             this.guna2Button11.BorderRadius = 15;
             this.guna2Button11.BorderThickness = 1;
@@ -1819,9 +1832,10 @@
             this.guna2Button11.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button11.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2Button11.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button11.FillColor = System.Drawing.Color.FloralWhite;
+            this.guna2Button11.FillColor = System.Drawing.Color.White;
             this.guna2Button11.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button11.ForeColor = System.Drawing.Color.White;
+            this.guna2Button11.HoverState.FillColor = System.Drawing.Color.White;
             this.guna2Button11.Location = new System.Drawing.Point(28, 439);
             this.guna2Button11.Name = "guna2Button11";
             this.guna2Button11.ShadowDecoration.BorderRadius = 10;
@@ -1881,9 +1895,10 @@
             this.guna2Button10.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button10.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2Button10.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button10.FillColor = System.Drawing.Color.FloralWhite;
+            this.guna2Button10.FillColor = System.Drawing.Color.White;
             this.guna2Button10.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button10.ForeColor = System.Drawing.Color.White;
+            this.guna2Button10.HoverState.FillColor = System.Drawing.Color.White;
             this.guna2Button10.Location = new System.Drawing.Point(28, 319);
             this.guna2Button10.Name = "guna2Button10";
             this.guna2Button10.ShadowDecoration.BorderRadius = 10;
@@ -1943,9 +1958,10 @@
             this.dotRed.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.dotRed.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.dotRed.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.dotRed.FillColor = System.Drawing.Color.FloralWhite;
+            this.dotRed.FillColor = System.Drawing.Color.White;
             this.dotRed.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dotRed.ForeColor = System.Drawing.Color.White;
+            this.dotRed.HoverState.FillColor = System.Drawing.Color.White;
             this.dotRed.Location = new System.Drawing.Point(29, 199);
             this.dotRed.Name = "dotRed";
             this.dotRed.ShadowDecoration.BorderRadius = 10;
@@ -2028,9 +2044,10 @@
             this.guna2Button8.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button8.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2Button8.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button8.FillColor = System.Drawing.Color.FloralWhite;
+            this.guna2Button8.FillColor = System.Drawing.Color.White;
             this.guna2Button8.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button8.ForeColor = System.Drawing.Color.White;
+            this.guna2Button8.HoverState.FillColor = System.Drawing.Color.White;
             this.guna2Button8.Location = new System.Drawing.Point(28, 78);
             this.guna2Button8.Name = "guna2Button8";
             this.guna2Button8.ShadowDecoration.BorderRadius = 10;

@@ -347,11 +347,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void btnFinancial_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
+            ShowChild(new FormRevenue());
         }
 
         private void btnTotalCustomer_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
+            ShowChild(new CustomersReport());
         }
 
         // Đăng xuất: hỏi xác nhận rồi đóng form
@@ -429,6 +431,22 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 ShadowDepth = shadowDepth;
                 ShadowEnabled = shadowEnabled;
             }
+        }
+
+        private void btnQuick_AddStaff_Click(object sender, EventArgs e)
+        {
+            // Mở rộng submenu Nhân viên nếu đang thu gọn
+            if (pnlStaff_group.Height == 50)
+            {
+                CloseAllSubMenus();
+                pnlStaff_group.Height = 130;
+            }
+            
+            // Đánh dấu nút Danh sách nhân viên là active
+            SetActiveButton(btnListStaff);
+            
+            // Chuyển sang giao diện danh sách nhân viên
+            ShowChild(new EmployeeForm());
         }
     }
 

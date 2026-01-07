@@ -43,12 +43,17 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EmployeeService.cs" />
+    <Compile Include="Services\LoginService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QLChuoiNhaHangKhachSan.DAL\QLChuoiNhaHangKhachSan.DAL.csproj">
       <Project>{ee2f359f-ed71-4c9a-8859-b1a785caaeae}</Project>
       <Name>QLChuoiNhaHangKhachSan.DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

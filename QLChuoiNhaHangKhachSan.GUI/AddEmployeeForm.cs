@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
+using QLChuoiNhaHangKhachSan.DAL.Models;
+using QLChuoiNhaHangKhachSan.DAL.Repositories;
+using QLChuoiNhaHangKhachSan.BLL.Services;
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
@@ -9,6 +15,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
     {
         // Đối tượng nhân viên đang được chỉnh sửa (null nếu đang thêm mới)
         private readonly Employee _editing;
+        private readonly EmployeeService _service;
 
         // Cờ dùng để tắt tạm validation tên khi tự động chỉnh sửa text trong TextChanged
         private bool _suppressNameValidation; // tránh lặp TextChanged khi tự sửa nội dung
@@ -22,11 +29,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             InitializeComponent();
 
+            var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
+            _service = new EmployeeService(connStr);
+
             // Gắn sự kiện kiểm tra ngay khi nhập tên
             txtEmployeeFullName.KeyPress += TxtEmployeeFullName_KeyPress;
             txtEmployeeFullName.TextChanged += TxtEmployeeFullName_TextChanged;
             // Gắn sự kiện chỉ cho phép nhập số ở trường lương và điện thoại
-            txtEmployeeSalary.KeyPress += NumericOnly_KeyPress;
+            txtDealSalary.KeyPress += NumericOnly_KeyPress;
             txtEmployeePhoneNumber.KeyPress += NumericOnly_KeyPress;
 
             // Lưu lại đối tượng đang chỉnh sửa nếu có, và điền sẵn dữ liệu
@@ -34,31 +44,22 @@ namespace QLChuoiNhaHangKhachSan.GUI
             if (_editing != null)
             {
                 Prefill(_editing);
+                cboEmployeeStatus.Enabled = true; // cho phép chỉnh sửa khi edit
+            }
+            else
+            {
+                // Thêm mới: luôn Inactive và không cho chọn khác
+                cboEmployeeStatus.SelectedItem = "Inactive";
+                cboEmployeeStatus.Enabled = false;
             }
         }
 
-        // Định nghĩa lớp Employee để lưu trữ thông tin nhân viên
-        public class Employee
-        {
-            public string FullName { get; set; }
-            public string Email { get; set; }
-            public string Department { get; set; }
-            public string Position { get; set; }
-            public DateTime HireDate { get; set; }
-            public string Status { get; set; }
-            public decimal Salary { get; set; } // Mức lương
-            public string Phone { get; set; }
-        }
-
-        // Danh sách để lưu trữ nhân viên
+        // Danh sách cache tạm trong UI (giảm đổi code nhiều form); TODO: chuyển cache sang Service layer nếu cần
         public static class EmployeeData
         {
             public static List<Employee> Employees = new List<Employee>();
             public static event EventHandler EmployeesChanged;
-            public static void NotifyChanged()
-            {
-                EmployeesChanged?.Invoke(null, EventArgs.Empty);
-            }
+            public static void NotifyChanged() => EmployeesChanged?.Invoke(null, EventArgs.Empty);
         }
 
         private void btnEmployeeSave_Click(object sender, EventArgs e)
@@ -68,18 +69,30 @@ namespace QLChuoiNhaHangKhachSan.GUI
             string email = txtEmployeeEmail.Text.Trim();
             string department = cboEmployeeDepartment.Text.Trim();
             string position = txtEmployeePosition.Text.Trim();
-            string status = cboEmployeeStatus.Text.Trim();
-            string salaryRaw = txtEmployeeSalary.Text.Trim();
-            string phone = txtEmployeePhoneNumber.Text.Trim();
+            // Nếu đang thêm mới, luôn dùng Inactive; nếu edit, lấy từ combo
+            string status = _editing == null ? "Inactive" : cboEmployeeStatus.Text.Trim();
+            string salaryRaw = txtDealSalary.Text.Trim(); // lương deal
+            string coefRaw = txtSalaryCoefficient.Text.Trim(); // hệ số lương
+            string phoneInput = txtEmployeePhoneNumber.Text.Trim();
             DateTime hireDate = dtEmployeeHireDate.Value;
+
+            // Tách mã quốc gia + số (nếu người dùng nhập dạng "+84 0123456")
+            string countryCode = null;
+            string phone = phoneInput;
+            var phoneMatch = Regex.Match(phoneInput, @"^(\+\d{1,4})\s*(\d+)$");
+            if (phoneMatch.Success)
+            {
+                countryCode = phoneMatch.Groups[1].Value;
+                phone = phoneMatch.Groups[2].Value; // giữ nguyên số 0 đầu
+            }
 
             // Kiểm tra bắt buộc nhập đủ các trường
             if (string.IsNullOrWhiteSpace(fullName) ||
                 string.IsNullOrWhiteSpace(email) ||
                 string.IsNullOrWhiteSpace(department) ||
                 string.IsNullOrWhiteSpace(position) ||
-                string.IsNullOrWhiteSpace(status) ||
                 string.IsNullOrWhiteSpace(salaryRaw) ||
+                string.IsNullOrWhiteSpace(coefRaw) ||
                 string.IsNullOrWhiteSpace(phone))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin.", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -102,21 +115,33 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 return;
             }
 
-            // Lương phải là số hợp lệ và không âm
-            if (!decimal.TryParse(salaryRaw, out decimal salary) || salary < 0)
+            // Lương deal phải là số hợp lệ và không âm
+            if (!decimal.TryParse(salaryRaw, out decimal dealSalary) || dealSalary < 0)
             {
-                MessageBox.Show("Mức lương phải là số hợp lệ (>= 0).", "Lương không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtEmployeeSalary.Focus();
+                MessageBox.Show("Mức lương deal phải là số hợp lệ (>= 0).", "Lương không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDealSalary.Focus();
                 return;
             }
 
-            // Điện thoại chỉ cho phép ký tự số
+            // Hệ số phải là số hợp lệ và >= 0
+            if (!decimal.TryParse(coefRaw, out decimal salaryCoef) || salaryCoef < 0)
+            {
+                MessageBox.Show("Hệ số lương phải là số hợp lệ (>= 0).", "Hệ số không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSalaryCoefficient.Focus();
+                return;
+            }
+
+            // Điện thoại: cho phép nhập "+84 0123" hoặc chỉ số; lưu lại số 0 đầu
             if (!Regex.IsMatch(phone, "^\\d+$"))
             {
                 MessageBox.Show("Số điện thoại chỉ được nhập số.", "Số điện thoại không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtEmployeePhoneNumber.Focus();
                 return;
             }
+
+            // Tính lương theo công thức: hệ số * deal
+            decimal computedSalary = dealSalary * salaryCoef;
+            lblEmployeeSalary.Text = $"Lương: {computedSalary:N0} ₫";
 
             if (_editing != null)
             {
@@ -127,12 +152,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 _editing.Position = position;
                 _editing.HireDate = hireDate;
                 _editing.Status = status;
-                _editing.Salary = salary;
+                _editing.Salary = computedSalary;
+                _editing.SalaryCoefficient = salaryCoef;
+                _editing.CountryCode = countryCode ?? _editing.CountryCode ?? "+84";
                 _editing.Phone = phone;
             }
             else
             {
-                // Tạo nhân viên mới và thêm vào danh sách
+                // Tạo nhân viên mới và thêm vào danh sách (luôn Inactive)
                 var emp = new Employee
                 {
                     FullName = fullName,
@@ -140,11 +167,23 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     Department = department,
                     Position = position,
                     HireDate = hireDate,
-                    Status = status,
-                    Salary = salary,
+                    Status = "Inactive",
+                    Salary = computedSalary,
+                    SalaryCoefficient = salaryCoef,
+                    CountryCode = countryCode ?? "+84",
                     Phone = phone
                 };
-                EmployeeData.Employees.Add(emp);
+                try { _service.Add(emp, dealSalary, salaryCoef); }
+                catch (SqlException ex) when (ex.Number == 2627 || ex.Number == 2601)
+                {
+                    MessageBox.Show("Email hoặc số điện thoại đã tồn tại.", "Trùng dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi lưu DB: {ex.Message}", "DB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             // Bắn sự kiện thông báo danh sách thay đổi để màn hình khác có thể reload
@@ -155,27 +194,40 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.Close();
         }
 
+        // hàm đổ dữ liệu nhân viên lên form khi edit
         private void Prefill(Employee emp)
         {
-            // Đổ dữ liệu của nhân viên đang chỉnh sửa lên form
+            
             txtEmployeeFullName.Text = emp.FullName;
             txtEmployeeEmail.Text = emp.Email;
             cboEmployeeDepartment.Text = emp.Department;
             txtEmployeePosition.Text = emp.Position;
             dtEmployeeHireDate.Value = emp.HireDate == default(DateTime) ? DateTime.Today : emp.HireDate;
-            cboEmployeeStatus.Text = emp.Status ?? "Active";
-            txtEmployeeSalary.Text = emp.Salary.ToString("0.##");
-            txtEmployeePhoneNumber.Text = emp.Phone;
+            cboEmployeeStatus.Text = emp.Status ?? "Inactive"; // default Inactive khi thiếu
+            txtDealSalary.Text = emp.Salary.ToString("0.##");
+            txtSalaryCoefficient.Text = (emp.SalaryCoefficient > 0 ? emp.SalaryCoefficient : 1).ToString("0.##");
+            var phoneDisplay = string.IsNullOrWhiteSpace(emp.CountryCode) ? emp.Phone : ($"{emp.CountryCode} {emp.Phone}").Trim();
+            txtEmployeePhoneNumber.Text = phoneDisplay;
 
-            // Update form title/label to indicate edit mode
+            // cho phép chọn trạng thái khi đang edit
+            cboEmployeeStatus.Enabled = true;
+
+            // Cập nhật tiêu đề form nếu có label
             if (lblAddEmployeeTitle != null)
             {
                 lblAddEmployeeTitle.Text = $"Thông tin nhân viên";
             }
         }
 
+        // KHI LOAD FORM THIET LAP TRANG THAI MAC DINH
         private void AddEmployeeForm_Load(object sender, EventArgs e)
         {
+            // Mặc định trạng thái Inactive khi thêm mới
+            if (_editing == null)
+            {
+                cboEmployeeStatus.SelectedItem = "Inactive";
+                cboEmployeeStatus.Enabled = false;
+            }
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
@@ -183,7 +235,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             Dispose();
         }
 
-        // Ngăn nhập ký tự số ngay khi gõ
+        // NGĂN NHẬP SỐ KHI GÕ TÊN
         private void TxtEmployeeFullName_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Nếu ký tự là số thì chặn không cho hiển thị
@@ -193,7 +245,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
         }
 
-        // Nếu dán/nhập có số, yêu cầu sửa và tự loại bỏ số
+        // NGĂN NHẬP SỐ KHI DÁN VÀO TEXTBOX TÊN
         private void TxtEmployeeFullName_TextChanged(object sender, EventArgs e)
         {
             // Khi đang tự sửa text thì bỏ qua để tránh vòng lặp sự kiện
@@ -216,6 +268,22 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void NumericOnly_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Nếu không phải phím điều khiển và không phải số thì chặn
+            bool isPhoneBox = sender == txtEmployeePhoneNumber;
+            if (isPhoneBox && e.KeyChar == '+')
+            {
+                // Chỉ cho phép + ở đầu và chỉ một lần
+                var box = txtEmployeePhoneNumber;
+                if (box.SelectionStart == 0 && !box.Text.Contains("+"))
+                {
+                    return; // cho phép nhập + ở đầu
+                }
+            }
+
+            if (isPhoneBox && char.IsWhiteSpace(e.KeyChar))
+            {
+                return; // cho phép khoảng trắng giữa mã quốc gia và số
+            }
+
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;

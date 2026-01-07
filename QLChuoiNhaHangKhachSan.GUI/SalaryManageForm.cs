@@ -2,7 +2,10 @@
 using System.Drawing; // Làm việc với màu sắc
 using System.Linq; // LINQ để tính tổng/trung bình
 using System.Windows.Forms; // WinForms core
+using QLChuoiNhaHangKhachSan.DAL.Models;
+using QLChuoiNhaHangKhachSan.BLL.Services;
 using static QLChuoiNhaHangKhachSan.GUI.AddEmployeeForm; // Truy cập Employee, EmployeeData trực tiếp
+using System.Configuration;
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
@@ -12,6 +15,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private const int NormalShadow = 5; // (Không dùng hiện tại) shadow mặc định
         private readonly Color HoverFill = Color.FromArgb(245, 248, 255); // Màu nền khi hover
         private readonly Padding _designPadding; // Lưu padding ban đầu của form
+        private readonly EmployeeService _service;
 
         public SalaryManageForm()
         {
@@ -22,10 +26,22 @@ namespace QLChuoiNhaHangKhachSan.GUI
             AttachHover(pnlAvargeSalary); // Gắn hiệu ứng hover cho panel lương trung bình
             this.Load += SalaryManageForm_Load; // Đăng ký sự kiện Load
             EmployeeData.EmployeesChanged += EmployeeData_EmployeesChanged; // Nghe sự kiện thay đổi danh sách nhân viên
+            dgvSalaryEmployees.CellContentClick += DgvSalaryEmployees_CellContentClick;
+
+            var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
+            _service = new EmployeeService(connStr);
         }
 
         private void SalaryManageForm_Load(object sender, EventArgs e)
         {
+            if (AddEmployeeForm.EmployeeData.Employees.Count == 0)
+            {
+                try
+                {
+                    AddEmployeeForm.EmployeeData.Employees = _service.GetAll();
+                }
+                catch { /* ignore load errors here */ }
+            }
             RefreshFromEmployees(); // Lấy dữ liệu nhân viên và hiển thị
         }
 
@@ -58,6 +74,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     status); // Trạng thái
 
                 var row = dgvSalaryEmployees.Rows[rowIndex]; // Lấy row vừa thêm
+                row.Tag = emp; // lưu nhân viên để xử lý trạng thái
                 var statusCell = row.Cells[colEmployeeStatus.Name] as DataGridViewButtonCell; // Ô trạng thái dạng nút
                 if (statusCell != null)
                 {
@@ -129,6 +146,57 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             EmployeeData.EmployeesChanged -= EmployeeData_EmployeesChanged; // Hủy đăng ký sự kiện khi form đóng
             base.OnFormClosed(e); // Gọi base
+        }
+
+        private void DgvSalaryEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != colEmployeeStatus.Index) return;
+            var row = dgvSalaryEmployees.Rows[e.RowIndex];
+            var emp = row.Tag as Employee;
+            if (emp == null) return;
+
+            string currentStatus = emp.Status ?? "Inactive";
+            string nextStatus = string.Equals(currentStatus, "Active", StringComparison.OrdinalIgnoreCase) ? "Inactive" : "Active";
+
+            // Show confirmation when deactivating employee with salary > 0
+            if (string.Equals(nextStatus, "Inactive", StringComparison.OrdinalIgnoreCase) && emp.Salary > 0)
+            {
+                var result = MessageBox.Show(
+                    $"Nhân viên {emp.FullName} đang có lương {emp.Salary:N0} ₫.\n\n" +
+                    "Chuyển sang Inactive sẽ tự động đặt lương về 0 VND.\n\n" +
+                    "Bạn có muốn tiếp tục?",
+                    "Xác nhận deactivate",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result != DialogResult.Yes) return;
+
+                try
+                {
+                    _service.DeactivateEmployee(emp.EmployeeId);
+                    EmployeeData.Employees = _service.GetAll();
+                    EmployeeData.NotifyChanged();
+                    RefreshFromEmployees();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi khi deactivate: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return;
+            }
+
+            // Standard status toggle for other cases
+            try
+            {
+                _service.UpdateStatus(emp.EmployeeId, nextStatus, emp.Salary);
+                EmployeeData.Employees = _service.GetAll();
+                EmployeeData.NotifyChanged();
+                RefreshFromEmployees();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Không cập nhật được trạng thái: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

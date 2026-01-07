@@ -47,6 +47,7 @@
     <Reference Include="System.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -66,23 +67,29 @@
     <Compile Include="AddEmployeeForm.Designer.cs">
       <DependentUpon>AddEmployeeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomersReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomersReport.Designer.cs">
+      <DependentUpon>CustomersReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRevenue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRevenue.Designer.cs">
+      <DependentUpon>FormRevenue.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormDashBoard.cs">
       <SubType>Form</SubType>
@@ -107,14 +114,17 @@
     <EmbeddedResource Include="AddEmployeeForm.resx">
       <DependentUpon>AddEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomersReport.resx">
+      <DependentUpon>CustomersReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormRevenue.resx">
+      <DependentUpon>FormRevenue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDashBoard.resx">
       <DependentUpon>FormDashBoard.cs</DependentUpon>
@@ -153,6 +163,10 @@
     <ProjectReference Include="..\QLChuoiNhaHangKhachSan.BLL\QLChuoiNhaHangKhachSan.BLL.csproj">
       <Project>{4e25be4c-85e3-45de-81c5-52a8c8d0b030}</Project>
       <Name>QLChuoiNhaHangKhachSan.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QLChuoiNhaHangKhachSan.DAL\QLChuoiNhaHangKhachSan.DAL.csproj">
+      <Project>{ee2f359f-ed71-4c9a-8859-b1a785caaeae}</Project>
+      <Name>QLChuoiNhaHangKhachSan.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

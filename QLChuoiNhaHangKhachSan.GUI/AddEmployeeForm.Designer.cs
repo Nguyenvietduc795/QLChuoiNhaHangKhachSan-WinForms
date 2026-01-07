@@ -31,13 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.bldAddEmployeeForm = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.lblAddEmployeeTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.pnlAddEmployee = new Guna.UI2.WinForms.Guna2Panel();
             this.lblEmployeePhoneNumber = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.txtEmployeePhoneNumber = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblEmployeeSalary = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.txtEmployeeSalary = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtDealSalary = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
             this.dtEmployeeHireDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.cboEmployeeStatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -52,7 +51,8 @@
             this.txtEmployeeFullName = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnEmployeeSave = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Panel1.SuspendLayout();
+            this.txtSalaryCoefficient = new Guna.UI2.WinForms.Guna2TextBox();
+            this.pnlAddEmployee.SuspendLayout();
             this.SuspendLayout();
             // 
             // bldAddEmployeeForm
@@ -74,30 +74,30 @@
             this.lblAddEmployeeTitle.TabIndex = 0;
             this.lblAddEmployeeTitle.Text = "Thêm nhân viên mới";
             // 
-            // guna2Panel1
+            // pnlAddEmployee
             // 
-            this.guna2Panel1.Controls.Add(this.lblEmployeePhoneNumber);
-            this.guna2Panel1.Controls.Add(this.txtEmployeePhoneNumber);
-            this.guna2Panel1.Controls.Add(this.lblEmployeeSalary);
-            this.guna2Panel1.Controls.Add(this.txtEmployeeSalary);
-            this.guna2Panel1.Controls.Add(this.guna2HtmlLabel6);
-            this.guna2Panel1.Controls.Add(this.guna2ComboBox1);
-            this.guna2Panel1.Controls.Add(this.dtEmployeeHireDate);
-            this.guna2Panel1.Controls.Add(this.cboEmployeeStatus);
-            this.guna2Panel1.Controls.Add(this.guna2HtmlLabel5);
-            this.guna2Panel1.Controls.Add(this.guna2HtmlLabel4);
-            this.guna2Panel1.Controls.Add(this.cboEmployeeDepartment);
-            this.guna2Panel1.Controls.Add(this.guna2HtmlLabel3);
-            this.guna2Panel1.Controls.Add(this.guna2HtmlLabel2);
-            this.guna2Panel1.Controls.Add(this.guna2HtmlLabel1);
-            this.guna2Panel1.Controls.Add(this.lblEmployeeFullName);
-            this.guna2Panel1.Controls.Add(this.txtEmployeePosition);
-            this.guna2Panel1.Controls.Add(this.txtEmployeeEmail);
-            this.guna2Panel1.Controls.Add(this.txtEmployeeFullName);
-            this.guna2Panel1.Location = new System.Drawing.Point(1, 61);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(669, 416);
-            this.guna2Panel1.TabIndex = 1;
+            this.pnlAddEmployee.Controls.Add(this.txtSalaryCoefficient);
+            this.pnlAddEmployee.Controls.Add(this.lblEmployeePhoneNumber);
+            this.pnlAddEmployee.Controls.Add(this.txtEmployeePhoneNumber);
+            this.pnlAddEmployee.Controls.Add(this.lblEmployeeSalary);
+            this.pnlAddEmployee.Controls.Add(this.txtDealSalary);
+            this.pnlAddEmployee.Controls.Add(this.guna2HtmlLabel6);
+            this.pnlAddEmployee.Controls.Add(this.dtEmployeeHireDate);
+            this.pnlAddEmployee.Controls.Add(this.cboEmployeeStatus);
+            this.pnlAddEmployee.Controls.Add(this.guna2HtmlLabel5);
+            this.pnlAddEmployee.Controls.Add(this.guna2HtmlLabel4);
+            this.pnlAddEmployee.Controls.Add(this.cboEmployeeDepartment);
+            this.pnlAddEmployee.Controls.Add(this.guna2HtmlLabel3);
+            this.pnlAddEmployee.Controls.Add(this.guna2HtmlLabel2);
+            this.pnlAddEmployee.Controls.Add(this.guna2HtmlLabel1);
+            this.pnlAddEmployee.Controls.Add(this.lblEmployeeFullName);
+            this.pnlAddEmployee.Controls.Add(this.txtEmployeePosition);
+            this.pnlAddEmployee.Controls.Add(this.txtEmployeeEmail);
+            this.pnlAddEmployee.Controls.Add(this.txtEmployeeFullName);
+            this.pnlAddEmployee.Location = new System.Drawing.Point(1, 61);
+            this.pnlAddEmployee.Name = "pnlAddEmployee";
+            this.pnlAddEmployee.Size = new System.Drawing.Size(669, 416);
+            this.pnlAddEmployee.TabIndex = 1;
             // 
             // lblEmployeePhoneNumber
             // 
@@ -135,29 +135,29 @@
             this.lblEmployeeSalary.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmployeeSalary.Location = new System.Drawing.Point(20, 251);
             this.lblEmployeeSalary.Name = "lblEmployeeSalary";
-            this.lblEmployeeSalary.Size = new System.Drawing.Size(104, 25);
+            this.lblEmployeeSalary.Size = new System.Drawing.Size(107, 25);
             this.lblEmployeeSalary.TabIndex = 18;
-            this.lblEmployeeSalary.Text = "Mức lương *";
+            this.lblEmployeeSalary.Text = "Lương deal *";
             // 
-            // txtEmployeeSalary
+            // txtDealSalary
             // 
-            this.txtEmployeeSalary.BorderRadius = 8;
-            this.txtEmployeeSalary.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtEmployeeSalary.DefaultText = "";
-            this.txtEmployeeSalary.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtEmployeeSalary.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtEmployeeSalary.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtEmployeeSalary.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtEmployeeSalary.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtEmployeeSalary.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtEmployeeSalary.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtEmployeeSalary.Location = new System.Drawing.Point(20, 283);
-            this.txtEmployeeSalary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtEmployeeSalary.Name = "txtEmployeeSalary";
-            this.txtEmployeeSalary.PlaceholderText = "Nhập mức lương";
-            this.txtEmployeeSalary.SelectedText = "";
-            this.txtEmployeeSalary.Size = new System.Drawing.Size(300, 40);
-            this.txtEmployeeSalary.TabIndex = 17;
+            this.txtDealSalary.BorderRadius = 8;
+            this.txtDealSalary.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtDealSalary.DefaultText = "";
+            this.txtDealSalary.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtDealSalary.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtDealSalary.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDealSalary.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDealSalary.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDealSalary.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtDealSalary.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDealSalary.Location = new System.Drawing.Point(20, 283);
+            this.txtDealSalary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtDealSalary.Name = "txtDealSalary";
+            this.txtDealSalary.PlaceholderText = "Nhập mức lương";
+            this.txtDealSalary.SelectedText = "";
+            this.txtDealSalary.Size = new System.Drawing.Size(300, 40);
+            this.txtDealSalary.TabIndex = 17;
             // 
             // guna2HtmlLabel6
             // 
@@ -165,29 +165,9 @@
             this.guna2HtmlLabel6.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel6.Location = new System.Drawing.Point(357, 256);
             this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            this.guna2HtmlLabel6.Size = new System.Drawing.Size(83, 25);
+            this.guna2HtmlLabel6.Size = new System.Drawing.Size(113, 25);
             this.guna2HtmlLabel6.TabIndex = 16;
-            this.guna2HtmlLabel6.Text = "Trả theo *";
-            // 
-            // guna2ComboBox1
-            // 
-            this.guna2ComboBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ComboBox1.BorderRadius = 8;
-            this.guna2ComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.guna2ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.guna2ComboBox1.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.guna2ComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.guna2ComboBox1.ItemHeight = 30;
-            this.guna2ComboBox1.Items.AddRange(new object[] {
-            "Tháng",
-            "Tuần",
-            "Ngày"});
-            this.guna2ComboBox1.Location = new System.Drawing.Point(357, 283);
-            this.guna2ComboBox1.Name = "guna2ComboBox1";
-            this.guna2ComboBox1.Size = new System.Drawing.Size(300, 36);
-            this.guna2ComboBox1.TabIndex = 15;
+            this.guna2HtmlLabel6.Text = "Hệ số lương *";
             // 
             // dtEmployeeHireDate
             // 
@@ -400,6 +380,26 @@
             this.guna2Button1.Text = "Cancel";
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
+            // txtSalaryCoefficient
+            // 
+            this.txtSalaryCoefficient.BorderRadius = 8;
+            this.txtSalaryCoefficient.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtSalaryCoefficient.DefaultText = "";
+            this.txtSalaryCoefficient.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtSalaryCoefficient.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtSalaryCoefficient.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSalaryCoefficient.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSalaryCoefficient.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSalaryCoefficient.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtSalaryCoefficient.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSalaryCoefficient.Location = new System.Drawing.Point(357, 283);
+            this.txtSalaryCoefficient.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSalaryCoefficient.Name = "txtSalaryCoefficient";
+            this.txtSalaryCoefficient.PlaceholderText = "Hệ số lương";
+            this.txtSalaryCoefficient.SelectedText = "";
+            this.txtSalaryCoefficient.Size = new System.Drawing.Size(300, 40);
+            this.txtSalaryCoefficient.TabIndex = 21;
+            // 
             // AddEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -407,15 +407,15 @@
             this.ClientSize = new System.Drawing.Size(682, 550);
             this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.btnEmployeeSave);
-            this.Controls.Add(this.guna2Panel1);
+            this.Controls.Add(this.pnlAddEmployee);
             this.Controls.Add(this.lblAddEmployeeTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddEmployeeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddEmployee";
             this.Load += new System.EventHandler(this.AddEmployeeForm_Load);
-            this.guna2Panel1.ResumeLayout(false);
-            this.guna2Panel1.PerformLayout();
+            this.pnlAddEmployee.ResumeLayout(false);
+            this.pnlAddEmployee.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -425,7 +425,7 @@
 
         private Guna.UI2.WinForms.Guna2BorderlessForm bldAddEmployeeForm;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblAddEmployeeTitle;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2Panel pnlAddEmployee;
         private Guna.UI2.WinForms.Guna2TextBox txtEmployeePosition;
         private Guna.UI2.WinForms.Guna2TextBox txtEmployeeEmail;
         private Guna.UI2.WinForms.Guna2TextBox txtEmployeeFullName;
@@ -441,10 +441,10 @@
         private Guna.UI2.WinForms.Guna2ComboBox cboEmployeeStatus;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployeeSalary;
-        private Guna.UI2.WinForms.Guna2TextBox txtEmployeeSalary;
+        private Guna.UI2.WinForms.Guna2TextBox txtDealSalary;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
-        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployeePhoneNumber;
         private Guna.UI2.WinForms.Guna2TextBox txtEmployeePhoneNumber;
+        private Guna.UI2.WinForms.Guna2TextBox txtSalaryCoefficient;
     }
 }

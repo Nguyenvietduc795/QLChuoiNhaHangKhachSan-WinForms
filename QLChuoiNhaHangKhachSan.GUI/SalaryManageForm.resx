@@ -124,7 +124,7 @@
   <data name="btnPayroll.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vQAADr0BR/uQrQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAEPpSURBVHhe7d0J
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAEPpSURBVHhe7d0J
         mGRVefj/w7DvgoriBkZkcWCYvuf2jAhG3BOXxCW4JAouSKJGTFQUk7jHffsZExS3KPo3iooLLkGBMTIM
         PX3eU8OMjiijqAgqioDIItvU/zlQrTNvnWF6eW/VPVXfz/N8nycR6HvP7e5zqqvu4hwAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -866,7 +866,7 @@
   <data name="btnAveargeSalary.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAH/SSURBVHhe7b0H
+        vQAADr0BR/uQrQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAH/SSURBVHhe7b0H
         tJT1nf+vybbErmDBLlixI92CgnSwrZtkk5hs+qZbqeqVIr2ogIAgVUTsyW6y+f13QzambLJuCnB7b3Ox
         GztFnv95rrqrr3lU3vPMfO584fM653VOjsHXvL/zjNy5c++du88+juM4juM4juM4juM4juM4juM4juM4
         juM4juM4juM4juM4juM4juM4juM4juM4juM4juPkhU8/WnbUAU9s7rffE5v+cb8fbfnh/k9umvzpJzcv

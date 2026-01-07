@@ -16,7 +16,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            // Khởi động ứng dụng với LoginForm
+            // Application.Run(new LoginForm());
+           Application.Run(new FormDashBoard());
+           // Application.Run(new FormRevenue());
         }
     }
 }

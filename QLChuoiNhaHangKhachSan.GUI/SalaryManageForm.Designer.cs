@@ -457,6 +457,7 @@
             this.colEmployeeStatus.MinimumWidth = 80;
             this.colEmployeeStatus.Name = "colEmployeeStatus";
             this.colEmployeeStatus.ReadOnly = true;
+            this.colEmployeeStatus.Width = 125;
             // 
             // SalaryManageForm
             // 
