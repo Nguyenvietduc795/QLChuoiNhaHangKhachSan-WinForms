@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
@@ -23,6 +24,31 @@ namespace QLChuoiNhaHangKhachSan.GUI
     public static class BookingManager
     {
         private static ConcurrentDictionary<string, BookingInfo> _bookings = new ConcurrentDictionary<string, BookingInfo>(StringComparer.OrdinalIgnoreCase);
+
+        private static bool IsActive(BookingInfo info, DateTime reference)
+        {
+            if (info == null) return false;
+            return info.End > reference;
+        }
+
+        public static void RemoveExpired(DateTime reference)
+        {
+            var keys = _bookings.Where(kvp => !IsActive(kvp.Value, reference)).Select(kvp => kvp.Key).ToList();
+            foreach (var key in keys)
+            {
+                _bookings.TryRemove(key, out _);
+            }
+        }
+
+        public static IEnumerable<KeyValuePair<string, BookingInfo>> GetActiveBookings(DateTime reference)
+        {
+            return _bookings.Where(kvp => IsActive(kvp.Value, reference));
+        }
+
+        public static IEnumerable<string> GetActiveRoomCodes(DateTime reference)
+        {
+            return _bookings.Where(kvp => IsActive(kvp.Value, reference)).Select(kvp => kvp.Key);
+        }
 
         public static void AddBooking(string roomCode, BookingInfo info)
         {

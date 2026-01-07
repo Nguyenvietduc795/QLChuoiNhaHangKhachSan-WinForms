@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -21,6 +23,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private readonly DateTime? _lockedViewTime;
         private readonly bool _lockDateTimePickers;
+        private readonly string _providedRoomType;
 
         private Label _lblCheckout;
         private Guna2Button _btnThanhToan;
@@ -29,16 +32,16 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private BookingInfo _existing;
         private ContextMenuStrip _menuService;
 
-        private const decimal ROOM_PRICE_PER_NIGHT = 499000m;
-        private const decimal VIP_ROOM_PRICE_PER_NIGHT = 599000m;
+        // --- ĐÃ SỬA: Bỏ giá cứng, sẽ lấy từ Database ---
         private const string ROOM_SERVICE_NAME = "Tiền phòng";
 
-        public Room_Details(string maPhong, string trangThai, DateTime? lockedViewTime = null, bool lockDateTimePickers = true)
+        public Room_Details(string maPhong, string trangThai, string loaiPhong = null, DateTime? lockedViewTime = null, bool lockDateTimePickers = true)
         {
             InitializeComponent();
 
             _lockedViewTime = lockedViewTime;
             _lockDateTimePickers = lockDateTimePickers && lockedViewTime.HasValue;
+            _providedRoomType = loaiPhong;
 
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
             {
@@ -47,7 +50,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
 
             labMaphong.Text = maPhong;
-            SetRoomTypeByCode(maPhong);
+            if (!string.IsNullOrWhiteSpace(_providedRoomType))
+                SetRoomTypeByName(_providedRoomType);
+            else
+                SetRoomTypeByCode(maPhong);
             SetStatusSelection(trangThai);
             UpdateVipBadge();
 
@@ -134,7 +140,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // Khóa ngày/giờ theo thời gian đang xem nếu được truyền vào
             ApplyLockedViewTime();
 
+            // Thử lấy từ BookingManager trước, nếu không có thì lấy từ DB
             BookingManager.TryGetBooking(maPhong, out _existing);
+            if (_existing == null && _lockedViewTime.HasValue)
+            {
+                // Lấy booking từ DB theo viewTime
+                _existing = GetBookingFromDb(maPhong, _lockedViewTime.Value);
+            }
+
             if (_existing != null)
             {
                 txtName.Text = _existing.Customer;
@@ -161,18 +174,104 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
         }
 
+        // --- HÀM MỚI: Lấy giá từ Database ---
+        private decimal GetCurrentPriceFromDB(string roomId)
+        {
+            decimal price = 0;
+            var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
+
+            if (string.IsNullOrWhiteSpace(connStr)) return 0;
+
+            try
+            {
+                using (var conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+                    // Truy vấn vào View v_RoomPrice mà bạn đã tạo trong SQL
+                    string sql = "SELECT TOP 1 AppliedPrice FROM dbo.v_RoomPrice WHERE RoomID = @RoomID";
+
+                    using (var cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@RoomID", roomId);
+                        var result = cmd.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            price = Convert.ToDecimal(result);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Có thể bỏ qua lỗi hoặc log lại
+                // MessageBox.Show("Lỗi lấy giá: " + ex.Message);
+            }
+            return price;
+        }
+
+        /// <summary>
+        /// Lấy thông tin booking từ DB theo mã phòng và thời điểm tham chiếu
+        /// </summary>
+        private BookingInfo GetBookingFromDb(string roomCode, DateTime referenceTime)
+        {
+            var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
+            if (string.IsNullOrWhiteSpace(connStr)) return null;
+
+            try
+            {
+                using (var conn = new SqlConnection(connStr))
+                using (var cmd = new SqlCommand(@"SELECT c.FullName, d.CheckIn, d.CheckOut
+FROM dbo.BookingDetail d
+JOIN dbo.Booking b ON d.BookingID = b.BookingID
+JOIN dbo.Customer c ON b.CustomerID = c.CustomerID
+WHERE d.RoomID = @RoomID AND d.CheckIn <= @RefTime AND d.CheckOut > @RefTime", conn))
+                {
+                    cmd.Parameters.AddWithValue("@RoomID", roomCode);
+                    cmd.Parameters.AddWithValue("@RefTime", referenceTime);
+                    conn.Open();
+                    using (var rd = cmd.ExecuteReader())
+                    {
+                        if (rd.Read())
+                        {
+                            var customer = rd["FullName"]?.ToString();
+                            DateTime? start = rd["CheckIn"] != DBNull.Value ? (DateTime?)rd["CheckIn"] : null;
+                            DateTime? end = rd["CheckOut"] != DBNull.Value ? (DateTime?)rd["CheckOut"] : null;
+                            if (start.HasValue && end.HasValue)
+                            {
+                                return new BookingInfo
+                                {
+                                    Customer = customer,
+                                    Start = start.Value,
+                                    End = end.Value,
+                                    Services = new List<ServiceItem>()
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch { }
+
+            return null;
+        }
+
         private void ApplyLockedViewTime()
         {
             if (!_lockedViewTime.HasValue) return;
             var view = _lockedViewTime.Value;
 
-            // Cố định ngày/giờ bắt đầu theo thời gian đang xem, số ngày giữ nguyên
-            dtNgay.Value = view.Date;
-            dtGio.Value = view;
+            // Chỉ set ngày/giờ khi chưa có booking (phòng trống)
+            // Nếu có booking thì sẽ được set từ thông tin booking
+            if (_existing == null)
+            {
+                dtNgay.Value = view.Date;
+                dtGio.Value = view;
 
-            var days = (int)Math.Max(1, nNgay.Value);
-            var end = view.AddDays(days);
-            UpdateCheckoutLabel(view, end, days);
+                var days = (int)Math.Max(1, nNgay.Value);
+                var end = view.AddDays(days);
+                UpdateCheckoutLabel(view, end, days);
+            }
 
             if (_lockDateTimePickers)
             {
@@ -187,7 +286,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             bool hasK = input.EndsWith("k", StringComparison.OrdinalIgnoreCase);
             var digits = new StringBuilder();
             foreach (char c in input)
-            {
+            {   
                 if (char.IsDigit(c)) digits.Append(c);
             }
             if (digits.Length == 0) return 0;
@@ -199,31 +298,42 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void EnsureRoomCharge(int days)
         {
-            decimal pricePerNight = GetRoomPrice();
-            // nếu grid chưa có dòng tiền phòng, thêm vào; nếu có thì cập nhật
+            decimal basePrice = GetRoomPrice();
+
+            // 2. Xác định khoảng thời gian khách ở
+            DateTime startDate = dtNgay.Value.Date; // Ngày bắt đầu từ DatePicker
+            DateTime endDate = startDate.AddDays(days); // Ngày kết thúc
+
+            // 3. [QUAN TRỌNG] Tính tổng tiền có áp dụng tăng giá Lễ/Tết/Cuối tuần
+            // Hàm này nằm trong class HolidayPriceConfig bạn vừa gửi
+            decimal totalAmount = HolidayPriceConfig.CalculateTotalPrice(basePrice, startDate, endDate);
+
+            // 4. Cập nhật hoặc Thêm dòng "Tiền phòng" vào lưới (GridView)
             bool found = false;
             foreach (DataGridViewRow r in guna2DataGridView2.Rows)
             {
                 if (r.IsNewRow) continue;
+
+                // Tìm dòng có tên "Tiền phòng"
                 if (string.Equals(Convert.ToString(r.Cells[0].Value), ROOM_SERVICE_NAME, StringComparison.OrdinalIgnoreCase))
                 {
                     found = true;
-                    decimal amount = pricePerNight * days;
-                    r.Cells[1].Value = days; // qty
-                    r.Cells[2].Value = pricePerNight.ToString("N0");
-                    r.Cells[3].Value = amount.ToString("N0");
+                    r.Cells[1].Value = days; // Cập nhật số ngày
+                    r.Cells[2].Value = basePrice.ToString("N0"); // Cột Đơn giá: Hiển thị giá gốc
+                    r.Cells[3].Value = totalAmount.ToString("N0"); // Cột Thành tiền: Hiển thị giá đã tính Lễ/Tết
                     break;
                 }
             }
+
+            // Nếu chưa có dòng tiền phòng thì thêm mới
             if (!found)
             {
-                decimal amount = pricePerNight * days;
                 int idx = guna2DataGridView2.Rows.Add();
                 var row = guna2DataGridView2.Rows[idx];
                 row.Cells[0].Value = ROOM_SERVICE_NAME;
                 row.Cells[1].Value = days;
-                row.Cells[2].Value = pricePerNight.ToString("N0");
-                row.Cells[3].Value = amount.ToString("N0");
+                row.Cells[2].Value = basePrice.ToString("N0");
+                row.Cells[3].Value = totalAmount.ToString("N0"); // Giá cuối cùng
             }
         }
 
@@ -286,8 +396,24 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 WriteInvoiceText(sfd.FileName);
                 MessageBox.Show("Đã lưu hóa đơn (TXT).", "Thông báo");
 
+                // compute totalAmount from grid (same logic you already have)
+                decimal totalAmount = 0m;
+                var services = CollectServicesFromGrid();
+                foreach (var s in services) totalAmount += s.Amount;
 
-                // sau khi thanh toán, trả phòng về trạng thái trống
+                // best-effort save to DB and finalize — if DB save fails we abort finalizing so UI/db stay consistent
+                try
+                {
+                    QLChuoiNhaHangKhachSan.GUI.Repositories.InvoiceRepository.SaveInvoiceAndFinalize(
+                        labMaphong.Text, _existing, services, totalAmount, sfd.FileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lưu hóa đơn vào DB thất bại: " + ex.Message + "\nHủy thao tác hoàn tất phòng. Vui lòng kiểm tra kết nối CSDL.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // do NOT remove in-memory booking or change UI when DB persistence failed
+                }
+
+                // if we reach here DB save succeeded -> remove in-memory booking and refresh UI
                 BookingManager.RemoveBooking(labMaphong.Text);
                 _existing = null;
                 _btnThanhToan.Visible = false;
@@ -300,11 +426,95 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     var listForm = Application.OpenForms.OfType<ListRoom>().FirstOrDefault();
                     if (listForm != null)
                     {
-                        // Chỉ refresh đúng phòng vừa thanh toán, không ảnh hưởng phòng khác
+                        // Refresh only the room just paid — RefreshBookingStates will read DB + in-memory and show free
                         listForm.RefreshFromBookings(new[] { labMaphong.Text });
                     }
                 }
                 catch { }
+            }
+        }
+
+        /// <summary>
+        /// Best-effort: insert a minimal payment/invoice row to database for records.
+        /// This uses a small generic table structure: dbo.Payment( RoomID, Amount, PaidDate, Note ).
+        /// If your schema is different, adapt SQL to your actual invoice tables (Invoice/InvoiceDetail).
+        /// Errors are rethrown to caller for logging/diagnostics.
+        /// </summary>
+        private void SaveInvoiceToDatabase(string invoiceFilePath)
+        {
+            decimal totalAmount = 0m;
+            // compute total from current grid
+            foreach (DataGridViewRow r in guna2DataGridView2.Rows)
+            {
+                if (r.IsNewRow) continue;
+                decimal cell;
+                if (decimal.TryParse(Convert.ToString(r.Cells[3].Value), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.CurrentCulture, out cell))
+                    totalAmount += cell;
+            }
+
+            var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
+            if (string.IsNullOrWhiteSpace(connStr))
+                return;
+
+            using (var conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                using (var tran = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        // Try inserting into a generic Payment table if it exists.
+                        // Adjust this SQL to match your real invoice schema if present.
+                        using (var cmd = new SqlCommand(@"
+IF OBJECT_ID('dbo.Payment', 'U') IS NOT NULL
+BEGIN
+    INSERT INTO dbo.Payment(RoomID, Amount, PaidDate, Note)
+    VALUES(@RoomID, @Amount, @PaidDate, @Note);
+END
+ELSE
+BEGIN
+    -- If Payment table doesn't exist, write a lightweight audit record into Booking (fallback)
+    INSERT INTO dbo.Booking(BookingCode, CustomerID, EmployeeID, CreatedDate, Status)
+    VALUES(@FallbackCode, NULL, NULL, GETDATE(), N'Paid');
+END
+", conn, tran))
+                        {
+                            cmd.Parameters.AddWithValue("@RoomID", labMaphong.Text);
+                            cmd.Parameters.AddWithValue("@Amount", totalAmount);
+                            cmd.Parameters.AddWithValue("@PaidDate", DateTime.Now);
+                            cmd.Parameters.AddWithValue("@Note", Path.GetFileName(invoiceFilePath) ?? (object)DBNull.Value);
+                            cmd.Parameters.AddWithValue("@FallbackCode", "INV" + DateTime.Now.ToString("yyyyMMddHHmmss"));
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // commit only if above succeeded
+                        tran.Commit();
+                    }
+                    catch
+                    {
+                        tran.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Update room status in database.
+        /// </summary>
+        private void UpdateRoomStatusInDatabase(string roomCode, string status)
+        {
+            if (string.IsNullOrWhiteSpace(roomCode)) return;
+            var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
+            if (string.IsNullOrWhiteSpace(connStr)) return;
+
+            using (var conn = new SqlConnection(connStr))
+            using (var cmd = new SqlCommand("UPDATE dbo.Room SET Status = @Status WHERE RoomID = @RoomID", conn))
+            {
+                cmd.Parameters.AddWithValue("@RoomID", roomCode);
+                cmd.Parameters.AddWithValue("@Status", status);
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
 
@@ -399,7 +609,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            this.Close();
+            var confirm = MessageBox.Show("Bạn có chắc chắn muốn thoát?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
 
         private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -418,44 +632,46 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void AddService()
         {
-            using (var f = new Form())
+            using (var f = new HotelServices_Form())
             {
-                f.Text = "Thêm dịch vụ";
-                f.FormBorderStyle = FormBorderStyle.FixedDialog;
-                f.StartPosition = FormStartPosition.CenterParent;
-                f.ClientSize = new System.Drawing.Size(520, 320); // larger dialog
-
-                int lblX = 20;
-                int ctrlX = 20;
-                int width = 480;
-
-                var lblName = new Label { Left = lblX, Top = 20, Text = "Tên dịch vụ", AutoSize = true };
-                var txtName = new TextBox { Left = ctrlX, Top = 45, Width = width };
-                var lblPrice = new Label { Left = lblX, Top = 85, Text = "Đơn giá", AutoSize = true };
-                var txtPrice = new TextBox { Left = ctrlX, Top = 110, Width = width };
-                var lblQty = new Label { Left = lblX, Top = 150, Text = "Số lượng", AutoSize = true };
-                var numQty = new NumericUpDown { Left = ctrlX, Top = 175, Width = 120, Minimum = 1, Maximum = 999, Value = 1 };
-                var btnOk = new Button { Text = "OK", Left = 320, Width = 80, Top = 240, DialogResult = DialogResult.OK };
-                var btnCancel = new Button { Text = "Cancel", Left = 410, Width = 80, Top = 240, DialogResult = DialogResult.Cancel };
-                f.Controls.AddRange(new Control[] { lblName, txtName, lblPrice, txtPrice, lblQty, numQty, btnOk, btnCancel });
-                f.AcceptButton = btnOk;
-                f.CancelButton = btnCancel;
-
-                if (f.ShowDialog(this) == DialogResult.OK)
+                if (f.ShowDialog(this) == DialogResult.OK && f.SelectedServices != null)
                 {
-                    if (string.IsNullOrWhiteSpace(txtName.Text)) return;
-                    decimal price = ParsePrice(txtPrice.Text);
-                    int qty = (int)numQty.Value;
-                    decimal amount = price * qty;
-                    int idx = guna2DataGridView2.Rows.Add();
-                    var row = guna2DataGridView2.Rows[idx];
-                    row.Cells[0].Value = txtName.Text.Trim();
-                    row.Cells[1].Value = qty;
-                    row.Cells[2].Value = price.ToString("N0");
-                    row.Cells[3].Value = amount.ToString("N0");
-                    row.Tag = qty;
+                    foreach (var svc in f.SelectedServices)
+                    {
+                        AddOrUpdateServiceRow(svc.Name, svc.UnitPrice, svc.Quantity);
+                    }
+                    EnsureRoomCharge((int)nNgay.Value);
                 }
             }
+        }
+
+        private void AddOrUpdateServiceRow(string name, decimal unitPrice, int qty)
+        {
+            if (qty < 1) qty = 1;
+            foreach (DataGridViewRow r in guna2DataGridView2.Rows)
+            {
+                if (r.IsNewRow) continue;
+                if (string.Equals(Convert.ToString(r.Cells[0].Value), name, StringComparison.OrdinalIgnoreCase))
+                {
+                    int oldQty = 0;
+                    int.TryParse(Convert.ToString(r.Cells[1].Value), out oldQty);
+                    int newQty = oldQty + qty;
+                    decimal amount = unitPrice * newQty;
+                    r.Cells[0].Value = name;
+                    r.Cells[1].Value = newQty;
+                    r.Cells[2].Value = unitPrice.ToString("N0");
+                    r.Cells[3].Value = amount.ToString("N0");
+                    return;
+                }
+            }
+
+            int idx = guna2DataGridView2.Rows.Add();
+            var row = guna2DataGridView2.Rows[idx];
+            decimal amountNew = unitPrice * qty;
+            row.Cells[0].Value = name;
+            row.Cells[1].Value = qty;
+            row.Cells[2].Value = unitPrice.ToString("N0");
+            row.Cells[3].Value = amountNew.ToString("N0");
         }
 
         private void RemoveService()
@@ -553,9 +769,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
             return false;
         }
 
+        // --- HÀM NÀY ĐÃ ĐƯỢC SỬA ĐỂ GỌI DATABASE ---
         private decimal GetRoomPrice()
         {
-            return IsVipRoom() ? VIP_ROOM_PRICE_PER_NIGHT : ROOM_PRICE_PER_NIGHT;
+            return GetCurrentPriceFromDB(labMaphong.Text);
         }
 
         private void UpdateVipBadge()
@@ -606,12 +823,25 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 if (num >= 1 && num <= 12)
                     guna2ComboBox2.SelectedItem = "Phòng đơn";
-                else if (num >= 13 && num <= 20)
+                else if (num >= 13 && num <= 24)
                     guna2ComboBox2.SelectedItem = "Phòng đôi";
                 else
                     guna2ComboBox2.SelectedItem = "Phòng gia đình";
             }
             SelectedRoomType = guna2ComboBox2.SelectedItem as string;
+            if (guna2ComboBox2 != null) guna2ComboBox2.Enabled = false;
+        }
+
+        private void SetRoomTypeByName(string loaiPhong)
+        {
+            if (guna2ComboBox2 == null) return;
+            if (string.IsNullOrWhiteSpace(loaiPhong)) { SetRoomTypeByCode(labMaphong.Text); return; }
+            string low = loaiPhong.ToLowerInvariant();
+            if (low.Contains("đơn")) guna2ComboBox2.SelectedItem = "Phòng đơn";
+            else if (low.Contains("đôi")) guna2ComboBox2.SelectedItem = "Phòng đôi";
+            else guna2ComboBox2.SelectedItem = "Phòng gia đình";
+            SelectedRoomType = guna2ComboBox2.SelectedItem as string;
+            guna2ComboBox2.Enabled = false;
         }
 
         private void Room_Details_Load(object sender, EventArgs e)

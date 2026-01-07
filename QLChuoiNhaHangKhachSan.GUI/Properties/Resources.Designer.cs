@@ -19,7 +19,7 @@ namespace QLChuoiNhaHangKhachSan.GUI.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -65,7 +65,7 @@ namespace QLChuoiNhaHangKhachSan.GUI.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _021dc1fb9e_01 {
             get {
-                object obj = ResourceManager.GetObject("021dc1fb9e-01", resourceCulture);
+                object obj = ResourceManager.GetObject("_021dc1fb9e_01", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,29 +73,9 @@ namespace QLChuoiNhaHangKhachSan.GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_user {
+        internal static System.Drawing.Bitmap _3178158 {
             get {
-                object obj = ResourceManager.GetObject("icon_user", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap lovepik_house_png_image_400195161_wh1200 {
-            get {
-                object obj = ResourceManager.GetObject("lovepik-house-png-image_400195161_wh1200", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap OIP {
-            get {
-                object obj = ResourceManager.GetObject("OIP", resourceCulture);
+                object obj = ResourceManager.GetObject("3178158", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,7 +96,7 @@ namespace QLChuoiNhaHangKhachSan.GUI.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap pngtree_clock_icon_vector_line_perfect_png_image_11999891 {
             get {
-                object obj = ResourceManager.GetObject("pngtree_clock_icon_vector-line_perfect_png_image_11999891", resourceCulture);
+                object obj = ResourceManager.GetObject("pngtree_clock_icon_vector_line_perfect_png_image_11999891", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -145,30 +125,10 @@ namespace QLChuoiNhaHangKhachSan.GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pngtree_tick_vector_icon_png_image_964008 {
-            get {
-                object obj = ResourceManager.GetObject("pngtree-tick-vector-icon-png-image_964008", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap pngtree_vector_illustration_of_single_passport_icon_personal_nationalities_illustration_vector_png_image_7587796 {
             get {
                 object obj = ResourceManager.GetObject("pngtree_vector_illustration_of_single_passport_icon_personal_nationalities_illust" +
                         "ration_vector_png_image_7587796", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Screenshot_2025_06_14_185743 {
-            get {
-                object obj = ResourceManager.GetObject("Screenshot 2025-06-14 185743", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,9 +156,9 @@ namespace QLChuoiNhaHangKhachSan.GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tải_xuống {
+        internal static System.Drawing.Bitmap tải_xuống__1_ {
             get {
-                object obj = ResourceManager.GetObject("tải xuống", resourceCulture);
+                object obj = ResourceManager.GetObject("tải xuống (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -219,16 +179,6 @@ namespace QLChuoiNhaHangKhachSan.GUI.Properties {
         internal static System.Drawing.Bitmap z7350371373390_18bf60a259e7bfe87dc788c41c49ab57 {
             get {
                 object obj = ResourceManager.GetObject("z7350371373390_18bf60a259e7bfe87dc788c41c49ab57", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap z7350371373399_f69f1d034fcf9c0866448c7c59b4398b {
-            get {
-                object obj = ResourceManager.GetObject("z7350371373399_f69f1d034fcf9c0866448c7c59b4398b", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

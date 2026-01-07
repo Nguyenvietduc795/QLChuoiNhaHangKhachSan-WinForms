@@ -90,6 +90,13 @@
     <Compile Include="EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="HolidayPriceConfig.cs" />
+    <Compile Include="HotelServices_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HotelServices_Form.Designer.cs">
+      <DependentUpon>HotelServices_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,12 +134,12 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\InvoiceRepository.cs" />
     <Compile Include="Room_Details.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Room_Details.Designer.cs">
-      <DependentUpon>Room_Details.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Room_Details.Designer.cs" />
+    <Compile Include="Room_Details_Fixed.cs" />
     <Compile Include="TimePickerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,6 +233,9 @@
     <EmbeddedResource Include="EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HotelServices_Form.resx">
+      <DependentUpon>HotelServices_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -244,9 +254,7 @@
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Room_Details.resx">
-      <DependentUpon>Room_Details.cs</DependentUpon>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Room_Details.resx" />
     <EmbeddedResource Include="UcRoom.resx">
       <DependentUpon>UcRoom.cs</DependentUpon>
     </EmbeddedResource>
@@ -352,7 +360,9 @@
     <Content Include="icon\staff.png" />
     <Content Include="icon\total.png" />
     <Content Include="icon\user-avatar.png" />
+    <None Include="Resources\tải xuống %281%29.png" />
     <None Include="Resources\Screenshot 2025-06-14 185743.png" />
+    <None Include="Resources\3178158.png" />
     <Content Include="Resources\pngtree_green_check_mark_png_image_6525691.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
