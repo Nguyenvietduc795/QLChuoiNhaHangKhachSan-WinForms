@@ -86,6 +86,13 @@
     <Compile Include="EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDownload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDownload.Designer.cs">
+      <DependentUpon>FormDownload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPayments.Extensions.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +129,12 @@
     </Compile>
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationCenter.cs" />
+    <Compile Include="QuanLyChuoiNHKSDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyChuoiNHKSDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Room_Details.cs">
       <SubType>Form</SubType>
@@ -208,7 +221,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-    <!-- ===================== RESX (EMBEDDED RESOURCE) ===================== -->
+  <!-- ===================== RESX (EMBEDDED RESOURCE) ===================== -->
   <ItemGroup>
     <EmbeddedResource Include="CustomerAdd.resx">
       <DependentUpon>CustomerAdd.cs</DependentUpon>
@@ -221,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDownload.resx">
+      <DependentUpon>FormDownload.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -276,7 +292,6 @@
     <EmbeddedResource Include="SalaryManageForm.resx">
       <DependentUpon>SalaryManageForm.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -294,6 +309,17 @@
   </ItemGroup>
   <!-- ===================== RESOURCE FILES (IMAGES) ===================== -->
   <ItemGroup>
+    <None Include="QuanLyChuoiNHKSDataSet.xsc">
+      <DependentUpon>QuanLyChuoiNHKSDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyChuoiNHKSDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuanLyChuoiNHKSDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuanLyChuoiNHKSDataSet.xss">
+      <DependentUpon>QuanLyChuoiNHKSDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Resources\OIP.jpg" />
     <None Include="Resources\search.png" />
     <None Include="Resources\pngtree_clock_icon_vector-line_perfect_png_image_11999891.png" />

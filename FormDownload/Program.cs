@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace QLChuoiNhaHangKhachSan.GUI
+namespace FormDownload
 {
     internal static class Program
     {
@@ -16,10 +16,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-             Application.Run(new FormDownload());
-          //Application.Run(new FormPayments());
-             // Application.Run(new FormInvoiceManagement());
-            //Application.Run(new frmBill());
+            Application.Run(new Form1());
         }
     }
 }
