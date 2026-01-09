@@ -1,11 +1,17 @@
-﻿namespace QLChuoiNhaHangKhachSan.GUI
+﻿using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
+using Guna.UI2.WinForms;
+
+namespace QLChuoiNhaHangKhachSan.GUI
 {
     partial class frmRestaurant
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -22,17 +28,13 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRestaurant));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnTable1 = new System.Windows.Forms.Button();
             this.btnTable2 = new System.Windows.Forms.Button();
             this.btnTable3 = new System.Windows.Forms.Button();
@@ -61,14 +63,14 @@
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.guna2DateTimePicker2 = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.guna2DateTimePicker1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.dtpTime = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.dtpDay = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.btnOrder = new Guna.UI2.WinForms.Guna2Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNumberPhone = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtClient = new System.Windows.Forms.TextBox();
             this.lblClient = new System.Windows.Forms.Label();
@@ -99,23 +101,23 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDishList)).BeginInit();
             this.pnlNote.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnTable1
             // 
-            this.btnTable1.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTable1.BackColor = System.Drawing.Color.Transparent;
             this.btnTable1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable1.BackgroundImage")));
             this.btnTable1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnTable1.CausesValidation = false;
             this.btnTable1.FlatAppearance.BorderSize = 0;
             this.btnTable1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable1.Location = new System.Drawing.Point(69, 112);
+            this.btnTable1.Location = new System.Drawing.Point(65, 138);
             this.btnTable1.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable1.Name = "btnTable1";
             this.btnTable1.Size = new System.Drawing.Size(95, 99);
@@ -128,14 +130,14 @@
             // btnTable2
             // 
             this.btnTable2.AutoEllipsis = true;
-            this.btnTable2.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTable2.BackColor = System.Drawing.Color.Transparent;
             this.btnTable2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable2.BackgroundImage")));
             this.btnTable2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable2.CausesValidation = false;
             this.btnTable2.FlatAppearance.BorderSize = 0;
             this.btnTable2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable2.Location = new System.Drawing.Point(240, 112);
+            this.btnTable2.Location = new System.Drawing.Point(236, 138);
             this.btnTable2.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable2.Name = "btnTable2";
             this.btnTable2.Size = new System.Drawing.Size(95, 99);
@@ -147,73 +149,77 @@
             // 
             // btnTable3
             // 
+            this.btnTable3.BackColor = System.Drawing.Color.Transparent;
             this.btnTable3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable3.BackgroundImage")));
             this.btnTable3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable3.CausesValidation = false;
             this.btnTable3.FlatAppearance.BorderSize = 0;
             this.btnTable3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable3.Location = new System.Drawing.Point(424, 112);
+            this.btnTable3.Location = new System.Drawing.Point(420, 138);
             this.btnTable3.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable3.Name = "btnTable3";
             this.btnTable3.Size = new System.Drawing.Size(95, 99);
             this.btnTable3.TabIndex = 6;
             this.btnTable3.Text = "3";
-            this.btnTable3.UseVisualStyleBackColor = true;
+            this.btnTable3.UseVisualStyleBackColor = false;
             this.btnTable3.UseWaitCursor = true;
             this.btnTable3.Click += new System.EventHandler(this.Table_Click);
             // 
             // btnTable4
             // 
+            this.btnTable4.BackColor = System.Drawing.Color.Transparent;
             this.btnTable4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable4.BackgroundImage")));
             this.btnTable4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable4.CausesValidation = false;
             this.btnTable4.FlatAppearance.BorderSize = 0;
             this.btnTable4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable4.Location = new System.Drawing.Point(600, 112);
+            this.btnTable4.Location = new System.Drawing.Point(596, 138);
             this.btnTable4.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable4.Name = "btnTable4";
             this.btnTable4.Size = new System.Drawing.Size(95, 99);
             this.btnTable4.TabIndex = 7;
             this.btnTable4.Text = "4";
-            this.btnTable4.UseVisualStyleBackColor = true;
+            this.btnTable4.UseVisualStyleBackColor = false;
             this.btnTable4.UseWaitCursor = true;
             this.btnTable4.Click += new System.EventHandler(this.Table_Click);
             // 
             // btnTable5
             // 
+            this.btnTable5.BackColor = System.Drawing.Color.Transparent;
             this.btnTable5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable5.BackgroundImage")));
             this.btnTable5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable5.CausesValidation = false;
             this.btnTable5.FlatAppearance.BorderSize = 0;
             this.btnTable5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable5.Location = new System.Drawing.Point(769, 112);
+            this.btnTable5.Location = new System.Drawing.Point(765, 138);
             this.btnTable5.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable5.Name = "btnTable5";
             this.btnTable5.Size = new System.Drawing.Size(95, 99);
             this.btnTable5.TabIndex = 8;
             this.btnTable5.Text = "5";
-            this.btnTable5.UseVisualStyleBackColor = true;
+            this.btnTable5.UseVisualStyleBackColor = false;
             this.btnTable5.UseWaitCursor = true;
             this.btnTable5.Click += new System.EventHandler(this.Table_Click);
             // 
             // btnTable11
             // 
+            this.btnTable11.BackColor = System.Drawing.Color.Transparent;
             this.btnTable11.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable11.BackgroundImage")));
             this.btnTable11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable11.CausesValidation = false;
             this.btnTable11.FlatAppearance.BorderSize = 0;
             this.btnTable11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable11.Location = new System.Drawing.Point(769, 238);
+            this.btnTable11.Location = new System.Drawing.Point(765, 264);
             this.btnTable11.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable11.Name = "btnTable11";
             this.btnTable11.Size = new System.Drawing.Size(95, 99);
             this.btnTable11.TabIndex = 14;
             this.btnTable11.Text = "10";
-            this.btnTable11.UseVisualStyleBackColor = true;
+            this.btnTable11.UseVisualStyleBackColor = false;
             this.btnTable11.UseWaitCursor = true;
             this.btnTable11.Click += new System.EventHandler(this.Table_Click);
             // 
@@ -221,14 +227,14 @@
             // 
             this.btnTable10.BackColor = System.Drawing.Color.Transparent;
             this.btnTable10.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable10.BackgroundImage")));
-            this.btnTable10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTable10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable10.CausesValidation = false;
             this.btnTable10.FlatAppearance.BorderSize = 0;
             this.btnTable10.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.btnTable10.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.btnTable10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable10.Location = new System.Drawing.Point(600, 238);
+            this.btnTable10.Location = new System.Drawing.Point(596, 264);
             this.btnTable10.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable10.Name = "btnTable10";
             this.btnTable10.Size = new System.Drawing.Size(95, 99);
@@ -240,14 +246,14 @@
             // 
             // btnTable9
             // 
-            this.btnTable9.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTable9.BackColor = System.Drawing.Color.Transparent;
             this.btnTable9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable9.BackgroundImage")));
             this.btnTable9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable9.CausesValidation = false;
             this.btnTable9.FlatAppearance.BorderSize = 0;
             this.btnTable9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable9.Location = new System.Drawing.Point(424, 238);
+            this.btnTable9.Location = new System.Drawing.Point(420, 264);
             this.btnTable9.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable9.Name = "btnTable9";
             this.btnTable9.Size = new System.Drawing.Size(95, 99);
@@ -259,32 +265,33 @@
             // 
             // btnTable8
             // 
+            this.btnTable8.BackColor = System.Drawing.Color.Transparent;
             this.btnTable8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable8.BackgroundImage")));
             this.btnTable8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable8.CausesValidation = false;
             this.btnTable8.FlatAppearance.BorderSize = 0;
             this.btnTable8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable8.Location = new System.Drawing.Point(240, 238);
+            this.btnTable8.Location = new System.Drawing.Point(236, 264);
             this.btnTable8.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable8.Name = "btnTable8";
             this.btnTable8.Size = new System.Drawing.Size(95, 99);
             this.btnTable8.TabIndex = 11;
             this.btnTable8.Text = "7";
-            this.btnTable8.UseVisualStyleBackColor = true;
+            this.btnTable8.UseVisualStyleBackColor = false;
             this.btnTable8.UseWaitCursor = true;
             this.btnTable8.Click += new System.EventHandler(this.Table_Click);
             // 
             // btnTable7
             // 
-            this.btnTable7.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTable7.BackColor = System.Drawing.Color.Transparent;
             this.btnTable7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable7.BackgroundImage")));
             this.btnTable7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable7.CausesValidation = false;
             this.btnTable7.FlatAppearance.BorderSize = 0;
             this.btnTable7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable7.Location = new System.Drawing.Point(69, 238);
+            this.btnTable7.Location = new System.Drawing.Point(65, 264);
             this.btnTable7.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable7.Name = "btnTable7";
             this.btnTable7.Size = new System.Drawing.Size(95, 99);
@@ -296,86 +303,90 @@
             // 
             // btnTable17
             // 
+            this.btnTable17.BackColor = System.Drawing.Color.Transparent;
             this.btnTable17.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable17.BackgroundImage")));
             this.btnTable17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable17.CausesValidation = false;
             this.btnTable17.FlatAppearance.BorderSize = 0;
             this.btnTable17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable17.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable17.Location = new System.Drawing.Point(769, 379);
+            this.btnTable17.Location = new System.Drawing.Point(765, 405);
             this.btnTable17.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable17.Name = "btnTable17";
             this.btnTable17.Size = new System.Drawing.Size(95, 99);
             this.btnTable17.TabIndex = 20;
             this.btnTable17.Text = "15";
-            this.btnTable17.UseVisualStyleBackColor = true;
+            this.btnTable17.UseVisualStyleBackColor = false;
             this.btnTable17.UseWaitCursor = true;
             this.btnTable17.Click += new System.EventHandler(this.Table_Click);
             // 
             // btnTable16
             // 
+            this.btnTable16.BackColor = System.Drawing.Color.Transparent;
             this.btnTable16.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable16.BackgroundImage")));
             this.btnTable16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable16.CausesValidation = false;
             this.btnTable16.FlatAppearance.BorderSize = 0;
             this.btnTable16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable16.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable16.Location = new System.Drawing.Point(600, 379);
+            this.btnTable16.Location = new System.Drawing.Point(596, 405);
             this.btnTable16.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable16.Name = "btnTable16";
             this.btnTable16.Size = new System.Drawing.Size(95, 99);
             this.btnTable16.TabIndex = 19;
             this.btnTable16.Text = "14";
-            this.btnTable16.UseVisualStyleBackColor = true;
+            this.btnTable16.UseVisualStyleBackColor = false;
             this.btnTable16.UseWaitCursor = true;
             this.btnTable16.Click += new System.EventHandler(this.Table_Click);
             // 
             // btnTable15
             // 
+            this.btnTable15.BackColor = System.Drawing.Color.Transparent;
             this.btnTable15.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable15.BackgroundImage")));
             this.btnTable15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable15.CausesValidation = false;
             this.btnTable15.FlatAppearance.BorderSize = 0;
             this.btnTable15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable15.Location = new System.Drawing.Point(424, 379);
+            this.btnTable15.Location = new System.Drawing.Point(420, 405);
             this.btnTable15.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable15.Name = "btnTable15";
             this.btnTable15.Size = new System.Drawing.Size(95, 99);
             this.btnTable15.TabIndex = 18;
             this.btnTable15.Text = "13";
-            this.btnTable15.UseVisualStyleBackColor = true;
+            this.btnTable15.UseVisualStyleBackColor = false;
             this.btnTable15.UseWaitCursor = true;
             this.btnTable15.Click += new System.EventHandler(this.Table_Click);
             // 
             // btnTable14
             // 
+            this.btnTable14.BackColor = System.Drawing.Color.Transparent;
             this.btnTable14.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable14.BackgroundImage")));
             this.btnTable14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable14.CausesValidation = false;
             this.btnTable14.FlatAppearance.BorderSize = 0;
             this.btnTable14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable14.Location = new System.Drawing.Point(240, 379);
+            this.btnTable14.Location = new System.Drawing.Point(236, 405);
             this.btnTable14.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable14.Name = "btnTable14";
             this.btnTable14.Size = new System.Drawing.Size(95, 99);
             this.btnTable14.TabIndex = 17;
             this.btnTable14.Text = "12";
-            this.btnTable14.UseVisualStyleBackColor = true;
+            this.btnTable14.UseVisualStyleBackColor = false;
             this.btnTable14.UseWaitCursor = true;
             this.btnTable14.Click += new System.EventHandler(this.Table_Click);
             // 
             // btnTable13
             // 
-            this.btnTable13.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTable13.BackColor = System.Drawing.Color.Transparent;
             this.btnTable13.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable13.BackgroundImage")));
             this.btnTable13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable13.CausesValidation = false;
             this.btnTable13.FlatAppearance.BorderSize = 0;
             this.btnTable13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable13.Location = new System.Drawing.Point(69, 379);
+            this.btnTable13.Location = new System.Drawing.Point(65, 405);
             this.btnTable13.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable13.Name = "btnTable13";
             this.btnTable13.Size = new System.Drawing.Size(95, 99);
@@ -387,32 +398,33 @@
             // 
             // btnTable23
             // 
+            this.btnTable23.BackColor = System.Drawing.Color.Transparent;
             this.btnTable23.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable23.BackgroundImage")));
             this.btnTable23.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable23.CausesValidation = false;
             this.btnTable23.FlatAppearance.BorderSize = 0;
             this.btnTable23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable23.Location = new System.Drawing.Point(769, 504);
+            this.btnTable23.Location = new System.Drawing.Point(765, 530);
             this.btnTable23.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable23.Name = "btnTable23";
             this.btnTable23.Size = new System.Drawing.Size(95, 99);
             this.btnTable23.TabIndex = 26;
             this.btnTable23.Text = "20";
-            this.btnTable23.UseVisualStyleBackColor = true;
+            this.btnTable23.UseVisualStyleBackColor = false;
             this.btnTable23.UseWaitCursor = true;
             this.btnTable23.Click += new System.EventHandler(this.Table_Click);
             // 
             // btnTable22
             // 
-            this.btnTable22.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTable22.BackColor = System.Drawing.Color.Transparent;
             this.btnTable22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable22.BackgroundImage")));
             this.btnTable22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable22.CausesValidation = false;
             this.btnTable22.FlatAppearance.BorderSize = 0;
             this.btnTable22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable22.Location = new System.Drawing.Point(600, 504);
+            this.btnTable22.Location = new System.Drawing.Point(596, 530);
             this.btnTable22.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable22.Name = "btnTable22";
             this.btnTable22.Size = new System.Drawing.Size(95, 99);
@@ -424,14 +436,14 @@
             // 
             // btnTable21
             // 
-            this.btnTable21.BackColor = System.Drawing.SystemColors.Control;
+            this.btnTable21.BackColor = System.Drawing.Color.Transparent;
             this.btnTable21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable21.BackgroundImage")));
             this.btnTable21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable21.CausesValidation = false;
             this.btnTable21.FlatAppearance.BorderSize = 0;
             this.btnTable21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable21.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable21.Location = new System.Drawing.Point(424, 504);
+            this.btnTable21.Location = new System.Drawing.Point(420, 530);
             this.btnTable21.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable21.Name = "btnTable21";
             this.btnTable21.Size = new System.Drawing.Size(95, 99);
@@ -443,127 +455,134 @@
             // 
             // btnTable20
             // 
+            this.btnTable20.BackColor = System.Drawing.Color.Transparent;
             this.btnTable20.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable20.BackgroundImage")));
             this.btnTable20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable20.CausesValidation = false;
             this.btnTable20.FlatAppearance.BorderSize = 0;
             this.btnTable20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable20.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable20.Location = new System.Drawing.Point(240, 504);
+            this.btnTable20.Location = new System.Drawing.Point(236, 530);
             this.btnTable20.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable20.Name = "btnTable20";
             this.btnTable20.Size = new System.Drawing.Size(95, 99);
             this.btnTable20.TabIndex = 23;
             this.btnTable20.Text = "17";
-            this.btnTable20.UseVisualStyleBackColor = true;
+            this.btnTable20.UseVisualStyleBackColor = false;
             this.btnTable20.UseWaitCursor = true;
             this.btnTable20.Click += new System.EventHandler(this.Table_Click);
             // 
             // btnTable19
             // 
+            this.btnTable19.BackColor = System.Drawing.Color.Transparent;
             this.btnTable19.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable19.BackgroundImage")));
             this.btnTable19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable19.CausesValidation = false;
             this.btnTable19.FlatAppearance.BorderSize = 0;
             this.btnTable19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable19.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable19.Location = new System.Drawing.Point(69, 504);
+            this.btnTable19.Location = new System.Drawing.Point(65, 530);
             this.btnTable19.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable19.Name = "btnTable19";
             this.btnTable19.Size = new System.Drawing.Size(95, 99);
             this.btnTable19.TabIndex = 22;
             this.btnTable19.Text = "16";
-            this.btnTable19.UseVisualStyleBackColor = true;
+            this.btnTable19.UseVisualStyleBackColor = false;
             this.btnTable19.UseWaitCursor = true;
             this.btnTable19.Click += new System.EventHandler(this.Table_Click);
             // 
             // btnTable29
             // 
+            this.btnTable29.BackColor = System.Drawing.Color.Transparent;
             this.btnTable29.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable29.BackgroundImage")));
             this.btnTable29.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable29.CausesValidation = false;
             this.btnTable29.FlatAppearance.BorderSize = 0;
             this.btnTable29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable29.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable29.Location = new System.Drawing.Point(769, 641);
+            this.btnTable29.Location = new System.Drawing.Point(765, 667);
             this.btnTable29.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable29.Name = "btnTable29";
             this.btnTable29.Size = new System.Drawing.Size(95, 99);
             this.btnTable29.TabIndex = 32;
             this.btnTable29.Text = "25";
-            this.btnTable29.UseVisualStyleBackColor = true;
+            this.btnTable29.UseVisualStyleBackColor = false;
             this.btnTable29.UseWaitCursor = true;
             this.btnTable29.Click += new System.EventHandler(this.Table_Click);
             // 
             // btnTable28
             // 
+            this.btnTable28.BackColor = System.Drawing.Color.Transparent;
             this.btnTable28.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable28.BackgroundImage")));
             this.btnTable28.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable28.CausesValidation = false;
             this.btnTable28.FlatAppearance.BorderSize = 0;
             this.btnTable28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable28.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable28.Location = new System.Drawing.Point(600, 641);
+            this.btnTable28.Location = new System.Drawing.Point(596, 667);
             this.btnTable28.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable28.Name = "btnTable28";
             this.btnTable28.Size = new System.Drawing.Size(95, 99);
             this.btnTable28.TabIndex = 31;
             this.btnTable28.Text = "24";
-            this.btnTable28.UseVisualStyleBackColor = true;
+            this.btnTable28.UseVisualStyleBackColor = false;
             this.btnTable28.UseWaitCursor = true;
             this.btnTable28.Click += new System.EventHandler(this.Table_Click);
             // 
             // btnTable27
             // 
+            this.btnTable27.BackColor = System.Drawing.Color.Transparent;
             this.btnTable27.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable27.BackgroundImage")));
             this.btnTable27.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable27.CausesValidation = false;
             this.btnTable27.FlatAppearance.BorderSize = 0;
             this.btnTable27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable27.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable27.Location = new System.Drawing.Point(424, 641);
+            this.btnTable27.Location = new System.Drawing.Point(420, 667);
             this.btnTable27.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable27.Name = "btnTable27";
             this.btnTable27.Size = new System.Drawing.Size(95, 99);
             this.btnTable27.TabIndex = 30;
             this.btnTable27.Text = "23";
-            this.btnTable27.UseVisualStyleBackColor = true;
+            this.btnTable27.UseVisualStyleBackColor = false;
             this.btnTable27.UseWaitCursor = true;
             this.btnTable27.Click += new System.EventHandler(this.Table_Click);
             // 
             // btnTable26
             // 
+            this.btnTable26.BackColor = System.Drawing.Color.Transparent;
             this.btnTable26.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable26.BackgroundImage")));
             this.btnTable26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable26.CausesValidation = false;
             this.btnTable26.FlatAppearance.BorderSize = 0;
             this.btnTable26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable26.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable26.Location = new System.Drawing.Point(240, 641);
+            this.btnTable26.Location = new System.Drawing.Point(236, 667);
             this.btnTable26.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable26.Name = "btnTable26";
             this.btnTable26.Size = new System.Drawing.Size(95, 99);
             this.btnTable26.TabIndex = 29;
             this.btnTable26.Text = "22";
-            this.btnTable26.UseVisualStyleBackColor = true;
+            this.btnTable26.UseVisualStyleBackColor = false;
             this.btnTable26.UseWaitCursor = true;
             this.btnTable26.Click += new System.EventHandler(this.Table_Click);
             // 
             // btnTable25
             // 
+            this.btnTable25.BackColor = System.Drawing.Color.Transparent;
             this.btnTable25.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTable25.BackgroundImage")));
             this.btnTable25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTable25.CausesValidation = false;
             this.btnTable25.FlatAppearance.BorderSize = 0;
             this.btnTable25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTable25.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTable25.Location = new System.Drawing.Point(69, 641);
+            this.btnTable25.Location = new System.Drawing.Point(65, 667);
             this.btnTable25.Margin = new System.Windows.Forms.Padding(2);
             this.btnTable25.Name = "btnTable25";
             this.btnTable25.Size = new System.Drawing.Size(95, 99);
             this.btnTable25.TabIndex = 28;
             this.btnTable25.Text = "21";
-            this.btnTable25.UseVisualStyleBackColor = true;
+            this.btnTable25.UseVisualStyleBackColor = false;
             this.btnTable25.UseWaitCursor = true;
             this.btnTable25.Click += new System.EventHandler(this.Table_Click);
             // 
@@ -574,14 +593,14 @@
             this.guna2Panel1.BorderThickness = 2;
             this.guna2Panel1.Controls.Add(this.btnCancel);
             this.guna2Panel1.Controls.Add(this.label5);
-            this.guna2Panel1.Controls.Add(this.guna2DateTimePicker2);
-            this.guna2Panel1.Controls.Add(this.guna2DateTimePicker1);
+            this.guna2Panel1.Controls.Add(this.dtpTime);
+            this.guna2Panel1.Controls.Add(this.dtpDay);
             this.guna2Panel1.Controls.Add(this.label4);
             this.guna2Panel1.Controls.Add(this.textBox3);
             this.guna2Panel1.Controls.Add(this.btnOrder);
-            this.guna2Panel1.Controls.Add(this.textBox2);
+            this.guna2Panel1.Controls.Add(this.txtEmail);
             this.guna2Panel1.Controls.Add(this.label2);
-            this.guna2Panel1.Controls.Add(this.textBox1);
+            this.guna2Panel1.Controls.Add(this.txtNumberPhone);
             this.guna2Panel1.Controls.Add(this.label1);
             this.guna2Panel1.Controls.Add(this.txtClient);
             this.guna2Panel1.Controls.Add(this.lblClient);
@@ -639,39 +658,39 @@
             this.label5.Text = "Giờ đặt";
             this.label5.UseWaitCursor = true;
             // 
-            // guna2DateTimePicker2
+            // dtpTime
             // 
-            this.guna2DateTimePicker2.BorderRadius = 3;
-            this.guna2DateTimePicker2.Checked = true;
-            this.guna2DateTimePicker2.CustomFormat = "HH:mm";
-            this.guna2DateTimePicker2.FillColor = System.Drawing.SystemColors.Control;
-            this.guna2DateTimePicker2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.guna2DateTimePicker2.Location = new System.Drawing.Point(456, 264);
-            this.guna2DateTimePicker2.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.guna2DateTimePicker2.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.guna2DateTimePicker2.Name = "guna2DateTimePicker2";
-            this.guna2DateTimePicker2.Size = new System.Drawing.Size(176, 30);
-            this.guna2DateTimePicker2.TabIndex = 40;
-            this.guna2DateTimePicker2.UseWaitCursor = true;
-            this.guna2DateTimePicker2.Value = new System.DateTime(2025, 12, 21, 16, 3, 58, 41);
+            this.dtpTime.BorderRadius = 3;
+            this.dtpTime.Checked = true;
+            this.dtpTime.CustomFormat = "HH:mm";
+            this.dtpTime.FillColor = System.Drawing.SystemColors.Control;
+            this.dtpTime.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtpTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpTime.Location = new System.Drawing.Point(456, 264);
+            this.dtpTime.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpTime.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpTime.Name = "dtpTime";
+            this.dtpTime.Size = new System.Drawing.Size(176, 30);
+            this.dtpTime.TabIndex = 40;
+            this.dtpTime.UseWaitCursor = true;
+            this.dtpTime.Value = new System.DateTime(2025, 12, 21, 16, 3, 58, 41);
             // 
-            // guna2DateTimePicker1
+            // dtpDay
             // 
-            this.guna2DateTimePicker1.BorderRadius = 3;
-            this.guna2DateTimePicker1.Checked = true;
-            this.guna2DateTimePicker1.CustomFormat = "";
-            this.guna2DateTimePicker1.FillColor = System.Drawing.SystemColors.Control;
-            this.guna2DateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.guna2DateTimePicker1.Location = new System.Drawing.Point(135, 264);
-            this.guna2DateTimePicker1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.guna2DateTimePicker1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.guna2DateTimePicker1.Name = "guna2DateTimePicker1";
-            this.guna2DateTimePicker1.Size = new System.Drawing.Size(200, 30);
-            this.guna2DateTimePicker1.TabIndex = 39;
-            this.guna2DateTimePicker1.UseWaitCursor = true;
-            this.guna2DateTimePicker1.Value = new System.DateTime(2025, 12, 21, 16, 3, 58, 41);
+            this.dtpDay.BorderRadius = 3;
+            this.dtpDay.Checked = true;
+            this.dtpDay.CustomFormat = "";
+            this.dtpDay.FillColor = System.Drawing.SystemColors.Control;
+            this.dtpDay.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtpDay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDay.Location = new System.Drawing.Point(135, 264);
+            this.dtpDay.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpDay.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpDay.Name = "dtpDay";
+            this.dtpDay.Size = new System.Drawing.Size(200, 30);
+            this.dtpDay.TabIndex = 39;
+            this.dtpDay.UseWaitCursor = true;
+            this.dtpDay.Value = new System.DateTime(2025, 12, 21, 16, 3, 58, 41);
             // 
             // label4
             // 
@@ -686,9 +705,10 @@
             // 
             // textBox3
             // 
+            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.Location = new System.Drawing.Point(165, 658);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(478, 20);
+            this.textBox3.Size = new System.Drawing.Size(478, 27);
             this.textBox3.TabIndex = 37;
             this.textBox3.UseWaitCursor = true;
             // 
@@ -713,16 +733,15 @@
             this.btnOrder.UseWaitCursor = true;
             this.btnOrder.Click += new System.EventHandler(this.btnGoiMon_Click);
             // 
-            // textBox2
+            // txtEmail
             // 
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(135, 186);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(497, 25);
-            this.textBox2.TabIndex = 35;
-            this.textBox2.UseWaitCursor = true;
+            this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Location = new System.Drawing.Point(135, 186);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(497, 25);
+            this.txtEmail.TabIndex = 35;
+            this.txtEmail.UseWaitCursor = true;
             // 
             // label2
             // 
@@ -737,16 +756,15 @@
             this.label2.Text = "Địa email";
             this.label2.UseWaitCursor = true;
             // 
-            // textBox1
+            // txtNumberPhone
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(134, 138);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(497, 25);
-            this.textBox1.TabIndex = 33;
-            this.textBox1.UseWaitCursor = true;
+            this.txtNumberPhone.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumberPhone.Location = new System.Drawing.Point(134, 138);
+            this.txtNumberPhone.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNumberPhone.Name = "txtNumberPhone";
+            this.txtNumberPhone.Size = new System.Drawing.Size(497, 25);
+            this.txtNumberPhone.TabIndex = 33;
+            this.txtNumberPhone.UseWaitCursor = true;
             // 
             // label1
             // 
@@ -767,7 +785,6 @@
             this.txtClient.Location = new System.Drawing.Point(135, 95);
             this.txtClient.Margin = new System.Windows.Forms.Padding(2);
             this.txtClient.Name = "txtClient";
-            this.txtClient.ReadOnly = true;
             this.txtClient.Size = new System.Drawing.Size(497, 25);
             this.txtClient.TabIndex = 31;
             this.txtClient.UseWaitCursor = true;
@@ -787,9 +804,10 @@
             // 
             // txtSurcharge
             // 
+            this.txtSurcharge.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSurcharge.Location = new System.Drawing.Point(165, 619);
             this.txtSurcharge.Name = "txtSurcharge";
-            this.txtSurcharge.Size = new System.Drawing.Size(478, 20);
+            this.txtSurcharge.Size = new System.Drawing.Size(478, 27);
             this.txtSurcharge.TabIndex = 29;
             this.txtSurcharge.UseWaitCursor = true;
             // 
@@ -817,10 +835,11 @@
             // 
             // txtTotalAmount
             // 
+            this.txtTotalAmount.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalAmount.Location = new System.Drawing.Point(164, 696);
             this.txtTotalAmount.Name = "txtTotalAmount";
             this.txtTotalAmount.ReadOnly = true;
-            this.txtTotalAmount.Size = new System.Drawing.Size(478, 20);
+            this.txtTotalAmount.Size = new System.Drawing.Size(478, 27);
             this.txtTotalAmount.TabIndex = 26;
             this.txtTotalAmount.UseWaitCursor = true;
             // 
@@ -880,19 +899,19 @@
             // 
             // dgvDishList
             // 
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvDishList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvDishList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDishList.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvDishList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDishList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDishList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDishList.ColumnHeadersHeight = 18;
             this.dgvDishList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvDishList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -901,22 +920,22 @@
             this.colDonGia,
             this.colSoLuong,
             this.colThanhTien});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDishList.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDishList.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDishList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvDishList.Location = new System.Drawing.Point(4, 359);
             this.dgvDishList.Margin = new System.Windows.Forms.Padding(2);
             this.dgvDishList.Name = "dgvDishList";
             this.dgvDishList.RowHeadersVisible = false;
             this.dgvDishList.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvDishList.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvDishList.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvDishList.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvDishList.RowTemplate.Height = 24;
             this.dgvDishList.Size = new System.Drawing.Size(677, 237);
@@ -946,7 +965,7 @@
             // 
             // colSTT
             // 
-            this.colSTT.HeaderText = "STT";
+            this.colSTT.HeaderText = "Mã món ";
             this.colSTT.MinimumWidth = 6;
             this.colSTT.Name = "colSTT";
             // 
@@ -1004,7 +1023,6 @@
             this.txtQuantity.Location = new System.Drawing.Point(456, 231);
             this.txtQuantity.Margin = new System.Windows.Forms.Padding(2);
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.ReadOnly = true;
             this.txtQuantity.Size = new System.Drawing.Size(176, 25);
             this.txtQuantity.TabIndex = 17;
             this.txtQuantity.UseWaitCursor = true;
@@ -1136,18 +1154,41 @@
             this.panel1.TabIndex = 0;
             this.panel1.UseWaitCursor = true;
             // 
-            // guna2PictureBox1
+            // panel4
             // 
-            this.guna2PictureBox1.BorderRadius = 5;
-            this.guna2PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox1.Image")));
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(-20, -5);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(1044, 1005);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox1.TabIndex = 37;
-            this.guna2PictureBox1.TabStop = false;
-            this.guna2PictureBox1.UseWaitCursor = true;
+            this.panel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel4.BackgroundImage")));
+            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel4.Controls.Add(this.btnTable1);
+            this.panel4.Controls.Add(this.btnTable14);
+            this.panel4.Controls.Add(this.btnTable2);
+            this.panel4.Controls.Add(this.btnTable15);
+            this.panel4.Controls.Add(this.btnTable3);
+            this.panel4.Controls.Add(this.btnTable4);
+            this.panel4.Controls.Add(this.btnTable5);
+            this.panel4.Controls.Add(this.btnTable7);
+            this.panel4.Controls.Add(this.btnTable8);
+            this.panel4.Controls.Add(this.btnTable29);
+            this.panel4.Controls.Add(this.btnTable9);
+            this.panel4.Controls.Add(this.btnTable10);
+            this.panel4.Controls.Add(this.btnTable28);
+            this.panel4.Controls.Add(this.btnTable11);
+            this.panel4.Controls.Add(this.btnTable13);
+            this.panel4.Controls.Add(this.btnTable27);
+            this.panel4.Controls.Add(this.btnTable16);
+            this.panel4.Controls.Add(this.btnTable17);
+            this.panel4.Controls.Add(this.btnTable26);
+            this.panel4.Controls.Add(this.btnTable19);
+            this.panel4.Controls.Add(this.btnTable20);
+            this.panel4.Controls.Add(this.btnTable25);
+            this.panel4.Controls.Add(this.btnTable21);
+            this.panel4.Controls.Add(this.btnTable22);
+            this.panel4.Controls.Add(this.btnTable23);
+            this.panel4.Location = new System.Drawing.Point(-16, -10);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1040, 972);
+            this.panel4.TabIndex = 37;
+            this.panel4.UseWaitCursor = true;
+            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
             // frmRestaurant
             // 
@@ -1155,32 +1196,7 @@
             this.ClientSize = new System.Drawing.Size(1781, 920);
             this.Controls.Add(this.pnlNote);
             this.Controls.Add(this.guna2Panel1);
-            this.Controls.Add(this.btnTable29);
-            this.Controls.Add(this.btnTable28);
-            this.Controls.Add(this.btnTable27);
-            this.Controls.Add(this.btnTable26);
-            this.Controls.Add(this.btnTable25);
-            this.Controls.Add(this.btnTable23);
-            this.Controls.Add(this.btnTable22);
-            this.Controls.Add(this.btnTable21);
-            this.Controls.Add(this.btnTable20);
-            this.Controls.Add(this.btnTable19);
-            this.Controls.Add(this.btnTable17);
-            this.Controls.Add(this.btnTable16);
-            this.Controls.Add(this.btnTable15);
-            this.Controls.Add(this.btnTable14);
-            this.Controls.Add(this.btnTable13);
-            this.Controls.Add(this.btnTable11);
-            this.Controls.Add(this.btnTable10);
-            this.Controls.Add(this.btnTable9);
-            this.Controls.Add(this.btnTable8);
-            this.Controls.Add(this.btnTable7);
-            this.Controls.Add(this.btnTable5);
-            this.Controls.Add(this.btnTable4);
-            this.Controls.Add(this.btnTable3);
-            this.Controls.Add(this.btnTable2);
-            this.Controls.Add(this.btnTable1);
-            this.Controls.Add(this.guna2PictureBox1);
+            this.Controls.Add(this.panel4);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmRestaurant";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1193,78 +1209,79 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDishList)).EndInit();
             this.pnlNote.ResumeLayout(false);
             this.pnlNote.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button btnTable1;
-        private System.Windows.Forms.Button btnTable2;
-        private System.Windows.Forms.Button btnTable3;
-        private System.Windows.Forms.Button btnTable4;
-        private System.Windows.Forms.Button btnTable5;
-        private System.Windows.Forms.Button btnTable11;
-        private System.Windows.Forms.Button btnTable10;
-        private System.Windows.Forms.Button btnTable9;
-        private System.Windows.Forms.Button btnTable8;
-        private System.Windows.Forms.Button btnTable7;
-        private System.Windows.Forms.Button btnTable17;
-        private System.Windows.Forms.Button btnTable16;
-        private System.Windows.Forms.Button btnTable15;
-        private System.Windows.Forms.Button btnTable14;
-        private System.Windows.Forms.Button btnTable13;
-        private System.Windows.Forms.Button btnTable23;
-        private System.Windows.Forms.Button btnTable22;
-        private System.Windows.Forms.Button btnTable21;
-        private System.Windows.Forms.Button btnTable20;
-        private System.Windows.Forms.Button btnTable19;
-        private System.Windows.Forms.Button btnTable29;
-        private System.Windows.Forms.Button btnTable28;
-        private System.Windows.Forms.Button btnTable27;
-        private System.Windows.Forms.Button btnTable26;
-        private System.Windows.Forms.Button btnTable25;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2Button btnPay;
-        private Guna.UI2.WinForms.Guna2DataGridView dgvDishList;
-        private System.Windows.Forms.TextBox txtStatus;
-        private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.TextBox txtQuantity;
-        private System.Windows.Forms.Label lblQuantity;
-        private System.Windows.Forms.Label lblPrice;
-        private System.Windows.Forms.TextBox txtTableNumber;
-        private System.Windows.Forms.Label lblTableNumber;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblDetail;
-        private Guna.UI2.WinForms.Guna2Button btnTableChoose;
-        private System.Windows.Forms.TextBox txtSurcharge;
-        private System.Windows.Forms.Label lblTotalAmount;
-        private System.Windows.Forms.Label lblSurcharge;
-        private System.Windows.Forms.TextBox txtTotalAmount;
-        private Guna.UI2.WinForms.Guna2Panel pnlNote;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox txtClient;
-        private System.Windows.Forms.Label lblClient;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private Guna.UI2.WinForms.Guna2Button btnOrder;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
-        private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePicker1;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSTT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDonGia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSoLuong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colThanhTien;
-        private System.Windows.Forms.Label label5;
-        private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePicker2;
-        private Guna.UI2.WinForms.Guna2Button btnCancel;
+
+        private Button btnTable1;
+        private Button btnTable2;
+        private Button btnTable3;
+        private Button btnTable4;
+        private Button btnTable5;
+        private Button btnTable11;
+        private Button btnTable10;
+        private Button btnTable9;
+        private Button btnTable8;
+        private Button btnTable7;
+        private Button btnTable17;
+        private Button btnTable16;
+        private Button btnTable15;
+        private Button btnTable14;
+        private Button btnTable13;
+        private Button btnTable23;
+        private Button btnTable22;
+        private Button btnTable21;
+        private Button btnTable20;
+        private Button btnTable19;
+        private Button btnTable29;
+        private Button btnTable28;
+        private Button btnTable27;
+        private Button btnTable26;
+        private Button btnTable25;
+        private Guna2Panel guna2Panel1;
+        private Guna2Button btnPay;
+        private Guna2DataGridView dgvDishList;
+        private TextBox txtStatus;
+        private Label lblStatus;
+        private TextBox txtQuantity;
+        private Label lblQuantity;
+        private Label lblPrice;
+        private TextBox txtTableNumber;
+        private Label lblTableNumber;
+        private Guna2HtmlLabel lblDetail;
+        private Guna2Button btnTableChoose;
+        private TextBox txtSurcharge;
+        private Label lblTotalAmount;
+        private Label lblSurcharge;
+        private TextBox txtTotalAmount;
+        private Guna2Panel pnlNote;
+        private Label label8;
+        private Panel panel2;
+        private Label label7;
+        private Panel panel1;
+        private TextBox txtClient;
+        private Label lblClient;
+        private TextBox txtEmail;
+        private Label label2;
+        private TextBox txtNumberPhone;
+        private Label label1;
+        private Guna2Button btnOrder;
+        private Label label3;
+        private Panel panel3;
+        private Label label4;
+        private TextBox textBox3;
+        private Guna2DateTimePicker dtpDay;
+        private Label label5;
+        private Guna2DateTimePicker dtpTime;
+        private Guna2Button btnCancel;
+        private DataGridViewTextBoxColumn colSTT;
+        private DataGridViewTextBoxColumn colTen;
+        private DataGridViewTextBoxColumn colDonGia;
+        private DataGridViewTextBoxColumn colSoLuong;
+        private DataGridViewTextBoxColumn colThanhTien;
+        private Panel panel4;
     }
 }
