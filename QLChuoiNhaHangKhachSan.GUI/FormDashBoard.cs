@@ -363,7 +363,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                this.Close(); // Đóng dashboard
+                this.Hide();          // Ẩn Dashboard
+                LoginForm login = new LoginForm();
+                login.ShowDialog();   // Hiển thị Login
+                this.Close();         // Đóng Dashboard sau khi Login đóng
             }
         }
 
