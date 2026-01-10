@@ -16,7 +16,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         public BooKing_Form()
         {
             InitializeComponent();
-            this.btnDatPhong.Click += Guna2Button1_Click;
+            this.btnThuePhong.Click += Guna2Button1_Click;
             this.guna2DataGridView1.CellContentClick += Guna2DataGridView1_CellContentClick;
             this.guna2TextBox1.TextChanged += Guna2TextBox1_TextChanged;
             this.Load += BooKing_Form_Load;
@@ -55,8 +55,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     guna2DataGridView1.Columns[0].FillWeight = 15; // Số Phiếu Thuê
                     guna2DataGridView1.Columns[1].FillWeight = 25; // Tên Khách Hàng
                     guna2DataGridView1.Columns[2].FillWeight = 15; // Ngày Lập
-                    guna2DataGridView1.Columns[3].FillWeight = 15; // Nhân Viên
-                    guna2DataGridView1.Columns[4].FillWeight = 25; // Chi Tiết
+                    guna2DataGridView1.Columns[3].FillWeight = 12; // Nhân Viên
+                    guna2DataGridView1.Columns[4].FillWeight = 33; // Chi Tiết (wider)
                     guna2DataGridView1.Columns[5].FillWeight = 5;  // Xóa
 
                     guna2DataGridView1.Columns[4].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -67,7 +67,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 guna2DataGridView1.ReadOnly = true;
                 guna2DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 guna2DataGridView1.MultiSelect = false;
-                guna2DataGridView1.RowTemplate.Height = 45;
+                guna2DataGridView1.RowTemplate.Height = 60;
             }
             catch (Exception ex)
             {
@@ -609,44 +609,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             return result;
         }
 
-        private void btnThuePhong_Click(object sender, EventArgs e)
-        {
-            using (var dlg = new BookingRoom_Details())
-            {
-                dlg.IsDatTruoc = false;
-                var allRooms = LoadAllRoomsFromDb();
-                dlg.SetAvailableRooms(allRooms);
-
-                var res = dlg.ShowDialog();
-                if (res == DialogResult.OK)
-                {
-                    string khach = dlg.ResultCustomerName;
-                    string cccd = dlg.ResultCCCD;
-                    string sdt = dlg.ResultSDT;
-                    string gender = dlg.ResultGender;
-                    string nat = dlg.ResultNationality;
-                    string phong = dlg.ResultRooms;
-                    string thoigian = dlg.ResultDateRange;
-                    DateTime startDate = dlg.ResultStartDate;
-                    DateTime endDate = dlg.ResultEndDate;
-                    string detailText = dlg.ResultRoomDetails;
-
-                    AddBookingRowInternal(khach, cccd, sdt, phong, thoigian, startDate, endDate, gender, nat, detailText);
-
-                    try
-                    {
-                        var listForm = Application.OpenForms.OfType<ListRoom>().FirstOrDefault();
-                        if (listForm != null && !string.IsNullOrWhiteSpace(phong))
-                        {
-                            var codes = phong.Split(new[] { ' ', ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
-                            listForm.MarkRoomsAsBooked(codes, khach);
-                        }
-                    }
-                    catch { }
-                }
-            }
-        }
-
+       
         private void btnDatPhong_Click(object sender, EventArgs e)
         {
         }

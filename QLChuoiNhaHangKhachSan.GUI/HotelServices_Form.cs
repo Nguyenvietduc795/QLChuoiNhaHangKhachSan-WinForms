@@ -13,6 +13,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
 {
     public partial class HotelServices_Form : Form
     {
+
+        public int CurrentBookingID { get; set; }
+        public string CurrentRoomID { get; set; } // Dùng cái này nếu chưa có BookingID
         private readonly List<ServiceItem> _allServices = new List<ServiceItem>();
         private readonly BindingList<ServiceSelection> _selected = new BindingList<ServiceSelection>();
 
@@ -20,6 +23,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         public class ServiceSelection
         {
+
             public string Category { get; set; }
             public string Name { get; set; }
             public decimal UnitPrice { get; set; }
@@ -36,36 +40,27 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void HotelServices_Form_Load(object sender, EventArgs e)
         {
+            // Nếu có mã phòng, hiển thị lên tiêu đề cho đẹp
+            
+            if (!string.IsNullOrEmpty(CurrentRoomID))
+            {
+                // 1. Đổi tên trên thanh tiêu đề cửa sổ
+                this.Text = "Dịch Vụ - " + CurrentRoomID;
+
+                // 2. Đổi tên cái Label to màu xanh (Thay 'label1' bằng tên thực tế trong Design của bạn)
+                // Ví dụ: lblTieuDe.Text = ...
+                // Nếu bạn dùng Label thường:
+                if (Controls.Find("label1", true).FirstOrDefault() is Label lbl)
+                {
+                    lbl.Text = "DỊCH VỤ PHÒNG " + CurrentRoomID;
+                }
+                // Hoặc nếu bạn biết chắc tên biến (ví dụ lblHeader):
+                // lblHeader.Text = "DỊCH VỤ PHÒNG " + CurrentRoomID;
+            }
+
+
             LoadServices();
             RefreshSelectedGrid();
-        }
-
-        private void ConfigureGrids()
-        {
-            if (guna2DataGridView1.Columns.Contains("them"))
-            {
-                guna2DataGridView1.Columns["them"].Width = 60;
-                guna2DataGridView1.Columns["them"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            }
-            if (guna2DataGridView2.Columns.Contains("xoa"))
-            {
-                guna2DataGridView2.Columns["xoa"].Width = 60;
-                guna2DataGridView2.Columns["xoa"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            }
-            guna2DataGridView1.AllowUserToAddRows = false;
-            guna2DataGridView2.AllowUserToAddRows = false;
-        }
-
-        private void BindEvents()
-        {
-            this.Load += HotelServices_Form_Load;
-            guna2DataGridView1.CellContentClick += guna2DataGridView1_CellContentClick;
-            guna2DataGridView2.CellContentClick += guna2DataGridView2_CellContentClick;
-            txtTim.TextChanged += TxtTim_TextChanged;
-            cbbLoaidichvu.SelectedIndexChanged += CbbLoaidichvu_SelectedIndexChanged;
-            btnThoat.Click += BtnThoat_Click;
-            btnLuu.Click += BtnLuu_Click;
-            pictureBox1.Click += PictureBox1_Click;
         }
 
         private void LoadServices()
@@ -96,6 +91,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
                             if (reader["Price"] != DBNull.Value)
                             {
                                 decimal.TryParse(reader["Price"].ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out price);
+                            }
+
+                            // Clamp inflated drink prices to 25,000 per can
+                            if (!string.IsNullOrWhiteSpace(category) && category.IndexOf("drink", StringComparison.OrdinalIgnoreCase) >= 0 && price > 100000)
+                            {
+                                price = 25000m;
                             }
 
                             if (!string.IsNullOrWhiteSpace(name))
@@ -155,12 +156,53 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
         }
 
+        private void ConfigureGrids()
+        {
+            if (guna2DataGridView1.Columns.Contains("them"))
+            {
+                guna2DataGridView1.Columns["them"].Width = 60;
+                guna2DataGridView1.Columns["them"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            if (guna2DataGridView2.Columns.Contains("xoa"))
+            {
+                guna2DataGridView2.Columns["xoa"].Width = 60;
+                guna2DataGridView2.Columns["xoa"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            guna2DataGridView1.AllowUserToAddRows = false;
+            guna2DataGridView2.AllowUserToAddRows = false;
+            guna2DataGridView2.CellEndEdit += guna2DataGridView2_CellEndEdit;
+        }
+
+        private void BindEvents()
+        {
+            this.Load += HotelServices_Form_Load;
+            guna2DataGridView1.CellContentClick += guna2DataGridView1_CellContentClick;
+            guna2DataGridView2.CellContentClick += guna2DataGridView2_CellContentClick;
+            txtTim.TextChanged += TxtTim_TextChanged;
+            cbbLoaidichvu.SelectedIndexChanged += CbbLoaidichvu_SelectedIndexChanged;
+            btnThoat.Click += BtnThoat_Click;
+            btnLuu.Click += btnLuu_Click;
+            pictureBox1.Click += PictureBox1_Click;
+        }
+
+        private void BtnThoat_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
+            ApplyFilter();
+        }
+
         private void RefreshSelectedGrid()
         {
             guna2DataGridView2.Rows.Clear();
             foreach (var s in _selected)
             {
-                int rowIndex = guna2DataGridView2.Rows.Add(s.Name, s.Quantity, s.Total.ToString("N0"), "X");
+                int rowIndex = guna2DataGridView2.Rows.Add(s.Name, s.Quantity, s.UnitPrice.ToString("N0"), "X");
+                guna2DataGridView2.Rows[rowIndex].Cells[3].Value = s.Total.ToString("N0");
                 guna2DataGridView2.Rows[rowIndex].Tag = s;
             }
         }
@@ -207,26 +249,135 @@ namespace QLChuoiNhaHangKhachSan.GUI
             ApplyFilter();
         }
 
-        private void BtnLuu_Click(object sender, EventArgs e)
+        private void guna2DataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (_selected.Count == 0)
+            if (e.RowIndex < 0) return;
+            var selected = guna2DataGridView2.Rows[e.RowIndex].Tag as ServiceSelection;
+            if (selected == null) return;
+            if (e.ColumnIndex == 1) // quantity column
             {
-                MessageBox.Show("Vui lòng chọn ít nhất một dịch vụ.");
+                int qty;
+                if (!int.TryParse(Convert.ToString(guna2DataGridView2.Rows[e.RowIndex].Cells[1].Value), out qty) || qty <= 0)
+                    qty = 1;
+                selected.Quantity = qty;
+                selected.Total = selected.Quantity * selected.UnitPrice;
+                guna2DataGridView2.Rows[e.RowIndex].Cells[1].Value = selected.Quantity;
+                guna2DataGridView2.Rows[e.RowIndex].Cells[2].Value = selected.UnitPrice.ToString("N0");
+                guna2DataGridView2.Rows[e.RowIndex].Cells[3].Value = selected.Total.ToString("N0");
+            }
+        }
+
+        private void SyncSelectionsFromGrid()
+        {
+            foreach (DataGridViewRow row in guna2DataGridView2.Rows)
+            {
+                var sel = row.Tag as ServiceSelection;
+                if (sel == null) continue;
+                int qty;
+                if (!int.TryParse(Convert.ToString(row.Cells[1].Value), out qty) || qty <= 0) qty = 1;
+                sel.Quantity = qty;
+                sel.Total = sel.Quantity * sel.UnitPrice;
+                row.Cells[1].Value = sel.Quantity;
+                row.Cells[2].Value = sel.UnitPrice.ToString("N0");
+                row.Cells[3].Value = sel.Total.ToString("N0");
+            }
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(CurrentRoomID))
+            {
+                MessageBox.Show("Chưa nhận được Mã phòng! Vui lòng mở lại từ form chi tiết phòng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            this.DialogResult = DialogResult.OK;
-            Close();
-        }
 
-        private void BtnThoat_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
+            if (_selected.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn ít nhất một dịch vụ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-        private void PictureBox1_Click(object sender, EventArgs e)
-        {
-            ApplyFilter();
+            // sync any edited quantities before saving
+            SyncSelectionsFromGrid();
+
+            var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
+            if (string.IsNullOrWhiteSpace(connStr) || string.IsNullOrWhiteSpace(CurrentRoomID))
+            {
+                MessageBox.Show("Lỗi kết nối hoặc thiếu mã phòng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using (var conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                using (var tran = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        // 1. Tìm BookingID đang hoạt động của phòng này
+                        int bookingId = 0;
+                        string findSql = @"SELECT TOP 1 b.BookingID 
+                                   FROM dbo.Booking b
+                                   JOIN dbo.BookingDetail d ON b.BookingID = d.BookingID
+                                   WHERE d.RoomID = @RoomID 
+                                     AND b.Status NOT IN (N'Paid', N'Cancelled')";
+
+                        using (var cmd = new SqlCommand(findSql, conn, tran))
+                        {
+                            cmd.Parameters.AddWithValue("@RoomID", CurrentRoomID);
+                            var res = cmd.ExecuteScalar();
+                            if (res != null && res != DBNull.Value) bookingId = Convert.ToInt32(res);
+                        }
+
+                        if (bookingId == 0)
+                        {
+                            MessageBox.Show("Phòng này chưa có khách (chưa tạo Booking). Vui lòng Nhận phòng trước khi thêm dịch vụ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            tran.Rollback();
+                            return;
+                        }
+
+                        // 2. Tạo bảng BookingService nếu chưa có (Phòng hờ)
+                        using (var cmdTable = new SqlCommand(@"
+                    IF OBJECT_ID('dbo.BookingService','U') IS NULL
+                    CREATE TABLE dbo.BookingService (
+                        ID INT IDENTITY(1,1) PRIMARY KEY,
+                        BookingID INT,
+                        ServiceName NVARCHAR(100),
+                        Quantity INT,
+                        UnitPrice DECIMAL(18,2),
+                        TotalAmount DECIMAL(18,2)
+                    );", conn, tran))
+                        {
+                            cmdTable.ExecuteNonQuery();
+                        }
+
+                        // 3. Lưu từng món vào Database
+                        foreach (var item in _selected)
+                        {
+                            string sqlInsert = @"INSERT INTO dbo.BookingService(BookingID, ServiceName, Quantity, UnitPrice, TotalAmount)
+                                         VALUES(@BID, @Name, @Qty, @Price, @Total)";
+                            using (var cmdIns = new SqlCommand(sqlInsert, conn, tran))
+                            {
+                                cmdIns.Parameters.AddWithValue("@BID", bookingId);
+                                cmdIns.Parameters.AddWithValue("@Name", item.Name);
+                                cmdIns.Parameters.AddWithValue("@Qty", item.Quantity);
+                                cmdIns.Parameters.AddWithValue("@Price", item.UnitPrice);
+                                cmdIns.Parameters.AddWithValue("@Total", item.Total);
+                                cmdIns.ExecuteNonQuery();
+                            }
+                        }
+
+                        tran.Commit();
+                         this.DialogResult = DialogResult.OK;
+                         this.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        MessageBox.Show("Lỗi Database: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private bool ContainsInsensitive(string source, string keyword)

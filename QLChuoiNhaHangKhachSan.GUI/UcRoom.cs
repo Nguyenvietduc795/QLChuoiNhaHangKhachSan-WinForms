@@ -223,10 +223,15 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 return;
             }
 
+            // Stop any running countdown when marking as booked
+            try { timerCountdown?.Stop(); } catch { }
+
             lblStatus.Text = tenKhach;
             labSanSang.Visible = false;
             picSanSang.Visible = false;
             labTrangthai.Text = "Phòng đã đặt";
+            // reset countdown display
+            if (labThoiGian != null) labThoiGian.Text = "Thời gian";
             ApplyTheme(_reservedBack, _reservedBorder, _reservedRoom, _reservedStatus, _reservedSub);
             ApplyFooterTheme(_reservedFooterBack, _reservedFooterBorder, _reservedFooterText);
          }
@@ -239,12 +244,18 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 Invoke(new Action(() => SetReserved(tenKhach)));
                 return;
             }
+
+            // Stop any running countdown when switching to reserved
+            try { timerCountdown?.Stop(); } catch { }
+
             lblStatus.Text = tenKhach;
             labTrangthai.Text = "Phòng đã đặt";
             ApplyTheme(_reservedBack, _reservedBorder, _reservedRoom, _reservedStatus, _reservedSub);
             labSanSang.Visible = false;
             if (picSanSang != null) picSanSang.Visible = false;
             ApplyFooterTheme(_reservedFooterBack, _reservedFooterBorder, _reservedFooterText);
+            // reset countdown display
+            if (labThoiGian != null) labThoiGian.Text = "Thời gian";
           }
 
         public void SetRented(string tenKhach, int days)

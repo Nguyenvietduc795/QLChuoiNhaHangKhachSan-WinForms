@@ -9,10 +9,10 @@ namespace QLChuoiNhaHangKhachSan.GUI.Repositories
 {
     public static class InvoiceRepository
     {
-        // Save invoice and finalize booking/room in single transaction.
+        // Save invoice and optionally finalize booking/room in single transaction.
         // bookingInfo: the BookingInfo (Start/End/Customer/Services)
         // services: list of ServiceItem extracted from UI
-        public static void SaveInvoiceAndFinalize(string roomId, BookingInfo bookingInfo, IEnumerable<ServiceItem> services, decimal totalAmount, string invoiceFileName = null)
+        public static void SaveInvoiceAndFinalize(string roomId, BookingInfo bookingInfo, IEnumerable<ServiceItem> services, decimal totalAmount, string invoiceFileName = null, bool finalizeCheckoutNow = false)
         {
             var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
             if (string.IsNullOrWhiteSpace(connStr))
@@ -78,34 +78,37 @@ VALUES(@InvoiceID, @ServiceName, @Quantity, @UnitPrice, @Amount);", conn, tran))
                             }
                         }
 
-                        // Close active booking details for this room so UI will show room as free
-                        using (var cmd = new SqlCommand(@"
+                        if (finalizeCheckoutNow)
+                        {
+                            // Close active booking details for this room so UI will show room as free
+                            using (var cmd = new SqlCommand(@"
 UPDATE dbo.BookingDetail
 SET CheckOut = @Now
 WHERE RoomID = @RoomID AND CheckOut > @Now", conn, tran))
-                        {
-                            cmd.Parameters.AddWithValue("@Now", now);
-                            cmd.Parameters.AddWithValue("@RoomID", roomId);
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        // Mark Booking.Status = 'Paid' when bookingId exists
-                        if (bookingId.HasValue)
-                        {
-                            using (var cmd = new SqlCommand("UPDATE dbo.Booking SET Status = @Status WHERE BookingID = @BookingID", conn, tran))
                             {
-                                cmd.Parameters.AddWithValue("@Status", "Paid");
-                                cmd.Parameters.AddWithValue("@BookingID", bookingId.Value);
+                                cmd.Parameters.AddWithValue("@Now", now);
+                                cmd.Parameters.AddWithValue("@RoomID", roomId);
                                 cmd.ExecuteNonQuery();
                             }
-                        }
 
-                        // Update Room.Status -> Vacant (use the value your UI expects)
-                        using (var cmd = new SqlCommand("UPDATE dbo.Room SET Status = @Status WHERE RoomID = @RoomID", conn, tran))
-                        {
-                            cmd.Parameters.AddWithValue("@Status", "Vacant");
-                            cmd.Parameters.AddWithValue("@RoomID", roomId);
-                            cmd.ExecuteNonQuery();
+                            // Mark Booking.Status = 'Paid' when bookingId exists
+                            if (bookingId.HasValue)
+                            {
+                                using (var cmd = new SqlCommand("UPDATE dbo.Booking SET Status = @Status WHERE BookingID = @BookingID", conn, tran))
+                                {
+                                    cmd.Parameters.AddWithValue("@Status", "Paid");
+                                    cmd.Parameters.AddWithValue("@BookingID", bookingId.Value);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+
+                            // Update Room.Status -> Vacant (use the value your UI expects)
+                            using (var cmd = new SqlCommand("UPDATE dbo.Room SET Status = @Status WHERE RoomID = @RoomID", conn, tran))
+                            {
+                                cmd.Parameters.AddWithValue("@Status", "Vacant");
+                                cmd.Parameters.AddWithValue("@RoomID", roomId);
+                                cmd.ExecuteNonQuery();
+                            }
                         }
 
                         tran.Commit();

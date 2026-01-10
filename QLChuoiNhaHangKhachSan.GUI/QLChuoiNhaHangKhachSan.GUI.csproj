@@ -84,6 +84,7 @@
     <Compile Include="AddEmployeeForm.Designer.cs">
       <DependentUpon>AddEmployeeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DateTimeUtils.cs" />
     <Compile Include="EmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,12 +135,17 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rental information.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rental information.Designer.cs">
+      <DependentUpon>Rental information.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\InvoiceRepository.cs" />
     <Compile Include="Room_Details.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Room_Details.Designer.cs" />
-    <Compile Include="Room_Details_Fixed.cs" />
     <Compile Include="TimePickerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rental information.resx">
+      <DependentUpon>Rental information.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Room_Details.resx" />
     <EmbeddedResource Include="UcRoom.resx">

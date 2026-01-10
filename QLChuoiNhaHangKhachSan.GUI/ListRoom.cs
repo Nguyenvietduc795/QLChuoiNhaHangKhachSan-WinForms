@@ -155,11 +155,52 @@ namespace QLChuoiNhaHangKhachSan.GUI
                             }
                         }
 
-                        using (var booking = new Room_Details(ma, room.labTrangthai.Text, loaiPhong, viewTime))
+                        // Try to read the authoritative status from DB so Room_Details knows whether this is a reservation
+                        string roomStatusToPass = room.labTrangthai.Text;
+                        try
+                        {
+                            var connStrLocal = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
+                            if (!string.IsNullOrWhiteSpace(connStrLocal))
+                            {
+                                using (var conn = new SqlConnection(connStrLocal))
+                                using (var cmd = new SqlCommand("SELECT TOP 1 Status FROM dbo.Room WHERE RoomID = @RoomID", conn))
+                                {
+                                    cmd.Parameters.AddWithValue("@RoomID", ma);
+                                    conn.Open();
+                                    var obj = cmd.ExecuteScalar();
+                                    if (obj != null && obj != DBNull.Value)
+                                        roomStatusToPass = obj.ToString();
+                                }
+                            }
+                        }
+                        catch { /* fallback to label text */ }
+
+                        using (var booking = new Room_Details(ma, roomStatusToPass, loaiPhong, viewTime))
                         {
                             if (booking.ShowDialog() == DialogResult.OK)
                             {
-                                room.MarkBooked(booking.TenKhach);
+                                // Update UI according to the selection made in Room_Details
+                                var sel = booking.SelectedStatus ?? string.Empty;
+                                var selLow = sel.ToLower();
+                                if (selLow.Contains("thuê") || selLow.Contains("đang thuê") || booking.SoNgay > 0 && selLow.Contains(""))
+                                {
+                                    // Mark as rented immediately (use days returned)
+                                    try
+                                    {
+                                        room.SetRented(booking.TenKhach, booking.SoNgay);
+                                    }
+                                    catch { room.MarkBooked(booking.TenKhach); }
+                                }
+                                else if (selLow.Contains("đặt") || selLow.Contains("giữ"))
+                                {
+                                    room.SetReserved(booking.TenKhach);
+                                }
+                                else
+                                {
+                                    // fallback: mark booked
+                                    room.MarkBooked(booking.TenKhach);
+                                }
+
                                 room.SetVip(isVip);
                                 RefreshBookingStates();
                                 try
@@ -247,13 +288,36 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
         }
 
+        // Public method to immediately mark rooms as rented (used after check-in)
+        public void MarkRoomsAsRented(IEnumerable<string> roomCodes, string tenKhach, DateTime checkoutTime, DateTime viewTime)
+        {
+            if (roomCodes == null) return;
+            var set = new HashSet<string>(roomCodes.Where(r => !string.IsNullOrWhiteSpace(r)).Select(r => r.Trim().ToUpper()));
+            foreach (Control ctr in LayoutPhong.Controls)
+            {
+                if (ctr is UcRoom room)
+                {
+                    string code = room.labRoomNumber.Text?.Trim().ToUpper();
+                    if (set.Contains(code))
+                    {
+                        // Use overload that accepts checkoutTime and viewTime
+                        room.SetRented(tenKhach, checkoutTime, viewTime);
+                    }
+                }
+            }
+        }
+
         // Refresh UI of rooms according to DB bookings at selected time
         private void RefreshBookingStates(HashSet<string> filterRoomCodes = null)
         {
             var viewTime = GetSelectedViewTime();
+            var startOfDay = viewTime.Date;
+            var endOfDay = startOfDay.AddDays(1);
             var activeBookings = GetActiveBookingsFromDb(viewTime);
-            var lookup = activeBookings.GroupBy(b => b.RoomCode.ToUpper())
-                                       .ToDictionary(g => g.Key, g => g.First());
+
+            // 1. Gom nhóm booking theo mã phòng (Một phòng có thể có nhiều booking trong ngày)
+            var bookingLookup = activeBookings.GroupBy(b => b.RoomCode.ToUpper())
+                                              .ToDictionary(g => g.Key, g => g.ToList());
 
             foreach (Control ctr in LayoutPhong.Controls)
             {
@@ -261,31 +325,76 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 {
                     var code = room.labRoomNumber.Text?.Trim().ToUpper();
                     if (string.IsNullOrEmpty(code)) continue;
-                    if (filterRoomCodes != null && !filterRoomCodes.Contains(code))
-                        continue;
+                    if (filterRoomCodes != null && !filterRoomCodes.Contains(code)) continue;
 
-                    RoomBookingState state;
-                    if (lookup.TryGetValue(code, out state))
+                    // 2. Kiểm tra xem phòng này có danh sách booking nào không
+                    if (bookingLookup.TryGetValue(code, out var bookingsList))
                     {
-                        // Chỉ hiển thị trạng thái khi viewTime nằm trong khoảng [Start, End)
-                        if (viewTime >= state.Start && viewTime < state.End)
+                        // Booking đang diễn ra tại thời điểm viewTime
+                        var currentBooking = bookingsList.FirstOrDefault(b => viewTime >= b.Start && viewTime < b.End);
+
+                        // Nếu chưa có booking đang diễn ra, lấy booking đặt trước trong cùng ngày (start nằm trong ngày đang xem)
+                        if (currentBooking.Equals(default(RoomBookingState)))
                         {
-                            // Truyền thời gian checkout thực tế và viewTime để đếm ngược chính xác
-                            room.SetRented(state.Customer, state.End, viewTime);
+                            currentBooking = bookingsList.FirstOrDefault(b => b.Start >= startOfDay && b.Start < endOfDay);
+                        }
+
+                        // Nếu tìm thấy booking phù hợp
+                        if (!currentBooking.Equals(default(RoomBookingState)))
+                        {
+                            var status = (currentBooking.BookingStatus ?? string.Empty).ToLower();
+
+                            if (status.Contains("đặt") || status.Contains("giữ") || status.Contains("open"))
+                            {
+                                room.SetReserved(currentBooking.Customer);
+                            }
+                            else
+                            {
+                                // UcRoom sẽ tính thời gian còn lại dựa trên checkoutTime và viewTime
+                                room.SetRented(currentBooking.Customer, currentBooking.End, viewTime);
+                            }
                         }
                         else
                         {
-                            // Nếu viewTime < Start hoặc viewTime >= End thì phòng trống
+                            // Có booking khác nhưng không thuộc ngày đang xem -> Trống
                             room.SetFree();
                         }
                     }
                     else
                     {
-                        room.SetFree();
+                        // Không có booking trong DB -> Kiểm tra bộ nhớ tạm nhưng vẫn phải ràng buộc theo ngày đang xem
+                        BookingInfo mem;
+                        if (BookingManager.TryGetBooking(code, out mem) && mem != null)
+                        {
+                            bool overlapsDay = mem.Start < endOfDay && mem.End >= startOfDay;
+                            if (overlapsDay)
+                            {
+                                if (viewTime >= mem.Start && viewTime < mem.End)
+                                {
+                                    room.SetRented(mem.Customer, mem.End, viewTime);
+                                }
+                                else if (mem.Start >= startOfDay && mem.Start < endOfDay)
+                                {
+                                    // Đặt trước trong đúng ngày đang xem
+                                    room.SetReserved(mem.Customer);
+                                }
+                                else
+                                {
+                                    room.SetFree();
+                                }
+                            }
+                            else
+                            {
+                                room.SetFree();
+                            }
+                        }
+                        else
+                        {
+                            room.SetFree();
+                        }
                     }
                 }
             }
-
             UpdateSearchAutocomplete();
         }
 
@@ -295,6 +404,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             public string Customer;
             public DateTime Start;
             public DateTime End;
+            // New: booking status from Booking table (Đặt / Thuê / ...)
+            public string BookingStatus;
         }
 
         private List<RoomBookingState> GetActiveBookingsFromDb(DateTime reference)
@@ -306,13 +417,18 @@ namespace QLChuoiNhaHangKhachSan.GUI
             try
             {
                 using (var conn = new SqlConnection(connStr))
-                using (var cmd = new SqlCommand(@"SELECT d.RoomID, b.CustomerID, c.FullName, d.CheckIn, d.CheckOut
+                // Query bookings that overlap the selected calendar day to avoid missing bookings
+                using (var cmd = new SqlCommand(@"SELECT d.RoomID, b.Status, c.FullName, d.CheckIn, d.CheckOut
 FROM dbo.BookingDetail d
 JOIN dbo.Booking b ON d.BookingID = b.BookingID
 JOIN dbo.Customer c ON b.CustomerID = c.CustomerID
-WHERE d.CheckIn <= @RefTime AND d.CheckOut > @RefTime", conn))
+WHERE d.CheckIn < @EndOfDay AND d.CheckOut >= @StartOfDay", conn))
                 {
-                    cmd.Parameters.AddWithValue("@RefTime", reference);
+                    var startOfDay = reference.Date;
+                    var endOfDay = startOfDay.AddDays(1);
+                    // Use explicit SqlParameter types
+                    cmd.Parameters.Add(new SqlParameter("@StartOfDay", System.Data.SqlDbType.DateTime) { Value = startOfDay });
+                    cmd.Parameters.Add(new SqlParameter("@EndOfDay", System.Data.SqlDbType.DateTime) { Value = endOfDay });
                     conn.Open();
                     using (var rd = cmd.ExecuteReader())
                     {
@@ -328,7 +444,8 @@ WHERE d.CheckIn <= @RefTime AND d.CheckOut > @RefTime", conn))
                                 RoomCode = room.Trim(),
                                 Customer = rd["FullName"]?.ToString(),
                                 Start = start.Value,
-                                End = end.Value
+                                End = end.Value,
+                                BookingStatus = rd["Status"]?.ToString()
                             });
                         }
                     }

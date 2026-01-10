@@ -32,7 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnDatPhong = new Guna.UI2.WinForms.Guna2Button();
+            this.btnThuePhong = new Guna.UI2.WinForms.Guna2Button();
             this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
             this.clsophieuthue = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,7 +41,6 @@
             this.clnhanvien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clchitiet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clxoa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnThuePhong = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +48,6 @@
             // guna2Panel1
             // 
             this.guna2Panel1.Controls.Add(this.btnThuePhong);
-            this.guna2Panel1.Controls.Add(this.btnDatPhong);
             this.guna2Panel1.Controls.Add(this.guna2TextBox1);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
@@ -57,24 +55,24 @@
             this.guna2Panel1.Size = new System.Drawing.Size(1839, 82);
             this.guna2Panel1.TabIndex = 0;
             // 
-            // btnDatPhong
+            // btnThuePhong
             // 
-            this.btnDatPhong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDatPhong.BorderRadius = 15;
-            this.btnDatPhong.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnDatPhong.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnDatPhong.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnDatPhong.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnDatPhong.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnDatPhong.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDatPhong.ForeColor = System.Drawing.Color.White;
-            this.btnDatPhong.Location = new System.Drawing.Point(1652, 20);
-            this.btnDatPhong.Name = "btnDatPhong";
-            this.btnDatPhong.ShadowDecoration.Color = System.Drawing.Color.RosyBrown;
-            this.btnDatPhong.Size = new System.Drawing.Size(175, 56);
-            this.btnDatPhong.TabIndex = 1;
-            this.btnDatPhong.Text = "Đặt Phòng";
-            this.btnDatPhong.Click += new System.EventHandler(this.btnDatPhong_Click);
+            this.btnThuePhong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnThuePhong.BorderRadius = 15;
+            this.btnThuePhong.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnThuePhong.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnThuePhong.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnThuePhong.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnThuePhong.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnThuePhong.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThuePhong.ForeColor = System.Drawing.Color.White;
+            this.btnThuePhong.Location = new System.Drawing.Point(1608, 20);
+            this.btnThuePhong.Name = "btnThuePhong";
+            this.btnThuePhong.ShadowDecoration.Color = System.Drawing.Color.RosyBrown;
+            this.btnThuePhong.Size = new System.Drawing.Size(219, 56);
+            this.btnThuePhong.TabIndex = 1;
+            this.btnThuePhong.Text = "Thuê Phòng";
+            this.btnThuePhong.Click += new System.EventHandler(this.btnDatPhong_Click);
             // 
             // guna2TextBox1
             // 
@@ -197,25 +195,6 @@
             this.clxoa.MinimumWidth = 6;
             this.clxoa.Name = "clxoa";
             // 
-            // btnThuePhong
-            // 
-            this.btnThuePhong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnThuePhong.BorderRadius = 15;
-            this.btnThuePhong.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnThuePhong.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnThuePhong.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnThuePhong.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnThuePhong.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnThuePhong.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThuePhong.ForeColor = System.Drawing.Color.White;
-            this.btnThuePhong.Location = new System.Drawing.Point(1457, 20);
-            this.btnThuePhong.Name = "btnThuePhong";
-            this.btnThuePhong.ShadowDecoration.Color = System.Drawing.Color.RosyBrown;
-            this.btnThuePhong.Size = new System.Drawing.Size(175, 56);
-            this.btnThuePhong.TabIndex = 2;
-            this.btnThuePhong.Text = "Thuê Phòng";
-            this.btnThuePhong.Click += new System.EventHandler(this.btnThuePhong_Click);
-            // 
             // BooKing_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -234,7 +213,7 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2Button btnDatPhong;
+        private Guna.UI2.WinForms.Guna2Button btnThuePhong;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clsophieuthue;
@@ -243,6 +222,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clnhanvien;
         private System.Windows.Forms.DataGridViewTextBoxColumn clchitiet;
         private System.Windows.Forms.DataGridViewTextBoxColumn clxoa;
-        private Guna.UI2.WinForms.Guna2Button btnThuePhong;
     }
 }
