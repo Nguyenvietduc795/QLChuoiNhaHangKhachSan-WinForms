@@ -17,6 +17,34 @@ namespace QLChuoiNhaHangKhachSan.GUI
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.CenterParent;
+
+            // Ensure default text behavior is set: set Tag values already in designer
+            // Initialize fields with Tag values if empty
+            InitializePlaceholders();
+
+            // Wire the top-right X button to cancel/close
+            this.guna2Button1.Click += BtnClose_Click;
+        }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void InitializePlaceholders()
+        {
+            foreach (Control c in pnlCardaddItems.Controls)
+            {
+                if (c is Guna.UI2.WinForms.Guna2TextBox tb)
+                {
+                    if (tb.Tag is string tag && string.IsNullOrEmpty(tb.Text))
+                    {
+                        tb.Text = tag;
+                        tb.ForeColor = System.Drawing.Color.Gray;
+                    }
+                }
+            }
         }
 
         private void lblTotal_Click(object sender, EventArgs e)
@@ -64,6 +92,32 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void FormAddMatHang_Load(object sender, EventArgs e)
         {
 
+        }
+
+        // Clear default placeholder on enter
+        private void TextBox_Enter_ClearDefault(object sender, EventArgs e)
+        {
+            if (sender is Guna.UI2.WinForms.Guna2TextBox tb)
+            {
+                if (tb.Tag is string tag && tb.Text == tag)
+                {
+                    tb.Text = string.Empty;
+                    tb.ForeColor = System.Drawing.Color.Black;
+                }
+            }
+        }
+
+        // Restore placeholder if left empty
+        private void TextBox_Leave_RestoreDefault(object sender, EventArgs e)
+        {
+            if (sender is Guna.UI2.WinForms.Guna2TextBox tb)
+            {
+                if (tb.Tag is string tag && string.IsNullOrEmpty(tb.Text))
+                {
+                    tb.Text = tag;
+                    tb.ForeColor = System.Drawing.Color.Gray;
+                }
+            }
         }
     }
 }

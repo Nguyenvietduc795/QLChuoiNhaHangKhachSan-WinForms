@@ -87,6 +87,19 @@ namespace QLChuoiNhaHangKhachSan.GUI
             pnlContentHost.Visible = false; // Ẩn host
         }
 
+        // Public notifier: nếu form con tự đóng bằng nút X, nó sẽ gọi phương thức này để cho dashboard biết
+        // Không đóng form con lần nữa ở đây (tránh đệ quy) — chỉ ẩn host và xóa tham chiếu.
+        public void NotifyChildClosed()
+        {
+            try
+            {
+                activeChildForm = null;
+                if (pnlContentHost != null)
+                    pnlContentHost.Visible = false;
+            }
+            catch { }
+        }
+
         // Khi dashboard load: thu gọn submenu, đọc cấu hình nếu có
         private void Form1_Load(object sender, EventArgs e)
         {

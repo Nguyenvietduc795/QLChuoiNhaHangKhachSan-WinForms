@@ -20,7 +20,46 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             InitializeComponent();
             this.Load += FormInventory_Load;
+            // Wire update button to open update form
+            this.btnupdateitems.Click += new EventHandler(this.btnupdateitems_Click);
 
+            // Ensure when user clicks the close (X) button we notify the host dashboard
+            this.FormClosed += FormInventory_FormClosed;
+        }
+
+        private void FormInventory_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // If this form is hosted inside the dashboard, notify it so it can hide the child container
+            try
+            {
+                var host = this.FindForm() as FormDashBoard;
+                if (host != null)
+                {
+                    host.NotifyChildClosed();
+                    return;
+                }
+
+                // If ParentForm returns dashboard (safer fallback)
+                host = this.ParentForm as FormDashBoard;
+                if (host != null)
+                {
+                    host.NotifyChildClosed();
+                }
+            }
+            catch { }
+        }
+
+        private void btnupdateitems_Click(object sender, EventArgs e)
+        {
+            ShowOverlayOnLbDSTonkho();
+
+            using (var f = new FormUpdateItems())
+            {
+                f.StartPosition = FormStartPosition.CenterParent;
+                f.ShowDialog(this);
+            }
+
+            HideOverlay();
         }
 
         private void iconPictureBox1_Click(object sender, EventArgs e)
@@ -94,9 +133,16 @@ namespace QLChuoiNhaHangKhachSan.GUI
             DGCanhbaotonkho.ColumnHeadersHeight = 48;
             LoadFakeTonKho();
             LoadFakeCanhBao();
-        
 
+            // Ensure stop button event wired (fallback)
+            try
+            {
+                this.btnstopItems.Click -= this.btnstopItems_Click;
+            }
+            catch { }
+            this.btnstopItems.Click += new EventHandler(this.btnstopItems_Click);
 
+            // optional double-click handler can be added in designer if desired
         }
 
 
@@ -240,6 +286,33 @@ namespace QLChuoiNhaHangKhachSan.GUI
             ShowOverlayOnLbDSTonkho();
 
             using (var f = new FormAddMatHang())
+            {
+                f.StartPosition = FormStartPosition.CenterParent;
+                f.ShowDialog(this);
+            }
+
+            HideOverlay();
+        }
+
+        private void btnstopItems_Click(object sender, EventArgs e)
+        {
+            ShowOverlayOnLbDSTonkho();
+
+            string selectedCode = null;
+            try
+            {
+                if (DGdanhsachtonkho.CurrentRow != null && DGdanhsachtonkho.CurrentRow.Cells.Count > 0)
+                {
+                    selectedCode = DGdanhsachtonkho.CurrentRow.Cells[0].Value?.ToString();
+                }
+            }
+            catch { }
+
+            FormStopItems f = null;
+            if (!string.IsNullOrEmpty(selectedCode)) f = new FormStopItems(selectedCode);
+            else f = new FormStopItems();
+
+            using (f)
             {
                 f.StartPosition = FormStartPosition.CenterParent;
                 f.ShowDialog(this);

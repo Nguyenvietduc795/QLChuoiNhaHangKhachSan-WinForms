@@ -158,6 +158,9 @@
             this.txReasonsStopItems.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(102)))), ((int)(((byte)(241)))));
             this.txReasonsStopItems.Size = new System.Drawing.Size(711, 108);
             this.txReasonsStopItems.TabIndex = 9;
+            this.txReasonsStopItems.Tag = "Lý do ....";
+            this.txReasonsStopItems.Enter += new System.EventHandler(this.TextBox_Enter_ClearDefault);
+            this.txReasonsStopItems.Leave += new System.EventHandler(this.TextBox_Leave_RestoreDefault);
             // 
             // txMaHangStopItems
             // 
@@ -184,6 +187,9 @@
             this.txMaHangStopItems.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(102)))), ((int)(((byte)(241)))));
             this.txMaHangStopItems.Size = new System.Drawing.Size(711, 40);
             this.txMaHangStopItems.TabIndex = 7;
+            this.txMaHangStopItems.Tag = "Nhập mã hàng cần ngừng sử dụng";
+            this.txMaHangStopItems.Enter += new System.EventHandler(this.TextBox_Enter_ClearDefault);
+            this.txMaHangStopItems.Leave += new System.EventHandler(this.TextBox_Leave_RestoreDefault);
             // 
             // lblspStopItems
             // 
