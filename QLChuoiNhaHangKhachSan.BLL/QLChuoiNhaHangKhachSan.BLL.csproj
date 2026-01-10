@@ -42,12 +42,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="EquipmentBLL.cs" />
+    <Compile Include="IngredientBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitBLL.cs" />
+    <Compile Include="WarehouseVoucherBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QLChuoiNhaHangKhachSan.DAL\QLChuoiNhaHangKhachSan.DAL.csproj">
       <Project>{ee2f359f-ed71-4c9a-8859-b1a785caaeae}</Project>
       <Name>QLChuoiNhaHangKhachSan.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QLChuoiNhaHangKhachSan.DTO\QLChuoiNhaHangKhachSan.DTO.csproj">
+      <Project>{275b7d03-8d3f-4db3-9d41-e28414f15fda}</Project>
+      <Name>QLChuoiNhaHangKhachSan.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

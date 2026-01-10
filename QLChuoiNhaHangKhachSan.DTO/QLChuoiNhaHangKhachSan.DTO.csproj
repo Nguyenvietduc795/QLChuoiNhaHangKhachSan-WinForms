@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EE2F359F-ED71-4C9A-8859-B1A785CAAEAE}</ProjectGuid>
+    <ProjectGuid>{275B7D03-8D3F-4DB3-9D41-E28414F15FDA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QLChuoiNhaHangKhachSan.DAL</RootNamespace>
-    <AssemblyName>QLChuoiNhaHangKhachSan.DAL</AssemblyName>
+    <RootNamespace>QLChuoiNhaHangKhachSan.DTO</RootNamespace>
+    <AssemblyName>QLChuoiNhaHangKhachSan.DTO</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,19 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="DTO\IngredientDTO.cs" />
-    <Compile Include="EquipmentDAL.cs" />
-    <Compile Include="IngredientDAL.cs" />
+    <Compile Include="BookingManager.cs" />
+    <Compile Include="ImportWarehouseItemDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitDAL.cs" />
-    <Compile Include="WarehouseVoucherDAL.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\QLChuoiNhaHangKhachSan.DTO\QLChuoiNhaHangKhachSan.DTO.csproj">
-      <Project>{275b7d03-8d3f-4db3-9d41-e28414f15fda}</Project>
-      <Name>QLChuoiNhaHangKhachSan.DTO</Name>
-    </ProjectReference>
+    <Compile Include="SelectItemDTO.cs" />
+    <Compile Include="SelectMode.cs" />
+    <Compile Include="WarehouseType.cs" />
+    <Compile Include="WarehouseVoucherDetailDTO.cs" />
+    <Compile Include="WarehouseVoucherDTO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

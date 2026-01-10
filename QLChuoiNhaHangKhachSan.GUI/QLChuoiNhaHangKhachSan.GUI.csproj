@@ -66,6 +66,7 @@
   </ItemGroup>
   <!-- ===================== COMPILE FILES ===================== -->
   <ItemGroup>
+    <Compile Include="AppSession.cs" />
     <Compile Include="CustomerAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,13 +91,54 @@
     <Compile Include="EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAddItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddItems.Designer.cs">
+      <DependentUpon>FormAddItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormExportWarehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormExportWarehouse.Designer.cs">
+      <DependentUpon>FormExportWarehouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormImportWarehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormImportWarehouse.Designer.cs">
+      <DependentUpon>FormImportWarehouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormInventoryAlert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInventoryAlert.Designer.cs">
+      <DependentUpon>FormInventoryAlert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSelectItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectItems.Designer.cs">
+      <DependentUpon>FormSelectItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStopItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStopItems.Designer.cs">
+      <DependentUpon>FormStopItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUpdateItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUpdateItems.Designer.cs">
+      <DependentUpon>FormUpdateItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BookingManager.cs" />
     <Compile Include="BooKing_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,6 +268,27 @@
     <EmbeddedResource Include="EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAddItems.resx">
+      <DependentUpon>FormAddItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormExportWarehouse.resx">
+      <DependentUpon>FormExportWarehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormImportWarehouse.resx">
+      <DependentUpon>FormImportWarehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInventoryAlert.resx">
+      <DependentUpon>FormInventoryAlert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectItems.resx">
+      <DependentUpon>FormSelectItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStopItems.resx">
+      <DependentUpon>FormStopItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUpdateItems.resx">
+      <DependentUpon>FormUpdateItems.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -319,6 +382,10 @@
     <ProjectReference Include="..\QLChuoiNhaHangKhachSan.BLL\QLChuoiNhaHangKhachSan.BLL.csproj">
       <Project>{4e25be4c-85e3-45de-81c5-52a8c8d0b030}</Project>
       <Name>QLChuoiNhaHangKhachSan.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QLChuoiNhaHangKhachSan.DTO\QLChuoiNhaHangKhachSan.DTO.csproj">
+      <Project>{275b7d03-8d3f-4db3-9d41-e28414f15fda}</Project>
+      <Name>QLChuoiNhaHangKhachSan.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

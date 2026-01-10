@@ -23,11 +23,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         }
 
-        private void pnlMainWrapper_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -99,7 +94,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             DGCanhbaotonkho.ColumnHeadersHeight = 48;
             LoadFakeTonKho();
             LoadFakeCanhBao();
-
+        
 
 
         }
@@ -175,11 +170,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         }
 
-        private void pnbottom_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void LoadFakeCanhBao()
         {
             DataTable dt = new DataTable();
@@ -219,6 +209,43 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void guna2Panel3_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+        private Panel overlay;
+
+        private void ShowOverlayOnLbDSTonkho()
+        {
+            if (overlay != null) return;
+
+            overlay = new Panel();
+            overlay.Dock = DockStyle.Fill;
+            overlay.BackColor = Color.FromArgb(60, 17, 24, 39);
+
+            lbDSTonkho.Controls.Add(overlay);
+            overlay.BringToFront();
+        }
+
+        private void HideOverlay()
+        {
+            if (overlay == null) return;
+
+            lbDSTonkho.Controls.Remove(overlay);
+            overlay.Dispose();
+            overlay = null;
+        }
+
+
+
+        private void btnadditems_Click(object sender, EventArgs e)
+        {
+            ShowOverlayOnLbDSTonkho();
+
+            using (var f = new FormAddMatHang())
+            {
+                f.StartPosition = FormStartPosition.CenterParent;
+                f.ShowDialog(this);
+            }
+
+            HideOverlay();
         }
     }
 

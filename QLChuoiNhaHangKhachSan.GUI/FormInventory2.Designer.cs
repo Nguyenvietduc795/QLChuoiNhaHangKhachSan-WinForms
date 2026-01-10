@@ -44,10 +44,7 @@
             this.btnNotification = new Guna.UI2.WinForms.Guna2Button();
             this.lbDSTonkho = new Guna.UI2.WinForms.Guna2Panel();
             this.pnlTopActions = new Guna.UI2.WinForms.Guna2Panel();
-            this.btntheminventory2 = new Guna.UI2.WinForms.Guna2Button();
             this.btnNhapKhoInventory2 = new Guna.UI2.WinForms.Guna2Button();
-            this.btnxoaInventory2 = new Guna.UI2.WinForms.Guna2Button();
-            this.btnsuainventory2 = new Guna.UI2.WinForms.Guna2Button();
             this.btnXuatKhoInventory2 = new Guna.UI2.WinForms.Guna2Button();
             this.flpActions = new System.Windows.Forms.FlowLayoutPanel();
             this.Pnbottom2 = new Guna.UI2.WinForms.Guna2Panel();
@@ -58,7 +55,6 @@
             this.DGLSPhieuNhap = new Guna.UI2.WinForms.Guna2DataGridView();
             this.pnbottom1 = new Guna.UI2.WinForms.Guna2Panel();
             this.pntaophieumau = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnTaoPhieuInventory2 = new Guna.UI2.WinForms.Guna2Button();
             this.TbDanhsachtonkho = new System.Windows.Forms.TableLayoutPanel();
             this.sptthienthi2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.DGdgvPhieu = new Guna.UI2.WinForms.Guna2DataGridView();
@@ -106,7 +102,6 @@
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGLSPhieuNhap)).BeginInit();
             this.pnbottom1.SuspendLayout();
-            this.pntaophieumau.SuspendLayout();
             this.TbDanhsachtonkho.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGdgvPhieu)).BeginInit();
             this.spFilter.SuspendLayout();
@@ -238,10 +233,7 @@
             // 
             // pnlTopActions
             // 
-            this.pnlTopActions.Controls.Add(this.btntheminventory2);
             this.pnlTopActions.Controls.Add(this.btnNhapKhoInventory2);
-            this.pnlTopActions.Controls.Add(this.btnxoaInventory2);
-            this.pnlTopActions.Controls.Add(this.btnsuainventory2);
             this.pnlTopActions.Controls.Add(this.btnXuatKhoInventory2);
             this.pnlTopActions.Controls.Add(this.flpActions);
             this.pnlTopActions.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(251)))));
@@ -249,23 +241,6 @@
             this.pnlTopActions.Name = "pnlTopActions";
             this.pnlTopActions.Size = new System.Drawing.Size(938, 84);
             this.pnlTopActions.TabIndex = 16;
-            // 
-            // btntheminventory2
-            // 
-            this.btntheminventory2.BorderRadius = 12;
-            this.btntheminventory2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btntheminventory2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btntheminventory2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btntheminventory2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btntheminventory2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
-            this.btntheminventory2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btntheminventory2.ForeColor = System.Drawing.Color.White;
-            this.btntheminventory2.Location = new System.Drawing.Point(22, 19);
-            this.btntheminventory2.Name = "btntheminventory2";
-            this.btntheminventory2.Size = new System.Drawing.Size(81, 45);
-            this.btntheminventory2.TabIndex = 4;
-            this.btntheminventory2.Text = "+ Thêm";
-            this.btntheminventory2.Click += new System.EventHandler(this.btntheminventory2_Click);
             // 
             // btnNhapKhoInventory2
             // 
@@ -278,43 +253,11 @@
             this.btnNhapKhoInventory2.FillColor = System.Drawing.Color.White;
             this.btnNhapKhoInventory2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNhapKhoInventory2.ForeColor = System.Drawing.Color.Black;
-            this.btnNhapKhoInventory2.Location = new System.Drawing.Point(259, 19);
+            this.btnNhapKhoInventory2.Location = new System.Drawing.Point(19, 19);
             this.btnNhapKhoInventory2.Name = "btnNhapKhoInventory2";
-            this.btnNhapKhoInventory2.Size = new System.Drawing.Size(99, 45);
+            this.btnNhapKhoInventory2.Size = new System.Drawing.Size(110, 45);
             this.btnNhapKhoInventory2.TabIndex = 3;
             this.btnNhapKhoInventory2.Text = "Nhập Kho";
-            // 
-            // btnxoaInventory2
-            // 
-            this.btnxoaInventory2.BorderRadius = 12;
-            this.btnxoaInventory2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnxoaInventory2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnxoaInventory2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnxoaInventory2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnxoaInventory2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.btnxoaInventory2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnxoaInventory2.ForeColor = System.Drawing.Color.White;
-            this.btnxoaInventory2.Location = new System.Drawing.Point(182, 19);
-            this.btnxoaInventory2.Name = "btnxoaInventory2";
-            this.btnxoaInventory2.Size = new System.Drawing.Size(71, 45);
-            this.btnxoaInventory2.TabIndex = 2;
-            this.btnxoaInventory2.Text = "Xóa";
-            // 
-            // btnsuainventory2
-            // 
-            this.btnsuainventory2.BorderRadius = 12;
-            this.btnsuainventory2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnsuainventory2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnsuainventory2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnsuainventory2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnsuainventory2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(70)))), ((int)(((byte)(229)))));
-            this.btnsuainventory2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnsuainventory2.ForeColor = System.Drawing.Color.White;
-            this.btnsuainventory2.Location = new System.Drawing.Point(109, 19);
-            this.btnsuainventory2.Name = "btnsuainventory2";
-            this.btnsuainventory2.Size = new System.Drawing.Size(67, 45);
-            this.btnsuainventory2.TabIndex = 1;
-            this.btnsuainventory2.Text = "Sửa";
             // 
             // btnXuatKhoInventory2
             // 
@@ -327,7 +270,7 @@
             this.btnXuatKhoInventory2.FillColor = System.Drawing.Color.White;
             this.btnXuatKhoInventory2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXuatKhoInventory2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
-            this.btnXuatKhoInventory2.Location = new System.Drawing.Point(364, 19);
+            this.btnXuatKhoInventory2.Location = new System.Drawing.Point(135, 19);
             this.btnXuatKhoInventory2.Name = "btnXuatKhoInventory2";
             this.btnXuatKhoInventory2.Size = new System.Drawing.Size(100, 45);
             this.btnXuatKhoInventory2.TabIndex = 0;
@@ -492,27 +435,10 @@
             // 
             // pntaophieumau
             // 
-            this.pntaophieumau.Controls.Add(this.btnTaoPhieuInventory2);
             this.pntaophieumau.Location = new System.Drawing.Point(857, 22);
             this.pntaophieumau.Name = "pntaophieumau";
             this.pntaophieumau.Size = new System.Drawing.Size(132, 52);
             this.pntaophieumau.TabIndex = 17;
-            // 
-            // btnTaoPhieuInventory2
-            // 
-            this.btnTaoPhieuInventory2.BorderRadius = 12;
-            this.btnTaoPhieuInventory2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnTaoPhieuInventory2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnTaoPhieuInventory2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnTaoPhieuInventory2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnTaoPhieuInventory2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(70)))), ((int)(((byte)(229)))));
-            this.btnTaoPhieuInventory2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTaoPhieuInventory2.ForeColor = System.Drawing.Color.White;
-            this.btnTaoPhieuInventory2.Location = new System.Drawing.Point(27, 3);
-            this.btnTaoPhieuInventory2.Name = "btnTaoPhieuInventory2";
-            this.btnTaoPhieuInventory2.Size = new System.Drawing.Size(102, 45);
-            this.btnTaoPhieuInventory2.TabIndex = 17;
-            this.btnTaoPhieuInventory2.Text = "+Tạo Phiếu";
             // 
             // TbDanhsachtonkho
             // 
@@ -757,7 +683,7 @@
             this.tlpFilter2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.25F));
             this.tlpFilter2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 412F));
             this.tlpFilter2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 186F));
-            this.tlpFilter2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
+            this.tlpFilter2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 207F));
             this.tlpFilter2.Controls.Add(this.btnReset2, 4, 1);
             this.tlpFilter2.Controls.Add(this.lbTimkiem2, 2, 0);
             this.tlpFilter2.Controls.Add(this.lbDonvi2, 1, 0);
@@ -791,9 +717,9 @@
             this.btnReset2.FillColor = System.Drawing.Color.White;
             this.btnReset2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset2.ForeColor = System.Drawing.Color.Black;
-            this.btnReset2.Location = new System.Drawing.Point(1434, 30);
+            this.btnReset2.Location = new System.Drawing.Point(1424, 30);
             this.btnReset2.Name = "btnReset2";
-            this.btnReset2.Size = new System.Drawing.Size(192, 40);
+            this.btnReset2.Size = new System.Drawing.Size(202, 40);
             this.btnReset2.TabIndex = 5;
             this.btnReset2.Text = "Tải lại";
             // 
@@ -803,7 +729,7 @@
             this.lbTimkiem2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbTimkiem2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTimkiem2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lbTimkiem2.Location = new System.Drawing.Point(836, 0);
+            this.lbTimkiem2.Location = new System.Drawing.Point(826, 0);
             this.lbTimkiem2.Name = "lbTimkiem2";
             this.lbTimkiem2.Size = new System.Drawing.Size(406, 27);
             this.lbTimkiem2.TabIndex = 2;
@@ -816,9 +742,9 @@
             this.lbDonvi2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbDonvi2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDonvi2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lbDonvi2.Location = new System.Drawing.Point(417, 0);
+            this.lbDonvi2.Location = new System.Drawing.Point(412, 0);
             this.lbDonvi2.Name = "lbDonvi2";
-            this.lbDonvi2.Size = new System.Drawing.Size(413, 27);
+            this.lbDonvi2.Size = new System.Drawing.Size(408, 27);
             this.lbDonvi2.TabIndex = 1;
             this.lbDonvi2.Text = "Đơn vị (NH/KS)";
             this.lbDonvi2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -831,7 +757,7 @@
             this.lbloaikho2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lbloaikho2.Location = new System.Drawing.Point(3, 0);
             this.lbloaikho2.Name = "lbloaikho2";
-            this.lbloaikho2.Size = new System.Drawing.Size(408, 27);
+            this.lbloaikho2.Size = new System.Drawing.Size(403, 27);
             this.lbloaikho2.TabIndex = 0;
             this.lbloaikho2.Text = "  Loại Kho";
             this.lbloaikho2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -853,7 +779,7 @@
             "Kho Thiết bị",
             "Kho Nguyên Liệu",
             "Tất cả"});
-            this.cboLoaiKho2.Location = new System.Drawing.Point(43, 30);
+            this.cboLoaiKho2.Location = new System.Drawing.Point(38, 30);
             this.cboLoaiKho2.Name = "cboLoaiKho2";
             this.cboLoaiKho2.Size = new System.Drawing.Size(368, 36);
             this.cboLoaiKho2.TabIndex = 3;
@@ -875,7 +801,7 @@
             "NH01",
             "KS01",
             "Tất cả"});
-            this.cboDonVi2.Location = new System.Drawing.Point(443, 30);
+            this.cboDonVi2.Location = new System.Drawing.Point(433, 30);
             this.cboDonVi2.Name = "cboDonVi2";
             this.cboDonVi2.Size = new System.Drawing.Size(387, 36);
             this.cboDonVi2.TabIndex = 4;
@@ -891,7 +817,7 @@
             this.btnLoc2.FillColor = System.Drawing.Color.Black;
             this.btnLoc2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoc2.ForeColor = System.Drawing.Color.White;
-            this.btnLoc2.Location = new System.Drawing.Point(1248, 30);
+            this.btnLoc2.Location = new System.Drawing.Point(1238, 30);
             this.btnLoc2.Name = "btnLoc2";
             this.btnLoc2.Size = new System.Drawing.Size(180, 40);
             this.btnLoc2.TabIndex = 4;
@@ -915,7 +841,7 @@
             this.txTimkiem2.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(102)))), ((int)(((byte)(241)))));
             this.txTimkiem2.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(55)))));
             this.txTimkiem2.HoverState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.txTimkiem2.Location = new System.Drawing.Point(855, 30);
+            this.txTimkiem2.Location = new System.Drawing.Point(845, 30);
             this.txTimkiem2.Name = "txTimkiem2";
             this.txTimkiem2.PlaceholderText = "";
             this.txTimkiem2.SelectedText = "";
@@ -1184,7 +1110,6 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGLSPhieuNhap)).EndInit();
             this.pnbottom1.ResumeLayout(false);
-            this.pntaophieumau.ResumeLayout(false);
             this.TbDanhsachtonkho.ResumeLayout(false);
             this.TbDanhsachtonkho.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGdgvPhieu)).EndInit();
@@ -1266,11 +1191,7 @@
         private Guna.UI2.WinForms.Guna2Panel pnlTopActions;
         private System.Windows.Forms.FlowLayoutPanel flpActions;
         private Guna.UI2.WinForms.Guna2Button btnXuatKhoInventory2;
-        private Guna.UI2.WinForms.Guna2Button btntheminventory2;
         private Guna.UI2.WinForms.Guna2Button btnNhapKhoInventory2;
-        private Guna.UI2.WinForms.Guna2Button btnxoaInventory2;
-        private Guna.UI2.WinForms.Guna2Button btnsuainventory2;
-        private Guna.UI2.WinForms.Guna2Button btnTaoPhieuInventory2;
         private Guna.UI2.WinForms.Guna2Panel pntaophieumau;
     }
 }
