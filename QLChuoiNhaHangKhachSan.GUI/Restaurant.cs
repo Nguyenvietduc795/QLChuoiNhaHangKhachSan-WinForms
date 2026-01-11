@@ -27,6 +27,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             txtNumberPhone.TextChanged += BookingInfoChanged;
             dtpDay.ValueChanged += BookingInfoChanged;
             dtpTime.ValueChanged += BookingInfoChanged;
+
+            btnConfirm.Click += btnConfirmLookup_Click;
         }
 
         // Trạng thái bàn
@@ -111,6 +113,61 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
         }
 
+        private void btnConfirmLookup_Click(object sender, EventArgs e)
+        {
+            using (var confirm = new ConfirmTable())
+            {
+                confirm.StartPosition = FormStartPosition.CenterParent;
+                if (confirm.ShowDialog(this) == DialogResult.OK && confirm.IsConfirmed)
+                {
+                    int tableId = confirm.FoundTableId;
+                    string tableName = confirm.FoundTableName;
+
+                    if (string.IsNullOrWhiteSpace(tableName) && tableId != 0)
+                    {
+                        // Lấy tên bàn từ DB nếu cần
+                        try
+                        {
+                            using (var conn = new SqlConnection(strKetNoi))
+                            using (var cmd = new SqlCommand("SELECT TableName FROM RestaurantTable WHERE TableID = @TableID", conn))
+                            {
+                                cmd.Parameters.AddWithValue("@TableID", tableId);
+                                conn.Open();
+                                var result = cmd.ExecuteScalar();
+                                if (result != null && result != DBNull.Value)
+                                {
+                                    tableName = Convert.ToString(result);
+                                }
+                            }
+                        }
+                        catch { }
+                    }
+
+                    if (string.IsNullOrWhiteSpace(tableName))
+                    {
+                        MessageBox.Show("Không tìm thấy tên bàn để chọn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    var btn = FindTableButton(tableName);
+                    if (btn == null)
+                    {
+                        // Thử với dạng "Bàn X"
+                        btn = FindTableButton("Bàn " + tableName);
+                    }
+
+                    if (btn != null)
+                    {
+                        Table_Click(btn, EventArgs.Empty);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không tìm thấy bàn trên giao diện.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+        }
+
         private void BookingInfoChanged(object sender, EventArgs e)
         {
             if (currentSelectedTable == null)
@@ -141,11 +198,23 @@ namespace QLChuoiNhaHangKhachSan.GUI
             btn.FlatAppearance.BorderColor = Color.Black;
             btn.FlatAppearance.BorderSize = 3;
 
-            // Hiển thị số bàn (loại bỏ khoảng trắng)
-            txtTableNumber.Text = (btn.Text ?? string.Empty).Trim();
+            // Hiển thị số bàn (loại bỏ khoảng trắng) và trích xuất số bàn dù button có chữ "Bàn"
+            string rawTableText = (btn.Text ?? string.Empty).Trim();
+            txtTableNumber.Text = rawTableText;
 
             int tableNumber;
-            if (!int.TryParse(txtTableNumber.Text, out tableNumber))
+            // Cho phép dạng "Bàn 14" hoặc "14"
+            var digits = System.Text.RegularExpressions.Regex.Match(rawTableText, "\\d+");
+            if (digits.Success)
+            {
+                int.TryParse(digits.Value, out tableNumber);
+            }
+            else
+            {
+                tableNumber = 0;
+            }
+
+            if (tableNumber == 0)
             {
                 dgvDishList.Rows.Clear();
                 ClearCustomerFields();
@@ -306,6 +375,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 return;
             }
 
+            int guestCount;
+            if (!int.TryParse(txtQuantity.Text, NumberStyles.Integer, CultureInfo.InvariantCulture, out guestCount) || guestCount <= 0)
+            {
+                MessageBox.Show("Số người phải là số nguyên dương.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             // Lưu khách hàng trước khi gọi món (cho phép thiếu Phone/Email, sẽ để NULL)
             try
             {
@@ -327,6 +403,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 menu.SetCustomer(currentCustomerId.Value);
             }
+            menu.SetGuestCount(guestCount);
             menu.OrderConfirmed += OnMenuOrderConfirmed;
             menu.ShowDialog();
         }
@@ -381,15 +458,16 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
-            using (var billForm = new frmBill())
+            string tableNumberText = (txtTableNumber.Text ?? string.Empty).Trim();
+            if (string.IsNullOrEmpty(tableNumberText))
             {
-                billForm.StartPosition = FormStartPosition.CenterParent;
-                billForm.ShowDialog(this);
+                MessageBox.Show("Vui lòng chọn bàn để thanh toán.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
 
-            // Sau khi thanh toán xong, cập nhật bàn về trạng thái trống
-            string tableNumberText = (txtTableNumber.Text ?? string.Empty).Trim();
-            if (string.IsNullOrEmpty(tableNumberText)) return;
+            int tableId = 0;
+            int? orderId = null;
+            decimal totalAmount = 0m;
 
             try
             {
@@ -397,45 +475,133 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 {
                     conn.Open();
 
-                    int tableId = 0;
+                    // Lấy TableID
                     using (var cmdTable = new SqlCommand(
-                        @"SELECT TableID FROM RestaurantTable 
+                        @"SELECT TableID, TableName FROM RestaurantTable 
                           WHERE TableName = @TableName OR TableName = N'Bàn ' + @TableNumber", conn))
                     {
                         cmdTable.Parameters.AddWithValue("@TableName", tableNumberText);
                         cmdTable.Parameters.AddWithValue("@TableNumber", tableNumberText);
-                        var result = cmdTable.ExecuteScalar();
-                        if (result != null && result != DBNull.Value)
+                        using (var reader = cmdTable.ExecuteReader())
                         {
-                            tableId = Convert.ToInt32(result);
+                            if (reader.Read())
+                            {
+                                tableId = Convert.ToInt32(reader["TableID"]);
+                                if (reader["TableName"] != DBNull.Value)
+                                {
+                                    tableNumberText = reader["TableName"].ToString();
+                                }
+                            }
                         }
                     }
 
-                    if (tableId != 0)
+                    if (tableId == 0)
                     {
-                        // Cập nhật trạng thái OrderTicket thành Completed
-                        using (var cmdUpdateOrder = new SqlCommand(
-                            "UPDATE OrderTicket SET Status = N'Completed', DateCheckOut = GETDATE() WHERE TableID = @TableID AND Status = N'Pending'", conn))
-                        {
-                            cmdUpdateOrder.Parameters.AddWithValue("@TableID", tableId);
-                            cmdUpdateOrder.ExecuteNonQuery();
-                        }
+                        MessageBox.Show("Không tìm thấy bàn trong hệ thống.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
 
-                        // Cập nhật trạng thái bàn về trống
-                        using (var cmdUpdate = new SqlCommand("UPDATE RestaurantTable SET StatusID = 1 WHERE TableID = @TableID", conn))
+                    // Lấy order đang chờ thanh toán
+                    using (var cmdOrder = new SqlCommand(
+                        @"SELECT TOP 1 OrderId, TotalAmount 
+                          FROM OrderTicket 
+                          WHERE TableID = @TableID AND Status = N'Pending'
+                          ORDER BY OrderId DESC", conn))
+                    {
+                        cmdOrder.Parameters.AddWithValue("@TableID", tableId);
+                        using (var reader = cmdOrder.ExecuteReader())
                         {
-                            cmdUpdate.Parameters.AddWithValue("@TableID", tableId);
-                            cmdUpdate.ExecuteNonQuery();
+                            if (reader.Read())
+                            {
+                                orderId = Convert.ToInt32(reader["OrderId"]);
+                                totalAmount = reader["TotalAmount"] == DBNull.Value
+                                    ? 0m
+                                    : Convert.ToDecimal(reader["TotalAmount"], CultureInfo.InvariantCulture);
+                            }
+                        }
+                    }
+
+                    if (!orderId.HasValue)
+                    {
+                        MessageBox.Show("Không tìm thấy hóa đơn đang chờ cho bàn này.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    // Nếu chưa có tổng tiền, tính từ chi tiết món
+                    if (totalAmount <= 0)
+                    {
+                        using (var cmdTotal = new SqlCommand("SELECT SUM(LineTotal) FROM OrderTicketItem WHERE OrderId = @OrderId", conn))
+                        {
+                            cmdTotal.Parameters.AddWithValue("@OrderId", orderId.Value);
+                            var result = cmdTotal.ExecuteScalar();
+                            if (result != null && result != DBNull.Value)
+                            {
+                                totalAmount = Convert.ToDecimal(result, CultureInfo.InvariantCulture);
+                            }
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi cập nhật trạng thái bàn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi tra cứu hóa đơn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            // Luôn xóa danh sách món và thông tin khách sau thanh toán (nằm ngoài try-catch)
+            using (var billForm = new frmBill(orderId.Value, tableNumberText))
+            {
+                billForm.StartPosition = FormStartPosition.CenterParent;
+                billForm.ShowDialog(this);
+            }
+
+            try
+            {
+                using (var conn = new SqlConnection(strKetNoi))
+                {
+                    conn.Open();
+                    using (var tran = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            using (var cmdUpdateOrder = new SqlCommand(
+                                "UPDATE OrderTicket SET Status = N'Completed', DateCheckOut = GETDATE() WHERE OrderId = @OrderId", conn, tran))
+                            {
+                                cmdUpdateOrder.Parameters.AddWithValue("@OrderId", orderId.Value);
+                                cmdUpdateOrder.ExecuteNonQuery();
+                            }
+
+                            using (var cmdUpdate = new SqlCommand("UPDATE RestaurantTable SET StatusID = 1 WHERE TableID = @TableID", conn, tran))
+                            {
+                                cmdUpdate.Parameters.AddWithValue("@TableID", tableId);
+                                cmdUpdate.ExecuteNonQuery();
+                            }
+
+                            using (var cmdInsertTrans = new SqlCommand(
+                                "INSERT INTO Transactions (OrderId, PaymentMethod, Amount) VALUES (@OrderId, @PaymentMethod, @Amount)", conn, tran))
+                            {
+                                cmdInsertTrans.Parameters.AddWithValue("@OrderId", orderId.Value);
+                                cmdInsertTrans.Parameters.AddWithValue("@PaymentMethod", "Tiền mặt");
+                                cmdInsertTrans.Parameters.AddWithValue("@Amount", totalAmount);
+                                cmdInsertTrans.ExecuteNonQuery();
+                            }
+
+                            tran.Commit();
+                        }
+                        catch
+                        {
+                            tran.Rollback();
+                            throw;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi cập nhật thanh toán: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Luôn xóa danh sách món và thông tin khách sau thanh toán
             if (currentSelectedTable != null)
             {
                 currentSelectedTable.Tag = TableStatus.Trong;
@@ -516,6 +682,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
                     // Tìm hoặc tạo Customer (cho phép thiếu Phone/Email)
                     currentCustomerId = FindOrCreateCustomer(conn, txtClient.Text.Trim(), txtNumberPhone.Text.Trim(), txtEmail.Text.Trim());
+                    if (!currentCustomerId.HasValue)
+                    {
+                        MessageBox.Show("Không thể xác định khách hàng để đặt bàn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
 
                     // INSERT vào bảng BookingsTable mới
                     using (var cmd = new SqlCommand(
@@ -523,7 +694,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                          VALUES (@TableID, @CustomerID, @BookingDate, @BookingTime, @GuestCount, N'Đã đặt');", conn))
                     {
                         cmd.Parameters.AddWithValue("@TableID", tableId);
-                        cmd.Parameters.AddWithValue("@CustomerID", (object)currentCustomerId ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@CustomerID", currentCustomerId.Value);
                         cmd.Parameters.Add("@BookingDate", SqlDbType.Date).Value = bookingDate;
                         cmd.Parameters.Add("@BookingTime", SqlDbType.Time).Value = bookingTime;
                         cmd.Parameters.AddWithValue("@GuestCount", guestCount);
@@ -570,60 +741,29 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 return;
             }
 
-            if (MessageBox.Show("Bạn có chắc chắn muốn hủy đặt bàn này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            // Mở form frmCancelTable để xử lý hủy đặt bàn và gửi email
+            using (var cancelForm = new frmCancelTable())
             {
-                return;
+                cancelForm.StartPosition = FormStartPosition.CenterParent;
+                cancelForm.ShowDialog(this);
             }
 
-            try
+            // Sau khi đóng form, cập nhật lại giao diện
+            if (currentSelectedTable != null)
             {
-                using (var conn = new SqlConnection(strKetNoi))
-                {
-                    conn.Open();
-
-                    int tableId = 0;
-                    using (var cmdTable = new SqlCommand(
-                        @"SELECT TableID FROM RestaurantTable 
-                          WHERE TableName = @TableName OR TableName = N'Bàn ' + @TableNumber", conn))
-                    {
-                        cmdTable.Parameters.AddWithValue("@TableName", tableNumberText);
-                        cmdTable.Parameters.AddWithValue("@TableNumber", tableNumberText);
-                        var result = cmdTable.ExecuteScalar();
-                        if (result != null && result != DBNull.Value)
-                        {
-                            tableId = Convert.ToInt32(result);
-                        }
-                    }
-
-                    if (tableId == 0)
-                    {
-                        MessageBox.Show("Không tìm thấy bàn trong hệ thống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    // Đưa bàn về trạng thái trống (StatusID = 1)
-                    using (var cmdUpdate = new SqlCommand(
-                        "UPDATE RestaurantTable SET StatusID = 1 WHERE TableID = @TableID", conn))
-                    {
-                        cmdUpdate.Parameters.AddWithValue("@TableID", tableId);
-                        cmdUpdate.ExecuteNonQuery();
-                    }
-                }
-
-                if (currentSelectedTable != null)
-                {
-                    currentSelectedTable.Tag = TableStatus.Trong;
-                    currentSelectedTable.BackColor = Color.Transparent;
-                    UpdateStatusText(TableStatus.Trong);
-                    UpdateButtonState(TableStatus.Trong);
-                }
-
-                MessageBox.Show("Bàn đã được cập nhật về trạng thái trống.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Reload trạng thái bàn từ DB
+                LoadTableStatusesFromDb();
+                
+                // Cập nhật trạng thái button hiện tại
+                currentSelectedTable.Tag = TableStatus.Trong;
+                currentSelectedTable.BackColor = Color.Transparent;
+                UpdateStatusText(TableStatus.Trong);
+                UpdateButtonState(TableStatus.Trong);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi hủy đặt bàn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+            dgvDishList.Rows.Clear();
+            txtTotalAmount.Text = "0";
+            ClearCustomerFields();
         }
 
         // Handler gắn từ Designer
@@ -644,6 +784,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void guna2Panel1_Paint(object sender, PaintEventArgs e)
         {
+
         }
 
         private void txtTableNumber_TextChanged(object sender, EventArgs e)
@@ -786,7 +927,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     txtStatus.Text = "Đã đặt";
                     break;
                 default:
-                    txtStatus.Text = "Không có khách";
+                    txtStatus.Text = "Bàn trống";
                     break;
             }
         }
@@ -846,63 +987,100 @@ namespace QLChuoiNhaHangKhachSan.GUI
         }
 
         /// <summary>
-        /// Tải thông tin khách hàng theo bàn (từ booking hoặc order gần nhất)
+        /// Tải thông tin khách hàng theo bàn (ưu tiên OrderTicket mới nhất có CustomerID, sau đó BookingsTable mới nhất)
         /// </summary>
         private void LoadCustomerInfoByTable(int tableId)
         {
+            ClearCustomerFields();
+
             try
             {
                 using (var conn = new SqlConnection(strKetNoi))
                 {
                     conn.Open();
 
-                    // Ưu tiên lấy từ BookingsTable (đặt bàn)
-                    using (var cmd = new SqlCommand(
-                        @"SELECT TOP 1 c.FullName, c.PhoneNumber, c.Email, b.GuestCount
-                          FROM BookingsTable b
-                          INNER JOIN Customers c ON b.CustomerID = c.CustomerId
-                          WHERE b.TableID = @TableID AND b.Status = N'Đã đặt'
-                          ORDER BY b.BookingID DESC", conn))
+                    // 1) Ưu tiên OrderTicket mới nhất (mọi trạng thái) có CustomerID
+                    using (var cmdOrder = new SqlCommand(
+                        @"SELECT TOP 1 c.FullName, c.PhoneNumber, c.Email, o.GuestCount
+                          FROM OrderTicket o
+                          INNER JOIN Customers c ON o.CustomerID = c.CustomerId
+                          WHERE o.TableID = @TableID AND o.CustomerID IS NOT NULL
+                          ORDER BY o.OrderId DESC", conn))
                     {
-                        cmd.Parameters.AddWithValue("@TableID", tableId);
-                        using (var reader = cmd.ExecuteReader())
+                        cmdOrder.Parameters.AddWithValue("@TableID", tableId);
+                        using (var reader = cmdOrder.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                txtClient.Text = reader["FullName"].ToString();
-                                txtNumberPhone.Text = reader["PhoneNumber"].ToString();
+                                txtClient.Text = reader["FullName"] == DBNull.Value ? string.Empty : reader["FullName"].ToString();
+                                txtNumberPhone.Text = reader["PhoneNumber"] == DBNull.Value ? string.Empty : reader["PhoneNumber"].ToString();
                                 txtEmail.Text = reader["Email"] == DBNull.Value ? string.Empty : reader["Email"].ToString();
-                                txtQuantity.Text = reader["GuestCount"].ToString();
+                                txtQuantity.Text = reader["GuestCount"] == DBNull.Value ? string.Empty : reader["GuestCount"].ToString();
                                 return;
                             }
                         }
                     }
 
-                    // Nếu không có booking, thử lấy từ OrderTicket (gọi món)
-                    using (var cmd = new SqlCommand(
-                        @"SELECT TOP 1 c.FullName, c.PhoneNumber, c.Email
-                          FROM OrderTicket o
-                          INNER JOIN Customers c ON o.CustomerID = c.CustomerId
-                          WHERE o.TableID = @TableID AND o.Status = N'Pending'
-                          ORDER BY o.OrderId DESC", conn))
+                    // 2) Nếu không có OrderTicket có khách, lấy booking mới nhất có CustomerID
+                    using (var cmdBook = new SqlCommand(
+                        @"SELECT TOP 1 c.FullName, c.PhoneNumber, c.Email, b.GuestCount
+                          FROM BookingsTable b
+                          INNER JOIN Customers c ON b.CustomerID = c.CustomerId
+                          WHERE b.TableID = @TableID AND b.CustomerID IS NOT NULL
+                          ORDER BY b.BookingID DESC", conn))
                     {
-                        cmd.Parameters.AddWithValue("@TableID", tableId);
-                        using (var reader = cmd.ExecuteReader())
+                        cmdBook.Parameters.AddWithValue("@TableID", tableId);
+                        using (var reader = cmdBook.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                txtClient.Text = reader["FullName"].ToString();
-                                txtNumberPhone.Text = reader["PhoneNumber"].ToString();
+                                txtClient.Text = reader["FullName"] == DBNull.Value ? string.Empty : reader["FullName"].ToString();
+                                txtNumberPhone.Text = reader["PhoneNumber"] == DBNull.Value ? string.Empty : reader["PhoneNumber"].ToString();
                                 txtEmail.Text = reader["Email"] == DBNull.Value ? string.Empty : reader["Email"].ToString();
+                                txtQuantity.Text = reader["GuestCount"] == DBNull.Value ? string.Empty : reader["GuestCount"].ToString();
                                 return;
                             }
                         }
                     }
+
+                    // 3) Không tìm thấy thông tin khách hàng nào có liên kết
+                    // Có thể do OrderTicket/BookingsTable có CustomerID = NULL
+                    // Debug: kiểm tra xem có bản ghi nào không
+#if DEBUG
+                    using (var cmdDebug = new SqlCommand(
+                        @"SELECT 
+                            (SELECT COUNT(*) FROM OrderTicket WHERE TableID = @TableID) AS OrderCount,
+                            (SELECT COUNT(*) FROM OrderTicket WHERE TableID = @TableID AND CustomerID IS NOT NULL) AS OrderWithCustomer,
+                            (SELECT COUNT(*) FROM BookingsTable WHERE TableID = @TableID) AS BookingCount,
+                            (SELECT COUNT(*) FROM BookingsTable WHERE TableID = @TableID AND CustomerID IS NOT NULL) AS BookingWithCustomer", conn))
+                    {
+                        cmdDebug.Parameters.AddWithValue("@TableID", tableId);
+                        using (var reader = cmdDebug.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int orderCount = Convert.ToInt32(reader["OrderCount"]);
+                                int orderWithCust = Convert.ToInt32(reader["OrderWithCustomer"]);
+                                int bookCount = Convert.ToInt32(reader["BookingCount"]);
+                                int bookWithCust = Convert.ToInt32(reader["BookingWithCustomer"]);
+
+                                if (orderCount > 0 && orderWithCust == 0)
+                                {
+                                    System.Diagnostics.Debug.WriteLine($"Table {tableId}: {orderCount} orders but none have CustomerID");
+                                }
+                                if (bookCount > 0 && bookWithCust == 0)
+                                {
+                                    System.Diagnostics.Debug.WriteLine($"Table {tableId}: {bookCount} bookings but none have CustomerID");
+                                }
+                            }
+                        }
+                    }
+#endif
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // Nếu lỗi, không hiển thị thông tin
+                System.Diagnostics.Debug.WriteLine("LoadCustomerInfoByTable error: " + ex.Message);
             }
         }
 

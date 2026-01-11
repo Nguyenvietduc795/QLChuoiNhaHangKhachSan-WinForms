@@ -26,7 +26,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
             Load += frmFoodManagement_Load;
             dgvDsMon.SelectionChanged += dgvDsMon_SelectionChanged;
             dgvDsMon.Leave += dgvDsMon_Leave;
-            btnSearch.Click += btnSearch_Click;
             txtSearch.TextChanged += txtSearch_TextChanged;
             cboTilter.SelectedIndexChanged += cboTilter_SelectedIndexChanged;
             bntAdd.Click += bntAdd_Click;

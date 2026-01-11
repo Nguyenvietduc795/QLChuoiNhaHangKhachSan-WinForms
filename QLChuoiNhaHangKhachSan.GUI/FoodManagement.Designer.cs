@@ -42,7 +42,6 @@
             this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
             this.cboTilter = new Guna.UI2.WinForms.Guna2ComboBox();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblDishList = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -73,7 +72,6 @@
             this.guna2Panel1.Controls.Add(this.txtSum);
             this.guna2Panel1.Controls.Add(this.guna2HtmlLabel1);
             this.guna2Panel1.Controls.Add(this.dgvDsMon);
-            this.guna2Panel1.Controls.Add(this.btnSearch);
             this.guna2Panel1.Controls.Add(this.cboTilter);
             this.guna2Panel1.Controls.Add(this.txtSearch);
             this.guna2Panel1.Controls.Add(this.lblDishList);
@@ -222,26 +220,6 @@
             this.colTrangThai.MinimumWidth = 6;
             this.colTrangThai.Name = "colTrangThai";
             // 
-            // btnSearch
-            // 
-            this.btnSearch.BackColor = System.Drawing.Color.Transparent;
-            this.btnSearch.BorderRadius = 10;
-            this.btnSearch.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnSearch.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(795, 72);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.ShadowDecoration.BorderRadius = 1;
-            this.btnSearch.ShadowDecoration.Depth = 10;
-            this.btnSearch.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0);
-            this.btnSearch.Size = new System.Drawing.Size(249, 36);
-            this.btnSearch.TabIndex = 10;
-            this.btnSearch.Text = "Tìm kiếm";
-            // 
             // cboTilter
             // 
             this.cboTilter.AutoRoundedCorners = true;
@@ -262,9 +240,9 @@
             "Món chính",
             "Tráng miệng",
             "Đồ uống"});
-            this.cboTilter.Location = new System.Drawing.Point(426, 71);
+            this.cboTilter.Location = new System.Drawing.Point(726, 71);
             this.cboTilter.Name = "cboTilter";
-            this.cboTilter.Size = new System.Drawing.Size(343, 36);
+            this.cboTilter.Size = new System.Drawing.Size(320, 36);
             this.cboTilter.StartIndex = 0;
             this.cboTilter.TabIndex = 8;
             // 
@@ -289,7 +267,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = "Tìm tên món";
             this.txtSearch.SelectedText = "";
-            this.txtSearch.Size = new System.Drawing.Size(396, 36);
+            this.txtSearch.Size = new System.Drawing.Size(711, 36);
             this.txtSearch.TabIndex = 9;
             // 
             // lblDishList
@@ -589,7 +567,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colType;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGia;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTrangThai;
-        private Guna.UI2.WinForms.Guna2Button btnSearch;
         private Guna.UI2.WinForms.Guna2ComboBox cboTilter;
         private Guna.UI2.WinForms.Guna2TextBox txtSearch;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;

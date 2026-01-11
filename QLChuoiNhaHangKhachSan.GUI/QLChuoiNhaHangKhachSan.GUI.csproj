@@ -62,6 +62,12 @@
   </ItemGroup>
   <!-- ===================== COMPILE FILES ===================== -->
   <ItemGroup>
+    <Compile Include="CancelTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CancelTable.Designer.cs">
+      <DependentUpon>CancelTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,12 @@
     </Compile>
     <Compile Include="FoodManagement.Designer.cs">
       <DependentUpon>FoodManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfirmTable.Designer.cs">
+      <DependentUpon>ConfirmTable.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -222,6 +234,9 @@
   </ItemGroup>
   <!-- ===================== RESX (EMBEDDED RESOURCE) ===================== -->
   <ItemGroup>
+    <EmbeddedResource Include="CancelTable.resx">
+      <DependentUpon>CancelTable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomerAdd.resx">
       <DependentUpon>CustomerAdd.cs</DependentUpon>
     </EmbeddedResource>
@@ -236,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FoodManagement.resx">
       <DependentUpon>FoodManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfirmTable.resx">
+      <DependentUpon>ConfirmTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

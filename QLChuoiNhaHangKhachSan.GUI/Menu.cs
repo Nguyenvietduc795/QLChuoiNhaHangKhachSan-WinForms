@@ -21,6 +21,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         public event Action<string> OrderConfirmed;
 
         private int? _customerId;
+        private int? _guestCount;
 
         // --- 3. LẤY CHUỖI KẾT NỐI TỪ APP.CONFIG ---
         // Đảm bảo tên "QuanLyChuoiNhaHangKhachSan" khớp với file App.config của bạn
@@ -350,8 +351,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 int tableId = 0;
                 string tableNumberText = txtTableNumber.Text?.Trim() ?? string.Empty;
 
-                // Tính tổng tiền từ grid
-                decimal subTotal = 0m;
+                // Tính tổng tiền từ grid (phần bổ sung thêm)
+                decimal addedSubTotal = 0m;
                 foreach (DataGridViewRow row in dgvDishMenu.Rows)
                 {
                     if (row.Cells["ThanhTien"].Value != null)
@@ -359,9 +360,15 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         decimal line;
                         if (decimal.TryParse(row.Cells["ThanhTien"].Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out line))
                         {
-                            subTotal += line;
+                            addedSubTotal += line;
                         }
                     }
+                }
+
+                if (!_customerId.HasValue)
+                {
+                    MessageBox.Show("Không có thông tin khách hàng, vui lòng quay lại màn hình trước để nhập khách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
 
                 using (SqlConnection conn = new SqlConnection(strKetNoi))
@@ -392,15 +399,42 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
                     try
                     {
-                        var insertOrder = new SqlCommand(
-                            @"INSERT INTO OrderTicket (TableID, DateCheckIn, Status, SubTotal, TotalAmount)
-                              VALUES (@TableID, GETDATE(), N'Pending', @SubTotal, @SubTotal);
-                              SELECT SCOPE_IDENTITY();", conn, tran);
-                        insertOrder.Parameters.AddWithValue("@TableID", tableId);
-                        insertOrder.Parameters.AddWithValue("@SubTotal", subTotal);
+                        // 1) Tìm order Pending hiện có của bàn
+                        int orderId = 0;
+                        decimal currentSubTotal = 0m;
+                        using (var cmdFindOrder = new SqlCommand(
+                            @"SELECT TOP 1 OrderId, SubTotal FROM OrderTicket 
+                              WHERE TableID = @TableID AND Status = N'Pending'
+                              ORDER BY OrderId DESC", conn, tran))
+                        {
+                            cmdFindOrder.Parameters.AddWithValue("@TableID", tableId);
+                            using (var reader = cmdFindOrder.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    orderId = Convert.ToInt32(reader["OrderId"]);
+                                    currentSubTotal = reader["SubTotal"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["SubTotal"]);
+                                }
+                            }
+                        }
 
-                        int orderId = Convert.ToInt32(insertOrder.ExecuteScalar());
+                        // 2) Nếu chưa có, tạo mới
+                        if (orderId == 0)
+                        {
+                            var insertOrder = new SqlCommand(
+                                @"INSERT INTO OrderTicket (TableID, CustomerID, GuestCount, DateCheckIn, Status, SubTotal, TotalAmount)
+                                  VALUES (@TableID, @CustomerID, @GuestCount, GETDATE(), N'Pending', @SubTotal, @SubTotal);
+                                  SELECT SCOPE_IDENTITY();", conn, tran);
+                            insertOrder.Parameters.AddWithValue("@TableID", tableId);
+                            insertOrder.Parameters.AddWithValue("@CustomerID", _customerId.Value);
+                            insertOrder.Parameters.AddWithValue("@GuestCount", _guestCount ?? 1);
+                            insertOrder.Parameters.AddWithValue("@SubTotal", addedSubTotal);
 
+                            orderId = Convert.ToInt32(insertOrder.ExecuteScalar());
+                            currentSubTotal = 0m; // vừa tạo, subtotal cũ = 0
+                        }
+
+                        // 3) Thêm món mới vào order (cộng dồn)
                         var insertItem = new SqlCommand(
                             @"INSERT INTO OrderTicketItem (OrderId, FoodID, Quantity, UnitPrice, Note)
                               VALUES (@OrderId, @FoodID, @Quantity, @UnitPrice, @Note);", conn, tran);
@@ -432,7 +466,17 @@ namespace QLChuoiNhaHangKhachSan.GUI
                             insertItem.ExecuteNonQuery();
                         }
 
-                        // Cập nhật trạng thái bàn thành "Có khách" (StatusID = 2)
+                        // 4) Cập nhật tổng tiền cộng dồn
+                        decimal newSubTotal = currentSubTotal + addedSubTotal;
+                        using (var cmdUpdateTotal = new SqlCommand(
+                            "UPDATE OrderTicket SET SubTotal = @SubTotal, TotalAmount = @SubTotal WHERE OrderId = @OrderId", conn, tran))
+                        {
+                            cmdUpdateTotal.Parameters.AddWithValue("@SubTotal", newSubTotal);
+                            cmdUpdateTotal.Parameters.AddWithValue("@OrderId", orderId);
+                            cmdUpdateTotal.ExecuteNonQuery();
+                        }
+
+                        // 5) Cập nhật trạng thái bàn thành "Có khách" (StatusID = 2)
                         var updateTableStatus = new SqlCommand(
                             @"UPDATE RestaurantTable SET StatusID = 2 WHERE TableID = @TableID", conn, tran);
                         updateTableStatus.Parameters.AddWithValue("@TableID", tableId);
@@ -505,6 +549,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
         public void SetCustomer(int customerId)
         {
             _customerId = customerId;
+        }
+
+        public void SetGuestCount(int? guestCount)
+        {
+            _guestCount = guestCount;
         }
 
         private void RaiseOrderConfirmed()

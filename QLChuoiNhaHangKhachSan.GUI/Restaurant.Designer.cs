@@ -61,6 +61,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.btnTable26 = new System.Windows.Forms.Button();
             this.btnTable25 = new System.Windows.Forms.Button();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnConfirm = new Guna.UI2.WinForms.Guna2Button();
             this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpTime = new Guna.UI2.WinForms.Guna2DateTimePicker();
@@ -591,6 +592,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.guna2Panel1.BorderRadius = 17;
             this.guna2Panel1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             this.guna2Panel1.BorderThickness = 2;
+            this.guna2Panel1.Controls.Add(this.btnConfirm);
             this.guna2Panel1.Controls.Add(this.btnCancel);
             this.guna2Panel1.Controls.Add(this.label5);
             this.guna2Panel1.Controls.Add(this.dtpTime);
@@ -620,13 +622,33 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.guna2Panel1.Controls.Add(this.txtTableNumber);
             this.guna2Panel1.Controls.Add(this.lblTableNumber);
             this.guna2Panel1.FillColor = System.Drawing.Color.White;
-            this.guna2Panel1.Location = new System.Drawing.Point(1029, -5);
+            this.guna2Panel1.Location = new System.Drawing.Point(989, -5);
             this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(686, 922);
+            this.guna2Panel1.Size = new System.Drawing.Size(726, 922);
             this.guna2Panel1.TabIndex = 34;
             this.guna2Panel1.UseWaitCursor = true;
             this.guna2Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel1_Paint);
+            // 
+            // btnConfirm
+            // 
+            this.btnConfirm.BorderRadius = 5;
+            this.btnConfirm.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnConfirm.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnConfirm.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnConfirm.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnConfirm.FillColor = System.Drawing.Color.LightSeaGreen;
+            this.btnConfirm.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.btnConfirm.ForeColor = System.Drawing.Color.White;
+            this.btnConfirm.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnConfirm.ImageSize = new System.Drawing.Size(40, 35);
+            this.btnConfirm.Location = new System.Drawing.Point(146, 749);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(2);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(119, 61);
+            this.btnConfirm.TabIndex = 43;
+            this.btnConfirm.Text = "Tra cứu đặt bàn";
+            this.btnConfirm.UseWaitCursor = true;
             // 
             // btnCancel
             // 
@@ -637,9 +659,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.btnCancel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(186, 749);
+            this.btnCancel.Location = new System.Drawing.Point(286, 749);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(149, 37);
+            this.btnCancel.Size = new System.Drawing.Size(127, 61);
             this.btnCancel.TabIndex = 42;
             this.btnCancel.Text = "Hủy đặt bàn";
             this.btnCancel.UseWaitCursor = true;
@@ -724,10 +746,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.btnOrder.ForeColor = System.Drawing.Color.White;
             this.btnOrder.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnOrder.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnOrder.Location = new System.Drawing.Point(356, 749);
+            this.btnOrder.Location = new System.Drawing.Point(445, 749);
             this.btnOrder.Margin = new System.Windows.Forms.Padding(2);
             this.btnOrder.Name = "btnOrder";
-            this.btnOrder.Size = new System.Drawing.Size(145, 37);
+            this.btnOrder.Size = new System.Drawing.Size(122, 61);
             this.btnOrder.TabIndex = 36;
             this.btnOrder.Text = "Gọi món";
             this.btnOrder.UseWaitCursor = true;
@@ -855,10 +877,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.btnTableChoose.ForeColor = System.Drawing.Color.White;
             this.btnTableChoose.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnTableChoose.ImageSize = new System.Drawing.Size(40, 35);
-            this.btnTableChoose.Location = new System.Drawing.Point(16, 749);
+            this.btnTableChoose.Location = new System.Drawing.Point(4, 749);
             this.btnTableChoose.Margin = new System.Windows.Forms.Padding(2);
             this.btnTableChoose.Name = "btnTableChoose";
-            this.btnTableChoose.Size = new System.Drawing.Size(141, 37);
+            this.btnTableChoose.Size = new System.Drawing.Size(119, 61);
             this.btnTableChoose.TabIndex = 25;
             this.btnTableChoose.Text = "Đặt bàn";
             this.btnTableChoose.UseWaitCursor = true;
@@ -888,10 +910,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.btnPay.ForeColor = System.Drawing.Color.White;
             this.btnPay.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnPay.ImageSize = new System.Drawing.Size(40, 30);
-            this.btnPay.Location = new System.Drawing.Point(531, 749);
+            this.btnPay.Location = new System.Drawing.Point(585, 749);
             this.btnPay.Margin = new System.Windows.Forms.Padding(2);
             this.btnPay.Name = "btnPay";
-            this.btnPay.Size = new System.Drawing.Size(148, 37);
+            this.btnPay.Size = new System.Drawing.Size(131, 61);
             this.btnPay.TabIndex = 22;
             this.btnPay.Text = "Thanh toán";
             this.btnPay.UseWaitCursor = true;
@@ -938,7 +960,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.dgvDishList.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvDishList.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvDishList.RowTemplate.Height = 24;
-            this.dgvDishList.Size = new System.Drawing.Size(677, 237);
+            this.dgvDishList.Size = new System.Drawing.Size(703, 237);
             this.dgvDishList.TabIndex = 20;
             this.dgvDishList.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvDishList.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -1118,7 +1140,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(420, 33);
+            this.label8.Location = new System.Drawing.Point(388, 33);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 19);
             this.label8.TabIndex = 3;
@@ -1128,7 +1150,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.panel2.Location = new System.Drawing.Point(386, 33);
+            this.panel2.Location = new System.Drawing.Point(354, 33);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(20, 20);
             this.panel2.TabIndex = 2;
@@ -1140,9 +1162,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.label7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(177, 33);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(119, 19);
+            this.label7.Size = new System.Drawing.Size(75, 19);
             this.label7.TabIndex = 1;
-            this.label7.Text = "Không có khách ";
+            this.label7.Text = "Bàn trống";
             this.label7.UseWaitCursor = true;
             // 
             // panel1
@@ -1185,7 +1207,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.panel4.Controls.Add(this.btnTable23);
             this.panel4.Location = new System.Drawing.Point(-16, -10);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1040, 972);
+            this.panel4.Size = new System.Drawing.Size(1000, 972);
             this.panel4.TabIndex = 37;
             this.panel4.UseWaitCursor = true;
             this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
@@ -1283,5 +1305,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private DataGridViewTextBoxColumn colSoLuong;
         private DataGridViewTextBoxColumn colThanhTien;
         private Panel panel4;
+        private Guna2Button btnConfirm;
     }
 }

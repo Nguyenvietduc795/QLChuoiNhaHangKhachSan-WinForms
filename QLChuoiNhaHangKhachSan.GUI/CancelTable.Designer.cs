@@ -1,6 +1,6 @@
 ﻿namespace QLChuoiNhaHangKhachSan.GUI
 {
-    partial class frmReservationForm
+    partial class frmCancelTable
     {
         /// <summary>
         /// Required designer variable.
@@ -28,23 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReservationForm));
-            this.btnExit = new Guna.UI2.WinForms.Guna2Button();
-            this.btnPrint = new Guna.UI2.WinForms.Guna2Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCancelTable));
+            this.txtTime = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtDay = new Guna.UI2.WinForms.Guna2TextBox();
+            this.lblTime = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblDay = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.txtStick = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblCodeStick = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.txtNumber = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtPhone = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2HtmlLabel14 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblNumber = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblEmail = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblPhone = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.pnlBill = new Guna.UI2.WinForms.Guna2Panel();
-            this.txtTime = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtDay = new Guna.UI2.WinForms.Guna2TextBox();
-            this.lblTime = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lblDay = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lblNumber = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.txtCustomer = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblCustomer = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.txtDayTable = new Guna.UI2.WinForms.Guna2TextBox();
@@ -56,36 +53,73 @@
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
+            this.btnExit = new Guna.UI2.WinForms.Guna2Button();
+            this.pnlBill = new Guna.UI2.WinForms.Guna2Panel();
             this.pnlBill.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnExit
+            // txtTime
             // 
-            this.btnExit.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnExit.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnExit.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnExit.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnExit.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(482, 643);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(180, 32);
-            this.btnExit.TabIndex = 6;
-            this.btnExit.Text = "Thoát";
+            this.txtTime.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.txtTime.BorderThickness = 0;
+            this.txtTime.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTime.DefaultText = "";
+            this.txtTime.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtTime.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtTime.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTime.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTime.Enabled = false;
+            this.txtTime.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTime.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtTime.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTime.Location = new System.Drawing.Point(144, 469);
+            this.txtTime.Name = "txtTime";
+            this.txtTime.PlaceholderText = "";
+            this.txtTime.SelectedText = "";
+            this.txtTime.Size = new System.Drawing.Size(428, 29);
+            this.txtTime.TabIndex = 27;
             // 
-            // btnPrint
+            // txtDay
             // 
-            this.btnPrint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnPrint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnPrint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnPrint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Location = new System.Drawing.Point(63, 643);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(180, 32);
-            this.btnPrint.TabIndex = 5;
-            this.btnPrint.Text = "In hóa đơn";
+            this.txtDay.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.txtDay.BorderThickness = 0;
+            this.txtDay.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtDay.DefaultText = " ";
+            this.txtDay.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtDay.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtDay.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDay.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDay.Enabled = false;
+            this.txtDay.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDay.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtDay.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDay.Location = new System.Drawing.Point(144, 430);
+            this.txtDay.Name = "txtDay";
+            this.txtDay.PlaceholderText = "";
+            this.txtDay.SelectedText = "";
+            this.txtDay.Size = new System.Drawing.Size(428, 29);
+            this.txtDay.TabIndex = 26;
+            // 
+            // lblTime
+            // 
+            this.lblTime.BackColor = System.Drawing.Color.Transparent;
+            this.lblTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.Location = new System.Drawing.Point(75, 479);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(49, 19);
+            this.lblTime.TabIndex = 25;
+            this.lblTime.Text = "Giờ đặt:";
+            // 
+            // lblDay
+            // 
+            this.lblDay.BackColor = System.Drawing.Color.Transparent;
+            this.lblDay.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDay.Location = new System.Drawing.Point(70, 440);
+            this.lblDay.Name = "lblDay";
+            this.lblDay.Size = new System.Drawing.Size(60, 19);
+            this.lblDay.TabIndex = 24;
+            this.lblDay.Text = "Ngày đặt:";
             // 
             // txtStick
             // 
@@ -107,7 +141,6 @@
             this.txtStick.SelectedText = "";
             this.txtStick.Size = new System.Drawing.Size(428, 23);
             this.txtStick.TabIndex = 23;
-            this.txtStick.TextChanged += new System.EventHandler(this.guna2TextBox8_TextChanged);
             // 
             // lblCodeStick
             // 
@@ -192,6 +225,16 @@
             this.guna2HtmlLabel14.TabIndex = 18;
             this.guna2HtmlLabel14.Text = "Xin cảm ơn quý khách";
             // 
+            // lblNumber
+            // 
+            this.lblNumber.BackColor = System.Drawing.Color.Transparent;
+            this.lblNumber.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumber.Location = new System.Drawing.Point(75, 399);
+            this.lblNumber.Name = "lblNumber";
+            this.lblNumber.Size = new System.Drawing.Size(59, 19);
+            this.lblNumber.TabIndex = 16;
+            this.lblNumber.Text = "Số người:";
+            // 
             // lblEmail
             // 
             this.lblEmail.BackColor = System.Drawing.Color.Transparent;
@@ -211,110 +254,6 @@
             this.lblPhone.Size = new System.Drawing.Size(83, 19);
             this.lblPhone.TabIndex = 14;
             this.lblPhone.Text = "Số điện thoại:";
-            // 
-            // pnlBill
-            // 
-            this.pnlBill.Controls.Add(this.txtTime);
-            this.pnlBill.Controls.Add(this.txtDay);
-            this.pnlBill.Controls.Add(this.lblTime);
-            this.pnlBill.Controls.Add(this.lblDay);
-            this.pnlBill.Controls.Add(this.txtStick);
-            this.pnlBill.Controls.Add(this.lblCodeStick);
-            this.pnlBill.Controls.Add(this.txtNumber);
-            this.pnlBill.Controls.Add(this.txtEmail);
-            this.pnlBill.Controls.Add(this.txtPhone);
-            this.pnlBill.Controls.Add(this.guna2HtmlLabel14);
-            this.pnlBill.Controls.Add(this.lblNumber);
-            this.pnlBill.Controls.Add(this.lblEmail);
-            this.pnlBill.Controls.Add(this.lblPhone);
-            this.pnlBill.Controls.Add(this.txtCustomer);
-            this.pnlBill.Controls.Add(this.lblCustomer);
-            this.pnlBill.Controls.Add(this.txtDayTable);
-            this.pnlBill.Controls.Add(this.lblDayTable);
-            this.pnlBill.Controls.Add(this.txtCodeTable);
-            this.pnlBill.Controls.Add(this.lblCodeTable);
-            this.pnlBill.Controls.Add(this.lblTitel);
-            this.pnlBill.Controls.Add(this.guna2HtmlLabel4);
-            this.pnlBill.Controls.Add(this.guna2HtmlLabel3);
-            this.pnlBill.Controls.Add(this.guna2HtmlLabel2);
-            this.pnlBill.Controls.Add(this.guna2HtmlLabel1);
-            this.pnlBill.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlBill.Location = new System.Drawing.Point(12, 12);
-            this.pnlBill.Name = "pnlBill";
-            this.pnlBill.Size = new System.Drawing.Size(676, 604);
-            this.pnlBill.TabIndex = 4;
-            // 
-            // txtTime
-            // 
-            this.txtTime.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
-            this.txtTime.BorderThickness = 0;
-            this.txtTime.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtTime.DefaultText = "";
-            this.txtTime.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtTime.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtTime.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTime.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTime.Enabled = false;
-            this.txtTime.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTime.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTime.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTime.Location = new System.Drawing.Point(144, 469);
-            this.txtTime.Name = "txtTime";
-            this.txtTime.PlaceholderText = "";
-            this.txtTime.SelectedText = "";
-            this.txtTime.Size = new System.Drawing.Size(428, 29);
-            this.txtTime.TabIndex = 27;
-            // 
-            // txtDay
-            // 
-            this.txtDay.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
-            this.txtDay.BorderThickness = 0;
-            this.txtDay.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtDay.DefaultText = " ";
-            this.txtDay.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtDay.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtDay.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtDay.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtDay.Enabled = false;
-            this.txtDay.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDay.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtDay.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDay.Location = new System.Drawing.Point(144, 430);
-            this.txtDay.Name = "txtDay";
-            this.txtDay.PlaceholderText = "";
-            this.txtDay.SelectedText = "";
-            this.txtDay.Size = new System.Drawing.Size(428, 29);
-            this.txtDay.TabIndex = 26;
-            // 
-            // lblTime
-            // 
-            this.lblTime.BackColor = System.Drawing.Color.Transparent;
-            this.lblTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(75, 479);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(49, 19);
-            this.lblTime.TabIndex = 25;
-            this.lblTime.Text = "Giờ đặt:";
-            // 
-            // lblDay
-            // 
-            this.lblDay.BackColor = System.Drawing.Color.Transparent;
-            this.lblDay.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDay.Location = new System.Drawing.Point(70, 440);
-            this.lblDay.Name = "lblDay";
-            this.lblDay.Size = new System.Drawing.Size(60, 19);
-            this.lblDay.TabIndex = 24;
-            this.lblDay.Text = "Ngày đặt:";
-            // 
-            // lblNumber
-            // 
-            this.lblNumber.BackColor = System.Drawing.Color.Transparent;
-            this.lblNumber.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumber.Location = new System.Drawing.Point(75, 399);
-            this.lblNumber.Name = "lblNumber";
-            this.lblNumber.Size = new System.Drawing.Size(59, 19);
-            this.lblNumber.TabIndex = 16;
-            this.lblNumber.Text = "Số người:";
             // 
             // txtCustomer
             // 
@@ -415,9 +354,9 @@
             this.lblTitel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitel.Location = new System.Drawing.Point(236, 115);
             this.lblTitel.Name = "lblTitel";
-            this.lblTitel.Size = new System.Drawing.Size(188, 34);
+            this.lblTitel.Size = new System.Drawing.Size(189, 34);
             this.lblTitel.TabIndex = 4;
-            this.lblTitel.Text = "PHIẾU ĐẶT BÀN";
+            this.lblTitel.Text = "PHIẾU HỦY BÀN";
             // 
             // guna2HtmlLabel4
             // 
@@ -458,17 +397,76 @@
             this.guna2HtmlLabel1.TabIndex = 0;
             this.guna2HtmlLabel1.Text = "Chuỗi nhà hàng khách sạn";
             // 
-            // frmReservationForm
+            // btnCancel
+            // 
+            this.btnCancel.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnCancel.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnCancel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnCancel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(72, 654);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(180, 32);
+            this.btnCancel.TabIndex = 11;
+            this.btnCancel.Text = "Hủy đặt bàn";
+            // 
+            // btnExit
+            // 
+            this.btnExit.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnExit.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnExit.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnExit.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnExit.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Location = new System.Drawing.Point(532, 654);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(180, 32);
+            this.btnExit.TabIndex = 10;
+            this.btnExit.Text = "Thoát";
+            // 
+            // pnlBill
+            // 
+            this.pnlBill.Controls.Add(this.txtTime);
+            this.pnlBill.Controls.Add(this.txtDay);
+            this.pnlBill.Controls.Add(this.lblTime);
+            this.pnlBill.Controls.Add(this.lblDay);
+            this.pnlBill.Controls.Add(this.txtStick);
+            this.pnlBill.Controls.Add(this.lblCodeStick);
+            this.pnlBill.Controls.Add(this.txtNumber);
+            this.pnlBill.Controls.Add(this.txtEmail);
+            this.pnlBill.Controls.Add(this.txtPhone);
+            this.pnlBill.Controls.Add(this.guna2HtmlLabel14);
+            this.pnlBill.Controls.Add(this.lblNumber);
+            this.pnlBill.Controls.Add(this.lblEmail);
+            this.pnlBill.Controls.Add(this.lblPhone);
+            this.pnlBill.Controls.Add(this.txtCustomer);
+            this.pnlBill.Controls.Add(this.lblCustomer);
+            this.pnlBill.Controls.Add(this.txtDayTable);
+            this.pnlBill.Controls.Add(this.lblDayTable);
+            this.pnlBill.Controls.Add(this.txtCodeTable);
+            this.pnlBill.Controls.Add(this.lblCodeTable);
+            this.pnlBill.Controls.Add(this.lblTitel);
+            this.pnlBill.Controls.Add(this.guna2HtmlLabel4);
+            this.pnlBill.Controls.Add(this.guna2HtmlLabel3);
+            this.pnlBill.Controls.Add(this.guna2HtmlLabel2);
+            this.pnlBill.Controls.Add(this.guna2HtmlLabel1);
+            this.pnlBill.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlBill.Location = new System.Drawing.Point(62, 23);
+            this.pnlBill.Name = "pnlBill";
+            this.pnlBill.Size = new System.Drawing.Size(676, 604);
+            this.pnlBill.TabIndex = 8;
+            // 
+            // frmCancelTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 751);
+            this.ClientSize = new System.Drawing.Size(800, 709);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.pnlBill);
-            this.Name = "frmReservationForm";
-            this.Text = "ReservationForm";
-            this.Load += new System.EventHandler(this.frmReservationForm_Load_1);
+            this.Name = "frmCancelTable";
+            this.Text = "CancelTable";
             this.pnlBill.ResumeLayout(false);
             this.pnlBill.PerformLayout();
             this.ResumeLayout(false);
@@ -476,18 +474,20 @@
         }
 
         #endregion
-        private Guna.UI2.WinForms.Guna2Button btnExit;
-        private Guna.UI2.WinForms.Guna2Button btnPrint;
+
+        private Guna.UI2.WinForms.Guna2TextBox txtTime;
+        private Guna.UI2.WinForms.Guna2TextBox txtDay;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTime;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblDay;
         private Guna.UI2.WinForms.Guna2TextBox txtStick;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblCodeStick;
         private Guna.UI2.WinForms.Guna2TextBox txtNumber;
         private Guna.UI2.WinForms.Guna2TextBox txtEmail;
         private Guna.UI2.WinForms.Guna2TextBox txtPhone;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel14;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblNumber;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblEmail;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblPhone;
-        private Guna.UI2.WinForms.Guna2Panel pnlBill;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblNumber;
         private Guna.UI2.WinForms.Guna2TextBox txtCustomer;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblCustomer;
         private Guna.UI2.WinForms.Guna2TextBox txtDayTable;
@@ -499,9 +499,8 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private Guna.UI2.WinForms.Guna2TextBox txtTime;
-        private Guna.UI2.WinForms.Guna2TextBox txtDay;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblTime;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblDay;
+        private Guna.UI2.WinForms.Guna2Button btnCancel;
+        private Guna.UI2.WinForms.Guna2Button btnExit;
+        private Guna.UI2.WinForms.Guna2Panel pnlBill;
     }
 }

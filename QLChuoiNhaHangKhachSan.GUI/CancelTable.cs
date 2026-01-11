@@ -2,7 +2,6 @@
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Drawing.Printing;
 using System.Globalization;
 using System.IO;
 using System.Net;
@@ -11,28 +10,22 @@ using System.Windows.Forms;
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
-    public partial class frmReservationForm : Form
+    public partial class frmCancelTable : Form
     {
         private readonly string _connectionString = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
-        private readonly PrintDocument _printDocument = new PrintDocument();
         private Bitmap _billBitmap;
+        private int _tableId;
 
-        public frmReservationForm()
+        public frmCancelTable()
         {
             InitializeComponent();
 
-            Load += frmReservationForm_Load;
-            btnPrint.Click += btnPrint_Click;
+            Load += frmCancelTable_Load;
+            btnCancel.Click += btnCancel_Click;
             btnExit.Click += btnExit_Click;
-            _printDocument.PrintPage += PrintDocument_PrintPage;
         }
 
-        private void guna2TextBox8_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void frmReservationForm_Load(object sender, EventArgs e)
+        private void frmCancelTable_Load(object sender, EventArgs e)
         {
             LoadLatestBooking();
         }
@@ -58,6 +51,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                                                 FROM BookingsTable b
                                                 LEFT JOIN RestaurantTable rt ON b.TableID = rt.TableID
                                                 LEFT JOIN Customers c ON b.CustomerID = c.CustomerId
+                                                WHERE b.Status = N'Đã đặt'
                                                 ORDER BY b.BookingID DESC", conn))
                 {
                     conn.Open();
@@ -65,12 +59,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     {
                         if (reader.Read())
                         {
-                            txtStick.Text = reader["BookingID"].ToString(); // Mã đặt bàn
+                            txtStick.Text = reader["BookingID"].ToString();
+                            _tableId = Convert.ToInt32(reader["TableID"]);
                             var tableName = reader["TableName"] as string;
-                            var tableId = reader["TableID"].ToString();
-                            txtCodeTable.Text = string.IsNullOrWhiteSpace(tableName) ? tableId : tableName; // Mã bàn
+                            txtCodeTable.Text = string.IsNullOrWhiteSpace(tableName) ? _tableId.ToString() : tableName;
 
-                            // Ngày/giờ đặt và ngày lập
                             DateTime bookingDate = reader.GetDateTime(reader.GetOrdinal("BookingDate"));
                             TimeSpan bookingTime = reader.GetTimeSpan(reader.GetOrdinal("BookingTime"));
                             DateTime? createdDate = reader["CreatedDate"] == DBNull.Value
@@ -88,7 +81,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         }
                         else
                         {
-                            MessageBox.Show("Không có dữ liệu đặt bàn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Không có dữ liệu đặt bàn đang chờ hủy.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -99,40 +92,31 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             try
             {
-                CaptureBill();
-                SendReservationEmail();
-
-                using (var dlg = new PrintDialog())
+                if (_tableId == 0)
                 {
-                    dlg.Document = _printDocument;
-                    if (dlg.ShowDialog(this) == DialogResult.OK)
-                    {
-                        _printDocument.Print();
-                    }
+                    MessageBox.Show("Không có thông tin bàn để hủy.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+
+                CaptureBill();
+                SendCancelEmail();
+                UpdateTableToEmpty();
+                MessageBox.Show("Đã hủy đặt bàn và thông báo qua email.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Không thể in phiếu đặt bàn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi khi hủy đặt bàn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            using (var cancelForm = new frmCancelTable())
-            {
-                cancelForm.StartPosition = FormStartPosition.CenterParent;
-                cancelForm.ShowDialog(this);
-            }
         }
 
         private void CaptureBill()
@@ -142,25 +126,43 @@ namespace QLChuoiNhaHangKhachSan.GUI
             pnlBill.DrawToBitmap(_billBitmap, new Rectangle(0, 0, pnlBill.Width, pnlBill.Height));
         }
 
-        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        private void UpdateTableToEmpty()
         {
-            if (_billBitmap == null)
+            try
             {
-                CaptureBill();
-            }
+                using (var conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
 
-            if (_billBitmap != null)
+                    // Cập nhật trạng thái booking thành Hủy
+                    using (var cmdUpdateBooking = new SqlCommand(
+                        "UPDATE BookingsTable SET Status = N'Đã hủy' WHERE TableID = @TableID AND Status = N'Đã đặt'", conn))
+                    {
+                        cmdUpdateBooking.Parameters.AddWithValue("@TableID", _tableId);
+                        cmdUpdateBooking.ExecuteNonQuery();
+                    }
+
+                    // Cập nhật trạng thái bàn về trống (StatusID = 1)
+                    using (var cmdUpdateTable = new SqlCommand(
+                        "UPDATE RestaurantTable SET StatusID = 1 WHERE TableID = @TableID", conn))
+                    {
+                        cmdUpdateTable.Parameters.AddWithValue("@TableID", _tableId);
+                        cmdUpdateTable.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
             {
-                e.Graphics.DrawImage(_billBitmap, new Point(0, 0));
+                throw new Exception("Lỗi cập nhật trạng thái bàn: " + ex.Message);
             }
         }
 
-        private void SendReservationEmail()
+        private void SendCancelEmail()
         {
             var recipient = txtEmail.Text?.Trim();
             if (string.IsNullOrEmpty(recipient))
             {
-                MessageBox.Show("Không có email khách hàng để gửi phiếu đặt bàn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Không có email khách hàng để thông báo hủy.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -180,11 +182,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     {
                         mail.From = new MailAddress("lamtritua@gmail.com", "Chuỗi nhà hàng khách sạn Accor Hotels");
                         mail.To.Add(recipient);
-                        mail.Subject = "Phiếu đặt bàn của bạn";
-                        mail.Body = "Quý khách vui lòng xem phiếu đặt bàn đính kèm. Cảm ơn quý khách";
+                        mail.Subject = "Thông báo hủy đặt bàn";
+                        mail.Body = "Đặt bàn của quý khách đã được hủy theo yêu cầu. Thông tin chi tiết đính kèm.";
                         mail.IsBodyHtml = false;
 
-                        using (var attachment = new Attachment(ms, "PhieuDatBan.png", "image/png"))
+                        using (var attachment = new Attachment(ms, "PhieuHuyDatBan.png", "image/png"))
                         {
                             mail.Attachments.Add(attachment);
 
@@ -197,18 +199,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         }
                     }
                 }
-
-                MessageBox.Show("Đã gửi phiếu đặt bàn đến email khách hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Gửi email thất bại: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new Exception("Gửi email hủy thất bại: " + ex.Message);
             }
-        }
-
-        private void frmReservationForm_Load_1(object sender, EventArgs e)
-        {
-
         }
     }
 }
+
