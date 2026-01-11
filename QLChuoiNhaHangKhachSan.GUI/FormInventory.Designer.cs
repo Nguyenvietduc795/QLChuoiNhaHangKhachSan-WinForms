@@ -29,12 +29,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInventory));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlTopbar = new Guna.UI2.WinForms.Guna2Panel();
             this.lblUserRole = new System.Windows.Forms.Label();
             this.lblSubtitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -48,13 +48,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.chipTotal = new Guna.UI2.WinForms.Guna2Chip();
             this.pnlIconTotal = new Guna.UI2.WinForms.Guna2Panel();
             this.iconBox = new FontAwesome.Sharp.IconPictureBox();
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.CardSlowTotal = new Guna.UI2.WinForms.Guna2Panel();
             this.lbStockLowCaption = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lbStockLow = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.cardLow = new Guna.UI2.WinForms.Guna2Chip();
             this.pnsocklow = new Guna.UI2.WinForms.Guna2Panel();
             this.iconWarning = new FontAwesome.Sharp.IconPictureBox();
-            this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            this.CardHealthyTotal = new Guna.UI2.WinForms.Guna2Panel();
             this.lbHealthyStockCaption = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lbHealthyStock = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.cardHealthy = new Guna.UI2.WinForms.Guna2Chip();
@@ -84,13 +84,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.sptthienthi = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.DGdanhsachtonkho = new Guna.UI2.WinForms.Guna2DataGridView();
             this.lbdanhsachtonkho = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.btnPage1 = new Guna.UI2.WinForms.Guna2Button();
-            this.btnPage4 = new Guna.UI2.WinForms.Guna2Button();
-            this.btnPrev = new Guna.UI2.WinForms.Guna2Button();
-            this.btnPage5 = new Guna.UI2.WinForms.Guna2Button();
-            this.btnNext = new Guna.UI2.WinForms.Guna2Button();
-            this.btnPage2 = new Guna.UI2.WinForms.Guna2Button();
-            this.btnPage3 = new Guna.UI2.WinForms.Guna2Button();
             this.Pnbottom2 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -102,10 +95,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.cardTotal.SuspendLayout();
             this.pnlIconTotal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconBox)).BeginInit();
-            this.guna2Panel1.SuspendLayout();
+            this.CardSlowTotal.SuspendLayout();
             this.pnsocklow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconWarning)).BeginInit();
-            this.guna2Panel3.SuspendLayout();
+            this.CardHealthyTotal.SuspendLayout();
             this.pntotalondin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconCheck)).BeginInit();
             this.spFilter.SuspendLayout();
@@ -307,24 +300,23 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.iconBox.TabIndex = 1;
             this.iconBox.TabStop = false;
             // 
-            // guna2Panel1
+            // CardSlowTotal
             // 
-            this.guna2Panel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Panel1.BorderRadius = 14;
-            this.guna2Panel1.Controls.Add(this.lbStockLowCaption);
-            this.guna2Panel1.Controls.Add(this.lbStockLow);
-            this.guna2Panel1.Controls.Add(this.cardLow);
-            this.guna2Panel1.Controls.Add(this.pnsocklow);
-            this.guna2Panel1.FillColor = System.Drawing.Color.White;
-            this.guna2Panel1.Location = new System.Drawing.Point(760, 27);
-            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(21, 20, 21, 20);
-            this.guna2Panel1.ShadowDecoration.BorderRadius = 12;
-            this.guna2Panel1.ShadowDecoration.Depth = 2;
-            this.guna2Panel1.ShadowDecoration.Enabled = true;
-            this.guna2Panel1.Size = new System.Drawing.Size(659, 197);
-            this.guna2Panel1.TabIndex = 1;
+            this.CardSlowTotal.BackColor = System.Drawing.Color.Transparent;
+            this.CardSlowTotal.BorderRadius = 14;
+            this.CardSlowTotal.Controls.Add(this.lbStockLowCaption);
+            this.CardSlowTotal.Controls.Add(this.lbStockLow);
+            this.CardSlowTotal.Controls.Add(this.cardLow);
+            this.CardSlowTotal.Controls.Add(this.pnsocklow);
+            this.CardSlowTotal.FillColor = System.Drawing.Color.White;
+            this.CardSlowTotal.Location = new System.Drawing.Point(570, 22);
+            this.CardSlowTotal.Name = "CardSlowTotal";
+            this.CardSlowTotal.Padding = new System.Windows.Forms.Padding(16);
+            this.CardSlowTotal.ShadowDecoration.BorderRadius = 12;
+            this.CardSlowTotal.ShadowDecoration.Depth = 2;
+            this.CardSlowTotal.ShadowDecoration.Enabled = true;
+            this.CardSlowTotal.Size = new System.Drawing.Size(494, 160);
+            this.CardSlowTotal.TabIndex = 1;
             // 
             // lbStockLowCaption
             // 
@@ -394,25 +386,24 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.iconWarning.TabIndex = 2;
             this.iconWarning.TabStop = false;
             // 
-            // guna2Panel3
+            // CardHealthyTotal
             // 
-            this.guna2Panel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Panel3.BorderRadius = 14;
-            this.guna2Panel3.Controls.Add(this.lbHealthyStockCaption);
-            this.guna2Panel3.Controls.Add(this.lbHealthyStock);
-            this.guna2Panel3.Controls.Add(this.cardHealthy);
-            this.guna2Panel3.Controls.Add(this.pntotalondin);
-            this.guna2Panel3.FillColor = System.Drawing.Color.White;
-            this.guna2Panel3.Location = new System.Drawing.Point(1456, 27);
-            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2Panel3.Name = "guna2Panel3";
-            this.guna2Panel3.Padding = new System.Windows.Forms.Padding(21, 20, 21, 20);
-            this.guna2Panel3.ShadowDecoration.BorderRadius = 12;
-            this.guna2Panel3.ShadowDecoration.Depth = 2;
-            this.guna2Panel3.ShadowDecoration.Enabled = true;
-            this.guna2Panel3.Size = new System.Drawing.Size(719, 197);
-            this.guna2Panel3.TabIndex = 2;
-            this.guna2Panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel3_Paint);
+            this.CardHealthyTotal.BackColor = System.Drawing.Color.Transparent;
+            this.CardHealthyTotal.BorderRadius = 14;
+            this.CardHealthyTotal.Controls.Add(this.lbHealthyStockCaption);
+            this.CardHealthyTotal.Controls.Add(this.lbHealthyStock);
+            this.CardHealthyTotal.Controls.Add(this.cardHealthy);
+            this.CardHealthyTotal.Controls.Add(this.pntotalondin);
+            this.CardHealthyTotal.FillColor = System.Drawing.Color.White;
+            this.CardHealthyTotal.Location = new System.Drawing.Point(1092, 22);
+            this.CardHealthyTotal.Name = "CardHealthyTotal";
+            this.CardHealthyTotal.Padding = new System.Windows.Forms.Padding(16);
+            this.CardHealthyTotal.ShadowDecoration.BorderRadius = 12;
+            this.CardHealthyTotal.ShadowDecoration.Depth = 2;
+            this.CardHealthyTotal.ShadowDecoration.Enabled = true;
+            this.CardHealthyTotal.Size = new System.Drawing.Size(539, 160);
+            this.CardHealthyTotal.TabIndex = 2;
+            this.CardHealthyTotal.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel3_Paint);
             // 
             // lbHealthyStockCaption
             // 
@@ -661,7 +652,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.txTimkiem.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
             this.txTimkiem.BorderRadius = 10;
             this.txTimkiem.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txTimkiem.DefaultText = "Nhập mã/ tên ...";
+            this.txTimkiem.DefaultText = "";
             this.txTimkiem.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txTimkiem.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txTimkiem.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -677,7 +668,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.txTimkiem.Location = new System.Drawing.Point(1091, 37);
             this.txTimkiem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txTimkiem.Name = "txTimkiem";
-            this.txTimkiem.PlaceholderText = "";
+            this.txTimkiem.PlaceholderText = "Nhập mã/ tên ...";
             this.txTimkiem.SelectedText = "";
             this.txTimkiem.ShadowDecoration.BorderRadius = 12;
             this.txTimkiem.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(102)))), ((int)(((byte)(241)))));
@@ -694,8 +685,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.lbDSTonkho.Controls.Add(this.pnbottom1);
             this.lbDSTonkho.Controls.Add(this.Pnbottom2);
             this.lbDSTonkho.Controls.Add(this.spFilter);
-            this.lbDSTonkho.Controls.Add(this.guna2Panel3);
-            this.lbDSTonkho.Controls.Add(this.guna2Panel1);
+            this.lbDSTonkho.Controls.Add(this.CardHealthyTotal);
+            this.lbDSTonkho.Controls.Add(this.CardSlowTotal);
             this.lbDSTonkho.Controls.Add(this.cardTotal);
             this.lbDSTonkho.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.lbDSTonkho.Location = new System.Drawing.Point(20, 126);
@@ -842,13 +833,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.pnbottom1.BackColor = System.Drawing.Color.Transparent;
             this.pnbottom1.BorderRadius = 14;
             this.pnbottom1.Controls.Add(this.TbDanhsachtonkho);
-            this.pnbottom1.Controls.Add(this.btnPage1);
-            this.pnbottom1.Controls.Add(this.btnPage4);
-            this.pnbottom1.Controls.Add(this.btnPrev);
-            this.pnbottom1.Controls.Add(this.btnPage5);
-            this.pnbottom1.Controls.Add(this.btnNext);
-            this.pnbottom1.Controls.Add(this.btnPage2);
-            this.pnbottom1.Controls.Add(this.btnPage3);
             this.pnbottom1.FillColor = System.Drawing.Color.White;
             this.pnbottom1.Location = new System.Drawing.Point(61, 496);
             this.pnbottom1.Margin = new System.Windows.Forms.Padding(4);
@@ -899,26 +883,26 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // 
             this.DGdanhsachtonkho.AllowUserToDeleteRows = false;
             this.DGdanhsachtonkho.AllowUserToResizeColumns = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.DGdanhsachtonkho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGdanhsachtonkho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.DGdanhsachtonkho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGdanhsachtonkho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.DGdanhsachtonkho.ColumnHeadersHeight = 15;
             this.DGdanhsachtonkho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGdanhsachtonkho.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGdanhsachtonkho.DefaultCellStyle = dataGridViewCellStyle9;
             this.DGdanhsachtonkho.GridColor = System.Drawing.Color.Gainsboro;
             this.DGdanhsachtonkho.Location = new System.Drawing.Point(4, 91);
             this.DGdanhsachtonkho.Margin = new System.Windows.Forms.Padding(4);
@@ -1174,26 +1158,26 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // 
             // DGCanhbaotonkho
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.DGCanhbaotonkho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGCanhbaotonkho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.DGCanhbaotonkho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGCanhbaotonkho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.DGCanhbaotonkho.ColumnHeadersHeight = 4;
             this.DGCanhbaotonkho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGCanhbaotonkho.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGCanhbaotonkho.DefaultCellStyle = dataGridViewCellStyle12;
             this.DGCanhbaotonkho.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGCanhbaotonkho.GridColor = System.Drawing.Color.Gainsboro;
             this.DGCanhbaotonkho.Location = new System.Drawing.Point(4, 84);
@@ -1245,12 +1229,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.cardTotal.PerformLayout();
             this.pnlIconTotal.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconBox)).EndInit();
-            this.guna2Panel1.ResumeLayout(false);
-            this.guna2Panel1.PerformLayout();
+            this.CardSlowTotal.ResumeLayout(false);
+            this.CardSlowTotal.PerformLayout();
             this.pnsocklow.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconWarning)).EndInit();
-            this.guna2Panel3.ResumeLayout(false);
-            this.guna2Panel3.PerformLayout();
+            this.CardHealthyTotal.ResumeLayout(false);
+            this.CardHealthyTotal.PerformLayout();
             this.pntotalondin.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconCheck)).EndInit();
             this.spFilter.ResumeLayout(false);
@@ -1286,13 +1270,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private Guna.UI2.WinForms.Guna2Chip chipTotal;
         private Guna.UI2.WinForms.Guna2Panel pnlIconTotal;
         private FontAwesome.Sharp.IconPictureBox iconBox;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2Panel CardSlowTotal;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbStockLowCaption;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbStockLow;
         private Guna.UI2.WinForms.Guna2Chip cardLow;
         private Guna.UI2.WinForms.Guna2Panel pnsocklow;
         private FontAwesome.Sharp.IconPictureBox iconWarning;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
+        private Guna.UI2.WinForms.Guna2Panel CardHealthyTotal;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbHealthyStockCaption;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbHealthyStock;
         private Guna.UI2.WinForms.Guna2Chip cardHealthy;
@@ -1317,13 +1301,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private Guna.UI2.WinForms.Guna2HtmlLabel sptthienthi;
         private Guna.UI2.WinForms.Guna2DataGridView DGdanhsachtonkho;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbdanhsachtonkho;
-        private Guna.UI2.WinForms.Guna2Button btnPage1;
-        private Guna.UI2.WinForms.Guna2Button btnPage4;
-        private Guna.UI2.WinForms.Guna2Button btnPrev;
-        private Guna.UI2.WinForms.Guna2Button btnPage5;
-        private Guna.UI2.WinForms.Guna2Button btnNext;
-        private Guna.UI2.WinForms.Guna2Button btnPage2;
-        private Guna.UI2.WinForms.Guna2Button btnPage3;
         private Guna.UI2.WinForms.Guna2Panel Pnbottom2;
         private Guna.UI2.WinForms.Guna2Button guna2Button5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;

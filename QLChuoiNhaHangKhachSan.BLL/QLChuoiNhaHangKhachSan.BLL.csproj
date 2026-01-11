@@ -45,6 +45,7 @@
     <Compile Include="EquipmentBLL.cs" />
     <Compile Include="IngredientBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockBLL.cs" />
     <Compile Include="UnitBLL.cs" />
     <Compile Include="WarehouseVoucherBLL.cs" />
   </ItemGroup>

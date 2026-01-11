@@ -1,5 +1,6 @@
 ﻿using QLChuoiNhaHangKhachSan.BLL;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
@@ -15,13 +16,16 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private BindingList<SelectItemDTO> _items;
         private readonly UnitBLL _unitBll;
         private readonly WarehouseVoucherBLL _voucherBll;
+        private WarehouseVoucherDTO _editingVoucher;
+        private bool IsEditMode => _editingVoucher != null;
 
-        public FormExportWarehouse()
+        public FormExportWarehouse(WarehouseVoucherDTO editingVoucher = null)
         {
             InitializeComponent();
             this.Load += FormExportWarehouse_Load;
             _unitBll = new UnitBLL(ConfigurationManager.ConnectionStrings["RHGROUP"].ConnectionString);
             _voucherBll = new WarehouseVoucherBLL(ConfigurationManager.ConnectionStrings["RHGROUP"].ConnectionString);
+            _editingVoucher = editingVoucher;
             bnupdaterowexportKho.Click += bnupdaterowexportKho_Click;
             bndeleterowexportkho.Click += bndeleterowexportkho_Click;
             btnCancelExportKho.Click += btnCancelExportKho_Click;
@@ -35,13 +39,20 @@ namespace QLChuoiNhaHangKhachSan.GUI
             InitGrid();
             txtMaPhieuexport.ReadOnly = true;
             txtMaPhieuexport.TabStop = false;
-            try
+            if (IsEditMode)
             {
-                txtMaPhieuexport.Text = _voucherBll.GetNextVoucherCode(false);
+                LoadVoucherDraftForEdit();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Không lấy được mã phiếu tiếp theo: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    txtMaPhieuexport.Text = _voucherBll.GetNextVoucherCode(false);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không lấy được mã phiếu tiếp theo: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -114,6 +125,64 @@ namespace QLChuoiNhaHangKhachSan.GUI
             DGVexportkho.ReadOnly = true;
             HideGridColumns();
             LocalizeGridHeaders();
+        }
+
+        private void LoadVoucherDraftForEdit()
+        {
+            var latest = _voucherBll.GetVoucherById(_editingVoucher.VoucherID);
+            if (latest == null)
+            {
+                MessageBox.Show("Không tìm thấy dữ liệu phiếu cần sửa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult = DialogResult.Cancel;
+                Close();
+                return;
+            }
+
+            _editingVoucher = latest;
+            txtMaPhieuexport.Text = latest.VoucherCode;
+
+            var type = string.Equals(latest.WarehouseType, "EQUIPMENT", StringComparison.OrdinalIgnoreCase)
+                ? WarehouseType.Equipment
+                : WarehouseType.Ingredient;
+
+            cbtypekhoexport.SelectedValue = type;
+            cbtypekhoexport.Enabled = false;
+            LoadDonViFromDb();
+            if (!string.IsNullOrWhiteSpace(latest.UnitCode))
+            {
+                try
+                {
+                    cbdonviexportkho.SelectedValue = latest.UnitCode;
+                }
+                catch
+                {
+                }
+            }
+
+            cbStatusExport.SelectedItem = string.IsNullOrWhiteSpace(latest.Status) ? "Nháp" : latest.Status;
+            bnCreateExportPhieu.Text = "Lưu phiếu";
+
+            var detailDtos = _voucherBll.GetVoucherDetails(latest.VoucherID) ?? new List<WarehouseVoucherDetailDTO>();
+            _items.Clear();
+            foreach (var detail in detailDtos)
+            {
+                var item = new SelectItemDTO
+                {
+                    IngredientID = detail.IngredientID ?? 0,
+                    IngredientCode = detail.IngredientID.HasValue ? detail.ItemCode : null,
+                    IngredientName = detail.IngredientID.HasValue ? detail.ItemName : null,
+                    ItemID = detail.EquipmentID ?? 0,
+                    ItemCode = detail.EquipmentID.HasValue ? detail.ItemCode : null,
+                    ItemName = detail.EquipmentID.HasValue ? detail.ItemName : null,
+                    Unit = detail.Unit,
+                    Quantity = detail.Quantity,
+                    UnitPrice = detail.UnitPrice,
+                    StockQuantity = 0
+                };
+                _items.Add(item);
+            }
+
+            DGVexportkho.Refresh();
         }
 
         private void Cbtypekhoexport_SelectedIndexChanged(object sender, EventArgs e)
@@ -240,26 +309,46 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 Note = string.Empty
             };
 
-            var details = _items.Select(i => new WarehouseVoucherDetailDTO
+            var details = BuildExportDetails(selectedType);
+            if (details.Count == 0)
             {
-                IngredientID = selectedType == WarehouseType.Ingredient && i.IngredientID > 0 ? (int?)i.IngredientID : null,
-                EquipmentID = selectedType == WarehouseType.Equipment && i.ItemID > 0 ? (int?)i.ItemID : null,
-                Quantity = i.Quantity,
-                UnitPrice = i.UnitPrice,
-                LineTotal = i.Quantity * i.UnitPrice
-            }).ToList();
+                MessageBox.Show("Không có dòng dữ liệu hợp lệ để lưu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             try
             {
-                // ... build voucher + details, gọi BLL lưu ...
-                var created = _voucherBll.CreateVoucherWithDetails(voucher, details);
-                txtMaPhieuexport.Text = created.VoucherCode;
+                if (IsEditMode)
+                {
+                    voucher.VoucherID = _editingVoucher.VoucherID;
+                    _voucherBll.UpdateDraftVoucher(voucher, details);
 
-                MessageBox.Show("Tạo phiếu xuất thành công", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var isDraft = string.Equals(voucher.Status, "Nháp", StringComparison.OrdinalIgnoreCase);
+                    var msg = isDraft
+                        ? "Cập nhật phiếu nháp thành công"
+                        : "Cập nhật phiếu và đã cập nhật tồn kho";
 
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                    MessageBox.Show(msg, "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+                else
+                {
+                    var created = _voucherBll.CreateVoucherAndApplyStock(voucher, details);
+                    txtMaPhieuexport.Text = created.VoucherCode;
+
+                    var isDraft = string.Equals(voucher.Status, "Nháp", StringComparison.OrdinalIgnoreCase);
+                    var msg = isDraft
+                        ? "Tạo phiếu nháp thành công"
+                        : "Tạo phiếu xuất thành công và đã cập nhật tồn kho";
+
+                    MessageBox.Show(msg, "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
             catch (Exception ex)
             {
@@ -317,6 +406,78 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
             exist.Quantity += newItem.Quantity;
             DGVexportkho.Refresh();
+        }
+
+        private List<WarehouseVoucherDetailDTO> BuildExportDetails(WarehouseType selectedType)
+        {
+            var details = new List<WarehouseVoucherDetailDTO>();
+            bool isIngredientWarehouse = selectedType == WarehouseType.Ingredient;
+
+            foreach (DataGridViewRow row in DGVexportkho.Rows)
+            {
+                if (row.IsNewRow) continue;
+                if (!(row.DataBoundItem is SelectItemDTO item)) continue;
+
+                var detail = CreateDetailFromExportItem(item, isIngredientWarehouse);
+                if (detail != null)
+                {
+                    details.Add(detail);
+                }
+            }
+
+            return details;
+        }
+
+        private WarehouseVoucherDetailDTO CreateDetailFromExportItem(SelectItemDTO item, bool isIngredientWarehouse)
+        {
+            if (item == null || item.Quantity <= 0) return null;
+
+            int? ingredientId = null;
+            int? equipmentId = null;
+
+            if (isIngredientWarehouse)
+            {
+                if (item.IngredientID > 0)
+                {
+                    ingredientId = item.IngredientID;
+                }
+                else
+                {
+                    ingredientId = _voucherBll.ResolveIngredientIdByCode(item.IngredientCode);
+                }
+
+                if (!ingredientId.HasValue)
+                {
+                    return null;
+                }
+                equipmentId = null;
+            }
+            else
+            {
+                if (item.ItemID > 0)
+                {
+                    equipmentId = item.ItemID;
+                }
+                else
+                {
+                    equipmentId = _voucherBll.ResolveEquipmentIdByCode(item.ItemCode);
+                }
+
+                if (!equipmentId.HasValue)
+                {
+                    return null;
+                }
+                ingredientId = null;
+            }
+
+            return new WarehouseVoucherDetailDTO
+            {
+                IngredientID = ingredientId,
+                EquipmentID = equipmentId,
+                Quantity = item.Quantity,
+                UnitPrice = item.UnitPrice,
+                LineTotal = item.Quantity * item.UnitPrice
+            };
         }
     }
 }
