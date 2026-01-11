@@ -218,7 +218,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(CustomerName) ||
-                string.IsNullOrWhiteSpace(PhoneNumber) ||
+                string.IsNullOrWhiteSpace(TxbCustomersNumberPhone.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(Address) ||
                 string.IsNullOrWhiteSpace(Email) ||
                 string.IsNullOrWhiteSpace(CustomerType) ||
@@ -240,6 +240,17 @@ namespace QLChuoiNhaHangKhachSan.GUI
                                 MessageBoxIcon.Warning);
                 TxbCustomersGmail.Focus();
                 TxbCustomersGmail.SelectAll();
+                return;
+            }
+
+            if (!IsValidPhoneNumber(out var phoneError))
+            {
+                MessageBox.Show(phoneError,
+                                "Số điện thoại không hợp lệ",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                TxbCustomersNumberPhone.Focus();
+                TxbCustomersNumberPhone.SelectAll();
                 return;
             }
 
@@ -272,6 +283,43 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 return false;
             }
+        }
+
+        private bool IsValidPhoneNumber(out string errorMessage)
+        {
+            errorMessage = null;
+
+            var prefix = cboPhoneCountryCode.SelectedItem as string;
+            if (string.IsNullOrWhiteSpace(prefix))
+            {
+                prefix = "+84";
+                int defaultIndex = cboPhoneCountryCode.Items.IndexOf(prefix);
+                if (defaultIndex >= 0)
+                {
+                    cboPhoneCountryCode.SelectedIndex = defaultIndex;
+                }
+            }
+
+            if (!Regex.IsMatch(prefix ?? string.Empty, @"^\+\d{1,3}$"))
+            {
+                errorMessage = "Mã quốc gia không hợp lệ.";
+                return false;
+            }
+
+            var localNumber = TxbCustomersNumberPhone.Text.Trim();
+            if (string.IsNullOrWhiteSpace(localNumber))
+            {
+                errorMessage = "Vui lòng nhập số điện thoại.";
+                return false;
+            }
+
+            if (!Regex.IsMatch(localNumber, @"^\d{7,12}$"))
+            {
+                errorMessage = "Số điện thoại chỉ được phép chứa chữ số và có độ dài 7-12 ký tự.";
+                return false;
+            }
+
+            return true;
         }
     }
 }
