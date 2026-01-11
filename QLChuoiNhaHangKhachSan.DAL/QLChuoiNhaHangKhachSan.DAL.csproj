@@ -46,6 +46,7 @@
     <Compile Include="EquipmentDAL.cs" />
     <Compile Include="IngredientDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockDAL.cs" />
     <Compile Include="UnitDAL.cs" />
     <Compile Include="WarehouseVoucherDAL.cs" />
   </ItemGroup>
