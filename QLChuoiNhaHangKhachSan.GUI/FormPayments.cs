@@ -1000,30 +1000,35 @@ namespace QLChuoiNhaHangKhachSan.GUI
                             {
                                 try
                                 {
+                                    // 1) Insert Invoices (schema: InvoiceDate, TotalAmount, PaymentStatus)
+                                    int newInvoiceIdentity = 0;
+                                    string invoiceCode = invoice.InvoiceId; // fallback to UI id
+                                    using (SqlCommand cmdInv = new SqlCommand(@"INSERT INTO Invoices (InvoiceDate, TotalAmount, PaymentStatus)
+VALUES (@date, @amount, @statusName);
+SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, trans))
+                                    {
+                                        cmdInv.Parameters.AddWithValue("@date", invoice.Date);
+                                        cmdInv.Parameters.AddWithValue("@amount", invoice.Amount);
+                                        cmdInv.Parameters.AddWithValue("@statusName", StatusToString(invoice.Status));
+                                        var obj = cmdInv.ExecuteScalar();
+                                        if (obj != null && int.TryParse(obj.ToString(), out newInvoiceIdentity))
+                                        {
+                                            invoiceCode = $"INV-{newInvoiceIdentity.ToString("D5")}";
+                                        }
+                                    }
+
+                                    // 2) Insert Transactions using the resolved invoiceCode
                                     string sqlTrans = @"INSERT INTO Transactions (InvoiceID, CustomerName, TransactionDate, Amount, MethodID, StatusID) 
                                  VALUES (@id, @name, @date, @amount, @methodID, @statusID)";
                                     using (SqlCommand cmd1 = new SqlCommand(sqlTrans, conn, trans))
                                     {
-                                        cmd1.Parameters.AddWithValue("@id", invoice.InvoiceId);
+                                        cmd1.Parameters.AddWithValue("@id", invoiceCode);
                                         cmd1.Parameters.AddWithValue("@name", invoice.Customer);
                                         cmd1.Parameters.AddWithValue("@date", invoice.Date);
                                         cmd1.Parameters.AddWithValue("@amount", invoice.Amount);
                                         cmd1.Parameters.AddWithValue("@methodID", GetMethodID(MethodToVN(invoice.Method)));
                                         cmd1.Parameters.AddWithValue("@statusID", GetStatusID(StatusToString(invoice.Status)));
                                         cmd1.ExecuteNonQuery();
-                                    }
-
-                                    // Đồng bộ sang bảng Invoices
-                                    string sqlInv = @"INSERT INTO Invoices (InvoiceID, CustomerName, InvoiceDate, Amount, StatusID)
-                                                    VALUES (@id, @name, @date, @amount, @statusID)";
-                                    using (SqlCommand cmd2 = new SqlCommand(sqlInv, conn, trans))
-                                    {
-                                        cmd2.Parameters.AddWithValue("@id", invoice.InvoiceId);
-                                        cmd2.Parameters.AddWithValue("@name", invoice.Customer);
-                                        cmd2.Parameters.AddWithValue("@date", invoice.Date);
-                                        cmd2.Parameters.AddWithValue("@amount", invoice.Amount);
-                                        cmd2.Parameters.AddWithValue("@statusID", GetStatusID(StatusToString(invoice.Status)));
-                                        cmd2.ExecuteNonQuery();
                                     }
 
                                     trans.Commit();
@@ -1286,19 +1291,17 @@ namespace QLChuoiNhaHangKhachSan.GUI
                                         cmd.ExecuteNonQuery();
                                     }
 
-                                    // Đồng bộ bảng Invoices
+                                    // Đồng bộ bảng Invoices (schema: InvoiceDate, TotalAmount, PaymentStatus)
                                     string sqlInv = @"UPDATE Invoices 
-                                                      SET CustomerName = @name, 
-                                                          Amount = @amount, 
-                                                          StatusID = @statusID, 
+                                                      SET TotalAmount = @amount, 
+                                                          PaymentStatus = @statusName, 
                                                           InvoiceDate = @date
-                                                      WHERE InvoiceID = @id";
+                                                      WHERE InvoiceCode = @id";
                                     using (SqlCommand cmdInv = new SqlCommand(sqlInv, conn, trans))
                                     {
                                         cmdInv.Parameters.AddWithValue("@id", updated.InvoiceId);
-                                        cmdInv.Parameters.AddWithValue("@name", updated.Customer);
                                         cmdInv.Parameters.AddWithValue("@amount", updated.Amount);
-                                        cmdInv.Parameters.AddWithValue("@statusID", GetStatusID(StatusToString(updated.Status)));
+                                        cmdInv.Parameters.AddWithValue("@statusName", StatusToString(updated.Status));
                                         cmdInv.Parameters.AddWithValue("@date", updated.Date);
                                         cmdInv.ExecuteNonQuery();
                                     }
@@ -1429,7 +1432,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
 
                 var lblDate = new Label { Text = "Ngày", Location = new Point(12, 126), AutoSize = true };
-                dtpDate = new DateTimePicker { Location = new Point(12, 148), Width = 200, Format = DateTimePickerFormat.Custom, CustomFormat = "dd/MM/yyyy HH:mm:ss"};
+                dtpDate = new DateTimePicker { Location = new Point(12, 148), Width = 200, Format = DateTimePickerFormat.Custom, CustomFormat = "dd/MM/yyyy", ShowUpDown = true };
 
 
 
@@ -1487,7 +1490,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
                 if (string.IsNullOrWhiteSpace(txtId.Text)) { MessageBox.Show("Mã hóa đơn không được để trống."); this.DialogResult = DialogResult.None; return; }
 
-                if (string.IsNullOrWhiteSpace(txtCustomer.Text)) { MessageBox.Show("Khách hàng không được để trống."); this.DialogResult = DialogResult.None; return; }
+                if (string.IsNullOrWhiteSpace(txtCustomer.Text)) { MessageBox.Show("Khách hàng không được để trống."); this.DialogResult = DialogResult.None; return;}
 
 
 
@@ -1497,7 +1500,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
 
 
-                Result = new Transaction(txtId.Text.Trim(), txtCustomer.Text.Trim(), dtpDate.Value.Date, (double)numAmount.Value, status, method);
+                Result = new Transaction(txtId.Text.Trim(), txtCustomer.Text.Trim(), dtpDate.Value, (double)numAmount.Value, status, method);
 
             }
 
@@ -1565,7 +1568,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     case PaymentMethod.MoMo: return "MoMo";
 
 
-
                     case PaymentMethod.Other: return "Khác";
 
                     default: return m.ToString();
@@ -1589,7 +1591,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     case "Thẻ": return PaymentMethod.Card;
 
                     case "MoMo": return PaymentMethod.MoMo;
-
 
 
                     case "Khác": return PaymentMethod.Other;
@@ -2211,12 +2212,17 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvTransaction.SelectedRows.Count == 0) return;
+            if (dgvTransaction.SelectedRows.Count == 0)
+            {
+                CustomMessageBox.Show("Vui lòng chọn 1 giao dịch để xóa.", this, CustomMessageBox.BoxType.Warning);
+                return;
+            }
 
             var row = dgvTransaction.SelectedRows[0];
             string id = row.Cells["dgvInvoiceID"].Value.ToString();
 
-            if (MessageBox.Show($"Bạn có chắc muốn xóa hóa đơn {id}?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show($"Bạn có chắc muốn xóa hóa đơn {id}?",
+                "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
@@ -2233,7 +2239,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                                     cmd.ExecuteNonQuery();
                                 }
 
-                                using (SqlCommand cmdInv = new SqlCommand("DELETE FROM Invoices WHERE InvoiceID = @id", conn, trans))
+                                using (SqlCommand cmdInv = new SqlCommand("DELETE FROM Invoices WHERE InvoiceCode = @id", conn, trans))
                                 {
                                     cmdInv.Parameters.AddWithValue("@id", id);
                                     cmdInv.ExecuteNonQuery();
@@ -2275,21 +2281,21 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 // Form basics
                 this.FormBorderStyle = FormBorderStyle.None;
+                this.TopMost = true;
                 this.StartPosition = FormStartPosition.CenterParent;
                 this.BackColor = Color.White;
-                this.ClientSize = new Size(520, 220);
+                this.ClientSize = new Size(440, 180);
                 this.MaximizeBox = false;
                 this.MinimizeBox = false;
-                this.ShowInTaskbar = false;
 
                 // Rounded corners
-                this.Load += (s, e) => { ApplyRoundedCorners(12); };
+                this.Load += (s, e) => { ApplyRoundedCorners(10); };
 
                 // Top accent strip
                 _topAccent = new Panel
                 {
                     Dock = DockStyle.Top,
-                    Height = 10,
+                    Height = 8,
                     BackColor = GetAccentColor(type)
                 };
                 this.Controls.Add(_topAccent);
@@ -2298,10 +2304,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 _lblIcon = new Label
                 {
                     AutoSize = false,
-                    Size = new Size(96, 96),
-                    Location = new Point((this.ClientSize.Width - 96) / 2, 20),
+                    Size = new Size(72, 72),
+                    Location = new Point((this.ClientSize.Width - 72) / 2, 14),
                     TextAlign = ContentAlignment.MiddleCenter,
-                    Font = new Font("Segoe UI Symbol", 36F, FontStyle.Bold),
+                    Font = new Font("Segoe UI Symbol", 28F, FontStyle.Bold),
                     ForeColor = GetAccentColor(type),
                     BackColor = Color.Transparent
                 };
@@ -2312,12 +2318,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 _lblMessage = new Label
                 {
                     AutoSize = false,
-                    Width = this.ClientSize.Width - 40,
-                    Height = 48,
-                    Location = new Point(20, 120),
+                    Width = this.ClientSize.Width - 36,
+                    Height = 40,
+                    Location = new Point(18, 96),
                     Text = message,
                     TextAlign = ContentAlignment.MiddleCenter,
-                    Font = new Font("Segoe UI", 18F, FontStyle.Bold),
+                    Font = new Font("Segoe UI", 16F, FontStyle.Bold),
                     ForeColor = Color.FromArgb(0, 102, 51),
                     BackColor = Color.Transparent
                 };
@@ -2325,7 +2331,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 // Adjust message color for non-success types
                 if (type == BoxType.Error) _lblMessage.ForeColor = Color.FromArgb(153, 0, 0);
                 else if (type == BoxType.Info) _lblMessage.ForeColor = Color.FromArgb(3, 35, 140);
-                else if (type == BoxType.Warning) _lblMessage.ForeColor = Color.FromArgb(153, 102, 0);
+                else if (type == BoxType.Warning) _lblMessage.ForeColor = Color.FromArgb(191, 87, 0);
+
 
                 this.Controls.Add(_lblMessage);
 
@@ -2333,21 +2340,44 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 _btnOk = new Button
                 {
                     Text = "OK",
-                    Size = new Size(140, 44),
-                    Location = new Point((this.ClientSize.Width - 140) / 2, this.ClientSize.Height - 64),
+                    Size = new Size(110, 38),
+                    Location = new Point((this.ClientSize.Width - 110) / 2, this.ClientSize.Height - 52),
                     FlatStyle = FlatStyle.Flat,
                     BackColor = GetAccentColor(type),
                     ForeColor = Color.White,
-                    Font = new Font("Segoe UI", 12F, FontStyle.Bold)
+                    Font = new Font("Segoe UI", 11F, FontStyle.Bold),
+                    DialogResult = DialogResult.OK
                 };
                 _btnOk.FlatAppearance.BorderSize = 0;
-                _btnOk.Click += (s, e) => this.Close();
-                this.Controls.Add(_btnOk);
+                _btnOk.Click += (s, e) => { this.DialogResult = DialogResult.OK; this.Close(); };
+                _btnOk.MouseDown += (s, e) => { this.DialogResult = DialogResult.OK; this.Close(); };
+                _btnOk.MouseUp += (s, e) => { this.DialogResult = DialogResult.OK; this.Close(); };
+                 this.Controls.Add(_btnOk);
 
                 // Accessibility / keyboard
                 this.AcceptButton = _btnOk;
                 this.KeyPreview = true;
                 this.KeyDown += (s, e) => { if (e.KeyCode == Keys.Escape) this.Close(); };
+                // ensure first click triggers immediately
+                this.Shown += (s, e) =>
+                {
+                    try
+                    {
+                        this.Activate();
+                        this.BringToFront();
+                        _btnOk.Select();
+                        _btnOk.Focus();
+                        this.ActiveControl = _btnOk;
+                    }
+                    catch { }
+                };
+
+                // Close on any mouse down inside dialog (covers rare focus issues)
+                this.MouseDown += (s, e) => { this.DialogResult = DialogResult.OK; this.Close(); };
+                _lblIcon.MouseDown += (s, e) => { this.DialogResult = DialogResult.OK; this.Close(); };
+                _lblMessage.MouseDown += (s, e) => { this.DialogResult = DialogResult.OK; this.Close(); };
+                _topAccent.MouseDown += (s, e) => { this.DialogResult = DialogResult.OK; this.Close(); };
+
 
                 // Make small shadow effect via border (subtle)
                 this.Paint += (s, e) =>
@@ -2396,7 +2426,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     case BoxType.Success: return Color.FromArgb(3, 35, 140); // deep blue accent (button color)
                     case BoxType.Error: return Color.FromArgb(194, 57, 52);
                     case BoxType.Info: return Color.FromArgb(0, 123, 255);
-                    case BoxType.Warning: return Color.FromArgb(255, 193, 7);
+                    case BoxType.Warning: return Color.FromArgb(255, 140, 0); // new orange tone
                     default: return Color.FromArgb(3, 35, 140);
                 }
             }
@@ -2465,6 +2495,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
             catch { }
         }
 
+        private void FormPayments_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

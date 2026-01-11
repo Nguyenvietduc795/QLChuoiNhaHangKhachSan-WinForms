@@ -21,7 +21,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
     public partial class FormInvoiceManagement : Form
     {
         private readonly string _connectionString = ConfigurationManager.ConnectionStrings["MyConn"]?.ConnectionString
-            ?? @"Data Source=.\SQLEXPRESS;Initial Catalog=QuanLyGiaoDich;Integrated Security=True";
+            ?? @"Data Source=.\SQLEXPRESS;Initial Catalog=QuanLyChuoiNhaHangKhachSan;Integrated Security=True";
         // Printing helpers
         private PrintDocument _printDocument;
         private string _printContent;
@@ -935,7 +935,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         }
 
                         // 5. CẬP NHẬT LẠI GIAO DIỆN FORM CHÍNH
-                        LoadDataFromDB(); // Nạp lại toàn bộ dữ liệu mới nhất từ SQL
+                        RefreshGridAndKeepRowVisible(id);
 
                         MessageBox.Show($"Cập nhật hóa đơn {id} thành công!", "Hoàn tất", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         try { NotificationCenter.RaiseInvoiceChanged(); } catch { }
@@ -1073,6 +1073,60 @@ namespace QLChuoiNhaHangKhachSan.GUI
             if (dt.Date >= DateTime.Today) return false;
             // not paid
             return !IsPaidRow(row);
+        }
+
+        private void RefreshGridAndKeepRowVisible(string invoiceId)
+        {
+            LoadDataFromDB();
+
+            // Re-apply the active status filter so the UI stays consistent
+            if (IsButtonActive(gnbtnDont)) ApplyStatusFilter(IsUnpaidRow);
+            else if (IsButtonActive(gnbtnDone)) ApplyStatusFilter(IsPaidRow);
+            else if (IsButtonActive(gnbtnOverdue)) ApplyStatusFilter(IsOverdueRow);
+            else
+            {
+                ApplyStatusFilter(row => true);
+                SetActiveFilterButton(gnbtnALL);
+            }
+
+            // Try to keep the edited invoice visible/selected. If it was hidden by a filter,
+            // fall back to the "All" view so the user can still see it.
+            if (!TrySelectRowById(invoiceId))
+            {
+                ApplyStatusFilter(row => true);
+                SetActiveFilterButton(gnbtnALL);
+                TrySelectRowById(invoiceId);
+            }
+        }
+
+        private bool TrySelectRowById(string invoiceId)
+        {
+            if (string.IsNullOrWhiteSpace(invoiceId) || dgvTransaction == null) return false;
+
+            foreach (DataGridViewRow r in dgvTransaction.Rows)
+            {
+                if (r.IsNewRow) continue;
+
+                var idVal = r.Cells["dgvInvoiceID"]?.Value?.ToString();
+                if (string.Equals(idVal, invoiceId, StringComparison.OrdinalIgnoreCase))
+                {
+                    if (!r.Visible) return false;
+
+                    dgvTransaction.ClearSelection();
+                    r.Selected = true;
+                    for (int i = 0; i < r.Cells.Count; i++)
+                    {
+                        if (r.Cells[i].Visible)
+                        {
+                            dgvTransaction.CurrentCell = r.Cells[i];
+                            break;
+                        }
+                    }
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         // Visual state for filter buttons (simple active style)
@@ -1223,9 +1277,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             if (string.IsNullOrWhiteSpace(status)) return 2; // pending default
             var s = status.Trim().ToLowerInvariant();
-            if (s.Contains("hoàn") || s.Contains("hoan") || s.Contains("đã thu") || s.Contains("da thu")) return 1; // success
-            if (s.Contains("quá hạn") || s.Contains("qua han") || s.Contains("không") || s.Contains("khong")) return 3; // failed
-            return 2; // pending
+            if (s.Contains("đã thu") || s.Contains("da thu") || s.Contains("hoàn")) return 1; // success
+            if (s.Contains("quá hạn") || s.Contains("qua han")) return 3; // overdue/fail
+            if (s.Contains("không") || s.Contains("khong")) return 3; // explicit fail
+            if (s.Contains("chưa thu") || s.Contains("chua thu") || s.Contains("đang chờ") || s.Contains("dang cho")) return 2; // pending
+            return 2; // default pending
         }
         // --- NotificationCenter handlers ---
         private void NotificationCenter_InvoiceChanged(object sender, EventArgs e)
@@ -1311,7 +1367,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
             // Populate status options and select existing
             cmbStatus.Items.Clear();
-            cmbStatus.Items.AddRange(new object[] { "Đang chờ", "Hoàn thành", "Không thành công" });
+            // Đồng bộ đúng trạng thái có trong DB để tránh mất dòng sau khi lưu
+            cmbStatus.Items.AddRange(new object[] { "Đã thu tiền", "Chưa thu tiền", "Quá hạn" });
             if (!string.IsNullOrWhiteSpace(status) && cmbStatus.Items.Contains(status))
                 cmbStatus.SelectedItem = status;
             else

@@ -166,7 +166,7 @@
             this.guna2HtmlLabel14.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel14.Location = new System.Drawing.Point(198, 588);
             this.guna2HtmlLabel14.Name = "guna2HtmlLabel14";
-            this.guna2HtmlLabel14.Size = new System.Drawing.Size(222, 32);
+            this.guna2HtmlLabel14.Size = new System.Drawing.Size(272, 38);
             this.guna2HtmlLabel14.TabIndex = 18;
             this.guna2HtmlLabel14.Text = "Xin cảm ơn quý khách";
             // 
@@ -176,7 +176,7 @@
             this.guna2HtmlLabel12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel12.Location = new System.Drawing.Point(20, 533);
             this.guna2HtmlLabel12.Name = "guna2HtmlLabel12";
-            this.guna2HtmlLabel12.Size = new System.Drawing.Size(64, 19);
+            this.guna2HtmlLabel12.Size = new System.Drawing.Size(75, 23);
             this.guna2HtmlLabel12.TabIndex = 16;
             this.guna2HtmlLabel12.Text = "Tiền trả lại";
             // 
@@ -186,7 +186,7 @@
             this.guna2HtmlLabel11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel11.Location = new System.Drawing.Point(20, 499);
             this.guna2HtmlLabel11.Name = "guna2HtmlLabel11";
-            this.guna2HtmlLabel11.Size = new System.Drawing.Size(59, 19);
+            this.guna2HtmlLabel11.Size = new System.Drawing.Size(71, 23);
             this.guna2HtmlLabel11.TabIndex = 15;
             this.guna2HtmlLabel11.Text = "Tiền nhận";
             // 
@@ -196,7 +196,7 @@
             this.guna2HtmlLabel10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel10.Location = new System.Drawing.Point(20, 460);
             this.guna2HtmlLabel10.Name = "guna2HtmlLabel10";
-            this.guna2HtmlLabel10.Size = new System.Drawing.Size(58, 19);
+            this.guna2HtmlLabel10.Size = new System.Drawing.Size(68, 23);
             this.guna2HtmlLabel10.TabIndex = 14;
             this.guna2HtmlLabel10.Text = "Tổng tiền";
             // 
@@ -317,7 +317,7 @@
             this.guna2HtmlLabel9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel9.Location = new System.Drawing.Point(291, 181);
             this.guna2HtmlLabel9.Name = "guna2HtmlLabel9";
-            this.guna2HtmlLabel9.Size = new System.Drawing.Size(124, 19);
+            this.guna2HtmlLabel9.Size = new System.Drawing.Size(149, 23);
             this.guna2HtmlLabel9.TabIndex = 11;
             this.guna2HtmlLabel9.Text = "Hình thức thanh toán";
             // 
@@ -349,7 +349,7 @@
             this.guna2HtmlLabel8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel8.Location = new System.Drawing.Point(325, 152);
             this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            this.guna2HtmlLabel8.Size = new System.Drawing.Size(59, 19);
+            this.guna2HtmlLabel8.Size = new System.Drawing.Size(68, 23);
             this.guna2HtmlLabel8.TabIndex = 9;
             this.guna2HtmlLabel8.Text = "Ngày lập:";
             // 
@@ -403,7 +403,7 @@
             this.guna2HtmlLabel7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel7.Location = new System.Drawing.Point(20, 185);
             this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            this.guna2HtmlLabel7.Size = new System.Drawing.Size(61, 19);
+            this.guna2HtmlLabel7.Size = new System.Drawing.Size(74, 23);
             this.guna2HtmlLabel7.TabIndex = 6;
             this.guna2HtmlLabel7.Text = "Nhân viên";
             // 
@@ -413,7 +413,7 @@
             this.guna2HtmlLabel6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel6.Location = new System.Drawing.Point(20, 152);
             this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            this.guna2HtmlLabel6.Size = new System.Drawing.Size(48, 19);
+            this.guna2HtmlLabel6.Size = new System.Drawing.Size(55, 23);
             this.guna2HtmlLabel6.TabIndex = 5;
             this.guna2HtmlLabel6.Text = "Mã bàn";
             // 
@@ -423,7 +423,7 @@
             this.guna2HtmlLabel5.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel5.Location = new System.Drawing.Point(255, 104);
             this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            this.guna2HtmlLabel5.Size = new System.Drawing.Size(119, 34);
+            this.guna2HtmlLabel5.Size = new System.Drawing.Size(147, 43);
             this.guna2HtmlLabel5.TabIndex = 4;
             this.guna2HtmlLabel5.Text = "HÓA ĐƠN";
             // 
@@ -432,7 +432,7 @@
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel4.Location = new System.Drawing.Point(0, 89);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(678, 15);
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(903, 18);
             this.guna2HtmlLabel4.TabIndex = 3;
             this.guna2HtmlLabel4.Text = resources.GetString("guna2HtmlLabel4.Text");
             // 
@@ -442,7 +442,7 @@
             this.guna2HtmlLabel3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel3.Location = new System.Drawing.Point(236, 68);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(124, 22);
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(155, 27);
             this.guna2HtmlLabel3.TabIndex = 2;
             this.guna2HtmlLabel3.Text = "SĐT: 0912 345 678";
             // 
@@ -452,7 +452,7 @@
             this.guna2HtmlLabel2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(85, 40);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(432, 22);
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(554, 27);
             this.guna2HtmlLabel2.TabIndex = 1;
             this.guna2HtmlLabel2.Text = "Địa chỉ :168, Nguyễn Văn Cừ nối dài, Phường An Bình, TP. Cần Thơ";
             // 
@@ -462,7 +462,7 @@
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.Location = new System.Drawing.Point(156, 3);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(264, 32);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(324, 38);
             this.guna2HtmlLabel1.TabIndex = 0;
             this.guna2HtmlLabel1.Text = "Chuỗi nhà hàng khách sạn";
             // 
@@ -493,6 +493,7 @@
             this.guna2Button2.Size = new System.Drawing.Size(180, 32);
             this.guna2Button2.TabIndex = 2;
             this.guna2Button2.Text = "Thoát";
+            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
             // frmBill
             // 
@@ -521,10 +522,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSL;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDonGia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colThanhTien;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox4;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel9;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox3;
@@ -543,5 +540,9 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel10;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDonGia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colThanhTien;
     }
 }

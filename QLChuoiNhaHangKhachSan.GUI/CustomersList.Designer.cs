@@ -77,11 +77,12 @@
             this.gnVIPCustomers.Controls.Add(this.lblVIPCustomers);
             this.gnVIPCustomers.FillColor = System.Drawing.Color.White;
             this.gnVIPCustomers.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gnVIPCustomers.Location = new System.Drawing.Point(15, 149);
+            this.gnVIPCustomers.Location = new System.Drawing.Point(11, 121);
+            this.gnVIPCustomers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gnVIPCustomers.Name = "gnVIPCustomers";
             this.gnVIPCustomers.ShadowDecoration.BorderRadius = 20;
             this.gnVIPCustomers.ShadowDecoration.Enabled = true;
-            this.gnVIPCustomers.Size = new System.Drawing.Size(406, 114);
+            this.gnVIPCustomers.Size = new System.Drawing.Size(304, 93);
             this.gnVIPCustomers.TabIndex = 4;
             // 
             // guna2Button2
@@ -96,9 +97,10 @@
             this.guna2Button2.ForeColor = System.Drawing.Color.White;
             this.guna2Button2.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button2.Image")));
             this.guna2Button2.ImageSize = new System.Drawing.Size(60, 60);
-            this.guna2Button2.Location = new System.Drawing.Point(286, 8);
+            this.guna2Button2.Location = new System.Drawing.Point(214, 6);
+            this.guna2Button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(100, 96);
+            this.guna2Button2.Size = new System.Drawing.Size(75, 78);
             this.guna2Button2.TabIndex = 6;
             // 
             // lblVIPCount
@@ -106,9 +108,10 @@
             this.lblVIPCount.AutoSize = false;
             this.lblVIPCount.BackColor = System.Drawing.Color.Transparent;
             this.lblVIPCount.Font = new System.Drawing.Font("Microsoft YaHei UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVIPCount.Location = new System.Drawing.Point(15, 52);
+            this.lblVIPCount.Location = new System.Drawing.Point(11, 42);
+            this.lblVIPCount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lblVIPCount.Name = "lblVIPCount";
-            this.lblVIPCount.Size = new System.Drawing.Size(47, 68);
+            this.lblVIPCount.Size = new System.Drawing.Size(35, 55);
             this.lblVIPCount.TabIndex = 3;
             this.lblVIPCount.Text = "1";
             this.lblVIPCount.Click += new System.EventHandler(this.lblVIPCount_Click);
@@ -118,9 +121,10 @@
             this.lblVIPCustomers.AutoSize = false;
             this.lblVIPCustomers.BackColor = System.Drawing.Color.Transparent;
             this.lblVIPCustomers.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVIPCustomers.Location = new System.Drawing.Point(15, 8);
+            this.lblVIPCustomers.Location = new System.Drawing.Point(11, 6);
+            this.lblVIPCustomers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lblVIPCustomers.Name = "lblVIPCustomers";
-            this.lblVIPCustomers.Size = new System.Drawing.Size(425, 63);
+            this.lblVIPCustomers.Size = new System.Drawing.Size(319, 51);
             this.lblVIPCustomers.TabIndex = 3;
             this.lblVIPCustomers.Text = "Khách hàng VIP";
             this.lblVIPCustomers.Click += new System.EventHandler(this.lblVIPCustomers_Click);
@@ -160,11 +164,12 @@
             this.bntAddCustomers.ForeColor = System.Drawing.Color.White;
             this.bntAddCustomers.Image = ((System.Drawing.Image)(resources.GetObject("bntAddCustomers.Image")));
             this.bntAddCustomers.ImageSize = new System.Drawing.Size(40, 40);
-            this.bntAddCustomers.Location = new System.Drawing.Point(1609, 87);
+            this.bntAddCustomers.Location = new System.Drawing.Point(1207, 71);
+            this.bntAddCustomers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bntAddCustomers.Name = "bntAddCustomers";
             this.bntAddCustomers.ShadowDecoration.BorderRadius = 15;
             this.bntAddCustomers.ShadowDecoration.Enabled = true;
-            this.bntAddCustomers.Size = new System.Drawing.Size(405, 166);
+            this.bntAddCustomers.Size = new System.Drawing.Size(304, 135);
             this.bntAddCustomers.TabIndex = 6;
             this.bntAddCustomers.Text = "Thêm khách hàng";
             this.bntAddCustomers.Click += new System.EventHandler(this.bntAddCustomers_Click);
@@ -185,12 +190,13 @@
             this.pnHeader2.Controls.Add(this.tbFindCustomers);
             this.pnHeader2.CustomBorderColor = System.Drawing.Color.White;
             this.pnHeader2.FillColor = System.Drawing.Color.White;
-            this.pnHeader2.Location = new System.Drawing.Point(1, 126);
+            this.pnHeader2.Location = new System.Drawing.Point(1, 102);
+            this.pnHeader2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnHeader2.Name = "pnHeader2";
             this.pnHeader2.ShadowDecoration.BorderRadius = 10;
             this.pnHeader2.ShadowDecoration.Color = System.Drawing.Color.Gray;
             this.pnHeader2.ShadowDecoration.Enabled = true;
-            this.pnHeader2.Size = new System.Drawing.Size(1928, 269);
+            this.pnHeader2.Size = new System.Drawing.Size(1610, 219);
             this.pnHeader2.TabIndex = 7;
             this.pnHeader2.Paint += new System.Windows.Forms.PaintEventHandler(this.pnHeader2_Paint);
             // 
@@ -204,11 +210,12 @@
             this.gnTotalCustomers.Controls.Add(this.lblTotalCustomerCount);
             this.gnTotalCustomers.FillColor = System.Drawing.Color.White;
             this.gnTotalCustomers.ForeColor = System.Drawing.Color.White;
-            this.gnTotalCustomers.Location = new System.Drawing.Point(15, 18);
+            this.gnTotalCustomers.Location = new System.Drawing.Point(11, 15);
+            this.gnTotalCustomers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gnTotalCustomers.Name = "gnTotalCustomers";
             this.gnTotalCustomers.ShadowDecoration.BorderRadius = 20;
             this.gnTotalCustomers.ShadowDecoration.Enabled = true;
-            this.gnTotalCustomers.Size = new System.Drawing.Size(406, 114);
+            this.gnTotalCustomers.Size = new System.Drawing.Size(304, 93);
             this.gnTotalCustomers.TabIndex = 9;
             // 
             // guna2Button3
@@ -223,9 +230,10 @@
             this.guna2Button3.ForeColor = System.Drawing.Color.White;
             this.guna2Button3.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button3.Image")));
             this.guna2Button3.ImageSize = new System.Drawing.Size(60, 60);
-            this.guna2Button3.Location = new System.Drawing.Point(286, 10);
+            this.guna2Button3.Location = new System.Drawing.Point(214, 8);
+            this.guna2Button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Button3.Name = "guna2Button3";
-            this.guna2Button3.Size = new System.Drawing.Size(100, 94);
+            this.guna2Button3.Size = new System.Drawing.Size(75, 76);
             this.guna2Button3.TabIndex = 5;
             this.guna2Button3.Click += new System.EventHandler(this.guna2Button3_Click);
             // 
@@ -234,9 +242,10 @@
             this.lblTotalCustomerCountNumber.BackColor = System.Drawing.Color.White;
             this.lblTotalCustomerCountNumber.Font = new System.Drawing.Font("Microsoft YaHei UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalCustomerCountNumber.ForeColor = System.Drawing.Color.Black;
-            this.lblTotalCustomerCountNumber.Location = new System.Drawing.Point(12, 52);
+            this.lblTotalCustomerCountNumber.Location = new System.Drawing.Point(9, 42);
+            this.lblTotalCustomerCountNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lblTotalCustomerCountNumber.Name = "lblTotalCustomerCountNumber";
-            this.lblTotalCustomerCountNumber.Size = new System.Drawing.Size(26, 52);
+            this.lblTotalCustomerCountNumber.Size = new System.Drawing.Size(22, 42);
             this.lblTotalCustomerCountNumber.TabIndex = 2;
             this.lblTotalCustomerCountNumber.Text = "0";
             // 
@@ -246,9 +255,10 @@
             this.lblTotalCustomerCount.BackColor = System.Drawing.Color.White;
             this.lblTotalCustomerCount.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalCustomerCount.ForeColor = System.Drawing.Color.Black;
-            this.lblTotalCustomerCount.Location = new System.Drawing.Point(12, 8);
+            this.lblTotalCustomerCount.Location = new System.Drawing.Point(9, 6);
+            this.lblTotalCustomerCount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lblTotalCustomerCount.Name = "lblTotalCustomerCount";
-            this.lblTotalCustomerCount.Size = new System.Drawing.Size(460, 62);
+            this.lblTotalCustomerCount.Size = new System.Drawing.Size(345, 50);
             this.lblTotalCustomerCount.TabIndex = 0;
             this.lblTotalCustomerCount.Text = "Tổng khách hàng";
             this.lblTotalCustomerCount.Click += new System.EventHandler(this.lblTotalCustomerCount_Click);
@@ -266,11 +276,12 @@
             this.btnUpdateCustomers.ForeColor = System.Drawing.Color.White;
             this.btnUpdateCustomers.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateCustomers.Image")));
             this.btnUpdateCustomers.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnUpdateCustomers.Location = new System.Drawing.Point(493, 87);
+            this.btnUpdateCustomers.Location = new System.Drawing.Point(370, 71);
+            this.btnUpdateCustomers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnUpdateCustomers.Name = "btnUpdateCustomers";
             this.btnUpdateCustomers.ShadowDecoration.BorderRadius = 10;
             this.btnUpdateCustomers.ShadowDecoration.Enabled = true;
-            this.btnUpdateCustomers.Size = new System.Drawing.Size(978, 75);
+            this.btnUpdateCustomers.Size = new System.Drawing.Size(734, 61);
             this.btnUpdateCustomers.TabIndex = 3;
             this.btnUpdateCustomers.Text = "Cập nhật khách hàng";
             this.btnUpdateCustomers.Click += new System.EventHandler(this.btnUpdateCustomers_Click);
@@ -288,11 +299,12 @@
             this.btnDelectCustomers.ForeColor = System.Drawing.Color.White;
             this.btnDelectCustomers.Image = ((System.Drawing.Image)(resources.GetObject("btnDelectCustomers.Image")));
             this.btnDelectCustomers.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnDelectCustomers.Location = new System.Drawing.Point(493, 178);
+            this.btnDelectCustomers.Location = new System.Drawing.Point(370, 145);
+            this.btnDelectCustomers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDelectCustomers.Name = "btnDelectCustomers";
             this.btnDelectCustomers.ShadowDecoration.BorderRadius = 10;
             this.btnDelectCustomers.ShadowDecoration.Enabled = true;
-            this.btnDelectCustomers.Size = new System.Drawing.Size(978, 75);
+            this.btnDelectCustomers.Size = new System.Drawing.Size(734, 61);
             this.btnDelectCustomers.TabIndex = 2;
             this.btnDelectCustomers.Text = "Xóa khách hàng";
             this.btnDelectCustomers.Click += new System.EventHandler(this.btnDelectCustomers_Click);
@@ -308,11 +320,12 @@
             this.btnFind.FillColor = System.Drawing.Color.Navy;
             this.btnFind.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFind.ForeColor = System.Drawing.Color.White;
-            this.btnFind.Location = new System.Drawing.Point(1852, 18);
+            this.btnFind.Location = new System.Drawing.Point(1389, 15);
+            this.btnFind.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnFind.Name = "btnFind";
             this.btnFind.ShadowDecoration.BorderRadius = 10;
             this.btnFind.ShadowDecoration.Enabled = true;
-            this.btnFind.Size = new System.Drawing.Size(162, 56);
+            this.btnFind.Size = new System.Drawing.Size(122, 46);
             this.btnFind.TabIndex = 1;
             this.btnFind.Text = "Tìm";
             this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
@@ -331,14 +344,14 @@
             this.tbFindCustomers.Font = new System.Drawing.Font("Microsoft JhengHei UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbFindCustomers.ForeColor = System.Drawing.Color.Black;
             this.tbFindCustomers.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbFindCustomers.Location = new System.Drawing.Point(493, 18);
-            this.tbFindCustomers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbFindCustomers.Location = new System.Drawing.Point(370, 15);
+            this.tbFindCustomers.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tbFindCustomers.Name = "tbFindCustomers";
             this.tbFindCustomers.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.tbFindCustomers.PlaceholderText = "Tìm kím khách hàng...";
             this.tbFindCustomers.SelectedText = "";
             this.tbFindCustomers.ShadowDecoration.Enabled = true;
-            this.tbFindCustomers.Size = new System.Drawing.Size(1353, 56);
+            this.tbFindCustomers.Size = new System.Drawing.Size(1015, 46);
             this.tbFindCustomers.TabIndex = 0;
             this.tbFindCustomers.TextChanged += new System.EventHandler(this.tbFindCustomers_TextChanged);
             // 
@@ -348,11 +361,12 @@
             this.pnHeader1.BorderRadius = 10;
             this.pnHeader1.Controls.Add(this.guna2Button4);
             this.pnHeader1.Controls.Add(this.lblCustomerManagement);
-            this.pnHeader1.Location = new System.Drawing.Point(1, 23);
+            this.pnHeader1.Location = new System.Drawing.Point(1, 19);
+            this.pnHeader1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnHeader1.Name = "pnHeader1";
             this.pnHeader1.ShadowDecoration.Color = System.Drawing.Color.Silver;
             this.pnHeader1.ShadowDecoration.Enabled = true;
-            this.pnHeader1.Size = new System.Drawing.Size(2326, 100);
+            this.pnHeader1.Size = new System.Drawing.Size(1744, 81);
             this.pnHeader1.TabIndex = 5;
             // 
             // guna2Button4
@@ -368,11 +382,12 @@
             this.guna2Button4.ForeColor = System.Drawing.Color.White;
             this.guna2Button4.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button4.Image")));
             this.guna2Button4.ImageSize = new System.Drawing.Size(40, 40);
-            this.guna2Button4.Location = new System.Drawing.Point(424, 14);
+            this.guna2Button4.Location = new System.Drawing.Point(318, 11);
+            this.guna2Button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Button4.Name = "guna2Button4";
             this.guna2Button4.ShadowDecoration.BorderRadius = 15;
             this.guna2Button4.ShadowDecoration.Enabled = true;
-            this.guna2Button4.Size = new System.Drawing.Size(75, 68);
+            this.guna2Button4.Size = new System.Drawing.Size(56, 55);
             this.guna2Button4.TabIndex = 10;
             // 
             // lblCustomerManagement
@@ -380,9 +395,10 @@
             this.lblCustomerManagement.AutoSize = false;
             this.lblCustomerManagement.BackColor = System.Drawing.Color.Transparent;
             this.lblCustomerManagement.Font = new System.Drawing.Font("Microsoft YaHei UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomerManagement.Location = new System.Drawing.Point(15, 23);
+            this.lblCustomerManagement.Location = new System.Drawing.Point(11, 19);
+            this.lblCustomerManagement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lblCustomerManagement.Name = "lblCustomerManagement";
-            this.lblCustomerManagement.Size = new System.Drawing.Size(836, 74);
+            this.lblCustomerManagement.Size = new System.Drawing.Size(627, 60);
             this.lblCustomerManagement.TabIndex = 2;
             this.lblCustomerManagement.Text = "Quản lý khách hàng";
             this.lblCustomerManagement.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
@@ -418,12 +434,13 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvListCustomers.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvListCustomers.GridColor = System.Drawing.Color.Black;
-            this.dgvListCustomers.Location = new System.Drawing.Point(11, 106);
+            this.dgvListCustomers.Location = new System.Drawing.Point(8, 86);
+            this.dgvListCustomers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvListCustomers.Name = "dgvListCustomers";
             this.dgvListCustomers.RowHeadersVisible = false;
             this.dgvListCustomers.RowHeadersWidth = 51;
             this.dgvListCustomers.RowTemplate.Height = 35;
-            this.dgvListCustomers.Size = new System.Drawing.Size(2022, 639);
+            this.dgvListCustomers.Size = new System.Drawing.Size(1516, 519);
             this.dgvListCustomers.TabIndex = 8;
             this.dgvListCustomers.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvListCustomers.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -489,9 +506,10 @@
             this.guna2HtmlLabel3.AutoSize = false;
             this.guna2HtmlLabel3.BackColor = System.Drawing.Color.White;
             this.guna2HtmlLabel3.Font = new System.Drawing.Font("Microsoft YaHei UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(15, 15);
+            this.guna2HtmlLabel3.Location = new System.Drawing.Point(11, 12);
+            this.guna2HtmlLabel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(890, 74);
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(668, 60);
             this.guna2HtmlLabel3.TabIndex = 4;
             this.guna2HtmlLabel3.Text = "Quản lý danh sách khách hàng";
             this.guna2HtmlLabel3.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
@@ -506,11 +524,12 @@
             this.guna2Panel3.Controls.Add(this.guna2HtmlLabel3);
             this.guna2Panel3.Controls.Add(this.dgvListCustomers);
             this.guna2Panel3.FillColor = System.Drawing.Color.White;
-            this.guna2Panel3.Location = new System.Drawing.Point(1, 401);
+            this.guna2Panel3.Location = new System.Drawing.Point(1, 326);
+            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Panel3.Name = "guna2Panel3";
             this.guna2Panel3.ShadowDecoration.BorderRadius = 15;
             this.guna2Panel3.ShadowDecoration.Enabled = true;
-            this.guna2Panel3.Size = new System.Drawing.Size(1911, 812);
+            this.guna2Panel3.Size = new System.Drawing.Size(1597, 660);
             this.guna2Panel3.TabIndex = 10;
             // 
             // guna2Button1
@@ -526,22 +545,24 @@
             this.guna2Button1.ForeColor = System.Drawing.Color.White;
             this.guna2Button1.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button1.Image")));
             this.guna2Button1.ImageSize = new System.Drawing.Size(40, 40);
-            this.guna2Button1.Location = new System.Drawing.Point(631, 3);
+            this.guna2Button1.Location = new System.Drawing.Point(473, 2);
+            this.guna2Button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.ShadowDecoration.BorderRadius = 20;
             this.guna2Button1.ShadowDecoration.Color = System.Drawing.Color.Silver;
             this.guna2Button1.ShadowDecoration.Enabled = true;
-            this.guna2Button1.Size = new System.Drawing.Size(94, 74);
+            this.guna2Button1.Size = new System.Drawing.Size(70, 60);
             this.guna2Button1.TabIndex = 9;
             // 
             // CustomersList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.ClientSize = new System.Drawing.Size(1607, 857);
             this.Controls.Add(this.pnHeader1);
             this.Controls.Add(this.guna2Panel3);
             this.Controls.Add(this.pnHeader2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CustomersList";
             this.Text = "CustomersList";
             this.Load += new System.EventHandler(this.CustomersList_Load);

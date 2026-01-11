@@ -150,5 +150,18 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // Optional initialization for the bill form.
             // Keep empty if no startup work is needed.
         }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            DialogResult = MessageBox.Show(
+                "Bạn có chắc muốn đóng hóa đơn không?",
+                "Xác nhận",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (DialogResult == DialogResult.OK)
+            {
+                this.Close();
+            }
+        }
+
     }
 }
