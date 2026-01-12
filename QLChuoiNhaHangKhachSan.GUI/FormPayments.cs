@@ -28,7 +28,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private readonly string _connectionString = ConfigurationManager.ConnectionStrings["MyConn"]?.ConnectionString
 
-            ?? @"Data Source=.\SQLEXPRESS;Initial Catalog=QuanLyGiaoDich;Integrated Security=True";
+            ?? @"Data Source=.\SQLEXPRESS;Initial Catalog=QuanLyChuoiNhaHangKhachSan;Integrated Security=True";
 
 
 

@@ -61,6 +61,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             _customersTable.Columns.Add("Gmail");
             _customersTable.Columns.Add("Địa chỉ");
             _customersTable.Columns.Add("Loại khách");
+            _customersTable.Columns.Add("Tổng chi tiêu", typeof(decimal));
 
             // Không thêm Rows ở đây, để form mở lên là bảng trống
         }
@@ -88,7 +89,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     c.PhoneNumber,           // "Số điện thoại"
                     c.Email,                 // "Gmail"
                     c.Address,               // "Địa chỉ"
-                    c.CustomerType           // "Loại khách"
+                    c.CustomerType,          // "Loại khách"
+                    c.TotalSpending          // "Tổng chi tiêu"
                 );
             }
         }
@@ -96,6 +98,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void HienThiLenGrid()
         {
             dgvListCustomers.DataSource = _customersTable;
+
+            var totalColumn = dgvListCustomers.Columns["Tongchitieu"];
+            if (totalColumn != null)
+            {
+                totalColumn.DataPropertyName = "Tổng chi tiêu";
+                totalColumn.DefaultCellStyle.Format = "N0";
+                totalColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            }
         }
 
         private void CapNhatThongKe()
@@ -193,7 +203,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         customer.PhoneNumber,
                         customer.Email,
                         customer.Address,
-                        customer.CustomerType
+                        customer.CustomerType,
+                        customer.TotalSpending
                     );
 
                     CapNhatThongKe();
@@ -346,7 +357,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                             PhoneNumber  = f.PhoneNumber,
                             Email        = f.Email,
                             Address      = f.Address,
-                            CustomerType = f.CustomerType
+                            CustomerType = f.CustomerType,
+                            TotalSpending = row.Field<decimal>("Tổng chi tiêu")
                         };
 
                         _customerService.UpdateCustomer(customer);
@@ -360,6 +372,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         row["Địa chỉ"]        = f.Address;
                         row["Loại khách"]     = f.CustomerType;
                         row["Quốc tịch"]      = f.Nationality;
+                        row["Tổng chi tiêu"]  = customer.TotalSpending;
 
                         row.AcceptChanges();
                         CapNhatThongKe();

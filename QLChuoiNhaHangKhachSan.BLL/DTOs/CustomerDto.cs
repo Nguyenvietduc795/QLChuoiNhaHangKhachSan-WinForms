@@ -18,5 +18,6 @@ namespace QLChuoiNhaHangKhachSan.BLL.DTOs
         public string Address { get; set; }
         public string CustomerType { get; set; }
         public DateTime CreatedAt { get; set; }
+        public decimal TotalSpending { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using QLChuoiNhaHangKhachSan.BLL.DTOs;
 using QLChuoiNhaHangKhachSan.DAL;
@@ -14,6 +15,7 @@ namespace QLChuoiNhaHangKhachSan.BLL
     public class CustomerService
     {
         private readonly CustomerDal _dal = new CustomerDal();
+        private const decimal VipThreshold = 30_000_000m;
 
         /// <summary>
         /// Lấy tất cả khách hàng, trả về danh sách DTO cho GUI.
@@ -22,6 +24,15 @@ namespace QLChuoiNhaHangKhachSan.BLL
         {
             var customers = _dal.GetAll();
             return customers.Select(MapToDto).ToList();
+        }
+
+        /// <summary>
+        /// Lấy khách hàng theo tên đầy đủ (so khớp chính xác).
+        /// </summary>
+        public CustomerDto GetCustomerByFullName(string fullName)
+        {
+            var customer = _dal.GetByFullName(fullName);
+            return customer == null ? null : MapToDto(customer);
         }
 
         /// <summary>
@@ -50,6 +61,27 @@ namespace QLChuoiNhaHangKhachSan.BLL
             _dal.Delete(customerId);
         }
 
+        /// <summary>
+        /// Cộng/trừ chi tiêu cho khách hàng theo tên và tự động nâng hạng khi vượt ngưỡng.
+        /// </summary>
+        public void AdjustSpending(string fullName, decimal delta)
+        {
+            if (string.IsNullOrWhiteSpace(fullName) || delta == 0) return;
+
+            var customer = _dal.GetByFullName(fullName);
+            if (customer == null) return;
+
+            customer.TotalSpending += delta;
+            if (customer.TotalSpending < 0) customer.TotalSpending = 0;
+
+            if (customer.TotalSpending >= VipThreshold && !string.Equals(customer.CustomerType, "VIP", StringComparison.OrdinalIgnoreCase))
+            {
+                customer.CustomerType = "VIP";
+            }
+
+            _dal.UpdateSpendingInfo(customer.CustomerId, customer.TotalSpending, customer.CustomerType);
+        }
+
         #region Mapping Methods
 
         /// <summary>
@@ -68,7 +100,8 @@ namespace QLChuoiNhaHangKhachSan.BLL
                 Email = entity.Email,
                 Address = entity.Address,
                 CustomerType = entity.CustomerType,
-                CreatedAt = entity.CreatedAt
+                CreatedAt = entity.CreatedAt,
+                TotalSpending = entity.TotalSpending
             };
         }
 
@@ -88,7 +121,8 @@ namespace QLChuoiNhaHangKhachSan.BLL
                 Email = dto.Email,
                 Address = dto.Address,
                 CustomerType = dto.CustomerType,
-                CreatedAt = dto.CreatedAt
+                CreatedAt = dto.CreatedAt,
+                TotalSpending = dto.TotalSpending
             };
         }
 

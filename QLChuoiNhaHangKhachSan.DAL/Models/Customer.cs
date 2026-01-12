@@ -15,5 +15,6 @@ namespace QLChuoiNhaHangKhachSan.DAL.Models
         public string Address { get; set; }      // Address
         public string CustomerType { get; set; } // CustomerType: VIP / Thường
         public DateTime CreatedAt { get; set; }  // CreatedAt
+        public decimal TotalSpending { get; set; } // Tổng chi tiêu tích lũy
     }
 }
