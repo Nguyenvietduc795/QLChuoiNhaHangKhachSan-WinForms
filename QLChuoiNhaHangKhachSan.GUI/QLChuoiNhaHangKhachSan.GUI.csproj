@@ -104,6 +104,12 @@
     <Compile Include="ConfirmTable.Designer.cs">
       <DependentUpon>ConfirmTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTime.Designer.cs">
+      <DependentUpon>frmTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,9 +158,6 @@
     </Compile>
     <Compile Include="Room_Details.Designer.cs">
       <DependentUpon>Room_Details.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TimePickerForm.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="UcRoom.cs">
       <SubType>UserControl</SubType>
@@ -254,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConfirmTable.resx">
       <DependentUpon>ConfirmTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTime.resx">
+      <DependentUpon>frmTime.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

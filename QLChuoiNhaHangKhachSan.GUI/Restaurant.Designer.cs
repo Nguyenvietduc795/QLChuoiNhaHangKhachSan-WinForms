@@ -696,6 +696,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.dtpTime.TabIndex = 40;
             this.dtpTime.UseWaitCursor = true;
             this.dtpTime.Value = new System.DateTime(2025, 12, 21, 16, 3, 58, 41);
+            this.dtpTime.ValueChanged += new System.EventHandler(this.dtpTime_ValueChanged);
             // 
             // dtpDay
             // 

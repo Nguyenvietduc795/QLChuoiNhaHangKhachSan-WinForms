@@ -484,10 +484,15 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
                         tran.Commit();
                         RaiseOrderConfirmed(); // thông báo bàn vừa gọi món
-                        MessageBox.Show("Order saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        var res = MessageBox.Show("Order saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Khi người dùng bấm OK thì đóng form Menu
                         dgvDishMenu.Rows.Clear();
                         UpdateTotalAmount();
                         UpdateConfirmButtonState();
+                        if (res == DialogResult.OK)
+                        {
+                            this.Close();
+                        }
                     }
                     catch
                     {

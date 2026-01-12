@@ -27,6 +27,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             txtNumberPhone.TextChanged += BookingInfoChanged;
             dtpDay.ValueChanged += BookingInfoChanged;
             dtpTime.ValueChanged += BookingInfoChanged;
+            dtpTime.MouseDown += dtpTime_Click;
 
             btnConfirm.Click += btnConfirmLookup_Click;
         }
@@ -806,6 +807,18 @@ namespace QLChuoiNhaHangKhachSan.GUI
             ResetButtonState();
         }
 
+        private void dtpTime_Click(object sender, EventArgs e)
+        {
+            using (var picker = new frmTime(dtpTime.Value))
+            {
+                picker.StartPosition = FormStartPosition.CenterParent;
+                if (picker.ShowDialog(this) == DialogResult.OK)
+                {
+                    dtpTime.Value = picker.SelectedDateTime;
+                }
+            }
+        }
+
         private void LoadTableStatusesFromDb()
         {
             var tableStatuses = new System.Collections.Generic.Dictionary<string, TableStatus>(System.StringComparer.OrdinalIgnoreCase);
@@ -1090,6 +1103,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
             txtNumberPhone.Text = string.Empty;
             txtEmail.Text = string.Empty;
             txtQuantity.Text = string.Empty;
+        }
+
+        private void dtpTime_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

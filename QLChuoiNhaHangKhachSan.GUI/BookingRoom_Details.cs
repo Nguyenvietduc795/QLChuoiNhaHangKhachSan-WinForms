@@ -126,7 +126,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void ShowTimePicker(Guna.UI2.WinForms.Guna2DateTimePicker picker)
         {
             if (picker == null) return;
-            using (var clock = new TimePickerForm(picker.Value))
+            using (var clock = new frmTime(picker.Value))
             {
                 if (clock.ShowDialog(this) == DialogResult.OK)
                 {

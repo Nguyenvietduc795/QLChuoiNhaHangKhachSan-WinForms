@@ -25,7 +25,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
             Load += frmFoodManagement_Load;
             dgvDsMon.SelectionChanged += dgvDsMon_SelectionChanged;
-            dgvDsMon.Leave += dgvDsMon_Leave;
+            guna2Panel2.Click += guna2Panel2_Click;
             txtSearch.TextChanged += txtSearch_TextChanged;
             cboTilter.SelectedIndexChanged += cboTilter_SelectedIndexChanged;
             bntAdd.Click += bntAdd_Click;
@@ -217,9 +217,16 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void dgvDsMon_Leave(object sender, EventArgs e)
         {
-            dgvDsMon.ClearSelection();
+            // Giữ nguyên thông tin đang hiển thị khi rời lưới
+        }
+
+        private void guna2Panel2_Click(object sender, EventArgs e)
+        {
+            // Khi nhấp vào panel bên phải (guna2Panel2), ẩn thông tin hiển thị
             txtDishName.Text = string.Empty;
             txtTotal.Text = string.Empty;
+            txtItemCode.Text = string.Empty;
+            try { dgvDsMon.ClearSelection(); } catch { }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -256,7 +263,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 return false;
             }
 
-            if (!decimal.TryParse(txtTotal.Text.Trim(), out price) || price < 0)
+            var rawPrice = (txtTotal.Text ?? string.Empty).Trim().Replace(".", string.Empty).Replace(",", string.Empty);
+            if (!decimal.TryParse(rawPrice, out price) || price < 0)
             {
                 MessageBox.Show("Đơn giá không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -309,8 +317,49 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 return;
             }
 
-            string name; int categoryId; decimal price; int statusId;
-            if (!TryReadFoodInput(out name, out categoryId, out price, out statusId)) return;
+            var existing = _foods.FirstOrDefault(f => f.Id == id);
+            if (existing == null)
+            {
+                MessageBox.Show("Không tìm thấy món cần sửa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Cho phép chỉ sửa trường được nhập: nếu trống thì giữ giá trị cũ
+            string name = string.IsNullOrWhiteSpace(txtDishName.Text) ? existing.Name : txtDishName.Text.Trim();
+
+            int categoryId = existing.CategoryId;
+            if (txtType.SelectedValue != null)
+            {
+                int parsedCat;
+                if (int.TryParse(txtType.SelectedValue.ToString(), out parsedCat))
+                {
+                    categoryId = parsedCat;
+                }
+            }
+
+            int statusId = existing.StatusId;
+            if (txtStatus.SelectedValue != null)
+            {
+                int parsedStatus;
+                if (int.TryParse(txtStatus.SelectedValue.ToString(), out parsedStatus))
+                {
+                    statusId = parsedStatus;
+                }
+            }
+
+            decimal price = existing.Price;
+            var rawPriceInput = (txtTotal.Text ?? string.Empty).Trim();
+            if (!string.IsNullOrEmpty(rawPriceInput))
+            {
+                var rawPrice = rawPriceInput.Replace(".", string.Empty).Replace(",", string.Empty);
+                decimal parsedPrice;
+                if (!decimal.TryParse(rawPrice, out parsedPrice) || parsedPrice < 0)
+                {
+                    MessageBox.Show("Đơn giá không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                price = parsedPrice;
+            }
 
             try
             {
@@ -400,6 +449,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             public int Id { get; set; }
             public string Name { get; set; }
+        }
+
+        private void frmFoodManagement_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

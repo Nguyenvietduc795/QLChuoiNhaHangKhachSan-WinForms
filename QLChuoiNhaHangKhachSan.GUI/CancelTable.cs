@@ -205,6 +205,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 throw new Exception("Gửi email hủy thất bại: " + ex.Message);
             }
         }
+
+        private void frmCancelTable_Load_1(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
 

@@ -162,7 +162,7 @@
             this.dgvDsMon.RowHeadersWidth = 51;
             this.dgvDsMon.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvDsMon.RowTemplate.Height = 40;
-            this.dgvDsMon.Size = new System.Drawing.Size(1046, 697);
+            this.dgvDsMon.Size = new System.Drawing.Size(1059, 697);
             this.dgvDsMon.TabIndex = 11;
             this.dgvDsMon.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvDsMon.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -549,6 +549,7 @@
             this.Controls.Add(this.guna2Panel1);
             this.Name = "frmFoodManagement";
             this.Text = "FoodManagement";
+            this.Load += new System.EventHandler(this.frmFoodManagement_Load_1);
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDsMon)).EndInit();
