@@ -460,7 +460,6 @@
             // pnlEmployeeAvt
             // 
             this.pnlEmployeeAvt.FillColor = System.Drawing.Color.Silver;
-            this.pnlEmployeeAvt.Image = ((System.Drawing.Image)(resources.GetObject("pnlEmployeeAvt.Image")));
             this.pnlEmployeeAvt.ImageRotate = 0F;
             this.pnlEmployeeAvt.Location = new System.Drawing.Point(25, 25);
             this.pnlEmployeeAvt.Name = "pnlEmployeeAvt";

@@ -32,6 +32,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
             var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
             _service = new EmployeeService(connStr);
 
+            // Cấu hình SMTP cho dịch vụ email từ App.config
+            ConfigureEmailService();
+
             // Gắn sự kiện kiểm tra ngay khi nhập tên
             txtEmployeeFullName.KeyPress += TxtEmployeeFullName_KeyPress;
             txtEmployeeFullName.TextChanged += TxtEmployeeFullName_TextChanged;
@@ -51,6 +54,30 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 // Thêm mới: luôn Inactive và không cho chọn khác
                 cboEmployeeStatus.SelectedItem = "Inactive";
                 cboEmployeeStatus.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Đọc cấu hình SMTP từ App.config và cấu hình cho EmployeeService
+        /// </summary>
+        private void ConfigureEmailService()
+        {
+            try
+            {
+                string smtpHost = ConfigurationManager.AppSettings["SmtpHost"] ?? "smtp.gmail.com";
+                int smtpPort = int.TryParse(ConfigurationManager.AppSettings["SmtpPort"], out int port) ? port : 587;
+                string smtpUser = ConfigurationManager.AppSettings["SmtpUser"] ?? "";
+                string smtpPassword = ConfigurationManager.AppSettings["SmtpPassword"] ?? "";
+                bool enableSsl = bool.TryParse(ConfigurationManager.AppSettings["SmtpEnableSsl"], out bool ssl) ? ssl : true;
+                string fromEmail = ConfigurationManager.AppSettings["SmtpFromEmail"] ?? smtpUser;
+                string fromName = ConfigurationManager.AppSettings["SmtpFromName"] ?? "Hệ thống Quản lý Nhà hàng Khách sạn";
+
+                _service.ConfigureEmail(smtpHost, smtpPort, smtpUser, smtpPassword, enableSsl, fromEmail, fromName);
+            }
+            catch (Exception ex)
+            {
+                // Log lỗi nếu cần, nhưng không làm crash ứng dụng
+                System.Diagnostics.Debug.WriteLine($"Lỗi cấu hình SMTP: {ex.Message}");
             }
         }
 
@@ -156,6 +183,28 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 _editing.SalaryCoefficient = salaryCoef;
                 _editing.CountryCode = countryCode ?? _editing.CountryCode ?? "+84";
                 _editing.Phone = phone;
+
+                try
+                {
+                    _service.Update(_editing, dealSalary, salaryCoef);
+                    MessageBox.Show("Cập nhật thông tin nhân viên thành công!", "Thành công", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    MessageBox.Show(ex.Message, "Trùng dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                catch (SqlException ex) when (ex.Number == 2627 || ex.Number == 2601)
+                {
+                    MessageBox.Show("Email hoặc số điện thoại đã tồn tại.", "Trùng dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật DB: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
             else
             {
@@ -173,7 +222,28 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     CountryCode = countryCode ?? "+84",
                     Phone = phone
                 };
-                try { _service.Add(emp, dealSalary, salaryCoef); }
+
+                try
+                {
+                    // Sử dụng AddWithAccount để tạo tài khoản và gửi email
+                    var (username, tempPassword) = _service.AddWithAccount(emp, dealSalary, salaryCoef, sendEmail: true);
+                    
+                    // Hiển thị thông tin tài khoản cho admin
+                    string message = $"Thêm nhân viên thành công!\n\n" +
+                        $"📧 Thông tin tài khoản đã được gửi đến email: {email}\n\n" +
+                        $"Thông tin đăng nhập:\n" +
+                        $"• Tên đăng nhập: {username}\n" +
+                        $"• Mật khẩu tạm: {tempPassword}\n\n" +
+                        $"⚠️ Nhân viên sẽ được yêu cầu đổi mật khẩu khi đăng nhập lần đầu.";
+                    
+                    MessageBox.Show(message, "Thêm nhân viên thành công", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    MessageBox.Show(ex.Message, "Trùng dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 catch (SqlException ex) when (ex.Number == 2627 || ex.Number == 2601)
                 {
                     MessageBox.Show("Email hoặc số điện thoại đã tồn tại.", "Trùng dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -204,8 +274,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
             txtEmployeePosition.Text = emp.Position;
             dtEmployeeHireDate.Value = emp.HireDate == default(DateTime) ? DateTime.Today : emp.HireDate;
             cboEmployeeStatus.Text = emp.Status ?? "Inactive"; // default Inactive khi thiếu
-            txtDealSalary.Text = emp.Salary.ToString("0.##");
+            
+            // Hiển thị DealSalary (lương deal) thay vì Salary (lương thực tế)
+            txtDealSalary.Text = emp.DealSalary.ToString("0.##");
             txtSalaryCoefficient.Text = (emp.SalaryCoefficient > 0 ? emp.SalaryCoefficient : 1).ToString("0.##");
+            
             var phoneDisplay = string.IsNullOrWhiteSpace(emp.CountryCode) ? emp.Phone : ($"{emp.CountryCode} {emp.Phone}").Trim();
             txtEmployeePhoneNumber.Text = phoneDisplay;
 
@@ -215,8 +288,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // Cập nhật tiêu đề form nếu có label
             if (lblAddEmployeeTitle != null)
             {
-                lblAddEmployeeTitle.Text = $"Thông tin nhân viên";
+                lblAddEmployeeTitle.Text = $"Chỉnh sửa thông tin nhân viên";
             }
+
+            // Không cho phép sửa email khi edit (vì email liên kết với tài khoản)
+            txtEmployeeEmail.Enabled = false;
         }
 
         // KHI LOAD FORM THIET LAP TRANG THAI MAC DINH

@@ -9,16 +9,26 @@ namespace QLChuoiNhaHangKhachSan.DAL.Repositories
     {
         private readonly string _connStr;
 
+        /// <summary>
+        /// Constructor m?c ??nh - s? d?ng DatabaseConnection.ConnectionString
+        /// </summary>
+        public LoginRepository()
+        {
+            _connStr = DatabaseConnection.ConnectionString;
+        }
+
+        /// <summary>
+        /// Constructor v?i connection string tùy ch?nh
+        /// </summary>
         public LoginRepository(string connStr)
         {
-            _connStr = connStr ?? throw new ArgumentNullException(nameof(connStr));
+            _connStr = connStr ?? DatabaseConnection.ConnectionString;
         }
 
         // Ki?m tra username có t?n t?i không
         public bool UsernameExists(string username)
         {
-            const string sql = "SELECT COUNT(*) FROM users WHERE userName = @Username";
-            
+            const string sql = "SELECT COUNT(*) FROM Employees WHERE UserName = @Username";
             using (var conn = new SqlConnection(_connStr))
             using (var cmd = new SqlCommand(sql, conn))
             {
@@ -33,50 +43,112 @@ namespace QLChuoiNhaHangKhachSan.DAL.Repositories
         public Login GetUserByUsername(string username)
         {
             const string sql = @"
-                SELECT id, userName, password, status, dateCreated 
-                FROM users 
-                WHERE userName = @Username";
-            
+                SELECT EmployeeId, UserName, PasswordHash, PasswordSalt, Status, HireDate, MustChangePassword
+                FROM Employees
+                WHERE UserName = @Username";
+
             using (var conn = new SqlConnection(_connStr))
             using (var cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@Username", username);
                 conn.Open();
-                
+
                 using (var reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
                     {
+                        var pwdHash = reader.IsDBNull(2) ? null : (byte[])reader[2];
+                        var pwdSalt = reader.IsDBNull(3) ? null : (byte[])reader[3];
                         return new Login
                         {
                             LoginId = reader.GetInt32(0),
                             Username = reader.GetString(1),
-                            PasswordHash = reader.GetString(2),
-                            Status = reader.IsDBNull(3) ? "Active" : reader.GetString(3),
-                            DateCreated = reader.IsDBNull(4) ? DateTime.Now : reader.GetDateTime(4)
+                            PasswordHash = pwdHash,
+                            PasswordSalt = pwdSalt,
+                            Status = reader.IsDBNull(4) ? "Active" : reader.GetString(4),
+                            DateCreated = reader.IsDBNull(5) ? DateTime.Now : reader.GetDateTime(5),
+                            MustChangePassword = !reader.IsDBNull(6) && reader.GetBoolean(6)
                         };
                     }
                 }
             }
-            
             return null;
         }
 
         // ??ng ký user m?i
-        public void RegisterUser(string username, string passwordHash)
+        public void RegisterUser(string username, byte[] passwordHash, byte[] passwordSalt)
         {
             const string sql = @"
-                INSERT INTO users (userName, password, status, dateCreated) 
-                VALUES (@Username, @PasswordHash, @Status, @DateCreated)";
-            
+                INSERT INTO Employees (FullName, UserName, PasswordHash, PasswordSalt, Status)
+                VALUES (@FullName, @UserName, @PasswordHash, @PasswordSalt, @Status)";
+
+            using (var conn = new SqlConnection(_connStr))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@FullName", username);
+                cmd.Parameters.AddWithValue("@UserName", username);
+                cmd.Parameters.AddWithValue("@PasswordHash", (object)passwordHash ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@PasswordSalt", (object)passwordSalt ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Status", "Active");
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// C?p nh?t m?t kh?u và ?ánh d?u ?ã ??i m?t kh?u l?n ??u
+        /// </summary>
+        public void UpdatePassword(string username, byte[] passwordHash, byte[] passwordSalt)
+        {
+            const string sql = @"
+                UPDATE Employees 
+                SET PasswordHash = @PasswordHash, 
+                    PasswordSalt = @PasswordSalt, 
+                    MustChangePassword = 0 
+                WHERE UserName = @Username";
+
             using (var conn = new SqlConnection(_connStr))
             using (var cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@Username", username);
-                cmd.Parameters.AddWithValue("@PasswordHash", passwordHash);
-                cmd.Parameters.AddWithValue("@Status", "Active");
-                cmd.Parameters.AddWithValue("@DateCreated", DateTime.Now);
-                
+                cmd.Parameters.AddWithValue("@PasswordHash", (object)passwordHash ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@PasswordSalt", (object)passwordSalt ?? DBNull.Value);
+
+                conn.Open();
+                int rows = cmd.ExecuteNonQuery();
+                if (rows == 0)
+                {
+                    throw new InvalidOperationException("Không tìm th?y tài kho?n ?? c?p nh?t m?t kh?u");
+                }
+            }
+        }
+
+        /// <summary>
+        /// ??t c? yêu c?u ??i m?t kh?u
+        /// </summary>
+        public void SetMustChangePassword(string username, bool mustChange)
+        {
+            const string sql = @"UPDATE Employees SET MustChangePassword = @MustChange WHERE UserName = @Username";
+
+            using (var conn = new SqlConnection(_connStr))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@Username", username);
+                cmd.Parameters.AddWithValue("@MustChange", mustChange);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void SetStatusActive(string username)
+        {
+            const string sql = "UPDATE Employees SET Status = 'Active' WHERE UserName = @Username";
+            using (var conn = new SqlConnection(_connStr))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@Username", username);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -85,17 +157,7 @@ namespace QLChuoiNhaHangKhachSan.DAL.Repositories
         // C?p nh?t th?i gian ??ng nh?p cu?i
         public void UpdateLastLogin(string username)
         {
-            const string sql = "UPDATE users SET dateCreated = @LastLogin WHERE userName = @Username";
-            
-            using (var conn = new SqlConnection(_connStr))
-            using (var cmd = new SqlCommand(sql, conn))
-            {
-                cmd.Parameters.AddWithValue("@Username", username);
-                cmd.Parameters.AddWithValue("@LastLogin", DateTime.Now);
-                
-                conn.Open();
-                cmd.ExecuteNonQuery();
-            }
+            // Schema hi?n t?i không có tr??ng LastLogin; b? qua ?? tránh l?i DB.
         }
     }
 }

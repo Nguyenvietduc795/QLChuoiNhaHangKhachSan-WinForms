@@ -64,6 +64,30 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
                 if (user != null)
                 {
+                    // Kiểm tra xem có cần đổi mật khẩu lần đầu không
+                    if (user.MustChangePassword)
+                    {
+                        MessageBox.Show("Đây là lần đăng nhập đầu tiên của bạn.\nVui lòng đổi mật khẩu để tiếp tục.",
+                            "Yêu cầu đổi mật khẩu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        using (var changePasswordForm = new ChangePasswordForm(username, isFirstLogin: true))
+                        {
+                            if (changePasswordForm.ShowDialog() != DialogResult.OK)
+                            {
+                                // Nếu không đổi mật khẩu thành công, không cho đăng nhập
+                                return;
+                            }
+                        }
+
+                        MessageBox.Show("Đổi mật khẩu thành công!\nVui lòng đăng nhập lại với mật khẩu mới.",
+                            "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Xóa password field để user nhập lại
+                        txtLogin_Password.Text = "";
+                        txtLogin_Password.Focus();
+                        return;
+                    }
+
                     MessageBox.Show($"Đăng nhập thành công!\nChào mừng {user.Username}", 
                         "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

@@ -26,7 +26,16 @@ namespace QLChuoiNhaHangKhachSan.GUI
             InitializeComponent();
             this.Load += EmployeeForm_Load;
 
-            txtEmployeeSearch.TextChanged += (s, e) => ApplySearchAndRender();
+            txtEmployeeSearch.KeyDown += (s, e) => 
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    ApplySearchAndRender();
+                    e.Handled = true; // Chặn tiếng "bíp" của windows
+                    e.SuppressKeyPress = true;
+                }
+            };
+            
             btnAll.Click += (s, e) => SetStatusFilter("All");
             btnActive.Click += (s, e) => SetStatusFilter("Active");
             btnInactive.Click += (s, e) => SetStatusFilter("Inactive");
@@ -198,13 +207,16 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 BorderThickness = pnlCardEmployeeTemplate.BorderThickness,
                 BorderRadius = pnlCardEmployeeTemplate.BorderRadius,
                 Margin = pnlCardEmployeeTemplate.Margin,
-                ShadowDecoration =
-                {
-                    BorderRadius = pnlCardEmployeeTemplate.ShadowDecoration.BorderRadius,
-                    Color = pnlCardEmployeeTemplate.ShadowDecoration.Color,
-                    Depth = pnlCardEmployeeTemplate.ShadowDecoration.Depth,
-                    Enabled = pnlCardEmployeeTemplate.ShadowDecoration.Enabled
-                },
+                // --- SỬA 1: TẠM TẮT ĐỔ BÓNG (SHADOW) ---
+                // ShadowDecoration của Guna gán động rất dễ gây tràn bộ nhớ
+                // ShadowDecoration =
+                // {
+                //     BorderRadius = pnlCardEmployeeTemplate.ShadowDecoration.BorderRadius,
+                //     Color = pnlCardEmployeeTemplate.ShadowDecoration.Color,
+                //     Depth = pnlCardEmployeeTemplate.ShadowDecoration.Depth,
+                //     Enabled = pnlCardEmployeeTemplate.ShadowDecoration.Enabled
+                // },
+                // ----------------------------------------
                 MinimumSize = new Size(CardMinWidth, CardHeight),
                 Name = "card"
             };
@@ -213,10 +225,16 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 Name = "avatar",
                 FillColor = pnlEmployeeAvt.FillColor,
-                Image = pnlEmployeeAvt.Image,
+                // --- SỬA 2: QUAN TRỌNG NHẤT - KHÔNG GÁN ẢNH TỪ TEMPLATE ---
+                // Dòng dưới đây là nguyên nhân chính gây sập khi tìm kiếm
+                // Image = pnlEmployeeAvt.Image, 
+                // ----------------------------------------------------------
+                // Thay vào đó, hãy để ảnh rỗng hoặc gán null an toàn
+                Image = null, 
                 ImageRotate = 0F,
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                ShadowDecoration = { Mode = pnlEmployeeAvt.ShadowDecoration.Mode }
+                // Tắt luôn shadow của avatar
+                // ShadowDecoration = { Mode = pnlEmployeeAvt.ShadowDecoration.Mode } 
             };
 
             var lblName = new Guna2HtmlLabel

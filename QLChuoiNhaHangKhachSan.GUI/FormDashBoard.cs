@@ -154,7 +154,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         /************************************************************************************************************/
         // Nhóm Nhân viên
-        bool isStaffExpanded = false; // Biến trạng thái (hiện chưa dùng)
+        
         private void btnStaff_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.lblLoginTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.txtLogin_UserName = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblLogin_UserName = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -174,7 +173,6 @@
             // 
             // ptbLoginAvt
             // 
-            this.ptbLoginAvt.Image = ((System.Drawing.Image)(resources.GetObject("ptbLoginAvt.Image")));
             this.ptbLoginAvt.ImageRotate = 0F;
             this.ptbLoginAvt.Location = new System.Drawing.Point(170, 51);
             this.ptbLoginAvt.Name = "ptbLoginAvt";

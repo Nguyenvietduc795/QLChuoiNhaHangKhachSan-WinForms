@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
 using QLChuoiNhaHangKhachSan.DAL.Models;
 using QLChuoiNhaHangKhachSan.DAL.Repositories;
@@ -10,9 +12,33 @@ namespace QLChuoiNhaHangKhachSan.BLL.Services
     public class EmployeeService
     {
         private readonly EmployeeRepository _repo;
+        private EmailService _emailService;
+
+        /// <summary>
+        /// Constructor mặc định - sử dụng DatabaseConnection.ConnectionString
+        /// </summary>
+        public EmployeeService()
+        {
+            _repo = new EmployeeRepository();
+            _emailService = new EmailService();
+        }
+
+        /// <summary>
+        /// Constructor với connection string tùy chỉnh
+        /// </summary>
         public EmployeeService(string connStr)
         {
             _repo = new EmployeeRepository(connStr);
+            _emailService = new EmailService();
+        }
+
+        /// <summary>
+        /// Cấu hình SMTP cho dịch vụ email
+        /// </summary>
+        public void ConfigureEmail(string smtpHost, int smtpPort, string smtpUser, string smtpPassword,
+            bool enableSsl, string fromEmail, string fromName)
+        {
+            _emailService = new EmailService(smtpHost, smtpPort, smtpUser, smtpPassword, enableSsl, fromEmail, fromName);
         }
 
         public List<Employee> GetAll() => _repo.GetAllWithActiveContract();
@@ -21,6 +47,153 @@ namespace QLChuoiNhaHangKhachSan.BLL.Services
         {
             Validate(emp, dealSalary, salaryCoef);
             _repo.Insert(emp, dealSalary, salaryCoef);
+        }
+
+        /// <summary>
+        /// Thêm nhân viên mới và tạo tài khoản đăng nhập, gửi email thông báo
+        /// </summary>
+        /// <param name="emp">Thông tin nhân viên</param>
+        /// <param name="dealSalary">Lương deal</param>
+        /// <param name="salaryCoef">Hệ số lương</param>
+        /// <param name="sendEmail">Có gửi email thông báo tài khoản hay không</param>
+        /// <returns>Thông tin tài khoản đã tạo (username, password tạm)</returns>
+        public (string Username, string TempPassword) AddWithAccount(Employee emp, decimal dealSalary, decimal salaryCoef, bool sendEmail = true)
+        {
+            Validate(emp, dealSalary, salaryCoef);
+
+            // Tạo username từ email (phần trước @)
+            string username = GenerateUsername(emp.Email);
+
+            // Kiểm tra username đã tồn tại
+            if (_repo.UsernameExists(username))
+            {
+                // Thêm số vào cuối để tạo username unique
+                int suffix = 1;
+                string baseUsername = username;
+                while (_repo.UsernameExists(username))
+                {
+                    username = $"{baseUsername}{suffix}";
+                    suffix++;
+                }
+            }
+
+            // Tạo mật khẩu tạm thời ngẫu nhiên
+            string tempPassword = GenerateTemporaryPassword();
+
+            // Hash mật khẩu
+            byte[] salt = GenerateSalt();
+            byte[] passwordHash = HashPassword(tempPassword, salt);
+
+            // Lưu vào DB
+            _repo.InsertWithCredentials(emp, dealSalary, salaryCoef, username, passwordHash, salt);
+
+            // Gửi email thông báo tài khoản
+            if (sendEmail)
+            {
+                try
+                {
+                    _emailService.SendAccountCredentials(emp.Email, emp.FullName, username, tempPassword);
+                }
+                catch (Exception)
+                {
+                    // Nếu gửi email thất bại, vẫn trả về thông tin để hiển thị cho admin
+                    // Log lỗi nếu cần
+                }
+            }
+
+            return (username, tempPassword);
+        }
+
+        /// <summary>
+        /// Cập nhật thông tin nhân viên
+        /// </summary>
+        public void Update(Employee emp, decimal dealSalary, decimal salaryCoef)
+        {
+            Validate(emp, dealSalary, salaryCoef);
+            _repo.Update(emp, dealSalary, salaryCoef);
+        }
+
+        /// <summary>
+        /// Tạo username từ email
+        /// </summary>
+        private string GenerateUsername(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("Email không được để trống");
+
+            // Lấy phần trước @
+            int atIndex = email.IndexOf('@');
+            if (atIndex <= 0)
+                throw new ArgumentException("Email không hợp lệ");
+
+            string username = email.Substring(0, atIndex).ToLower();
+
+            // Loại bỏ ký tự đặc biệt, chỉ giữ chữ cái, số và dấu gạch dưới
+            username = Regex.Replace(username, @"[^a-z0-9_]", "");
+
+            // Đảm bảo username có ít nhất 3 ký tự
+            if (username.Length < 3)
+            {
+                username = "user" + username;
+            }
+
+            return username;
+        }
+
+        /// <summary>
+        /// Tạo mật khẩu tạm thời ngẫu nhiên
+        /// </summary>
+        private string GenerateTemporaryPassword(int length = 10)
+        {
+            const string upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string lowerChars = "abcdefghijklmnopqrstuvwxyz";
+            const string digitChars = "0123456789";
+            const string allChars = upperChars + lowerChars + digitChars;
+
+            var random = new Random();
+            var password = new StringBuilder();
+
+            // Đảm bảo có ít nhất 1 chữ hoa, 1 chữ thường, 1 số
+            password.Append(upperChars[random.Next(upperChars.Length)]);
+            password.Append(lowerChars[random.Next(lowerChars.Length)]);
+            password.Append(digitChars[random.Next(digitChars.Length)]);
+
+            // Thêm các ký tự còn lại
+            for (int i = 3; i < length; i++)
+            {
+                password.Append(allChars[random.Next(allChars.Length)]);
+            }
+
+            // Xáo trộn mật khẩu
+            return new string(password.ToString().OrderBy(x => random.Next()).ToArray());
+        }
+
+        /// <summary>
+        /// Tạo salt cho mật khẩu
+        /// </summary>
+        private byte[] GenerateSalt(int size = 16)
+        {
+            var salt = new byte[size];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+            return salt;
+        }
+
+        /// <summary>
+        /// Hash mật khẩu với salt
+        /// </summary>
+        private byte[] HashPassword(string password, byte[] salt)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                var pwdBytes = Encoding.UTF8.GetBytes(password);
+                var combined = new byte[pwdBytes.Length + salt.Length];
+                Buffer.BlockCopy(pwdBytes, 0, combined, 0, pwdBytes.Length);
+                Buffer.BlockCopy(salt, 0, combined, pwdBytes.Length, salt.Length);
+                return sha256.ComputeHash(combined);
+            }
         }
 
         //hàm cập nhật nhân viên
