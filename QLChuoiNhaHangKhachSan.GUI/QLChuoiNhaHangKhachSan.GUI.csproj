@@ -169,6 +169,7 @@
     </Compile>
     <Compile Include="ReservationForm.Designer.cs">
       <DependentUpon>ReservationForm.cs</DependentUpon>
+	</Compile>
     <Compile Include="NotificationCenter.cs" />
     <Compile Include="QuanLyChuoiNHKSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -282,6 +283,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTime.resx">
       <DependentUpon>frmTime.cs</DependentUpon>
+	</EmbeddedResource>
     <EmbeddedResource Include="FormDownload.resx">
       <DependentUpon>FormDownload.cs</DependentUpon>
     </EmbeddedResource>
@@ -388,12 +390,13 @@
     <None Include="Resources\lovepik-house-png-image_400195161_wh1200.png" />
   </ItemGroup>
   <!-- ===================== PROJECT REFERENCES ===================== -->
-  <ItemGroup>
-    <ProjectReference Include="..\QLChuoiNhaHangKhachSan.BLL\QLChuoiNhaHangKhachSan.BLL.csproj">
-      <Project>{4e25be4c-85e3-45de-81c5-52a8c8d0b030}</Project>
-      <Name>QLChuoiNhaHangKhachSan.BLL</Name>
-    </ProjectReference>
-  </ItemGroup>
+<ItemGroup>
+  <ProjectReference Include="..\QLChuoiNhaHangKhachSan.BLL\QLChuoiNhaHangKhachSan.BLL.csproj">
+    <Project>{4E25BE4C-85E3-45DE-81C5-52A8C8D0B030}</Project>
+    <Name>QLChuoiNhaHangKhachSan.BLL</Name>
+  </ProjectReference>
+</ItemGroup>
+
   <ItemGroup>
     <Content Include="icon\add-employees.png" />
     <Content Include="icon\analytics.png" />
@@ -429,4 +432,7 @@
     <Content Include="Resources\pngtree_green_check_mark_png_image_6525691.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <GenerateResourceMSBuildArchitecture>x64</GenerateResourceMSBuildArchitecture>
+  </PropertyGroup>
 </Project>
