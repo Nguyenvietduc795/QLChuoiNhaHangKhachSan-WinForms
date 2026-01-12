@@ -155,7 +155,8 @@
             this.pnlTopbar2.Controls.Add(this.picUserAvt);
             this.pnlTopbar2.Controls.Add(this.btnNotification);
             this.pnlTopbar2.FillColor = System.Drawing.Color.White;
-            this.pnlTopbar2.Location = new System.Drawing.Point(12, 1);
+            this.pnlTopbar2.Location = new System.Drawing.Point(16, 1);
+            this.pnlTopbar2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlTopbar2.Name = "pnlTopbar2";
             this.pnlTopbar2.ShadowDecoration.Depth = 1;
             this.pnlTopbar2.ShadowDecoration.Enabled = true;
@@ -234,7 +235,8 @@
             this.lbDSTonkho.Controls.Add(this.guna2Panel12);
             this.lbDSTonkho.Controls.Add(this.cardTotal2);
             this.lbDSTonkho.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(251)))));
-            this.lbDSTonkho.Location = new System.Drawing.Point(12, 100);
+            this.lbDSTonkho.Location = new System.Drawing.Point(16, 123);
+            this.lbDSTonkho.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbDSTonkho.Name = "lbDSTonkho";
             this.lbDSTonkho.ShadowDecoration.BorderRadius = 12;
             this.lbDSTonkho.ShadowDecoration.Depth = 1;
@@ -855,7 +857,7 @@
             this.lbDonvi2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lbDonvi2.Location = new System.Drawing.Point(417, 0);
             this.lbDonvi2.Name = "lbDonvi2";
-            this.lbDonvi2.Size = new System.Drawing.Size(413, 27);
+            this.lbDonvi2.Size = new System.Drawing.Size(550, 32);
             this.lbDonvi2.TabIndex = 1;
             this.lbDonvi2.Text = "Đơn vị (NH/KS)";
             this.lbDonvi2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1223,7 +1225,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1781, 920);
+            this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.lbDSTonkho);
             this.Controls.Add(this.pnlTopbar2);
             this.Margin = new System.Windows.Forms.Padding(4);
