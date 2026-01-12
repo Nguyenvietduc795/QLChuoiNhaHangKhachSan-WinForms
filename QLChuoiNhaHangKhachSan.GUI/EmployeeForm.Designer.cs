@@ -34,13 +34,19 @@
             this.lblEmployee_SubTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.bldManageEmployeeForm = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.btnAddEmployee = new Guna.UI2.WinForms.Guna2Button();
+            this.pnlEmployeeSearch = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnInactive = new Guna.UI2.WinForms.Guna2Button();
+            this.btnActive = new Guna.UI2.WinForms.Guna2Button();
+            this.btnAll = new Guna.UI2.WinForms.Guna2Button();
+            this.txtEmployeeSearch = new Guna.UI2.WinForms.Guna2TextBox();
+            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.flpEmployees = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlCardEmployeeTemplate = new Guna.UI2.WinForms.Guna2Panel();
             this.lblEmployeePhoneNumber = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnEmployeePhoneNumber = new Guna.UI2.WinForms.Guna2Button();
             this.lblEmployeeSalary = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnEmployeeSalary = new Guna.UI2.WinForms.Guna2Button();
-            this.btnEmployeeDelete = new Guna.UI2.WinForms.Guna2Button();
+            this.btnEmployeeActive = new Guna.UI2.WinForms.Guna2Button();
             this.btnEmployeeEdit = new Guna.UI2.WinForms.Guna2Button();
             this.btnEmployeeHireDate = new Guna.UI2.WinForms.Guna2Button();
             this.btnEmployeeDepartment = new Guna.UI2.WinForms.Guna2Button();
@@ -52,6 +58,7 @@
             this.lblEmployeePos = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblEmployeeName = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pnlEmployeeAvt = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.pnlEmployeeSearch.SuspendLayout();
             this.flpEmployees.SuspendLayout();
             this.pnlCardEmployeeTemplate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlEmployeeAvt)).BeginInit();
@@ -96,12 +103,107 @@
             this.btnAddEmployee.FillColor = System.Drawing.Color.Navy;
             this.btnAddEmployee.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddEmployee.ForeColor = System.Drawing.Color.Honeydew;
-            this.btnAddEmployee.Location = new System.Drawing.Point(942, 30);
+            this.btnAddEmployee.Location = new System.Drawing.Point(934, 30);
             this.btnAddEmployee.Name = "btnAddEmployee";
             this.btnAddEmployee.Size = new System.Drawing.Size(198, 57);
             this.btnAddEmployee.TabIndex = 2;
             this.btnAddEmployee.Text = "+ Thêm nhân viên";
             this.btnAddEmployee.Click += new System.EventHandler(this.btnAddEmployee_Click);
+            // 
+            // pnlEmployeeSearch
+            // 
+            this.pnlEmployeeSearch.Controls.Add(this.btnInactive);
+            this.pnlEmployeeSearch.Controls.Add(this.btnActive);
+            this.pnlEmployeeSearch.Controls.Add(this.btnAll);
+            this.pnlEmployeeSearch.Controls.Add(this.txtEmployeeSearch);
+            this.pnlEmployeeSearch.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlEmployeeSearch.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(250)))), ((int)(((byte)(251)))));
+            this.pnlEmployeeSearch.Location = new System.Drawing.Point(0, 116);
+            this.pnlEmployeeSearch.Name = "pnlEmployeeSearch";
+            this.pnlEmployeeSearch.Padding = new System.Windows.Forms.Padding(20);
+            this.pnlEmployeeSearch.Size = new System.Drawing.Size(1200, 59);
+            this.pnlEmployeeSearch.TabIndex = 4;
+            // 
+            // btnInactive
+            // 
+            this.btnInactive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInactive.BorderRadius = 18;
+            this.btnInactive.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnInactive.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnInactive.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnInactive.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnInactive.FillColor = System.Drawing.Color.White;
+            this.btnInactive.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInactive.ForeColor = System.Drawing.Color.Black;
+            this.btnInactive.Location = new System.Drawing.Point(973, 6);
+            this.btnInactive.Name = "btnInactive";
+            this.btnInactive.Size = new System.Drawing.Size(108, 45);
+            this.btnInactive.TabIndex = 3;
+            this.btnInactive.Text = "Inactive";
+            // 
+            // btnActive
+            // 
+            this.btnActive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnActive.BorderRadius = 18;
+            this.btnActive.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnActive.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnActive.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnActive.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnActive.FillColor = System.Drawing.Color.White;
+            this.btnActive.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActive.ForeColor = System.Drawing.Color.Black;
+            this.btnActive.Location = new System.Drawing.Point(829, 6);
+            this.btnActive.Name = "btnActive";
+            this.btnActive.Size = new System.Drawing.Size(108, 45);
+            this.btnActive.TabIndex = 2;
+            this.btnActive.Text = "Active";
+            // 
+            // btnAll
+            // 
+            this.btnAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAll.BorderRadius = 18;
+            this.btnAll.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnAll.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnAll.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnAll.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnAll.FillColor = System.Drawing.Color.Black;
+            this.btnAll.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAll.ForeColor = System.Drawing.Color.White;
+            this.btnAll.Location = new System.Drawing.Point(682, 6);
+            this.btnAll.Name = "btnAll";
+            this.btnAll.Size = new System.Drawing.Size(108, 45);
+            this.btnAll.TabIndex = 1;
+            this.btnAll.Text = "Tất cả";
+            // 
+            // txtEmployeeSearch
+            // 
+            this.txtEmployeeSearch.BorderRadius = 20;
+            this.txtEmployeeSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtEmployeeSearch.DefaultText = "";
+            this.txtEmployeeSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtEmployeeSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtEmployeeSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtEmployeeSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtEmployeeSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtEmployeeSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtEmployeeSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtEmployeeSearch.IconLeft = ((System.Drawing.Image)(resources.GetObject("txtEmployeeSearch.IconLeft")));
+            this.txtEmployeeSearch.Location = new System.Drawing.Point(45, 7);
+            this.txtEmployeeSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtEmployeeSearch.Name = "txtEmployeeSearch";
+            this.txtEmployeeSearch.PlaceholderText = "Tìm kiếm";
+            this.txtEmployeeSearch.SelectedText = "";
+            this.txtEmployeeSearch.ShadowDecoration.Depth = 0;
+            this.txtEmployeeSearch.Size = new System.Drawing.Size(600, 45);
+            this.txtEmployeeSearch.TabIndex = 0;
+            // 
+            // guna2Panel1
+            // 
+            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.Size = new System.Drawing.Size(1200, 116);
+            this.guna2Panel1.TabIndex = 5;
             // 
             // flpEmployees
             // 
@@ -110,10 +212,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flpEmployees.AutoScroll = true;
             this.flpEmployees.Controls.Add(this.pnlCardEmployeeTemplate);
-            this.flpEmployees.Location = new System.Drawing.Point(25, 110);
+            this.flpEmployees.Location = new System.Drawing.Point(25, 241);
             this.flpEmployees.Name = "flpEmployees";
-            this.flpEmployees.Padding = new System.Windows.Forms.Padding(10);
-            this.flpEmployees.Size = new System.Drawing.Size(1150, 580);
+            this.flpEmployees.Padding = new System.Windows.Forms.Padding(12);
+            this.flpEmployees.Size = new System.Drawing.Size(1142, 402);
             this.flpEmployees.TabIndex = 3;
             this.flpEmployees.SizeChanged += new System.EventHandler(this.flpEmployees_SizeChanged);
             // 
@@ -127,7 +229,7 @@
             this.pnlCardEmployeeTemplate.Controls.Add(this.btnEmployeePhoneNumber);
             this.pnlCardEmployeeTemplate.Controls.Add(this.lblEmployeeSalary);
             this.pnlCardEmployeeTemplate.Controls.Add(this.btnEmployeeSalary);
-            this.pnlCardEmployeeTemplate.Controls.Add(this.btnEmployeeDelete);
+            this.pnlCardEmployeeTemplate.Controls.Add(this.btnEmployeeActive);
             this.pnlCardEmployeeTemplate.Controls.Add(this.btnEmployeeEdit);
             this.pnlCardEmployeeTemplate.Controls.Add(this.btnEmployeeHireDate);
             this.pnlCardEmployeeTemplate.Controls.Add(this.btnEmployeeDepartment);
@@ -140,17 +242,17 @@
             this.pnlCardEmployeeTemplate.Controls.Add(this.lblEmployeeName);
             this.pnlCardEmployeeTemplate.Controls.Add(this.pnlEmployeeAvt);
             this.pnlCardEmployeeTemplate.FillColor = System.Drawing.Color.White;
-            this.pnlCardEmployeeTemplate.Location = new System.Drawing.Point(20, 20);
-            this.pnlCardEmployeeTemplate.Margin = new System.Windows.Forms.Padding(10);
-            this.pnlCardEmployeeTemplate.MinimumSize = new System.Drawing.Size(320, 360);
+            this.pnlCardEmployeeTemplate.Location = new System.Drawing.Point(24, 24);
+            this.pnlCardEmployeeTemplate.Margin = new System.Windows.Forms.Padding(12);
+            this.pnlCardEmployeeTemplate.MinimumSize = new System.Drawing.Size(320, 340);
             this.pnlCardEmployeeTemplate.Name = "pnlCardEmployeeTemplate";
             this.pnlCardEmployeeTemplate.ShadowDecoration.BorderRadius = 12;
             this.pnlCardEmployeeTemplate.ShadowDecoration.Color = System.Drawing.Color.White;
             this.pnlCardEmployeeTemplate.ShadowDecoration.Depth = 20;
             this.pnlCardEmployeeTemplate.ShadowDecoration.Enabled = true;
             this.pnlCardEmployeeTemplate.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(8);
-            this.pnlCardEmployeeTemplate.Size = new System.Drawing.Size(380, 360);
-            this.pnlCardEmployeeTemplate.TabIndex = 0;
+            this.pnlCardEmployeeTemplate.Size = new System.Drawing.Size(360, 340);
+            this.pnlCardEmployeeTemplate.TabIndex = 16;
             this.pnlCardEmployeeTemplate.Visible = false;
             // 
             // lblEmployeePhoneNumber
@@ -207,21 +309,20 @@
             this.btnEmployeeSalary.Size = new System.Drawing.Size(36, 32);
             this.btnEmployeeSalary.TabIndex = 12;
             // 
-            // btnEmployeeDelete
+            // btnEmployeeActive
             // 
-            this.btnEmployeeDelete.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnEmployeeDelete.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnEmployeeDelete.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnEmployeeDelete.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnEmployeeDelete.FillColor = System.Drawing.Color.LightSteelBlue;
-            this.btnEmployeeDelete.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEmployeeDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.btnEmployeeDelete.Location = new System.Drawing.Point(207, 301);
-            this.btnEmployeeDelete.Name = "btnEmployeeDelete";
-            this.btnEmployeeDelete.Size = new System.Drawing.Size(139, 38);
-            this.btnEmployeeDelete.TabIndex = 11;
-            this.btnEmployeeDelete.Text = "Delete";
-            this.btnEmployeeDelete.Click += new System.EventHandler(this.btnEmployeeDelete_Click);
+            this.btnEmployeeActive.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnEmployeeActive.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnEmployeeActive.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnEmployeeActive.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnEmployeeActive.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(250)))), ((int)(((byte)(229)))));
+            this.btnEmployeeActive.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmployeeActive.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(95)))), ((int)(((byte)(70)))));
+            this.btnEmployeeActive.Location = new System.Drawing.Point(207, 301);
+            this.btnEmployeeActive.Name = "btnEmployeeActive";
+            this.btnEmployeeActive.Size = new System.Drawing.Size(139, 38);
+            this.btnEmployeeActive.TabIndex = 11;
+            this.btnEmployeeActive.Text = "Active";
             // 
             // btnEmployeeEdit
             // 
@@ -229,15 +330,14 @@
             this.btnEmployeeEdit.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnEmployeeEdit.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnEmployeeEdit.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnEmployeeEdit.FillColor = System.Drawing.Color.LightSteelBlue;
+            this.btnEmployeeEdit.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnEmployeeEdit.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEmployeeEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(70)))), ((int)(((byte)(229)))));
+            this.btnEmployeeEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnEmployeeEdit.Location = new System.Drawing.Point(25, 301);
             this.btnEmployeeEdit.Name = "btnEmployeeEdit";
             this.btnEmployeeEdit.Size = new System.Drawing.Size(132, 38);
             this.btnEmployeeEdit.TabIndex = 10;
             this.btnEmployeeEdit.Text = "Edit";
-            this.btnEmployeeEdit.Click += new System.EventHandler(this.btnEmployeeEdit_Click);
             // 
             // btnEmployeeHireDate
             // 
@@ -294,14 +394,14 @@
             this.btnEmployeeStatus.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnEmployeeStatus.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnEmployeeStatus.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnEmployeeStatus.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(250)))), ((int)(((byte)(229)))));
+            this.btnEmployeeStatus.FillColor = System.Drawing.Color.Silver;
             this.btnEmployeeStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnEmployeeStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(95)))), ((int)(((byte)(70)))));
+            this.btnEmployeeStatus.ForeColor = System.Drawing.Color.Black;
             this.btnEmployeeStatus.Location = new System.Drawing.Point(265, 25);
             this.btnEmployeeStatus.Name = "btnEmployeeStatus";
             this.btnEmployeeStatus.Size = new System.Drawing.Size(92, 28);
             this.btnEmployeeStatus.TabIndex = 6;
-            this.btnEmployeeStatus.Text = "Active";
+            this.btnEmployeeStatus.Text = "Inactive";
             // 
             // lblEmployeeHireDate
             // 
@@ -356,12 +456,10 @@
             this.lblEmployeeName.Size = new System.Drawing.Size(140, 39);
             this.lblEmployeeName.TabIndex = 1;
             this.lblEmployeeName.Text = "Hồng Gấm";
-            this.lblEmployeeName.Click += new System.EventHandler(this.lblEmployeeName_Click);
             // 
             // pnlEmployeeAvt
             // 
             this.pnlEmployeeAvt.FillColor = System.Drawing.Color.Silver;
-            this.pnlEmployeeAvt.Image = ((System.Drawing.Image)(resources.GetObject("pnlEmployeeAvt.Image")));
             this.pnlEmployeeAvt.ImageRotate = 0F;
             this.pnlEmployeeAvt.Location = new System.Drawing.Point(25, 25);
             this.pnlEmployeeAvt.Name = "pnlEmployeeAvt";
@@ -375,15 +473,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1208, 773);
+            this.ClientSize = new System.Drawing.Size(1200, 750);
+            this.Controls.Add(this.pnlEmployeeSearch);
             this.Controls.Add(this.flpEmployees);
             this.Controls.Add(this.btnAddEmployee);
             this.Controls.Add(this.lblEmployee_SubTitle);
             this.Controls.Add(this.lblEmployee_Title);
+            this.Controls.Add(this.guna2Panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EmployeeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EmployeeForm";
+            this.pnlEmployeeSearch.ResumeLayout(false);
             this.flpEmployees.ResumeLayout(false);
             this.pnlCardEmployeeTemplate.ResumeLayout(false);
             this.pnlCardEmployeeTemplate.PerformLayout();
@@ -399,23 +500,29 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployee_SubTitle;
         private Guna.UI2.WinForms.Guna2BorderlessForm bldManageEmployeeForm;
         private Guna.UI2.WinForms.Guna2Button btnAddEmployee;
+        private Guna.UI2.WinForms.Guna2Panel pnlEmployeeSearch;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2TextBox txtEmployeeSearch;
+        private Guna.UI2.WinForms.Guna2Button btnActive;
+        private Guna.UI2.WinForms.Guna2Button btnAll;
+        private Guna.UI2.WinForms.Guna2Button btnInactive;
         private System.Windows.Forms.FlowLayoutPanel flpEmployees;
         private Guna.UI2.WinForms.Guna2Panel pnlCardEmployeeTemplate;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployeeName;
-        private Guna.UI2.WinForms.Guna2CirclePictureBox pnlEmployeeAvt;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployeePos;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployeeHireDate;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployeeDeapartment;
-        private Guna.UI2.WinForms.Guna2Button btnEmployeeStatus;
-        private Guna.UI2.WinForms.Guna2Button btnEmployeeMail;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployeeMail;
-        private Guna.UI2.WinForms.Guna2Button btnEmployeeHireDate;
-        private Guna.UI2.WinForms.Guna2Button btnEmployeeDepartment;
-        private Guna.UI2.WinForms.Guna2Button btnEmployeeDelete;
-        private Guna.UI2.WinForms.Guna2Button btnEmployeeEdit;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployeeSalary;
-        private Guna.UI2.WinForms.Guna2Button btnEmployeeSalary;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployeePhoneNumber;
         private Guna.UI2.WinForms.Guna2Button btnEmployeePhoneNumber;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployeeSalary;
+        private Guna.UI2.WinForms.Guna2Button btnEmployeeSalary;
+        private Guna.UI2.WinForms.Guna2Button btnEmployeeActive;
+        private Guna.UI2.WinForms.Guna2Button btnEmployeeEdit;
+        private Guna.UI2.WinForms.Guna2Button btnEmployeeHireDate;
+        private Guna.UI2.WinForms.Guna2Button btnEmployeeDepartment;
+        private Guna.UI2.WinForms.Guna2Button btnEmployeeMail;
+        private Guna.UI2.WinForms.Guna2Button btnEmployeeStatus;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployeeHireDate;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployeeDeapartment;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployeeMail;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployeePos;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblEmployeeName;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox pnlEmployeeAvt;
     }
 }

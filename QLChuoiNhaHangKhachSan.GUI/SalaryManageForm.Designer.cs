@@ -419,53 +419,6 @@
             this.colEmployeeStatus.ReadOnly = true;
             this.colEmployeeStatus.Width = 125;
             // 
-            // lblSalaryEmployee
-            // 
-            this.lblSalaryEmployee.BackColor = System.Drawing.Color.Transparent;
-            this.lblSalaryEmployee.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblSalaryEmployee.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSalaryEmployee.Location = new System.Drawing.Point(20, 68);
-            this.lblSalaryEmployee.Margin = new System.Windows.Forms.Padding(0);
-            this.lblSalaryEmployee.Name = "lblSalaryEmployee";
-            this.lblSalaryEmployee.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
-            this.lblSalaryEmployee.Size = new System.Drawing.Size(361, 51);
-            this.lblSalaryEmployee.TabIndex = 0;
-            this.lblSalaryEmployee.Text = "Bảng lương tất cả nhân viên";
-            // 
-            // summaryLayout
-            // 
-            this.summaryLayout.ColumnCount = 3;
-            this.summaryLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.summaryLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.summaryLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.summaryLayout.Controls.Add(this.pnlTotalPayroll, 0, 0);
-            this.summaryLayout.Controls.Add(this.pnlTotalEmployees, 1, 0);
-            this.summaryLayout.Controls.Add(this.pnlAvargeSalary, 2, 0);
-            this.summaryLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.summaryLayout.Location = new System.Drawing.Point(4, 4);
-            this.summaryLayout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.summaryLayout.Name = "summaryLayout";
-            this.summaryLayout.RowCount = 1;
-            this.summaryLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.summaryLayout.Size = new System.Drawing.Size(1050, 216);
-            this.summaryLayout.TabIndex = 12;
-            // 
-            // mainLayout
-            // 
-            this.mainLayout.ColumnCount = 1;
-            this.mainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.mainLayout.Controls.Add(this.summaryLayout, 0, 0);
-            this.mainLayout.Controls.Add(this.pnlSalaryEmployees, 0, 1);
-            this.mainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainLayout.Location = new System.Drawing.Point(13, 123);
-            this.mainLayout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.mainLayout.Name = "mainLayout";
-            this.mainLayout.RowCount = 2;
-            this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 224F));
-            this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.mainLayout.Size = new System.Drawing.Size(1058, 591);
-            this.mainLayout.TabIndex = 13;
-            // 
             // SalaryManageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
