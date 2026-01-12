@@ -7,6 +7,7 @@ using Guna.UI2.WinForms; // Control Guna2
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
+
     public partial class FormDashBoard : Form // Form dashboard chính
     {
         private Form activeChildForm = null; // Form con hiện tại đang hiển thị
@@ -274,7 +275,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void btnMenu_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
-            ShowChild(new frmMenu());//Nhúng form menu
+            ShowChild(new frmFoodManagement());//Nhúng form menu
         }
 
         /************************************************************************************************************/

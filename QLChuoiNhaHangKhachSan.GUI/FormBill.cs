@@ -1,167 +1,242 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
 using System.Windows.Forms;
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
     public partial class frmBill : Form
     {
-        private PrintDocument _printDoc;
+        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
+        private readonly int _orderId;
+        private readonly string _tableName;
+        private string _customerEmail;
+        private readonly PrintDocument _printDocument;
+        private Bitmap _billBitmap;
 
         public frmBill()
         {
             InitializeComponent();
 
-            // init print document
-            _printDoc = new PrintDocument();
-            _printDoc.PrintPage += PrintDoc_PrintPage;
+            _printDocument = new PrintDocument();
+            _printDocument.PrintPage += PrintDocument_PrintPage;
 
-            // wire print button (designer control: guna2Button1)
-            try
-            {
-                this.guna2Button1.Click -= Guna2Button1_Click;
-                this.guna2Button1.Click += Guna2Button1_Click;
-            }
-            catch
-            {
-                // ignore if control missing in designer mismatch
-            }
+            btnPrint.Click += guna2Button1_Click; // In hóa đơn
+            this.Load += frmBill_Load;
         }
 
-        /// <summary>
-        /// Populate the bill UI from invoice data and line items.
-        /// items: List of tuples (name, quantity, unitPrice, total)
-        /// </summary>
-        public void PopulateFromInvoice(string invoiceId, string customer, string dateText, string totalText, string status, string paymentMethod, List<Tuple<string, int, decimal, decimal>> items)
+        public frmBill(int orderId, string tableName = null) : this()
         {
-            // Map simple fields to textboxes used in the Designer
-            // Designer mapping (best-effort):
-            // guna2TextBox1 -> invoice id or company? We'll set customer/invoice fields sensibly.
-            try { this.guna2TextBox1.Text = invoiceId; } catch { }
-            try { this.guna2TextBox2.Text = customer; } catch { }
-            try { this.guna2TextBox3.Text = dateText; } catch { }
-            try { this.guna2TextBox4.Text = paymentMethod; } catch { }
-
-            // Clear grid and fill items
-            try
-            {
-                this.guna2DataGridView1.Rows.Clear();
-                if (items != null)
-                {
-                    foreach (var it in items)
-                    {
-                        int idx = this.guna2DataGridView1.Rows.Add();
-                        var row = this.guna2DataGridView1.Rows[idx];
-                        // columns in Designer: colName, colSL, colDonGia, colThanhTien
-                        row.Cells["colName"].Value = it.Item1;
-                        row.Cells["colSL"].Value = it.Item2.ToString();
-                        row.Cells["colDonGia"].Value = it.Item3.ToString("N0");
-                        row.Cells["colThanhTien"].Value = it.Item4.ToString("N0");
-                    }
-                }
-            }
-            catch { /* ignore designer mismatch */ }
-
-            // Set totals (guna2TextBox5: total, guna2TextBox6: received, guna2TextBox7: change)
-            try { this.guna2TextBox5.Text = totalText; } catch { }
-            // received/change left empty: caller may set if available
-            try { this.guna2TextBox6.Text = ""; } catch { }
-            try { this.guna2TextBox7.Text = ""; } catch { }
-
-            // Optionally set header labels (if any)
-            try
-            {
-                // if there are labels to set invoice id/title, set them (designer may have different names)
-            }
-            catch { }
+            _orderId = orderId;
+            _tableName = tableName;
         }
 
-        private void Guna2Button1_Click(object sender, EventArgs e)
+        private void guna2TextBox7_TextChanged(object sender, EventArgs e)
         {
-            // Show print preview using internal PrintDocument
-            using (var preview = new PrintPreviewDialog())
-            {
-                preview.Document = _printDoc;
-                // size/position preview reasonably
-                preview.Width = 1000;
-                preview.Height = 800;
-                try
-                {
-                    preview.ShowDialog(this);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi mở xem trước in: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+
         }
 
-        private void PrintDoc_PrintPage(object sender, PrintPageEventArgs e)
+        private void guna2HtmlLabel2_Click(object sender, EventArgs e)
         {
-            // Render the bill panel to a bitmap and draw it on the print page.
-            // This keeps layout faithful to Designer.
-            if (this.pnlBill == null)
-            {
-                e.HasMorePages = false;
-                return;
-            }
 
-            try
-            {
-                // scale panel to printable width while keeping aspect ratio
-                var panel = this.pnlBill;
-                using (var bmp = new Bitmap(panel.Width, panel.Height))
-                {
-                    panel.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-
-                    // Calculate scaling to fit within margin bounds
-                    var margin = e.MarginBounds;
-                    float scale = Math.Min((float)margin.Width / bmp.Width, (float)margin.Height / bmp.Height);
-
-                    int drawW = (int)(bmp.Width * scale);
-                    int drawH = (int)(bmp.Height * scale);
-                    int drawX = margin.Left + (margin.Width - drawW) / 2;
-                    int drawY = margin.Top + (margin.Height - drawH) / 2;
-
-                    e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                    e.Graphics.DrawImage(bmp, new Rectangle(drawX, drawY, drawW, drawH));
-                }
-            }
-            catch (Exception ex)
-            {
-                // fallback: render a simple text if DrawToBitmap fails
-                var font = new Font("Segoe UI", 12);
-                e.Graphics.DrawString("Unable to render bill preview: " + ex.Message, font, Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Top);
-            }
-
-            e.HasMorePages = false;
-        }
-
-        // Added: handler referenced by the Designer (this.Load += this.frmBill_Load)
-        private void frmBill_Load(object sender, EventArgs e)
-        {
-            // Optional initialization for the bill form.
-            // Keep empty if no startup work is needed.
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-            DialogResult = MessageBox.Show(
-                "Bạn có chắc muốn đóng hóa đơn không?",
-                "Xác nhận",
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (DialogResult == DialogResult.OK)
+
+        }
+
+        private void frmBill_Load(object sender, EventArgs e)
+        {
+            LoadBillData();
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            try
             {
-                this.Close();
+                CaptureBillPanel();
+                SendBillEmail();
+
+                using (var printDialog = new PrintDialog())
+                {
+                    printDialog.Document = _printDocument;
+                    if (printDialog.ShowDialog(this) == DialogResult.OK)
+                    {
+                        _printDocument.Print();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể in hóa đơn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        private void CaptureBillPanel()
+        {
+            _billBitmap?.Dispose();
+            _billBitmap = new Bitmap(pnlBill.Width, pnlBill.Height);
+            pnlBill.DrawToBitmap(_billBitmap, new Rectangle(0, 0, pnlBill.Width, pnlBill.Height));
+        }
+
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            if (_billBitmap == null)
+            {
+                CaptureBillPanel();
+            }
+
+            if (_billBitmap != null)
+            {
+                e.Graphics.DrawImage(_billBitmap, new Point(0, 0));
+            }
+        }
+
+        private void LoadBillData()
+        {
+            if (_orderId <= 0) return;
+
+            dvgDishList.Rows.Clear();
+
+            try
+            {
+                using (var conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+
+                    // Lấy thông tin chung của hóa đơn
+                    using (var cmdOrder = new SqlCommand(
+                        @"SELECT o.OrderId, o.DateCheckIn, o.SubTotal, o.Discount, o.Surcharge, o.TotalAmount,
+                                 c.FullName AS CustomerName, c.Email, rt.TableName
+                          FROM OrderTicket o
+                          LEFT JOIN Customers c ON o.CustomerID = c.CustomerId
+                          LEFT JOIN RestaurantTable rt ON o.TableID = rt.TableID
+                          WHERE o.OrderId = @OrderId", conn))
+                    {
+                        cmdOrder.Parameters.AddWithValue("@OrderId", _orderId);
+
+                        using (var reader = cmdOrder.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                txtBillCode.Text = _orderId.ToString(CultureInfo.InvariantCulture);
+                                txtCustomer.Text = reader["CustomerName"] == DBNull.Value
+                                    ? string.Empty
+                                    : reader["CustomerName"].ToString();
+
+                                _customerEmail = reader["Email"] == DBNull.Value
+                                    ? null
+                                    : reader["Email"].ToString();
+
+                                string tableName = reader["TableName"] == DBNull.Value ? string.Empty : reader["TableName"].ToString();
+                                txtTableCode.Text = string.IsNullOrWhiteSpace(_tableName) ? tableName : _tableName;
+
+                                DateTime dateCheckIn = reader["DateCheckIn"] == DBNull.Value
+                                    ? DateTime.Now
+                                    : Convert.ToDateTime(reader["DateCheckIn"], CultureInfo.InvariantCulture);
+                                txtDay.Text = dateCheckIn.ToString("dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+
+                                decimal total = reader["TotalAmount"] == DBNull.Value
+                                    ? 0m
+                                    : Convert.ToDecimal(reader["TotalAmount"], CultureInfo.InvariantCulture);
+                                txtTotalAmount.Text = total.ToString("N0", CultureInfo.InvariantCulture);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không tìm thấy hóa đơn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+                            }
+                        }
+                    }
+
+                    // Lấy chi tiết món ăn
+                    using (var cmdItems = new SqlCommand(
+                        @"SELECT f.FoodName, i.Quantity, i.UnitPrice, i.LineTotal
+                          FROM OrderTicketItem i
+                          INNER JOIN Food f ON i.FoodID = f.FoodID
+                          WHERE i.OrderId = @OrderId", conn))
+                    {
+                        cmdItems.Parameters.AddWithValue("@OrderId", _orderId);
+                        using (var reader = cmdItems.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string foodName = reader["FoodName"].ToString();
+                                int quantity = Convert.ToInt32(reader["Quantity"], CultureInfo.InvariantCulture);
+                                decimal unitPrice = Convert.ToDecimal(reader["UnitPrice"], CultureInfo.InvariantCulture);
+                                decimal lineTotal = Convert.ToDecimal(reader["LineTotal"], CultureInfo.InvariantCulture);
+
+                                dvgDishList.Rows.Add(
+                                    foodName,
+                                    quantity,
+                                    unitPrice.ToString("N0", CultureInfo.InvariantCulture),
+                                    lineTotal.ToString("N0", CultureInfo.InvariantCulture));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải dữ liệu hóa đơn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SendBillEmail()
+        {
+            if (string.IsNullOrWhiteSpace(_customerEmail))
+            {
+                MessageBox.Show("Không có email khách hàng để gửi hóa đơn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (_billBitmap == null)
+            {
+                CaptureBillPanel();
+            }
+
+            try
+            {
+                using (var ms = new MemoryStream())
+                {
+                    _billBitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    ms.Position = 0;
+
+                    using (var mail = new MailMessage())
+                    {
+                        mail.From = new MailAddress("lamtritua@gmail.com", "Chuỗi nhà hàng khách sạn Accor Hotels");
+                        mail.To.Add(_customerEmail);
+                        mail.Subject = "Hóa đơn";
+                        mail.Body = "Quý khách vui lòng xem hóa đơn đính kèm. Cảm ơn quý khách đã sử dụng dịch vụ.";
+                        mail.IsBodyHtml = false;
+
+                        using (var attachment = new Attachment(ms, "HoaDon.png", "image/png"))
+                        {
+                            mail.Attachments.Add(attachment);
+
+                            using (var smtp = new SmtpClient("smtp.gmail.com", 587))
+                            {
+                                smtp.EnableSsl = true;
+                                smtp.Credentials = new NetworkCredential("lamtritua@gmail.com", "bfix gzdt yoeu yzdb");
+                                smtp.Send(mail);
+                            }
+                        }
+                    }
+                }
+
+                MessageBox.Show("Đã gửi hóa đơn đến email khách hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gửi email thất bại: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
