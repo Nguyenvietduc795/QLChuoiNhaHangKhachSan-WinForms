@@ -22,7 +22,7 @@
     </application>
   </compatibility>
 
-  <!-- Thi?t l?p DPI awareness ?? tránh l?i v?i Guna UI controls -->
+  <!-- Thi?t l?p DPI awareness ?? trï¿½nh l?i v?i Guna UI controls -->
   <application xmlns="urn:schemas-microsoft-com:asm.v3">
     <windowsSettings>
       <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true/pm</dpiAware>

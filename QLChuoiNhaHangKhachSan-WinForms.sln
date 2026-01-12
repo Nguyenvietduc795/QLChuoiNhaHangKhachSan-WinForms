@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.0.11205.157 d18.0
+VisualStudioVersion = 18.1.11312.151
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLChuoiNhaHangKhachSan.GUI", "QLChuoiNhaHangKhachSan.GUI\QLChuoiNhaHangKhachSan.GUI.csproj", "{73722335-C1FE-4D50-80CE-86EE77F6CE12}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLChuoiNhaHangKhachSan.BLL", "QLChuoiNhaHangKhachSan.BLL\QLChuoiNhaHangKhachSan.BLL.csproj", "{4E25BE4C-85E3-45DE-81C5-52A8C8D0B030}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLChuoiNhaHangKhachSan.DAL", "QLChuoiNhaHangKhachSan.DAL\QLChuoiNhaHangKhachSan.DAL.csproj", "{EE2F359F-ED71-4C9A-8859-B1A785CAAEAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormDownload", "FormDownload\FormDownload.csproj", "{01A934CF-6042-4980-8853-D42604420610}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{EE2F359F-ED71-4C9A-8859-B1A785CAAEAE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EE2F359F-ED71-4C9A-8859-B1A785CAAEAE}.Release|x86.ActiveCfg = Release|x86
 		{EE2F359F-ED71-4C9A-8859-B1A785CAAEAE}.Release|x86.Build.0 = Release|x86
+		{01A934CF-6042-4980-8853-D42604420610}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01A934CF-6042-4980-8853-D42604420610}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01A934CF-6042-4980-8853-D42604420610}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01A934CF-6042-4980-8853-D42604420610}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,6 +7,7 @@ using Guna.UI2.WinForms; // Control Guna2
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
+
     public partial class FormDashBoard : Form // Form dashboard chính
     {
         private Form activeChildForm = null; // Form con hiện tại đang hiển thị
@@ -94,8 +95,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
             try
             {
-                string connStr = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString; // Lấy chuỗi kết nối (nếu cần)
-                // MessageBox.Show(connStr); // Debug
+                // Đúng tên theo App.config
+                string connStr = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
+                // MessageBox.Show(connStr); // Debug nếu muốn
             }
             catch { } // Bỏ qua nếu lỗi cấu hình
         }
@@ -204,13 +206,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void btnCustomerList_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
-            // TODO: ShowChild(new CustomerListForm());
+            ShowChild(new CustomersList());
         }
 
         private void btnLoyaltyProgram_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
-            // TODO: ShowChild(new LoyaltyProgramForm());
+            ShowChild(new PromotionsCustomers());
         }
 
         private void pnlSidebar_Paint(object sender, PaintEventArgs e) { }
@@ -235,6 +237,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void btnRoomList_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
+            ShowChild(new ListRoom());//Nhúng form quản lý phòng
         }
         private void btnBooking_Click(object sender, EventArgs e)
         {
@@ -243,6 +246,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void btnBookingRoom_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
+            ShowChild(new BooKing_Form());//Nhúng form đặt phòng
         }
 
         /************************************************************************************************************/
@@ -265,11 +269,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void btnTableList_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
+            ShowChild(new frmRestaurant());//Nhúng form nha hang
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
+            ShowChild(new frmFoodManagement());//Nhúng form menu
         }
 
         /************************************************************************************************************/
@@ -293,11 +299,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void btnIngredient_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
+            ShowChild(new FormInventory());//Nhúng form nguyên liệu
         }
 
         private void btnEquipment_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
+            ShowChild(new FormInventory2());//Nhúng form thiết bị
         }
 
         /************************************************************************************************************/
@@ -320,11 +328,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void btnInvoice_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
+            ShowChild(new FormInvoiceManagement());//Nhúng form hóa đơn
         }
 
         private void btnTransaction_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
+            ShowChild(new FormPayments());//Nhúng form lịch sử giao dịch
         }
 
         /************************************************************************************************************/
