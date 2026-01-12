@@ -10,6 +10,27 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private DateTime endTime;
         private Timer timerCountdown;
 
+        private readonly Color _freeBack = Color.FromArgb(216, 234, 248);
+        private readonly Color _freeBorder = Color.FromArgb(146, 191, 229);
+        private readonly Color _freeRoom = Color.FromArgb(10, 69, 110);
+        private readonly Color _freeStatus = Color.FromArgb(24, 131, 74);
+        private readonly Color _freeSub = Color.FromArgb(28, 41, 56);
+
+        private readonly Color _reservedBack = Color.FromArgb(255, 236, 210);
+        private readonly Color _reservedBorder = Color.FromArgb(214, 160, 90);
+        private readonly Color _reservedRoom = Color.FromArgb(121, 74, 14);
+        private readonly Color _reservedStatus = Color.FromArgb(185, 109, 0);
+        private readonly Color _reservedSub = Color.FromArgb(92, 59, 28);
+        private readonly Color _reservedFooterBack = Color.FromArgb(255, 232, 196);
+        private readonly Color _reservedFooterBorder = Color.FromArgb(199, 138, 66);
+        private readonly Color _reservedFooterText = Color.FromArgb(92, 59, 28);
+
+        private readonly Color _rentedBack = Color.FromArgb(20, 31, 61);
+        private readonly Color _rentedBorder = Color.FromArgb(63, 96, 149);
+        private readonly Color _rentedRoom = Color.FromArgb(235, 242, 255);
+        private readonly Color _rentedStatus = Color.FromArgb(255, 210, 92);
+        private readonly Color _rentedSub = Color.FromArgb(202, 215, 239);
+
         public UcRoom()
         {
             InitializeComponent();
@@ -28,6 +49,35 @@ namespace QLChuoiNhaHangKhachSan.GUI
             timerCountdown.Tick += TimerCountdown_Tick;
         }
 
+        private void ApplyTheme(Color back, Color border, Color roomColor, Color statusColor, Color subColor)
+        {
+            if (pnlRoomContainer != null)
+            {
+                pnlRoomContainer.FillColor = back;
+                pnlRoomContainer.FillColor2 = back;
+                pnlRoomContainer.BorderColor = border;
+                pnlRoomContainer.BorderThickness = 2;
+            }
+
+            if (labRoomNumber != null) labRoomNumber.ForeColor = roomColor;
+            if (labTrangthai != null) labTrangthai.ForeColor = statusColor;
+            if (lblStatus != null) lblStatus.ForeColor = subColor;
+            if (labThoiGian != null) labThoiGian.ForeColor = subColor;
+            if (labSanSang != null) labSanSang.ForeColor = subColor;
+        }
+
+        private void ApplyFooterTheme(Color back, Color border, Color text)
+        {
+            if (guna2GradientPanel1 != null)
+            {
+                guna2GradientPanel1.FillColor = back;
+                guna2GradientPanel1.FillColor2 = back;
+                guna2GradientPanel1.BorderColor = border;
+            }
+            if (labThoiGian != null) labThoiGian.ForeColor = text;
+            if (labSanSang != null) labSanSang.ForeColor = text;
+        }
+
         // Đã sửa: Hàm này giúp bấm vào nhãn hay hình ảnh đều mở được Form
         private void RegisterEvents(Control parent)
         {
@@ -44,7 +94,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
             string ma = labRoomNumber.Text;
             string ttHienTai = labTrangthai.Text; // Chữ "Phòng trống" nhỏ ở góc
 
-            using (Room_Details frm = new Room_Details(ma, ttHienTai))
+            DateTime? viewTime = null;
+            if (ViewTimeProvider != null)
+            {
+                viewTime = ViewTimeProvider();
+            }
+
+            using (Room_Details frm = new Room_Details(ma, ttHienTai, viewTime))
             {
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
@@ -127,10 +183,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
             labSanSang.Visible = false;
             picSanSang.Visible = false;
             labTrangthai.Text = "Phòng đã đặt";
-            pnlRoomContainer.FillColor = Color.Green;
-            lblStatus.ForeColor = Color.Black;
-            labTrangthai.ForeColor = Color.DarkSlateGray;
-        }
+            ApplyTheme(_reservedBack, _reservedBorder, _reservedRoom, _reservedStatus, _reservedSub);
+            ApplyFooterTheme(_reservedFooterBack, _reservedFooterBorder, _reservedFooterText);
+         }
 
         // New public helpers to update UI from ListRoom without accessing private members
         public void SetReserved(string tenKhach)
@@ -142,10 +197,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
             lblStatus.Text = tenKhach;
             labTrangthai.Text = "Phòng đã đặt";
-            pnlRoomContainer.FillColor = Color.Khaki;
-            lblStatus.ForeColor = Color.Black;
-            labTrangthai.ForeColor = Color.DarkSlateGray;
-        }
+            ApplyTheme(_reservedBack, _reservedBorder, _reservedRoom, _reservedStatus, _reservedSub);
+            labSanSang.Visible = false;
+            if (picSanSang != null) picSanSang.Visible = false;
+            ApplyFooterTheme(_reservedFooterBack, _reservedFooterBorder, _reservedFooterText);
+          }
 
         public void SetRented(string tenKhach, int days)
         {
@@ -156,12 +212,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
             lblStatus.Text = tenKhach;
             labTrangthai.Text = "Đang thuê";
-            pnlRoomContainer.FillColor = Color.MidnightBlue;
-            lblStatus.ForeColor = Color.White;
-            labRoomNumber.ForeColor = Color.White;
-            labTrangthai.ForeColor = Color.Yellow;
-            // start countdown for days
-            CapNhatNhanPhong(tenKhach, days);
+            ApplyTheme(_rentedBack, _rentedBorder, _rentedRoom, _rentedStatus, _rentedSub);
+            ApplyFooterTheme(Color.FromArgb(41, 57, 92), _rentedBorder, Color.White);
+             // start countdown for days
+             CapNhatNhanPhong(tenKhach, days);
         }
 
         public void SetFree()
@@ -174,32 +228,44 @@ namespace QLChuoiNhaHangKhachSan.GUI
             timerCountdown.Stop();
             lblStatus.Text = "Phòng Trống";
             labTrangthai.Text = "Phòng trống";
-            pnlRoomContainer.FillColor = Color.LightGray;
-            lblStatus.ForeColor = Color.Black;
-            labRoomNumber.ForeColor = Color.Black;
-            labTrangthai.ForeColor = Color.Black;
-            if (labThoiGian != null)
+            ApplyTheme(_freeBack, _freeBorder, _freeRoom, _freeStatus, _freeSub);
+            ApplyFooterTheme(_freeBack, _freeBorder, _freeSub);
+             if (labThoiGian != null)
+             {
+                 labThoiGian.Text = "Thời gian";
+             }
+             if (labSanSang != null)
+             {
+                 labSanSang.Text = "Sẵn sàng";
+                 labSanSang.Visible = true;
+             }
+             if (picSanSang != null) picSanSang.Visible = true;
+         }
+
+        public void SetVip(bool isVip)
+        {
+            if (InvokeRequired)
             {
-                labThoiGian.Text = "Thời gian";
-                labThoiGian.ForeColor = Color.Black;
+                Invoke(new Action(() => SetVip(isVip)));
+                return;
             }
-            if (labSanSang != null)
+            if (labVip != null)
             {
-                labSanSang.Text = "Sẵn sàng";
-                labSanSang.ForeColor = Color.Black;
-                labSanSang.Visible = true;
+                labVip.Visible = isVip;
             }
-            if (picSanSang != null) picSanSang.Visible = true;
         }
+
+        // Được gán từ ListRoom để lấy thời gian đang xem (ngày/giờ) cho việc khóa ngày/giờ khi mở Room_Details
+        public Func<DateTime> ViewTimeProvider { get; set; }
 
         private void lblStatus_Click(object sender, EventArgs e)
         {
-
+            // no-op
         }
 
         private void UcRoom_Load(object sender, EventArgs e)
         {
-
+            // no-op
         }
     }
-}
+ }

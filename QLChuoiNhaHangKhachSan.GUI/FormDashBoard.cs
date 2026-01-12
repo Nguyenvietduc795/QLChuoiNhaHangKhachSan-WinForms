@@ -93,6 +93,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             CloseAllSubMenus(); // Thu gọn tất cả submenu
 
+            try
+            {
+                // Đúng tên theo App.config
+                string connStr = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
+                // MessageBox.Show(connStr); // Debug nếu muốn
+            }
+            catch { } // Bỏ qua nếu lỗi cấu hình
         }
 
         // Thu gọn toàn bộ các menu con về 50px (ẩn)

@@ -78,7 +78,7 @@
             this.pnlPaymentHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlPaymentHeader.Name = "pnlPaymentHeader";
             this.pnlPaymentHeader.ShadowDecoration.Enabled = true;
-            this.pnlPaymentHeader.Size = new System.Drawing.Size(1416, 107);
+            this.pnlPaymentHeader.Size = new System.Drawing.Size(1924, 107);
             this.pnlPaymentHeader.TabIndex = 0;
             // 
             // btnRemove
@@ -93,7 +93,7 @@
             this.btnRemove.ForeColor = System.Drawing.Color.White;
             this.btnRemove.Image = ((System.Drawing.Image)(resources.GetObject("btnRemove.Image")));
             this.btnRemove.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnRemove.Location = new System.Drawing.Point(1162, 37);
+            this.btnRemove.Location = new System.Drawing.Point(1576, 36);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.ShadowDecoration.BorderRadius = 10;
             this.btnRemove.ShadowDecoration.Color = System.Drawing.Color.White;
@@ -144,7 +144,7 @@
             this.pnlPayment.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.pnlPayment.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.pnlPayment.IconLeft = ((System.Drawing.Image)(resources.GetObject("pnlPayment.IconLeft")));
-            this.pnlPayment.Location = new System.Drawing.Point(831, 24);
+            this.pnlPayment.Location = new System.Drawing.Point(1244, 24);
             this.pnlPayment.Name = "pnlPayment";
             this.pnlPayment.PlaceholderText = "Nhập Mã Hóa Đơn/Tên Khách...";
             this.pnlPayment.SelectedText = "";
@@ -165,7 +165,7 @@
             this.gnbtnALL.ForeColor = System.Drawing.Color.White;
             this.gnbtnALL.Location = new System.Drawing.Point(63, 188);
             this.gnbtnALL.Name = "gnbtnALL";
-            this.gnbtnALL.Size = new System.Drawing.Size(207, 45);
+            this.gnbtnALL.Size = new System.Drawing.Size(204, 45);
             this.gnbtnALL.TabIndex = 1;
             this.gnbtnALL.Text = "Tất Cả";
             // 
@@ -182,7 +182,7 @@
             this.gnbtnDont.FillColor = System.Drawing.Color.White;
             this.gnbtnDont.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gnbtnDont.ForeColor = System.Drawing.Color.Black;
-            this.gnbtnDont.Location = new System.Drawing.Point(345, 188);
+            this.gnbtnDont.Location = new System.Drawing.Point(562, 188);
             this.gnbtnDont.Name = "gnbtnDont";
             this.gnbtnDont.Size = new System.Drawing.Size(197, 45);
             this.gnbtnDont.TabIndex = 2;
@@ -201,7 +201,7 @@
             this.gnbtnDone.FillColor = System.Drawing.Color.White;
             this.gnbtnDone.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gnbtnDone.ForeColor = System.Drawing.Color.DarkGreen;
-            this.gnbtnDone.Location = new System.Drawing.Point(615, 188);
+            this.gnbtnDone.Location = new System.Drawing.Point(1027, 188);
             this.gnbtnDone.Name = "gnbtnDone";
             this.gnbtnDone.Size = new System.Drawing.Size(194, 45);
             this.gnbtnDone.TabIndex = 3;
@@ -220,7 +220,7 @@
             this.gnbtnOverdue.FillColor = System.Drawing.Color.White;
             this.gnbtnOverdue.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gnbtnOverdue.ForeColor = System.Drawing.Color.Black;
-            this.gnbtnOverdue.Location = new System.Drawing.Point(892, 188);
+            this.gnbtnOverdue.Location = new System.Drawing.Point(1512, 188);
             this.gnbtnOverdue.Name = "gnbtnOverdue";
             this.gnbtnOverdue.Size = new System.Drawing.Size(203, 45);
             this.gnbtnOverdue.TabIndex = 4;
@@ -234,9 +234,9 @@
             this.gnpnlLSHD.BorderThickness = 2;
             this.gnpnlLSHD.Controls.Add(this.dgvTransaction);
             this.gnpnlLSHD.Controls.Add(this.lbLSGD);
-            this.gnpnlLSHD.Location = new System.Drawing.Point(51, 345);
+            this.gnpnlLSHD.Location = new System.Drawing.Point(46, 312);
             this.gnpnlLSHD.Name = "gnpnlLSHD";
-            this.gnpnlLSHD.Size = new System.Drawing.Size(861, 652);
+            this.gnpnlLSHD.Size = new System.Drawing.Size(1139, 652);
             this.gnpnlLSHD.TabIndex = 6;
             // 
             // dgvTransaction
@@ -275,14 +275,14 @@
             this.dgvTransaction.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvTransaction.EnableHeadersVisualStyles = false;
             this.dgvTransaction.GridColor = System.Drawing.SystemColors.GrayText;
-            this.dgvTransaction.Location = new System.Drawing.Point(30, 66);
+            this.dgvTransaction.Location = new System.Drawing.Point(47, 66);
             this.dgvTransaction.Name = "dgvTransaction";
             this.dgvTransaction.ReadOnly = true;
             this.dgvTransaction.RowHeadersVisible = false;
             this.dgvTransaction.RowHeadersWidth = 51;
             this.dgvTransaction.RowTemplate.Height = 24;
             this.dgvTransaction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTransaction.Size = new System.Drawing.Size(790, 553);
+            this.dgvTransaction.Size = new System.Drawing.Size(1035, 553);
             this.dgvTransaction.TabIndex = 10;
             // 
             // dgvInvoiceID
@@ -292,6 +292,7 @@
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.dgvInvoiceID.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvInvoiceID.FillWeight = 90F;
             this.dgvInvoiceID.HeaderText = "Mã GD";
             this.dgvInvoiceID.MinimumWidth = 100;
             this.dgvInvoiceID.Name = "dgvInvoiceID";
@@ -302,6 +303,7 @@
             this.dgvCustomer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.dgvCustomer.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvCustomer.FillWeight = 150F;
             this.dgvCustomer.HeaderText = "Khách Hàng";
             this.dgvCustomer.MinimumWidth = 100;
             this.dgvCustomer.Name = "dgvCustomer";
@@ -310,8 +312,9 @@
             // dvgDate
             // 
             this.dvgDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dvgDate.HeaderText = "Ngày Giao Dịch";
-            this.dvgDate.MinimumWidth = 100;
+            this.dvgDate.FillWeight = 220F;
+            this.dvgDate.HeaderText = "Ngày GD";
+            this.dvgDate.MinimumWidth = 200;
             this.dvgDate.Name = "dvgDate";
             this.dvgDate.ReadOnly = true;
             // 
@@ -320,6 +323,7 @@
             this.dgvAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.dgvAmount.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvAmount.FillWeight = 120F;
             this.dgvAmount.HeaderText = "Số Tiền";
             this.dgvAmount.MinimumWidth = 100;
             this.dgvAmount.Name = "dgvAmount";
@@ -333,6 +337,7 @@
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(182)))), ((int)(((byte)(122)))));
             this.dgvStatus.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvStatus.FillWeight = 120F;
             this.dgvStatus.HeaderText = "Trạng Thái";
             this.dgvStatus.MinimumWidth = 100;
             this.dgvStatus.Name = "dgvStatus";
@@ -351,106 +356,138 @@
             // pnlInvoicedetails
             // 
             this.pnlInvoicedetails.BackColor = System.Drawing.Color.Transparent;
-            this.pnlInvoicedetails.BorderRadius = 15;
+            this.pnlInvoicedetails.BorderRadius = 20;
             this.pnlInvoicedetails.Controls.Add(this.btnFix);
             this.pnlInvoicedetails.Controls.Add(this.btnDeleteInvoice);
             this.pnlInvoicedetails.Controls.Add(this.btnExportExcel);
             this.pnlInvoicedetails.Controls.Add(this.btnPrintInvoice);
             this.pnlInvoicedetails.Controls.Add(this.lblTitleInvoicedetails);
-            this.pnlInvoicedetails.FillColor = System.Drawing.Color.White;
-            this.pnlInvoicedetails.Location = new System.Drawing.Point(1023, 345);
+            this.pnlInvoicedetails.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(247)))));
+            this.pnlInvoicedetails.Location = new System.Drawing.Point(1331, 312);
             this.pnlInvoicedetails.Name = "pnlInvoicedetails";
+            this.pnlInvoicedetails.ShadowDecoration.BorderRadius = 18;
+            this.pnlInvoicedetails.ShadowDecoration.Color = System.Drawing.Color.DimGray;
             this.pnlInvoicedetails.ShadowDecoration.Enabled = true;
-            this.pnlInvoicedetails.Size = new System.Drawing.Size(350, 421);
+            this.pnlInvoicedetails.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(4, 4, 10, 10);
+            this.pnlInvoicedetails.Size = new System.Drawing.Size(470, 497);
             this.pnlInvoicedetails.TabIndex = 7;
             // 
             // btnFix
             // 
-            this.btnFix.DefaultAutoSize = true;
+            this.btnFix.BackColor = System.Drawing.Color.Transparent;
+            this.btnFix.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(216)))), ((int)(((byte)(216)))));
+            this.btnFix.BorderRadius = 16;
+            this.btnFix.BorderThickness = 1;
             this.btnFix.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnFix.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnFix.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnFix.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnFix.FillColor = System.Drawing.Color.White;
-            this.btnFix.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnFix.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnFix.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(198)))), ((int)(((byte)(193)))));
+            this.btnFix.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.btnFix.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(73)))), ((int)(((byte)(86)))));
             this.btnFix.Image = ((System.Drawing.Image)(resources.GetObject("btnFix.Image")));
-            this.btnFix.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnFix.Location = new System.Drawing.Point(70, 254);
+            this.btnFix.ImageSize = new System.Drawing.Size(26, 28);
+            this.btnFix.Location = new System.Drawing.Point(128, 295);
             this.btnFix.Name = "btnFix";
-            this.btnFix.Size = new System.Drawing.Size(189, 40);
+            this.btnFix.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnFix.ShadowDecoration.Depth = 6;
+            this.btnFix.ShadowDecoration.Enabled = true;
+            this.btnFix.Size = new System.Drawing.Size(194, 46);
             this.btnFix.TabIndex = 8;
             this.btnFix.Text = "Sửa Hóa Đơn";
             // 
             // btnDeleteInvoice
             // 
-            this.btnDeleteInvoice.DefaultAutoSize = true;
+            this.btnDeleteInvoice.BackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteInvoice.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(216)))), ((int)(((byte)(216)))));
+            this.btnDeleteInvoice.BorderRadius = 16;
+            this.btnDeleteInvoice.BorderThickness = 1;
             this.btnDeleteInvoice.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnDeleteInvoice.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnDeleteInvoice.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnDeleteInvoice.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnDeleteInvoice.FillColor = System.Drawing.Color.White;
-            this.btnDeleteInvoice.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnDeleteInvoice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnDeleteInvoice.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(183)))), ((int)(((byte)(181)))));
+            this.btnDeleteInvoice.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnDeleteInvoice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(50)))), ((int)(((byte)(38)))));
             this.btnDeleteInvoice.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteInvoice.Image")));
-            this.btnDeleteInvoice.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnDeleteInvoice.Location = new System.Drawing.Point(70, 334);
+            this.btnDeleteInvoice.ImageSize = new System.Drawing.Size(26, 28);
+            this.btnDeleteInvoice.Location = new System.Drawing.Point(128, 391);
             this.btnDeleteInvoice.Name = "btnDeleteInvoice";
-            this.btnDeleteInvoice.Size = new System.Drawing.Size(192, 40);
+            this.btnDeleteInvoice.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnDeleteInvoice.ShadowDecoration.Depth = 6;
+            this.btnDeleteInvoice.ShadowDecoration.Enabled = true;
+            this.btnDeleteInvoice.Size = new System.Drawing.Size(194, 49);
             this.btnDeleteInvoice.TabIndex = 3;
             this.btnDeleteInvoice.Text = "Hủy Hóa Đơn";
             // 
             // btnExportExcel
             // 
-            this.btnExportExcel.DefaultAutoSize = true;
+            this.btnExportExcel.BackColor = System.Drawing.Color.Transparent;
+            this.btnExportExcel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(216)))), ((int)(((byte)(216)))));
+            this.btnExportExcel.BorderRadius = 16;
+            this.btnExportExcel.BorderThickness = 1;
             this.btnExportExcel.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnExportExcel.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnExportExcel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnExportExcel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnExportExcel.FillColor = System.Drawing.Color.White;
-            this.btnExportExcel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnExportExcel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnExportExcel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(231)))), ((int)(((byte)(225)))));
+            this.btnExportExcel.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.btnExportExcel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(73)))), ((int)(((byte)(86)))));
             this.btnExportExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportExcel.Image")));
-            this.btnExportExcel.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnExportExcel.Location = new System.Drawing.Point(70, 172);
+            this.btnExportExcel.ImageSize = new System.Drawing.Size(26, 28);
+            this.btnExportExcel.Location = new System.Drawing.Point(129, 202);
             this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(165, 40);
+            this.btnExportExcel.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnExportExcel.ShadowDecoration.Depth = 6;
+            this.btnExportExcel.ShadowDecoration.Enabled = true;
+            this.btnExportExcel.Size = new System.Drawing.Size(193, 46);
             this.btnExportExcel.TabIndex = 2;
             this.btnExportExcel.Text = " Xuất Excel";
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click_1);
             // 
             // btnPrintInvoice
             // 
-            this.btnPrintInvoice.DefaultAutoSize = true;
+            this.btnPrintInvoice.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrintInvoice.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(216)))), ((int)(((byte)(216)))));
+            this.btnPrintInvoice.BorderRadius = 16;
+            this.btnPrintInvoice.BorderThickness = 1;
             this.btnPrintInvoice.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnPrintInvoice.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnPrintInvoice.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnPrintInvoice.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnPrintInvoice.FillColor = System.Drawing.Color.White;
-            this.btnPrintInvoice.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnPrintInvoice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(31)))), ((int)(((byte)(51)))));
+            this.btnPrintInvoice.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(237)))), ((int)(((byte)(234)))));
+            this.btnPrintInvoice.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.btnPrintInvoice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(73)))), ((int)(((byte)(86)))));
             this.btnPrintInvoice.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintInvoice.Image")));
-            this.btnPrintInvoice.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnPrintInvoice.Location = new System.Drawing.Point(70, 89);
+            this.btnPrintInvoice.ImageSize = new System.Drawing.Size(26, 28);
+            this.btnPrintInvoice.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnPrintInvoice.Location = new System.Drawing.Point(129, 103);
             this.btnPrintInvoice.Name = "btnPrintInvoice";
-            this.btnPrintInvoice.Size = new System.Drawing.Size(184, 40);
+            this.btnPrintInvoice.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnPrintInvoice.ShadowDecoration.Depth = 6;
+            this.btnPrintInvoice.ShadowDecoration.Enabled = true;
+            this.btnPrintInvoice.Size = new System.Drawing.Size(193, 46);
             this.btnPrintInvoice.TabIndex = 1;
             this.btnPrintInvoice.Text = "  In Hóa Đơn  ";
+            this.btnPrintInvoice.Click += new System.EventHandler(this.btnPrintInvoice_Click_1);
             // 
             // lblTitleInvoicedetails
             // 
-            this.lblTitleInvoicedetails.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblTitleInvoicedetails.Location = new System.Drawing.Point(39, 18);
+            this.lblTitleInvoicedetails.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblTitleInvoicedetails.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(73)))), ((int)(((byte)(86)))));
+            this.lblTitleInvoicedetails.Location = new System.Drawing.Point(50, 18);
             this.lblTitleInvoicedetails.Name = "lblTitleInvoicedetails";
-            this.lblTitleInvoicedetails.Size = new System.Drawing.Size(244, 47);
+            this.lblTitleInvoicedetails.Size = new System.Drawing.Size(352, 47);
             this.lblTitleInvoicedetails.TabIndex = 0;
             this.lblTitleInvoicedetails.Text = "Chi Tiết Hóa Đơn";
+            this.lblTitleInvoicedetails.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormInvoiceManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
-            this.ClientSize = new System.Drawing.Size(1416, 1009);
+            this.ClientSize = new System.Drawing.Size(1924, 1009);
             this.Controls.Add(this.pnlInvoicedetails);
             this.Controls.Add(this.gnpnlLSHD);
             this.Controls.Add(this.gnbtnOverdue);
@@ -469,7 +506,6 @@
             this.gnpnlLSHD.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransaction)).EndInit();
             this.pnlInvoicedetails.ResumeLayout(false);
-            this.pnlInvoicedetails.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -490,14 +526,14 @@
         private Guna.UI2.WinForms.Guna2Button btnPrintInvoice;
         private System.Windows.Forms.Label lblTitleInvoicedetails;
         private System.Windows.Forms.DataGridView dgvTransaction;
+        private Guna.UI2.WinForms.Guna2TextBox pnlPayment;
+        private Guna.UI2.WinForms.Guna2Button btnFix;
+        private System.Windows.Forms.Label lblHeaderSub;
+        private Guna.UI2.WinForms.Guna2Button btnRemove;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvInvoiceID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvCustomer;
         private System.Windows.Forms.DataGridViewTextBoxColumn dvgDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvStatus;
-        private Guna.UI2.WinForms.Guna2TextBox pnlPayment;
-        private Guna.UI2.WinForms.Guna2Button btnFix;
-        private System.Windows.Forms.Label lblHeaderSub;
-        private Guna.UI2.WinForms.Guna2Button btnRemove;
     }
 }

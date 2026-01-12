@@ -41,7 +41,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtNgay = new System.Windows.Forms.DateTimePicker();
             this.btnMax = new Guna.UI2.WinForms.Guna2ControlBox();
-            this.label22 = new System.Windows.Forms.Label();
             this.pnlSidebar = new Guna.UI2.WinForms.Guna2Panel();
             this.grTrangthai = new System.Windows.Forms.GroupBox();
             this.radTrong = new System.Windows.Forms.RadioButton();
@@ -73,10 +72,11 @@
             this.radGiadinh = new System.Windows.Forms.RadioButton();
             this.radDoi = new System.Windows.Forms.RadioButton();
             this.radDon = new System.Windows.Forms.RadioButton();
-            this.LayoutPhong = new System.Windows.Forms.FlowLayoutPanel();
-            this.labDoi = new System.Windows.Forms.Label();
-            this.labDangthue = new System.Windows.Forms.Label();
             this.guna2AnimateWindow2 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
+            this.labDangthue = new System.Windows.Forms.Label();
+            this.labDoi = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.LayoutPhong = new System.Windows.Forms.FlowLayoutPanel();
             this.guna2Panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox2)).BeginInit();
@@ -108,7 +108,7 @@
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(1924, 81);
+            this.guna2Panel1.Size = new System.Drawing.Size(1587, 81);
             this.guna2Panel1.TabIndex = 0;
             // 
             // btnClose
@@ -118,7 +118,7 @@
             this.btnClose.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
             this.btnClose.HoverState.FillColor = System.Drawing.Color.Red;
             this.btnClose.IconColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(1869, 3);
+            this.btnClose.Location = new System.Drawing.Point(1532, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(43, 29);
             this.btnClose.TabIndex = 5;
@@ -200,7 +200,7 @@
             this.btnMini.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
             this.btnMini.HoverState.FillColor = System.Drawing.Color.Red;
             this.btnMini.IconColor = System.Drawing.Color.White;
-            this.btnMini.Location = new System.Drawing.Point(1760, 3);
+            this.btnMini.Location = new System.Drawing.Point(1423, 3);
             this.btnMini.Name = "btnMini";
             this.btnMini.ShadowDecoration.BorderRadius = 10;
             this.btnMini.ShadowDecoration.Color = System.Drawing.Color.RosyBrown;
@@ -237,19 +237,10 @@
             this.btnMax.HoverState.FillColor = System.Drawing.Color.Red;
             this.btnMax.IconColor = System.Drawing.Color.WhiteSmoke;
             this.btnMax.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.btnMax.Location = new System.Drawing.Point(1816, 3);
+            this.btnMax.Location = new System.Drawing.Point(1479, 3);
             this.btnMax.Name = "btnMax";
             this.btnMax.Size = new System.Drawing.Size(47, 29);
             this.btnMax.TabIndex = 12;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(23, 20);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(0, 25);
-            this.label22.TabIndex = 8;
             // 
             // pnlSidebar
             // 
@@ -545,7 +536,7 @@
             this.grLoaiphong.Controls.Add(this.radDon);
             this.grLoaiphong.Location = new System.Drawing.Point(2, 394);
             this.grLoaiphong.Name = "grLoaiphong";
-            this.grLoaiphong.Size = new System.Drawing.Size(307, 577);
+            this.grLoaiphong.Size = new System.Drawing.Size(307, 568);
             this.grLoaiphong.TabIndex = 20;
             this.grLoaiphong.TabStop = false;
             // 
@@ -621,18 +612,14 @@
             this.radDon.CheckedChanged += new System.EventHandler(this.radDon_CheckedChanged);
             this.radDon.Click += new System.EventHandler(this.radDon_CheckedChanged);
             // 
-            // LayoutPhong
+            // labDangthue
             // 
-            this.LayoutPhong.AutoScroll = true;
-            this.LayoutPhong.Controls.Add(this.label22);
-            this.LayoutPhong.Controls.Add(this.labDoi);
-            this.LayoutPhong.Controls.Add(this.labDangthue);
-            this.LayoutPhong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutPhong.Location = new System.Drawing.Point(309, 81);
-            this.LayoutPhong.Name = "LayoutPhong";
-            this.LayoutPhong.Padding = new System.Windows.Forms.Padding(20);
-            this.LayoutPhong.Size = new System.Drawing.Size(1615, 974);
-            this.LayoutPhong.TabIndex = 2;
+            this.labDangthue.AutoSize = true;
+            this.labDangthue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labDangthue.Location = new System.Drawing.Point(35, 20);
+            this.labDangthue.Name = "labDangthue";
+            this.labDangthue.Size = new System.Drawing.Size(0, 25);
+            this.labDangthue.TabIndex = 9;
             // 
             // labDoi
             // 
@@ -644,21 +631,34 @@
             this.labDoi.Size = new System.Drawing.Size(0, 25);
             this.labDoi.TabIndex = 10;
             // 
-            // labDangthue
+            // label22
             // 
-            this.labDangthue.AutoSize = true;
-            this.labDangthue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labDangthue.Location = new System.Drawing.Point(35, 20);
-            this.labDangthue.Name = "labDangthue";
-            this.labDangthue.Size = new System.Drawing.Size(0, 25);
-            this.labDangthue.TabIndex = 9;
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(23, 20);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(0, 25);
+            this.label22.TabIndex = 8;
+            // 
+            // LayoutPhong
+            // 
+            this.LayoutPhong.AutoScroll = true;
+            this.LayoutPhong.Controls.Add(this.label22);
+            this.LayoutPhong.Controls.Add(this.labDoi);
+            this.LayoutPhong.Controls.Add(this.labDangthue);
+            this.LayoutPhong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutPhong.Location = new System.Drawing.Point(309, 81);
+            this.LayoutPhong.Name = "LayoutPhong";
+            this.LayoutPhong.Padding = new System.Windows.Forms.Padding(20);
+            this.LayoutPhong.Size = new System.Drawing.Size(1278, 974);
+            this.LayoutPhong.TabIndex = 2;
             // 
             // ListRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.ClientSize = new System.Drawing.Size(1587, 1055);
             this.Controls.Add(this.LayoutPhong);
             this.Controls.Add(this.pnlSidebar);
             this.Controls.Add(this.guna2Panel1);
@@ -727,14 +727,10 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel11;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
         private System.Windows.Forms.FlowLayoutPanel LPChinh;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel6;
-        private System.Windows.Forms.FlowLayoutPanel LayoutPhong;
-        private System.Windows.Forms.Label labDoi;
-        private System.Windows.Forms.Label labDangthue;
         private System.Windows.Forms.GroupBox grTrangthai;
         private System.Windows.Forms.GroupBox grLoaiphong;
         private System.Windows.Forms.Label label1;
@@ -743,5 +739,9 @@
         private Guna.UI2.WinForms.Guna2ControlBox btnMini;
         private Guna.UI2.WinForms.Guna2ControlBox btnMax;
         private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow2;
+        private System.Windows.Forms.Label labDangthue;
+        private System.Windows.Forms.Label labDoi;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.FlowLayoutPanel LayoutPhong;
     }
 }

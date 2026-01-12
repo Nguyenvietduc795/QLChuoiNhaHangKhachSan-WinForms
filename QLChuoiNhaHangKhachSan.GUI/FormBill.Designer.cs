@@ -261,21 +261,25 @@
             // colName
             // 
             this.colName.HeaderText = "Tên món";
+            this.colName.MinimumWidth = 6;
             this.colName.Name = "colName";
             // 
             // colSL
             // 
             this.colSL.HeaderText = "Số lượng";
+            this.colSL.MinimumWidth = 6;
             this.colSL.Name = "colSL";
             // 
             // colDonGia
             // 
             this.colDonGia.HeaderText = "Đơn giá";
+            this.colDonGia.MinimumWidth = 6;
             this.colDonGia.Name = "colDonGia";
             // 
             // colThanhTien
             // 
             this.colThanhTien.HeaderText = "Thành tiền";
+            this.colThanhTien.MinimumWidth = 6;
             this.colThanhTien.Name = "colThanhTien";
             // 
             // txtDay
@@ -377,7 +381,7 @@
             this.guna2HtmlLabel5.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel5.Location = new System.Drawing.Point(255, 104);
             this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            this.guna2HtmlLabel5.Size = new System.Drawing.Size(119, 34);
+            this.guna2HtmlLabel5.Size = new System.Drawing.Size(147, 43);
             this.guna2HtmlLabel5.TabIndex = 4;
             this.guna2HtmlLabel5.Text = "HÓA ĐƠN";
             // 
@@ -386,7 +390,7 @@
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel4.Location = new System.Drawing.Point(0, 89);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(678, 15);
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(903, 18);
             this.guna2HtmlLabel4.TabIndex = 3;
             this.guna2HtmlLabel4.Text = resources.GetString("guna2HtmlLabel4.Text");
             // 
@@ -396,7 +400,7 @@
             this.guna2HtmlLabel3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel3.Location = new System.Drawing.Point(236, 68);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(124, 22);
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(155, 27);
             this.guna2HtmlLabel3.TabIndex = 2;
             this.guna2HtmlLabel3.Text = "SĐT: 0912 345 678";
             // 
@@ -417,7 +421,7 @@
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.Location = new System.Drawing.Point(156, 3);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(264, 32);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(324, 38);
             this.guna2HtmlLabel1.TabIndex = 0;
             this.guna2HtmlLabel1.Text = "Chuỗi nhà hàng khách sạn";
             // 
@@ -476,6 +480,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmBill";
             this.Text = "In hóa đơn";
+            this.Load += new System.EventHandler(this.frmBill_Load);
             this.pnlBill.ResumeLayout(false);
             this.pnlBill.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgDishList)).EndInit();

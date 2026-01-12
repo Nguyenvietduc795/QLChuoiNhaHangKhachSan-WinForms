@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -18,6 +19,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
         public string SelectedStatus { get; private set; }
         public string SelectedRoomType { get; private set; }
 
+        private readonly DateTime? _lockedViewTime;
+        private readonly bool _lockDateTimePickers;
+
         private Label _lblCheckout;
         private Guna2Button _btnThanhToan;
         private Button _btnAddService;
@@ -26,11 +30,15 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private ContextMenuStrip _menuService;
 
         private const decimal ROOM_PRICE_PER_NIGHT = 499000m;
+        private const decimal VIP_ROOM_PRICE_PER_NIGHT = 599000m;
         private const string ROOM_SERVICE_NAME = "Tiền phòng";
 
-        public Room_Details(string maPhong, string trangThai)
+        public Room_Details(string maPhong, string trangThai, DateTime? lockedViewTime = null, bool lockDateTimePickers = true)
         {
             InitializeComponent();
+
+            _lockedViewTime = lockedViewTime;
+            _lockDateTimePickers = lockDateTimePickers && lockedViewTime.HasValue;
 
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
             {
@@ -41,6 +49,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             labMaphong.Text = maPhong;
             SetRoomTypeByCode(maPhong);
             SetStatusSelection(trangThai);
+            UpdateVipBadge();
 
             if (guna2DataGridView2.Columns.Count >= 4)
             {
@@ -63,13 +72,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
             _btnThanhToan = new Guna2Button
             {
                 Text = "Thanh toán",
-                AutoSize = true,
+                AutoSize = false,
                 Visible = false,
                 BorderRadius = 8,
-                FillColor = System.Drawing.Color.FromArgb(76, 132, 255),
-                ForeColor = System.Drawing.Color.White,
+                FillColor = Color.FromArgb(255, 159, 67),
+                ForeColor = Color.White,
                 Padding = new Padding(8, 4, 8, 4),
                 Font = btnNhanphong.Font,
+                Size = new Size(btnThoat.Width, btnThoat.Height),
                 Location = new System.Drawing.Point(btnThoat.Right + 10, btnThoat.Top),
                 Anchor = AnchorStyles.Bottom
             };
@@ -121,6 +131,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 btnNhanphong.Text = "Lưu thay đổi";
             }
 
+            // Khóa ngày/giờ theo thời gian đang xem nếu được truyền vào
+            ApplyLockedViewTime();
+
             BookingManager.TryGetBooking(maPhong, out _existing);
             if (_existing != null)
             {
@@ -134,16 +147,36 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 UpdateCheckoutLabel(start, end, days);
                 LoadServicesToGrid(_existing.Services);
                 EnsureRoomCharge(days);
+                EnsureVipBreakfast();
                 _btnThanhToan.Visible = true;
-
-                // Hiển thị trạng thái hiện tại dựa vào ngày
-                string currentStatus = DateTime.Now < start ? "Phòng đã đặt" : "Phòng đang thuê";
-                SetStatusSelection(currentStatus);
+                // giữ trạng thái theo tham số truyền vào (trangThai) thay vì tự suy diễn theo thời gian
+                SetStatusSelection(trangThai);
+                UpdatePaymentButtonByState(start, end);
             }
             else
             {
                 EnsureRoomCharge((int)nNgay.Value);
+                EnsureVipBreakfast();
                 UpdateCheckoutLabel(dtNgay.Value, dtNgay.Value.AddDays((int)nNgay.Value), (int)nNgay.Value);
+            }
+        }
+
+        private void ApplyLockedViewTime()
+        {
+            if (!_lockedViewTime.HasValue) return;
+            var view = _lockedViewTime.Value;
+
+            // Cố định ngày/giờ bắt đầu theo thời gian đang xem, số ngày giữ nguyên
+            dtNgay.Value = view.Date;
+            dtGio.Value = view;
+
+            var days = (int)Math.Max(1, nNgay.Value);
+            var end = view.AddDays(days);
+            UpdateCheckoutLabel(view, end, days);
+
+            if (_lockDateTimePickers)
+            {
+                // Giữ nguyên enable để người dùng có thể chỉnh giờ/ngày nếu cần
             }
         }
 
@@ -166,6 +199,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void EnsureRoomCharge(int days)
         {
+            decimal pricePerNight = GetRoomPrice();
             // nếu grid chưa có dòng tiền phòng, thêm vào; nếu có thì cập nhật
             bool found = false;
             foreach (DataGridViewRow r in guna2DataGridView2.Rows)
@@ -174,21 +208,21 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 if (string.Equals(Convert.ToString(r.Cells[0].Value), ROOM_SERVICE_NAME, StringComparison.OrdinalIgnoreCase))
                 {
                     found = true;
-                    decimal amount = ROOM_PRICE_PER_NIGHT * days;
+                    decimal amount = pricePerNight * days;
                     r.Cells[1].Value = days; // qty
-                    r.Cells[2].Value = ROOM_PRICE_PER_NIGHT.ToString("N0");
+                    r.Cells[2].Value = pricePerNight.ToString("N0");
                     r.Cells[3].Value = amount.ToString("N0");
                     break;
                 }
             }
             if (!found)
             {
-                decimal amount = ROOM_PRICE_PER_NIGHT * days;
+                decimal amount = pricePerNight * days;
                 int idx = guna2DataGridView2.Rows.Add();
                 var row = guna2DataGridView2.Rows[idx];
                 row.Cells[0].Value = ROOM_SERVICE_NAME;
                 row.Cells[1].Value = days;
-                row.Cells[2].Value = ROOM_PRICE_PER_NIGHT.ToString("N0");
+                row.Cells[2].Value = pricePerNight.ToString("N0");
                 row.Cells[3].Value = amount.ToString("N0");
             }
         }
@@ -211,6 +245,33 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 return;
             }
 
+            // Nếu đang ở trạng thái ĐÃ ĐẶT: nút này là HỦY PHÒNG, không in hóa đơn
+            if (IsBookedNotCheckedIn())
+            {
+                var confirm = MessageBox.Show("Hủy đặt phòng này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm == DialogResult.Yes)
+                {
+                    BookingManager.RemoveBooking(labMaphong.Text);
+                    _existing = null;
+                    _btnThanhToan.Visible = false;
+                    txtName.Text = string.Empty;
+                    guna2DataGridView2.Rows.Clear();
+                    EnsureRoomCharge((int)nNgay.Value);
+
+                    try
+                    {
+                        var listForm = Application.OpenForms.OfType<ListRoom>().FirstOrDefault();
+                        if (listForm != null)
+                        {
+                            listForm.RefreshFromBookings(new[] { labMaphong.Text });
+                        }
+                    }
+                    catch { }
+                    this.Close();
+                }
+                return;
+            }
+
             var sfd = new SaveFileDialog
             {
                 Title = "Lưu hóa đơn",
@@ -225,7 +286,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 WriteInvoiceText(sfd.FileName);
                 MessageBox.Show("Đã lưu hóa đơn (TXT).", "Thông báo");
 
-                     // sau khi thanh toán, trả phòng về trạng thái trống
+
+                // sau khi thanh toán, trả phòng về trạng thái trống
                 BookingManager.RemoveBooking(labMaphong.Text);
                 _existing = null;
                 _btnThanhToan.Visible = false;
@@ -324,10 +386,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
             var info = new BookingInfo { Customer = this.TenKhach, Start = start, End = end, Services = CollectServicesFromGrid() };
             // đảm bảo tiền phòng luôn có trong service
             EnsureRoomCharge(this.SoNgay);
+            EnsureVipBreakfast();
             info.Services = CollectServicesFromGrid();
             BookingManager.AddBooking(labMaphong.Text, info);
             _existing = info;
             _btnThanhToan.Visible = true;
+            UpdatePaymentButtonByState(start, end);
 
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -346,6 +410,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 if (sel.Contains("đặt")) btnNhanphong.Text = "Đặt phòng";
                 else if (sel.Contains("thuê")) btnNhanphong.Text = "Nhận phòng";
                 SelectedStatus = sel;
+                var start = dtNgay.Value.Date + dtGio.Value.TimeOfDay;
+                var end = start.AddDays((int)nNgay.Value);
+                UpdatePaymentButtonByState(start, end);
             }
         }
 
@@ -425,7 +492,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 if (r.IsNewRow) continue;
                 string ten = Convert.ToString(r.Cells[0].Value);
-                      decimal price = 0;
+                decimal price = 0;
                 decimal.TryParse(Convert.ToString(r.Cells[2].Value), NumberStyles.Any, CultureInfo.CurrentCulture, out price);
                 int qty = 1;
                 int.TryParse(Convert.ToString(r.Cells[1].Value), out qty);
@@ -445,6 +512,75 @@ namespace QLChuoiNhaHangKhachSan.GUI
             BookingManager.AddBooking(labMaphong.Text, _existing);
         }
 
+        private bool IsVipRoom()
+        {
+            var code = labMaphong.Text;
+            if (string.IsNullOrWhiteSpace(code)) return false;
+            int num;
+            if (!int.TryParse(code.Trim().TrimStart('P', 'p'), out num)) return false;
+            // Phòng đơn: 001-004 VIP, phòng đôi: 013-015 VIP, phòng gia đình: 021-023 VIP
+            if (num >= 1 && num <= 12) return num <= 4;
+            if (num >= 13 && num <= 20) return num <= 15;
+            if (num >= 21) return num <= 23;
+            return false;
+        }
+
+        private void EnsureVipBreakfast()
+        {
+            if (!IsVipRoom()) return;
+            const string breakfastName = "Ăn sáng (VIP)";
+            foreach (DataGridViewRow r in guna2DataGridView2.Rows)
+            {
+                if (r.IsNewRow) continue;
+                if (string.Equals(Convert.ToString(r.Cells[0].Value), breakfastName, StringComparison.OrdinalIgnoreCase))
+                    return; // đã có
+            }
+
+            int idx = guna2DataGridView2.Rows.Add();
+            var row = guna2DataGridView2.Rows[idx];
+            row.Cells[0].Value = breakfastName;
+            row.Cells[1].Value = 1;
+            row.Cells[2].Value = 0;
+            row.Cells[3].Value = 0;
+        }
+
+        private bool IsBookedNotCheckedIn()
+        {
+            var statusText = guna2ComboBox1.SelectedItem as string;
+            if (string.IsNullOrWhiteSpace(statusText)) statusText = SelectedStatus;
+            if (!string.IsNullOrWhiteSpace(statusText) && statusText.ToLower().Contains("đặt"))
+                return true;
+            return false;
+        }
+
+        private decimal GetRoomPrice()
+        {
+            return IsVipRoom() ? VIP_ROOM_PRICE_PER_NIGHT : ROOM_PRICE_PER_NIGHT;
+        }
+
+        private void UpdateVipBadge()
+        {
+            if (lblVipBadge != null)
+            {
+                lblVipBadge.Visible = IsVipRoom();
+            }
+        }
+
+        private void UpdatePaymentButtonByState(DateTime start, DateTime end)
+        {
+            if (_btnThanhToan == null) return;
+            if (IsBookedNotCheckedIn())
+            {
+                _btnThanhToan.Text = "Hủy phòng";
+                _btnThanhToan.FillColor = Color.FromArgb(220, 53, 69);
+            }
+            else
+            {
+                _btnThanhToan.Text = "Thanh toán";
+                _btnThanhToan.FillColor = Color.FromArgb(255, 159, 67);
+            }
+        }
+
         private void SetStatusSelection(string status)
         {
             if (guna2ComboBox1 == null || status == null) return;
@@ -456,6 +592,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
             else
                 guna2ComboBox1.SelectedIndex = -1;
             SelectedStatus = guna2ComboBox1.SelectedItem as string;
+
+            var start = dtNgay.Value.Date + dtGio.Value.TimeOfDay;
+            var end = start.AddDays((int)nNgay.Value);
+            UpdatePaymentButtonByState(start, end);
         }
 
         private void SetRoomTypeByCode(string maPhong)
