@@ -21,7 +21,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
     public partial class FormInvoiceManagement : Form
     {
         private readonly string _connectionString = ConfigurationManager.ConnectionStrings["MyConn"]?.ConnectionString
-            ?? @"Data Source=.\SQLEXPRESS;Initial Catalog=QuanLyChuoiNhaHangKhachSan;Integrated Security=True";
+            ?? @"Data Source=LAPTOP-JF845UR9\SQLEXPRESS02;Initial Catalog=QuanLyChuoiNhaHangKhachSan;Integrated Security=True";
         // Printing helpers
         private PrintDocument _printDocument;
         private string _printContent;

@@ -389,7 +389,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 using (var conn = new SqlConnection(strKetNoi))
                 {
                     conn.Open();
-                    currentCustomerId = FindOrCreateCustomer(conn, txtClient.Text.Trim(), txtNumberPhone.Text.Trim(), txtEmail.Text.Trim());
+                    currentCustomerId = FindOrCreateCustomer(conn,
+                        txtClient.Text.Trim(),
+                        txtNumberPhone.Text.Trim(),
+                        txtEmail.Text.Trim(),
+                        "NH");
                 }
             }
             catch (Exception ex)
@@ -577,14 +581,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                                 cmdUpdate.ExecuteNonQuery();
                             }
 
-                            using (var cmdInsertTrans = new SqlCommand(
-                                "INSERT INTO Transactions (OrderId, PaymentMethod, Amount) VALUES (@OrderId, @PaymentMethod, @Amount)", conn, tran))
-                            {
-                                cmdInsertTrans.Parameters.AddWithValue("@OrderId", orderId.Value);
-                                cmdInsertTrans.Parameters.AddWithValue("@PaymentMethod", "Tiền mặt");
-                                cmdInsertTrans.Parameters.AddWithValue("@Amount", totalAmount);
-                                cmdInsertTrans.ExecuteNonQuery();
-                            }
+                            // Cộng dồn tổng chi tiêu cho khách hàng và tự động nâng hạng VIP nếu >= 30 triệu
+                            UpdateCustomerSpending(conn, tran, orderId.Value, totalAmount);
 
                             tran.Commit();
                         }
@@ -682,7 +680,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     }
 
                     // Tìm hoặc tạo Customer (cho phép thiếu Phone/Email)
-                    currentCustomerId = FindOrCreateCustomer(conn, txtClient.Text.Trim(), txtNumberPhone.Text.Trim(), txtEmail.Text.Trim());
+                    currentCustomerId = FindOrCreateCustomer(conn,
+                        txtClient.Text.Trim(),
+                        txtNumberPhone.Text.Trim(),
+                        txtEmail.Text.Trim(),
+                        "NH");
                     if (!currentCustomerId.HasValue)
                     {
                         MessageBox.Show("Không thể xác định khách hàng để đặt bàn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -951,23 +953,46 @@ namespace QLChuoiNhaHangKhachSan.GUI
         }
 
         /// <summary>
-        /// Tìm hoặc tạo khách hàng theo SĐT, trả về CustomerID
+        /// Tìm hoặc tạo khách hàng theo SĐT/Email, trả về CustomerID và đảm bảo CustomerCode/CustomerType không bị NULL.
         /// </summary>
-        private int FindOrCreateCustomer(SqlConnection conn, string fullName, string phone, string email)
+        private int FindOrCreateCustomer(SqlConnection conn, string fullName, string phone, string email, string sourcePrefix)
         {
             string phoneVal = string.IsNullOrWhiteSpace(phone) ? null : phone.Trim();
             string emailVal = string.IsNullOrWhiteSpace(email) ? null : email.Trim();
 
+            // Chuẩn hóa prefix: KS hoặc NH
+            string prefix;
+            if (string.IsNullOrWhiteSpace(sourcePrefix))
+            {
+                prefix = "NH";
+            }
+            else
+            {
+                var up = sourcePrefix.ToUpperInvariant();
+                prefix = up.StartsWith("KS") ? "KS" : "NH";
+            }
+
+            string defaultType = prefix + "_Thường";
+            string defaultSource = prefix == "KS" ? "Khách sạn" : "Nhà hàng";
+
             // 1. Ưu tiên tìm theo SĐT nếu có
             if (!string.IsNullOrEmpty(phoneVal))
             {
-                using (var cmdFind = new SqlCommand("SELECT CustomerId FROM Customers WHERE PhoneNumber = @Phone", conn))
+                using (var cmdFind = new SqlCommand("SELECT CustomerId, CustomerCode, CustomerType, Source FROM Customers WHERE PhoneNumber = @Phone", conn))
                 {
                     cmdFind.Parameters.AddWithValue("@Phone", phoneVal);
-                    var result = cmdFind.ExecuteScalar();
-                    if (result != null && result != DBNull.Value)
+                    using (var reader = cmdFind.ExecuteReader())
                     {
-                        return Convert.ToInt32(result);
+                        if (reader.Read())
+                        {
+                            int id = Convert.ToInt32(reader["CustomerId"]);
+                            string code = reader["CustomerCode"] == DBNull.Value ? null : reader["CustomerCode"].ToString();
+                            string type = reader["CustomerType"] == DBNull.Value ? null : reader["CustomerType"].ToString();
+                            string source = reader["Source"] == DBNull.Value ? null : reader["Source"].ToString();
+                            reader.Close();
+                            EnsureCustomerCodeAndType(conn, id, code, type, source, prefix, defaultType, defaultSource);
+                            return id;
+                        }
                     }
                 }
             }
@@ -975,27 +1000,145 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // 2. Nếu không có SĐT hoặc không tìm thấy, thử tìm theo Email
             if (!string.IsNullOrEmpty(emailVal))
             {
-                using (var cmdFind = new SqlCommand("SELECT CustomerId FROM Customers WHERE Email = @Email", conn))
+                using (var cmdFind = new SqlCommand("SELECT CustomerId, CustomerCode, CustomerType, Source FROM Customers WHERE Email = @Email", conn))
                 {
                     cmdFind.Parameters.AddWithValue("@Email", emailVal);
-                    var result = cmdFind.ExecuteScalar();
-                    if (result != null && result != DBNull.Value)
+                    using (var reader = cmdFind.ExecuteReader())
                     {
-                        return Convert.ToInt32(result);
+                        if (reader.Read())
+                        {
+                            int id = Convert.ToInt32(reader["CustomerId"]);
+                            string code = reader["CustomerCode"] == DBNull.Value ? null : reader["CustomerCode"].ToString();
+                            string type = reader["CustomerType"] == DBNull.Value ? null : reader["CustomerType"].ToString();
+                            string source = reader["Source"] == DBNull.Value ? null : reader["Source"].ToString();
+                            reader.Close();
+                            EnsureCustomerCodeAndType(conn, id, code, type, source, prefix, defaultType, defaultSource);
+                            return id;
+                        }
                     }
                 }
             }
 
-            // 3. Không tìm thấy => tạo mới (các trường thiếu để NULL)
+            // 3. Không tìm thấy => tạo mới (tránh CustomerCode NULL gây lỗi unique)
+            // Mã tạm ngắn gọn: prefix + timestamp (tối đa 18 ký tự, vừa với NVARCHAR(20))
+            string tempCode = prefix + DateTime.Now.ToString("yyMMddHHmmssfff");
+
+            int newId;
             using (var cmdInsert = new SqlCommand(
-                @"INSERT INTO Customers (FullName, PhoneNumber, Email, CreatedAt)
-                  VALUES (@FullName, @Phone, @Email, GETDATE());
-                  SELECT SCOPE_IDENTITY();", conn))
+                @"INSERT INTO Customers (FullName, PhoneNumber, Email, CustomerType, CustomerCode, Source, CreatedAt, CCCD)
+                  OUTPUT INSERTED.CustomerId
+                  VALUES (@FullName, @Phone, @Email, @CustomerType, @CustomerCode, @Source, GETDATE(), @CCCD);", conn))
             {
                 cmdInsert.Parameters.AddWithValue("@FullName", string.IsNullOrWhiteSpace(fullName) ? (object)DBNull.Value : fullName);
                 cmdInsert.Parameters.AddWithValue("@Phone", (object)phoneVal ?? DBNull.Value);
                 cmdInsert.Parameters.AddWithValue("@Email", (object)emailVal ?? DBNull.Value);
-                return Convert.ToInt32(cmdInsert.ExecuteScalar());
+                cmdInsert.Parameters.AddWithValue("@CustomerType", (object)defaultType ?? DBNull.Value);
+                cmdInsert.Parameters.AddWithValue("@CustomerCode", tempCode);
+                cmdInsert.Parameters.AddWithValue("@Source", defaultSource);
+                // Nếu không có CCCD, sinh giá trị tạm ngắn (<=20 ký tự) để tránh trùng UNIQUE và không bị truncate
+                long suffix = DateTime.UtcNow.Ticks % 1_000_000_000; // 9 chữ số
+                string cccdTemp = "TMP" + suffix.ToString("D9");
+                cmdInsert.Parameters.AddWithValue("@CCCD", cccdTemp);
+                newId = Convert.ToInt32(cmdInsert.ExecuteScalar());
+            }
+
+            // Cập nhật mã chuẩn theo ID
+            EnsureCustomerCodeAndType(conn, newId, tempCode, defaultType, defaultSource, prefix, defaultType, defaultSource);
+            return newId;
+        }
+
+        private void EnsureCustomerCodeAndType(SqlConnection conn, int customerId, string existingCode, string existingType, string existingSource,
+            string prefix, string defaultType, string defaultSource)
+        {
+            string expectedCode = prefix + customerId.ToString("D4");
+            bool needUpdateCode = string.IsNullOrWhiteSpace(existingCode) || !existingCode.Equals(expectedCode, StringComparison.OrdinalIgnoreCase);
+            bool needUpdateType = string.IsNullOrWhiteSpace(existingType);
+            bool needUpdateSource = string.IsNullOrWhiteSpace(existingSource);
+
+            if (!needUpdateCode && !needUpdateType && !needUpdateSource)
+                return;
+
+            using (var cmd = new SqlCommand(
+                "UPDATE Customers SET CustomerCode = ISNULL(@Code, CustomerCode), CustomerType = ISNULL(@Type, CustomerType), Source = ISNULL(@Source, Source) WHERE CustomerId = @Id",
+                conn))
+            {
+                cmd.Parameters.AddWithValue("@Code", needUpdateCode ? (object)expectedCode : DBNull.Value);
+                cmd.Parameters.AddWithValue("@Type", needUpdateType ? (object)defaultType : DBNull.Value);
+                cmd.Parameters.AddWithValue("@Source", needUpdateSource ? (object)defaultSource : DBNull.Value);
+                cmd.Parameters.AddWithValue("@Id", customerId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Cộng dồn tổng chi tiêu cho khách hàng và tự động nâng hạng VIP nếu >= 30 triệu.
+        /// </summary>
+        private void UpdateCustomerSpending(SqlConnection conn, SqlTransaction tran, int orderId, decimal orderTotal)
+        {
+            // Lấy CustomerID từ OrderTicket
+            int? customerId = null;
+            using (var cmdGetCust = new SqlCommand("SELECT CustomerID FROM OrderTicket WHERE OrderId = @OrderId", conn, tran))
+            {
+                cmdGetCust.Parameters.AddWithValue("@OrderId", orderId);
+                var result = cmdGetCust.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    customerId = Convert.ToInt32(result);
+                }
+            }
+
+            if (!customerId.HasValue) return;
+
+            // Cộng dồn TotalSpending
+            using (var cmdUpdate = new SqlCommand(
+                "UPDATE Customers SET TotalSpending = ISNULL(TotalSpending, 0) + @Amount WHERE CustomerId = @Id", conn, tran))
+            {
+                cmdUpdate.Parameters.AddWithValue("@Amount", orderTotal);
+                cmdUpdate.Parameters.AddWithValue("@Id", customerId.Value);
+                cmdUpdate.ExecuteNonQuery();
+            }
+
+            // Lấy TotalSpending mới và CustomerType hiện tại để xét nâng hạng
+            decimal newTotal = 0m;
+            string currentType = null;
+            using (var cmdGet = new SqlCommand("SELECT TotalSpending, CustomerType FROM Customers WHERE CustomerId = @Id", conn, tran))
+            {
+                cmdGet.Parameters.AddWithValue("@Id", customerId.Value);
+                using (var reader = cmdGet.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        newTotal = reader["TotalSpending"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["TotalSpending"]);
+                        currentType = reader["CustomerType"] == DBNull.Value ? null : reader["CustomerType"].ToString();
+                    }
+                }
+            }
+
+            // Nếu >= 30 triệu và chưa phải VIP thì nâng hạng
+            const decimal VIP_THRESHOLD = 30_000_000m;
+            if (newTotal >= VIP_THRESHOLD && !string.IsNullOrEmpty(currentType))
+            {
+                string upper = currentType.ToUpperInvariant();
+                string newType = null;
+
+                if (upper.StartsWith("NH") && !upper.Contains("VIP"))
+                {
+                    newType = "NH_Vip";
+                }
+                else if (upper.StartsWith("KS") && !upper.Contains("VIP"))
+                {
+                    newType = "KS_Vip";
+                }
+
+                if (!string.IsNullOrEmpty(newType))
+                {
+                    using (var cmdUpgrade = new SqlCommand("UPDATE Customers SET CustomerType = @Type WHERE CustomerId = @Id", conn, tran))
+                    {
+                        cmdUpgrade.Parameters.AddWithValue("@Type", newType);
+                        cmdUpgrade.Parameters.AddWithValue("@Id", customerId.Value);
+                        cmdUpgrade.ExecuteNonQuery();
+                    }
+                }
             }
         }
 

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Windows.Forms;
@@ -236,6 +238,52 @@ namespace QLChuoiNhaHangKhachSan.GUI
             catch (Exception ex)
             {
                 MessageBox.Show("Gửi email thất bại: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Populates the bill form with invoice data from FormInvoiceManagement.
+        /// </summary>
+        /// <param name="invoiceId">Invoice ID</param>
+        /// <param name="customer">Customer name</param>
+        /// <param name="date">Invoice date</param>
+        /// <param name="amount">Total amount</param>
+        /// <param name="status">Invoice status</param>
+        /// <param name="payment">Payment method</param>
+        /// <param name="items">List of line items (name, quantity, unit price, total)</param>
+        public void PopulateFromInvoice(string invoiceId, string customer, string date, string amount, string status, string payment, List<Tuple<string, int, decimal, decimal>> items)
+        {
+            try
+            {
+                // Populate basic invoice information
+                txtBillCode.Text = invoiceId ?? string.Empty;
+                txtCustomer.Text = customer ?? string.Empty;
+                txtDay.Text = date ?? string.Empty;
+                txtTotalAmount.Text = amount ?? string.Empty;
+                txtTableCode.Text = payment ?? string.Empty; // Reusing table code field for payment method
+
+                // Clear and populate items grid
+                dvgDishList.Rows.Clear();
+                if (items != null)
+                {
+                    foreach (var item in items)
+                    {
+                        string itemName = item.Item1;
+                        int quantity = item.Item2;
+                        decimal unitPrice = item.Item3;
+                        decimal lineTotal = item.Item4;
+
+                        dvgDishList.Rows.Add(
+                            itemName,
+                            quantity,
+                            unitPrice.ToString("N0", CultureInfo.InvariantCulture),
+                            lineTotal.ToString("N0", CultureInfo.InvariantCulture));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi điền dữ liệu hóa đơn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

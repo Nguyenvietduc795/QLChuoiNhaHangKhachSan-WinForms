@@ -14,7 +14,7 @@ namespace QLChuoiNhaHangKhachSan.DAL
         public CustomerDal()
         {
             _connectionString =
-                ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
+                ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
             EnsureTotalSpendingColumn();
         }
 
@@ -82,29 +82,75 @@ namespace QLChuoiNhaHangKhachSan.DAL
 
         public int Insert(Customer c)
         {
+            // Xác định prefix từ CustomerType, mặc định NH
+            string prefix;
+            if (string.IsNullOrWhiteSpace(c.CustomerType))
+            {
+                prefix = "NH";
+                c.CustomerType = "NH_Thường";
+            }
+            else
+            {
+                var upper = c.CustomerType.ToUpperInvariant();
+                prefix = upper.StartsWith("KS") ? "KS" : "NH";
+                if (!upper.Contains("VIP") && !upper.Contains("THƯỜNG"))
+                {
+                    c.CustomerType = prefix + "_Thường";
+                }
+            }
+
+            string source = prefix == "KS" ? "Khách sạn" : "Nhà hàng";
+            string tempCode = prefix + DateTime.Now.ToString("yyMMddHHmmssfff"); // <=20 ký tự
+
+            // Nếu CCCD rỗng, sinh giá trị tạm ngắn gọn (<=20 ký tự) để tránh trùng UNIQUE constraint trên CCCD
+            string cccdValue;
+            if (string.IsNullOrWhiteSpace(c.CCCD))
+            {
+                long suffix = DateTime.UtcNow.Ticks % 1_000_000_000; // 9 chữ số
+                cccdValue = "TMP" + suffix.ToString("D9"); // tổng 12 ký tự
+            }
+            else
+            {
+                cccdValue = c.CCCD;
+            }
+
             using (var conn = new SqlConnection(_connectionString))
             using (var cmd = new SqlCommand(@"
                 INSERT INTO dbo.Customers
                     (FullName, Nationality, CCCD, Sex,
-                     PhoneNumber, Email, Address, CustomerType, TotalSpending)
+                     PhoneNumber, Email, Address, CustomerType, TotalSpending, CustomerCode, Source)
                 VALUES
                     (@FullName, @Nationality, @CCCD, @Sex,
-                     @PhoneNumber, @Email, @Address, @CustomerType, @TotalSpending);
+                     @PhoneNumber, @Email, @Address, @CustomerType, @TotalSpending, @CustomerCode, @Source);
                 SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@FullName", (object)c.FullName ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Nationality", (object)c.Nationality ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@CCCD", (object)c.CCCD ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@CCCD", (object)cccdValue ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Sex", (object)c.Sex ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@PhoneNumber", (object)c.PhoneNumber ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Email", (object)c.Email ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Address", (object)c.Address ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@CustomerType", (object)c.CustomerType ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@TotalSpending", c.TotalSpending);
+                cmd.Parameters.AddWithValue("@CustomerCode", tempCode);
+                cmd.Parameters.AddWithValue("@Source", source);
 
                 conn.Open();
                 var idObj = cmd.ExecuteScalar();
-                return Convert.ToInt32(idObj);
+                int newId = Convert.ToInt32(idObj);
+
+                // cập nhật mã chuẩn sau khi có ID
+                string finalCode = prefix + newId.ToString("D4");
+                using (var cmdUpdate = new SqlCommand(
+                    "UPDATE dbo.Customers SET CustomerCode = @Code WHERE CustomerId = @Id", conn))
+                {
+                    cmdUpdate.Parameters.AddWithValue("@Code", finalCode);
+                    cmdUpdate.Parameters.AddWithValue("@Id", newId);
+                    cmdUpdate.ExecuteNonQuery();
+                }
+
+                return newId;
             }
         }
 

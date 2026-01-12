@@ -29,17 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomersList));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gnVIPCustomers = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
             this.lblVIPCount = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblVIPCustomers = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.bntAddCustomers = new Guna.UI2.WinForms.Guna2Button();
             this.pnHeader2 = new Guna.UI2.WinForms.Guna2Panel();
             this.tbFindCustomers = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnDelectCustomers = new Guna.UI2.WinForms.Guna2Button();
@@ -50,6 +49,16 @@
             this.lblTotalCustomerCount = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblCustomerManagement = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.dgvListCustomers = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.CustomersID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomersName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuocTichCustomers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SexCustomers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCCDCustomes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomersPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GmailCustomers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomersAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomersType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tongchitieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
@@ -63,16 +72,6 @@
             this.cboFilterCustomers = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
-            this.CustomersID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomersName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuocTichCustomers = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SexCustomers = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CCCDCustomes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomersPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GmailCustomers = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomersAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomersType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tongchitieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gnVIPCustomers.SuspendLayout();
             this.pnHeader2.SuspendLayout();
             this.gnTotalCustomers.SuspendLayout();
@@ -86,7 +85,7 @@
             // 
             this.gnVIPCustomers.BackColor = System.Drawing.Color.Transparent;
             this.gnVIPCustomers.BorderRadius = 15;
-            this.gnVIPCustomers.Controls.Add(this.guna2Button2);
+            this.gnVIPCustomers.Controls.Add(this.guna2Button6);
             this.gnVIPCustomers.Controls.Add(this.lblVIPCount);
             this.gnVIPCustomers.Controls.Add(this.lblVIPCustomers);
             this.gnVIPCustomers.FillColor = System.Drawing.Color.White;
@@ -100,30 +99,30 @@
             this.gnVIPCustomers.Size = new System.Drawing.Size(270, 88);
             this.gnVIPCustomers.TabIndex = 4;
             // 
-            // guna2Button2
+            // guna2Button6
             // 
-            this.guna2Button2.BorderRadius = 10;
-            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.FillColor = System.Drawing.Color.White;
-            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button2.Image")));
-            this.guna2Button2.ImageSize = new System.Drawing.Size(40, 40);
-            this.guna2Button2.Location = new System.Drawing.Point(160, 39);
-            this.guna2Button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(66, 47);
-            this.guna2Button2.TabIndex = 6;
+            this.guna2Button6.BorderRadius = 10;
+            this.guna2Button6.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button6.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button6.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button6.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button6.FillColor = System.Drawing.Color.White;
+            this.guna2Button6.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button6.ForeColor = System.Drawing.Color.White;
+            this.guna2Button6.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button6.Image")));
+            this.guna2Button6.ImageSize = new System.Drawing.Size(30, 30);
+            this.guna2Button6.Location = new System.Drawing.Point(171, 34);
+            this.guna2Button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Button6.Name = "guna2Button6";
+            this.guna2Button6.Size = new System.Drawing.Size(70, 52);
+            this.guna2Button6.TabIndex = 7;
             // 
             // lblVIPCount
             // 
             this.lblVIPCount.AutoSize = false;
             this.lblVIPCount.BackColor = System.Drawing.Color.Transparent;
             this.lblVIPCount.Font = new System.Drawing.Font("Microsoft YaHei UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVIPCount.Location = new System.Drawing.Point(35, 33);
+            this.lblVIPCount.Location = new System.Drawing.Point(19, 38);
             this.lblVIPCount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblVIPCount.Name = "lblVIPCount";
             this.lblVIPCount.Size = new System.Drawing.Size(47, 53);
@@ -136,12 +135,12 @@
             this.lblVIPCustomers.AutoSize = false;
             this.lblVIPCustomers.BackColor = System.Drawing.Color.Transparent;
             this.lblVIPCustomers.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVIPCustomers.Location = new System.Drawing.Point(35, 2);
+            this.lblVIPCustomers.Location = new System.Drawing.Point(19, 2);
             this.lblVIPCustomers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblVIPCustomers.Name = "lblVIPCustomers";
             this.lblVIPCustomers.Size = new System.Drawing.Size(425, 63);
             this.lblVIPCustomers.TabIndex = 3;
-            this.lblVIPCustomers.Text = "Khách hàng VIP";
+            this.lblVIPCustomers.Text = "Khách hàng nhà hàng";
             this.lblVIPCustomers.Click += new System.EventHandler(this.lblVIPCustomers_Click);
             // 
             // guna2HtmlLabel2
@@ -166,35 +165,11 @@
             this.guna2HtmlLabel1.TabIndex = 2;
             this.guna2HtmlLabel1.Text = "0";
             // 
-            // bntAddCustomers
-            // 
-            this.bntAddCustomers.BackColor = System.Drawing.Color.Transparent;
-            this.bntAddCustomers.BorderRadius = 15;
-            this.bntAddCustomers.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bntAddCustomers.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bntAddCustomers.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bntAddCustomers.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bntAddCustomers.FillColor = System.Drawing.Color.White;
-            this.bntAddCustomers.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bntAddCustomers.ForeColor = System.Drawing.Color.Black;
-            this.bntAddCustomers.Image = ((System.Drawing.Image)(resources.GetObject("bntAddCustomers.Image")));
-            this.bntAddCustomers.Location = new System.Drawing.Point(933, 12);
-            this.bntAddCustomers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.bntAddCustomers.Name = "bntAddCustomers";
-            this.bntAddCustomers.ShadowDecoration.BorderRadius = 15;
-            this.bntAddCustomers.ShadowDecoration.Color = System.Drawing.Color.DimGray;
-            this.bntAddCustomers.ShadowDecoration.Enabled = true;
-            this.bntAddCustomers.Size = new System.Drawing.Size(181, 57);
-            this.bntAddCustomers.TabIndex = 6;
-            this.bntAddCustomers.Text = "Thêm";
-            this.bntAddCustomers.Click += new System.EventHandler(this.bntAddCustomers_Click);
-            // 
             // pnHeader2
             // 
             this.pnHeader2.BackColor = System.Drawing.Color.Transparent;
             this.pnHeader2.BorderColor = System.Drawing.Color.White;
             this.pnHeader2.BorderRadius = 10;
-            this.pnHeader2.Controls.Add(this.bntAddCustomers);
             this.pnHeader2.Controls.Add(this.tbFindCustomers);
             this.pnHeader2.Controls.Add(this.btnDelectCustomers);
             this.pnHeader2.Controls.Add(this.btnUpdateCustomers);
@@ -234,7 +209,7 @@
             this.tbFindCustomers.PlaceholderText = "Tìm kiếm khách hàng...";
             this.tbFindCustomers.SelectedText = "";
             this.tbFindCustomers.ShadowDecoration.BorderRadius = 10;
-            this.tbFindCustomers.Size = new System.Drawing.Size(462, 57);
+            this.tbFindCustomers.Size = new System.Drawing.Size(643, 57);
             this.tbFindCustomers.TabIndex = 0;
             this.tbFindCustomers.TextChanged += new System.EventHandler(this.tbFindCustomers_TextChanged);
             // 
@@ -251,7 +226,7 @@
             this.btnDelectCustomers.ForeColor = System.Drawing.Color.Black;
             this.btnDelectCustomers.Image = ((System.Drawing.Image)(resources.GetObject("btnDelectCustomers.Image")));
             this.btnDelectCustomers.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnDelectCustomers.Location = new System.Drawing.Point(720, 12);
+            this.btnDelectCustomers.Location = new System.Drawing.Point(933, 12);
             this.btnDelectCustomers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelectCustomers.Name = "btnDelectCustomers";
             this.btnDelectCustomers.ShadowDecoration.BorderRadius = 15;
@@ -275,7 +250,7 @@
             this.btnUpdateCustomers.ForeColor = System.Drawing.Color.Black;
             this.btnUpdateCustomers.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnUpdateCustomers.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateCustomers.Image")));
-            this.btnUpdateCustomers.Location = new System.Drawing.Point(502, 12);
+            this.btnUpdateCustomers.Location = new System.Drawing.Point(728, 12);
             this.btnUpdateCustomers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpdateCustomers.Name = "btnUpdateCustomers";
             this.btnUpdateCustomers.ShadowDecoration.BorderRadius = 15;
@@ -332,7 +307,7 @@
             this.lblTotalCustomerCountNumber.Location = new System.Drawing.Point(31, 33);
             this.lblTotalCustomerCountNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblTotalCustomerCountNumber.Name = "lblTotalCustomerCountNumber";
-            this.lblTotalCustomerCountNumber.Size = new System.Drawing.Size(26, 52);
+            this.lblTotalCustomerCountNumber.Size = new System.Drawing.Size(22, 42);
             this.lblTotalCustomerCountNumber.TabIndex = 2;
             this.lblTotalCustomerCountNumber.Text = "0";
             // 
@@ -367,19 +342,19 @@
             // 
             // dgvListCustomers
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvListCustomers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.White;
+            this.dgvListCustomers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
             this.dgvListCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvListCustomers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(70)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(70)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(70)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(70)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dgvListCustomers.ColumnHeadersHeight = 100;
             this.dgvListCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CustomersID,
@@ -392,14 +367,14 @@
             this.CustomersAddress,
             this.CustomersType,
             this.Tongchitieu});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListCustomers.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListCustomers.DefaultCellStyle = dataGridViewCellStyle20;
             this.dgvListCustomers.GridColor = System.Drawing.Color.Black;
             this.dgvListCustomers.Location = new System.Drawing.Point(10, 92);
             this.dgvListCustomers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -431,6 +406,85 @@
             this.dgvListCustomers.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvListCustomers.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dgvListCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListCustomers_CellContentClick);
+            // 
+            // CustomersID
+            // 
+            this.CustomersID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CustomersID.DataPropertyName = "Mã khách hàng";
+            this.CustomersID.HeaderText = "Mã khách hàng";
+            this.CustomersID.MinimumWidth = 6;
+            this.CustomersID.Name = "CustomersID";
+            this.CustomersID.Width = 113;
+            // 
+            // CustomersName
+            // 
+            this.CustomersName.DataPropertyName = "Tên khách hàng";
+            this.CustomersName.FillWeight = 150F;
+            this.CustomersName.HeaderText = "Tên khách hàng";
+            this.CustomersName.MinimumWidth = 6;
+            this.CustomersName.Name = "CustomersName";
+            // 
+            // QuocTichCustomers
+            // 
+            this.QuocTichCustomers.DataPropertyName = "Quốc tịch";
+            this.QuocTichCustomers.FillWeight = 70F;
+            this.QuocTichCustomers.HeaderText = "Quốc tịch";
+            this.QuocTichCustomers.MinimumWidth = 6;
+            this.QuocTichCustomers.Name = "QuocTichCustomers";
+            // 
+            // SexCustomers
+            // 
+            this.SexCustomers.DataPropertyName = "Giới Tính";
+            this.SexCustomers.FillWeight = 70F;
+            this.SexCustomers.HeaderText = "Giới Tính";
+            this.SexCustomers.MinimumWidth = 6;
+            this.SexCustomers.Name = "SexCustomers";
+            // 
+            // CCCDCustomes
+            // 
+            this.CCCDCustomes.DataPropertyName = "CCCD";
+            this.CCCDCustomes.HeaderText = "CCCD";
+            this.CCCDCustomes.MinimumWidth = 6;
+            this.CCCDCustomes.Name = "CCCDCustomes";
+            // 
+            // CustomersPhone
+            // 
+            this.CustomersPhone.DataPropertyName = "Số điện thoại";
+            this.CustomersPhone.HeaderText = "Số điện thoại";
+            this.CustomersPhone.MinimumWidth = 6;
+            this.CustomersPhone.Name = "CustomersPhone";
+            // 
+            // GmailCustomers
+            // 
+            this.GmailCustomers.DataPropertyName = "Gmail";
+            this.GmailCustomers.HeaderText = "Gmail";
+            this.GmailCustomers.MinimumWidth = 6;
+            this.GmailCustomers.Name = "GmailCustomers";
+            // 
+            // CustomersAddress
+            // 
+            this.CustomersAddress.DataPropertyName = "Địa chỉ";
+            this.CustomersAddress.FillWeight = 70F;
+            this.CustomersAddress.HeaderText = "Địa chỉ ";
+            this.CustomersAddress.MinimumWidth = 6;
+            this.CustomersAddress.Name = "CustomersAddress";
+            // 
+            // CustomersType
+            // 
+            this.CustomersType.DataPropertyName = "Loại khách";
+            this.CustomersType.HeaderText = "Loại khách";
+            this.CustomersType.MinimumWidth = 6;
+            this.CustomersType.Name = "CustomersType";
+            // 
+            // Tongchitieu
+            // 
+            this.Tongchitieu.DataPropertyName = "Tổng chi tiêu";
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle19.Format = "N0";
+            this.Tongchitieu.DefaultCellStyle = dataGridViewCellStyle19;
+            this.Tongchitieu.HeaderText = "Tổng chi tiêu";
+            this.Tongchitieu.MinimumWidth = 6;
+            this.Tongchitieu.Name = "Tongchitieu";
             // 
             // guna2HtmlLabel3
             // 
@@ -539,7 +593,7 @@
             this.guna2HtmlLabel5.AutoSize = false;
             this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel5.Font = new System.Drawing.Font("Microsoft YaHei UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel5.Location = new System.Drawing.Point(33, 33);
+            this.guna2HtmlLabel5.Location = new System.Drawing.Point(19, 38);
             this.guna2HtmlLabel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
             this.guna2HtmlLabel5.Size = new System.Drawing.Size(47, 55);
@@ -551,12 +605,12 @@
             this.guna2HtmlLabel6.AutoSize = false;
             this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel6.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel6.Location = new System.Drawing.Point(33, 2);
+            this.guna2HtmlLabel6.Location = new System.Drawing.Point(19, 2);
             this.guna2HtmlLabel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
             this.guna2HtmlLabel6.Size = new System.Drawing.Size(425, 63);
             this.guna2HtmlLabel6.TabIndex = 3;
-            this.guna2HtmlLabel6.Text = "Khách hàng thường";
+            this.guna2HtmlLabel6.Text = "Khách hàng khách sạn";
             // 
             // guna2GradientPanel1
             // 
@@ -610,8 +664,8 @@
             this.cboFilterCustomers.ForeColor = System.Drawing.Color.Black;
             this.cboFilterCustomers.ItemHeight = 30;
             this.cboFilterCustomers.Items.AddRange(new object[] {
-            "Thường",
-            "VIP",
+            "Nhà hàng",
+            "Khách sạn",
             "Tất cả"});
             this.cboFilterCustomers.Location = new System.Drawing.Point(16, 41);
             this.cboFilterCustomers.Name = "cboFilterCustomers";
@@ -639,95 +693,16 @@
             this.guna2Button4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2Button4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button4.FillColor = System.Drawing.Color.White;
+            this.guna2Button4.FillColor = System.Drawing.Color.Transparent;
             this.guna2Button4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2Button4.ForeColor = System.Drawing.Color.White;
             this.guna2Button4.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button4.Image")));
             this.guna2Button4.ImageSize = new System.Drawing.Size(50, 50);
-            this.guna2Button4.Location = new System.Drawing.Point(418, -9);
+            this.guna2Button4.Location = new System.Drawing.Point(340, -9);
             this.guna2Button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Button4.Name = "guna2Button4";
             this.guna2Button4.Size = new System.Drawing.Size(74, 94);
             this.guna2Button4.TabIndex = 6;
-            // 
-            // CustomersID
-            // 
-            this.CustomersID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.CustomersID.DataPropertyName = "Mã khách hàng";
-            this.CustomersID.HeaderText = "Mã khách hàng";
-            this.CustomersID.MinimumWidth = 6;
-            this.CustomersID.Name = "CustomersID";
-            this.CustomersID.Width = 135;
-            // 
-            // CustomersName
-            // 
-            this.CustomersName.DataPropertyName = "Tên khách hàng";
-            this.CustomersName.FillWeight = 150F;
-            this.CustomersName.HeaderText = "Tên khách hàng";
-            this.CustomersName.MinimumWidth = 6;
-            this.CustomersName.Name = "CustomersName";
-            // 
-            // QuocTichCustomers
-            // 
-            this.QuocTichCustomers.DataPropertyName = "Quốc tịch";
-            this.QuocTichCustomers.FillWeight = 70F;
-            this.QuocTichCustomers.HeaderText = "Quốc tịch";
-            this.QuocTichCustomers.MinimumWidth = 6;
-            this.QuocTichCustomers.Name = "QuocTichCustomers";
-            // 
-            // SexCustomers
-            // 
-            this.SexCustomers.DataPropertyName = "Giới Tính";
-            this.SexCustomers.FillWeight = 70F;
-            this.SexCustomers.HeaderText = "Giới Tính";
-            this.SexCustomers.MinimumWidth = 6;
-            this.SexCustomers.Name = "SexCustomers";
-            // 
-            // CCCDCustomes
-            // 
-            this.CCCDCustomes.DataPropertyName = "CCCD";
-            this.CCCDCustomes.HeaderText = "CCCD";
-            this.CCCDCustomes.MinimumWidth = 6;
-            this.CCCDCustomes.Name = "CCCDCustomes";
-            // 
-            // CustomersPhone
-            // 
-            this.CustomersPhone.DataPropertyName = "Số điện thoại";
-            this.CustomersPhone.HeaderText = "Số điện thoại";
-            this.CustomersPhone.MinimumWidth = 6;
-            this.CustomersPhone.Name = "CustomersPhone";
-            // 
-            // GmailCustomers
-            // 
-            this.GmailCustomers.DataPropertyName = "Gmail";
-            this.GmailCustomers.HeaderText = "Gmail";
-            this.GmailCustomers.MinimumWidth = 6;
-            this.GmailCustomers.Name = "GmailCustomers";
-            // 
-            // CustomersAddress
-            // 
-            this.CustomersAddress.DataPropertyName = "Địa chỉ";
-            this.CustomersAddress.FillWeight = 70F;
-            this.CustomersAddress.HeaderText = "Địa chỉ ";
-            this.CustomersAddress.MinimumWidth = 6;
-            this.CustomersAddress.Name = "CustomersAddress";
-            // 
-            // CustomersType
-            // 
-            this.CustomersType.DataPropertyName = "Loại khách";
-            this.CustomersType.HeaderText = "Loại khách";
-            this.CustomersType.MinimumWidth = 6;
-            this.CustomersType.Name = "CustomersType";
-            // 
-            // Tongchitieu
-            // 
-            this.Tongchitieu.DataPropertyName = "Tổng chi tiêu";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N0";
-            this.Tongchitieu.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Tongchitieu.HeaderText = "Tổng chi tiêu";
-            this.Tongchitieu.MinimumWidth = 6;
-            this.Tongchitieu.Name = "Tongchitieu";
             // 
             // CustomersList
             // 
@@ -765,7 +740,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblVIPCustomers;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private Guna.UI2.WinForms.Guna2Button bntAddCustomers;
         private Guna.UI2.WinForms.Guna2Panel pnHeader2;
         private Guna.UI2.WinForms.Guna2TextBox tbFindCustomers;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblCustomerManagement;
@@ -776,7 +750,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTotalCustomerCountNumber;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTotalCustomerCount;
         private Guna.UI2.WinForms.Guna2Panel gnTotalCustomers;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
@@ -800,5 +773,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomersAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomersType;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tongchitieu;
+        private Guna.UI2.WinForms.Guna2Button guna2Button6;
     }
 }

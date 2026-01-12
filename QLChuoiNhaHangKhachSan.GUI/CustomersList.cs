@@ -80,6 +80,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // Duyệt từng khách hàng và thêm vào DataTable
             foreach (var c in customers)
             {
+                var hienThiLoaiKhach = TinhLoaiKhachHang(c.CustomerType, c.TotalSpending);
                 _customersTable.Rows.Add(
                     c.CustomerId.ToString(), // "Mã khách hàng"
                     c.FullName,              // "Tên khách hàng"
@@ -89,7 +90,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     c.PhoneNumber,           // "Số điện thoại"
                     c.Email,                 // "Gmail"
                     c.Address,               // "Địa chỉ"
-                    c.CustomerType,          // "Loại khách"
+                    hienThiLoaiKhach,        // "Loại khách"
                     c.TotalSpending          // "Tổng chi tiêu"
                 );
             }
@@ -117,12 +118,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
                               .Where(r => r.RowState != DataRowState.Deleted);
 
             int tongKhach = rows.Count();
-            int soVip = rows.Count(r =>
-        string.Equals(r.Field<string>("Loại khách"), "VIP",
-                      StringComparison.OrdinalIgnoreCase));
+            int soNhaHang = rows.Count(r =>
+                string.Equals(LayMaNhomKhach(r.Field<string>("Loại khách")), "NH",
+                              StringComparison.OrdinalIgnoreCase));
 
             lblTotalCustomerCountNumber.Text = tongKhach.ToString();
-            lblVIPCount.Text = soVip.ToString();
+            lblVIPCount.Text = soNhaHang.ToString();
         }
 
         private void TimKiemKhachHang(string tuKhoa)
@@ -403,8 +404,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             return _customersTable.AsEnumerable()
                 .Where(r => r.RowState != DataRowState.Deleted)
                 .Count(r => string.Equals(
-                    r.Field<string>("Loại khách"),
-                    "Thường",
+                    LayMaNhomKhach(r.Field<string>("Loại khách")),
+                    "KS",
                     StringComparison.OrdinalIgnoreCase));
         }
 
@@ -412,6 +413,34 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             int soKhachHangThuong = DemKhachHangThuong();
             guna2HtmlLabel5.Text = soKhachHangThuong.ToString();
+        }
+
+        private static string LayMaNhomKhach(string customerType)
+        {
+            if (string.IsNullOrWhiteSpace(customerType))
+                return string.Empty;
+
+            return customerType.Length >= 2
+                ? customerType.Substring(0, 2).ToUpperInvariant()
+                : customerType.ToUpperInvariant();
+        }
+
+        private static string TinhLoaiKhachHang(string customerType, decimal totalSpending)
+        {
+            // Lấy prefix: mặc định "NH" nếu trống hoặc không bắt đầu bằng KS
+            string prefix;
+            if (string.IsNullOrWhiteSpace(customerType))
+            {
+                prefix = "NH";
+            }
+            else
+            {
+                var upper = customerType.ToUpperInvariant();
+                prefix = upper.StartsWith("KS") ? "KS" : "NH";
+            }
+
+            bool isVip = totalSpending >= 30_000_000m;
+            return isVip ? $"{prefix}_Vip" : $"{prefix}_Thường";
         }
 
         private void bntFilterCustomers_Click(object sender, EventArgs e)
@@ -429,8 +458,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
             else
             {
-                // Lọc theo loại khách đã chọn: VIP hoặc Thường
-                view.RowFilter = $"[Loại khách] = '{selectedType}'";
+                string prefix = selectedType.Equals("Nhà hàng", StringComparison.OrdinalIgnoreCase)
+                    ? "NH"
+                    : selectedType.Equals("Khách sạn", StringComparison.OrdinalIgnoreCase)
+                        ? "KS"
+                        : LayMaNhomKhach(selectedType);
+
+                // Lọc các loại khách bắt đầu bằng tiền tố mong muốn (NH_* hoặc KS_*)
+                view.RowFilter = $"[Loại khách] LIKE '{prefix}%'";
             }
 
             dgvListCustomers.DataSource = view;

@@ -28,7 +28,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private readonly string _connectionString = ConfigurationManager.ConnectionStrings["MyConn"]?.ConnectionString
 
-            ?? @"Data Source=.\SQLEXPRESS;Initial Catalog=QuanLyChuoiNhaHangKhachSan;Integrated Security=True";
+            ?? @"Data Source=LAPTOP-JF845UR9\SQLEXPRESS02;Initial Catalog=QuanLyChuoiNhaHangKhachSan;Integrated Security=True";
 
 
 
@@ -2202,11 +2202,11 @@ SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, trans))
             var today = DateTime.Today;
             return new List<Transaction>
             {
-                new Transaction("INV-001", "Nguyễn Văn A", today.AddDays(-18), 1250000, TransactionStatus.Success, PaymentMethod.Cash),
-                new Transaction("INV-002", "Trần Thị B", today.AddDays(-16), 450000, TransactionStatus.Failed, PaymentMethod.Card),
-                new Transaction("INV-003", "Lê Văn C", today.AddDays(-10), 230000, TransactionStatus.Pending, PaymentMethod.MoMo),
-                new Transaction("INV-004", "Hứa Mỹ Lam", today.AddDays(-2), 12345000, TransactionStatus.Success, PaymentMethod.Other),
-                new Transaction("INV-005", "Hứa Gia Tường", today.AddDays(-6), 10000000, TransactionStatus.Pending, PaymentMethod.Card)
+                //new Transaction("INV-001", "Nguyễn Văn A", today.AddDays(-18), 1250000, TransactionStatus.Success, PaymentMethod.Cash),
+                //new Transaction("INV-002", "Trần Thị B", today.AddDays(-16), 450000, TransactionStatus.Failed, PaymentMethod.Card),
+                //new Transaction("INV-003", "Lê Văn C", today.AddDays(-10), 230000, TransactionStatus.Pending, PaymentMethod.MoMo),
+                //new Transaction("INV-004", "Hứa Mỹ Lam", today.AddDays(-2), 12345000, TransactionStatus.Success, PaymentMethod.Other),
+                //new Transaction("INV-005", "Hứa Gia Tường", today.AddDays(-6), 10000000, TransactionStatus.Pending, PaymentMethod.Card)
             };
         }
 
