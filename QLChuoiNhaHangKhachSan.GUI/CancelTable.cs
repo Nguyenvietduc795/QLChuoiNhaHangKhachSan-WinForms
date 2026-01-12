@@ -206,10 +206,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
         }
 
-        private void frmCancelTable_Load_1(object sender, EventArgs e)
-        {
-            Close();
-        }
+		// Removed extra load handler that closed the form immediately (assigned in designer previously)
     }
 }
 

@@ -467,7 +467,7 @@
             this.Controls.Add(this.pnlBill);
             this.Name = "frmCancelTable";
             this.Text = "CancelTable";
-            this.Load += new System.EventHandler(this.frmCancelTable_Load_1);
+            this.Load += new System.EventHandler(this.frmCancelTable_Load);
             this.pnlBill.ResumeLayout(false);
             this.pnlBill.PerformLayout();
             this.ResumeLayout(false);
