@@ -50,6 +50,15 @@
             this.lblTotalCustomerCount = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblCustomerManagement = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.dgvListCustomers = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.CustomersID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomersName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuocTichCustomers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SexCustomers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCCDCustomes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomersPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GmailCustomers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomersAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomersType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
@@ -60,20 +69,10 @@
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.bntFilterCustomers = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.cboFilterCustomers = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
-            this.CustomersID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomersName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuocTichCustomers = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SexCustomers = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CCCDCustomes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomersPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GmailCustomers = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomersAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomersType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pnHeader1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.Tongchitieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gnVIPCustomers.SuspendLayout();
             this.pnHeader2.SuspendLayout();
             this.gnTotalCustomers.SuspendLayout();
@@ -87,19 +86,19 @@
             // gnVIPCustomers
             // 
             this.gnVIPCustomers.BackColor = System.Drawing.Color.Transparent;
-            this.gnVIPCustomers.BorderRadius = 35;
+            this.gnVIPCustomers.BorderRadius = 25;
             this.gnVIPCustomers.Controls.Add(this.guna2Button2);
             this.gnVIPCustomers.Controls.Add(this.lblVIPCount);
             this.gnVIPCustomers.Controls.Add(this.lblVIPCustomers);
             this.gnVIPCustomers.FillColor = System.Drawing.Color.White;
             this.gnVIPCustomers.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gnVIPCustomers.Location = new System.Drawing.Point(11, 121);
-            this.gnVIPCustomers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gnVIPCustomers.Location = new System.Drawing.Point(350, 118);
+            this.gnVIPCustomers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gnVIPCustomers.Name = "gnVIPCustomers";
-            this.gnVIPCustomers.ShadowDecoration.BorderRadius = 35;
+            this.gnVIPCustomers.ShadowDecoration.BorderRadius = 25;
             this.gnVIPCustomers.ShadowDecoration.Color = System.Drawing.Color.DimGray;
             this.gnVIPCustomers.ShadowDecoration.Enabled = true;
-            this.gnVIPCustomers.Size = new System.Drawing.Size(304, 93);
+            this.gnVIPCustomers.Size = new System.Drawing.Size(268, 88);
             this.gnVIPCustomers.TabIndex = 4;
             // 
             // guna2Button2
@@ -113,11 +112,11 @@
             this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2Button2.ForeColor = System.Drawing.Color.White;
             this.guna2Button2.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button2.Image")));
-            this.guna2Button2.ImageSize = new System.Drawing.Size(60, 60);
-            this.guna2Button2.Location = new System.Drawing.Point(214, 6);
-            this.guna2Button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Button2.ImageSize = new System.Drawing.Size(40, 40);
+            this.guna2Button2.Location = new System.Drawing.Point(161, 40);
+            this.guna2Button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(75, 78);
+            this.guna2Button2.Size = new System.Drawing.Size(62, 46);
             this.guna2Button2.TabIndex = 6;
             // 
             // lblVIPCount
@@ -125,8 +124,8 @@
             this.lblVIPCount.AutoSize = false;
             this.lblVIPCount.BackColor = System.Drawing.Color.Transparent;
             this.lblVIPCount.Font = new System.Drawing.Font("Microsoft YaHei UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVIPCount.Location = new System.Drawing.Point(11, 42);
-            this.lblVIPCount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblVIPCount.Location = new System.Drawing.Point(35, 33);
+            this.lblVIPCount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblVIPCount.Name = "lblVIPCount";
             this.lblVIPCount.Size = new System.Drawing.Size(35, 55);
             this.lblVIPCount.TabIndex = 3;
@@ -137,9 +136,9 @@
             // 
             this.lblVIPCustomers.AutoSize = false;
             this.lblVIPCustomers.BackColor = System.Drawing.Color.Transparent;
-            this.lblVIPCustomers.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVIPCustomers.Location = new System.Drawing.Point(11, 6);
-            this.lblVIPCustomers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblVIPCustomers.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVIPCustomers.Location = new System.Drawing.Point(35, 2);
+            this.lblVIPCustomers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblVIPCustomers.Name = "lblVIPCustomers";
             this.lblVIPCustomers.Size = new System.Drawing.Size(319, 51);
             this.lblVIPCustomers.TabIndex = 3;
@@ -180,9 +179,8 @@
             this.bntAddCustomers.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bntAddCustomers.ForeColor = System.Drawing.Color.Black;
             this.bntAddCustomers.Image = ((System.Drawing.Image)(resources.GetObject("bntAddCustomers.Image")));
-            this.bntAddCustomers.ImageSize = new System.Drawing.Size(40, 40);
-            this.bntAddCustomers.Location = new System.Drawing.Point(1207, 71);
-            this.bntAddCustomers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bntAddCustomers.Location = new System.Drawing.Point(933, 12);
+            this.bntAddCustomers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bntAddCustomers.Name = "bntAddCustomers";
             this.bntAddCustomers.ShadowDecoration.BorderRadius = 15;
             this.bntAddCustomers.ShadowDecoration.Color = System.Drawing.Color.DimGray;
@@ -196,21 +194,20 @@
             // 
             this.pnHeader2.BackColor = System.Drawing.Color.Transparent;
             this.pnHeader2.BorderColor = System.Drawing.Color.White;
-            this.pnHeader2.BorderRadius = 30;
-            this.pnHeader2.Controls.Add(this.btnFind);
+            this.pnHeader2.BorderRadius = 10;
             this.pnHeader2.Controls.Add(this.bntAddCustomers);
             this.pnHeader2.Controls.Add(this.tbFindCustomers);
             this.pnHeader2.Controls.Add(this.btnDelectCustomers);
             this.pnHeader2.Controls.Add(this.btnUpdateCustomers);
             this.pnHeader2.CustomBorderColor = System.Drawing.Color.White;
             this.pnHeader2.FillColor = System.Drawing.Color.White;
-            this.pnHeader2.Location = new System.Drawing.Point(1, 102);
-            this.pnHeader2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnHeader2.Location = new System.Drawing.Point(512, 11);
+            this.pnHeader2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnHeader2.Name = "pnHeader2";
-            this.pnHeader2.ShadowDecoration.BorderRadius = 30;
+            this.pnHeader2.ShadowDecoration.BorderRadius = 10;
             this.pnHeader2.ShadowDecoration.Color = System.Drawing.Color.Gray;
             this.pnHeader2.ShadowDecoration.Enabled = true;
-            this.pnHeader2.Size = new System.Drawing.Size(1610, 219);
+            this.pnHeader2.Size = new System.Drawing.Size(1131, 84);
             this.pnHeader2.TabIndex = 7;
             this.pnHeader2.Paint += new System.Windows.Forms.PaintEventHandler(this.pnHeader2_Paint);
             // 
@@ -231,15 +228,14 @@
             this.tbFindCustomers.IconLeft = ((System.Drawing.Image)(resources.GetObject("tbFindCustomers.IconLeft")));
             this.tbFindCustomers.IconLeftSize = new System.Drawing.Size(25, 25);
             this.tbFindCustomers.IconRightSize = new System.Drawing.Size(25, 25);
-            this.tbFindCustomers.Location = new System.Drawing.Point(30, 12);
+            this.tbFindCustomers.Location = new System.Drawing.Point(15, 12);
             this.tbFindCustomers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbFindCustomers.Name = "tbFindCustomers";
             this.tbFindCustomers.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.tbFindCustomers.PlaceholderText = "Tìm kiếm khách hàng...";
             this.tbFindCustomers.SelectedText = "";
             this.tbFindCustomers.ShadowDecoration.BorderRadius = 10;
-            this.tbFindCustomers.ShadowDecoration.Enabled = true;
-            this.tbFindCustomers.Size = new System.Drawing.Size(667, 57);
+            this.tbFindCustomers.Size = new System.Drawing.Size(462, 57);
             this.tbFindCustomers.TabIndex = 0;
             this.tbFindCustomers.TextChanged += new System.EventHandler(this.tbFindCustomers_TextChanged);
             // 
@@ -256,7 +252,7 @@
             this.btnDelectCustomers.ForeColor = System.Drawing.Color.Black;
             this.btnDelectCustomers.Image = ((System.Drawing.Image)(resources.GetObject("btnDelectCustomers.Image")));
             this.btnDelectCustomers.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnDelectCustomers.Location = new System.Drawing.Point(1539, 12);
+            this.btnDelectCustomers.Location = new System.Drawing.Point(720, 12);
             this.btnDelectCustomers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelectCustomers.Name = "btnDelectCustomers";
             this.btnDelectCustomers.ShadowDecoration.BorderRadius = 15;
@@ -280,7 +276,7 @@
             this.btnUpdateCustomers.ForeColor = System.Drawing.Color.Black;
             this.btnUpdateCustomers.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnUpdateCustomers.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateCustomers.Image")));
-            this.btnUpdateCustomers.Location = new System.Drawing.Point(1301, 12);
+            this.btnUpdateCustomers.Location = new System.Drawing.Point(502, 12);
             this.btnUpdateCustomers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpdateCustomers.Name = "btnUpdateCustomers";
             this.btnUpdateCustomers.ShadowDecoration.BorderRadius = 15;
@@ -316,19 +312,19 @@
             // 
             this.gnTotalCustomers.BackColor = System.Drawing.Color.Transparent;
             this.gnTotalCustomers.BorderColor = System.Drawing.Color.White;
-            this.gnTotalCustomers.BorderRadius = 35;
+            this.gnTotalCustomers.BorderRadius = 25;
             this.gnTotalCustomers.Controls.Add(this.guna2Button3);
             this.gnTotalCustomers.Controls.Add(this.lblTotalCustomerCountNumber);
             this.gnTotalCustomers.Controls.Add(this.lblTotalCustomerCount);
             this.gnTotalCustomers.FillColor = System.Drawing.Color.White;
             this.gnTotalCustomers.ForeColor = System.Drawing.Color.White;
-            this.gnTotalCustomers.Location = new System.Drawing.Point(11, 15);
-            this.gnTotalCustomers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gnTotalCustomers.Location = new System.Drawing.Point(27, 118);
+            this.gnTotalCustomers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gnTotalCustomers.Name = "gnTotalCustomers";
-            this.gnTotalCustomers.ShadowDecoration.BorderRadius = 35;
+            this.gnTotalCustomers.ShadowDecoration.BorderRadius = 25;
             this.gnTotalCustomers.ShadowDecoration.Color = System.Drawing.Color.DimGray;
             this.gnTotalCustomers.ShadowDecoration.Enabled = true;
-            this.gnTotalCustomers.Size = new System.Drawing.Size(304, 93);
+            this.gnTotalCustomers.Size = new System.Drawing.Size(268, 88);
             this.gnTotalCustomers.TabIndex = 9;
             // 
             // guna2Button3
@@ -342,11 +338,11 @@
             this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2Button3.ForeColor = System.Drawing.Color.White;
             this.guna2Button3.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button3.Image")));
-            this.guna2Button3.ImageSize = new System.Drawing.Size(60, 60);
-            this.guna2Button3.Location = new System.Drawing.Point(214, 8);
-            this.guna2Button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Button3.ImageSize = new System.Drawing.Size(30, 30);
+            this.guna2Button3.Location = new System.Drawing.Point(168, 32);
+            this.guna2Button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Button3.Name = "guna2Button3";
-            this.guna2Button3.Size = new System.Drawing.Size(75, 76);
+            this.guna2Button3.Size = new System.Drawing.Size(56, 54);
             this.guna2Button3.TabIndex = 5;
             this.guna2Button3.Click += new System.EventHandler(this.guna2Button3_Click);
             // 
@@ -355,8 +351,8 @@
             this.lblTotalCustomerCountNumber.BackColor = System.Drawing.Color.White;
             this.lblTotalCustomerCountNumber.Font = new System.Drawing.Font("Microsoft YaHei UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalCustomerCountNumber.ForeColor = System.Drawing.Color.Black;
-            this.lblTotalCustomerCountNumber.Location = new System.Drawing.Point(9, 42);
-            this.lblTotalCustomerCountNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblTotalCustomerCountNumber.Location = new System.Drawing.Point(31, 33);
+            this.lblTotalCustomerCountNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblTotalCustomerCountNumber.Name = "lblTotalCustomerCountNumber";
             this.lblTotalCustomerCountNumber.Size = new System.Drawing.Size(22, 42);
             this.lblTotalCustomerCountNumber.TabIndex = 2;
@@ -368,10 +364,10 @@
             this.lblTotalCustomerCount.BackColor = System.Drawing.Color.White;
             this.lblTotalCustomerCount.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalCustomerCount.ForeColor = System.Drawing.Color.Black;
-            this.lblTotalCustomerCount.Location = new System.Drawing.Point(9, 6);
-            this.lblTotalCustomerCount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblTotalCustomerCount.Location = new System.Drawing.Point(31, 2);
+            this.lblTotalCustomerCount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblTotalCustomerCount.Name = "lblTotalCustomerCount";
-            this.lblTotalCustomerCount.Size = new System.Drawing.Size(345, 50);
+            this.lblTotalCustomerCount.Size = new System.Drawing.Size(216, 62);
             this.lblTotalCustomerCount.TabIndex = 0;
             this.lblTotalCustomerCount.Text = "Tổng khách hàng";
             this.lblTotalCustomerCount.Click += new System.EventHandler(this.lblTotalCustomerCount_Click);
@@ -638,7 +634,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvListCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvListCustomers.ColumnHeadersHeight = 40;
+            this.dgvListCustomers.ColumnHeadersHeight = 100;
             this.dgvListCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CustomersID,
             this.CustomersName,
@@ -648,7 +644,8 @@
             this.CustomersPhone,
             this.GmailCustomers,
             this.CustomersAddress,
-            this.CustomersType});
+            this.CustomersType,
+            this.Tongchitieu});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -658,13 +655,13 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvListCustomers.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvListCustomers.GridColor = System.Drawing.Color.Black;
-            this.dgvListCustomers.Location = new System.Drawing.Point(8, 86);
-            this.dgvListCustomers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvListCustomers.Location = new System.Drawing.Point(10, 92);
+            this.dgvListCustomers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvListCustomers.Name = "dgvListCustomers";
             this.dgvListCustomers.RowHeadersVisible = false;
             this.dgvListCustomers.RowHeadersWidth = 51;
             this.dgvListCustomers.RowTemplate.Height = 35;
-            this.dgvListCustomers.Size = new System.Drawing.Size(1516, 519);
+            this.dgvListCustomers.Size = new System.Drawing.Size(1589, 652);
             this.dgvListCustomers.TabIndex = 8;
             this.dgvListCustomers.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvListCustomers.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -678,7 +675,7 @@
             this.dgvListCustomers.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvListCustomers.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.dgvListCustomers.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvListCustomers.ThemeStyle.HeaderStyle.Height = 40;
+            this.dgvListCustomers.ThemeStyle.HeaderStyle.Height = 100;
             this.dgvListCustomers.ThemeStyle.ReadOnly = false;
             this.dgvListCustomers.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvListCustomers.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
@@ -687,6 +684,76 @@
             this.dgvListCustomers.ThemeStyle.RowsStyle.Height = 35;
             this.dgvListCustomers.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvListCustomers.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvListCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListCustomers_CellContentClick);
+            // 
+            // CustomersID
+            // 
+            this.CustomersID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CustomersID.DataPropertyName = "Mã khách hàng";
+            this.CustomersID.HeaderText = "Mã khách hàng";
+            this.CustomersID.MinimumWidth = 6;
+            this.CustomersID.Name = "CustomersID";
+            this.CustomersID.Width = 135;
+            // 
+            // CustomersName
+            // 
+            this.CustomersName.DataPropertyName = "Tên khách hàng";
+            this.CustomersName.FillWeight = 150F;
+            this.CustomersName.HeaderText = "Tên khách hàng";
+            this.CustomersName.MinimumWidth = 6;
+            this.CustomersName.Name = "CustomersName";
+            // 
+            // QuocTichCustomers
+            // 
+            this.QuocTichCustomers.DataPropertyName = "Quốc tịch";
+            this.QuocTichCustomers.FillWeight = 70F;
+            this.QuocTichCustomers.HeaderText = "Quốc tịch";
+            this.QuocTichCustomers.MinimumWidth = 6;
+            this.QuocTichCustomers.Name = "QuocTichCustomers";
+            // 
+            // SexCustomers
+            // 
+            this.SexCustomers.DataPropertyName = "Giới Tính";
+            this.SexCustomers.FillWeight = 70F;
+            this.SexCustomers.HeaderText = "Giới Tính";
+            this.SexCustomers.MinimumWidth = 6;
+            this.SexCustomers.Name = "SexCustomers";
+            // 
+            // CCCDCustomes
+            // 
+            this.CCCDCustomes.DataPropertyName = "CCCD";
+            this.CCCDCustomes.HeaderText = "CCCD";
+            this.CCCDCustomes.MinimumWidth = 6;
+            this.CCCDCustomes.Name = "CCCDCustomes";
+            // 
+            // CustomersPhone
+            // 
+            this.CustomersPhone.DataPropertyName = "Số điện thoại";
+            this.CustomersPhone.HeaderText = "Số điện thoại";
+            this.CustomersPhone.MinimumWidth = 6;
+            this.CustomersPhone.Name = "CustomersPhone";
+            // 
+            // GmailCustomers
+            // 
+            this.GmailCustomers.DataPropertyName = "Gmail";
+            this.GmailCustomers.HeaderText = "Gmail";
+            this.GmailCustomers.MinimumWidth = 6;
+            this.GmailCustomers.Name = "GmailCustomers";
+            // 
+            // CustomersAddress
+            // 
+            this.CustomersAddress.DataPropertyName = "Địa chỉ";
+            this.CustomersAddress.FillWeight = 70F;
+            this.CustomersAddress.HeaderText = "Địa chỉ ";
+            this.CustomersAddress.MinimumWidth = 6;
+            this.CustomersAddress.Name = "CustomersAddress";
+            // 
+            // CustomersType
+            // 
+            this.CustomersType.DataPropertyName = "Loại khách";
+            this.CustomersType.HeaderText = "Loại khách";
+            this.CustomersType.MinimumWidth = 6;
+            this.CustomersType.Name = "CustomersType";
             // 
             // guna2HtmlLabel3
             // 
@@ -711,12 +778,12 @@
             this.guna2Panel3.Controls.Add(this.guna2HtmlLabel3);
             this.guna2Panel3.Controls.Add(this.dgvListCustomers);
             this.guna2Panel3.FillColor = System.Drawing.Color.White;
-            this.guna2Panel3.Location = new System.Drawing.Point(1, 326);
-            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel3.Location = new System.Drawing.Point(27, 225);
+            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel3.Name = "guna2Panel3";
             this.guna2Panel3.ShadowDecoration.BorderRadius = 15;
             this.guna2Panel3.ShadowDecoration.Enabled = true;
-            this.guna2Panel3.Size = new System.Drawing.Size(1597, 660);
+            this.guna2Panel3.Size = new System.Drawing.Size(1616, 637);
             this.guna2Panel3.TabIndex = 10;
             // 
             // guna2Button1
@@ -732,24 +799,201 @@
             this.guna2Button1.ForeColor = System.Drawing.Color.White;
             this.guna2Button1.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button1.Image")));
             this.guna2Button1.ImageSize = new System.Drawing.Size(40, 40);
-            this.guna2Button1.Location = new System.Drawing.Point(473, 2);
-            this.guna2Button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Button1.Location = new System.Drawing.Point(410, 14);
+            this.guna2Button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.ShadowDecoration.BorderRadius = 20;
             this.guna2Button1.ShadowDecoration.Color = System.Drawing.Color.Silver;
-            this.guna2Button1.ShadowDecoration.Enabled = true;
-            this.guna2Button1.Size = new System.Drawing.Size(70, 60);
+            this.guna2Button1.Size = new System.Drawing.Size(76, 74);
             this.guna2Button1.TabIndex = 9;
+            // 
+            // guna2HtmlLabel4
+            // 
+            this.guna2HtmlLabel4.AutoSize = false;
+            this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(55)))));
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(44, 72);
+            this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(596, 41);
+            this.guna2HtmlLabel4.TabIndex = 11;
+            this.guna2HtmlLabel4.Text = "Quản lý danh sách khách hàng";
+            // 
+            // guna2Panel1
+            // 
+            this.guna2Panel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Panel1.BorderRadius = 25;
+            this.guna2Panel1.Controls.Add(this.guna2Button5);
+            this.guna2Panel1.Controls.Add(this.guna2HtmlLabel5);
+            this.guna2Panel1.Controls.Add(this.guna2HtmlLabel6);
+            this.guna2Panel1.FillColor = System.Drawing.Color.White;
+            this.guna2Panel1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Panel1.Location = new System.Drawing.Point(673, 118);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.ShadowDecoration.BorderRadius = 25;
+            this.guna2Panel1.ShadowDecoration.Color = System.Drawing.Color.DimGray;
+            this.guna2Panel1.ShadowDecoration.Enabled = true;
+            this.guna2Panel1.Size = new System.Drawing.Size(291, 88);
+            this.guna2Panel1.TabIndex = 7;
+            // 
+            // guna2Button5
+            // 
+            this.guna2Button5.BorderRadius = 10;
+            this.guna2Button5.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button5.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button5.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button5.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button5.FillColor = System.Drawing.Color.White;
+            this.guna2Button5.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button5.ForeColor = System.Drawing.Color.White;
+            this.guna2Button5.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button5.Image")));
+            this.guna2Button5.ImageSize = new System.Drawing.Size(30, 30);
+            this.guna2Button5.Location = new System.Drawing.Point(201, 41);
+            this.guna2Button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Button5.Name = "guna2Button5";
+            this.guna2Button5.Size = new System.Drawing.Size(64, 45);
+            this.guna2Button5.TabIndex = 6;
+            this.guna2Button5.Click += new System.EventHandler(this.guna2Button5_Click);
+            // 
+            // guna2HtmlLabel5
+            // 
+            this.guna2HtmlLabel5.AutoSize = false;
+            this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel5.Font = new System.Drawing.Font("Microsoft YaHei UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel5.Location = new System.Drawing.Point(33, 33);
+            this.guna2HtmlLabel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
+            this.guna2HtmlLabel5.Size = new System.Drawing.Size(47, 68);
+            this.guna2HtmlLabel5.TabIndex = 3;
+            this.guna2HtmlLabel5.Text = "0";
+            // 
+            // guna2HtmlLabel6
+            // 
+            this.guna2HtmlLabel6.AutoSize = false;
+            this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel6.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel6.Location = new System.Drawing.Point(33, 2);
+            this.guna2HtmlLabel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
+            this.guna2HtmlLabel6.Size = new System.Drawing.Size(425, 63);
+            this.guna2HtmlLabel6.TabIndex = 3;
+            this.guna2HtmlLabel6.Text = "Khách hàng thường";
+            // 
+            // guna2GradientPanel1
+            // 
+            this.guna2GradientPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2GradientPanel1.BorderRadius = 15;
+            this.guna2GradientPanel1.Controls.Add(this.bntFilterCustomers);
+            this.guna2GradientPanel1.Controls.Add(this.cboFilterCustomers);
+            this.guna2GradientPanel1.Controls.Add(this.guna2HtmlLabel7);
+            this.guna2GradientPanel1.FillColor = System.Drawing.Color.White;
+            this.guna2GradientPanel1.FillColor2 = System.Drawing.Color.White;
+            this.guna2GradientPanel1.Location = new System.Drawing.Point(1014, 118);
+            this.guna2GradientPanel1.Name = "guna2GradientPanel1";
+            this.guna2GradientPanel1.ShadowDecoration.BorderRadius = 15;
+            this.guna2GradientPanel1.ShadowDecoration.Color = System.Drawing.Color.DimGray;
+            this.guna2GradientPanel1.ShadowDecoration.Enabled = true;
+            this.guna2GradientPanel1.Size = new System.Drawing.Size(629, 88);
+            this.guna2GradientPanel1.TabIndex = 12;
+            this.guna2GradientPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2GradientPanel1_Paint);
+            // 
+            // bntFilterCustomers
+            // 
+            this.bntFilterCustomers.BackColor = System.Drawing.Color.Transparent;
+            this.bntFilterCustomers.BorderRadius = 10;
+            this.bntFilterCustomers.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bntFilterCustomers.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bntFilterCustomers.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bntFilterCustomers.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bntFilterCustomers.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(70)))), ((int)(((byte)(229)))));
+            this.bntFilterCustomers.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bntFilterCustomers.ForeColor = System.Drawing.Color.White;
+            this.bntFilterCustomers.Location = new System.Drawing.Point(476, 41);
+            this.bntFilterCustomers.Name = "bntFilterCustomers";
+            this.bntFilterCustomers.ShadowDecoration.BorderRadius = 15;
+            this.bntFilterCustomers.ShadowDecoration.Color = System.Drawing.Color.DimGray;
+            this.bntFilterCustomers.ShadowDecoration.Enabled = true;
+            this.bntFilterCustomers.Size = new System.Drawing.Size(114, 36);
+            this.bntFilterCustomers.TabIndex = 3;
+            this.bntFilterCustomers.Text = "Lọc";
+            this.bntFilterCustomers.Click += new System.EventHandler(this.bntFilterCustomers_Click);
+            // 
+            // cboFilterCustomers
+            // 
+            this.cboFilterCustomers.BackColor = System.Drawing.Color.Transparent;
+            this.cboFilterCustomers.BorderColor = System.Drawing.Color.White;
+            this.cboFilterCustomers.BorderRadius = 10;
+            this.cboFilterCustomers.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboFilterCustomers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFilterCustomers.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboFilterCustomers.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cboFilterCustomers.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboFilterCustomers.ForeColor = System.Drawing.Color.Black;
+            this.cboFilterCustomers.ItemHeight = 30;
+            this.cboFilterCustomers.Items.AddRange(new object[] {
+            "Thường",
+            "VIP",
+            "Tất cả"});
+            this.cboFilterCustomers.Location = new System.Drawing.Point(16, 41);
+            this.cboFilterCustomers.Name = "cboFilterCustomers";
+            this.cboFilterCustomers.ShadowDecoration.BorderRadius = 10;
+            this.cboFilterCustomers.ShadowDecoration.Color = System.Drawing.Color.DimGray;
+            this.cboFilterCustomers.ShadowDecoration.Enabled = true;
+            this.cboFilterCustomers.Size = new System.Drawing.Size(435, 36);
+            this.cboFilterCustomers.TabIndex = 1;
+            // 
+            // guna2HtmlLabel7
+            // 
+            this.guna2HtmlLabel7.AutoSize = false;
+            this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel7.Location = new System.Drawing.Point(16, 3);
+            this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
+            this.guna2HtmlLabel7.Size = new System.Drawing.Size(340, 74);
+            this.guna2HtmlLabel7.TabIndex = 0;
+            this.guna2HtmlLabel7.Text = "Lọc khách hàng";
+            // 
+            // guna2Button4
+            // 
+            this.guna2Button4.BorderRadius = 10;
+            this.guna2Button4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button4.FillColor = System.Drawing.Color.White;
+            this.guna2Button4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button4.ForeColor = System.Drawing.Color.White;
+            this.guna2Button4.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button4.Image")));
+            this.guna2Button4.ImageSize = new System.Drawing.Size(50, 50);
+            this.guna2Button4.Location = new System.Drawing.Point(418, -9);
+            this.guna2Button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2Button4.Name = "guna2Button4";
+            this.guna2Button4.Size = new System.Drawing.Size(74, 94);
+            this.guna2Button4.TabIndex = 6;
+            // 
+            // Tongchitieu
+            // 
+            this.Tongchitieu.HeaderText = "Tổng chi tiêu";
+            this.Tongchitieu.MinimumWidth = 6;
+            this.Tongchitieu.Name = "Tongchitieu";
             // 
             // CustomersList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1607, 857);
-            this.Controls.Add(this.pnHeader1);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(250)))), ((int)(((byte)(251)))));
+            this.ClientSize = new System.Drawing.Size(1876, 1055);
+            this.Controls.Add(this.guna2Button4);
+            this.Controls.Add(this.guna2GradientPanel1);
+            this.Controls.Add(this.guna2Panel1);
+            this.Controls.Add(this.gnVIPCustomers);
+            this.Controls.Add(this.gnTotalCustomers);
             this.Controls.Add(this.guna2Panel3);
             this.Controls.Add(this.pnHeader2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Controls.Add(this.guna2HtmlLabel4);
+            this.Controls.Add(this.lblCustomerManagement);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "CustomersList";
             this.Text = "CustomersList";
             this.Load += new System.EventHandler(this.CustomersList_Load);
@@ -795,6 +1039,8 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
+        private Guna.UI2.WinForms.Guna2ComboBox cboFilterCustomers;
         private Guna.UI2.WinForms.Guna2Button bntFilterCustomers;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
         private Guna.UI2.WinForms.Guna2ComboBox cboFilterCustomers;
@@ -809,5 +1055,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GmailCustomers;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomersAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomersType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tongchitieu;
     }
 }

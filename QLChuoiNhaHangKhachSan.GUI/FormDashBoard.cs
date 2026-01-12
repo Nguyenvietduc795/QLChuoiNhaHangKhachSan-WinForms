@@ -94,9 +94,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
             try
             {
-                string _connectionString = ConfigurationManager.ConnectionStrings["MyConn"]?.ConnectionString
-            ?? @"Data Source=.\SQLEXPRESS;Initial Catalog=QuanLyChuoiNhaHangKhachSan;Integrated Security=True"; // Lấy chuỗi kết nối (nếu cần)
-                // MessageBox.Show(connStr); // Debug
+                // Đúng tên theo App.config
+                string connStr = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
+                // MessageBox.Show(connStr); // Debug nếu muốn
             }
             catch { } // Bỏ qua nếu lỗi cấu hình
         }
