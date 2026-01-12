@@ -36,6 +36,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             KhoiTaoBangKhachHang();
             HienThiLenGrid();
             CapNhatThongKe();
+            CapNhatSoKhachHangThuong();
         }
 
         private void KhoiTaoBangKhachHang()
@@ -44,16 +45,15 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
             _customersTable.Columns.Add("Mã khách hàng");
             _customersTable.Columns.Add("Tên khách hàng");
+            _customersTable.Columns.Add("Quốc tịch");   // đúng đường dẫn cột
+            _customersTable.Columns.Add("CCCD");
+            _customersTable.Columns.Add("Giới tính");
             _customersTable.Columns.Add("Số điện thoại");
+            _customersTable.Columns.Add("Gmail");
             _customersTable.Columns.Add("Địa chỉ");
             _customersTable.Columns.Add("Loại khách");
 
-            _customersTable.Rows.Add("KH001", "Lữ Nhựt Linh", "0702856480", "Đồng Tháp", "VIP");
-            _customersTable.Rows.Add("KH002", "Nguyễn Trường Phi", "0923532971", "Bến Tre", "Thường");
-            _customersTable.Rows.Add("KH003", "Nguyễn Thị Hồng Gấm", "0363227415", "Tiền Giang", "Thường");
-            _customersTable.Rows.Add("KH004", "Hứa Mỹ Lam", "0367724702", "Đồng Tháp", "Thường");
-            _customersTable.Rows.Add("KH005", "Lâm Trí Tùa", "0395918171", "Sốc Trăng", "Thường");
-            _customersTable.Rows.Add("KH006", "Nguyễn Việt Đức", "0973879105", "Cần Thơ", "Thường");
+            // Không thêm Rows ở đây, để form mở lên là bảng trống
         }
 
         private void HienThiLenGrid()
@@ -65,12 +65,15 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             if (_customersTable == null) return;
 
-            int tongKhach = _customersTable.Rows.Count;
-            int soVip = _customersTable.AsEnumerable()
-                .Count(r => string.Equals(r.Field<string>("Loại khách"), "VIP", StringComparison.OrdinalIgnoreCase));
+            // Chỉ lấy các dòng chưa bị xóa
+            var rows = _customersTable.AsEnumerable()
+                              .Where(r => r.RowState != DataRowState.Deleted);
 
-            // Tiêu đề "Tổng khách hàng" giữ nguyên
-            // Số tổng khách nằm ở lblTotalCustomerCountNumber
+            int tongKhach = rows.Count();
+            int soVip = rows.Count(r =>
+        string.Equals(r.Field<string>("Loại khách"), "VIP",
+                      StringComparison.OrdinalIgnoreCase));
+
             lblTotalCustomerCountNumber.Text = tongKhach.ToString();
             lblVIPCount.Text = soVip.ToString();
         }
@@ -80,39 +83,36 @@ namespace QLChuoiNhaHangKhachSan.GUI
             if (_customersTable == null)
                 return;
 
-            string filter = string.Empty;
+            DataView view = _customersTable.DefaultView;
 
             if (!string.IsNullOrWhiteSpace(tuKhoa))
             {
                 string safeKeyword = tuKhoa.Replace("'", "''");
-                filter =
+                view.RowFilter =
                     $"[Mã khách hàng] LIKE '%{safeKeyword}%' OR " +
                     $"[Tên khách hàng] LIKE '%{safeKeyword}%'";
-
-                DataView view = _customersTable.DefaultView;
-                view.RowFilter = filter;
-
-                dgvListCustomers.DataSource = view;
             }
             else
             {
-                dgvListCustomers.DataSource = _customersTable;
+                // XÓA LỌC KHI Ô TÌM KIẾM RỖNG
+                view.RowFilter = string.Empty;
             }
 
-            // Sau khi thay đổi data source thì cập nhật lại label
+            dgvListCustomers.DataSource = view;
             CapNhatThongKe();
+            CapNhatSoKhachHangThuong();
         }
 
         private void tbFindCustomers_TextChanged(object sender, EventArgs e)
         {
-            // Tìm kiếm realtime khi gõ
+            // Tìm realtime khi gõ
             TimKiemKhachHang(tbFindCustomers.Text);
         }
 
         private void btnFind_Click(object sender, EventArgs e)
         {
-            // Tìm kiếm khi bấm nút
-            TimKiemKhachHang(tbFindCustomers.Text);
+            // Không làm gì, hoặc cũng có thể gọi lại:
+            // TimKiemKhachHang(tbFindCustomers.Text);
         }
 
         private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -126,19 +126,27 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 if (f.ShowDialog() == DialogResult.OK)
                 {
-                    if (_customersTable != null)
-                    {
-                        _customersTable.Rows.Add(
-                            f.CustomerId,
-                            f.CustomerName,
-                            f.PhoneNumber,
-                            f.Address,
-                            f.CustomerType
-                        );
+                    var id      = f.CustomerId;
+                    var name    = f.CustomerName;
+                    var cccd    = f.CCCD;
+                    var sex     = f.Sex;
+                    var phone   = f.PhoneNumber;
+                    var email   = f.Email;
+                    var address = f.Address;
+                    var type    = f.CustomerType;
 
-                        HienThiLenGrid();
-                        CapNhatThongKe();
-                    }
+                    _customersTable.Rows.Add(
+    id,
+    name,
+    f.Nationality,   // dùng đúng property
+    cccd,
+    sex,
+    phone,
+    email,
+    address,
+    type);
+                    CapNhatThongKe();
+                    CapNhatSoKhachHangThuong();
                 }
             }
         }
@@ -209,6 +217,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
 
             CapNhatThongKe();
+            CapNhatSoKhachHangThuong();
         }
 
         private void btnUpdateCustomers_Click(object sender, EventArgs e)
@@ -234,25 +243,93 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // Mở form cập nhật, truyền dữ liệu hiện tại sang
             using (var f = new CustomerAdd())
             {
-                f.Mode = CustomerAdd.CustomerFormMode.Edit;
+                f.Mode         = CustomerAdd.CustomerFormMode.Edit;
 
-                f.CustomerId = row.Field<string>("Mã khách hàng");
+                f.CustomerId   = row.Field<string>("Mã khách hàng");
                 f.CustomerName = row.Field<string>("Tên khách hàng");
+                f.CCCD        = row.Field<string>("CCCD");
+                f.Sex         = row.Field<string>("Giới tính");
                 f.PhoneNumber = row.Field<string>("Số điện thoại");
-                f.Address = row.Field<string>("Địa chỉ");
-                f.CustomerType = row.Field<string>("Loại khách");
+                f.Email       = row.Field<string>("Gmail");      // THÊM DÒNG NÀY
+                f.Address     = row.Field<string>("Địa chỉ");
+                f.CustomerType= row.Field<string>("Loại khách");
+                f.Nationality = row.Field<string>("Quốc tịch");
 
                 if (f.ShowDialog() == DialogResult.OK)
                 {
                     row["Tên khách hàng"] = f.CustomerName;
-                    row["Số điện thoại"] = f.PhoneNumber;
-                    row["Địa chỉ"] = f.Address;
-                    row["Loại khách"] = f.CustomerType;
+                    row["CCCD"]           = f.CCCD;
+                    row["Giới tính"]      = f.Sex;
+                    row["Số điện thoại"]  = f.PhoneNumber;
+                    row["Gmail"]          = f.Email;             // THÊM DÒNG NÀY
+                    row["Địa chỉ"]        = f.Address;
+                    row["Loại khách"]     = f.CustomerType;
+                    row["Quốc tịch"]      = f.Nationality;
 
                     row.AcceptChanges();
                     CapNhatThongKe();
+                    CapNhatSoKhachHangThuong();
                 }
             }
+        }
+
+        private void guna2Button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private int DemKhachHangThuong()
+        {
+            if (_customersTable == null)
+                return 0;
+
+            return _customersTable.AsEnumerable()
+                .Where(r => r.RowState != DataRowState.Deleted)
+                .Count(r => string.Equals(
+                    r.Field<string>("Loại khách"),
+                    "Thường",
+                    StringComparison.OrdinalIgnoreCase));
+        }
+
+        private void CapNhatSoKhachHangThuong()
+        {
+            int soKhachHangThuong = DemKhachHangThuong();
+            guna2HtmlLabel5.Text = soKhachHangThuong.ToString();
+        }
+
+        private void bntFilterCustomers_Click(object sender, EventArgs e)
+        {
+            if (_customersTable == null)
+                return;
+
+            string selectedType = cboFilterCustomers.SelectedItem?.ToString();
+            DataView view = _customersTable.DefaultView;
+
+            if (string.IsNullOrEmpty(selectedType) || selectedType == "Tất cả")
+            {
+                // Hiện lại tất cả khách hàng
+                view.RowFilter = string.Empty;
+            }
+            else
+            {
+                // Lọc theo loại khách đã chọn: VIP hoặc Thường
+                view.RowFilter = $"[Loại khách] = '{selectedType}'";
+            }
+
+            dgvListCustomers.DataSource = view;
+
+            CapNhatThongKe();
+            CapNhatSoKhachHangThuong();
+        }
+
+        private void lblCustomerManagement_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -177,6 +177,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
 
         }
+
+        private void dgvDishMenu_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
     public class DishAddedEventArgs : EventArgs
     {

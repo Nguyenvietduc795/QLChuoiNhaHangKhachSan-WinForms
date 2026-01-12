@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlRoomContainer = new Guna.UI2.WinForms.Guna2GradientPanel();
+            this.labVip = new System.Windows.Forms.Label();
             this.labTrangthai = new System.Windows.Forms.Label();
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.labThoiGian = new System.Windows.Forms.Label();
@@ -47,10 +48,11 @@
             // 
             // pnlRoomContainer
             // 
-            this.pnlRoomContainer.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.pnlRoomContainer.BorderColor = System.Drawing.Color.DimGray;
-            this.pnlRoomContainer.BorderRadius = 30;
+            this.pnlRoomContainer.BackColor = System.Drawing.Color.Transparent;
+            this.pnlRoomContainer.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(191)))), ((int)(((byte)(229)))));
+            this.pnlRoomContainer.BorderRadius = 12;
             this.pnlRoomContainer.BorderThickness = 2;
+            this.pnlRoomContainer.Controls.Add(this.labVip);
             this.pnlRoomContainer.Controls.Add(this.labTrangthai);
             this.pnlRoomContainer.Controls.Add(this.guna2GradientPanel1);
             this.pnlRoomContainer.Controls.Add(this.lblStatus);
@@ -58,20 +60,34 @@
             this.pnlRoomContainer.Controls.Add(this.pictureBox1);
             this.pnlRoomContainer.CustomizableEdges.BottomLeft = false;
             this.pnlRoomContainer.CustomizableEdges.BottomRight = false;
-            this.pnlRoomContainer.FillColor = System.Drawing.Color.LightSteelBlue;
-            this.pnlRoomContainer.FillColor2 = System.Drawing.Color.LightSteelBlue;
+            this.pnlRoomContainer.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(234)))), ((int)(((byte)(248)))));
+            this.pnlRoomContainer.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(234)))), ((int)(((byte)(248)))));
             this.pnlRoomContainer.Location = new System.Drawing.Point(0, 0);
             this.pnlRoomContainer.Name = "pnlRoomContainer";
             this.pnlRoomContainer.Padding = new System.Windows.Forms.Padding(20);
-            this.pnlRoomContainer.Size = new System.Drawing.Size(281, 181);
+            this.pnlRoomContainer.Size = new System.Drawing.Size(294, 186);
             this.pnlRoomContainer.TabIndex = 0;
+            // 
+            // labVip
+            // 
+            this.labVip.AutoSize = true;
+            this.labVip.BackColor = System.Drawing.Color.Gold;
+            this.labVip.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labVip.ForeColor = System.Drawing.Color.Black;
+            this.labVip.Location = new System.Drawing.Point(214, 5);
+            this.labVip.Name = "labVip";
+            this.labVip.Padding = new System.Windows.Forms.Padding(6, 2, 6, 2);
+            this.labVip.Size = new System.Drawing.Size(51, 23);
+            this.labVip.TabIndex = 7;
+            this.labVip.Text = "VIP";
+            this.labVip.Visible = false;
             // 
             // labTrangthai
             // 
             this.labTrangthai.AutoSize = true;
             this.labTrangthai.BackColor = System.Drawing.Color.Transparent;
             this.labTrangthai.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labTrangthai.ForeColor = System.Drawing.Color.White;
+            this.labTrangthai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(138)))), ((int)(((byte)(94)))));
             this.labTrangthai.Location = new System.Drawing.Point(163, 27);
             this.labTrangthai.Name = "labTrangthai";
             this.labTrangthai.Size = new System.Drawing.Size(109, 23);
@@ -80,8 +96,8 @@
             // 
             // guna2GradientPanel1
             // 
-            this.guna2GradientPanel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.guna2GradientPanel1.BorderColor = System.Drawing.Color.DimGray;
+            this.guna2GradientPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2GradientPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(191)))), ((int)(((byte)(229)))));
             this.guna2GradientPanel1.BorderRadius = 30;
             this.guna2GradientPanel1.BorderThickness = 1;
             this.guna2GradientPanel1.Controls.Add(this.labThoiGian);
@@ -90,8 +106,8 @@
             this.guna2GradientPanel1.Controls.Add(this.picSanSang);
             this.guna2GradientPanel1.CustomizableEdges.TopLeft = false;
             this.guna2GradientPanel1.CustomizableEdges.TopRight = false;
-            this.guna2GradientPanel1.FillColor = System.Drawing.Color.Gainsboro;
-            this.guna2GradientPanel1.FillColor2 = System.Drawing.Color.Gainsboro;
+            this.guna2GradientPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(214)))), ((int)(((byte)(230)))));
+            this.guna2GradientPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(214)))), ((int)(((byte)(230)))));
             this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 129);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
             this.guna2GradientPanel1.Size = new System.Drawing.Size(290, 52);
@@ -102,6 +118,7 @@
             this.labThoiGian.AutoSize = true;
             this.labThoiGian.BackColor = System.Drawing.Color.Transparent;
             this.labThoiGian.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labThoiGian.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(63)))), ((int)(((byte)(72)))));
             this.labThoiGian.Location = new System.Drawing.Point(43, 23);
             this.labThoiGian.Name = "labThoiGian";
             this.labThoiGian.Size = new System.Drawing.Size(84, 23);
@@ -124,6 +141,7 @@
             this.labSanSang.AutoSize = true;
             this.labSanSang.BackColor = System.Drawing.Color.Transparent;
             this.labSanSang.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labSanSang.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(63)))), ((int)(((byte)(72)))));
             this.labSanSang.Location = new System.Drawing.Point(178, 21);
             this.labSanSang.Name = "labSanSang";
             this.labSanSang.Size = new System.Drawing.Size(82, 23);
@@ -146,7 +164,7 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.BackColor = System.Drawing.Color.Transparent;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.ForeColor = System.Drawing.Color.White;
+            this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(63)))), ((int)(((byte)(72)))));
             this.lblStatus.Location = new System.Drawing.Point(59, 67);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(165, 31);
@@ -159,8 +177,8 @@
             this.labRoomNumber.AutoSize = true;
             this.labRoomNumber.BackColor = System.Drawing.Color.Transparent;
             this.labRoomNumber.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labRoomNumber.ForeColor = System.Drawing.Color.White;
-            this.labRoomNumber.Location = new System.Drawing.Point(26, 20);
+            this.labRoomNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(95)))));
+            this.labRoomNumber.Location = new System.Drawing.Point(26, 19);
             this.labRoomNumber.Name = "labRoomNumber";
             this.labRoomNumber.Size = new System.Drawing.Size(71, 31);
             this.labRoomNumber.TabIndex = 0;
@@ -182,10 +200,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.pnlRoomContainer);
             this.Name = "UcRoom";
             this.Padding = new System.Windows.Forms.Padding(20);
-            this.Size = new System.Drawing.Size(281, 181);
+            this.Size = new System.Drawing.Size(294, 186);
             this.Load += new System.EventHandler(this.UcRoom_Load);
             this.pnlRoomContainer.ResumeLayout(false);
             this.pnlRoomContainer.PerformLayout();
@@ -210,6 +229,7 @@
         public System.Windows.Forms.Label labTrangthai;
         private System.Windows.Forms.PictureBox picThoiGian;
         public System.Windows.Forms.Label labThoiGian;
+        private System.Windows.Forms.Label labVip;
     }
 
 }

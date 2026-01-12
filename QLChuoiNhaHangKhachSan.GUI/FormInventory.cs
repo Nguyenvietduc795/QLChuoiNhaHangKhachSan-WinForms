@@ -216,9 +216,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         }
 
-       
+        private void guna2Panel3_Paint(object sender, PaintEventArgs e)
+        {
 
-
+        }
     }
 
 
