@@ -20,6 +20,60 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private readonly StockBLL _stockBll;
         private List<StockRow> _stockData;
         private string[] _activeStatusFilter;
+        private readonly Dictionary<string, RowPalette> _statusPalettes = new Dictionary<string, RowPalette>(StringComparer.OrdinalIgnoreCase)
+        {
+            {
+                "ondinh",
+                new RowPalette
+                {
+                    NormalBack = ColorTranslator.FromHtml("#D1FAE5"),
+                    SelectedBack = ColorTranslator.FromHtml("#86EFAC"),
+                    Text = ColorTranslator.FromHtml("#065F46"),
+                    SelectedText = ColorTranslator.FromHtml("#065F46")
+                }
+            },
+            {
+                "thieu",
+                new RowPalette
+                {
+                    NormalBack = ColorTranslator.FromHtml("#FEF3C7"),
+                    SelectedBack = ColorTranslator.FromHtml("#FCD34D"),
+                    Text = ColorTranslator.FromHtml("#92400E"),
+                    SelectedText = ColorTranslator.FromHtml("#92400E")
+                }
+            },
+            {
+                "hethang",
+                new RowPalette
+                {
+                    NormalBack = ColorTranslator.FromHtml("#FEE2E2"),
+                    SelectedBack = ColorTranslator.FromHtml("#B91C1C"),
+                    Text = ColorTranslator.FromHtml("#991B1B"),
+                    SelectedText = Color.White
+                }
+            },
+            {
+                "ngungsudung",
+                new RowPalette
+                {
+                    NormalBack = ColorTranslator.FromHtml("#E5E7EB"),
+                    SelectedBack = ColorTranslator.FromHtml("#9CA3AF"),
+                    Text = ColorTranslator.FromHtml("#374151"),
+                    SelectedText = ColorTranslator.FromHtml("#111827")
+                }
+            },
+            {
+                "default",
+                new RowPalette
+                {
+                    NormalBack = Color.White,
+                    SelectedBack = ColorTranslator.FromHtml("#E5E7EB"),
+                    Text = Color.Black,
+                    SelectedText = Color.Black
+                }
+            }
+        };
+        private static readonly CultureInfo ViCulture = CultureInfo.GetCultureInfo("vi-VN");
 
         public FormInventory()
         {
@@ -30,6 +84,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
             btnfixitems.Click += btnupdateitems_Click;
             btnstopItems.Click += btnstopItems_Click;
             WireCardInteractions();
+            DGdanhsachtonkho.CellFormatting += DGdanhsachtonkho_CellFormatting;
+            DGdanhsachtonkho.DataBindingComplete += DGdanhsachtonkho_DataBindingComplete;
+            DGdanhsachtonkho.RowPrePaint += DGdanhsachtonkho_RowPrePaint;
 
         }
 
@@ -72,8 +129,82 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
 
         }
+        private void DGdanhsachtonkho_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            var column = DGdanhsachtonkho.Columns[e.ColumnIndex];
+            if (column == null || column.DataPropertyName != nameof(StockRow.Ton)) return;
 
+            var row = DGdanhsachtonkho.Rows[e.RowIndex];
+            if (!(row?.DataBoundItem is StockRow data)) return;
 
+            var unit = (data.DonVi ?? string.Empty).Trim();
+            var normalizedUnit = RemoveDiacritics(unit).ToLowerInvariant();
+            var value = data.Ton;
+
+            if (normalizedUnit == "kg" || normalizedUnit == "kilogram")
+            {
+                e.Value = value.ToString("N1", ViCulture);
+                e.FormattingApplied = true;
+            }
+            else if (normalizedUnit == "l" || normalizedUnit == "lit" || normalizedUnit == "liter" || normalizedUnit == "litre")
+            {
+                e.Value = value.ToString("N1", ViCulture);
+                e.FormattingApplied = true;
+            }
+            else if (normalizedUnit == "cai" || normalizedUnit == "cái")
+            {
+                e.Value = Math.Round(value, 0, MidpointRounding.AwayFromZero).ToString("N0", ViCulture);
+                e.FormattingApplied = true;
+            }
+            else
+            {
+                e.Value = value.ToString("N0", ViCulture);
+                e.FormattingApplied = true;
+            }
+        }
+
+        private void DGdanhsachtonkho_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow row in DGdanhsachtonkho.Rows)
+            {
+                var status = (row?.DataBoundItem as StockRow)?.TrangThai;
+                ApplyRowStyle(row, status);
+            }
+        }
+
+        private void DGdanhsachtonkho_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            var row = DGdanhsachtonkho.Rows[e.RowIndex];
+            var status = (row?.DataBoundItem as StockRow)?.TrangThai;
+            ApplyRowStyle(row, status);
+        }
+
+        private void ApplyRowStyle(DataGridViewRow row, string status)
+        {
+            if (row == null)
+                return;
+
+            var normalized = RemoveDiacritics(status ?? string.Empty).ToLowerInvariant();
+            normalized = new string(normalized.Where(ch => !char.IsWhiteSpace(ch)).ToArray());
+
+            if (string.IsNullOrEmpty(normalized))
+            {
+                normalized = "default";
+            }
+
+            RowPalette palette;
+            if (!_statusPalettes.TryGetValue(normalized, out palette))
+            {
+                palette = _statusPalettes["default"];
+            }
+
+            row.DefaultCellStyle.BackColor = palette.NormalBack;
+            row.DefaultCellStyle.ForeColor = palette.Text;
+            row.DefaultCellStyle.SelectionBackColor = palette.SelectedBack;
+            row.DefaultCellStyle.SelectionForeColor = palette.SelectedText;
+        }
 
 
         private void FormInventory_Load(object sender, EventArgs e)
@@ -137,6 +268,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 _stockData = dt.AsEnumerable().Select(r =>
                 {
                     var rowType = GetEffectiveWarehouseType(warehouseType, r.GetColumnValue("ItemType"));
+                    var miniThreshold = GetMiniStockThreshold(r);
                     return new StockRow
                     {
                         Ma = r.GetColumnValue("ItemCode"),
@@ -144,6 +276,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         DonVi = r.GetColumnValue("Unit"),
                         Ton = GetRowQuantity(r),
                         MiniStock = GetMiniStockLabel(r),
+                        MiniStockValue = miniThreshold,
                         GiaNhap = r.GetColumnValueDecimal("DefaultPrice"),
                         NgayNhap = r.GetColumnValueDate("LastUpdated"),
                         DonViQuanLy = ResolveUnitCode(rowType, r.GetColumnValue("ItemType")),
@@ -246,8 +379,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
             });
 
-            DGdanhsachtonkho.DefaultCellStyle.SelectionBackColor = Color.White;
-            DGdanhsachtonkho.DefaultCellStyle.SelectionForeColor = Color.Black;
             DGdanhsachtonkho.AutoGenerateColumns = false;
             DGdanhsachtonkho.AllowUserToAddRows = false;
             DGdanhsachtonkho.RowHeadersVisible = false;
@@ -260,8 +391,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             if (DGdanhsachtonkho == null) return;
 
             var headerColor = ColorTranslator.FromHtml("#6C63FF");
-            var selectedBackColor = ColorTranslator.FromHtml("#D1FAE5");
-            var selectedForeColor = ColorTranslator.FromHtml("#065F46");
+            var fallbackPalette = _statusPalettes["default"];
 
             DGdanhsachtonkho.EnableHeadersVisualStyles = false;
             DGdanhsachtonkho.ColumnHeadersDefaultCellStyle.BackColor = headerColor;
@@ -269,10 +399,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
             DGdanhsachtonkho.ColumnHeadersDefaultCellStyle.SelectionBackColor = headerColor;
             DGdanhsachtonkho.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
 
-            DGdanhsachtonkho.DefaultCellStyle.SelectionBackColor = selectedBackColor;
-            DGdanhsachtonkho.DefaultCellStyle.SelectionForeColor = selectedForeColor;
-            DGdanhsachtonkho.RowTemplate.DefaultCellStyle.SelectionBackColor = selectedBackColor;
-            DGdanhsachtonkho.RowTemplate.DefaultCellStyle.SelectionForeColor = selectedForeColor;
+            DGdanhsachtonkho.DefaultCellStyle.SelectionBackColor = fallbackPalette.SelectedBack;
+            DGdanhsachtonkho.DefaultCellStyle.SelectionForeColor = fallbackPalette.SelectedText;
+            DGdanhsachtonkho.RowTemplate.DefaultCellStyle.SelectionBackColor = fallbackPalette.SelectedBack;
+            DGdanhsachtonkho.RowTemplate.DefaultCellStyle.SelectionForeColor = fallbackPalette.SelectedText;
             DGdanhsachtonkho.GridColor = headerColor;
         }
 
@@ -394,8 +524,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     sb.Append(c);
                 }
             }
-
-            return sb.ToString().Normalize(NormalizationForm.FormC);
+            var cleaned = sb.ToString().Normalize(NormalizationForm.FormC);
+            cleaned = cleaned.Replace('đ', 'd').Replace('Đ', 'D');
+            return cleaned;
         }
 
         private bool ContainsToken(string source, params string[] tokens)
@@ -424,13 +555,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
             if (!string.IsNullOrEmpty(normalized))
                 return normalized;
 
-            var quantity = GetRowQuantity(row);
-            var threshold = GetMiniStockThreshold(row);
+            var quantity = GetRowQuantity(row); // Ensure quantity is decimal
+            var threshold = GetMiniStockThreshold(row); // Ensure threshold is decimal
 
-            if (quantity <= 0)
+            if (quantity <= 0) // Check if quantity is less than or equal to zero
                 return "Hết hàng";
 
-            if (threshold.HasValue && quantity <= threshold.Value)
+            if (threshold.HasValue && quantity <= threshold.Value) // Check if quantity is less than or equal to threshold
                 return "Thiếu";
 
             return "Ổn định";
@@ -457,28 +588,45 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
         }
 
-        private int GetRowQuantity(DataRow row)
+        private decimal GetRowQuantity(DataRow row)
         {
             var candidates = new[] { "StockQuantity", "Quantity", "TonKho", "CurrentStock", "OnHandQuantity" };
             foreach (var column in candidates)
             {
-                if (row.Table.Columns.Contains(column) && row[column] != DBNull.Value)
+                if (!row.Table.Columns.Contains(column)) continue;
+                var value = row[column];
+                if (value == DBNull.Value) continue;
+
+                try
                 {
-                    try
+                    switch (value)
                     {
-                        return Convert.ToInt32(row[column]);
+                        case decimal dec:
+                            return dec;
+                        case double dbl:
+                            return Convert.ToDecimal(dbl);
+                        case float flt:
+                            return Convert.ToDecimal(flt);
+                        case int i32:
+                            return i32;
+                        case long i64:
+                            return i64;
+                        default:
+                            if (decimal.TryParse(value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out var parsed))
+                                return parsed;
+                            break;
                     }
-                    catch
-                    {
-                        // ignore and try next candidate
-                    }
+                }
+                catch
+                {
+                    // ignore and try next candidate
                 }
             }
 
-            return 0;
+            return 0m;
         }
 
-        private int? GetMiniStockThreshold(DataRow row)
+        private decimal? GetMiniStockThreshold(DataRow row)
         {
             var candidates = new[] { "MiniStock", "MiniStockValue", "MinStock", "MinStockQty" };
             foreach (var column in candidates)
@@ -486,12 +634,25 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 if (!row.Table.Columns.Contains(column)) continue;
                 var raw = row[column];
                 if (raw == DBNull.Value) continue;
-                if (raw is int i) return i;
-                if (raw is decimal dec) return (int)Math.Round(dec, MidpointRounding.AwayFromZero);
+
+                switch (raw)
+                {
+                    case decimal dec:
+                        return dec;
+                    case double dbl:
+                        return Convert.ToDecimal(dbl);
+                    case float flt:
+                        return Convert.ToDecimal(flt);
+                    case int i32:
+                        return i32;
+                    case long i64:
+                        return i64;
+                }
+
                 var text = raw.ToString();
                 if (string.IsNullOrWhiteSpace(text)) continue;
-                var digits = Regex.Match(text, "-?\\d+");
-                if (digits.Success && int.TryParse(digits.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed))
+                var digits = Regex.Match(text, "-?\\d+(?:[\\.,]\\d+)?");
+                if (digits.Success && decimal.TryParse(digits.Value.Replace(',', '.'), NumberStyles.Number, CultureInfo.InvariantCulture, out var parsed))
                 {
                     return parsed;
                 }
@@ -727,6 +888,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
 
         }
+
+        private struct RowPalette
+        {
+            public Color NormalBack;
+            public Color SelectedBack;
+            public Color Text;
+            public Color SelectedText;
+        }
     }
 
     internal class StockRow
@@ -734,8 +903,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
         public string Ma { get; set; }
         public string Ten { get; set; }
         public string DonVi { get; set; }
-        public int Ton { get; set; }
+        public decimal Ton { get; set; }
         public string MiniStock { get; set; }
+        public decimal? MiniStockValue { get; set; }
         public decimal GiaNhap { get; set; }
         public DateTime? NgayNhap { get; set; }
         public string DonViQuanLy { get; set; }
