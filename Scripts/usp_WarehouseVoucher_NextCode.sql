@@ -1,3 +1,4 @@
+uSE [QuanLyChuoiNhaHangKhachSan]
 IF OBJECT_ID('dbo.usp_WarehouseVoucher_NextCode','P') IS NOT NULL
     DROP PROCEDURE dbo.usp_WarehouseVoucher_NextCode;
 GO

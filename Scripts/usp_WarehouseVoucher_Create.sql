@@ -46,7 +46,9 @@ BEGIN
     COMMIT TRANSACTION;
 END
 GO
+ 
 
+SELECT OBJECT_ID('dbo.WarehouseVoucher') AS ObjId;
 IF COL_LENGTH('dbo.WarehouseVoucher','RestaurantsCode') IS NULL
     ALTER TABLE dbo.WarehouseVoucher ADD RestaurantsCode VARCHAR(50) NULL;
 
@@ -56,6 +58,8 @@ IF COL_LENGTH('dbo.WarehouseVoucher','HotelCode') IS NULL
 IF COL_LENGTH('dbo.WarehouseVoucher','CreatedDate') IS NULL
     ALTER TABLE dbo.WarehouseVoucher ADD CreatedDate DATETIME2(0) NOT NULL
         CONSTRAINT DF_WarehouseVoucher_CreatedDate DEFAULT SYSDATETIME();
+
+
 
 
 
