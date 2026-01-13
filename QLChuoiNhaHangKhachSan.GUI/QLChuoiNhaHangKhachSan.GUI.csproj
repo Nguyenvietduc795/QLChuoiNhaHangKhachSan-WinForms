@@ -126,6 +126,7 @@
     <Compile Include="CustomersReport.Designer.cs">
       <DependentUpon>CustomersReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmailHelper.cs" />
     <Compile Include="EmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +209,15 @@
     <Compile Include="FormRevenue.Designer.cs">
       <DependentUpon>FormRevenue.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\TimePickerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HotelServices_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HotelServices_Form.Designer.cs">
+      <DependentUpon>HotelServices_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +254,14 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rental information.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rental information.Designer.cs">
+      <DependentUpon>Rental information.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\HolidayPriceConfig.cs" />
+    <Compile Include="Repositories\InvoiceRepository.cs" />
     <Compile Include="ReservationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -392,6 +410,9 @@
     <EmbeddedResource Include="FormDownload.resx">
       <DependentUpon>FormDownload.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HotelServices_Form.resx">
+      <DependentUpon>HotelServices_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -409,6 +430,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rental information.resx">
+      <DependentUpon>Rental information.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReservationForm.resx">
       <DependentUpon>ReservationForm.cs</DependentUpon>

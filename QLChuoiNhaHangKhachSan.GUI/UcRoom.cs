@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -8,6 +10,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
     public partial class UcRoom : UserControl
     {
         private DateTime endTime;
+        private DateTime referenceTime; // Thời gian tham chiếu (viewTime) để tính đếm ngược
         private Timer timerCountdown;
 
         private readonly Color _freeBack = Color.FromArgb(216, 234, 248);
@@ -47,6 +50,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
             timerCountdown = new Timer();
             timerCountdown.Interval = 1000;
             timerCountdown.Tick += TimerCountdown_Tick;
+            
+            // Mặc định referenceTime là thời gian hiện tại
+            referenceTime = DateTime.Now;
         }
 
         private void ApplyTheme(Color back, Color border, Color roomColor, Color statusColor, Color subColor)
@@ -93,6 +99,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             string ma = labRoomNumber.Text;
             string ttHienTai = labTrangthai.Text; // Chữ "Phòng trống" nhỏ ở góc
+            string loaiPhong = this.AccessibleDescription ?? (this.Tag?.ToString());
 
             DateTime? viewTime = null;
             if (ViewTimeProvider != null)
@@ -100,7 +107,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 viewTime = ViewTimeProvider();
             }
 
-            using (Room_Details frm = new Room_Details(ma, ttHienTai, viewTime))
+            using (Room_Details frm = new Room_Details(ma, ttHienTai, loaiPhong, viewTime))
             {
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
@@ -136,6 +143,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 }
             }
         }
+        
         public void CapNhatNhanPhong(string tenKhach, int soNgay)
         {
             lblStatus.Text = tenKhach;
@@ -146,11 +154,38 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
             // Thiết lập thời gian kết thúc
             endTime = DateTime.Now.AddDays(soNgay);
+            referenceTime = DateTime.Now;
             timerCountdown.Start(); // Kích hoạt đồng hồ chạy ngược
         }
+
+        // Overload mới: Nhận thời gian checkout thực tế và viewTime để đếm ngược chính xác
+        public void CapNhatNhanPhong(string tenKhach, DateTime checkoutTime, DateTime viewTime)
+        {
+            lblStatus.Text = tenKhach;
+            labTrangthai.Text = "Đang thuê";
+
+            if (labSanSang != null) labSanSang.Visible = false;
+            if (picSanSang != null) picSanSang.Visible = false;
+
+            // Thiết lập thời gian kết thúc và thời gian tham chiếu
+            endTime = checkoutTime;
+            referenceTime = viewTime;
+            
+            // Cập nhật ngay lập tức thời gian còn lại
+            UpdateCountdownDisplay();
+            timerCountdown.Start(); // Kích hoạt đồng hồ chạy ngược
+        }
+
         private void TimerCountdown_Tick(object sender, EventArgs e)
         {
-            TimeSpan conLai = endTime - DateTime.Now;
+            // Tăng referenceTime mỗi giây để mô phỏng thời gian trôi
+            referenceTime = referenceTime.AddSeconds(1);
+            UpdateCountdownDisplay();
+        }
+        
+        private void UpdateCountdownDisplay()
+        {
+            TimeSpan conLai = endTime - referenceTime;
 
             if (conLai.TotalSeconds <= 0)
             {
@@ -162,6 +197,15 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 labThoiGian.Text = string.Format("{0}d {1:00}:{2:00}:{3:00}",
                     conLai.Days, conLai.Hours, conLai.Minutes, conLai.Seconds);
+            }
+        }
+
+        // Thêm vào class UcRoom
+        public void SetRoomNumber(string roomNumber)
+        {
+            if (labRoomNumber != null)
+            {
+                labRoomNumber.Text = roomNumber;
             }
         }
 
@@ -179,10 +223,15 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 return;
             }
 
+            // Stop any running countdown when marking as booked
+            try { timerCountdown?.Stop(); } catch { }
+
             lblStatus.Text = tenKhach;
             labSanSang.Visible = false;
             picSanSang.Visible = false;
             labTrangthai.Text = "Phòng đã đặt";
+            // reset countdown display
+            if (labThoiGian != null) labThoiGian.Text = "Thời gian";
             ApplyTheme(_reservedBack, _reservedBorder, _reservedRoom, _reservedStatus, _reservedSub);
             ApplyFooterTheme(_reservedFooterBack, _reservedFooterBorder, _reservedFooterText);
          }
@@ -195,12 +244,18 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 Invoke(new Action(() => SetReserved(tenKhach)));
                 return;
             }
+
+            // Stop any running countdown when switching to reserved
+            try { timerCountdown?.Stop(); } catch { }
+
             lblStatus.Text = tenKhach;
             labTrangthai.Text = "Phòng đã đặt";
             ApplyTheme(_reservedBack, _reservedBorder, _reservedRoom, _reservedStatus, _reservedSub);
             labSanSang.Visible = false;
             if (picSanSang != null) picSanSang.Visible = false;
             ApplyFooterTheme(_reservedFooterBack, _reservedFooterBorder, _reservedFooterText);
+            // reset countdown display
+            if (labThoiGian != null) labThoiGian.Text = "Thời gian";
           }
 
         public void SetRented(string tenKhach, int days)
@@ -216,6 +271,22 @@ namespace QLChuoiNhaHangKhachSan.GUI
             ApplyFooterTheme(Color.FromArgb(41, 57, 92), _rentedBorder, Color.White);
              // start countdown for days
              CapNhatNhanPhong(tenKhach, days);
+        }
+
+        // Overload mới: Nhận thời gian checkout thực tế và viewTime
+        public void SetRented(string tenKhach, DateTime checkoutTime, DateTime viewTime)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => SetRented(tenKhach, checkoutTime, viewTime)));
+                return;
+            }
+            lblStatus.Text = tenKhach;
+            labTrangthai.Text = "Đang thuê";
+            ApplyTheme(_rentedBack, _rentedBorder, _rentedRoom, _rentedStatus, _rentedSub);
+            ApplyFooterTheme(Color.FromArgb(41, 57, 92), _rentedBorder, Color.White);
+            // start countdown với thời gian checkout thực tế và viewTime
+            CapNhatNhanPhong(tenKhach, checkoutTime, viewTime);
         }
 
         public void SetFree()

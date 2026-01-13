@@ -184,12 +184,14 @@
             // dtGio
             // 
             this.dtGio.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtGio.CustomFormat = "HH:mm";
             this.dtGio.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtGio.Location = new System.Drawing.Point(6, 27);
             this.dtGio.Name = "dtGio";
             this.dtGio.ShowUpDown = true;
             this.dtGio.Size = new System.Drawing.Size(146, 29);
             this.dtGio.TabIndex = 3;
+            this.dtGio.Value = new System.DateTime(2026, 1, 14, 0, 0, 0, 0);
             this.dtGio.ValueChanged += new System.EventHandler(this.dtGio_ValueChanged);
             // 
             // btnMini
@@ -227,6 +229,7 @@
             this.dtNgay.Name = "dtNgay";
             this.dtNgay.Size = new System.Drawing.Size(140, 28);
             this.dtNgay.TabIndex = 3;
+            this.dtNgay.Value = new System.DateTime(2026, 1, 14, 0, 0, 0, 0);
             // 
             // btnMax
             // 
