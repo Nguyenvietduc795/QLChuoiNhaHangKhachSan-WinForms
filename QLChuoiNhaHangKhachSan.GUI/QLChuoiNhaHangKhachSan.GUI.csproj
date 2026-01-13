@@ -566,6 +566,7 @@
     <Content Include="icon\staff.png" />
     <Content Include="icon\total.png" />
     <Content Include="icon\user-avatar.png" />
+    <None Include="Resources\tải xuống %281%29.png" />
     <None Include="Resources\Screenshot 2025-06-14 185743.png" />
     <Content Include="Resources\pngtree_green_check_mark_png_image_6525691.png" />
   </ItemGroup>

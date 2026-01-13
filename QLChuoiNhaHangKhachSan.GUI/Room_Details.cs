@@ -334,7 +334,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                             var customer = rd["FullName"]?.ToString();
                             DateTime? start = rd["CheckIn"] != DBNull.Value ? (DateTime?)rd["CheckIn"] : null;
                             DateTime? end = rd["CheckOut"] != DBNull.Value ? (DateTime?)rd["CheckOut"] : null;
-                            
+
                             if (start.HasValue && end.HasValue)
                             {
                                 // defensive: if DB contains invalid interval (end <= start), adjust to at least +1 day
@@ -504,7 +504,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             if (bookingId <= 0) return;
             string roomId = labMaphong.Text.Trim();
-            
+
             // Xóa dịch vụ cũ của booking này CHỈ CHO PHÒNG NÀY (không ảnh hưởng phòng khác)
             using (var del = new SqlCommand(@"DELETE FROM dbo.BookingServices 
                 WHERE BookingID = @BID AND (RoomID = @RoomID OR RoomID IS NULL)", conn, tran))
@@ -513,9 +513,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 del.Parameters.AddWithValue("@RoomID", roomId);
                 del.ExecuteNonQuery();
             }
-            
+
             if (services == null || services.Count == 0) return;
-            
+
             // Đảm bảo cột RoomID tồn tại
             try
             {
@@ -529,7 +529,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 }
             }
             catch { }
-            
+
             foreach (var s in services)
             {
                 using (var ins = new SqlCommand(@"INSERT INTO dbo.BookingServices(BookingID, RoomID, ServiceName, Quantity, UnitPrice, TotalAmount)
@@ -985,7 +985,7 @@ VALUES(@BID, @RoomID, @Name, @Qty, @Price, @Total)", conn, tran))
 
             this.TenKhach = txtName.Text.Trim();
             this.SoNgay = (int)nNgay.Value;
-            
+
             // Xác định trạng thái dựa vào nút bấm
             string targetStatus;
             if (btnNhanphong.Text.IndexOf("Đặt", StringComparison.OrdinalIgnoreCase) >= 0)
@@ -1003,7 +1003,7 @@ VALUES(@BID, @RoomID, @Name, @Qty, @Price, @Total)", conn, tran))
                 // Nút "Lưu thay đổi" -> Giữ nguyên trạng thái từ combobox
                 targetStatus = guna2ComboBox1.SelectedItem?.ToString() ?? "Phòng đang thuê";
             }
-            
+
             this.SelectedStatus = targetStatus;
             this.SelectedRoomType = guna2ComboBox2.SelectedItem != null ? guna2ComboBox2.SelectedItem.ToString() : null;
 
@@ -1038,7 +1038,7 @@ VALUES(@BID, @RoomID, @Name, @Qty, @Price, @Total)", conn, tran))
             int bookingId = 0;
             string bookingCode = string.Empty;
             string customerEmail = string.Empty;
-            
+
             if (!string.IsNullOrWhiteSpace(connStr))
             {
                 try
@@ -1121,9 +1121,9 @@ VALUES(@BID, @RoomID, @Name, @Qty, @Price, @Total)", conn, tran))
                                     int nextNum = (maxVal != null && maxVal != DBNull.Value) ? Convert.ToInt32(maxVal) : 1;
                                     bookingCode = "BK" + nextNum.ToString("D4");
                                 }
-                                
+
                                 using (var cmd = new SqlCommand(@"INSERT INTO dbo.HotelBookings(BookingCode, CustomerID, EmployeeID, CreatedDate, Status)
-VALUES(@Code, @CustomerID, @EmployeeID, GETDATE(), @Status);
+VALUES(@Code, @CustomerID, 1, GETDATE(), @Status);
 SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, tran))
                                 {
                                     cmd.Parameters.AddWithValue("@Code", bookingCode);
@@ -1203,8 +1203,20 @@ VALUES(@BookingID, @RoomID, @CheckIn, @CheckOut, @Price, NULL);", conn, tran))
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lưu vào CSDL thất bại: " + ex.Message, "Lỗi CSDL", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // Không tiếp tục nếu lưu CSDL thất bại
+                    // Xử lý lỗi im lặng, không hiện popup cho người dùng
+                    Debug.WriteLine($"[PerformSave] Error: {ex.Message}");
+                    Debug.WriteLine($"[PerformSave] StackTrace: {ex.StackTrace}");
+
+                    // Chỉ thông báo lỗi chung, không hiển thị chi tiết kỹ thuật
+                    if (ex.Message.Contains("UNIQUE KEY") || ex.Message.Contains("duplicate key") || ex.Message.Contains("Cannot insert"))
+                    {
+                        MessageBox.Show("Xác Nhận Thuê Phòng Ngay", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể lưu vào CSDL. Vui lòng thử lại sau.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    return;
                 }
             }
 
@@ -1292,7 +1304,7 @@ VALUES(@BookingID, @RoomID, @CheckIn, @CheckOut, @Price, NULL);", conn, tran))
         {
             // Kiểm tra xem phòng đã có Booking trong Database chưa
             var checkBooking = GetActiveBookingFromDb(labMaphong.Text);
-            
+
             if (checkBooking == null)
             {
                 if (string.IsNullOrWhiteSpace(txtName.Text))
@@ -1301,10 +1313,10 @@ VALUES(@BookingID, @RoomID, @CheckIn, @CheckOut, @Price, NULL);", conn, tran))
                     txtName.Focus();
                     return;
                 }
-                
+
                 var confirm = MessageBox.Show("Phòng này chưa có booking. Tạo booking mới trước khi thêm dịch vụ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (confirm != DialogResult.Yes) return;
-                
+
                 // Tạo booking ngầm (không hiện thông báo)
                 CreateBookingSilently();
             }
@@ -1341,6 +1353,8 @@ VALUES(@BookingID, @RoomID, @CheckIn, @CheckOut, @Price, NULL);", conn, tran))
                     using (var tran = conn.BeginTransaction())
                     {
                         int customerId = 0;
+
+                        // Tìm khách hàng theo tên
                         using (var cmd = new SqlCommand("SELECT TOP 1 CustomerId FROM dbo.Customers WHERE FullName = @Name", conn, tran))
                         {
                             cmd.Parameters.AddWithValue("@Name", txtName.Text.Trim());
@@ -1350,7 +1364,17 @@ VALUES(@BookingID, @RoomID, @CheckIn, @CheckOut, @Price, NULL);", conn, tran))
 
                         if (customerId == 0)
                         {
-                            using (var cmd = new SqlCommand("INSERT INTO dbo.Customers(FullName) VALUES(@Name); SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, tran))
+                            // Sử dụng IF NOT EXISTS để tránh lỗi UNIQUE KEY
+                            using (var cmd = new SqlCommand(@"
+                                IF NOT EXISTS (SELECT 1 FROM dbo.Customers WHERE FullName = @Name)
+                                BEGIN
+                                    INSERT INTO dbo.Customers(FullName) VALUES(@Name);
+                                    SELECT CAST(SCOPE_IDENTITY() AS INT);
+                                END
+                                ELSE
+                                BEGIN
+                                    SELECT TOP 1 CustomerId FROM dbo.Customers WHERE FullName = @Name;
+                                END", conn, tran))
                             {
                                 cmd.Parameters.AddWithValue("@Name", txtName.Text.Trim());
                                 var obj = cmd.ExecuteScalar();
@@ -1358,7 +1382,15 @@ VALUES(@BookingID, @RoomID, @CheckIn, @CheckOut, @Price, NULL);", conn, tran))
                             }
                         }
 
-                        string bookingCode = "PT" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                        // Đảm bảo có customerId trước khi tiếp tục
+                        if (customerId <= 0)
+                        {
+                            Debug.WriteLine("CreateBookingSilently: Cannot get customerId");
+                            tran.Rollback();
+                            return;
+                        }
+
+                        string bookingCode = "BK" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
                         int bookingId = 0;
                         using (var cmd = new SqlCommand(@"INSERT INTO dbo.HotelBookings(BookingCode, CustomerID, EmployeeID, CreatedDate, Status)
 VALUES(@Code, @CustomerID, 1, GETDATE(), @Status); SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, tran))
@@ -1389,7 +1421,7 @@ VALUES(@BID, @RoomID, @CheckIn, @CheckOut, @Price);", conn, tran))
                         }
 
                         tran.Commit();
-                        
+
                         // Cập nhật _existing để form biết đã có booking
                         _existing = new BookingInfo { Customer = txtName.Text.Trim(), Start = start, End = end };
                         _btnThanhToan.Visible = true;
@@ -1398,7 +1430,9 @@ VALUES(@BID, @RoomID, @CheckIn, @CheckOut, @Price);", conn, tran))
             }
             catch (Exception ex)
             {
+                // Log lỗi nhưng không hiện popup
                 Debug.WriteLine("CreateBookingSilently error: " + ex.Message);
+                Debug.WriteLine("CreateBookingSilently stacktrace: " + ex.StackTrace);
             }
         }
 
