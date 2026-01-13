@@ -174,11 +174,21 @@ namespace QLChuoiNhaHangKhachSan.GUI
             ApplyLockedViewTime();
 
             // Thử lấy từ BookingManager trước, nếu không có thì lấy từ DB
-
             if (_existing == null && _lockedViewTime.HasValue)
             {
                 // Lấy booking từ DB theo viewTime
                 _existing = GetBookingFromDb(maPhong, _lockedViewTime.Value);
+            }
+
+            // Nếu vẫn chưa có booking và trạng thái cho thấy phòng đang có khách (đã đặt hoặc đang thuê) -> lấy từ DB theo thời điểm hiện tại
+            if (_existing == null && !string.IsNullOrWhiteSpace(trangThai))
+            {
+                string statusLower = trangThai.ToLower();
+                if (statusLower.Contains("đặt") || statusLower.Contains("thuê") || statusLower.Contains("occupied") || statusLower.Contains("booked"))
+                {
+                    // Lấy booking đang hoạt động của phòng này (bất kể thời gian)
+                    _existing = GetActiveBookingFromDb(maPhong);
+                }
             }
 
             if (_existing != null)
@@ -293,6 +303,62 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 }
             }
             catch { }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Lấy booking đang hoạt động của phòng (không quan tâm thời gian)
+        /// </summary>
+        private BookingInfo GetActiveBookingFromDb(string roomCode)
+        {
+            var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
+            if (string.IsNullOrWhiteSpace(connStr)) return null;
+
+            try
+            {
+                using (var conn = new SqlConnection(connStr))
+                using (var cmd = new SqlCommand(@"SELECT TOP 1 c.FullName, d.CheckIn, d.CheckOut
+    FROM dbo.BookingDetails d
+    JOIN dbo.HotelBookings b ON d.BookingId = b.BookingId
+    LEFT JOIN dbo.Customers c ON b.CustomerId = c.CustomerId
+    WHERE d.RoomId = @RoomID AND b.Status NOT IN (N'Paid', N'Cancelled')
+    ORDER BY b.CreatedDate DESC", conn))
+                {
+                    cmd.Parameters.AddWithValue("@RoomID", roomCode);
+                    conn.Open();
+                    using (var rd = cmd.ExecuteReader())
+                    {
+                        if (rd.Read())
+                        {
+                            var customer = rd["FullName"]?.ToString();
+                            DateTime? start = rd["CheckIn"] != DBNull.Value ? (DateTime?)rd["CheckIn"] : null;
+                            DateTime? end = rd["CheckOut"] != DBNull.Value ? (DateTime?)rd["CheckOut"] : null;
+                            
+                            if (start.HasValue && end.HasValue)
+                            {
+                                // defensive: if DB contains invalid interval (end <= start), adjust to at least +1 day
+                                if (end.Value <= start.Value)
+                                {
+                                    end = start.Value.AddDays(1);
+                                }
+                                Debug.WriteLine($"[GetActiveBookingFromDb] Room={roomCode} Customer={customer} Start={start:yyyy-MM-dd HH:mm:ss} End={end:yyyy-MM-dd HH:mm:ss}");
+                                return new BookingInfo
+                                {
+                                    Customer = customer ?? string.Empty,
+                                    Start = start.Value,
+                                    End = end.Value,
+                                    Services = new List<ServiceItem>()
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[GetActiveBookingFromDb] Error: {ex.Message}");
+            }
 
             return null;
         }
@@ -437,19 +503,40 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void UpsertBookingServices(SqlConnection conn, SqlTransaction tran, int bookingId, List<ServiceItem> services)
         {
             if (bookingId <= 0) return;
-            // simple strategy: clear then re-insert
-            using (var del = new SqlCommand("DELETE FROM dbo.BookingServices WHERE BookingID = @BID", conn, tran))
+            string roomId = labMaphong.Text.Trim();
+            
+            // Xóa dịch vụ cũ của booking này CHỈ CHO PHÒNG NÀY (không ảnh hưởng phòng khác)
+            using (var del = new SqlCommand(@"DELETE FROM dbo.BookingServices 
+                WHERE BookingID = @BID AND (RoomID = @RoomID OR RoomID IS NULL)", conn, tran))
             {
                 del.Parameters.AddWithValue("@BID", bookingId);
+                del.Parameters.AddWithValue("@RoomID", roomId);
                 del.ExecuteNonQuery();
             }
+            
             if (services == null || services.Count == 0) return;
+            
+            // Đảm bảo cột RoomID tồn tại
+            try
+            {
+                using (var cmdAlter = new SqlCommand(@"
+                    IF NOT EXISTS (SELECT 1 FROM sys.columns WHERE object_id = OBJECT_ID('dbo.BookingServices') AND name = 'RoomID')
+                    BEGIN
+                        ALTER TABLE dbo.BookingServices ADD RoomID NVARCHAR(50);
+                    END", conn, tran))
+                {
+                    cmdAlter.ExecuteNonQuery();
+                }
+            }
+            catch { }
+            
             foreach (var s in services)
             {
-                using (var ins = new SqlCommand(@"INSERT INTO dbo.BookingServices(BookingID, ServiceName, Quantity, UnitPrice, TotalAmount)
-VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
+                using (var ins = new SqlCommand(@"INSERT INTO dbo.BookingServices(BookingID, RoomID, ServiceName, Quantity, UnitPrice, TotalAmount)
+VALUES(@BID, @RoomID, @Name, @Qty, @Price, @Total)", conn, tran))
                 {
                     ins.Parameters.AddWithValue("@BID", bookingId);
+                    ins.Parameters.AddWithValue("@RoomID", roomId);
                     ins.Parameters.AddWithValue("@Name", s.Name);
                     ins.Parameters.AddWithValue("@Qty", s.Quantity);
                     ins.Parameters.AddWithValue("@Price", s.UnitPrice);
@@ -470,9 +557,24 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                 DateTime start = dtNgay.Value.Date + dtGio.Value.TimeOfDay;
                 DateTime end = start.AddDays((int)nNgay.Value);
 
+                // Get booking info before canceling for email
+                var bookingInfoForEmail = GetBookingInfoForEmail(labMaphong.Text);
+
                 bool ok = CancelBookingInDb(labMaphong.Text, start, end);
                 if (ok)
                 {
+                    // Send cancellation email
+                    try
+                    {
+                        if (bookingInfoForEmail != null && !string.IsNullOrWhiteSpace(bookingInfoForEmail.Email))
+                        {
+                            bookingInfoForEmail.IsCancelled = true;
+                            bookingInfoForEmail.CancellationReason = "Khách hàng yêu cầu hủy";
+                            EmailHelper.SendCancellationEmail(bookingInfoForEmail);
+                        }
+                    }
+                    catch { }
+
                     BookingManager.RemoveBooking(labMaphong.Text);
                     _existing = null;
                     _btnThanhToan.Visible = false;
@@ -490,6 +592,7 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                     }
                     catch { }
 
+                    MessageBox.Show("Đã hủy phòng thành công!", "Thông báo");
                     this.Close();
                     return;
                 }
@@ -516,11 +619,26 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                     DateTime start = _existing.Start;
                     DateTime end = _existing.End;
 
+                    // Get booking info before canceling for email
+                    var bookingInfoForEmail = GetBookingInfoForEmail(labMaphong.Text);
+
                     // 2. Gọi hàm xóa dưới Database
                     bool dbSuccess = CancelBookingInDb(labMaphong.Text, start, end);
 
                     if (dbSuccess)
                     {
+                        // Send cancellation email
+                        try
+                        {
+                            if (bookingInfoForEmail != null && !string.IsNullOrWhiteSpace(bookingInfoForEmail.Email))
+                            {
+                                bookingInfoForEmail.IsCancelled = true;
+                                bookingInfoForEmail.CancellationReason = "Khách hàng yêu cầu hủy";
+                                EmailHelper.SendCancellationEmail(bookingInfoForEmail);
+                            }
+                        }
+                        catch { }
+
                         // 3. Nếu xóa DB thành công thì mới xóa trên RAM và cập nhật giao diện
                         BookingManager.RemoveBooking(labMaphong.Text);
                         _existing = null;
@@ -550,6 +668,7 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                 return;
             }
 
+            // ...existing code for payment flow...
             var sfd = new SaveFileDialog
             {
                 Title = "Lưu hóa đơn",
@@ -560,16 +679,14 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 EnsureRoomCharge((int)nNgay.Value);
-                SyncServicesToBooking(); // cập nhật dịch vụ vào booking trước khi in
+                SyncServicesToBooking();
                 WriteInvoiceText(sfd.FileName);
                 MessageBox.Show("Đã lưu hóa đơn (TXT).", "Thông báo");
 
-                // compute totalAmount from grid (same logic you already have)
                 decimal totalAmount = 0m;
                 var services = CollectServicesFromGrid();
                 foreach (var s in services) totalAmount += s.Amount;
 
-                // Use internal SaveInvoiceToDatabase to persist and finalize booking
                 try
                 {
                     SaveInvoiceToDatabase(sfd.FileName);
@@ -577,10 +694,9 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                 catch (Exception ex)
                 {
                     MessageBox.Show("Lưu hóa đơn vào DB thất bại: " + ex.Message + "\nHủy thao tác hoàn tất phòng. Vui lòng kiểm tra kết nối CSDL.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return; // do NOT remove in-memory booking or change UI when DB persistence failed
+                    return;
                 }
 
-                // if we reach here DB save succeeded -> remove in-memory booking and refresh UI
                 BookingManager.RemoveBooking(labMaphong.Text);
                 _existing = null;
                 _btnThanhToan.Visible = false;
@@ -593,7 +709,6 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                     var listForm = Application.OpenForms.OfType<ListRoom>().FirstOrDefault();
                     if (listForm != null)
                     {
-                        // Refresh only the room just paid — RefreshBookingStates will read DB + in-memory and show free
                         listForm.RefreshFromBookings(new[] { labMaphong.Text });
                     }
                 }
@@ -601,11 +716,6 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
             }
         }
 
-        /// <summary>
-        /// Best-effort: insert a minimal payment/invoice row to database for records and finalize booking.
-        /// This will mark Booking(s) that overlap current booking interval as Paid and set Room.Status = N'Phòng Trống'.
-        /// Errors are rethrown to caller for logging/diagnostics.
-        /// </summary>
         /// <summary>
         /// Lưu thông tin thanh toán và trả phòng.
         /// Logic: Tìm Booking đang hoạt động của phòng này -> Set thành Paid -> Set phòng thành Trống.
@@ -636,48 +746,38 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                     {
                         // 2. Tìm BookingID đang "sống" của phòng này
                         int foundBookingId = 0;
-                        // Sửa câu truy vấn để chắc chắn tìm ra booking gần nhất chưa thanh toán
                         string findSql = @"
-                    SELECT TOP 1 b.BookingId 
-                    FROM dbo.HotelBookings b
-                    JOIN dbo.BookingDetails d ON b.BookingId = d.BookingId
-                    WHERE d.RoomId = @RoomID 
-                      AND b.Status NOT IN (N'Paid', N'Cancelled') 
-                    ORDER BY b.CreatedDate DESC";
+                            SELECT TOP 1 b.BookingId 
+                            FROM dbo.HotelBookings b
+                            JOIN dbo.BookingDetails d ON b.BookingId = d.BookingId
+                            WHERE d.RoomId = @RoomID 
+                              AND b.Status NOT IN (N'Paid', N'Cancelled') 
+                            ORDER BY b.CreatedDate DESC";
 
                         using (var cmd = new SqlCommand(findSql, conn, tran))
                         {
-                            // QUAN TRỌNG: Thêm .Trim() để tránh lỗi dư khoảng trắng (ví dụ 'P001 ' khác 'P001')
                             cmd.Parameters.AddWithValue("@RoomID", labMaphong.Text.Trim());
                             var obj = cmd.ExecuteScalar();
                             if (obj != null && obj != DBNull.Value) foundBookingId = Convert.ToInt32(obj);
                         }
 
-                        // 3. Kiểm tra xem có tìm thấy booking không
+                        // 3. Cập nhật Booking thành Paid
                         if (foundBookingId > 0)
                         {
-                            // Cập nhật Booking thành Paid
                             using (var upd = new SqlCommand("UPDATE dbo.HotelBookings SET Status = N'Paid' WHERE BookingId = @BID", conn, tran))
                             {
                                 upd.Parameters.AddWithValue("@BID", foundBookingId);
                                 upd.ExecuteNonQuery();
                             }
                         }
-                        else
-                        {
-                            // Nếu không tìm thấy booking dưới DB nhưng trên phần mềm vẫn đang hiển thị
-                            // Có thể do dữ liệu chưa được Lưu (Save) xuống DB trước khi bấm Thanh toán
-                            // Ta vẫn cho phép chạy tiếp để trả phòng về Trống, nhưng nên cảnh báo nhẹ hoặc log lại
-                            System.Diagnostics.Debug.WriteLine("Cảnh cáo: Không tìm thấy BookingID dưới CSDL để cập nhật Paid.");
-                        }
 
                         // 4. Lưu lịch sử thanh toán vào bảng Payment
                         using (var cmdTable = new SqlCommand(@"
-                    IF OBJECT_ID('dbo.Payment','U') IS NULL
-                    CREATE TABLE dbo.Payment(
-                        PaymentID INT IDENTITY(1,1) PRIMARY KEY,
-                        RoomID NVARCHAR(50), Amount DECIMAL(18,2), PaidDate DATETIME, Note NVARCHAR(200)
-                    );", conn, tran))
+                            IF OBJECT_ID('dbo.Payment','U') IS NULL
+                            CREATE TABLE dbo.Payment(
+                                PaymentID INT IDENTITY(1,1) PRIMARY KEY,
+                                RoomID NVARCHAR(50), Amount DECIMAL(18,2), PaidDate DATETIME, Note NVARCHAR(200)
+                            );", conn, tran))
                         {
                             cmdTable.ExecuteNonQuery();
                         }
@@ -691,7 +791,7 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                             ins.ExecuteNonQuery();
                         }
 
-                        // 5. Quan trọng: Trả phòng về trạng thái "Phòng Trống"
+                        // 5. Trả phòng về trạng thái "Phòng Trống"
                         using (var cmd = new SqlCommand("UPDATE dbo.Rooms SET Status = N'Phòng Trống' WHERE RoomId = @RoomID", conn, tran))
                         {
                             cmd.Parameters.AddWithValue("@RoomID", labMaphong.Text.Trim());
@@ -703,28 +803,9 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                     catch (Exception ex)
                     {
                         tran.Rollback();
-                        // Ném lỗi ra để BtnThanhToan_Click bắt được và hiện thông báo
                         throw new Exception("Lỗi Database: " + ex.Message);
                     }
                 }
-            }
-        }
-        /// <summary>
-        /// Update room status in database.
-        /// </summary>
-        private void UpdateRoomStatusInDatabase(string roomCode, string status)
-        {
-            if (string.IsNullOrWhiteSpace(roomCode)) return;
-            var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
-            if (string.IsNullOrWhiteSpace(connStr)) return;
-
-            using (var conn = new SqlConnection(connStr))
-            using (var cmd = new SqlCommand("UPDATE dbo.Rooms SET Status = @Status WHERE RoomId = @RoomID", conn))
-            {
-                cmd.Parameters.AddWithValue("@RoomID", roomCode);
-                cmd.Parameters.AddWithValue("@Status", status);
-                conn.Open();
-                cmd.ExecuteNonQuery();
             }
         }
 
@@ -736,7 +817,6 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
             DateTime end = _existing.End;
             int days = Math.Max(1, (int)Math.Ceiling((end - start).TotalDays));
 
-            // Always re-sync services to ensure latest totals
             SyncServicesToBooking();
             decimal serviceTotal = 0;
             var sb = new StringBuilder();
@@ -750,7 +830,6 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
             sb.AppendLine("Dich vu:");
             foreach (var s in _existing.Services)
             {
-                // đảm bảo amount chính xác
                 var amt = s.UnitPrice * s.Quantity;
                 serviceTotal += amt;
                 sb.AppendLine($" - {s.Name}: {s.Quantity} x {s.UnitPrice:N0} = {amt:N0}");
@@ -761,6 +840,68 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
             sb.AppendLine("Cam on quy khach!");
 
             File.WriteAllText(path, sb.ToString());
+        }
+
+        /// <summary>
+        /// Lấy thông tin booking từ DB để gửi email (bao gồm email khách hàng)
+        /// </summary>
+        private BookingRowInfo GetBookingInfoForEmail(string roomId)
+        {
+            var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
+            if (string.IsNullOrWhiteSpace(connStr)) return null;
+
+            try
+            {
+                using (var conn = new SqlConnection(connStr))
+                using (var cmd = new SqlCommand(@"
+                    SELECT TOP 1 
+                        b.BookingCode, c.FullName, c.CCCD, c.PhoneNumber, c.Email, c.Sex, c.Nationality,
+                        d.CheckIn, d.CheckOut, b.CreatedDate
+                    FROM dbo.BookingDetails d
+                    JOIN dbo.HotelBookings b ON d.BookingId = b.BookingId
+                    JOIN dbo.Customers c ON b.CustomerId = c.CustomerId
+                    WHERE d.RoomId = @RoomID 
+                      AND b.Status NOT IN (N'Paid', N'Cancelled')
+                    ORDER BY b.CreatedDate DESC", conn))
+                {
+                    cmd.Parameters.AddWithValue("@RoomID", roomId.Trim());
+                    conn.Open();
+                    using (var rd = cmd.ExecuteReader())
+                    {
+                        if (rd.Read())
+                        {
+                            DateTime? checkIn = rd["CheckIn"] != DBNull.Value ? (DateTime?)rd["CheckIn"] : null;
+                            DateTime? checkOut = rd["CheckOut"] != DBNull.Value ? (DateTime?)rd["CheckOut"] : null;
+                            DateTime? created = rd["CreatedDate"] != DBNull.Value ? (DateTime?)rd["CreatedDate"] : null;
+
+                            string detail = roomId;
+                            if (checkIn.HasValue && checkOut.HasValue)
+                            {
+                                detail = $"{roomId} ({checkIn.Value:dd/MM/yyyy HH:mm} - {checkOut.Value:dd/MM/yyyy HH:mm})";
+                            }
+
+                            return new BookingRowInfo
+                            {
+                                Id = rd["BookingCode"]?.ToString() ?? roomId,
+                                Customer = rd["FullName"]?.ToString(),
+                                Date = created.HasValue ? created.Value.ToString("dd/MM/yyyy") : DateTime.Now.ToString("dd/MM/yyyy"),
+                                CCCD = rd["CCCD"]?.ToString(),
+                                SDT = rd["PhoneNumber"]?.ToString(),
+                                Email = rd["Email"]?.ToString(),
+                                Gender = rd["Sex"]?.ToString(),
+                                Nationality = rd["Nationality"]?.ToString(),
+                                Detail = detail,
+                                CreatedDate = created
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"GetBookingInfoForEmail error: {ex.Message}");
+            }
+            return null;
         }
 
         private void ScheduleChanged(object sender, EventArgs e)
@@ -775,7 +916,7 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
         private void UpdateCheckoutLabel(DateTime start, DateTime end, int days)
         {
             if (_lblCheckout == null) return;
-            _lblCheckout.Text = $"Check-out: {end:đd/MM/yyyy HH:mm} | Số ngày: {days}";
+            _lblCheckout.Text = $"Check-out: {end:dd/MM/yyyy HH:mm} | Số ngày: {days}";
         }
 
         // Đây là file Room_Details.cs
@@ -842,16 +983,38 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                 return;
             }
 
-            this.TenKhach = txtName.Text;
+            this.TenKhach = txtName.Text.Trim();
             this.SoNgay = (int)nNgay.Value;
-            this.SelectedStatus = guna2ComboBox1.SelectedItem != null ? guna2ComboBox1.SelectedItem.ToString() : null;
+            
+            // Xác định trạng thái dựa vào nút bấm
+            string targetStatus;
+            if (btnNhanphong.Text.IndexOf("Đặt", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                // Nút "Đặt phòng" -> Trạng thái là "Phòng đã đặt" (màu vàng)
+                targetStatus = "Phòng đã đặt";
+            }
+            else if (btnNhanphong.Text.IndexOf("Nhận", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                // Nút "Nhận phòng" -> Trạng thái là "Phòng đang thuê" (màu xanh)
+                targetStatus = "Phòng đang thuê";
+            }
+            else
+            {
+                // Nút "Lưu thay đổi" -> Giữ nguyên trạng thái từ combobox
+                targetStatus = guna2ComboBox1.SelectedItem?.ToString() ?? "Phòng đang thuê";
+            }
+            
+            this.SelectedStatus = targetStatus;
             this.SelectedRoomType = guna2ComboBox2.SelectedItem != null ? guna2ComboBox2.SelectedItem.ToString() : null;
 
             DateTime start = dtNgay.Value.Date + dtGio.Value.TimeOfDay;
 
             // QUAN TRỌNG: Đảm bảo số ngày ít nhất là 1
             if (this.SoNgay <= 0)
+            {
                 this.SoNgay = 1;
+                nNgay.Value = 1;
+            }
 
             DateTime end = start.AddDays(this.SoNgay);
 
@@ -860,22 +1023,22 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
             {
                 this.SoNgay = 1;
                 end = start.AddDays(1);
-                MessageBox.Show($"Cảnh báo: Thời gian kết thúc không hợp lệ. Đã tự động điều chỉnh về {end:dd/MM/yyyy HH:mm}", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                nNgay.Value = 1;
             }
 
-            // Log for debugging DB values
-            Debug.WriteLine($"[PerformSave] Room={labMaphong.Text} Start={start:yyyy-MM-dd HH:mm:ss} End={end:yyyy-MM-dd HH:mm:ss} Days={this.SoNgay}");
+            Debug.WriteLine($"[PerformSave] Room={labMaphong.Text} Start={start:yyyy-MM-dd HH:mm:ss} End={end:yyyy-MM-dd HH:mm:ss} Days={this.SoNgay} Status={targetStatus}");
 
             var info = new BookingInfo { Customer = this.TenKhach, Start = start, End = end, Services = CollectServicesFromGrid() };
-            // đảm bảo tiền phòng luôn có trong service
             EnsureRoomCharge(this.SoNgay);
             EnsureVipBreakfast();
             info.Services = CollectServicesFromGrid();
 
-            // Try to persist booking to database so ListRoom reads it from DB
             var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
             bool dbSaved = false;
             int bookingId = 0;
+            string bookingCode = string.Empty;
+            string customerEmail = string.Empty;
+            
             if (!string.IsNullOrWhiteSpace(connStr))
             {
                 try
@@ -886,19 +1049,45 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                         using (var tran = conn.BeginTransaction())
                         {
                             int customerId = 0;
+                            string customerPhone = string.Empty;
+                            string customerCCCD = string.Empty;
+                            string customerGender = string.Empty;
+                            string customerNationality = string.Empty;
+
+                            // Tìm khách hàng theo tên
                             if (!string.IsNullOrWhiteSpace(this.TenKhach))
                             {
-                                using (var cmd = new SqlCommand("SELECT TOP 1 CustomerId FROM dbo.Customers WHERE FullName = @Name", conn, tran))
+                                using (var cmd = new SqlCommand("SELECT TOP 1 CustomerId, Email, PhoneNumber, CCCD, Sex, Nationality FROM dbo.Customers WHERE FullName = @Name", conn, tran))
                                 {
                                     cmd.Parameters.AddWithValue("@Name", this.TenKhach);
-                                    var obj = cmd.ExecuteScalar();
-                                    if (obj != null && obj != DBNull.Value) customerId = Convert.ToInt32(obj);
+                                    using (var rd = cmd.ExecuteReader())
+                                    {
+                                        if (rd.Read())
+                                        {
+                                            customerId = Convert.ToInt32(rd["CustomerId"]);
+                                            customerEmail = rd["Email"]?.ToString() ?? string.Empty;
+                                            customerPhone = rd["PhoneNumber"]?.ToString() ?? string.Empty;
+                                            customerCCCD = rd["CCCD"]?.ToString() ?? string.Empty;
+                                            customerGender = rd["Sex"]?.ToString() ?? string.Empty;
+                                            customerNationality = rd["Nationality"]?.ToString() ?? string.Empty;
+                                        }
+                                    }
                                 }
                             }
 
+                            // Tạo khách hàng mới nếu chưa có
                             if (customerId == 0 && !string.IsNullOrWhiteSpace(this.TenKhach))
                             {
-                                using (var cmd = new SqlCommand(@"INSERT INTO dbo.Customers(FullName) VALUES(@Name); SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, tran))
+                                using (var cmd = new SqlCommand(@"
+                                    IF NOT EXISTS (SELECT 1 FROM dbo.Customers WHERE FullName = @Name)
+                                    BEGIN
+                                        INSERT INTO dbo.Customers(FullName) VALUES(@Name);
+                                        SELECT CAST(SCOPE_IDENTITY() AS INT);
+                                    END
+                                    ELSE
+                                    BEGIN
+                                        SELECT TOP 1 CustomerId FROM dbo.Customers WHERE FullName = @Name;
+                                    END", conn, tran))
                                 {
                                     cmd.Parameters.AddWithValue("@Name", this.TenKhach);
                                     var obj = cmd.ExecuteScalar();
@@ -906,34 +1095,48 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                                 }
                             }
 
-                            int employeeId = 0;
-                            using (var cmd = new SqlCommand("SELECT TOP 1 EmployeeID FROM dbo.Employee ORDER BY EmployeeID", conn, tran))
+                            // Lấy EmployeeID
+                            int employeeId = 1;
+                            try
                             {
-                                var obj = cmd.ExecuteScalar();
-                                if (obj != null && obj != DBNull.Value) employeeId = Convert.ToInt32(obj);
+                                using (var cmd = new SqlCommand("SELECT TOP 1 EmployeeId FROM dbo.Employees ORDER BY EmployeeId", conn, tran))
+                                {
+                                    var obj = cmd.ExecuteScalar();
+                                    if (obj != null && obj != DBNull.Value) employeeId = Convert.ToInt32(obj);
+                                }
                             }
+                            catch { employeeId = 1; }
 
-                            // determine bookingId: try existing, else create new
+                            // Xác định bookingId
                             bookingId = GetActiveBookingId(conn, tran, labMaphong.Text.Trim());
 
                             if (bookingId == 0)
                             {
-                                string bookingCode = "PT" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
-                                using (var cmd = new SqlCommand(@"INSERT INTO dbo.Booking(BookingCode, CustomerID, EmployeeID, CreatedDate, Status)
-    VALUES(@Code, @CustomerID, @EmployeeID, GETDATE(), @Status);
-    SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, tran))
+                                // Tạo mã booking dạng BK0001
+                                using (var cmdMaxCode = new SqlCommand(@"
+                                    SELECT ISNULL(MAX(CAST(SUBSTRING(BookingCode, 3, LEN(BookingCode)-2) AS INT)), 0) + 1 
+                                    FROM dbo.HotelBookings WHERE BookingCode LIKE 'BK%' AND ISNUMERIC(SUBSTRING(BookingCode, 3, LEN(BookingCode)-2)) = 1", conn, tran))
+                                {
+                                    var maxVal = cmdMaxCode.ExecuteScalar();
+                                    int nextNum = (maxVal != null && maxVal != DBNull.Value) ? Convert.ToInt32(maxVal) : 1;
+                                    bookingCode = "BK" + nextNum.ToString("D4");
+                                }
+                                
+                                using (var cmd = new SqlCommand(@"INSERT INTO dbo.HotelBookings(BookingCode, CustomerID, EmployeeID, CreatedDate, Status)
+VALUES(@Code, @CustomerID, @EmployeeID, GETDATE(), @Status);
+SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, tran))
                                 {
                                     cmd.Parameters.AddWithValue("@Code", bookingCode);
                                     cmd.Parameters.AddWithValue("@CustomerID", customerId == 0 ? (object)DBNull.Value : customerId);
-                                    cmd.Parameters.AddWithValue("@EmployeeID", employeeId == 0 ? (object)DBNull.Value : employeeId);
-                                    cmd.Parameters.AddWithValue("@Status", string.IsNullOrWhiteSpace(SelectedStatus) ? (object)"Đặt" : SelectedStatus);
+                                    cmd.Parameters.AddWithValue("@EmployeeID", employeeId);
+                                    cmd.Parameters.AddWithValue("@Status", targetStatus);
                                     var obj = cmd.ExecuteScalar();
                                     if (obj != null && obj != DBNull.Value) bookingId = Convert.ToInt32(obj);
                                 }
 
                                 decimal appliedPrice = GetRoomPrice();
                                 using (var cmd = new SqlCommand(@"INSERT INTO dbo.BookingDetails(BookingID, RoomID, CheckIn, CheckOut, AppliedPrice, Note)
-    VALUES(@BookingID, @RoomID, @CheckIn, @CheckOut, @Price, NULL);", conn, tran))
+VALUES(@BookingID, @RoomID, @CheckIn, @CheckOut, @Price, NULL);", conn, tran))
                                 {
                                     cmd.Parameters.AddWithValue("@BookingID", bookingId);
                                     cmd.Parameters.AddWithValue("@RoomID", labMaphong.Text);
@@ -945,20 +1148,26 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                             }
                             else
                             {
-                                // update booking status/customer if needed
-                                using (var cmd = new SqlCommand("UPDATE dbo.Booking SET Status = @Status, CustomerID = @CustomerID WHERE BookingID = @BID", conn, tran))
+                                // Lấy bookingCode hiện tại
+                                using (var cmd = new SqlCommand("SELECT BookingCode FROM dbo.HotelBookings WHERE BookingId = @BID", conn, tran))
                                 {
-                                    cmd.Parameters.AddWithValue("@Status", string.IsNullOrWhiteSpace(SelectedStatus) ? (object)"Đặt" : SelectedStatus);
+                                    cmd.Parameters.AddWithValue("@BID", bookingId);
+                                    var obj = cmd.ExecuteScalar();
+                                    if (obj != null && obj != DBNull.Value) bookingCode = obj.ToString();
+                                }
+
+                                // Cập nhật booking
+                                using (var cmd = new SqlCommand("UPDATE dbo.HotelBookings SET Status = @Status, CustomerID = @CustomerID WHERE BookingId = @BID", conn, tran))
+                                {
+                                    cmd.Parameters.AddWithValue("@Status", targetStatus);
                                     cmd.Parameters.AddWithValue("@CustomerID", customerId == 0 ? (object)DBNull.Value : customerId);
                                     cmd.Parameters.AddWithValue("@BID", bookingId);
                                     cmd.ExecuteNonQuery();
                                 }
 
-                                // update booking detail time/price
+                                // Cập nhật booking detail
                                 decimal appliedPrice = GetRoomPrice();
-                                using (var cmd = new SqlCommand(@"UPDATE dbo.BookingDetails
-SET CheckIn=@CheckIn, CheckOut=@CheckOut, AppliedPrice=@Price
-WHERE BookingID=@BookingID AND RoomID=@RoomID", conn, tran))
+                                using (var cmd = new SqlCommand(@"UPDATE dbo.BookingDetails SET CheckIn=@CheckIn, CheckOut=@CheckOut, AppliedPrice=@Price WHERE BookingID=@BookingID AND RoomID=@RoomID", conn, tran))
                                 {
                                     cmd.Parameters.AddWithValue("@BookingID", bookingId);
                                     cmd.Parameters.AddWithValue("@RoomID", labMaphong.Text);
@@ -969,32 +1178,43 @@ WHERE BookingID=@BookingID AND RoomID=@RoomID", conn, tran))
                                 }
                             }
 
-                            // Update room status in DB
+                            // Cập nhật trạng thái phòng
                             using (var cmd = new SqlCommand("UPDATE dbo.Rooms SET Status = @Status WHERE RoomId = @RoomID", conn, tran))
                             {
-                                cmd.Parameters.AddWithValue("@Status", string.IsNullOrWhiteSpace(SelectedStatus) ? (object)"Đặt" : SelectedStatus);
+                                cmd.Parameters.AddWithValue("@Status", targetStatus);
                                 cmd.Parameters.AddWithValue("@RoomID", labMaphong.Text);
                                 cmd.ExecuteNonQuery();
                             }
 
-                            // Upsert services for this booking
+                            // Lưu dịch vụ
                             var servicesToSave = CollectServicesFromGrid();
                             UpsertBookingServices(conn, tran, bookingId, servicesToSave);
 
                             tran.Commit();
-                            Debug.WriteLine($"[PerformSave][DB] Room={labMaphong.Text} Start={start:yyyy-MM-dd HH:mm:ss} End={end:yyyy-MM-dd HH:mm:ss}");
                             dbSaved = true;
+
+                            info.Email = customerEmail;
+                            info.Phone = customerPhone;
+                            info.IdCard = customerCCCD;
+                            info.Gender = customerGender;
+                            info.Nationality = customerNationality;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Lưu vào CSDL thất bại: " + ex.Message, "Lỗi CSDL", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dbSaved = false;
+                    return; // Không tiếp tục nếu lưu CSDL thất bại
                 }
             }
 
-            // Keep in-memory booking for immediate UI and fallback when DB save fails
+            if (!dbSaved)
+            {
+                MessageBox.Show("Không thể lưu vào CSDL. Vui lòng kiểm tra kết nối!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Cập nhật UI
             BookingManager.AddBooking(labMaphong.Text, info);
             _existing = info;
             _btnThanhToan.Visible = true;
@@ -1005,12 +1225,46 @@ WHERE BookingID=@BookingID AND RoomID=@RoomID", conn, tran))
                 var listForm = Application.OpenForms.OfType<ListRoom>().FirstOrDefault();
                 if (listForm != null)
                 {
-                    listForm.MarkRoomsAsRented(new[] { labMaphong.Text }, info.Customer, info.End, info.Start);
+                    listForm.RefreshFromBookings(new[] { labMaphong.Text });
                 }
             }
             catch { }
 
-            MessageBox.Show("Đã lưu thay đổi thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Gửi email xác nhận và thông báo kết quả
+            bool emailSent = false;
+            if (!string.IsNullOrWhiteSpace(customerEmail))
+            {
+                try
+                {
+                    var bookingRowInfo = new BookingRowInfo
+                    {
+                        Id = !string.IsNullOrWhiteSpace(bookingCode) ? bookingCode : labMaphong.Text,
+                        Customer = info.Customer,
+                        Date = DateTime.Now.ToString("dd/MM/yyyy"),
+                        Detail = $"{labMaphong.Text} ({start:dd/MM/yyyy HH:mm} - {end:dd/MM/yyyy HH:mm})",
+                        CCCD = info.IdCard,
+                        SDT = info.Phone,
+                        Email = customerEmail,
+                        Gender = info.Gender,
+                        Nationality = info.Nationality,
+                        CreatedDate = DateTime.Now
+                    };
+                    EmailHelper.SendBookingConfirmation(bookingRowInfo);
+                    emailSent = true;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Gửi email thất bại: {ex.Message}");
+                }
+            }
+
+            // Thông báo kết quả
+            string message = targetStatus.Contains("đặt") ? "Đã đặt phòng thành công!" : "Đã lưu thay đổi thành công!";
+            if (!string.IsNullOrWhiteSpace(customerEmail))
+            {
+                message += emailSent ? "\n✓ Email xác nhận đã được gửi cho khách hàng." : "\n✗ Không thể gửi email xác nhận.";
+            }
+            MessageBox.Show(message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -1036,46 +1290,115 @@ WHERE BookingID=@BookingID AND RoomID=@RoomID", conn, tran))
 
         private void AddService()
         {
-            // BƯỚC 1: Đảm bảo phòng đã có Booking trong Database trước khi mở form Dịch vụ
-            // Nếu phòng đang trống hoặc chưa có ID booking, ta gọi hàm Lưu để tạo Booking trước
-            if (IsBookedNotCheckedIn() || (SelectedStatus != null && SelectedStatus.ToLower().Contains("thuê")))
+            // Kiểm tra xem phòng đã có Booking trong Database chưa
+            var checkBooking = GetActiveBookingFromDb(labMaphong.Text);
+            
+            if (checkBooking == null)
             {
-                // Kiểm tra xem trong DB đã có booking chưa
-                var checkBooking = GetBookingFromDb(labMaphong.Text, DateTime.Now);
-                if (checkBooking == null)
+                if (string.IsNullOrWhiteSpace(txtName.Text))
                 {
-                    // Nếu chưa có trong DB (dù giao diện đang hiện có khách) -> Lưu ngay để tạo ID
-                    BtnLuu_Click(null, null);
+                    MessageBox.Show("Vui lòng nhập tên khách hàng trước khi thêm dịch vụ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtName.Focus();
+                    return;
                 }
-            }
-            else
-            {
-                // Nếu là phòng trống hoàn toàn -> Cảnh báo
-                var confirm = MessageBox.Show("Phòng này chưa được đặt/nhận. Bạn có muốn tạo lượt khách mới không?", "Xác nhận", MessageBoxButtons.YesNo);
-                if (confirm == DialogResult.Yes)
-                {
-                    BtnLuu_Click(null, null); // Tạo booking
-                }
-                else
-                {
-                    return; // Không làm gì cả
-                }
+                
+                var confirm = MessageBox.Show("Phòng này chưa có booking. Tạo booking mới trước khi thêm dịch vụ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm != DialogResult.Yes) return;
+                
+                // Tạo booking ngầm (không hiện thông báo)
+                CreateBookingSilently();
             }
 
-            // BƯỚC 2: Mở form dịch vụ (Lúc này chắc chắn đã có BookingID trong DB)
+            // Mở form dịch vụ
             using (var f = new HotelServices_Form())
             {
-                f.CurrentRoomID = labMaphong.Text.Trim(); // Truyền mã phòng
-
-                // Mở form chọn
+                f.CurrentRoomID = labMaphong.Text.Trim();
                 if (f.ShowDialog(this) == DialogResult.OK)
                 {
-                    // Sau khi form kia lưu xong, tải lại dữ liệu lên lưới bên này để hiển thị
                     LoadServicesForBooking(labMaphong.Text);
-
-                    // Cập nhật lại tổng tiền hiển thị
                     EnsureRoomCharge((int)nNgay.Value);
                 }
+            }
+        }
+
+        private void CreateBookingSilently()
+        {
+            if (string.IsNullOrWhiteSpace(txtName.Text)) return;
+
+            DateTime start = dtNgay.Value.Date + dtGio.Value.TimeOfDay;
+            int days = Math.Max(1, (int)nNgay.Value);
+            DateTime end = start.AddDays(days);
+            string status = guna2ComboBox1.SelectedItem?.ToString() ?? "Phòng đang thuê";
+
+            var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
+            if (string.IsNullOrWhiteSpace(connStr)) return;
+
+            try
+            {
+                using (var conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+                    using (var tran = conn.BeginTransaction())
+                    {
+                        int customerId = 0;
+                        using (var cmd = new SqlCommand("SELECT TOP 1 CustomerId FROM dbo.Customers WHERE FullName = @Name", conn, tran))
+                        {
+                            cmd.Parameters.AddWithValue("@Name", txtName.Text.Trim());
+                            var obj = cmd.ExecuteScalar();
+                            if (obj != null && obj != DBNull.Value) customerId = Convert.ToInt32(obj);
+                        }
+
+                        if (customerId == 0)
+                        {
+                            using (var cmd = new SqlCommand("INSERT INTO dbo.Customers(FullName) VALUES(@Name); SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, tran))
+                            {
+                                cmd.Parameters.AddWithValue("@Name", txtName.Text.Trim());
+                                var obj = cmd.ExecuteScalar();
+                                if (obj != null && obj != DBNull.Value) customerId = Convert.ToInt32(obj);
+                            }
+                        }
+
+                        string bookingCode = "PT" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                        int bookingId = 0;
+                        using (var cmd = new SqlCommand(@"INSERT INTO dbo.HotelBookings(BookingCode, CustomerID, EmployeeID, CreatedDate, Status)
+VALUES(@Code, @CustomerID, 1, GETDATE(), @Status); SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, tran))
+                        {
+                            cmd.Parameters.AddWithValue("@Code", bookingCode);
+                            cmd.Parameters.AddWithValue("@CustomerID", customerId);
+                            cmd.Parameters.AddWithValue("@Status", status);
+                            var obj = cmd.ExecuteScalar();
+                            if (obj != null && obj != DBNull.Value) bookingId = Convert.ToInt32(obj);
+                        }
+
+                        using (var cmd = new SqlCommand(@"INSERT INTO dbo.BookingDetails(BookingID, RoomID, CheckIn, CheckOut, AppliedPrice)
+VALUES(@BID, @RoomID, @CheckIn, @CheckOut, @Price);", conn, tran))
+                        {
+                            cmd.Parameters.AddWithValue("@BID", bookingId);
+                            cmd.Parameters.AddWithValue("@RoomID", labMaphong.Text.Trim());
+                            cmd.Parameters.Add(new SqlParameter("@CheckIn", System.Data.SqlDbType.DateTime) { Value = start });
+                            cmd.Parameters.Add(new SqlParameter("@CheckOut", System.Data.SqlDbType.DateTime) { Value = end });
+                            cmd.Parameters.AddWithValue("@Price", GetRoomPrice());
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        using (var cmd = new SqlCommand("UPDATE dbo.Rooms SET Status = @Status WHERE RoomId = @RoomID", conn, tran))
+                        {
+                            cmd.Parameters.AddWithValue("@Status", status);
+                            cmd.Parameters.AddWithValue("@RoomID", labMaphong.Text.Trim());
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        tran.Commit();
+                        
+                        // Cập nhật _existing để form biết đã có booking
+                        _existing = new BookingInfo { Customer = txtName.Text.Trim(), Start = start, End = end };
+                        _btnThanhToan.Visible = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("CreateBookingSilently error: " + ex.Message);
             }
         }
 
@@ -1114,7 +1437,18 @@ WHERE BookingID=@BookingID AND RoomID=@RoomID", conn, tran))
             {
                 foreach (DataGridViewRow r in guna2DataGridView2.SelectedRows)
                 {
-                    if (!r.IsNewRow) guna2DataGridView2.Rows.Remove(r);
+                    if (r.IsNewRow) continue;
+                    
+                    // Không cho xóa Tiền phòng và Ăn sáng VIP
+                    string serviceName = Convert.ToString(r.Cells[0].Value);
+                    if (string.Equals(serviceName, ROOM_SERVICE_NAME, StringComparison.OrdinalIgnoreCase) ||
+                        string.Equals(serviceName, "Ăn sáng (VIP)", StringComparison.OrdinalIgnoreCase))
+                    {
+                        MessageBox.Show($"Không thể xóa dịch vụ '{serviceName}'!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        continue;
+                    }
+                    
+                    guna2DataGridView2.Rows.Remove(r);
                 }
             }
             EnsureRoomCharge((int)nNgay.Value);
@@ -1299,19 +1633,12 @@ WHERE BookingID=@BookingID AND RoomID=@RoomID", conn, tran))
             {
                 if (picker.ShowDialog(this) == DialogResult.OK)
                 {
-                    // Combine the selected time with the date from dtNgay to avoid using
-                    // the TimePicker's internal date which may differ and cause displayed
-                    // start/end to look incorrect.
                     var sel = picker.SelectedDateTime;
                     dtGio.Value = new DateTime(dtNgay.Value.Year, dtNgay.Value.Month, dtNgay.Value.Day, sel.Hour, sel.Minute, sel.Second);
                 }
             }
         }
 
-        /// <summary>
-        /// Cancel booking rows in DB that overlap the provided interval for the given room.
-        /// Returns true when at least one booking detail was removed or room status updated.
-        /// </summary>
         private bool CancelBookingInDb(string roomId, DateTime start, DateTime end)
         {
             var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
@@ -1323,75 +1650,93 @@ WHERE BookingID=@BookingID AND RoomID=@RoomID", conn, tran))
                     conn.Open();
                     using (var tran = conn.BeginTransaction())
                     {
-                        // Use a single T-SQL batch to capture affected BookingIDs, delete details, update empty bookings and set room status.
-                        var sql = @"DECLARE @Start DATETIME = @pStart;
-DECLARE @End DATETIME = @pEnd;
-CREATE TABLE #AffectedBookings(BookingID INT PRIMARY KEY);
-INSERT INTO #AffectedBookings(BookingID)
-SELECT DISTINCT BookingID FROM dbo.BookingDetails
-WHERE RoomID = @pRoomID
-AND (
-    -- overlapping
-    (CheckIn < @End AND CheckOut > @Start)
-    OR (CheckIn >= @Start AND CheckIn < @End)
-    OR (CheckOut > @Start AND CheckOut <= @End)
-);
-
-IF EXISTS(SELECT 1 FROM #AffectedBookings)
-BEGIN
-    DELETE d
-    FROM dbo.BookingDetails d
-    JOIN #AffectedBookings a ON d.BookingID = a.BookingID
-    WHERE d.RoomID = @pRoomID
-      AND (
-        (d.CheckIn < @End AND d.CheckOut > @Start)
-        OR (d.CheckIn >= @Start AND d.CheckIn < @End)
-        OR (d.CheckOut > @Start && d.CheckOut <= @End)
-      );
-
-    -- For any booking that now has no details, mark Cancelled
-    UPDATE b
-    SET b.Status = N'Cancelled'
-    FROM dbo.HotelBookings b
-    JOIN #AffectedBookings a ON b.BookingID = a.BookingID
-    WHERE NOT EXISTS (SELECT 1 FROM dbo.BookingDetails d WHERE d.BookingID = b.BookingID);
-
-    -- Set room status to Phòng Trống
-    UPDATE dbo.Rooms SET Status = @pStatus WHERE RoomID = @pRoomID;
-
-    SELECT 1 AS RowsAffected;
-END
-ELSE
-BEGIN
-    SELECT 0 AS RowsAffected;
-END";
-
-                        using (var cmd = new SqlCommand(sql, conn, tran))
+                        try
                         {
-                            cmd.Parameters.Add(new SqlParameter("@pRoomID", System.Data.SqlDbType.NVarChar, 50) { Value = roomId });
-                            cmd.Parameters.Add(new SqlParameter("@pStart", System.Data.SqlDbType.DateTime) { Value = start });
-                            cmd.Parameters.Add(new SqlParameter("@pEnd", System.Data.SqlDbType.DateTime) { Value = end });
-                            cmd.Parameters.Add(new SqlParameter("@pStatus", System.Data.SqlDbType.NVarChar, 50) { Value = "Phòng Trống" });
-                            var res = cmd.ExecuteScalar();
-                            int rows = 0;
-                            if (res != null && int.TryParse(res.ToString(), out rows))
+                            var findSql = @"SELECT DISTINCT d.BookingID
+FROM dbo.BookingDetails d
+JOIN dbo.HotelBookings b ON d.BookingID = b.BookingID
+WHERE d.RoomID = @RoomID
+  AND b.Status NOT IN (N'Paid', N'Cancelled')
+  AND d.CheckIn <= @End AND d.CheckOut >= @Start";
+
+                            var affected = new List<int>();
+                            using (var cmd = new SqlCommand(findSql, conn, tran))
                             {
-                                if (rows > 0)
+                                cmd.Parameters.AddWithValue("@RoomID", roomId);
+                                cmd.Parameters.Add(new SqlParameter("@Start", System.Data.SqlDbType.DateTime) { Value = start });
+                                cmd.Parameters.Add(new SqlParameter("@End", System.Data.SqlDbType.DateTime) { Value = end });
+                                using (var rd = cmd.ExecuteReader())
                                 {
-                                    tran.Commit();
-                                    return true;
+                                    while (rd.Read())
+                                    {
+                                        if (rd[0] != DBNull.Value) affected.Add(Convert.ToInt32(rd[0]));
+                                    }
                                 }
                             }
-                        }
 
-                        tran.Rollback();
-                        return false;
+                            if (affected.Count == 0)
+                            {
+                                tran.Rollback();
+                                return false;
+                            }
+
+                            var idsParam = string.Join("," , affected);
+                            
+                            // 1. Xóa BookingServices của phòng này trước (tránh lỗi FK)
+                            var delServicesSql = $@"DELETE FROM dbo.BookingServices 
+                                WHERE BookingID IN ({idsParam}) AND RoomID = @RoomID";
+                            using (var delSvc = new SqlCommand(delServicesSql, conn, tran))
+                            {
+                                delSvc.Parameters.AddWithValue("@RoomID", roomId);
+                                delSvc.ExecuteNonQuery();
+                            }
+                            
+                            // 2. Xóa BookingDetails
+                            var delSql = $@"DELETE FROM dbo.BookingDetails
+WHERE BookingID IN ({idsParam})
+  AND RoomID = @RoomID
+  AND (CheckIn <= @End AND CheckOut >= @Start)";
+                            using (var del = new SqlCommand(delSql, conn, tran))
+                            {
+                                del.Parameters.AddWithValue("@RoomID", roomId);
+                                del.Parameters.Add(new SqlParameter("@Start", System.Data.SqlDbType.DateTime) { Value = start });
+                                del.Parameters.Add(new SqlParameter("@End", System.Data.SqlDbType.DateTime) { Value = end });
+                                del.ExecuteNonQuery();
+                            }
+
+                            // 3. Đánh dấu booking là Cancelled nếu không còn detail nào
+                            var updSql = $@"UPDATE dbo.HotelBookings
+SET Status = N'Cancelled'
+WHERE BookingID IN ({idsParam})
+  AND NOT EXISTS (SELECT 1 FROM dbo.BookingDetails d WHERE d.BookingID = dbo.HotelBookings.BookingID)";
+                            using (var upd = new SqlCommand(updSql, conn, tran))
+                            {
+                                upd.ExecuteNonQuery();
+                            }
+
+                            // 4. Cập nhật trạng thái phòng về Phòng Trống
+                            using (var cmdRoom = new SqlCommand("UPDATE dbo.Rooms SET Status = @Status WHERE RoomId = @RoomID", conn, tran))
+                            {
+                                cmdRoom.Parameters.AddWithValue("@Status", "Phòng Trống");
+                                cmdRoom.Parameters.AddWithValue("@RoomID", roomId);
+                                cmdRoom.ExecuteNonQuery();
+                            }
+
+                            tran.Commit();
+                            return true;
+                        }
+                        catch (Exception ex)
+                        {
+                            tran.Rollback();
+                            Debug.WriteLine("CancelBookingInDb error: " + ex.Message);
+                            return false;
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("CancelBookingInDb error: " + ex.Message);
+                Debug.WriteLine("CancelBookingInDb connection error: " + ex.Message);
                 return false;
             }
         }
@@ -1406,28 +1751,31 @@ END";
                 using (var conn = new SqlConnection(connStr))
                 {
                     conn.Open();
-                    // clear current grid to avoid double-counting
                     guna2DataGridView2.Rows.Clear();
 
-                    string sqlGetID = @"SELECT TOP 1 BookingID 
+                    string sqlGetID = @"SELECT TOP 1 BookingId 
                                 FROM dbo.BookingDetails 
-                                WHERE RoomID = @RoomID 
-                                AND BookingID IN (SELECT BookingID FROM dbo.HotelBookings WHERE Status NOT IN (N'Paid', N'Cancelled'))";
+                                WHERE RoomId = @RoomID 
+                                AND BookingId IN (SELECT BookingId FROM dbo.HotelBookings WHERE Status NOT IN (N'Paid', N'Cancelled'))";
 
                     int bookingId = 0;
                     using (var cmd = new SqlCommand(sqlGetID, conn))
                     {
-                        cmd.Parameters.AddWithValue("@RoomID", roomId);
+                        cmd.Parameters.AddWithValue("@RoomID", roomId.Trim());
                         var obj = cmd.ExecuteScalar();
                         if (obj != null && obj != DBNull.Value) bookingId = Convert.ToInt32(obj);
                     }
 
                     if (bookingId > 0)
                     {
-                        string sqlSvc = "SELECT ServiceName, UnitPrice, Quantity FROM dbo.BookingServices WHERE BookingID = @BID";
+                        // Chỉ lấy dịch vụ của PHÒNG NÀY (không lấy dịch vụ phòng khác dù cùng booking)
+                        string sqlSvc = @"SELECT ServiceName, UnitPrice, Quantity 
+                                         FROM dbo.BookingServices 
+                                         WHERE BookingID = @BID AND (RoomID = @RoomID OR RoomID IS NULL)";
                         using (var cmd = new SqlCommand(sqlSvc, conn))
                         {
                             cmd.Parameters.AddWithValue("@BID", bookingId);
+                            cmd.Parameters.AddWithValue("@RoomID", roomId.Trim());
                             using (var rd = cmd.ExecuteReader())
                             {
                                 while (rd.Read())
@@ -1435,8 +1783,6 @@ END";
                                     string name = rd["ServiceName"].ToString();
                                     decimal price = Convert.ToDecimal(rd["UnitPrice"]);
                                     int qty = Convert.ToInt32(rd["Quantity"]);
-
-                                    // overwrite quantity from DB to avoid doubling
                                     AddOrUpdateServiceRow(name, price, qty, overwriteQuantity: true);
                                 }
                             }

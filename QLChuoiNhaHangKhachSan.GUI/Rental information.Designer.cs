@@ -82,12 +82,11 @@
             // 
             // guna2PictureBox7
             // 
-
             this.guna2PictureBox7.ImageFlip = Guna.UI2.WinForms.Enums.FlipOrientation.Horizontal;
             this.guna2PictureBox7.ImageRotate = 0F;
             this.guna2PictureBox7.Location = new System.Drawing.Point(118, 506);
             this.guna2PictureBox7.Name = "guna2PictureBox7";
-            this.guna2PictureBox7.Size = new System.Drawing.Size(57, 46);
+            this.guna2PictureBox7.Size = new System.Drawing.Size(48, 48);
             this.guna2PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox7.TabIndex = 38;
             this.guna2PictureBox7.TabStop = false;

@@ -71,7 +71,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 PriceMultiplier = 1.2m
             });
 
-            // Ngày Gi?i phóng mi?n Nam (30/4) - t?ng 30%
+            // Ngày Gi?i phóng miãn Nam (30/4) - t?ng 30%
             Holidays.Add(new HolidayInfo
             {
                 Name = "Ngày Gi?i phóng mi?n Nam",
@@ -183,10 +183,24 @@ namespace QLChuoiNhaHangKhachSan.GUI
         public static decimal CalculateTotalPrice(decimal basePricePerDay, DateTime checkIn, DateTime checkOut)
         {
             decimal total = 0m;
+            
+            // ??m b?o ít nh?t 1 ngày n?u checkOut <= checkIn
+            if (checkOut <= checkIn)
+            {
+                checkOut = checkIn.AddDays(1);
+            }
+
             for (DateTime date = checkIn.Date; date < checkOut.Date; date = date.AddDays(1))
             {
                 total += CalculatePrice(basePricePerDay, date);
             }
+            
+            // N?u total v?n = 0 (tr??ng h?p checkIn và checkOut cùng ngày) thì tính ít nh?t 1 ngày
+            if (total == 0m)
+            {
+                total = CalculatePrice(basePricePerDay, checkIn.Date);
+            }
+
             return total;
         }
 

@@ -927,6 +927,31 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 // Lưu xuống CSDL và cập nhật trạng thái phòng
                 SaveBookingToDatabase();
 
+                // Send confirmation email
+                try
+                {
+                    var bookingInfo = new BookingRowInfo
+                    {
+                        Id = "PT" + DateTime.Now.ToString("yyyyMMddHHmmssfff"),
+                        Customer = ResultCustomerName,
+                        Date = DateTime.Now.ToString("dd/MM/yyyy"),
+                        Detail = ResultRoomDetails,
+                        CCCD = ResultCCCD,
+                        SDT = ResultSDT,
+                        Email = ResultEmail,
+                        Gender = ResultGender,
+                        Nationality = ResultNationality,
+                        Staff = "NV"
+                    };
+                    if (!string.IsNullOrWhiteSpace(ResultEmail))
+                    {
+                        EmailHelper.SendBookingConfirmation(bookingInfo);
+                    }
+                }
+                catch (Exception exEmail)
+                {
+                    System.Diagnostics.Debug.WriteLine("Email error: " + exEmail.Message);
+                }
 
                 try
                 {
@@ -1471,10 +1496,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
                             var room = r["maphong"].ToString();
                             var start = r["NgayBD"] != DBNull.Value ? (DateTime)r["NgayBD"] : ResultStartDate;
                             var end = r["NgayKT"] != DBNull.Value ? (DateTime)r["NgayKT"] : ResultEndDate;
-                            // Sử dụng giá có tính ngày lễ
-                            decimal price = GetAppliedPriceWithHoliday(conn, tran, room, start, end);
+                            // Sử dụng giá có tính ngày lễ
+                            decimal price = GetAppliedPriceWithHoliday(conn, tran, room, start, end);
                             InsertBookingDetail(conn, tran, bookingId, room, start, end, price);
-                            UpdateRoomStatus(conn, tran, room, "Đặt");
+                            
+                            // *** QUAN TRỌNG: Cập nhật trạng thái phòng ngay lập tức ***
+                            UpdateRoomStatus(conn, tran, room, "Phòng đã đặt");
                         }
 
                         tran.Commit();
