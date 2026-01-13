@@ -12,7 +12,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 {
     public partial class frmCancelTable : Form
     {
-        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
+        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
         private Bitmap _billBitmap;
         private int _tableId;
 
