@@ -468,7 +468,7 @@
             this.dtpGioKetThuc.ShowUpDown = true;
             this.dtpGioKetThuc.Size = new System.Drawing.Size(156, 50);
             this.dtpGioKetThuc.TabIndex = 16;
-            this.dtpGioKetThuc.Value = new System.DateTime(2025, 12, 21, 11, 4, 26, 608);
+            this.dtpGioKetThuc.Value = new System.DateTime(2026, 1, 12, 0, 0, 0, 0);
             // 
             // groupBox3
             // 
@@ -497,7 +497,7 @@
             this.dtpGioBatDau.ShowUpDown = true;
             this.dtpGioBatDau.Size = new System.Drawing.Size(149, 47);
             this.dtpGioBatDau.TabIndex = 16;
-            this.dtpGioBatDau.Value = new System.DateTime(2025, 12, 21, 11, 4, 26, 608);
+            this.dtpGioBatDau.Value = new System.DateTime(2026, 1, 12, 0, 0, 0, 0);
             this.dtpGioBatDau.ValueChanged += new System.EventHandler(this.dtpGioBatDau_ValueChanged);
             // 
             // groupBox2
@@ -526,7 +526,7 @@
             this.dtpNgayKetThuc.Name = "dtpNgayKetThuc";
             this.dtpNgayKetThuc.Size = new System.Drawing.Size(149, 43);
             this.dtpNgayKetThuc.TabIndex = 14;
-            this.dtpNgayKetThuc.Value = new System.DateTime(2025, 12, 21, 11, 4, 26, 608);
+            this.dtpNgayKetThuc.Value = new System.DateTime(2026, 1, 12, 0, 0, 0, 0);
             // 
             // groupBox1
             // 
@@ -554,7 +554,7 @@
             this.dtpNgayBatDau.Name = "dtpNgayBatDau";
             this.dtpNgayBatDau.Size = new System.Drawing.Size(149, 45);
             this.dtpNgayBatDau.TabIndex = 14;
-            this.dtpNgayBatDau.Value = new System.DateTime(2025, 12, 21, 11, 16, 15, 937);
+            this.dtpNgayBatDau.Value = new System.DateTime(2026, 1, 12, 0, 0, 0, 0);
             // 
             // txtCCCD
             // 
@@ -785,54 +785,53 @@
         }
 
         #endregion
-
-        private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator1;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
-        private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2TextBox txtHoTen;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtpGioBatDau;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgayBatDau;
-        private Guna.UI2.WinForms.Guna2TextBox txtCCCD;
-        private Guna.UI2.WinForms.Guna2TextBox txtSDT;
-        private Guna.UI2.WinForms.Guna2TextBox txtDiaChi;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgayKetThuc;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtpGioKetThuc;
-        private Guna.UI2.WinForms.Guna2Button btnHuy;
-        private Guna.UI2.WinForms.Guna2Button btnLuu;
-        private Guna.UI2.WinForms.Guna2ComboBox cboGioiTinh;
         private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow1;
-        private System.Windows.Forms.Label labPhongTrong;
-        private System.Windows.Forms.Label labPhongChon;
-        private System.Windows.Forms.ListView lvPhongChon;
-        private System.Windows.Forms.ListView lvPhongTrong;
-        private System.Windows.Forms.ColumnHeader maphongchon;
-        private System.Windows.Forms.ColumnHeader songuoi;
-        private System.Windows.Forms.ColumnHeader ngaybd;
-        private System.Windows.Forms.ColumnHeader ngaykt;
-        private System.Windows.Forms.ColumnHeader maphongtrong;
-        private System.Windows.Forms.ColumnHeader LoaiPhong;
+        private System.Windows.Forms.ImageList imageList1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
+        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
+        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox7;
+        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
+        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox6;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox5;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox4;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox3;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox2;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox6;
+        private System.Windows.Forms.ListView lvPhongChon;
+        private System.Windows.Forms.ColumnHeader maphongchon;
+        private System.Windows.Forms.ColumnHeader songuoi;
+        private System.Windows.Forms.ColumnHeader ngaybd;
+        private System.Windows.Forms.ColumnHeader ngaykt;
         private System.Windows.Forms.ColumnHeader xoa;
+        private System.Windows.Forms.ListView lvPhongTrong;
+        private System.Windows.Forms.ColumnHeader maphongtrong;
+        private System.Windows.Forms.ColumnHeader LoaiPhong;
         private System.Windows.Forms.ColumnHeader them;
-        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Label labPhongTrong;
+        private System.Windows.Forms.Label labPhongChon;
+        private Guna.UI2.WinForms.Guna2ComboBox cboGioiTinh;
+        private Guna.UI2.WinForms.Guna2Button btnHuy;
+        private Guna.UI2.WinForms.Guna2Button btnLuu;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpGioKetThuc;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpGioBatDau;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgayKetThuc;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgayBatDau;
+        private Guna.UI2.WinForms.Guna2TextBox txtCCCD;
+        private Guna.UI2.WinForms.Guna2TextBox txtSDT;
+        private Guna.UI2.WinForms.Guna2TextBox txtDiaChi;
+        private Guna.UI2.WinForms.Guna2TextBox txtHoTen;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox2;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox3;
+        private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox7;
-        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
+        private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator1;
     }
 }

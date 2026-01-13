@@ -19,6 +19,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public List<ServiceItem> Services { get; set; } = new List<ServiceItem>();
+        public string Email { get; set; }
+        public string IdCard { get; set; }
+        public string Phone { get; set; }
+        public string Gender { get; set; }
+        public string Nationality { get; set; }
     }
 
     public static class BookingManager

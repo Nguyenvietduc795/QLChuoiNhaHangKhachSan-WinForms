@@ -74,7 +74,7 @@
             this.cbQuoctich.ItemHeight = 30;
             this.cbQuoctich.Items.AddRange(new object[] {
             "Quốc tịch"});
-            this.cbQuoctich.Location = new System.Drawing.Point(285, 609);
+            this.cbQuoctich.Location = new System.Drawing.Point(173, 450);
             this.cbQuoctich.Name = "cbQuoctich";
             this.cbQuoctich.Size = new System.Drawing.Size(363, 36);
             this.cbQuoctich.StartIndex = 0;
@@ -85,7 +85,7 @@
             this.guna2PictureBox7.Image = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.tải_xuống__1_;
             this.guna2PictureBox7.ImageFlip = Guna.UI2.WinForms.Enums.FlipOrientation.Horizontal;
             this.guna2PictureBox7.ImageRotate = 0F;
-            this.guna2PictureBox7.Location = new System.Drawing.Point(230, 682);
+            this.guna2PictureBox7.Location = new System.Drawing.Point(118, 506);
             this.guna2PictureBox7.Name = "guna2PictureBox7";
             this.guna2PictureBox7.Size = new System.Drawing.Size(57, 46);
             this.guna2PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -107,7 +107,7 @@
             this.txtEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtEmail.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtEmail.Location = new System.Drawing.Point(285, 682);
+            this.txtEmail.Location = new System.Drawing.Point(172, 506);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -122,7 +122,7 @@
             this.guna2PictureBox6.Image = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.png_clipart_gender_symbol_female_computer_icons_male_and_female_symbols_miscellaneous_woman;
             this.guna2PictureBox6.ImageFlip = Guna.UI2.WinForms.Enums.FlipOrientation.Horizontal;
             this.guna2PictureBox6.ImageRotate = 0F;
-            this.guna2PictureBox6.Location = new System.Drawing.Point(233, 758);
+            this.guna2PictureBox6.Location = new System.Drawing.Point(121, 579);
             this.guna2PictureBox6.Name = "guna2PictureBox6";
             this.guna2PictureBox6.Size = new System.Drawing.Size(45, 39);
             this.guna2PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -134,7 +134,7 @@
             this.guna2PictureBox5.Image = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.pngtree_vector_illustration_of_single_passport_icon_personal_nationalities_illustration_vector_png_image_7587796;
             this.guna2PictureBox5.ImageFlip = Guna.UI2.WinForms.Enums.FlipOrientation.Horizontal;
             this.guna2PictureBox5.ImageRotate = 0F;
-            this.guna2PictureBox5.Location = new System.Drawing.Point(233, 603);
+            this.guna2PictureBox5.Location = new System.Drawing.Point(121, 447);
             this.guna2PictureBox5.Name = "guna2PictureBox5";
             this.guna2PictureBox5.Size = new System.Drawing.Size(45, 39);
             this.guna2PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -146,7 +146,7 @@
             this.guna2PictureBox4.Image = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.pngtree_logo_lokasi_simbol_ikon_komputer_location_pin_in_black_colour_with_png_image_6425746;
             this.guna2PictureBox4.ImageFlip = Guna.UI2.WinForms.Enums.FlipOrientation.Horizontal;
             this.guna2PictureBox4.ImageRotate = 0F;
-            this.guna2PictureBox4.Location = new System.Drawing.Point(230, 530);
+            this.guna2PictureBox4.Location = new System.Drawing.Point(118, 379);
             this.guna2PictureBox4.Name = "guna2PictureBox4";
             this.guna2PictureBox4.Size = new System.Drawing.Size(48, 39);
             this.guna2PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -159,7 +159,7 @@
             this.guna2PictureBox3.FillColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox3.Image = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.so_dien_thoai;
             this.guna2PictureBox3.ImageRotate = 0F;
-            this.guna2PictureBox3.Location = new System.Drawing.Point(233, 452);
+            this.guna2PictureBox3.Location = new System.Drawing.Point(121, 306);
             this.guna2PictureBox3.Name = "guna2PictureBox3";
             this.guna2PictureBox3.Size = new System.Drawing.Size(45, 39);
             this.guna2PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -172,7 +172,7 @@
             this.guna2PictureBox2.Image = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.z7350371373390_18bf60a259e7bfe87dc788c41c49ab57;
             this.guna2PictureBox2.ImageFlip = Guna.UI2.WinForms.Enums.FlipOrientation.Horizontal;
             this.guna2PictureBox2.ImageRotate = 0F;
-            this.guna2PictureBox2.Location = new System.Drawing.Point(230, 378);
+            this.guna2PictureBox2.Location = new System.Drawing.Point(121, 239);
             this.guna2PictureBox2.Name = "guna2PictureBox2";
             this.guna2PictureBox2.Size = new System.Drawing.Size(45, 39);
             this.guna2PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -185,7 +185,7 @@
             this.guna2PictureBox1.Image = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.z7350371373382_065c71962eaa217926d25ccb50c32e90;
             this.guna2PictureBox1.ImageFlip = Guna.UI2.WinForms.Enums.FlipOrientation.Horizontal;
             this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(233, 313);
+            this.guna2PictureBox1.Location = new System.Drawing.Point(121, 176);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
             this.guna2PictureBox1.Size = new System.Drawing.Size(45, 39);
             this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -205,7 +205,7 @@
             this.cboGioiTinh.Items.AddRange(new object[] {
             "Nam",
             "Nữ"});
-            this.cboGioiTinh.Location = new System.Drawing.Point(284, 758);
+            this.cboGioiTinh.Location = new System.Drawing.Point(171, 582);
             this.cboGioiTinh.Name = "cboGioiTinh";
             this.cboGioiTinh.Size = new System.Drawing.Size(364, 36);
             this.cboGioiTinh.StartIndex = 0;
@@ -220,9 +220,9 @@
             this.btnHuy.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnHuy.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHuy.ForeColor = System.Drawing.Color.White;
-            this.btnHuy.Location = new System.Drawing.Point(491, 827);
+            this.btnHuy.Location = new System.Drawing.Point(400, 663);
             this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(107, 45);
+            this.btnHuy.Size = new System.Drawing.Size(127, 45);
             this.btnHuy.TabIndex = 23;
             this.btnHuy.Text = "Hủy";
             // 
@@ -235,9 +235,9 @@
             this.btnLuu.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnLuu.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLuu.ForeColor = System.Drawing.Color.White;
-            this.btnLuu.Location = new System.Drawing.Point(347, 836);
+            this.btnLuu.Location = new System.Drawing.Point(172, 663);
             this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(113, 45);
+            this.btnLuu.Size = new System.Drawing.Size(126, 45);
             this.btnLuu.TabIndex = 22;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
@@ -257,7 +257,7 @@
             this.txtCCCD.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtCCCD.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCCCD.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCCCD.Location = new System.Drawing.Point(284, 378);
+            this.txtCCCD.Location = new System.Drawing.Point(172, 239);
             this.txtCCCD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCCCD.Name = "txtCCCD";
             this.txtCCCD.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -282,7 +282,7 @@
             this.txtSDT.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSDT.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSDT.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSDT.Location = new System.Drawing.Point(284, 452);
+            this.txtSDT.Location = new System.Drawing.Point(172, 306);
             this.txtSDT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSDT.Name = "txtSDT";
             this.txtSDT.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -308,7 +308,7 @@
             this.txtDiaChi.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtDiaChi.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiaChi.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDiaChi.Location = new System.Drawing.Point(284, 530);
+            this.txtDiaChi.Location = new System.Drawing.Point(163, 379);
             this.txtDiaChi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -334,7 +334,7 @@
             this.txtHoTen.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHoTen.ForeColor = System.Drawing.Color.Black;
             this.txtHoTen.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtHoTen.Location = new System.Drawing.Point(284, 313);
+            this.txtHoTen.Location = new System.Drawing.Point(172, 176);
             this.txtHoTen.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtHoTen.Name = "txtHoTen";
             this.txtHoTen.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -350,7 +350,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label3.Location = new System.Drawing.Point(224, 216);
+            this.label3.Location = new System.Drawing.Point(166, 125);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(278, 31);
             this.label3.TabIndex = 5;
@@ -362,9 +362,9 @@
             this.guna2Panel2.Controls.Add(this.guna2ControlBox3);
             this.guna2Panel2.Controls.Add(this.label1);
             this.guna2Panel2.Controls.Add(this.guna2ControlBox1);
-            this.guna2Panel2.Location = new System.Drawing.Point(120, 95);
+            this.guna2Panel2.Location = new System.Drawing.Point(12, 35);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(714, 61);
+            this.guna2Panel2.Size = new System.Drawing.Size(638, 61);
             this.guna2Panel2.TabIndex = 3;
             // 
             // guna2ControlBox2
@@ -374,7 +374,7 @@
             this.guna2ControlBox2.BorderRadius = 10;
             this.guna2ControlBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
             this.guna2ControlBox2.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox2.Location = new System.Drawing.Point(641, 3);
+            this.guna2ControlBox2.Location = new System.Drawing.Point(565, 3);
             this.guna2ControlBox2.Name = "guna2ControlBox2";
             this.guna2ControlBox2.Size = new System.Drawing.Size(45, 29);
             this.guna2ControlBox2.TabIndex = 5;
@@ -386,7 +386,7 @@
             this.guna2ControlBox3.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MaximizeBox;
             this.guna2ControlBox3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
             this.guna2ControlBox3.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox3.Location = new System.Drawing.Point(576, 3);
+            this.guna2ControlBox3.Location = new System.Drawing.Point(500, 3);
             this.guna2ControlBox3.Name = "guna2ControlBox3";
             this.guna2ControlBox3.Size = new System.Drawing.Size(45, 29);
             this.guna2ControlBox3.TabIndex = 6;
@@ -412,7 +412,7 @@
             this.guna2ControlBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
             this.guna2ControlBox1.IconColor = System.Drawing.Color.White;
             this.guna2ControlBox1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.guna2ControlBox1.Location = new System.Drawing.Point(508, 2);
+            this.guna2ControlBox1.Location = new System.Drawing.Point(432, 2);
             this.guna2ControlBox1.Name = "guna2ControlBox1";
             this.guna2ControlBox1.PressedColor = System.Drawing.Color.Red;
             this.guna2ControlBox1.Size = new System.Drawing.Size(45, 29);
@@ -422,7 +422,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(842, 894);
+            this.ClientSize = new System.Drawing.Size(659, 732);
             this.Controls.Add(this.cbQuoctich);
             this.Controls.Add(this.guna2PictureBox7);
             this.Controls.Add(this.txtSDT);

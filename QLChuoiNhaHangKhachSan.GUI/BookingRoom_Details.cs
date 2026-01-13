@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -99,8 +100,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
       new CountryPhoneCode { Name = "Honduras", DialCode = "+504", Iso = "HN" },
       new CountryPhoneCode { Name = "Hungary", DialCode = "+36", Iso = "HU" },
       new CountryPhoneCode { Name = "Iceland", DialCode = "+354", Iso = "IS" },
-      new CountryPhoneCode { Name = "India", DialCode = "+91", Iso = "IN" },
-      new CountryPhoneCode { Name = "Indonesia", DialCode = "+62", Iso = "ID" },
+      new CountryPhoneCode { Name = "India", DialCode = "+91", Iso = "IN" }
+,      new CountryPhoneCode { Name = "Indonesia", DialCode = "+62", Iso = "ID" },
       new CountryPhoneCode { Name = "Iran", DialCode = "+98", Iso = "IR" },
       new CountryPhoneCode { Name = "Iraq", DialCode = "+964", Iso = "IQ" },
       new CountryPhoneCode { Name = "Ireland", DialCode = "+353", Iso = "IE" },
@@ -413,9 +414,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 using (var conn = new SqlConnection(connStr))
                 using (var cmd = new SqlCommand(@"
-                    SELECT DISTINCT d.RoomID
-                    FROM dbo.BookingDetail d
-                    WHERE d.CheckIn < @EndDate AND d.CheckOut > @StartDate", conn))
+                    SELECT DISTINCT d.RoomId
+                    FROM dbo.BookingDetails d
+                    WHERE d.CheckIn < @EndDate AND d.CheckOut > @StartDate", conn))
                 {
                     cmd.Parameters.AddWithValue("@StartDate", start);
                     cmd.Parameters.AddWithValue("@EndDate", end);
@@ -433,8 +434,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
             catch (Exception ex)
             {
-                // Log lỗi nếu cần
-                System.Diagnostics.Debug.WriteLine("GetBookedRoomsInRange error: " + ex.Message);
+                // Log lỗi nếu cần
+                System.Diagnostics.Debug.WriteLine("GetBookedRoomsInRange error: " + ex.Message);
             }
 
             return result;
@@ -789,35 +790,70 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            // === VALIDATION ===
 
-            if (string.IsNullOrWhiteSpace(txtHoTen.Text)) // Giả sử tên textbox là txtHoTen
-            {
+            // 1. Kiểm tra Họ Tên - chỉ cho phép chữ cái và khoảng trắng
+            if (string.IsNullOrWhiteSpace(txtHoTen.Text))
+            {
                 MessageBox.Show("Vui lòng nhập họ tên khách hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtHoTen.Focus(); // Đưa con trỏ chuột về ô này để nhập
-                return; // Dừng lại, không chạy code lưu bên dưới nữa
-            }
+                txtHoTen.Focus();
+                return;
+            }
+            if (!IsValidName(txtHoTen.Text))
+            {
+                MessageBox.Show("Họ tên chỉ được chứa chữ cái và khoảng trắng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtHoTen.Focus();
+                return;
+            }
 
-            // 2. Kiểm tra CCCD
-            if (string.IsNullOrWhiteSpace(txtCCCD.Text))
+            // 2. Kiểm tra CCCD - chỉ cho phép số
+            if (string.IsNullOrWhiteSpace(txtCCCD.Text))
             {
                 MessageBox.Show("Vui lòng nhập số CCCD!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtCCCD.Focus();
                 return;
             }
+            if (!IsValidCCCD(txtCCCD.Text))
+            {
+                MessageBox.Show("CCCD chỉ được chứa số và phải có 12 ký tự!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCCCD.Focus();
+                return;
+            }
 
-            // 3. Kiểm tra Số điện thoại
-            if (string.IsNullOrWhiteSpace(txtSDT.Text))
+            // 3. Kiểm tra Số điện thoại - chỉ cho phép số và ký tự + (đầu số quốc gia)
+            if (string.IsNullOrWhiteSpace(txtSDT.Text))
             {
                 MessageBox.Show("Vui lòng nhập số điện thoại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtSDT.Focus();
                 return;
             }
-            if (txtSDT.Text.Length < 10)
+            if (!IsValidPhone(txtSDT.Text))
             {
-                MessageBox.Show("Số điện thoại không hợp lệ (phải từ 10 số)!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Số điện thoại không hợp lệ (chỉ chứa số, dấu + và khoảng trắng)!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtSDT.Focus();
                 return;
             }
+            // Kiểm tra độ dài số điện thoại (loại bỏ khoảng trắng và dấu +)
+            string phoneDigits = Regex.Replace(txtSDT.Text, @"[^\d]", "");
+            if (phoneDigits.Length < 9 || phoneDigits.Length > 15)
+            {
+                MessageBox.Show("Số điện thoại phải có từ 9-15 chữ số!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSDT.Focus();
+                return;
+            }
+
+            // 4. Kiểm tra Email (nếu có nhập)
+            if (guna2TextBox1 != null && !string.IsNullOrWhiteSpace(guna2TextBox1.Text))
+            {
+                if (!IsValidEmail(guna2TextBox1.Text))
+                {
+                    MessageBox.Show("Email không hợp lệ! Vui lòng nhập đúng định dạng (ví dụ: example@gmail.com)", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    guna2TextBox1.Focus();
+                    return;
+                }
+            }
+
+            // === KẾT THÚC VALIDATION ===
 
             if (dtChon.Rows.Count > 0)
             {
@@ -1457,7 +1493,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             int id = 0;
             if (!string.IsNullOrWhiteSpace(cccd))
             {
-                using (var cmd = new SqlCommand("SELECT TOP 1 CustomerID FROM dbo.Customer WHERE IdCard = @IdCard", conn, tran))
+                using (var cmd = new SqlCommand("SELECT TOP 1 CustomerId FROM dbo.Customers WHERE CCCD = @IdCard", conn, tran))
                 {
                     cmd.Parameters.AddWithValue("@IdCard", cccd);
                     var obj = cmd.ExecuteScalar();
@@ -1466,7 +1502,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
             if (id == 0 && !string.IsNullOrWhiteSpace(phone))
             {
-                using (var cmd = new SqlCommand("SELECT TOP 1 CustomerID FROM dbo.Customer WHERE Phone = @Phone", conn, tran))
+                using (var cmd = new SqlCommand("SELECT TOP 1 CustomerId FROM dbo.Customers WHERE PhoneNumber = @Phone", conn, tran))
                 {
                     cmd.Parameters.AddWithValue("@Phone", phone);
                     var obj = cmd.ExecuteScalar();
@@ -1475,7 +1511,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
             if (id == 0 && !string.IsNullOrWhiteSpace(fullName))
             {
-                using (var cmd = new SqlCommand("SELECT TOP 1 CustomerID FROM dbo.Customer WHERE FullName = @Name", conn, tran))
+                using (var cmd = new SqlCommand("SELECT TOP 1 CustomerId FROM dbo.Customers WHERE FullName = @Name", conn, tran))
                 {
                     cmd.Parameters.AddWithValue("@Name", fullName);
                     var obj = cmd.ExecuteScalar();
@@ -1483,13 +1519,33 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 }
             }
 
-            // Nếu tìm thấy khách hàng, cập nhật thêm Email và Address nếu có
-            if (id != 0)
+            // NEW: if still not found and incoming CCCD is empty, try to find any customer row where CCCD IS NULL
+            // that matches phone, email or full name to avoid inserting duplicate NULLs which violate UNIQUE constraint
+            if (id == 0 && string.IsNullOrWhiteSpace(cccd))
             {
-                using (var cmd = new SqlCommand(@"UPDATE dbo.Customer SET 
-                    Email = COALESCE(@Email, Email), 
-                    Address = COALESCE(@Address, Address)
-                    WHERE CustomerID = @ID", conn, tran))
+                using (var cmd = new SqlCommand(@"SELECT TOP 1 CustomerId FROM dbo.Customers 
+                                                 WHERE CCCD IS NULL 
+                                                   AND (
+                                                       (PhoneNumber IS NOT NULL AND PhoneNumber = @Phone) 
+                                                       OR (Email IS NOT NULL AND Email = @Email)
+                                                       OR (FullName IS NOT NULL AND FullName = @Name)
+                                                   )", conn, tran))
+                {
+                    cmd.Parameters.AddWithValue("@Phone", string.IsNullOrWhiteSpace(phone) ? (object)DBNull.Value : phone);
+                    cmd.Parameters.AddWithValue("@Email", string.IsNullOrWhiteSpace(ResultEmail) ? (object)DBNull.Value : ResultEmail);
+                    cmd.Parameters.AddWithValue("@Name", string.IsNullOrWhiteSpace(fullName) ? (object)DBNull.Value : fullName);
+                    var obj = cmd.ExecuteScalar();
+                    if (obj != null && obj != DBNull.Value) id = Convert.ToInt32(obj);
+                }
+            }
+
+            // Nếu tìm thấy khách hàng, cập nhật thêm Email và Address nếu có
+            if (id != 0)
+            {
+                using (var cmd = new SqlCommand(@"UPDATE dbo.Customers SET 
+                    Email = COALESCE(@Email, Email), 
+                    Address = COALESCE(@Address, Address)
+                    WHERE CustomerId = @ID", conn, tran))
                 {
                     cmd.Parameters.AddWithValue("@ID", id);
                     cmd.Parameters.AddWithValue("@Email", string.IsNullOrWhiteSpace(ResultEmail) ? (object)DBNull.Value : ResultEmail);
@@ -1499,8 +1555,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 return id;
             }
 
-            // Tạo khách hàng mới với đầy đủ thông tin bao gồm Email và Address
-            using (var cmd = new SqlCommand(@"INSERT INTO dbo.Customer(FullName, IdCard, Phone, Gender, Nationality, Email, Address)
+            // Tạo khách hàng mới với đầy đủ thông tin bao gồm Email và Address
+            using (var cmd = new SqlCommand(@"INSERT INTO dbo.Customers(FullName, CCCD, PhoneNumber, Sex, Nationality, Email, Address)
 VALUES(@Name, @IdCard, @Phone, @Gender, @Nationality, @Email, @Address);
 SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, tran))
             {
@@ -1519,7 +1575,7 @@ SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, tran))
 
         private int GetDefaultEmployeeId(SqlConnection conn, SqlTransaction tran)
         {
-            using (var cmd = new SqlCommand("SELECT TOP 1 EmployeeID FROM dbo.Employee ORDER BY EmployeeID", conn, tran))
+            using (var cmd = new SqlCommand("SELECT TOP 1 EmployeeId FROM dbo.Employees ORDER BY EmployeeId", conn, tran))
             {
                 var obj = cmd.ExecuteScalar();
                 if (obj == null || obj == DBNull.Value) return 0;
@@ -1529,26 +1585,25 @@ SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, tran))
 
         private int InsertBooking(SqlConnection conn, SqlTransaction tran, string code, int customerId, int employeeId)
         {
-            using (var cmd = new SqlCommand(@"INSERT INTO dbo.Booking(BookingCode, CustomerID, EmployeeID, CreatedDate, Status)
-VALUES(@Code, @CustomerID, @EmployeeID, GETDATE(), N'Open');
+            using (var cmd = new SqlCommand(@"INSERT INTO dbo.HotelBookings(CustomerId, EmployeeId, CreatedDate, Status)
+VALUES(@CustomerID, @EmployeeID, GETDATE(), N'Open');
 SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, tran))
             {
-                cmd.Parameters.AddWithValue("@Code", code);
-                cmd.Parameters.AddWithValue("@CustomerID", customerId);
-                cmd.Parameters.AddWithValue("@EmployeeID", employeeId);
+                cmd.Parameters.AddWithValue("@CustomerID", customerId == 0 ? (object)DBNull.Value : customerId);
+                cmd.Parameters.AddWithValue("@EmployeeID", employeeId == 0 ? (object)DBNull.Value : employeeId);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
 
         private void InsertBookingDetail(SqlConnection conn, SqlTransaction tran, int bookingId, string roomId, DateTime checkIn, DateTime checkOut, decimal price)
         {
-            using (var cmd = new SqlCommand(@"INSERT INTO dbo.BookingDetail(BookingID, RoomID, CheckIn, CheckOut, AppliedPrice, Note)
+            using (var cmd = new SqlCommand(@"INSERT INTO dbo.BookingDetails(BookingId, RoomId, CheckIn, CheckOut, AppliedPrice, Note)
 VALUES(@BookingID, @RoomID, @CheckIn, @CheckOut, @Price, NULL);", conn, tran))
             {
                 cmd.Parameters.AddWithValue("@BookingID", bookingId);
                 cmd.Parameters.AddWithValue("@RoomID", roomId);
-                cmd.Parameters.AddWithValue("@CheckIn", checkIn);
-                cmd.Parameters.AddWithValue("@CheckOut", checkOut);
+                cmd.Parameters.Add(new SqlParameter("@CheckIn", System.Data.SqlDbType.DateTime) { Value = checkIn });
+                cmd.Parameters.Add(new SqlParameter("@CheckOut", System.Data.SqlDbType.DateTime) { Value = checkOut });
                 cmd.Parameters.AddWithValue("@Price", price);
                 cmd.ExecuteNonQuery();
             }
@@ -1557,7 +1612,7 @@ VALUES(@BookingID, @RoomID, @CheckIn, @CheckOut, @Price, NULL);", conn, tran))
         private decimal GetAppliedPrice(SqlConnection conn, SqlTransaction tran, string roomId)
         {
             decimal basePrice = 0m;
-            using (var cmd = new SqlCommand("SELECT TOP 1 AppliedPrice FROM dbo.v_RoomPrice WHERE RoomID = @RoomID", conn, tran))
+            using (var cmd = new SqlCommand("SELECT TOP 1 AppliedPrice FROM dbo.v_RoomPrice WHERE RoomId = @RoomID", conn, tran))
             {
                 cmd.Parameters.AddWithValue("@RoomID", roomId);
                 var obj = cmd.ExecuteScalar();
@@ -1582,7 +1637,7 @@ VALUES(@BookingID, @RoomID, @CheckIn, @CheckOut, @Price, NULL);", conn, tran))
         private void UpdateRoomStatus(SqlConnection conn, SqlTransaction tran, string roomCode, string status)
         {
             if (string.IsNullOrWhiteSpace(roomCode)) return;
-            using (var cmd = new SqlCommand("UPDATE dbo.Room SET Status = @Status WHERE RoomID = @RoomID", conn, tran))
+            using (var cmd = new SqlCommand("UPDATE dbo.Rooms SET Status = @Status WHERE RoomId = @RoomID", conn, tran))
             {
                 cmd.Parameters.AddWithValue("@RoomID", roomCode);
                 cmd.Parameters.AddWithValue("@Status", status);
@@ -1607,6 +1662,50 @@ VALUES(@BookingID, @RoomID, @CheckIn, @CheckOut, @Price, NULL);", conn, tran))
         private void dtpGioBatDau_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        // === VALIDATION HELPER METHODS ===
+
+        /// <summary>
+        /// Kiểm tra họ tên hợp lệ - chỉ chứa chữ cái (bao gồm tiếng Việt) và khoảng trắng
+        /// </summary>
+        private bool IsValidName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) return false;
+            // Cho phép chữ cái Unicode (bao gồm tiếng Việt), khoảng trắng và dấu
+            return Regex.IsMatch(name.Trim(), @"^[\p{L}\s]+$");
+        }
+
+        /// <summary>
+        /// Kiểm tra CCCD hợp lệ - chỉ chứa số và đúng 12 ký tự
+        /// </summary>
+        private bool IsValidCCCD(string cccd)
+        {
+            if (string.IsNullOrWhiteSpace(cccd)) return false;
+            string cleaned = cccd.Trim();
+            // CCCD Việt Nam có 12 số
+            return Regex.IsMatch(cleaned, @"^\d{12}$");
+        }
+
+        /// <summary>
+        /// Kiểm tra số điện thoại hợp lệ - chỉ chứa số, dấu + và khoảng trắng
+        /// </summary>
+        private bool IsValidPhone(string phone)
+        {
+            if (string.IsNullOrWhiteSpace(phone)) return false;
+            // Cho phép số, dấu +, khoảng trắng và dấu gạch ngang
+            return Regex.IsMatch(phone.Trim(), @"^[\d\s\+\-]+$");
+        }
+
+        /// <summary>
+        /// Kiểm tra email hợp lệ theo chuẩn RFC 5322
+        /// </summary>
+        private bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email)) return false;
+            // Pattern email chuẩn
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            return Regex.IsMatch(email.Trim(), pattern, RegexOptions.IgnoreCase);
         }
     }
 }

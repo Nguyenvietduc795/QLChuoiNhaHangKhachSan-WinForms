@@ -255,10 +255,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 using (var conn = new SqlConnection(connStr))
                 using (var cmd = new SqlCommand(@"SELECT c.FullName, d.CheckIn, d.CheckOut
-    FROM dbo.BookingDetail d
-    JOIN dbo.Booking b ON d.BookingID = b.BookingID
-    JOIN dbo.Customer c ON b.CustomerID = c.CustomerID
-    WHERE d.RoomID = @RoomID AND d.CheckIn <= @RefTime AND d.CheckOut > @RefTime", conn))
+    FROM dbo.BookingDetails d
+    JOIN dbo.HotelBookings b ON d.BookingId = b.BookingId
+    JOIN dbo.Customers c ON b.CustomerId = c.CustomerId
+    WHERE d.RoomId = @RoomID AND b.Status NOT IN (N'Paid', N'Cancelled') AND d.CheckIn <= @RefTime AND d.CheckOut > @RefTime", conn))
                 {
                     cmd.Parameters.AddWithValue("@RoomID", roomCode);
                     cmd.Parameters.AddWithValue("@RefTime", referenceTime);
@@ -419,10 +419,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
     private int GetActiveBookingId(SqlConnection conn, SqlTransaction tran, string roomId)
     {
-        string findSql = @"SELECT TOP 1 b.BookingID
-                           FROM dbo.Booking b
-                           JOIN dbo.BookingDetail d ON b.BookingID = d.BookingID
-                           WHERE d.RoomID = @RoomID AND b.Status NOT IN (N'Paid', N'Cancelled')
+        string findSql = @"SELECT TOP 1 b.BookingId
+                           FROM dbo.HotelBookings b
+                           JOIN dbo.BookingDetails d ON b.BookingId = d.BookingId
+                           WHERE d.RoomId = @RoomID AND b.Status NOT IN (N'Paid', N'Cancelled')
                            ORDER BY b.CreatedDate DESC";
         using (var cmd = new SqlCommand(findSql, conn, tran))
         {
@@ -437,7 +437,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
     {
         if (bookingId <= 0) return;
         // simple strategy: clear then re-insert
-        using (var del = new SqlCommand("DELETE FROM dbo.BookingService WHERE BookingID = @BID", conn, tran))
+        using (var del = new SqlCommand("DELETE FROM dbo.BookingServices WHERE BookingID = @BID", conn, tran))
         {
             del.Parameters.AddWithValue("@BID", bookingId);
             del.ExecuteNonQuery();
@@ -445,7 +445,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         if (services == null || services.Count == 0) return;
         foreach (var s in services)
         {
-            using (var ins = new SqlCommand(@"INSERT INTO dbo.BookingService(BookingID, ServiceName, Quantity, UnitPrice, TotalAmount)
+            using (var ins = new SqlCommand(@"INSERT INTO dbo.BookingServices(BookingID, ServiceName, Quantity, UnitPrice, TotalAmount)
 VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
             {
                 ins.Parameters.AddWithValue("@BID", bookingId);
@@ -637,10 +637,10 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                         int foundBookingId = 0;
                         // Sửa câu truy vấn để chắc chắn tìm ra booking gần nhất chưa thanh toán
                         string findSql = @"
-                    SELECT TOP 1 b.BookingID 
-                    FROM dbo.Booking b
-                    JOIN dbo.BookingDetail d ON b.BookingID = d.BookingID
-                    WHERE d.RoomID = @RoomID 
+                    SELECT TOP 1 b.BookingId 
+                    FROM dbo.HotelBookings b
+                    JOIN dbo.BookingDetails d ON b.BookingId = d.BookingId
+                    WHERE d.RoomId = @RoomID 
                       AND b.Status NOT IN (N'Paid', N'Cancelled') 
                     ORDER BY b.CreatedDate DESC";
 
@@ -656,7 +656,7 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                         if (foundBookingId > 0)
                         {
                             // Cập nhật Booking thành Paid
-                            using (var upd = new SqlCommand("UPDATE dbo.Booking SET Status = N'Paid' WHERE BookingID = @BID", conn, tran))
+                            using (var upd = new SqlCommand("UPDATE dbo.HotelBookings SET Status = N'Paid' WHERE BookingId = @BID", conn, tran))
                             {
                                 upd.Parameters.AddWithValue("@BID", foundBookingId);
                                 upd.ExecuteNonQuery();
@@ -691,7 +691,7 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                         }
 
                         // 5. Quan trọng: Trả phòng về trạng thái "Phòng Trống"
-                        using (var cmd = new SqlCommand("UPDATE dbo.Room SET Status = N'Phòng Trống' WHERE RoomID = @RoomID", conn, tran))
+                        using (var cmd = new SqlCommand("UPDATE dbo.Rooms SET Status = N'Phòng Trống' WHERE RoomId = @RoomID", conn, tran))
                         {
                             cmd.Parameters.AddWithValue("@RoomID", labMaphong.Text.Trim());
                             cmd.ExecuteNonQuery();
@@ -718,7 +718,7 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
             if (string.IsNullOrWhiteSpace(connStr)) return;
 
             using (var conn = new SqlConnection(connStr))
-            using (var cmd = new SqlCommand("UPDATE dbo.Room SET Status = @Status WHERE RoomID = @RoomID", conn))
+            using (var cmd = new SqlCommand("UPDATE dbo.Rooms SET Status = @Status WHERE RoomId = @RoomID", conn))
             {
                 cmd.Parameters.AddWithValue("@RoomID", roomCode);
                 cmd.Parameters.AddWithValue("@Status", status);
@@ -887,7 +887,7 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                             int customerId = 0;
                             if (!string.IsNullOrWhiteSpace(this.TenKhach))
                             {
-                                using (var cmd = new SqlCommand("SELECT TOP 1 CustomerID FROM dbo.Customer WHERE FullName = @Name", conn, tran))
+                                using (var cmd = new SqlCommand("SELECT TOP 1 CustomerId FROM dbo.Customers WHERE FullName = @Name", conn, tran))
                                 {
                                     cmd.Parameters.AddWithValue("@Name", this.TenKhach);
                                     var obj = cmd.ExecuteScalar();
@@ -897,7 +897,7 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
 
                             if (customerId == 0 && !string.IsNullOrWhiteSpace(this.TenKhach))
                             {
-                                using (var cmd = new SqlCommand(@"INSERT INTO dbo.Customer(FullName) VALUES(@Name); SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, tran))
+                                using (var cmd = new SqlCommand(@"INSERT INTO dbo.Customers(FullName) VALUES(@Name); SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, tran))
                                 {
                                     cmd.Parameters.AddWithValue("@Name", this.TenKhach);
                                     var obj = cmd.ExecuteScalar();
@@ -931,7 +931,7 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
                                 }
 
                                 decimal appliedPrice = GetRoomPrice();
-                                using (var cmd = new SqlCommand(@"INSERT INTO dbo.BookingDetail(BookingID, RoomID, CheckIn, CheckOut, AppliedPrice, Note)
+                                using (var cmd = new SqlCommand(@"INSERT INTO dbo.BookingDetails(BookingID, RoomID, CheckIn, CheckOut, AppliedPrice, Note)
     VALUES(@BookingID, @RoomID, @CheckIn, @CheckOut, @Price, NULL);", conn, tran))
                                 {
                                     cmd.Parameters.AddWithValue("@BookingID", bookingId);
@@ -955,7 +955,7 @@ VALUES(@BID, @Name, @Qty, @Price, @Total)", conn, tran))
 
                                 // update booking detail time/price
                                 decimal appliedPrice = GetRoomPrice();
-                                using (var cmd = new SqlCommand(@"UPDATE dbo.BookingDetail
+                                using (var cmd = new SqlCommand(@"UPDATE dbo.BookingDetails
 SET CheckIn=@CheckIn, CheckOut=@CheckOut, AppliedPrice=@Price
 WHERE BookingID=@BookingID AND RoomID=@RoomID", conn, tran))
                                 {
@@ -969,7 +969,7 @@ WHERE BookingID=@BookingID AND RoomID=@RoomID", conn, tran))
                             }
 
                             // Update room status in DB
-                            using (var cmd = new SqlCommand("UPDATE dbo.Room SET Status = @Status WHERE RoomID = @RoomID", conn, tran))
+                            using (var cmd = new SqlCommand("UPDATE dbo.Rooms SET Status = @Status WHERE RoomId = @RoomID", conn, tran))
                             {
                                 cmd.Parameters.AddWithValue("@Status", string.IsNullOrWhiteSpace(SelectedStatus) ? (object)"Đặt" : SelectedStatus);
                                 cmd.Parameters.AddWithValue("@RoomID", labMaphong.Text);
@@ -1323,12 +1323,11 @@ WHERE BookingID=@BookingID AND RoomID=@RoomID", conn, tran))
                     using (var tran = conn.BeginTransaction())
                     {
                         // Use a single T-SQL batch to capture affected BookingIDs, delete details, update empty bookings and set room status.
-                        var sql = @"
-DECLARE @Start DATETIME = @pStart;
+                        var sql = @"DECLARE @Start DATETIME = @pStart;
 DECLARE @End DATETIME = @pEnd;
 CREATE TABLE #AffectedBookings(BookingID INT PRIMARY KEY);
 INSERT INTO #AffectedBookings(BookingID)
-SELECT DISTINCT BookingID FROM dbo.BookingDetail
+SELECT DISTINCT BookingID FROM dbo.BookingDetails
 WHERE RoomID = @pRoomID
 AND (
     -- overlapping
@@ -1340,32 +1339,31 @@ AND (
 IF EXISTS(SELECT 1 FROM #AffectedBookings)
 BEGIN
     DELETE d
-    FROM dbo.BookingDetail d
+    FROM dbo.BookingDetails d
     JOIN #AffectedBookings a ON d.BookingID = a.BookingID
     WHERE d.RoomID = @pRoomID
       AND (
         (d.CheckIn < @End AND d.CheckOut > @Start)
         OR (d.CheckIn >= @Start AND d.CheckIn < @End)
-        OR (d.CheckOut > @Start AND d.CheckOut <= @End)
+        OR (d.CheckOut > @Start && d.CheckOut <= @End)
       );
 
     -- For any booking that now has no details, mark Cancelled
     UPDATE b
     SET b.Status = N'Cancelled'
-    FROM dbo.Booking b
+    FROM dbo.HotelBookings b
     JOIN #AffectedBookings a ON b.BookingID = a.BookingID
-    WHERE NOT EXISTS (SELECT 1 FROM dbo.BookingDetail d WHERE d.BookingID = b.BookingID);
+    WHERE NOT EXISTS (SELECT 1 FROM dbo.BookingDetails d WHERE d.BookingID = b.BookingID);
 
     -- Set room status to Phòng Trống
-    UPDATE dbo.Room SET Status = @pStatus WHERE RoomID = @pRoomID;
+    UPDATE dbo.Rooms SET Status = @pStatus WHERE RoomID = @pRoomID;
 
     SELECT 1 AS RowsAffected;
 END
 ELSE
 BEGIN
     SELECT 0 AS RowsAffected;
-END
-";
+END";
 
                         using (var cmd = new SqlCommand(sql, conn, tran))
                         {
@@ -1411,9 +1409,9 @@ END
                     guna2DataGridView2.Rows.Clear();
 
                     string sqlGetID = @"SELECT TOP 1 BookingID 
-                                FROM dbo.BookingDetail 
+                                FROM dbo.BookingDetails 
                                 WHERE RoomID = @RoomID 
-                                AND BookingID IN (SELECT BookingID FROM dbo.Booking WHERE Status NOT IN (N'Paid', N'Cancelled'))";
+                                AND BookingID IN (SELECT BookingID FROM dbo.HotelBookings WHERE Status NOT IN (N'Paid', N'Cancelled'))";
 
                     int bookingId = 0;
                     using (var cmd = new SqlCommand(sqlGetID, conn))
@@ -1425,7 +1423,7 @@ END
 
                     if (bookingId > 0)
                     {
-                        string sqlSvc = "SELECT ServiceName, UnitPrice, Quantity FROM dbo.BookingService WHERE BookingID = @BID";
+                        string sqlSvc = "SELECT ServiceName, UnitPrice, Quantity FROM dbo.BookingServices WHERE BookingID = @BID";
                         using (var cmd = new SqlCommand(sqlSvc, conn))
                         {
                             cmd.Parameters.AddWithValue("@BID", bookingId);
