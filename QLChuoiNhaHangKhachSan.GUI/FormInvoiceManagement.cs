@@ -1,22 +1,27 @@
-﻿using System;
+﻿using Guna.UI2.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using System.Globalization;
-using System.IO;
-using System.Drawing.Printing;
-using Guna.UI2.WinForms;
+using static QLChuoiNhaHangKhachSan.GUI.FormPayments;
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
     public partial class FormInvoiceManagement : Form
     {
+        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["MyConn"]?.ConnectionString
+            ?? @"Data Source=LAPTOP-JF845UR9\SQLEXPRESS02;Initial Catalog=QuanLyChuoiNhaHangKhachSan;Integrated Security=True";
         // Printing helpers
         private PrintDocument _printDocument;
         private string _printContent;
@@ -74,21 +79,18 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // Wire status filter buttons (Design area)
             WireStatusFilterButtons();
 
+            // Disable hover visuals for action + filter buttons so nothing changes on mouse-over.
+            // Visuals will update only on click (SetActiveFilterButton / click handlers).
+            DisableHoverVisuals(
+                btnPrintInvoice, btnExportExcel, btnDeleteInvoice, btnFix, btnRemove,
+                gnbtnALL, gnbtnDont, gnbtnDone, gnbtnOverdue
+            );
+
             // Clear existing rows (designer created columns are used)
             dgvTransaction.Rows.Clear();
 
-            // Sample data — replace with DB/API later
-            AddTransaction("INV-001", "Nguyễn Văn A", new DateTime(2025, 12, 19), 1250000m, "Hoàn thành", "Tiền Mặt");
-            AddTransaction("INV-002", "Trần Thị B", new DateTime(2025, 12, 20), 450000m, "Đang chờ", "Thẻ");
-            AddTransaction("INV-003", "Lê Văn C", new DateTime(2025, 12, 21), 230000m, "Hoàn thành", "MoMo");
-            AddTransaction("INV-004", "Phạm Thị D", new DateTime(2025, 12, 16), 780000m, "Không thành công", "Tiền Mặt");
-            AddTransaction("INV-005", "Hoàng Văn E", new DateTime(2025, 12, 10), 950000m, "Đang chờ", "Thẻ");
-
-            AddTransaction("INV-006", "Lữ Nhựt Linh", new DateTime(2025, 12, 1), 950000m, "Đang chờ", "MoMo");
-            AddTransaction("INV-007", "Hứa Mỹ Lam", new DateTime(2025, 12, 9), 950000m, "Hoàn thành", "Tiền Mặt");
-            AddTransaction("INV-008", "Nguyễn Thị Hồng Gấm", new DateTime(2025, 12, 8), 950000m, "Không thành công", "Thẻ");
-            AddTransaction("INV-009", "Nguyễn Trường Phi", new DateTime(2025, 12, 7), 950000m, "Hoàn thành", "MoMo");
-            AddTransaction("INV-010", "Lâm Trí Tùa", new DateTime(2025, 12, 29), 950000m, "Hoàn thành", "Tiền Mặt");
+            // Load actual data from DB
+            LoadDataFromDB();
 
             // No row selected by default
             dgvTransaction.ClearSelection();
@@ -108,6 +110,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // Apply default filter state (All)
             ApplyStatusFilter(row => true);
             SetActiveFilterButton(gnbtnALL);
+
+            // Subscribe to cross-form notifications
+            try
+            {
+                NotificationCenter.InvoiceChanged += NotificationCenter_InvoiceChanged;
+                this.FormClosing += FormInvoiceManagement_FormClosing;
+            }
+            catch { }
         }
 
         private void EnsurePaymentMethodColumn()
@@ -122,6 +132,49 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     Visible = false
                 };
                 dgvTransaction.Columns.Add(col);
+            }
+        }
+
+        private void LoadDataFromDB()
+        {
+            try
+            {
+                dgvTransaction.Rows.Clear();
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    // Sử dụng Procedure đã tạo trong Database
+                    using (SqlCommand cmd = new SqlCommand("sp_GetAllInvoices", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        conn.Open();
+                        using (SqlDataReader rdr = cmd.ExecuteReader())
+                        {
+                            while (rdr.Read())
+                            {
+                                // Lấy dữ liệu từ Database
+                                string id = rdr["InvoiceID"].ToString();
+                                string customer = rdr["CustomerName"].ToString();
+
+                                // HIỆN GIỜ BỰ RÕ: dd/MM/yyyy HH:mm:ss
+                                DateTime dateValue = Convert.ToDateTime(rdr["InvoiceDate"]);
+                                string dateFormatted = dateValue.ToString("dd/MM/yyyy HH:mm:ss");
+
+                                decimal amount = Convert.ToDecimal(rdr["Amount"]);
+                                // Thêm System.Globalization để hết lỗi CultureInfo
+                                string amountText = amount.ToString("N0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) + " ₫";
+                                string status = rdr["StatusName"].ToString();
+
+                                // SỬA LỖI CS0103: Thêm trực tiếp vào Grid, không dùng biến 'row' rời rạc bên ngoài
+                                dgvTransaction.Rows.Add(id, customer, dateFormatted, amountText, status);
+                            }
+                        }
+                    }
+                }
+                UpdateChartFromGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi nạp dữ liệu: " + ex.Message);
             }
         }
 
@@ -231,20 +284,27 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 var statusText = e.Value.ToString().Trim();
 
-                // Normalize only three statuses: "Đang chờ", "Hoàn thành", "Không thành công"
-                if (string.Equals(statusText, "Đang chờ", StringComparison.OrdinalIgnoreCase) ||
-                    string.Equals(statusText, "Dang cho", StringComparison.OrdinalIgnoreCase))
-                {
-                    e.CellStyle.BackColor = Color.Gold;
-                    e.CellStyle.ForeColor = Color.Black;
-                }
-                else if (string.Equals(statusText, "Hoàn thành", StringComparison.OrdinalIgnoreCase) ||
-                         string.Equals(statusText, "Hoan thanh", StringComparison.OrdinalIgnoreCase))
+                // Support both giao dịch và hóa đơn trạng thái
+                if (statusText.Equals("Đã thu tiền", StringComparison.OrdinalIgnoreCase) ||
+                    statusText.Equals("Hoàn thành", StringComparison.OrdinalIgnoreCase) ||
+                    statusText.Equals("Hoan thanh", StringComparison.OrdinalIgnoreCase))
                 {
                     e.CellStyle.BackColor = Color.FromArgb(233, 255, 248);
                     e.CellStyle.ForeColor = Color.FromArgb(0, 122, 78);
                 }
-                else // anything else treated as "Không thành công"
+                else if (statusText.Equals("Chưa thu tiền", StringComparison.OrdinalIgnoreCase) ||
+                         statusText.Equals("Đang chờ", StringComparison.OrdinalIgnoreCase) ||
+                         statusText.Equals("Dang cho", StringComparison.OrdinalIgnoreCase))
+                {
+                    e.CellStyle.BackColor = Color.Gold;
+                    e.CellStyle.ForeColor = Color.Black;
+                }
+                else if (statusText.Equals("Quá hạn", StringComparison.OrdinalIgnoreCase))
+                {
+                    e.CellStyle.BackColor = Color.IndianRed;
+                    e.CellStyle.ForeColor = Color.White;
+                }
+                else // anything else treated as thất bại
                 {
                     e.CellStyle.BackColor = Color.LightCoral;
                     e.CellStyle.ForeColor = Color.White;
@@ -612,34 +672,32 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 return;
             }
 
-            // Compose printable content with larger layout to better fit the preview window/page
-            var sb = new StringBuilder();
-            sb.AppendLine("CHI TIẾT HÓA ĐƠN");
-            sb.AppendLine("----------------------------");
-            sb.AppendLine("Mã Hóa Đơn: " + (row.Cells["dgvInvoiceID"]?.Value?.ToString() ?? ""));
-            sb.AppendLine("Khách Hàng: " + (row.Cells["dgvCustomer"]?.Value?.ToString() ?? ""));
-            sb.AppendLine("Ngày: " + (row.Cells["dvgDate"]?.Value?.ToString() ?? ""));
-            sb.AppendLine("Số Tiền: " + (row.Cells["dgvAmount"]?.Value?.ToString() ?? ""));
-            sb.AppendLine("Trạng Thái: " + (row.Cells["dgvStatus"]?.Value?.ToString() ?? ""));
-            if (dgvTransaction.Columns["PaymentMethod"] != null)
-                sb.AppendLine("Phương Thức: " + (row.Cells["PaymentMethod"]?.Value?.ToString() ?? ""));
+            // Read main fields
+            var invoiceId = row.Cells["dgvInvoiceID"]?.Value?.ToString() ?? "";
+            var customer = row.Cells["dgvCustomer"]?.Value?.ToString() ?? "";
+            var date = row.Cells["dvgDate"]?.Value?.ToString() ?? "";
+            var amount = row.Cells["dgvAmount"]?.Value?.ToString() ?? "";
+            var status = row.Cells["dgvStatus"]?.Value?.ToString() ?? "";
+            var payment = dgvTransaction.Columns["PaymentMethod"] != null ? row.Cells["PaymentMethod"]?.Value?.ToString() : "";
 
-            _printContent = sb.ToString();
+            // Collect items from the invoice row(s) if you store them somewhere.
+            // In this implementation we don't have detailed line-items in the invoice grid,
+            // so we create a single line representing the invoice. If you have a data source
+            // for invoice lines, populate 'items' from that source instead.
+            var items = new List<Tuple<string, int, decimal, decimal>>();
 
-            // Print preview
-            using (var preview = new PrintPreviewDialog())
+            // If you have a convention to include items in hidden columns or related store, extract them.
+            // Fallback: add a single summary row.
+            decimal parsedAmount = ParseFormattedAmount(amount);
+            items.Add(Tuple.Create("Tổng hóa đơn", 1, parsedAmount, parsedAmount));
+
+            // Create and populate the Bill form
+            using (var bill = new frmBill())
             {
-                preview.Document = _printDocument;
-                preview.Width = 1500;
-                preview.Height = 1200;
-                try
-                {
-                    preview.ShowDialog(this);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi mở xem trước in: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                bill.PopulateFromInvoice(invoiceId, customer, date, amount, status, payment, items);
+                // Center and show as modal dialog. frmBill handles its own print/preview button.
+                bill.StartPosition = FormStartPosition.CenterParent;
+                bill.ShowDialog(this);
             }
         }
 
@@ -759,66 +817,133 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void BtnDeleteInvoice_Click(object sender, EventArgs e)
         {
-            var row = GetSelectedRow();
-            if (row == null)
+            // Lấy dòng đang được chọn
+            var rowSelected = GetSelectedRow();
+            if (rowSelected == null)
             {
-                MessageBox.Show("Vui lòng chọn một hóa đơn để hủy.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng chọn một hóa đơn để hủy.", "Thông báo");
                 return;
             }
 
-            var invoiceId = row.Cells["dgvInvoiceID"]?.Value?.ToString() ?? "";
+            string invoiceId = rowSelected.Cells["dgvInvoiceID"].Value.ToString();
             var confirm = MessageBox.Show($"Bạn có chắc muốn hủy hóa đơn '{invoiceId}' không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (confirm != DialogResult.Yes) return;
 
-            try
+            if (confirm == DialogResult.Yes)
             {
-                dgvTransaction.Rows.Remove(row);
-                UpdateChartFromGrid();
-                MessageBox.Show("Đã hủy hóa đơn.", "Hoàn tất", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Không thể hủy hóa đơn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection(_connectionString))
+                    {
+                        using (SqlCommand cmd = new SqlCommand("sp_DeleteInvoice", conn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@id", invoiceId);
+                            conn.Open();
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    // Load lại dữ liệu để cập nhật Grid và thông báo thành công
+                    LoadDataFromDB();
+                    CustomMessageBox.Show("Xóa thành công!", this); //
+                    try { NotificationCenter.RaiseInvoiceChanged(); } catch { }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi hệ thống: " + ex.Message);
+                }
             }
         }
 
         // Edit button handler (details panel) - opens modal edit form and applies changes to the selected row
         private void BtnFix_Click(object sender, EventArgs e)
         {
+            // 1. Kiểm tra xem người dùng đã chọn hóa đơn nào chưa
             var row = GetSelectedRow();
             if (row == null)
             {
-                MessageBox.Show("Vui lòng chọn một hóa đơn để sửa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng chọn một hóa đơn từ danh sách để sửa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            var id = row.Cells["dgvInvoiceID"]?.Value?.ToString() ?? "";
-            var customer = row.Cells["dgvCustomer"]?.Value?.ToString() ?? "";
+            // 2. Lấy dữ liệu hiện tại từ dòng đang chọn để đưa lên Form sửa
+            string id = row.Cells["dgvInvoiceID"].Value?.ToString() ?? "";
+            string customer = row.Cells["dgvCustomer"].Value?.ToString() ?? "";
+            string status = row.Cells["dgvStatus"].Value?.ToString() ?? "";
+
+            // Xử lý lấy ngày tháng (bao gồm cả giờ phút nếu có)
             DateTime dateVal = DateTime.Today;
-            var dateText = row.Cells["dvgDate"]?.Value?.ToString() ?? "";
-            if (!DateTime.TryParseExact(dateText, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateVal))
+            string dateText = row.Cells["dvgDate"].Value?.ToString() ?? "";
+            if (!DateTime.TryParseExact(dateText, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateVal))
             {
                 DateTime.TryParse(dateText, CultureInfo.GetCultureInfo("vi-VN"), DateTimeStyles.None, out dateVal);
             }
-            var amount = ParseFormattedAmount(row.Cells["dgvAmount"]?.Value?.ToString() ?? "0");
-            var status = row.Cells["dgvStatus"]?.Value?.ToString() ?? "";
-            var payment = dgvTransaction.Columns["PaymentMethod"] != null ? row.Cells["PaymentMethod"]?.Value?.ToString() : "";
 
-            using (var edit = new FormInvoiceEdit(id, customer, dateVal, amount, status, payment))
+            // Xử lý lấy số tiền (loại bỏ chữ ₫ và dấu chấm phân cách)
+            decimal amount = ParseFormattedAmount(row.Cells["dgvAmount"].Value?.ToString() ?? "0");
+
+            // Lấy phương thức thanh toán (từ cột ẩn nếu có)
+            string payment = dgvTransaction.Columns["PaymentMethod"] != null ? row.Cells["PaymentMethod"].Value?.ToString() : "Tiền Mặt";
+
+            // 3. Hiển thị Form sửa hóa đơn
+            using (var editForm = new FormInvoiceEdit(id, customer, dateVal, amount, status, payment))
             {
-                var dr = edit.ShowDialog(this);
-                if (dr == DialogResult.OK)
+                if (editForm.ShowDialog(this) == DialogResult.OK)
                 {
-                    // Apply changes back to row
-                    row.Cells["dgvCustomer"].Value = edit.Customer;
-                    row.Cells["dvgDate"].Value = edit.Date.ToString("dd/MM/yyyy");
-                    row.Cells["dgvAmount"].Value = edit.Amount.ToString("N0", CultureInfo.GetCultureInfo("vi-VN")) + " ₫";
-                    row.Cells["dgvStatus"].Value = edit.Status;
-                    if (dgvTransaction.Columns["PaymentMethod"] != null)
-                        row.Cells["PaymentMethod"].Value = edit.PaymentMethod;
+                    try
+                    {
+                        // 4. Lưu thay đổi vào Database thông qua Stored Procedure
+                        using (SqlConnection conn = new SqlConnection(_connectionString))
+                        {
+                            conn.Open();
+                            using (var trans = conn.BeginTransaction())
+                            {
+                                try
+                                {
+                                    // Update Invoices via stored procedure
+                                    using (SqlCommand cmd = new SqlCommand("sp_UpdateInvoice", conn, trans))
+                                    {
+                                        cmd.CommandType = CommandType.StoredProcedure;
+                                        cmd.Parameters.AddWithValue("@id", editForm.InvoiceId);
+                                        cmd.Parameters.AddWithValue("@name", editForm.Customer);
+                                        cmd.Parameters.AddWithValue("@amount", editForm.Amount);
+                                        cmd.Parameters.AddWithValue("@statusName", editForm.Status);
+                                        cmd.ExecuteNonQuery();
+                                    }
 
-                    UpdateChartFromGrid();
-                    MessageBox.Show("Đã cập nhật hóa đơn.", "Hoàn tất", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    // Đồng bộ Transactions để FormPayments không mất dòng
+                                    using (SqlCommand cmdTrans = new SqlCommand(@"UPDATE Transactions
+                                                                  SET CustomerName = @name,
+                                                                      Amount = @amount,
+                                                                      StatusID = @statusID
+                                                                  WHERE InvoiceID = @id", conn, trans))
+                                    {
+                                        cmdTrans.Parameters.AddWithValue("@id", editForm.InvoiceId);
+                                        cmdTrans.Parameters.AddWithValue("@name", editForm.Customer);
+                                        cmdTrans.Parameters.AddWithValue("@amount", editForm.Amount);
+                                        cmdTrans.Parameters.AddWithValue("@statusID", MapStatusToId(editForm.Status));
+                                        cmdTrans.ExecuteNonQuery();
+                                    }
+
+                                    trans.Commit();
+                                }
+                                catch
+                                {
+                                    try { trans.Rollback(); } catch { }
+                                    throw;
+                                }
+                            }
+                        }
+
+                        // 5. CẬP NHẬT LẠI GIAO DIỆN FORM CHÍNH
+                        RefreshGridAndKeepRowVisible(id);
+
+                        MessageBox.Show($"Cập nhật hóa đơn {id} thành công!", "Hoàn tất", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        try { NotificationCenter.RaiseInvoiceChanged(); } catch { }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi lưu vào Database: " + ex.Message, "Lỗi hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -950,6 +1075,60 @@ namespace QLChuoiNhaHangKhachSan.GUI
             return !IsPaidRow(row);
         }
 
+        private void RefreshGridAndKeepRowVisible(string invoiceId)
+        {
+            LoadDataFromDB();
+
+            // Re-apply the active status filter so the UI stays consistent
+            if (IsButtonActive(gnbtnDont)) ApplyStatusFilter(IsUnpaidRow);
+            else if (IsButtonActive(gnbtnDone)) ApplyStatusFilter(IsPaidRow);
+            else if (IsButtonActive(gnbtnOverdue)) ApplyStatusFilter(IsOverdueRow);
+            else
+            {
+                ApplyStatusFilter(row => true);
+                SetActiveFilterButton(gnbtnALL);
+            }
+
+            // Try to keep the edited invoice visible/selected. If it was hidden by a filter,
+            // fall back to the "All" view so the user can still see it.
+            if (!TrySelectRowById(invoiceId))
+            {
+                ApplyStatusFilter(row => true);
+                SetActiveFilterButton(gnbtnALL);
+                TrySelectRowById(invoiceId);
+            }
+        }
+
+        private bool TrySelectRowById(string invoiceId)
+        {
+            if (string.IsNullOrWhiteSpace(invoiceId) || dgvTransaction == null) return false;
+
+            foreach (DataGridViewRow r in dgvTransaction.Rows)
+            {
+                if (r.IsNewRow) continue;
+
+                var idVal = r.Cells["dgvInvoiceID"]?.Value?.ToString();
+                if (string.Equals(idVal, invoiceId, StringComparison.OrdinalIgnoreCase))
+                {
+                    if (!r.Visible) return false;
+
+                    dgvTransaction.ClearSelection();
+                    r.Selected = true;
+                    for (int i = 0; i < r.Cells.Count; i++)
+                    {
+                        if (r.Cells[i].Visible)
+                        {
+                            dgvTransaction.CurrentCell = r.Cells[i];
+                            break;
+                        }
+                    }
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         // Visual state for filter buttons (simple active style)
         private void SetActiveFilterButton(Guna2Button active)
         {
@@ -965,6 +1144,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
             active.ForeColor = Color.White;
             active.BorderThickness = 0;
             active.Font = new Font(active.Font, FontStyle.Bold);
+
+            // ensure hover state won't override the active look
+            SyncHoverStateWithCurrent(active);
         }
 
         private bool IsButtonActive(Guna2Button btn)
@@ -986,11 +1168,143 @@ namespace QLChuoiNhaHangKhachSan.GUI
             else if (btn == gnbtnOverdue) btn.BorderColor = Color.Maroon;
             else btn.BorderColor = Color.FromArgb(26, 31, 51);
             btn.Font = new Font(btn.Font, FontStyle.Bold);
+
+            // ensure hover state synced so hovering does not change appearance
+            SyncHoverStateWithCurrent(btn);
         }
 
         private void btnRemove_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnPrintInvoice_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExportExcel_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        // -------------------------------------------------------------------------
+
+        // -------------------- New: helpers to disable hover visuals -----------------
+        // The goal: prevent any hover visual change for specified Guna2Buttons.
+        // They will remain visually unchanged when the mouse moves over them;
+        // only clicks (which call SetActiveFilterButton / click handlers) change appearance.
+
+        private void DisableHoverVisuals(params Guna2Button[] buttons)
+        {
+            if (buttons == null) return;
+            foreach (var btn in buttons)
+            {
+                if (btn == null) continue;
+
+                // Remove previous handlers to avoid duplicate subscriptions
+                btn.MouseEnter -= Btn_NoHover_MouseEnter;
+                btn.MouseMove -= Btn_NoHover_MouseEnter;
+                btn.MouseLeave -= Btn_NoHover_MouseLeave;
+
+                // Attach handlers that keep hover state equal to the current state
+                btn.MouseEnter += Btn_NoHover_MouseEnter;
+                btn.MouseMove += Btn_NoHover_MouseEnter;
+                btn.MouseLeave += Btn_NoHover_MouseLeave;
+
+                // initial sync so designer hover settings don't show
+                SyncHoverStateWithCurrent(btn);
+
+                btn.PressedColor = btn.FillColor;
+            }
+        }
+
+
+        private void Btn_NoHover_MouseEnter(object sender, EventArgs e)
+        {
+            var b = sender as Guna2Button;
+            if (b == null) return;
+
+            try
+            {
+                // Keep HoverState colors in sync with the current visual state.
+                // Some Guna versions expose FillColor/ForeColor/BorderColor on HoverState
+                // but do NOT expose BorderThickness on ButtonState — avoid accessing it.
+                b.HoverState.FillColor = b.FillColor;
+                b.HoverState.ForeColor = b.ForeColor;
+                b.HoverState.BorderColor = b.BorderColor;
+            }
+            catch
+            {
+                // If HoverState properties are not available (different Guna version),
+                // silently ignore to preserve runtime stability.
+            }
+            try
+            {
+                // Keep HoverState colors in sync with the current visual state.
+                // Some Guna versions expose FillColor/ForeColor/BorderColor on HoverState
+                // but do NOT expose BorderThickness on ButtonState — avoid accessing it.
+                b.HoverState.FillColor = b.FillColor;
+                b.HoverState.ForeColor = b.ForeColor;
+                b.HoverState.BorderColor = b.BorderColor;
+            }
+            catch
+            {
+                // If HoverState properties are not available (different Guna version),
+                // silently ignore to preserve runtime stability.
+            }
+            }
+
+        private void Btn_NoHover_MouseLeave(object sender, EventArgs e)
+        {
+            var b = sender as Guna2Button;
+            if (b == null) return;
+            // re-sync on leave as well
+            b.HoverState.FillColor = b.FillColor;
+            b.HoverState.ForeColor = b.ForeColor;
+            b.HoverState.BorderColor = b.BorderColor;
+        }
+
+        private void SyncHoverStateWithCurrent(Guna2Button b)
+        {
+            if (b == null) return;
+            b.HoverState.FillColor = b.FillColor;
+            b.HoverState.ForeColor = b.ForeColor;
+            b.HoverState.BorderColor = b.BorderColor;
+        }
+        
+        private int MapStatusToId(string status)
+        {
+            if (string.IsNullOrWhiteSpace(status)) return 2; // pending default
+            var s = status.Trim().ToLowerInvariant();
+            if (s.Contains("đã thu") || s.Contains("da thu") || s.Contains("hoàn")) return 1; // success
+            if (s.Contains("quá hạn") || s.Contains("qua han")) return 3; // overdue/fail
+            if (s.Contains("không") || s.Contains("khong")) return 3; // explicit fail
+            if (s.Contains("chưa thu") || s.Contains("chua thu") || s.Contains("đang chờ") || s.Contains("dang cho")) return 2; // pending
+            return 2; // default pending
+        }
+        // --- NotificationCenter handlers ---
+        private void NotificationCenter_InvoiceChanged(object sender, EventArgs e)
+        {
+            if (!this.IsHandleCreated) return;
+            try
+            {
+                this.BeginInvoke(new Action(() =>
+                {
+                    try
+                    {
+                        LoadDataFromDB();
+                        UpdateChartFromGrid();
+                    }
+                    catch { }
+                }));
+            }
+            catch { }
+        }
+
+        private void FormInvoiceManagement_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try { NotificationCenter.InvoiceChanged -= NotificationCenter_InvoiceChanged; } catch { }
         }
 
         // -------------------------------------------------------------------------
@@ -1035,23 +1349,34 @@ namespace QLChuoiNhaHangKhachSan.GUI
         public string Status => cmbStatus.SelectedItem?.ToString() ?? cmbStatus.Text;
         public string PaymentMethod => cmbPaymentMethod.SelectedItem?.ToString() ?? cmbPaymentMethod.Text;
 
-        public FormInvoiceEdit(string invoiceId, string customer, DateTime date, decimal amount, string status, string paymentMethod)
+        // Added optional isNew parameter (default false).
+        public FormInvoiceEdit(string invoiceId, string customer, DateTime date, decimal amount, string status, string paymentMethod, bool isNew = false)
         {
             InitializeComponent();
 
-            txtInvoiceId.Text = invoiceId;
-            txtCustomer.Text = customer;
+            // InvoiceId: editable when creating new record, read-only otherwise
+            txtInvoiceId.Text = invoiceId ?? string.Empty;
+            txtInvoiceId.ReadOnly = !isNew;
+            txtInvoiceId.Enabled = isNew;
+            txtInvoiceId.TabStop = isNew;
+            txtInvoiceId.BackColor = isNew ? SystemColors.Window : SystemColors.ControlLight;
+
+            txtCustomer.Text = customer ?? string.Empty;
             dtpDate.Value = date;
             txtAmount.Text = amount.ToString("N0", CultureInfo.GetCultureInfo("vi-VN"));
+
             // Populate status options and select existing
-            cmbStatus.Items.AddRange(new object[] { "Đã thu tiền", "Đang chờ", "Hoàn thành", "Không thành công", "Hủy bỏ" });
+            cmbStatus.Items.Clear();
+            // Đồng bộ đúng trạng thái có trong DB để tránh mất dòng sau khi lưu
+            cmbStatus.Items.AddRange(new object[] { "Đã thu tiền", "Chưa thu tiền", "Quá hạn" });
             if (!string.IsNullOrWhiteSpace(status) && cmbStatus.Items.Contains(status))
                 cmbStatus.SelectedItem = status;
             else
                 cmbStatus.Text = status;
 
             // Payment method options
-            cmbPaymentMethod.Items.AddRange(new object[] { "Tiền Mặt", "Thẻ", "MoMo", "Other" });
+            cmbPaymentMethod.Items.Clear();
+            cmbPaymentMethod.Items.AddRange(new object[] { "Tiền Mặt", "Thẻ", "MoMo", "Khác" });
             if (!string.IsNullOrWhiteSpace(paymentMethod) && cmbPaymentMethod.Items.Contains(paymentMethod))
                 cmbPaymentMethod.SelectedItem = paymentMethod;
             else
@@ -1068,7 +1393,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.StartPosition = FormStartPosition.CenterParent;
 
             var lblId = new Label { Text = "Mã Hóa Đơn", Left = 12, Top = 14, Width = 100 };
-            txtInvoiceId = new TextBox { Left = 120, Top = 10, Width = 280, ReadOnly = true };
+            txtInvoiceId = new TextBox { Left = 120, Top = 10, Width = 280,
+                ReadOnly = true,
+                Enabled = false,
+                TabStop = false,
+                BackColor = SystemColors.ControlLight,
+                ForeColor = SystemColors.ControlText
+            };
 
             var lblCustomer = new Label { Text = "Khách Hàng", Left = 12, Top = 50, Width = 100 };
             txtCustomer = new TextBox { Left = 120, Top = 46, Width = 280 };
@@ -1113,6 +1444,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
             if (string.IsNullOrWhiteSpace(txtCustomer.Text))
             {
                 MessageBox.Show("Tên khách hàng không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // If InvoiceId is editable (create mode), ensure it is provided
+            if (txtInvoiceId.Enabled && string.IsNullOrWhiteSpace(txtInvoiceId.Text))
+            {
+                MessageBox.Show("Mã hóa đơn không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

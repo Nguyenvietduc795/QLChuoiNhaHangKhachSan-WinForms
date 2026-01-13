@@ -631,7 +631,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void ShowTimePicker()
         {
-            using (var picker = new TimePickerForm(dtGio.Value))
+            using (var picker = new frmTime(dtGio.Value))
             {
                 if (picker.ShowDialog(this) == DialogResult.OK)
                 {

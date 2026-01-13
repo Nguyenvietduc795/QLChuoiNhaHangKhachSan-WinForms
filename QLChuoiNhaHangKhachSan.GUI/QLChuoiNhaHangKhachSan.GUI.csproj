@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>QLChuoiNhaHangKhachSan.GUI</RootNamespace>
     <AssemblyName>QLChuoiNhaHangKhachSan.GUI</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,16 +33,41 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontAwesome.Sharp.6.6.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
+      <HintPath>..\packages\FontAwesome.Sharp.6.6.0\lib\net48\FontAwesome.Sharp.dll</HintPath>
     </Reference>
     <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
-      <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.7\lib\net472\Guna.UI2.dll</HintPath>
+      <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.7\lib\net48\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -67,6 +93,12 @@
   <!-- ===================== COMPILE FILES ===================== -->
   <ItemGroup>
     <Compile Include="AppSession.cs" />
+    <Compile Include="CancelTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CancelTable.Designer.cs">
+      <DependentUpon>CancelTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +116,15 @@
     </Compile>
     <Compile Include="AddEmployeeForm.Designer.cs">
       <DependentUpon>AddEmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomersReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomersReport.Designer.cs">
+      <DependentUpon>CustomersReport.cs</DependentUpon>
     </Compile>
     <Compile Include="EmployeeForm.cs">
       <SubType>Form</SubType>
@@ -135,6 +176,39 @@
     </Compile>
     <Compile Include="FormVoucherDetails.cs">
       <SubType>Form</SubType>
+    <Compile Include="FormRevenue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FoodManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FoodManagement.Designer.cs">
+      <DependentUpon>FoodManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfirmTable.Designer.cs">
+      <DependentUpon>ConfirmTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTime.Designer.cs">
+      <DependentUpon>frmTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDownload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDownload.Designer.cs">
+      <DependentUpon>FormDownload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPayments.Extensions.cs" />
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRevenue.Designer.cs">
+      <DependentUpon>FormRevenue.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -172,14 +246,23 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReservationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReservationForm.Designer.cs">
+      <DependentUpon>ReservationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationCenter.cs" />
+    <Compile Include="QuanLyChuoiNHKSDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyChuoiNHKSDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Room_Details.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Room_Details.Designer.cs">
       <DependentUpon>Room_Details.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TimePickerForm.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="UcRoom.cs">
       <SubType>UserControl</SubType>
@@ -259,6 +342,12 @@
   </ItemGroup>
   <!-- ===================== RESX (EMBEDDED RESOURCE) ===================== -->
   <ItemGroup>
+    <EmbeddedResource Include="CancelTable.resx">
+      <DependentUpon>CancelTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangePasswordForm.resx">
+      <DependentUpon>ChangePasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomerAdd.resx">
       <DependentUpon>CustomerAdd.cs</DependentUpon>
     </EmbeddedResource>
@@ -267,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddEmployeeForm.resx">
       <DependentUpon>AddEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomersReport.resx">
+      <DependentUpon>CustomersReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
@@ -291,6 +383,20 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUpdateItems.resx">
       <DependentUpon>FormUpdateItems.cs</DependentUpon>
+    <EmbeddedResource Include="FormRevenue.resx">
+      <DependentUpon>FormRevenue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoodManagement.resx">
+      <DependentUpon>FoodManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfirmTable.resx">
+      <DependentUpon>ConfirmTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTime.resx">
+      <DependentUpon>frmTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDownload.resx">
+      <DependentUpon>FormDownload.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -309,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReservationForm.resx">
+      <DependentUpon>ReservationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Room_Details.resx">
       <DependentUpon>Room_Details.cs</DependentUpon>
@@ -351,6 +460,11 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
   </ItemGroup>
   <!-- ===================== OTHER NONE FILES ===================== -->
   <ItemGroup>
@@ -364,6 +478,17 @@
   </ItemGroup>
   <!-- ===================== RESOURCE FILES (IMAGES) ===================== -->
   <ItemGroup>
+    <None Include="QuanLyChuoiNHKSDataSet.xsc">
+      <DependentUpon>QuanLyChuoiNHKSDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyChuoiNHKSDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuanLyChuoiNHKSDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuanLyChuoiNHKSDataSet.xss">
+      <DependentUpon>QuanLyChuoiNHKSDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Resources\OIP.jpg" />
     <None Include="Resources\search.png" />
     <None Include="Resources\pngtree_clock_icon_vector-line_perfect_png_image_11999891.png" />
@@ -383,12 +508,15 @@
   <!-- ===================== PROJECT REFERENCES ===================== -->
   <ItemGroup>
     <ProjectReference Include="..\QLChuoiNhaHangKhachSan.BLL\QLChuoiNhaHangKhachSan.BLL.csproj">
-      <Project>{4e25be4c-85e3-45de-81c5-52a8c8d0b030}</Project>
+      <Project>{4E25BE4C-85E3-45DE-81C5-52A8C8D0B030}</Project>
       <Name>QLChuoiNhaHangKhachSan.BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\QLChuoiNhaHangKhachSan.DTO\QLChuoiNhaHangKhachSan.DTO.csproj">
       <Project>{275b7d03-8d3f-4db3-9d41-e28414f15fda}</Project>
       <Name>QLChuoiNhaHangKhachSan.DTO</Name>
+    <ProjectReference Include="..\QLChuoiNhaHangKhachSan.DAL\QLChuoiNhaHangKhachSan.DAL.csproj">
+      <Project>{ee2f359f-ed71-4c9a-8859-b1a785caaeae}</Project>
+      <Name>QLChuoiNhaHangKhachSan.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -426,4 +554,7 @@
     <Content Include="Resources\pngtree_green_check_mark_png_image_6525691.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <GenerateResourceMSBuildArchitecture>x64</GenerateResourceMSBuildArchitecture>
+  </PropertyGroup>
 </Project>
