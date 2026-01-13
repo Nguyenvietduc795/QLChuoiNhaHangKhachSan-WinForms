@@ -14,7 +14,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 {
     public partial class frmFoodManagement : Form
     {
-        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
+        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
         private readonly List<FoodView> _foods = new List<FoodView>();
         private readonly List<OptionItem> _categories = new List<OptionItem>();
         private readonly List<OptionItem> _statuses = new List<OptionItem>();

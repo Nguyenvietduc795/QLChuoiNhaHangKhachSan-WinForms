@@ -15,7 +15,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 {
     public partial class frmBill : Form
     {
-        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
+        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
         private readonly int _orderId;
         private readonly string _tableName;
         private string _customerEmail;

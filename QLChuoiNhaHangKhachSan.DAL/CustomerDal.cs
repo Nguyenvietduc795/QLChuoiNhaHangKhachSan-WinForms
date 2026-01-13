@@ -14,7 +14,7 @@ namespace QLChuoiNhaHangKhachSan.DAL
         public CustomerDal()
         {
             _connectionString =
-                ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
+                ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
             EnsureTotalSpendingColumn();
         }
 

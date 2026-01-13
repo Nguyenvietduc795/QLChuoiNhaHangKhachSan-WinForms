@@ -14,7 +14,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
     {
         private Button currentSelectedTable;
         private int? currentCustomerId;
-        private readonly string strKetNoi = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
+        private readonly string strKetNoi = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
 
         public frmRestaurant()
         {

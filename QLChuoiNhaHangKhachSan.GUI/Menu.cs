@@ -25,7 +25,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         // --- 3. LẤY CHUỖI KẾT NỐI TỪ APP.CONFIG ---
         // Đảm bảo tên "QuanLyChuoiNhaHangKhachSan" khớp với file App.config của bạn
-        string strKetNoi = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
+        string strKetNoi = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
         private readonly List<FoodItem> _allFoods = new List<FoodItem>();
 
         public frmMenu()

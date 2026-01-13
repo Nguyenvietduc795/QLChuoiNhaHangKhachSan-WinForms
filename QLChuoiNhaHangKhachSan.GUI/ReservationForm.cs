@@ -13,7 +13,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 {
     public partial class frmReservationForm : Form
     {
-        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
+        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
         private readonly PrintDocument _printDocument = new PrintDocument();
         private Bitmap _billBitmap;
 

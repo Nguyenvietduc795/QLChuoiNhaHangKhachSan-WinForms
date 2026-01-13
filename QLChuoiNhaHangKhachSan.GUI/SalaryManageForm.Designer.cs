@@ -82,21 +82,22 @@
             this.lblSalaryManage_SubTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblSalaryManage_SubTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSalaryManage_SubTitle.ForeColor = System.Drawing.Color.Gray;
-            this.lblSalaryManage_SubTitle.Location = new System.Drawing.Point(36, 80);
-            this.lblSalaryManage_SubTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblSalaryManage_SubTitle.Location = new System.Drawing.Point(27, 65);
+            this.lblSalaryManage_SubTitle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lblSalaryManage_SubTitle.Name = "lblSalaryManage_SubTitle";
-            this.lblSalaryManage_SubTitle.Size = new System.Drawing.Size(322, 22);
+            this.lblSalaryManage_SubTitle.Size = new System.Drawing.Size(260, 19);
             this.lblSalaryManage_SubTitle.TabIndex = 3;
             this.lblSalaryManage_SubTitle.Text = "Tổng quan về lương và thông tin thanh toán";
             // 
             // lblSalaryManage_Title
             // 
+            this.lblSalaryManage_Title.AutoSize = false;
             this.lblSalaryManage_Title.BackColor = System.Drawing.Color.Transparent;
             this.lblSalaryManage_Title.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSalaryManage_Title.Location = new System.Drawing.Point(29, 20);
-            this.lblSalaryManage_Title.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblSalaryManage_Title.Location = new System.Drawing.Point(22, 16);
+            this.lblSalaryManage_Title.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lblSalaryManage_Title.Name = "lblSalaryManage_Title";
-            this.lblSalaryManage_Title.Size = new System.Drawing.Size(366, 56);
+            this.lblSalaryManage_Title.Size = new System.Drawing.Size(621, 47);
             this.lblSalaryManage_Title.TabIndex = 2;
             this.lblSalaryManage_Title.Text = "Quản lí bảng lương";
             // 
@@ -109,22 +110,21 @@
             this.pnlTotalPayroll.Controls.Add(this.btnPayroll);
             this.pnlTotalPayroll.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlTotalPayroll.FillColor = System.Drawing.Color.White;
-            this.pnlTotalPayroll.Location = new System.Drawing.Point(13, 12);
-            this.pnlTotalPayroll.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.pnlTotalPayroll.Location = new System.Drawing.Point(8, 8);
+            this.pnlTotalPayroll.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.pnlTotalPayroll.Name = "pnlTotalPayroll";
             this.pnlTotalPayroll.ShadowDecoration.Depth = 5;
             this.pnlTotalPayroll.ShadowDecoration.Enabled = true;
-            this.pnlTotalPayroll.Size = new System.Drawing.Size(324, 192);
+            this.pnlTotalPayroll.Size = new System.Drawing.Size(248, 128);
             this.pnlTotalPayroll.TabIndex = 4;
             // 
             // lblTotalMoney
             // 
             this.lblTotalMoney.BackColor = System.Drawing.Color.White;
             this.lblTotalMoney.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalMoney.Location = new System.Drawing.Point(21, 76);
-            this.lblTotalMoney.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lblTotalMoney.Location = new System.Drawing.Point(16, 62);
             this.lblTotalMoney.Name = "lblTotalMoney";
-            this.lblTotalMoney.Size = new System.Drawing.Size(69, 42);
+            this.lblTotalMoney.Size = new System.Drawing.Size(55, 33);
             this.lblTotalMoney.TabIndex = 8;
             this.lblTotalMoney.Text = "$0,0";
             // 
@@ -133,10 +133,9 @@
             this.lblTotalPayroll.BackColor = System.Drawing.Color.White;
             this.lblTotalPayroll.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalPayroll.ForeColor = System.Drawing.Color.Black;
-            this.lblTotalPayroll.Location = new System.Drawing.Point(113, 25);
-            this.lblTotalPayroll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lblTotalPayroll.Location = new System.Drawing.Point(85, 20);
             this.lblTotalPayroll.Name = "lblTotalPayroll";
-            this.lblTotalPayroll.Size = new System.Drawing.Size(188, 22);
+            this.lblTotalPayroll.Size = new System.Drawing.Size(152, 17);
             this.lblTotalPayroll.TabIndex = 7;
             this.lblTotalPayroll.Text = "Tổng tiền lương hàng tháng";
             // 
@@ -152,10 +151,9 @@
             this.btnPayroll.ForeColor = System.Drawing.Color.White;
             this.btnPayroll.Image = ((System.Drawing.Image)(resources.GetObject("btnPayroll.Image")));
             this.btnPayroll.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnPayroll.Location = new System.Drawing.Point(21, 14);
-            this.btnPayroll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPayroll.Location = new System.Drawing.Point(16, 11);
             this.btnPayroll.Name = "btnPayroll";
-            this.btnPayroll.Size = new System.Drawing.Size(71, 38);
+            this.btnPayroll.Size = new System.Drawing.Size(53, 31);
             this.btnPayroll.TabIndex = 4;
             // 
             // pnlTotalEmployees
@@ -167,22 +165,21 @@
             this.pnlTotalEmployees.Controls.Add(this.btnActiveEmployees);
             this.pnlTotalEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlTotalEmployees.FillColor = System.Drawing.Color.White;
-            this.pnlTotalEmployees.Location = new System.Drawing.Point(363, 12);
-            this.pnlTotalEmployees.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.pnlTotalEmployees.Location = new System.Drawing.Point(272, 8);
+            this.pnlTotalEmployees.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.pnlTotalEmployees.Name = "pnlTotalEmployees";
             this.pnlTotalEmployees.ShadowDecoration.Depth = 5;
             this.pnlTotalEmployees.ShadowDecoration.Enabled = true;
-            this.pnlTotalEmployees.Size = new System.Drawing.Size(324, 192);
+            this.pnlTotalEmployees.Size = new System.Drawing.Size(248, 128);
             this.pnlTotalEmployees.TabIndex = 5;
             // 
             // lblActiveEmployees
             // 
             this.lblActiveEmployees.BackColor = System.Drawing.Color.White;
             this.lblActiveEmployees.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActiveEmployees.Location = new System.Drawing.Point(21, 76);
-            this.lblActiveEmployees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lblActiveEmployees.Location = new System.Drawing.Point(16, 62);
             this.lblActiveEmployees.Name = "lblActiveEmployees";
-            this.lblActiveEmployees.Size = new System.Drawing.Size(22, 42);
+            this.lblActiveEmployees.Size = new System.Drawing.Size(18, 33);
             this.lblActiveEmployees.TabIndex = 8;
             this.lblActiveEmployees.Text = "0";
             // 
@@ -191,10 +188,9 @@
             this.lblTotalActiveEmployees.BackColor = System.Drawing.Color.White;
             this.lblTotalActiveEmployees.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalActiveEmployees.ForeColor = System.Drawing.Color.Black;
-            this.lblTotalActiveEmployees.Location = new System.Drawing.Point(113, 25);
-            this.lblTotalActiveEmployees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lblTotalActiveEmployees.Location = new System.Drawing.Point(85, 20);
             this.lblTotalActiveEmployees.Name = "lblTotalActiveEmployees";
-            this.lblTotalActiveEmployees.Size = new System.Drawing.Size(123, 22);
+            this.lblTotalActiveEmployees.Size = new System.Drawing.Size(101, 17);
             this.lblTotalActiveEmployees.TabIndex = 7;
             this.lblTotalActiveEmployees.Text = "Tổng số nhân viên";
             // 
@@ -210,10 +206,9 @@
             this.btnActiveEmployees.ForeColor = System.Drawing.Color.White;
             this.btnActiveEmployees.Image = ((System.Drawing.Image)(resources.GetObject("btnActiveEmployees.Image")));
             this.btnActiveEmployees.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnActiveEmployees.Location = new System.Drawing.Point(21, 14);
-            this.btnActiveEmployees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnActiveEmployees.Location = new System.Drawing.Point(16, 11);
             this.btnActiveEmployees.Name = "btnActiveEmployees";
-            this.btnActiveEmployees.Size = new System.Drawing.Size(71, 38);
+            this.btnActiveEmployees.Size = new System.Drawing.Size(53, 31);
             this.btnActiveEmployees.TabIndex = 4;
             // 
             // pnlAvargeSalary
@@ -225,22 +220,21 @@
             this.pnlAvargeSalary.Controls.Add(this.btnAveargeSalary);
             this.pnlAvargeSalary.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlAvargeSalary.FillColor = System.Drawing.Color.White;
-            this.pnlAvargeSalary.Location = new System.Drawing.Point(713, 12);
-            this.pnlAvargeSalary.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.pnlAvargeSalary.Location = new System.Drawing.Point(536, 8);
+            this.pnlAvargeSalary.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.pnlAvargeSalary.Name = "pnlAvargeSalary";
             this.pnlAvargeSalary.ShadowDecoration.Depth = 5;
             this.pnlAvargeSalary.ShadowDecoration.Enabled = true;
-            this.pnlAvargeSalary.Size = new System.Drawing.Size(324, 192);
+            this.pnlAvargeSalary.Size = new System.Drawing.Size(249, 128);
             this.pnlAvargeSalary.TabIndex = 9;
             // 
             // lblAverageMoney
             // 
             this.lblAverageMoney.BackColor = System.Drawing.Color.White;
             this.lblAverageMoney.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAverageMoney.Location = new System.Drawing.Point(21, 76);
-            this.lblAverageMoney.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lblAverageMoney.Location = new System.Drawing.Point(16, 62);
             this.lblAverageMoney.Name = "lblAverageMoney";
-            this.lblAverageMoney.Size = new System.Drawing.Size(69, 42);
+            this.lblAverageMoney.Size = new System.Drawing.Size(55, 33);
             this.lblAverageMoney.TabIndex = 8;
             this.lblAverageMoney.Text = "$0,0";
             // 
@@ -249,10 +243,9 @@
             this.lblAverageSalary.BackColor = System.Drawing.Color.White;
             this.lblAverageSalary.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAverageSalary.ForeColor = System.Drawing.Color.Black;
-            this.lblAverageSalary.Location = new System.Drawing.Point(113, 25);
-            this.lblAverageSalary.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lblAverageSalary.Location = new System.Drawing.Point(85, 20);
             this.lblAverageSalary.Name = "lblAverageSalary";
-            this.lblAverageSalary.Size = new System.Drawing.Size(196, 22);
+            this.lblAverageSalary.Size = new System.Drawing.Size(160, 17);
             this.lblAverageSalary.TabIndex = 7;
             this.lblAverageSalary.Text = "Trung bình lương hàng tháng";
             // 
@@ -268,10 +261,9 @@
             this.btnAveargeSalary.ForeColor = System.Drawing.Color.White;
             this.btnAveargeSalary.Image = ((System.Drawing.Image)(resources.GetObject("btnAveargeSalary.Image")));
             this.btnAveargeSalary.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnAveargeSalary.Location = new System.Drawing.Point(21, 14);
-            this.btnAveargeSalary.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAveargeSalary.Location = new System.Drawing.Point(16, 11);
             this.btnAveargeSalary.Name = "btnAveargeSalary";
-            this.btnAveargeSalary.Size = new System.Drawing.Size(71, 38);
+            this.btnAveargeSalary.Size = new System.Drawing.Size(53, 31);
             this.btnAveargeSalary.TabIndex = 4;
             // 
             // pnlSalaryEmployees
@@ -282,12 +274,12 @@
             this.pnlSalaryEmployees.Controls.Add(this.lblSalaryEmployee);
             this.pnlSalaryEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlSalaryEmployees.FillColor = System.Drawing.Color.White;
-            this.pnlSalaryEmployees.Location = new System.Drawing.Point(4, 228);
-            this.pnlSalaryEmployees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlSalaryEmployees.Location = new System.Drawing.Point(2, 150);
+            this.pnlSalaryEmployees.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlSalaryEmployees.Name = "pnlSalaryEmployees";
-            this.pnlSalaryEmployees.Padding = new System.Windows.Forms.Padding(20, 68, 20, 18);
+            this.pnlSalaryEmployees.Padding = new System.Windows.Forms.Padding(11, 45, 11, 12);
             this.pnlSalaryEmployees.ShadowDecoration.Enabled = true;
-            this.pnlSalaryEmployees.Size = new System.Drawing.Size(1050, 359);
+            this.pnlSalaryEmployees.Size = new System.Drawing.Size(793, 349);
             this.pnlSalaryEmployees.TabIndex = 10;
             // 
             // dgvSalaryEmployees
@@ -322,14 +314,14 @@
             this.dgvSalaryEmployees.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvSalaryEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSalaryEmployees.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.dgvSalaryEmployees.Location = new System.Drawing.Point(20, 119);
-            this.dgvSalaryEmployees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvSalaryEmployees.Location = new System.Drawing.Point(11, 85);
+            this.dgvSalaryEmployees.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvSalaryEmployees.Name = "dgvSalaryEmployees";
             this.dgvSalaryEmployees.ReadOnly = true;
             this.dgvSalaryEmployees.RowHeadersVisible = false;
             this.dgvSalaryEmployees.RowHeadersWidth = 51;
             this.dgvSalaryEmployees.RowTemplate.Height = 46;
-            this.dgvSalaryEmployees.Size = new System.Drawing.Size(1010, 222);
+            this.dgvSalaryEmployees.Size = new System.Drawing.Size(771, 252);
             this.dgvSalaryEmployees.TabIndex = 1;
             this.dgvSalaryEmployees.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvSalaryEmployees.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -352,7 +344,6 @@
             this.dgvSalaryEmployees.ThemeStyle.RowsStyle.Height = 46;
             this.dgvSalaryEmployees.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvSalaryEmployees.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.dgvSalaryEmployees.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSalaryEmployees_CellContentClick);
             // 
             // colEmployeeFullName
             // 
@@ -419,18 +410,65 @@
             this.colEmployeeStatus.ReadOnly = true;
             this.colEmployeeStatus.Width = 125;
             // 
+            // lblSalaryEmployee
+            // 
+            this.lblSalaryEmployee.BackColor = System.Drawing.Color.Transparent;
+            this.lblSalaryEmployee.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblSalaryEmployee.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSalaryEmployee.Location = new System.Drawing.Point(11, 45);
+            this.lblSalaryEmployee.Margin = new System.Windows.Forms.Padding(0);
+            this.lblSalaryEmployee.Name = "lblSalaryEmployee";
+            this.lblSalaryEmployee.Padding = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.lblSalaryEmployee.Size = new System.Drawing.Size(295, 40);
+            this.lblSalaryEmployee.TabIndex = 0;
+            this.lblSalaryEmployee.Text = "Bảng lương tất cả nhân viên";
+            // 
+            // summaryLayout
+            // 
+            this.summaryLayout.ColumnCount = 3;
+            this.summaryLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.summaryLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.summaryLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.summaryLayout.Controls.Add(this.pnlTotalPayroll, 0, 0);
+            this.summaryLayout.Controls.Add(this.pnlTotalEmployees, 1, 0);
+            this.summaryLayout.Controls.Add(this.pnlAvargeSalary, 2, 0);
+            this.summaryLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.summaryLayout.Location = new System.Drawing.Point(2, 2);
+            this.summaryLayout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.summaryLayout.Name = "summaryLayout";
+            this.summaryLayout.RowCount = 1;
+            this.summaryLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.summaryLayout.Size = new System.Drawing.Size(793, 144);
+            this.summaryLayout.TabIndex = 12;
+            // 
+            // mainLayout
+            // 
+            this.mainLayout.ColumnCount = 1;
+            this.mainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.mainLayout.Controls.Add(this.summaryLayout, 0, 0);
+            this.mainLayout.Controls.Add(this.pnlSalaryEmployees, 0, 1);
+            this.mainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainLayout.Location = new System.Drawing.Point(8, 81);
+            this.mainLayout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mainLayout.Name = "mainLayout";
+            this.mainLayout.RowCount = 2;
+            this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 148F));
+            this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.mainLayout.Size = new System.Drawing.Size(797, 501);
+            this.mainLayout.TabIndex = 13;
+            // 
             // SalaryManageForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1084, 726);
+            this.ClientSize = new System.Drawing.Size(813, 590);
             this.Controls.Add(this.mainLayout);
             this.Controls.Add(this.lblSalaryManage_SubTitle);
             this.Controls.Add(this.lblSalaryManage_Title);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "SalaryManageForm";
-            this.Padding = new System.Windows.Forms.Padding(13, 123, 13, 12);
+            this.Padding = new System.Windows.Forms.Padding(8, 81, 8, 8);
             this.Text = "ManageSalaryForm";
             this.pnlTotalPayroll.ResumeLayout(false);
             this.pnlTotalPayroll.PerformLayout();

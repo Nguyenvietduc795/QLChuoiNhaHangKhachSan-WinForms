@@ -13,7 +13,7 @@ namespace QLChuoiNhaHangKhachSan.DAL
 
         public PromotionDal()
         {
-            _connectionString = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
+            _connectionString = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
         }
 
         public List<Promotion> GetAll()

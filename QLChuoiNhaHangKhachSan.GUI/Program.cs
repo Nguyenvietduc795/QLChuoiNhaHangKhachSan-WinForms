@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QLChuoiNhaHangKhachSan.DAL;
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
@@ -16,6 +18,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // Bật xử lý ngoại lệ bị corrupt state (AccessViolationException)
             try
             {
+                // Thiết lập connection string dùng chung cho tất cả tầng DAL/BLL
+                var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
+                if (!string.IsNullOrWhiteSpace(connStr))
+                {
+                    DatabaseConnection.SetConnectionString(connStr);
+                }
+
                 // Thiết lập DPI awareness trước khi khởi tạo form
                 if (Environment.OSVersion.Version.Major >= 6)
                 {

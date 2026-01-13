@@ -72,6 +72,8 @@
             // 
             // guna2Panel1
             // 
+            this.guna2Panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2Panel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel1.BorderColor = System.Drawing.Color.White;
             this.guna2Panel1.BorderRadius = 15;
@@ -84,7 +86,7 @@
             this.guna2Panel1.ShadowDecoration.BorderRadius = 15;
             this.guna2Panel1.ShadowDecoration.Color = System.Drawing.Color.DimGray;
             this.guna2Panel1.ShadowDecoration.Enabled = true;
-            this.guna2Panel1.Size = new System.Drawing.Size(773, 76);
+            this.guna2Panel1.Size = new System.Drawing.Size(600, 76);
             this.guna2Panel1.TabIndex = 3;
             // 
             // guna2Button1
@@ -263,6 +265,7 @@
             // 
             // guna2Panel4
             // 
+            this.guna2Panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2Panel4.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel4.BorderRadius = 10;
             this.guna2Panel4.Controls.Add(this.btnDeletePromotion);
@@ -270,12 +273,12 @@
             this.guna2Panel4.Controls.Add(this.btnFindPromotion);
             this.guna2Panel4.Controls.Add(this.tbFindPromotion);
             this.guna2Panel4.FillColor = System.Drawing.Color.White;
-            this.guna2Panel4.Location = new System.Drawing.Point(894, 24);
+            this.guna2Panel4.Location = new System.Drawing.Point(680, 24);
             this.guna2Panel4.Name = "guna2Panel4";
             this.guna2Panel4.ShadowDecoration.BorderRadius = 10;
             this.guna2Panel4.ShadowDecoration.Color = System.Drawing.Color.Silver;
             this.guna2Panel4.ShadowDecoration.Enabled = true;
-            this.guna2Panel4.Size = new System.Drawing.Size(749, 162);
+            this.guna2Panel4.Size = new System.Drawing.Size(420, 162);
             this.guna2Panel4.TabIndex = 6;
             // 
             // btnDeletePromotion
@@ -292,12 +295,12 @@
             this.btnDeletePromotion.HoverState.FillColor = System.Drawing.Color.Silver;
             this.btnDeletePromotion.Image = ((System.Drawing.Image)(resources.GetObject("btnDeletePromotion.Image")));
             this.btnDeletePromotion.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnDeletePromotion.Location = new System.Drawing.Point(435, 85);
+            this.btnDeletePromotion.Location = new System.Drawing.Point(220, 85);
             this.btnDeletePromotion.Name = "btnDeletePromotion";
             this.btnDeletePromotion.ShadowDecoration.BorderRadius = 15;
             this.btnDeletePromotion.ShadowDecoration.Color = System.Drawing.Color.DimGray;
             this.btnDeletePromotion.ShadowDecoration.Enabled = true;
-            this.btnDeletePromotion.Size = new System.Drawing.Size(299, 60);
+            this.btnDeletePromotion.Size = new System.Drawing.Size(180, 60);
             this.btnDeletePromotion.TabIndex = 4;
             this.btnDeletePromotion.Text = "Xóa";
             this.btnDeletePromotion.Click += new System.EventHandler(this.btnDeletePromotion_Click);
@@ -314,12 +317,12 @@
             this.btnAddPromotion.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPromotion.ForeColor = System.Drawing.Color.Black;
             this.btnAddPromotion.HoverState.FillColor = System.Drawing.Color.Silver;
-            this.btnAddPromotion.Location = new System.Drawing.Point(435, 16);
+            this.btnAddPromotion.Location = new System.Drawing.Point(220, 16);
             this.btnAddPromotion.Name = "btnAddPromotion";
             this.btnAddPromotion.ShadowDecoration.BorderRadius = 15;
             this.btnAddPromotion.ShadowDecoration.Color = System.Drawing.Color.DimGray;
             this.btnAddPromotion.ShadowDecoration.Enabled = true;
-            this.btnAddPromotion.Size = new System.Drawing.Size(299, 60);
+            this.btnAddPromotion.Size = new System.Drawing.Size(180, 60);
             this.btnAddPromotion.TabIndex = 2;
             this.btnAddPromotion.Text = "Thêm ưu đãi mới";
             this.btnAddPromotion.Click += new System.EventHandler(this.btnAddPromotion_Click);
@@ -371,11 +374,14 @@
             this.tbFindPromotion.ShadowDecoration.BorderRadius = 15;
             this.tbFindPromotion.ShadowDecoration.Color = System.Drawing.Color.DimGray;
             this.tbFindPromotion.ShadowDecoration.Enabled = true;
-            this.tbFindPromotion.Size = new System.Drawing.Size(387, 60);
+            this.tbFindPromotion.Size = new System.Drawing.Size(180, 60);
             this.tbFindPromotion.TabIndex = 0;
             // 
             // guna2Panel5
             // 
+            this.guna2Panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2Panel5.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel5.BorderRadius = 15;
             this.guna2Panel5.Controls.Add(this.guna2Button8);
@@ -386,7 +392,7 @@
             this.guna2Panel5.Name = "guna2Panel5";
             this.guna2Panel5.ShadowDecoration.BorderRadius = 10;
             this.guna2Panel5.ShadowDecoration.Enabled = true;
-            this.guna2Panel5.Size = new System.Drawing.Size(1634, 606);
+            this.guna2Panel5.Size = new System.Drawing.Size(1088, 606);
             this.guna2Panel5.TabIndex = 7;
             // 
             // guna2Button8
@@ -439,6 +445,9 @@
             this.dgvListPromotion.GridColor = System.Drawing.Color.Black;
             this.dgvListPromotion.Location = new System.Drawing.Point(3, 118);
             this.dgvListPromotion.Name = "dgvListPromotion";
+            this.dgvListPromotion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -535,7 +544,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 955);
+            this.ClientSize = new System.Drawing.Size(1120, 820);
             this.Controls.Add(this.guna2Panel5);
             this.Controls.Add(this.guna2Panel4);
             this.Controls.Add(this.guna2Panel3);

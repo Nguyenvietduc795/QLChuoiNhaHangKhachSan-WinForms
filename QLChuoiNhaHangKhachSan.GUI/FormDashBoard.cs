@@ -96,7 +96,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             try
             {
                 // Đúng tên theo App.config
-                string connStr = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
+                string connStr = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
                 // MessageBox.Show(connStr); // Debug nếu muốn
             }
             catch { } // Bỏ qua nếu lỗi cấu hình

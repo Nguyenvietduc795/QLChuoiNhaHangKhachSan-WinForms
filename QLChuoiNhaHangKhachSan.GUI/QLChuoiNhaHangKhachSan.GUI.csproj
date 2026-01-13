@@ -301,6 +301,9 @@
     <EmbeddedResource Include="CancelTable.resx">
       <DependentUpon>CancelTable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChangePasswordForm.resx">
+      <DependentUpon>ChangePasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomerAdd.resx">
       <DependentUpon>CustomerAdd.cs</DependentUpon>
     </EmbeddedResource>
