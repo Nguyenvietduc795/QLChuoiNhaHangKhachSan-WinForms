@@ -49,6 +49,8 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
     <Reference Include="FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.6.6.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
     </Reference>
@@ -89,6 +91,19 @@
     <Compile Include="BaseRepository.cs" />
     <Compile Include="BookingRepository.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="DTO\IngredientDTO.cs" />
+    <Compile Include="EquipmentDAL.cs" />
+    <Compile Include="IngredientDAL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockDAL.cs" />
+    <Compile Include="UnitDAL.cs" />
+    <Compile Include="WarehouseVoucherDAL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QLChuoiNhaHangKhachSan.DTO\QLChuoiNhaHangKhachSan.DTO.csproj">
+      <Project>{275b7d03-8d3f-4db3-9d41-e28414f15fda}</Project>
+      <Name>QLChuoiNhaHangKhachSan.DTO</Name>
+    </ProjectReference>
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Login.cs" />

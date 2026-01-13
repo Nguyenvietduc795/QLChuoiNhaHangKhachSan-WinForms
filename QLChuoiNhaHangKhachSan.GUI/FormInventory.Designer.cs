@@ -48,13 +48,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.chipTotal = new Guna.UI2.WinForms.Guna2Chip();
             this.pnlIconTotal = new Guna.UI2.WinForms.Guna2Panel();
             this.iconBox = new FontAwesome.Sharp.IconPictureBox();
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.CardSlowTotal = new Guna.UI2.WinForms.Guna2Panel();
             this.lbStockLowCaption = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lbStockLow = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.cardLow = new Guna.UI2.WinForms.Guna2Chip();
             this.pnsocklow = new Guna.UI2.WinForms.Guna2Panel();
             this.iconWarning = new FontAwesome.Sharp.IconPictureBox();
-            this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            this.CardHealthyTotal = new Guna.UI2.WinForms.Guna2Panel();
             this.lbHealthyStockCaption = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lbHealthyStock = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.cardHealthy = new Guna.UI2.WinForms.Guna2Chip();
@@ -71,6 +71,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.btnLoc = new Guna.UI2.WinForms.Guna2Button();
             this.txTimkiem = new Guna.UI2.WinForms.Guna2TextBox();
             this.lbDSTonkho = new Guna.UI2.WinForms.Guna2Panel();
+            this.pnlTopActions = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnadditems = new Guna.UI2.WinForms.Guna2Button();
+            this.btnstopItems = new Guna.UI2.WinForms.Guna2Button();
+            this.btnfixitems = new Guna.UI2.WinForms.Guna2Button();
+            this.flpActions = new System.Windows.Forms.FlowLayoutPanel();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
@@ -79,13 +84,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.sptthienthi = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.DGdanhsachtonkho = new Guna.UI2.WinForms.Guna2DataGridView();
             this.lbdanhsachtonkho = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.btnPage1 = new Guna.UI2.WinForms.Guna2Button();
-            this.btnPage4 = new Guna.UI2.WinForms.Guna2Button();
-            this.btnPrev = new Guna.UI2.WinForms.Guna2Button();
-            this.btnPage5 = new Guna.UI2.WinForms.Guna2Button();
-            this.btnNext = new Guna.UI2.WinForms.Guna2Button();
-            this.btnPage2 = new Guna.UI2.WinForms.Guna2Button();
-            this.btnPage3 = new Guna.UI2.WinForms.Guna2Button();
             this.Pnbottom2 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -97,15 +95,16 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.cardTotal.SuspendLayout();
             this.pnlIconTotal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconBox)).BeginInit();
-            this.guna2Panel1.SuspendLayout();
+            this.CardSlowTotal.SuspendLayout();
             this.pnsocklow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconWarning)).BeginInit();
-            this.guna2Panel3.SuspendLayout();
+            this.CardHealthyTotal.SuspendLayout();
             this.pntotalondin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconCheck)).BeginInit();
             this.spFilter.SuspendLayout();
             this.tlpFilter.SuspendLayout();
             this.lbDSTonkho.SuspendLayout();
+            this.pnlTopActions.SuspendLayout();
             this.pnbottom1.SuspendLayout();
             this.TbDanhsachtonkho.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGdanhsachtonkho)).BeginInit();
@@ -128,7 +127,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.pnlTopbar.Name = "pnlTopbar";
             this.pnlTopbar.ShadowDecoration.Depth = 1;
             this.pnlTopbar.ShadowDecoration.Enabled = true;
-            this.pnlTopbar.Size = new System.Drawing.Size(2175, 113);
+            this.pnlTopbar.Size = new System.Drawing.Size(1654, 104);
             this.pnlTopbar.TabIndex = 2;
             // 
             // lblUserRole
@@ -138,8 +137,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.lblUserRole.BackColor = System.Drawing.Color.White;
             this.lblUserRole.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserRole.ForeColor = System.Drawing.Color.Gray;
-            this.lblUserRole.Location = new System.Drawing.Point(1971, 55);
-            this.lblUserRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUserRole.Location = new System.Drawing.Point(1501, 45);
             this.lblUserRole.Name = "lblUserRole";
             this.lblUserRole.Size = new System.Drawing.Size(93, 19);
             this.lblUserRole.TabIndex = 5;
@@ -174,8 +172,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.lblUserName.AutoSize = true;
             this.lblUserName.BackColor = System.Drawing.Color.White;
             this.lblUserName.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(1971, 26);
-            this.lblUserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUserName.Location = new System.Drawing.Point(1501, 21);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(67, 24);
             this.lblUserName.TabIndex = 4;
@@ -187,8 +184,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.picUserAvt.BackColor = System.Drawing.Color.White;
             this.picUserAvt.Image = ((System.Drawing.Image)(resources.GetObject("picUserAvt.Image")));
             this.picUserAvt.ImageRotate = 0F;
-            this.picUserAvt.Location = new System.Drawing.Point(1887, 22);
-            this.picUserAvt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.picUserAvt.Location = new System.Drawing.Point(1438, 18);
             this.picUserAvt.Name = "picUserAvt";
             this.picUserAvt.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.picUserAvt.Size = new System.Drawing.Size(75, 69);
@@ -209,8 +205,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.btnNotification.ForeColor = System.Drawing.Color.White;
             this.btnNotification.Image = ((System.Drawing.Image)(resources.GetObject("btnNotification.Image")));
             this.btnNotification.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnNotification.Location = new System.Drawing.Point(1796, 47);
-            this.btnNotification.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNotification.Location = new System.Drawing.Point(1370, 38);
             this.btnNotification.Name = "btnNotification";
             this.btnNotification.Size = new System.Drawing.Size(33, 31);
             this.btnNotification.TabIndex = 2;
@@ -301,24 +296,24 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.iconBox.TabIndex = 1;
             this.iconBox.TabStop = false;
             // 
-            // guna2Panel1
+            // CardSlowTotal
             // 
-            this.guna2Panel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Panel1.BorderRadius = 14;
-            this.guna2Panel1.Controls.Add(this.lbStockLowCaption);
-            this.guna2Panel1.Controls.Add(this.lbStockLow);
-            this.guna2Panel1.Controls.Add(this.cardLow);
-            this.guna2Panel1.Controls.Add(this.pnsocklow);
-            this.guna2Panel1.FillColor = System.Drawing.Color.White;
-            this.guna2Panel1.Location = new System.Drawing.Point(760, 27);
-            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(21, 20, 21, 20);
-            this.guna2Panel1.ShadowDecoration.BorderRadius = 12;
-            this.guna2Panel1.ShadowDecoration.Depth = 2;
-            this.guna2Panel1.ShadowDecoration.Enabled = true;
-            this.guna2Panel1.Size = new System.Drawing.Size(659, 197);
-            this.guna2Panel1.TabIndex = 1;
+            this.CardSlowTotal.BackColor = System.Drawing.Color.Transparent;
+            this.CardSlowTotal.BorderRadius = 14;
+            this.CardSlowTotal.Controls.Add(this.lbStockLowCaption);
+            this.CardSlowTotal.Controls.Add(this.lbStockLow);
+            this.CardSlowTotal.Controls.Add(this.cardLow);
+            this.CardSlowTotal.Controls.Add(this.pnsocklow);
+            this.CardSlowTotal.FillColor = System.Drawing.Color.White;
+            this.CardSlowTotal.Location = new System.Drawing.Point(570, 22);
+            this.CardSlowTotal.Name = "CardSlowTotal";
+            this.CardSlowTotal.Padding = new System.Windows.Forms.Padding(16);
+            this.CardSlowTotal.ShadowDecoration.BorderRadius = 12;
+            this.CardSlowTotal.ShadowDecoration.Depth = 2;
+            this.CardSlowTotal.ShadowDecoration.Enabled = true;
+            this.CardSlowTotal.Size = new System.Drawing.Size(494, 160);
+            this.CardSlowTotal.TabIndex = 1;
+            this.CardSlowTotal.Paint += new System.Windows.Forms.PaintEventHandler(this.CardSlowTotal_Click);
             // 
             // lbStockLowCaption
             // 
@@ -388,25 +383,24 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.iconWarning.TabIndex = 2;
             this.iconWarning.TabStop = false;
             // 
-            // guna2Panel3
+            // CardHealthyTotal
             // 
-            this.guna2Panel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Panel3.BorderRadius = 14;
-            this.guna2Panel3.Controls.Add(this.lbHealthyStockCaption);
-            this.guna2Panel3.Controls.Add(this.lbHealthyStock);
-            this.guna2Panel3.Controls.Add(this.cardHealthy);
-            this.guna2Panel3.Controls.Add(this.pntotalondin);
-            this.guna2Panel3.FillColor = System.Drawing.Color.White;
-            this.guna2Panel3.Location = new System.Drawing.Point(1456, 27);
-            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.guna2Panel3.Name = "guna2Panel3";
-            this.guna2Panel3.Padding = new System.Windows.Forms.Padding(21, 20, 21, 20);
-            this.guna2Panel3.ShadowDecoration.BorderRadius = 12;
-            this.guna2Panel3.ShadowDecoration.Depth = 2;
-            this.guna2Panel3.ShadowDecoration.Enabled = true;
-            this.guna2Panel3.Size = new System.Drawing.Size(719, 197);
-            this.guna2Panel3.TabIndex = 2;
-            this.guna2Panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel3_Paint);
+            this.CardHealthyTotal.BackColor = System.Drawing.Color.Transparent;
+            this.CardHealthyTotal.BorderRadius = 14;
+            this.CardHealthyTotal.Controls.Add(this.lbHealthyStockCaption);
+            this.CardHealthyTotal.Controls.Add(this.lbHealthyStock);
+            this.CardHealthyTotal.Controls.Add(this.cardHealthy);
+            this.CardHealthyTotal.Controls.Add(this.pntotalondin);
+            this.CardHealthyTotal.FillColor = System.Drawing.Color.White;
+            this.CardHealthyTotal.Location = new System.Drawing.Point(1092, 22);
+            this.CardHealthyTotal.Name = "CardHealthyTotal";
+            this.CardHealthyTotal.Padding = new System.Windows.Forms.Padding(16);
+            this.CardHealthyTotal.ShadowDecoration.BorderRadius = 12;
+            this.CardHealthyTotal.ShadowDecoration.Depth = 2;
+            this.CardHealthyTotal.ShadowDecoration.Enabled = true;
+            this.CardHealthyTotal.Size = new System.Drawing.Size(539, 160);
+            this.CardHealthyTotal.TabIndex = 2;
+            this.CardHealthyTotal.Paint += new System.Windows.Forms.PaintEventHandler(this.CardHealthyTotal_Click);
             // 
             // lbHealthyStockCaption
             // 
@@ -655,7 +649,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.txTimkiem.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
             this.txTimkiem.BorderRadius = 10;
             this.txTimkiem.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txTimkiem.DefaultText = "Nhập mã/ tên ...";
+            this.txTimkiem.DefaultText = "";
             this.txTimkiem.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txTimkiem.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txTimkiem.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -671,7 +665,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.txTimkiem.Location = new System.Drawing.Point(1095, 37);
             this.txTimkiem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txTimkiem.Name = "txTimkiem";
-            this.txTimkiem.PlaceholderText = "";
+            this.txTimkiem.PlaceholderText = "Nhập mã/ tên ...";
             this.txTimkiem.SelectedText = "";
             this.txTimkiem.ShadowDecoration.BorderRadius = 12;
             this.txTimkiem.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(102)))), ((int)(((byte)(241)))));
@@ -680,26 +674,97 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // 
             // lbDSTonkho
             // 
-            this.lbDSTonkho.BackColor = System.Drawing.Color.Transparent;
+            this.lbDSTonkho.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.lbDSTonkho.Controls.Add(this.pnlTopActions);
             this.lbDSTonkho.Controls.Add(this.guna2Button3);
             this.lbDSTonkho.Controls.Add(this.guna2Button2);
             this.lbDSTonkho.Controls.Add(this.guna2Button1);
             this.lbDSTonkho.Controls.Add(this.pnbottom1);
             this.lbDSTonkho.Controls.Add(this.Pnbottom2);
             this.lbDSTonkho.Controls.Add(this.spFilter);
-            this.lbDSTonkho.Controls.Add(this.guna2Panel3);
-            this.lbDSTonkho.Controls.Add(this.guna2Panel1);
+            this.lbDSTonkho.Controls.Add(this.CardHealthyTotal);
+            this.lbDSTonkho.Controls.Add(this.CardSlowTotal);
             this.lbDSTonkho.Controls.Add(this.cardTotal);
-            this.lbDSTonkho.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(251)))));
-            this.lbDSTonkho.Location = new System.Drawing.Point(20, 126);
-            this.lbDSTonkho.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lbDSTonkho.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.lbDSTonkho.Location = new System.Drawing.Point(15, 102);
             this.lbDSTonkho.Name = "lbDSTonkho";
             this.lbDSTonkho.ShadowDecoration.BorderRadius = 12;
             this.lbDSTonkho.ShadowDecoration.Depth = 1;
             this.lbDSTonkho.ShadowDecoration.Enabled = true;
             this.lbDSTonkho.Size = new System.Drawing.Size(3404, 1146);
             this.lbDSTonkho.TabIndex = 3;
-            this.lbDSTonkho.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMainWrapper_Paint);
+            this.lbDSTonkho.Paint += new System.Windows.Forms.PaintEventHandler(this.lbDSTonkho_Paint);
+            // 
+            // pnlTopActions
+            // 
+            this.pnlTopActions.Controls.Add(this.btnadditems);
+            this.pnlTopActions.Controls.Add(this.btnstopItems);
+            this.pnlTopActions.Controls.Add(this.btnfixitems);
+            this.pnlTopActions.Controls.Add(this.flpActions);
+            this.pnlTopActions.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(251)))));
+            this.pnlTopActions.Location = new System.Drawing.Point(47, 313);
+            this.pnlTopActions.Name = "pnlTopActions";
+            this.pnlTopActions.Size = new System.Drawing.Size(938, 84);
+            this.pnlTopActions.TabIndex = 17;
+            // 
+            // btnadditems
+            // 
+            this.btnadditems.BorderRadius = 12;
+            this.btnadditems.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnadditems.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnadditems.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnadditems.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnadditems.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(185)))), ((int)(((byte)(129)))));
+            this.btnadditems.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnadditems.ForeColor = System.Drawing.Color.White;
+            this.btnadditems.Location = new System.Drawing.Point(22, 19);
+            this.btnadditems.Name = "btnadditems";
+            this.btnadditems.Size = new System.Drawing.Size(139, 45);
+            this.btnadditems.TabIndex = 4;
+            this.btnadditems.Text = "+ Thêm mặt hàng";
+            this.btnadditems.Click += new System.EventHandler(this.btnadditems_Click);
+            // 
+            // btnstopItems
+            // 
+            this.btnstopItems.BorderRadius = 12;
+            this.btnstopItems.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnstopItems.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnstopItems.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnstopItems.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnstopItems.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(158)))), ((int)(((byte)(11)))));
+            this.btnstopItems.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnstopItems.ForeColor = System.Drawing.Color.White;
+            this.btnstopItems.Location = new System.Drawing.Point(299, 19);
+            this.btnstopItems.Name = "btnstopItems";
+            this.btnstopItems.Size = new System.Drawing.Size(126, 45);
+            this.btnstopItems.TabIndex = 2;
+            this.btnstopItems.Text = "Ngừng sử dụng";
+            // 
+            // btnfixitems
+            // 
+            this.btnfixitems.BorderRadius = 12;
+            this.btnfixitems.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnfixitems.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnfixitems.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnfixitems.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnfixitems.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(102)))), ((int)(((byte)(241)))));
+            this.btnfixitems.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnfixitems.ForeColor = System.Drawing.Color.White;
+            this.btnfixitems.Location = new System.Drawing.Point(167, 19);
+            this.btnfixitems.Name = "btnfixitems";
+            this.btnfixitems.Size = new System.Drawing.Size(126, 45);
+            this.btnfixitems.TabIndex = 1;
+            this.btnfixitems.Text = "Sửa mặt hàng";
+            // 
+            // flpActions
+            // 
+            this.flpActions.AutoSize = true;
+            this.flpActions.Dock = System.Windows.Forms.DockStyle.Right;
+            this.flpActions.Location = new System.Drawing.Point(938, 0);
+            this.flpActions.Name = "flpActions";
+            this.flpActions.Size = new System.Drawing.Size(0, 84);
+            this.flpActions.TabIndex = 0;
+            this.flpActions.WrapContents = false;
             // 
             // guna2Button3
             // 
@@ -760,16 +825,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.pnbottom1.BackColor = System.Drawing.Color.Transparent;
             this.pnbottom1.BorderRadius = 14;
             this.pnbottom1.Controls.Add(this.TbDanhsachtonkho);
-            this.pnbottom1.Controls.Add(this.btnPage1);
-            this.pnbottom1.Controls.Add(this.btnPage4);
-            this.pnbottom1.Controls.Add(this.btnPrev);
-            this.pnbottom1.Controls.Add(this.btnPage5);
-            this.pnbottom1.Controls.Add(this.btnNext);
-            this.pnbottom1.Controls.Add(this.btnPage2);
-            this.pnbottom1.Controls.Add(this.btnPage3);
             this.pnbottom1.FillColor = System.Drawing.Color.White;
-            this.pnbottom1.Location = new System.Drawing.Point(61, 402);
-            this.pnbottom1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnbottom1.Location = new System.Drawing.Point(46, 403);
             this.pnbottom1.Name = "pnbottom1";
             this.pnbottom1.Padding = new System.Windows.Forms.Padding(21, 20, 21, 20);
             this.pnbottom1.ShadowDecoration.BorderRadius = 12;
@@ -845,8 +902,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.DGdanhsachtonkho.RowHeadersVisible = false;
             this.DGdanhsachtonkho.RowHeadersWidth = 51;
             this.DGdanhsachtonkho.RowTemplate.ReadOnly = true;
-            this.DGdanhsachtonkho.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.DGdanhsachtonkho.Size = new System.Drawing.Size(1289, 311);
+            this.DGdanhsachtonkho.Size = new System.Drawing.Size(967, 253);
             this.DGdanhsachtonkho.TabIndex = 1;
             this.DGdanhsachtonkho.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.DGdanhsachtonkho.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -883,139 +939,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.lbdanhsachtonkho.Text = "Danh sách tồn kho";
             this.lbdanhsachtonkho.Click += new System.EventHandler(this.lbdanhsachtonkho_Click);
             // 
-            // btnPage1
-            // 
-            this.btnPage1.BackColor = System.Drawing.Color.White;
-            this.btnPage1.BorderRadius = 8;
-            this.btnPage1.BorderThickness = 1;
-            this.btnPage1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnPage1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnPage1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnPage1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnPage1.FillColor = System.Drawing.Color.Transparent;
-            this.btnPage1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPage1.ForeColor = System.Drawing.Color.Black;
-            this.btnPage1.Location = new System.Drawing.Point(571, 447);
-            this.btnPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnPage1.Name = "btnPage1";
-            this.btnPage1.Size = new System.Drawing.Size(48, 39);
-            this.btnPage1.TabIndex = 13;
-            this.btnPage1.Text = "1";
-            // 
-            // btnPage4
-            // 
-            this.btnPage4.BackColor = System.Drawing.Color.White;
-            this.btnPage4.BorderRadius = 8;
-            this.btnPage4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnPage4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnPage4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnPage4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnPage4.FillColor = System.Drawing.Color.Transparent;
-            this.btnPage4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPage4.ForeColor = System.Drawing.Color.Black;
-            this.btnPage4.Location = new System.Drawing.Point(739, 447);
-            this.btnPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnPage4.Name = "btnPage4";
-            this.btnPage4.Size = new System.Drawing.Size(48, 39);
-            this.btnPage4.TabIndex = 11;
-            this.btnPage4.Text = "...";
-            // 
-            // btnPrev
-            // 
-            this.btnPrev.BackColor = System.Drawing.Color.White;
-            this.btnPrev.BorderRadius = 8;
-            this.btnPrev.BorderThickness = 1;
-            this.btnPrev.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnPrev.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnPrev.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnPrev.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnPrev.FillColor = System.Drawing.Color.Transparent;
-            this.btnPrev.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrev.ForeColor = System.Drawing.Color.Black;
-            this.btnPrev.Location = new System.Drawing.Point(515, 447);
-            this.btnPrev.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(48, 39);
-            this.btnPrev.TabIndex = 6;
-            this.btnPrev.Text = "<";
-            this.btnPrev.Visible = false;
-            // 
-            // btnPage5
-            // 
-            this.btnPage5.BackColor = System.Drawing.Color.White;
-            this.btnPage5.BorderRadius = 8;
-            this.btnPage5.BorderThickness = 1;
-            this.btnPage5.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnPage5.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnPage5.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnPage5.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnPage5.FillColor = System.Drawing.Color.Transparent;
-            this.btnPage5.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnPage5.ForeColor = System.Drawing.Color.Black;
-            this.btnPage5.Location = new System.Drawing.Point(795, 447);
-            this.btnPage5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnPage5.Name = "btnPage5";
-            this.btnPage5.Size = new System.Drawing.Size(61, 39);
-            this.btnPage5.TabIndex = 12;
-            this.btnPage5.Text = "223";
-            // 
-            // btnNext
-            // 
-            this.btnNext.BackColor = System.Drawing.Color.White;
-            this.btnNext.BorderRadius = 8;
-            this.btnNext.BorderThickness = 1;
-            this.btnNext.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnNext.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnNext.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnNext.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnNext.FillColor = System.Drawing.Color.Transparent;
-            this.btnNext.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext.ForeColor = System.Drawing.Color.Black;
-            this.btnNext.Location = new System.Drawing.Point(879, 447);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(48, 39);
-            this.btnNext.TabIndex = 7;
-            this.btnNext.Text = ">";
-            // 
-            // btnPage2
-            // 
-            this.btnPage2.BackColor = System.Drawing.Color.White;
-            this.btnPage2.BorderRadius = 8;
-            this.btnPage2.BorderThickness = 1;
-            this.btnPage2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnPage2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnPage2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnPage2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnPage2.FillColor = System.Drawing.Color.Transparent;
-            this.btnPage2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPage2.ForeColor = System.Drawing.Color.Black;
-            this.btnPage2.Location = new System.Drawing.Point(627, 447);
-            this.btnPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnPage2.Name = "btnPage2";
-            this.btnPage2.Size = new System.Drawing.Size(48, 39);
-            this.btnPage2.TabIndex = 9;
-            this.btnPage2.Text = "2";
-            // 
-            // btnPage3
-            // 
-            this.btnPage3.BackColor = System.Drawing.Color.White;
-            this.btnPage3.BorderRadius = 8;
-            this.btnPage3.BorderThickness = 1;
-            this.btnPage3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnPage3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnPage3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnPage3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnPage3.FillColor = System.Drawing.Color.Transparent;
-            this.btnPage3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPage3.ForeColor = System.Drawing.Color.Black;
-            this.btnPage3.Location = new System.Drawing.Point(683, 447);
-            this.btnPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnPage3.Name = "btnPage3";
-            this.btnPage3.Size = new System.Drawing.Size(48, 39);
-            this.btnPage3.TabIndex = 10;
-            this.btnPage3.Text = "3";
-            // 
             // Pnbottom2
             // 
             this.Pnbottom2.BackColor = System.Drawing.Color.Transparent;
@@ -1023,8 +946,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.Pnbottom2.Controls.Add(this.guna2Button5);
             this.Pnbottom2.Controls.Add(this.tableLayoutPanel1);
             this.Pnbottom2.FillColor = System.Drawing.Color.White;
-            this.Pnbottom2.Location = new System.Drawing.Point(1456, 402);
-            this.Pnbottom2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Pnbottom2.Location = new System.Drawing.Point(1092, 403);
             this.Pnbottom2.Name = "Pnbottom2";
             this.Pnbottom2.Padding = new System.Windows.Forms.Padding(21, 20, 21, 20);
             this.Pnbottom2.ShadowDecoration.BorderRadius = 12;
@@ -1149,7 +1071,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.ClientSize = new System.Drawing.Size(1665, 976);
             this.Controls.Add(this.lbDSTonkho);
             this.Controls.Add(this.pnlTopbar);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -1163,18 +1085,20 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.cardTotal.PerformLayout();
             this.pnlIconTotal.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconBox)).EndInit();
-            this.guna2Panel1.ResumeLayout(false);
-            this.guna2Panel1.PerformLayout();
+            this.CardSlowTotal.ResumeLayout(false);
+            this.CardSlowTotal.PerformLayout();
             this.pnsocklow.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconWarning)).EndInit();
-            this.guna2Panel3.ResumeLayout(false);
-            this.guna2Panel3.PerformLayout();
+            this.CardHealthyTotal.ResumeLayout(false);
+            this.CardHealthyTotal.PerformLayout();
             this.pntotalondin.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconCheck)).EndInit();
             this.spFilter.ResumeLayout(false);
             this.tlpFilter.ResumeLayout(false);
             this.tlpFilter.PerformLayout();
             this.lbDSTonkho.ResumeLayout(false);
+            this.pnlTopActions.ResumeLayout(false);
+            this.pnlTopActions.PerformLayout();
             this.pnbottom1.ResumeLayout(false);
             this.TbDanhsachtonkho.ResumeLayout(false);
             this.TbDanhsachtonkho.PerformLayout();
@@ -1202,13 +1126,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private Guna.UI2.WinForms.Guna2Chip chipTotal;
         private Guna.UI2.WinForms.Guna2Panel pnlIconTotal;
         private FontAwesome.Sharp.IconPictureBox iconBox;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2Panel CardSlowTotal;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbStockLowCaption;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbStockLow;
         private Guna.UI2.WinForms.Guna2Chip cardLow;
         private Guna.UI2.WinForms.Guna2Panel pnsocklow;
         private FontAwesome.Sharp.IconPictureBox iconWarning;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
+        private Guna.UI2.WinForms.Guna2Panel CardHealthyTotal;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbHealthyStockCaption;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbHealthyStock;
         private Guna.UI2.WinForms.Guna2Chip cardHealthy;
@@ -1233,18 +1157,16 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private Guna.UI2.WinForms.Guna2HtmlLabel sptthienthi;
         private Guna.UI2.WinForms.Guna2DataGridView DGdanhsachtonkho;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbdanhsachtonkho;
-        private Guna.UI2.WinForms.Guna2Button btnPage1;
-        private Guna.UI2.WinForms.Guna2Button btnPage4;
-        private Guna.UI2.WinForms.Guna2Button btnPrev;
-        private Guna.UI2.WinForms.Guna2Button btnPage5;
-        private Guna.UI2.WinForms.Guna2Button btnNext;
-        private Guna.UI2.WinForms.Guna2Button btnPage2;
-        private Guna.UI2.WinForms.Guna2Button btnPage3;
         private Guna.UI2.WinForms.Guna2Panel Pnbottom2;
         private Guna.UI2.WinForms.Guna2Button guna2Button5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbsptitleCanhbaotonkho;
         private Guna.UI2.WinForms.Guna2HtmlLabel lbCanhbaoton;
         private Guna.UI2.WinForms.Guna2DataGridView DGCanhbaotonkho;
+        private Guna.UI2.WinForms.Guna2Panel pnlTopActions;
+        private Guna.UI2.WinForms.Guna2Button btnadditems;
+        private Guna.UI2.WinForms.Guna2Button btnstopItems;
+        private Guna.UI2.WinForms.Guna2Button btnfixitems;
+        private System.Windows.Forms.FlowLayoutPanel flpActions;
     }
 }
