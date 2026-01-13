@@ -64,8 +64,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
             new CountryPhoneCode { Name = "Singapore", DialCode = "+65", Iso = "SG" },
             new CountryPhoneCode { Name = "Thailand", DialCode = "+66", Iso = "TH" },
             new CountryPhoneCode { Name = "Philippines", DialCode = "+63", Iso = "PH" },
-            new CountryPhoneCode { Name = "Vietnam", DialCode = "+84", Iso = "VN" },
-            new CountryPhoneCode { Name = "China", DialCode = "+86", Iso = "CN" },
             new CountryPhoneCode { Name = "South Africa", DialCode = "+27", Iso = "ZA" },
             new CountryPhoneCode { Name = "Nigeria", DialCode = "+234", Iso = "NG" },
             new CountryPhoneCode { Name = "Kenya", DialCode = "+254", Iso = "KE" },
@@ -114,6 +112,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void Rental_information_Load(object sender, EventArgs e)
         {
+            // *** MỚI: Tải thông tin khách từ database nếu có booking sẵn ***
+            LoadCustomerInfoFromBooking();
+
             string name = !string.IsNullOrWhiteSpace(TenKhachDaCo) ? TenKhachDaCo : null;
             if (!string.IsNullOrEmpty(name))
             {
@@ -199,6 +200,117 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 this.KeyDown += Rental_information_KeyDown;
             }
             catch { }
+        }
+
+        /// <summary>
+        /// Tải thông tin khách hàng từ database dựa trên booking đã có của phòng
+        /// </summary>
+        private void LoadCustomerInfoFromBooking()
+        {
+            if (string.IsNullOrWhiteSpace(CurrentRoomID)) return;
+
+            var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
+            if (string.IsNullOrWhiteSpace(connStr)) return;
+
+            try
+            {
+                using (var conn = new SqlConnection(connStr))
+                using (var cmd = new SqlCommand(@"
+                    SELECT TOP 1 
+                        c.FullName, c.CCCD, c.PhoneNumber, c.Email, c.Sex, c.Nationality, c.Address,
+                        d.CheckIn, d.CheckOut, d.AppliedPrice
+                    FROM dbo.BookingDetails d
+                    JOIN dbo.HotelBookings b ON d.BookingId = b.BookingId
+                    JOIN dbo.Customers c ON b.CustomerId = c.CustomerId
+                    WHERE d.RoomId = @RoomID 
+                      AND b.Status NOT IN (N'Paid', N'Cancelled')
+                    ORDER BY b.CreatedDate DESC", conn))
+                {
+                    cmd.Parameters.AddWithValue("@RoomID", CurrentRoomID.Trim());
+                    conn.Open();
+                    using (var rd = cmd.ExecuteReader())
+                    {
+                        if (rd.Read())
+                        {
+                            // Chỉ set nếu chưa có giá trị được truyền vào từ form trước
+                            if (string.IsNullOrWhiteSpace(TenKhachDaCo))
+                                TenKhachDaCo = rd["FullName"]?.ToString();
+
+                            if (string.IsNullOrWhiteSpace(PrefillIdCard) && string.IsNullOrWhiteSpace(IdCardDaCo))
+                            {
+                                var cccd = rd["CCCD"]?.ToString();
+                                if (!string.IsNullOrWhiteSpace(cccd))
+                                {
+                                    PrefillIdCard = cccd;
+                                    IdCardDaCo = cccd;
+                                }
+                            }
+
+                            if (string.IsNullOrWhiteSpace(PrefillPhone) && string.IsNullOrWhiteSpace(PhoneDaCo))
+                            {
+                                var phone = rd["PhoneNumber"]?.ToString();
+                                if (!string.IsNullOrWhiteSpace(phone))
+                                {
+                                    PrefillPhone = phone;
+                                    PhoneDaCo = phone;
+                                }
+                            }
+
+                            if (string.IsNullOrWhiteSpace(PrefillEmail))
+                            {
+                                PrefillEmail = rd["Email"]?.ToString();
+                            }
+
+                            if (string.IsNullOrWhiteSpace(PrefillGender) && string.IsNullOrWhiteSpace(GenderDaCo))
+                            {
+                                var gender = rd["Sex"]?.ToString();
+                                if (!string.IsNullOrWhiteSpace(gender))
+                                {
+                                    PrefillGender = gender;
+                                    GenderDaCo = gender;
+                                }
+                            }
+
+                            if (string.IsNullOrWhiteSpace(PrefillNationality) && string.IsNullOrWhiteSpace(NationalityDaCo))
+                            {
+                                var nat = rd["Nationality"]?.ToString();
+                                if (!string.IsNullOrWhiteSpace(nat))
+                                {
+                                    PrefillNationality = nat;
+                                    NationalityDaCo = nat;
+                                }
+                            }
+
+                            if (string.IsNullOrWhiteSpace(PrefillAddress))
+                            {
+                                PrefillAddress = rd["Address"]?.ToString();
+                            }
+
+                            // Cập nhật ngày check-in/check-out nếu chưa được set
+                            if (SelectedCheckIn == DateTime.MinValue && rd["CheckIn"] != DBNull.Value)
+                            {
+                                SelectedCheckIn = Convert.ToDateTime(rd["CheckIn"]);
+                            }
+                            if (SelectedCheckOut == DateTime.MinValue && rd["CheckOut"] != DBNull.Value)
+                            {
+                                SelectedCheckOut = Convert.ToDateTime(rd["CheckOut"]);
+                            }
+
+                            // Cập nhật giá nếu chưa có
+                            if (CurrentPrice <= 0 && rd["AppliedPrice"] != DBNull.Value)
+                            {
+                                CurrentPrice = Convert.ToDecimal(rd["AppliedPrice"]);
+                            }
+
+                            System.Diagnostics.Debug.WriteLine($"[LoadCustomerInfoFromBooking] Loaded: Name={TenKhachDaCo}, CCCD={PrefillIdCard}, Phone={PrefillPhone}");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[LoadCustomerInfoFromBooking] Error: {ex.Message}");
+            }
         }
 
         private void CbQuoctich_SelectedIndexChanged(object sender, EventArgs e)
@@ -409,27 +521,30 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         // --- BƯỚC 1: XỬ LÝ KHÁCH HÀNG (Upsert) ---
                         int customerId = 0;
                         
-                        string sqlCheckKhach = "SELECT TOP 1 CustomerID FROM Customer WHERE IdCard = @IdCard";
+                        // Customers table in DB: dbo.Customers, PK CustomerId, CCCD column stores ID card
+                        string sqlCheckKhach = "SELECT TOP 1 CustomerId FROM dbo.Customers WHERE CCCD = @IdCard";
                         using (var cmdCheck = new SqlCommand(sqlCheckKhach, conn, transaction))
                         {
                             cmdCheck.Parameters.AddWithValue("@IdCard", txtCCCD.Text.Trim());
                             var result = cmdCheck.ExecuteScalar();
-                            if (result != null && result != DBNull.Value) 
+                            if (result != null && result != DBNull.Value)
                                 customerId = Convert.ToInt32(result);
                         }
 
                         if (customerId == 0)
                         {
-                            string sqlInsertKhach = @"INSERT INTO Customer (FullName, IdCard, Phone, Gender, Nationality) 
-                                                      VALUES (@FullName, @IdCard, @Phone, @Gender, @Nationality);
+                            string sqlInsertKhach = @"INSERT INTO dbo.Customers(FullName, CCCD, PhoneNumber, Sex, Nationality, Email, Address) 
+                                                      VALUES(@FullName, @CCCD, @Phone, @Sex, @Nationality, @Email, @Address);
                                                       SELECT CAST(SCOPE_IDENTITY() AS INT);";
                             using (var cmdInsertKhach = new SqlCommand(sqlInsertKhach, conn, transaction))
                             {
                                 cmdInsertKhach.Parameters.AddWithValue("@FullName", txtHoTen.Text.Trim());
-                                cmdInsertKhach.Parameters.AddWithValue("@IdCard", txtCCCD.Text.Trim());
-                                cmdInsertKhach.Parameters.AddWithValue("@Phone", txtSDT.Text ?? (object)DBNull.Value);
-                                cmdInsertKhach.Parameters.AddWithValue("@Gender", "Nam"); 
-                                cmdInsertKhach.Parameters.AddWithValue("@Nationality", "Vietnam"); 
+                                cmdInsertKhach.Parameters.AddWithValue("@CCCD", txtCCCD.Text.Trim());
+                                cmdInsertKhach.Parameters.AddWithValue("@Phone", string.IsNullOrWhiteSpace(txtSDT.Text) ? (object)DBNull.Value : txtSDT.Text.Trim());
+                                cmdInsertKhach.Parameters.AddWithValue("@Sex", string.IsNullOrWhiteSpace(cboGioiTinh?.Text) ? (object)DBNull.Value : cboGioiTinh.Text.Trim());
+                                cmdInsertKhach.Parameters.AddWithValue("@Nationality", string.IsNullOrWhiteSpace(cbQuoctich?.Text) ? (object)DBNull.Value : cbQuoctich.Text);
+                                cmdInsertKhach.Parameters.AddWithValue("@Email", string.IsNullOrWhiteSpace(txtEmail?.Text) ? (object)DBNull.Value : txtEmail.Text.Trim());
+                                cmdInsertKhach.Parameters.AddWithValue("@Address", string.IsNullOrWhiteSpace(txtDiaChi?.Text) ? (object)DBNull.Value : txtDiaChi.Text.Trim());
                                 customerId = Convert.ToInt32(cmdInsertKhach.ExecuteScalar());
                             }
                         }
@@ -443,28 +558,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
                             // If customer already existed, update Email/Address
                             if (customerId > 0)
                             {
-                                using (var cmdUpdCust = new SqlCommand(@"UPDATE dbo.Customer SET Email = COALESCE(@Email, Email), Address = COALESCE(@Address, Address) WHERE CustomerID = @CID", conn, transaction))
+                                using (var cmdUpdCust = new SqlCommand(@"UPDATE dbo.Customers SET Email = COALESCE(@Email, Email), Address = COALESCE(@Address, Address), PhoneNumber = COALESCE(@Phone, PhoneNumber) WHERE CustomerId = @CID", conn, transaction))
                                 {
                                     cmdUpdCust.Parameters.AddWithValue("@Email", emailVal);
                                     cmdUpdCust.Parameters.AddWithValue("@Address", addrVal);
+                                    cmdUpdCust.Parameters.AddWithValue("@Phone", string.IsNullOrWhiteSpace(txtSDT?.Text) ? (object)DBNull.Value : txtSDT.Text.Trim());
                                     cmdUpdCust.Parameters.AddWithValue("@CID", customerId);
                                     cmdUpdCust.ExecuteNonQuery();
-                                }
-                            }
-                            else
-                            {
-                                // If no customerId (shouldn't happen), try to insert with email/address
-                                using (var cmdTry = new SqlCommand(@"INSERT INTO dbo.Customer(FullName, IdCard, Phone, Gender, Nationality, Email, Address) VALUES(@FullName,@IdCard,@Phone,@Gender,@Nationality,@Email,@Address); SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, transaction))
-                                {
-                                    cmdTry.Parameters.AddWithValue("@FullName", txtHoTen.Text.Trim());
-                                    cmdTry.Parameters.AddWithValue("@IdCard", txtCCCD.Text.Trim());
-                                    cmdTry.Parameters.AddWithValue("@Phone", txtSDT.Text ?? (object)DBNull.Value);
-                                    cmdTry.Parameters.AddWithValue("@Gender", "Nam");
-                                    cmdTry.Parameters.AddWithValue("@Nationality", "Vietnam");
-                                    cmdTry.Parameters.AddWithValue("@Email", emailVal);
-                                    cmdTry.Parameters.AddWithValue("@Address", addrVal);
-                                    var obj = cmdTry.ExecuteScalar();
-                                    if (obj != null && obj != DBNull.Value) customerId = Convert.ToInt32(obj);
                                 }
                             }
                         }
@@ -472,18 +572,25 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
                         // --- BƯỚC 2: KIỂM TRA XEM ĐÃ CÓ BOOKING CHO PHÒNG NÀY CHƯA ---
                         int existingBookingId = 0;
-                        string sqlFindBooking = @"SELECT TOP 1 b.BookingID 
-                                                  FROM dbo.Booking b
-                                                  JOIN dbo.BookingDetail d ON b.BookingID = d.BookingID
-                                                  WHERE d.RoomID = @RoomID 
+                        string existingBookingCode = null;
+                        // Use HotelBookings + BookingDetails table names from DB
+                        string sqlFindBooking = @"SELECT TOP 1 b.BookingId, b.BookingCode
+                                                  FROM dbo.HotelBookings b
+                                                  JOIN dbo.BookingDetails d ON b.BookingId = d.BookingId
+                                                  WHERE d.RoomId = @RoomID
                                                     AND b.Status IN (N'Đặt', N'Open', N'Booked')
                                                   ORDER BY b.CreatedDate DESC";
                         using (var cmdFind = new SqlCommand(sqlFindBooking, conn, transaction))
                         {
                             cmdFind.Parameters.AddWithValue("@RoomID", CurrentRoomID?.Trim());
-                            var obj = cmdFind.ExecuteScalar();
-                            if (obj != null && obj != DBNull.Value)
-                                existingBookingId = Convert.ToInt32(obj);
+                            using (var rd = cmdFind.ExecuteReader())
+                            {
+                                if (rd.Read())
+                                {
+                                    existingBookingId = Convert.ToInt32(rd["BookingId"]);
+                                    existingBookingCode = rd["BookingCode"]?.ToString();
+                                }
+                            }
                         }
 
                         int bookingId = existingBookingId;
@@ -492,7 +599,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         if (existingBookingId > 0)
                         {
                             // Cập nhật trạng thái booking từ "Đặt" -> "Đang thuê"
-                            string sqlUpdateBooking = "UPDATE dbo.Booking SET Status = N'Đang thuê', CustomerID = @CustomerID WHERE BookingID = @BookingID";
+                            string sqlUpdateBooking = "UPDATE dbo.HotelBookings SET Status = N'Đang thuê', CustomerId = @CustomerID WHERE BookingId = @BookingID";
                             using (var cmdUpd = new SqlCommand(sqlUpdateBooking, conn, transaction))
                             {
                                 cmdUpd.Parameters.AddWithValue("@CustomerID", customerId);
@@ -507,16 +614,15 @@ namespace QLChuoiNhaHangKhachSan.GUI
                             string bookingCode = "BK" + DateTime.Now.ToString("yyyyMMddHHmmss");
                             int employeeId = 1;
 
-                            string sqlBooking = @"INSERT INTO Booking (BookingCode, CustomerID, EmployeeID, CreatedDate, Status) 
-                                                  VALUES (@BookingCode, @CustomerID, @EmployeeID, GETDATE(), @Status);
+                            string sqlBooking = @"INSERT INTO dbo.HotelBookings(CustomerId, EmployeeId, CreatedDate, Status)
+                                                  VALUES(@CustomerId, @EmployeeId, GETDATE(), @Status);
                                                   SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
                             using (var cmdBooking = new SqlCommand(sqlBooking, conn, transaction))
                             {
                                 cmdBooking.Parameters.AddWithValue("@Status", "Đang thuê");
-                                cmdBooking.Parameters.AddWithValue("@BookingCode", bookingCode);
-                                cmdBooking.Parameters.AddWithValue("@CustomerID", customerId);
-                                cmdBooking.Parameters.AddWithValue("@EmployeeID", employeeId);
+                                cmdBooking.Parameters.AddWithValue("@CustomerId", customerId == 0 ? (object)DBNull.Value : customerId);
+                                cmdBooking.Parameters.AddWithValue("@EmployeeId", employeeId);
                                 bookingId = Convert.ToInt32(cmdBooking.ExecuteScalar());
                             }
 
@@ -526,7 +632,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
                             if (CurrentPrice == 0)
                             {
-                                 using(var cmdPrice = new SqlCommand("SELECT TOP 1 AppliedPrice FROM v_RoomPrice WHERE RoomID=@RID", conn, transaction))
+                                 using(var cmdPrice = new SqlCommand("SELECT TOP 1 AppliedPrice FROM dbo.v_RoomPrice WHERE RoomID=@RID", conn, transaction))
                                  {
                                      cmdPrice.Parameters.AddWithValue("@RID", CurrentRoomID);
                                      var p = cmdPrice.ExecuteScalar();
@@ -534,7 +640,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                                  }
                             }
 
-                            string sqlDetail = @"INSERT INTO BookingDetail (BookingID, RoomID, CheckIn, CheckOut, AppliedPrice, Note) 
+                            string sqlDetail = @"INSERT INTO dbo.BookingDetails (BookingId, RoomId, CheckIn, CheckOut, AppliedPrice, Note)
                                                  VALUES (@BookingID, @RoomID, @CheckIn, @CheckOut, @AppliedPrice, @Note)";
                             
                             using (var cmdDetail = new SqlCommand(sqlDetail, conn, transaction))
@@ -550,7 +656,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         }
 
                         // --- BƯỚC 4: CẬP NHẬT TRẠNG THÁI PHÒNG -> "Phòng đang thuê" ---
-                        string sqlUpdateRoom = "UPDATE Room SET Status = N'Phòng đang thuê' WHERE RoomID = @RoomID";
+                        string sqlUpdateRoom = "UPDATE dbo.Rooms SET Status = N'Phòng đang thuê' WHERE RoomId = @RoomID";
                         using (var cmdUpdateRoom = new SqlCommand(sqlUpdateRoom, conn, transaction))
                         {
                             cmdUpdateRoom.Parameters.AddWithValue("@RoomID", CurrentRoomID?.Trim());
@@ -571,7 +677,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
                                 Customer = txtHoTen.Text.Trim(),
                                 Start = SelectedCheckIn == DateTime.MinValue ? DateTime.Now : SelectedCheckIn,
                                 End = SelectedCheckOut == DateTime.MinValue ? DateTime.Now.AddDays(1) : SelectedCheckOut,
-                                Services = new List<ServiceItem>()
+                                Services = new List<ServiceItem>(),
+                                Email = txtEmail?.Text?.Trim(),
+                                IdCard = txtCCCD.Text.Trim(),
+                                Phone = txtSDT?.Text?.Trim(),
+                                Gender = cboGioiTinh?.Text,
+                                Nationality = cbQuoctich?.Text
                             };
                             BookingManager.AddBooking(CurrentRoomID, memInfo);
 

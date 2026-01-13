@@ -314,17 +314,18 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 {
                     try
                     {
-                        // 1. Tìm BookingID đang hoạt động của phòng này
+                        // 1. Tìm BookingID đang hoạt động của phòng này (chính xác theo RoomID)
                         int bookingId = 0;
-                        string findSql = @"SELECT TOP 1 b.BookingID 
-                                   FROM dbo.Booking b
-                                   JOIN dbo.BookingDetail d ON b.BookingID = d.BookingID
-                                   WHERE d.RoomID = @RoomID 
-                                     AND b.Status NOT IN (N'Paid', N'Cancelled')";
+                        string findSql = @"SELECT TOP 1 b.BookingId 
+                                   FROM dbo.HotelBookings b
+                                   JOIN dbo.BookingDetails d ON b.BookingId = d.BookingId
+                                   WHERE d.RoomId = @RoomID 
+                                     AND b.Status NOT IN (N'Paid', N'Cancelled')
+                                   ORDER BY b.CreatedDate DESC";
 
                         using (var cmd = new SqlCommand(findSql, conn, tran))
                         {
-                            cmd.Parameters.AddWithValue("@RoomID", CurrentRoomID);
+                            cmd.Parameters.AddWithValue("@RoomID", CurrentRoomID.Trim());
                             var res = cmd.ExecuteScalar();
                             if (res != null && res != DBNull.Value) bookingId = Convert.ToInt32(res);
                         }
@@ -336,38 +337,53 @@ namespace QLChuoiNhaHangKhachSan.GUI
                             return;
                         }
 
-                        // 2. Tạo bảng BookingService nếu chưa có (Phòng hờ)
+                        // 2. Tạo/Cập nhật bảng BookingServices với RoomID
                         using (var cmdTable = new SqlCommand(@"
-                    IF OBJECT_ID('dbo.BookingService','U') IS NULL
-                    CREATE TABLE dbo.BookingService (
-                        ID INT IDENTITY(1,1) PRIMARY KEY,
-                        BookingID INT,
-                        ServiceName NVARCHAR(100),
-                        Quantity INT,
-                        UnitPrice DECIMAL(18,2),
-                        TotalAmount DECIMAL(18,2)
-                    );", conn, tran))
+                            IF OBJECT_ID('dbo.BookingServices','U') IS NULL
+                            BEGIN
+                                CREATE TABLE dbo.BookingServices (
+                                    ID INT IDENTITY(1,1) PRIMARY KEY,
+                                    BookingID INT,
+                                    RoomID NVARCHAR(50),
+                                    ServiceName NVARCHAR(100),
+                                    Quantity INT,
+                                    UnitPrice DECIMAL(18,2),
+                                    TotalAmount DECIMAL(18,2)
+                                );
+                            END
+                            ELSE IF NOT EXISTS (SELECT 1 FROM sys.columns WHERE object_id = OBJECT_ID('dbo.BookingServices') AND name = 'RoomID')
+                            BEGIN
+                                ALTER TABLE dbo.BookingServices ADD RoomID NVARCHAR(50);
+                            END", conn, tran))
                         {
                             cmdTable.ExecuteNonQuery();
                         }
 
-                        // 3. Lưu từng món vào Database
+                        // 3. Lưu từng món vào Database (kèm RoomID)
+                        var serviceDetails = new StringBuilder();
                         foreach (var item in _selected)
                         {
-                            string sqlInsert = @"INSERT INTO dbo.BookingService(BookingID, ServiceName, Quantity, UnitPrice, TotalAmount)
-                                         VALUES(@BID, @Name, @Qty, @Price, @Total)";
+                            string sqlInsert = @"INSERT INTO dbo.BookingServices(BookingID, RoomID, ServiceName, Quantity, UnitPrice, TotalAmount)
+                                         VALUES(@BID, @RoomID, @Name, @Qty, @Price, @Total)";
                             using (var cmdIns = new SqlCommand(sqlInsert, conn, tran))
                             {
                                 cmdIns.Parameters.AddWithValue("@BID", bookingId);
+                                cmdIns.Parameters.AddWithValue("@RoomID", CurrentRoomID.Trim());
                                 cmdIns.Parameters.AddWithValue("@Name", item.Name);
                                 cmdIns.Parameters.AddWithValue("@Qty", item.Quantity);
                                 cmdIns.Parameters.AddWithValue("@Price", item.UnitPrice);
                                 cmdIns.Parameters.AddWithValue("@Total", item.Total);
                                 cmdIns.ExecuteNonQuery();
                             }
+                            
+                            // Tạo chi tiết thông báo
+                            serviceDetails.AppendLine($"  • {item.Name} x{item.Quantity} = {item.Total:N0} VNĐ");
                         }
 
                         tran.Commit();
+                        
+                        // Hiển thị thông báo thành công với chi tiết
+                        //
                         this.DialogResult = DialogResult.OK;
                         this.Close();
                     }

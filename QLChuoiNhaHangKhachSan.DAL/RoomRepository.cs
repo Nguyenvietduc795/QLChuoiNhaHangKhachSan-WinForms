@@ -20,8 +20,13 @@ namespace QLChuoiNhaHangKhachSan.DAL
         {
             var result = new List<(string, string)>();
 
+            // Updated SQL to match the database schema: Rooms + RoomTypes
+            const string sql = @"SELECT r.RoomId AS MaPhong, rt.TypeName AS LoaiPhong
+                                 FROM dbo.Rooms r
+                                 LEFT JOIN dbo.RoomTypes rt ON r.RoomTypeId = rt.RoomTypeId";
+
             using (var conn = new SqlConnection(_connectionString))
-            using (var cmd = new SqlCommand("SELECT MaPhong, LoaiPhong FROM Phong", conn))
+            using (var cmd = new SqlCommand(sql, conn))
             {
                 conn.Open();
                 using (var rd = cmd.ExecuteReader())
@@ -29,7 +34,7 @@ namespace QLChuoiNhaHangKhachSan.DAL
                     while (rd.Read())
                     {
                         var code = rd["MaPhong"]?.ToString().Trim();
-                        var type = rd["LoaiPhong"]?.ToString().Trim();
+                        var type = rd["LoaiPhong"] != DBNull.Value ? rd["LoaiPhong"].ToString().Trim() : string.Empty;
                         if (!string.IsNullOrWhiteSpace(code))
                         {
                             result.Add((code, type));

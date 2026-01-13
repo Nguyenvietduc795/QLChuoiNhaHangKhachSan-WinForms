@@ -67,14 +67,29 @@ namespace QLChuoiNhaHangKhachSan.GUI
             var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
             if (string.IsNullOrWhiteSpace(connStr)) return false;
 
-            // Xóa ở bảng Detail trước rồi mới xóa bảng Booking để tránh lỗi khóa ngoại
+            // Xóa theo thứ tự: BookingServices -> BookingDetails -> HotelBookings
+            // để tránh lỗi khóa ngoại
             string query = @"
                 DECLARE @BID INT;
                 SELECT @BID = BookingID FROM dbo.HotelBookings WHERE BookingCode = @Code;
 
                 IF @BID IS NOT NULL
                 BEGIN
+                    -- Xóa BookingServices trước (nếu có)
+                    IF OBJECT_ID('dbo.BookingServices', 'U') IS NOT NULL
+                    BEGIN
+                        DELETE FROM dbo.BookingServices WHERE BookingID = @BID;
+                    END
+                    
+                    -- Cập nhật trạng thái phòng về Phòng Trống
+                    UPDATE dbo.Rooms 
+                    SET Status = N'Phòng Trống' 
+                    WHERE RoomId IN (SELECT RoomId FROM dbo.BookingDetails WHERE BookingID = @BID);
+                    
+                    -- Xóa BookingDetails
                     DELETE FROM dbo.BookingDetails WHERE BookingID = @BID;
+                    
+                    -- Xóa HotelBookings
                     DELETE FROM dbo.HotelBookings WHERE BookingID = @BID;
                 END";
 
@@ -90,7 +105,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi SQL khi xóa: " + ex.Message);
+                    MessageBox.Show("Lỗi SQL khi xóa: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
@@ -118,10 +133,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 using (var conn = new SqlConnection(connStr))
                 using (var cmd = new SqlCommand(@"SELECT b.BookingCode, b.CreatedDate, b.EmployeeID, b.Status, b.CancelReason,
                                                  c.FullName AS CustomerName, c.CCCD, c.PhoneNumber, c.Email, c.Sex AS Gender, c.Nationality,
-                                                 d.RoomId, d.CheckIn, d.CheckOut
+                                                 d.RoomId, d.CheckIn, d.CheckOut,
+                                                 e.FullName AS EmployeeName
                                               FROM dbo.HotelBookings b
                                               INNER JOIN dbo.Customers c ON b.CustomerId = c.CustomerId
                                               LEFT JOIN dbo.BookingDetails d ON b.BookingId = d.BookingId
+                                              LEFT JOIN dbo.Employees e ON b.EmployeeID = e.EmployeeId
                                               ORDER BY b.CreatedDate DESC, b.BookingId DESC", conn))
                 {
                     conn.Open();
@@ -139,7 +156,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
                             if (!bookings.TryGetValue(code, out info))
                             {
                                 DateTime? created = rd["CreatedDate"] != DBNull.Value ? (DateTime?)rd["CreatedDate"] : null;
-                                string staff = rd["EmployeeID"] != DBNull.Value ? "NV #" + rd["EmployeeID"] : string.Empty;
+                                // Lấy tên nhân viên từ CSDL
+                                string employeeName = rd["EmployeeName"] != DBNull.Value ? rd["EmployeeName"].ToString() : null;
+                                string staff = !string.IsNullOrWhiteSpace(employeeName) ? employeeName : 
+                                              (rd["EmployeeID"] != DBNull.Value ? "NV #" + rd["EmployeeID"] : string.Empty);
+                                
                                 info = new BookingRowInfo
                                 {
                                     Id = code,
@@ -359,10 +380,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
             using (var conn = new SqlConnection(connStr))
             using (var cmd = new SqlCommand(@"SELECT b.BookingCode, b.CreatedDate, b.EmployeeID, b.Status, b.CancelReason,
                                                  c.FullName AS CustomerName, c.CCCD, c.PhoneNumber, c.Email, c.Sex AS Gender, c.Nationality,
-                                                 d.RoomId, d.CheckIn, d.CheckOut
+                                                 d.RoomId, d.CheckIn, d.CheckOut,
+                                                 e.FullName AS EmployeeName
                                               FROM dbo.HotelBookings b
                                               INNER JOIN dbo.Customers c ON b.CustomerId = c.CustomerId
                                               LEFT JOIN dbo.BookingDetails d ON b.BookingId = d.BookingId
+                                              LEFT JOIN dbo.Employees e ON b.EmployeeID = e.EmployeeId
                                               WHERE b.BookingCode = @Code
                                               ORDER BY d.BookingDetailId", conn))
             {
@@ -375,7 +398,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         if (info == null)
                         {
                             DateTime? created = rd["CreatedDate"] != DBNull.Value ? (DateTime?)rd["CreatedDate"] : null;
-                            string staff = rd["EmployeeID"] != DBNull.Value ? "NV #" + rd["EmployeeID"] : string.Empty;
+                            // Lấy tên nhân viên từ CSDL
+                            string employeeName = rd["EmployeeName"] != DBNull.Value ? rd["EmployeeName"].ToString() : null;
+                            string staff = !string.IsNullOrWhiteSpace(employeeName) ? employeeName : 
+                                          (rd["EmployeeID"] != DBNull.Value ? "NV #" + rd["EmployeeID"] : string.Empty);
+                            
                             info = new BookingRowInfo
                             {
                                 Id = bookingCode,
@@ -568,10 +595,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         if (listForm != null && !string.IsNullOrWhiteSpace(phong))
                         {
                             var codes = phong.Split(new[] { ' ', ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
-                            if (startDate.Date <= DateTime.Now.Date)
-                            {
-                                listForm.MarkRoomsAsBooked(codes, khach);
-                            }
+                            // Luôn cập nhật trạng thái phòng ngay lập tức
+                            listForm.MarkRoomsAsBooked(codes, khach);
+                            listForm.RefreshFromBookings(codes);
                         }
                     }
                     catch (Exception ex)
@@ -581,10 +607,17 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
                     RefreshAutocompleteSource();
 
-                    // send confirmation email (best effort) using the created BookingRowInfo directly
+                    // Send confirmation email (best effort) using the created BookingRowInfo directly
                     if (addedInfo != null && !string.IsNullOrWhiteSpace(addedInfo.Email))
                     {
-                        EmailHelper.SendBookingConfirmation(addedInfo);
+                        try
+                        {
+                            EmailHelper.SendBookingConfirmation(addedInfo);
+                        }
+                        catch (Exception exEmail)
+                        {
+                            System.Diagnostics.Debug.WriteLine("Email error: " + exEmail.Message);
+                        }
                     }
                 }
             }
