@@ -142,5 +142,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
             base.OnFormClosed(e);
         }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

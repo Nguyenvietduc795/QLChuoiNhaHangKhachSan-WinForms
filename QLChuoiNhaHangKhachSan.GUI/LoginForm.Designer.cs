@@ -47,7 +47,7 @@
             this.lblLoginTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblLoginTitle.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLoginTitle.Location = new System.Drawing.Point(112, 162);
-            this.lblLoginTitle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblLoginTitle.Margin = new System.Windows.Forms.Padding(2);
             this.lblLoginTitle.Name = "lblLoginTitle";
             this.lblLoginTitle.Size = new System.Drawing.Size(196, 32);
             this.lblLoginTitle.TabIndex = 2;
@@ -79,7 +79,7 @@
             this.lblLogin_UserName.BackColor = System.Drawing.Color.Transparent;
             this.lblLogin_UserName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogin_UserName.Location = new System.Drawing.Point(77, 216);
-            this.lblLogin_UserName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblLogin_UserName.Margin = new System.Windows.Forms.Padding(2);
             this.lblLogin_UserName.Name = "lblLogin_UserName";
             this.lblLogin_UserName.Size = new System.Drawing.Size(83, 17);
             this.lblLogin_UserName.TabIndex = 4;
@@ -91,7 +91,7 @@
             this.lblLogin_Password.BackColor = System.Drawing.Color.Transparent;
             this.lblLogin_Password.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogin_Password.Location = new System.Drawing.Point(77, 297);
-            this.lblLogin_Password.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblLogin_Password.Margin = new System.Windows.Forms.Padding(2);
             this.lblLogin_Password.Name = "lblLogin_Password";
             this.lblLogin_Password.Size = new System.Drawing.Size(77, 17);
             this.lblLogin_Password.TabIndex = 6;
@@ -126,7 +126,7 @@
             this.ckbLogin_ShowPassword.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ckbLogin_ShowPassword.Font = new System.Drawing.Font("Segoe UI", 7.8F);
             this.ckbLogin_ShowPassword.Location = new System.Drawing.Point(77, 379);
-            this.ckbLogin_ShowPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ckbLogin_ShowPassword.Margin = new System.Windows.Forms.Padding(2);
             this.ckbLogin_ShowPassword.Name = "ckbLogin_ShowPassword";
             this.ckbLogin_ShowPassword.Size = new System.Drawing.Size(116, 17);
             this.ckbLogin_ShowPassword.TabIndex = 7;
@@ -147,7 +147,7 @@
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
             this.btnLogin.Location = new System.Drawing.Point(77, 417);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(231, 43);
             this.btnLogin.TabIndex = 8;
@@ -161,7 +161,7 @@
             this.lblRegister.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRegister.ForeColor = System.Drawing.Color.Gray;
             this.lblRegister.Location = new System.Drawing.Point(160, 476);
-            this.lblRegister.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblRegister.Margin = new System.Windows.Forms.Padding(2);
             this.lblRegister.Name = "lblRegister";
             this.lblRegister.Size = new System.Drawing.Size(107, 21);
             this.lblRegister.TabIndex = 9;
@@ -175,7 +175,7 @@
             this.clbLoginClose.FillColor = System.Drawing.Color.Crimson;
             this.clbLoginClose.IconColor = System.Drawing.Color.White;
             this.clbLoginClose.Location = new System.Drawing.Point(330, 0);
-            this.clbLoginClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clbLoginClose.Margin = new System.Windows.Forms.Padding(2);
             this.clbLoginClose.Name = "clbLoginClose";
             this.clbLoginClose.Size = new System.Drawing.Size(57, 29);
             this.clbLoginClose.TabIndex = 10;
@@ -185,7 +185,7 @@
             // 
             this.ptbLoginAvt.ImageRotate = 0F;
             this.ptbLoginAvt.Location = new System.Drawing.Point(128, 41);
-            this.ptbLoginAvt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ptbLoginAvt.Margin = new System.Windows.Forms.Padding(2);
             this.ptbLoginAvt.Name = "ptbLoginAvt";
             this.ptbLoginAvt.Size = new System.Drawing.Size(108, 115);
             this.ptbLoginAvt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -209,10 +209,11 @@
             this.Controls.Add(this.lblLoginTitle);
             this.Controls.Add(this.ptbLoginAvt);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ptbLoginAvt)).EndInit();
             this.ResumeLayout(false);
 
