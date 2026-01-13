@@ -32,9 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookingRoom_Details));
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.guna2PictureBox7 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2PictureBox6 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2PictureBox5 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2PictureBox4 = new Guna.UI2.WinForms.Guna2PictureBox();
@@ -65,6 +62,7 @@
             this.dtpNgayKetThuc = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtpNgayBatDau = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.txtQuocTich = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtCCCD = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtSDT = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtDiaChi = new Guna.UI2.WinForms.Guna2TextBox();
@@ -80,7 +78,6 @@
             this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.guna2Panel1.SuspendLayout();
             this.guna2Panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox4)).BeginInit();
@@ -113,9 +110,6 @@
             this.guna2Panel3.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel3.BackgroundImage = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.so_dien_thoai;
             this.guna2Panel3.BorderRadius = 30;
-            this.guna2Panel3.Controls.Add(this.guna2ComboBox1);
-            this.guna2Panel3.Controls.Add(this.guna2PictureBox7);
-            this.guna2Panel3.Controls.Add(this.guna2TextBox1);
             this.guna2Panel3.Controls.Add(this.guna2PictureBox6);
             this.guna2Panel3.Controls.Add(this.guna2PictureBox5);
             this.guna2Panel3.Controls.Add(this.guna2PictureBox4);
@@ -133,6 +127,7 @@
             this.guna2Panel3.Controls.Add(this.groupBox3);
             this.guna2Panel3.Controls.Add(this.groupBox2);
             this.guna2Panel3.Controls.Add(this.groupBox1);
+            this.guna2Panel3.Controls.Add(this.txtQuocTich);
             this.guna2Panel3.Controls.Add(this.txtCCCD);
             this.guna2Panel3.Controls.Add(this.txtSDT);
             this.guna2Panel3.Controls.Add(this.txtDiaChi);
@@ -142,82 +137,24 @@
             this.guna2Panel3.Controls.Add(this.guna2Panel2);
             this.guna2Panel3.Controls.Add(this.guna2VSeparator1);
             this.guna2Panel3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.guna2Panel3.Location = new System.Drawing.Point(12, 13);
+            this.guna2Panel3.Location = new System.Drawing.Point(66, 13);
             this.guna2Panel3.Name = "guna2Panel3";
-            this.guna2Panel3.Size = new System.Drawing.Size(1393, 712);
+            this.guna2Panel3.Size = new System.Drawing.Size(1272, 712);
             this.guna2Panel3.TabIndex = 3;
             this.guna2Panel3.UseTransparentBackground = true;
             this.guna2Panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel3_Paint);
-            // 
-            // guna2ComboBox1
-            // 
-            this.guna2ComboBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ComboBox1.BorderThickness = 2;
-            this.guna2ComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.guna2ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.guna2ComboBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.guna2ComboBox1.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2ComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2ComboBox1.ItemHeight = 30;
-            this.guna2ComboBox1.Items.AddRange(new object[] {
-            "Quốc tịch"});
-            this.guna2ComboBox1.Location = new System.Drawing.Point(58, 504);
-            this.guna2ComboBox1.Name = "guna2ComboBox1";
-            this.guna2ComboBox1.Size = new System.Drawing.Size(330, 36);
-            this.guna2ComboBox1.StartIndex = 0;
-            this.guna2ComboBox1.TabIndex = 39;
-            // 
-            // guna2PictureBox7
-            // 
-            this.guna2PictureBox7.Image = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.tải_xuống__1_;
-            this.guna2PictureBox7.ImageFlip = Guna.UI2.WinForms.Enums.FlipOrientation.Horizontal;
-            this.guna2PictureBox7.ImageRotate = 0F;
-            this.guna2PictureBox7.Location = new System.Drawing.Point(3, 577);
-            this.guna2PictureBox7.Name = "guna2PictureBox7";
-            this.guna2PictureBox7.Size = new System.Drawing.Size(57, 46);
-            this.guna2PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2PictureBox7.TabIndex = 38;
-            this.guna2PictureBox7.TabStop = false;
-            // 
-            // guna2TextBox1
-            // 
-            this.guna2TextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.guna2TextBox1.BorderColor = System.Drawing.Color.Black;
-            this.guna2TextBox1.BorderThickness = 2;
-            this.guna2TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guna2TextBox1.DefaultText = "";
-            this.guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.guna2TextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.guna2TextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.Location = new System.Drawing.Point(58, 577);
-            this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.guna2TextBox1.Name = "guna2TextBox1";
-            this.guna2TextBox1.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.guna2TextBox1.PlaceholderText = "Nhập Email:";
-            this.guna2TextBox1.SelectedText = "";
-            this.guna2TextBox1.Size = new System.Drawing.Size(331, 39);
-            this.guna2TextBox1.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
-            this.guna2TextBox1.TabIndex = 37;
             // 
             // guna2PictureBox6
             // 
             this.guna2PictureBox6.Image = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.png_clipart_gender_symbol_female_computer_icons_male_and_female_symbols_miscellaneous_woman;
             this.guna2PictureBox6.ImageFlip = Guna.UI2.WinForms.Enums.FlipOrientation.Horizontal;
             this.guna2PictureBox6.ImageRotate = 0F;
-            this.guna2PictureBox6.Location = new System.Drawing.Point(6, 653);
+            this.guna2PictureBox6.Location = new System.Drawing.Point(6, 570);
             this.guna2PictureBox6.Name = "guna2PictureBox6";
             this.guna2PictureBox6.Size = new System.Drawing.Size(45, 39);
             this.guna2PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox6.TabIndex = 36;
             this.guna2PictureBox6.TabStop = false;
-            this.guna2PictureBox6.Click += new System.EventHandler(this.guna2PictureBox6_Click);
             // 
             // guna2PictureBox5
             // 
@@ -294,9 +231,9 @@
             this.lvPhongChon.FullRowSelect = true;
             this.lvPhongChon.GridLines = true;
             this.lvPhongChon.HideSelection = false;
-            this.lvPhongChon.Location = new System.Drawing.Point(912, 364);
+            this.lvPhongChon.Location = new System.Drawing.Point(794, 364);
             this.lvPhongChon.Name = "lvPhongChon";
-            this.lvPhongChon.Size = new System.Drawing.Size(450, 252);
+            this.lvPhongChon.Size = new System.Drawing.Size(401, 210);
             this.lvPhongChon.TabIndex = 30;
             this.lvPhongChon.UseCompatibleStateImageBehavior = false;
             this.lvPhongChon.View = System.Windows.Forms.View.Details;
@@ -335,9 +272,9 @@
             this.lvPhongTrong.FullRowSelect = true;
             this.lvPhongTrong.GridLines = true;
             this.lvPhongTrong.HideSelection = false;
-            this.lvPhongTrong.Location = new System.Drawing.Point(497, 364);
+            this.lvPhongTrong.Location = new System.Drawing.Point(342, 364);
             this.lvPhongTrong.Name = "lvPhongTrong";
-            this.lvPhongTrong.Size = new System.Drawing.Size(374, 245);
+            this.lvPhongTrong.Size = new System.Drawing.Size(405, 210);
             this.lvPhongTrong.SmallImageList = this.imageList1;
             this.lvPhongTrong.TabIndex = 29;
             this.lvPhongTrong.UseCompatibleStateImageBehavior = false;
@@ -372,7 +309,7 @@
             this.labPhongTrong.BackColor = System.Drawing.Color.Transparent;
             this.labPhongTrong.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labPhongTrong.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.labPhongTrong.Location = new System.Drawing.Point(492, 324);
+            this.labPhongTrong.Location = new System.Drawing.Point(342, 324);
             this.labPhongTrong.Name = "labPhongTrong";
             this.labPhongTrong.Size = new System.Drawing.Size(255, 27);
             this.labPhongTrong.TabIndex = 28;
@@ -384,7 +321,7 @@
             this.labPhongChon.BackColor = System.Drawing.Color.Transparent;
             this.labPhongChon.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labPhongChon.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.labPhongChon.Location = new System.Drawing.Point(907, 324);
+            this.labPhongChon.Location = new System.Drawing.Point(812, 324);
             this.labPhongChon.Name = "labPhongChon";
             this.labPhongChon.Size = new System.Drawing.Size(174, 27);
             this.labPhongChon.TabIndex = 27;
@@ -403,9 +340,9 @@
             this.cboGioiTinh.Items.AddRange(new object[] {
             "Nam",
             "Nữ"});
-            this.cboGioiTinh.Location = new System.Drawing.Point(57, 653);
+            this.cboGioiTinh.Location = new System.Drawing.Point(57, 573);
             this.cboGioiTinh.Name = "cboGioiTinh";
-            this.cboGioiTinh.Size = new System.Drawing.Size(331, 36);
+            this.cboGioiTinh.Size = new System.Drawing.Size(229, 36);
             this.cboGioiTinh.StartIndex = 0;
             this.cboGioiTinh.TabIndex = 25;
             // 
@@ -418,7 +355,7 @@
             this.btnHuy.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnHuy.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHuy.ForeColor = System.Drawing.Color.White;
-            this.btnHuy.Location = new System.Drawing.Point(691, 632);
+            this.btnHuy.Location = new System.Drawing.Point(555, 632);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(107, 45);
             this.btnHuy.TabIndex = 23;
@@ -434,7 +371,7 @@
             this.btnLuu.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnLuu.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLuu.ForeColor = System.Drawing.Color.White;
-            this.btnLuu.Location = new System.Drawing.Point(540, 632);
+            this.btnLuu.Location = new System.Drawing.Point(356, 632);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(113, 45);
             this.btnLuu.TabIndex = 22;
@@ -446,7 +383,7 @@
             this.groupBox4.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.groupBox4.Controls.Add(this.dtpGioKetThuc);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(1141, 166);
+            this.groupBox4.Location = new System.Drawing.Point(1023, 168);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(156, 67);
             this.groupBox4.TabIndex = 21;
@@ -468,14 +405,14 @@
             this.dtpGioKetThuc.ShowUpDown = true;
             this.dtpGioKetThuc.Size = new System.Drawing.Size(156, 50);
             this.dtpGioKetThuc.TabIndex = 16;
-            this.dtpGioKetThuc.Value = new System.DateTime(2026, 1, 12, 0, 0, 0, 0);
+            this.dtpGioKetThuc.Value = new System.DateTime(2025, 12, 21, 11, 4, 26, 608);
             // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.groupBox3.Controls.Add(this.dtpGioBatDau);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(912, 166);
+            this.groupBox3.Location = new System.Drawing.Point(794, 168);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(149, 67);
             this.groupBox3.TabIndex = 20;
@@ -497,15 +434,14 @@
             this.dtpGioBatDau.ShowUpDown = true;
             this.dtpGioBatDau.Size = new System.Drawing.Size(149, 47);
             this.dtpGioBatDau.TabIndex = 16;
-            this.dtpGioBatDau.Value = new System.DateTime(2026, 1, 12, 0, 0, 0, 0);
-            this.dtpGioBatDau.ValueChanged += new System.EventHandler(this.dtpGioBatDau_ValueChanged);
+            this.dtpGioBatDau.Value = new System.DateTime(2025, 12, 21, 11, 4, 26, 608);
             // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.groupBox2.Controls.Add(this.dtpNgayKetThuc);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(691, 168);
+            this.groupBox2.Location = new System.Drawing.Point(555, 174);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(149, 67);
             this.groupBox2.TabIndex = 19;
@@ -526,14 +462,14 @@
             this.dtpNgayKetThuc.Name = "dtpNgayKetThuc";
             this.dtpNgayKetThuc.Size = new System.Drawing.Size(149, 43);
             this.dtpNgayKetThuc.TabIndex = 14;
-            this.dtpNgayKetThuc.Value = new System.DateTime(2026, 1, 12, 0, 0, 0, 0);
+            this.dtpNgayKetThuc.Value = new System.DateTime(2025, 12, 21, 11, 4, 26, 608);
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.groupBox1.Controls.Add(this.dtpNgayBatDau);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(479, 174);
+            this.groupBox1.Location = new System.Drawing.Point(367, 174);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(149, 64);
             this.groupBox1.TabIndex = 18;
@@ -554,11 +490,33 @@
             this.dtpNgayBatDau.Name = "dtpNgayBatDau";
             this.dtpNgayBatDau.Size = new System.Drawing.Size(149, 45);
             this.dtpNgayBatDau.TabIndex = 14;
-            this.dtpNgayBatDau.Value = new System.DateTime(2026, 1, 12, 0, 0, 0, 0);
+            this.dtpNgayBatDau.Value = new System.DateTime(2025, 12, 21, 11, 16, 15, 937);
+            // 
+            // txtQuocTich
+            // 
+            this.txtQuocTich.BorderColor = System.Drawing.Color.Black;
+            this.txtQuocTich.BorderThickness = 2;
+            this.txtQuocTich.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtQuocTich.DefaultText = "";
+            this.txtQuocTich.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtQuocTich.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtQuocTich.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtQuocTich.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtQuocTich.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtQuocTich.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQuocTich.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtQuocTich.Location = new System.Drawing.Point(57, 498);
+            this.txtQuocTich.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtQuocTich.Name = "txtQuocTich";
+            this.txtQuocTich.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtQuocTich.PlaceholderText = "Nhập quốc tịch:";
+            this.txtQuocTich.SelectedText = "";
+            this.txtQuocTich.Size = new System.Drawing.Size(229, 39);
+            this.txtQuocTich.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
+            this.txtQuocTich.TabIndex = 13;
             // 
             // txtCCCD
             // 
-            this.txtCCCD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.txtCCCD.BorderColor = System.Drawing.Color.Black;
             this.txtCCCD.BorderThickness = 2;
             this.txtCCCD.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -567,7 +525,6 @@
             this.txtCCCD.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txtCCCD.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtCCCD.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtCCCD.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.txtCCCD.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtCCCD.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCCCD.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -577,14 +534,12 @@
             this.txtCCCD.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtCCCD.PlaceholderText = "Nhập CCCD:";
             this.txtCCCD.SelectedText = "";
-            this.txtCCCD.Size = new System.Drawing.Size(331, 39);
+            this.txtCCCD.Size = new System.Drawing.Size(229, 39);
             this.txtCCCD.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.txtCCCD.TabIndex = 11;
-            this.txtCCCD.TextChanged += new System.EventHandler(this.txtCCCD_TextChanged);
             // 
             // txtSDT
             // 
-            this.txtSDT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.txtSDT.BorderColor = System.Drawing.Color.Black;
             this.txtSDT.BorderThickness = 2;
             this.txtSDT.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -593,7 +548,6 @@
             this.txtSDT.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txtSDT.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtSDT.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSDT.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.txtSDT.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSDT.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSDT.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -603,16 +557,13 @@
             this.txtSDT.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtSDT.PlaceholderText = "Nhập SDT:";
             this.txtSDT.SelectedText = "";
-            this.txtSDT.Size = new System.Drawing.Size(331, 39);
+            this.txtSDT.Size = new System.Drawing.Size(229, 39);
             this.txtSDT.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.txtSDT.TabIndex = 10;
-            this.txtSDT.TextChanged += new System.EventHandler(this.txtSDT_TextChanged);
             // 
             // txtDiaChi
             // 
-            this.txtDiaChi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.txtDiaChi.BorderColor = System.Drawing.Color.Black;
-            this.txtDiaChi.BorderRadius = 10;
             this.txtDiaChi.BorderThickness = 2;
             this.txtDiaChi.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtDiaChi.DefaultText = "";
@@ -620,7 +571,6 @@
             this.txtDiaChi.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txtDiaChi.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtDiaChi.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtDiaChi.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.txtDiaChi.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtDiaChi.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiaChi.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -630,13 +580,12 @@
             this.txtDiaChi.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtDiaChi.PlaceholderText = "Nhập địa chỉ:";
             this.txtDiaChi.SelectedText = "";
-            this.txtDiaChi.Size = new System.Drawing.Size(331, 38);
+            this.txtDiaChi.Size = new System.Drawing.Size(229, 38);
             this.txtDiaChi.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.txtDiaChi.TabIndex = 9;
             // 
             // txtHoTen
             // 
-            this.txtHoTen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.txtHoTen.BorderColor = System.Drawing.Color.Black;
             this.txtHoTen.BorderThickness = 2;
             this.txtHoTen.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -645,10 +594,9 @@
             this.txtHoTen.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txtHoTen.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtHoTen.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtHoTen.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.txtHoTen.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtHoTen.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHoTen.ForeColor = System.Drawing.Color.Black;
+            this.txtHoTen.ForeColor = System.Drawing.Color.Blue;
             this.txtHoTen.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtHoTen.Location = new System.Drawing.Point(57, 208);
             this.txtHoTen.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -656,14 +604,14 @@
             this.txtHoTen.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtHoTen.PlaceholderText = "Nhập họ tên khách hàng";
             this.txtHoTen.SelectedText = "";
-            this.txtHoTen.Size = new System.Drawing.Size(331, 39);
+            this.txtHoTen.Size = new System.Drawing.Size(229, 39);
             this.txtHoTen.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.txtHoTen.TabIndex = 8;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.Highlight;
             this.label3.Location = new System.Drawing.Point(20, 111);
@@ -675,7 +623,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.Highlight;
             this.label2.Location = new System.Drawing.Point(565, 108);
@@ -692,7 +640,7 @@
             this.guna2Panel2.Controls.Add(this.guna2ControlBox1);
             this.guna2Panel2.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(1390, 61);
+            this.guna2Panel2.Size = new System.Drawing.Size(1272, 61);
             this.guna2Panel2.TabIndex = 3;
             // 
             // guna2ControlBox2
@@ -702,7 +650,7 @@
             this.guna2ControlBox2.BorderRadius = 10;
             this.guna2ControlBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
             this.guna2ControlBox2.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox2.Location = new System.Drawing.Point(1317, 3);
+            this.guna2ControlBox2.Location = new System.Drawing.Point(1199, 3);
             this.guna2ControlBox2.Name = "guna2ControlBox2";
             this.guna2ControlBox2.Size = new System.Drawing.Size(45, 29);
             this.guna2ControlBox2.TabIndex = 5;
@@ -714,7 +662,7 @@
             this.guna2ControlBox3.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MaximizeBox;
             this.guna2ControlBox3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
             this.guna2ControlBox3.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox3.Location = new System.Drawing.Point(1252, 3);
+            this.guna2ControlBox3.Location = new System.Drawing.Point(1134, 3);
             this.guna2ControlBox3.Name = "guna2ControlBox3";
             this.guna2ControlBox3.Size = new System.Drawing.Size(45, 29);
             this.guna2ControlBox3.TabIndex = 6;
@@ -724,7 +672,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label1.Location = new System.Drawing.Point(547, 3);
+            this.label1.Location = new System.Drawing.Point(472, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(199, 44);
             this.label1.TabIndex = 0;
@@ -740,7 +688,7 @@
             this.guna2ControlBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
             this.guna2ControlBox1.IconColor = System.Drawing.Color.White;
             this.guna2ControlBox1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.guna2ControlBox1.Location = new System.Drawing.Point(1184, 2);
+            this.guna2ControlBox1.Location = new System.Drawing.Point(1066, 2);
             this.guna2ControlBox1.Name = "guna2ControlBox1";
             this.guna2ControlBox1.PressedColor = System.Drawing.Color.Red;
             this.guna2ControlBox1.Size = new System.Drawing.Size(45, 29);
@@ -750,9 +698,9 @@
             // 
             this.guna2VSeparator1.BackColor = System.Drawing.Color.Transparent;
             this.guna2VSeparator1.FillColor = System.Drawing.Color.Black;
-            this.guna2VSeparator1.Location = new System.Drawing.Point(421, 156);
+            this.guna2VSeparator1.Location = new System.Drawing.Point(314, 156);
             this.guna2VSeparator1.Name = "guna2VSeparator1";
-            this.guna2VSeparator1.Size = new System.Drawing.Size(10, 522);
+            this.guna2VSeparator1.Size = new System.Drawing.Size(10, 423);
             this.guna2VSeparator1.TabIndex = 2;
             // 
             // BookingRoom_Details
@@ -767,7 +715,6 @@
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel3.ResumeLayout(false);
             this.guna2Panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox4)).EndInit();
@@ -785,53 +732,52 @@
         }
 
         #endregion
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow1;
-        private System.Windows.Forms.ImageList imageList1;
+
+        private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
-        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox7;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private System.Windows.Forms.Label label1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2TextBox txtHoTen;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpGioBatDau;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgayBatDau;
+        private Guna.UI2.WinForms.Guna2TextBox txtQuocTich;
+        private Guna.UI2.WinForms.Guna2TextBox txtCCCD;
+        private Guna.UI2.WinForms.Guna2TextBox txtSDT;
+        private Guna.UI2.WinForms.Guna2TextBox txtDiaChi;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgayKetThuc;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpGioKetThuc;
+        private Guna.UI2.WinForms.Guna2Button btnHuy;
+        private Guna.UI2.WinForms.Guna2Button btnLuu;
+        private Guna.UI2.WinForms.Guna2ComboBox cboGioiTinh;
+        private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow1;
+        private System.Windows.Forms.Label labPhongTrong;
+        private System.Windows.Forms.Label labPhongChon;
+        private System.Windows.Forms.ListView lvPhongChon;
+        private System.Windows.Forms.ListView lvPhongTrong;
+        private System.Windows.Forms.ColumnHeader maphongchon;
+        private System.Windows.Forms.ColumnHeader songuoi;
+        private System.Windows.Forms.ColumnHeader ngaybd;
+        private System.Windows.Forms.ColumnHeader ngaykt;
+        private System.Windows.Forms.ColumnHeader maphongtrong;
+        private System.Windows.Forms.ColumnHeader LoaiPhong;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox5;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox4;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox3;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox2;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
-        private System.Windows.Forms.ListView lvPhongChon;
-        private System.Windows.Forms.ColumnHeader maphongchon;
-        private System.Windows.Forms.ColumnHeader songuoi;
-        private System.Windows.Forms.ColumnHeader ngaybd;
-        private System.Windows.Forms.ColumnHeader ngaykt;
+        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox6;
         private System.Windows.Forms.ColumnHeader xoa;
-        private System.Windows.Forms.ListView lvPhongTrong;
-        private System.Windows.Forms.ColumnHeader maphongtrong;
-        private System.Windows.Forms.ColumnHeader LoaiPhong;
         private System.Windows.Forms.ColumnHeader them;
-        private System.Windows.Forms.Label labPhongTrong;
-        private System.Windows.Forms.Label labPhongChon;
-        private Guna.UI2.WinForms.Guna2ComboBox cboGioiTinh;
-        private Guna.UI2.WinForms.Guna2Button btnHuy;
-        private Guna.UI2.WinForms.Guna2Button btnLuu;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtpGioKetThuc;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtpGioBatDau;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgayKetThuc;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgayBatDau;
-        private Guna.UI2.WinForms.Guna2TextBox txtCCCD;
-        private Guna.UI2.WinForms.Guna2TextBox txtSDT;
-        private Guna.UI2.WinForms.Guna2TextBox txtDiaChi;
-        private Guna.UI2.WinForms.Guna2TextBox txtHoTen;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private System.Windows.Forms.ImageList imageList1;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox2;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox3;
-        private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
-        private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator1;
     }
 }

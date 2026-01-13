@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -59,99 +59,117 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="pngtree_logo_lokasi_simbol_ikon_komputer_location_pin_in_black_colour_with_png_image_6425746" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pngtree-logo-lokasi-simbol-ikon-komputer-location-pin-in-black-colour-with-png-image_6425746.png;System.Drawing.Bitmap, System.Drawing</value>
-  </data>
-  <data name="_021dc1fb9e_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\021dc1fb9e-01.png;System.Drawing.Bitmap, System.Drawing</value>
-  </data>
-  <data name="so_dien_thoai" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\so-dien-thoai.jpg;System.Drawing.Bitmap, System.Drawing</value>
-  </data>
-  <data name="z7350371373390_18bf60a259e7bfe87dc788c41c49ab57" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\z7350371373390_18bf60a259e7bfe87dc788c41c49ab57.jpg;System.Drawing.Bitmap, System.Drawing</value>
-  </data>
-  <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search.png;System.Drawing.Bitmap, System.Drawing</value>
-  </data>
-  <data name="pngtree_clock_icon_vector_line_perfect_png_image_11999891" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pngtree_clock_icon_vector-line_perfect_png_image_11999891.png;System.Drawing.Bitmap, System.Drawing</value>
-  </data>
-  <data name="png_clipart_gender_symbol_female_computer_icons_male_and_female_symbols_miscellaneous_woman" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\png-clipart-gender-symbol-female-computer-icons-male-and-female-symbols-miscellaneous-woman.png;System.Drawing.Bitmap, System.Drawing</value>
-  </data>
-  <data name="3178158" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3178158.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pngtree_green_check_mark_png_image_6525691" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pngtree_green_check_mark_png_image_6525691.png;System.Drawing.Bitmap, System.Drawing</value>
-  </data>
-  <data name="pngtree_vector_illustration_of_single_passport_icon_personal_nationalities_illustration_vector_png_image_7587796" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pngtree-vector-illustration-of-single-passport-icon-personal-nationalities-illustration-vector-png-image_7587796.png;System.Drawing.Bitmap, System.Drawing</value>
-  </data>
-  <data name="z7350371373382_065c71962eaa217926d25ccb50c32e90" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\z7350371373382_065c71962eaa217926d25ccb50c32e90.jpg;System.Drawing.Bitmap, System.Drawing</value>
-  </data>
-  <data name="tải xuống (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tải xuống (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-</root>
+		<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+			<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+			<xsd:element name="root" msdata:IsDataSet="true">
+				<xsd:complexType>
+					<xsd:choice maxOccurs="unbounded">
+						<xsd:element name="metadata">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="value" type="xsd:string" minOccurs="0" />
+								</xsd:sequence>
+								<xsd:attribute name="name" use="required" type="xsd:string" />
+								<xsd:attribute name="type" type="xsd:string" />
+								<xsd:attribute name="mimetype" type="xsd:string" />
+								<xsd:attribute ref="xml:space" />
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="assembly">
+							<xsd:complexType>
+								<xsd:attribute name="alias" type="xsd:string" />
+								<xsd:attribute name="name" type="xsd:string" />
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="data">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+									<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+								</xsd:sequence>
+								<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+								<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+								<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+								<xsd:attribute ref="xml:space" />
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="resheader">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								</xsd:sequence>
+								<xsd:attribute name="name" type="xsd:string" use="required" />
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+
+		<resheader name="resmimetype">
+			<value>text/microsoft-resx</value>
+		</resheader>
+		<resheader name="version">
+			<value>2.0</value>
+		</resheader>
+		<resheader name="reader">
+			<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		</resheader>
+		<resheader name="writer">
+			<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		</resheader>
+
+		<assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+
+		<data name="021dc1fb9e-01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\021dc1fb9e-01.png;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="icon_user" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\icon_user.jpg;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="lovepik-house-png-image_400195161_wh1200" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\lovepik-house-png-image_400195161_wh1200.png;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="OIP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\OIP.jpg;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="png_clipart_gender_symbol_female_computer_icons_male_and_female_symbols_miscellaneous_woman" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\png-clipart-gender-symbol-female-computer-icons-male-and-female-symbols-miscellaneous-woman.png;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="pngtree_logo_lokasi_simbol_ikon_komputer_location_pin_in_black_colour_with_png_image_6425746" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\pngtree-logo-lokasi-simbol-ikon-komputer-location-pin-in-black-colour-with-png-image_6425746.png;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="pngtree-tick-vector-icon-png-image_964008" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\pngtree-tick-vector-icon-png-image_964008.jpg;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="pngtree_vector_illustration_of_single_passport_icon_personal_nationalities_illustration_vector_png_image_7587796" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\pngtree-vector-illustration-of-single-passport-icon-personal-nationalities-illustration-vector-png-image_7587796.png;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="pngtree_clock_icon_vector-line_perfect_png_image_11999891" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\pngtree_clock_icon_vector-line_perfect_png_image_11999891.png;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="pngtree_green_check_mark_png_image_6525691" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\pngtree_green_check_mark_png_image_6525691.png;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="Screenshot 2025-06-14 185743" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\Screenshot 2025-06-14 185743.png;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\search.png;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="z7350371373382_065c71962eaa217926d25ccb50c32e90" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\z7350371373382_065c71962eaa217926d25ccb50c32e90.jpg;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="z7350371373390_18bf60a259e7bfe87dc788c41c49ab57" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\z7350371373390_18bf60a259e7bfe87dc788c41c49ab57.jpg;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="z7350371373399_f69f1d034fcf9c0866448c7c59b4398b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\z7350371373399_f69f1d034fcf9c0866448c7c59b4398b.jpg;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="tải xuống" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\tải xuống.png;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+		<data name="so_dien_thoai" type="System.Resources.ResXFileRef, System.Windows.Forms">
+			<value>..\Resources\so-dien-thoai.jpg;System.Drawing.Bitmap, System.Drawing</value>
+		</data>
+	</root>

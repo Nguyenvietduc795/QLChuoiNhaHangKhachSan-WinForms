@@ -7,6 +7,7 @@ using Guna.UI2.WinForms; // Control Guna2
 
 namespace QLChuoiNhaHangKhachSan.GUI
 {
+
     public partial class FormDashBoard : Form // Form dashboard chính
     {
         private Form activeChildForm = null; // Form con hiện tại đang hiển thị
@@ -94,8 +95,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
             try
             {
-                string connStr = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString; // Lấy chuỗi kết nối (nếu cần)
-                // MessageBox.Show(connStr); // Debug
+                // Đúng tên theo App.config
+                string connStr = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+                // MessageBox.Show(connStr); // Debug nếu muốn
             }
             catch { } // Bỏ qua nếu lỗi cấu hình
         }
@@ -154,7 +156,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         /************************************************************************************************************/
         // Nhóm Nhân viên
-        bool isStaffExpanded = false; // Biến trạng thái (hiện chưa dùng)
+        
         private void btnStaff_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
@@ -273,7 +275,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void btnMenu_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
-            ShowChild(new frmMenu());//Nhúng form menu
+            ShowChild(new frmFoodManagement());//Nhúng form menu
         }
 
         /************************************************************************************************************/
@@ -355,11 +357,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private void btnFinancial_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
+            ShowChild(new FormRevenue());
         }
 
         private void btnTotalCustomer_Click(object sender, EventArgs e)
         {
             SetActiveButton(sender);
+            ShowChild(new CustomersReport());
         }
 
         // Đăng xuất: hỏi xác nhận rồi đóng form
@@ -369,7 +373,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                this.Close(); // Đóng dashboard
+                this.Hide();          // Ẩn Dashboard
+                LoginForm login = new LoginForm();
+                login.ShowDialog();   // Hiển thị Login
+                this.Close();         // Đóng Dashboard sau khi Login đóng
             }
         }
 
@@ -437,6 +444,22 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 ShadowDepth = shadowDepth;
                 ShadowEnabled = shadowEnabled;
             }
+        }
+
+        private void btnQuick_AddStaff_Click(object sender, EventArgs e)
+        {
+            // Mở rộng submenu Nhân viên nếu đang thu gọn
+            if (pnlStaff_group.Height == 50)
+            {
+                CloseAllSubMenus();
+                pnlStaff_group.Height = 130;
+            }
+            
+            // Đánh dấu nút Danh sách nhân viên là active
+            SetActiveButton(btnListStaff);
+            
+            // Chuyển sang giao diện danh sách nhân viên
+            ShowChild(new EmployeeForm());
         }
     }
 
