@@ -23,7 +23,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         public FormInventory2()
         {
             InitializeComponent();
-            var connStr = ConfigurationManager.ConnectionStrings["RHGROUP"].ConnectionString;
+            var connStr = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
             _voucherBll = new WarehouseVoucherBLL(connStr);
             _stockBll = new StockBLL(connStr);
         }

@@ -44,7 +44,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             _mode = mode;
             _warehouseType = warehouseType;
 
-            string conn = ConfigurationManager.ConnectionStrings["RHGROUP"].ConnectionString;
+            string conn = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
             _ingredientBll = new IngredientBLL(conn);
             _equipmentBll = new EquipmentBLL(conn);
 

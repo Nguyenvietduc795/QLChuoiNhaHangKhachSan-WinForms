@@ -25,7 +25,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             InitializeComponent();
             this.Load += FormInventory_Load;
-            _stockBll = new StockBLL(ConfigurationManager.ConnectionStrings["RHGROUP"].ConnectionString);
+            _stockBll = new StockBLL(ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString);
             txTimkiem.TextChanged += txTimkiem_TextChanged;
             btnfixitems.Click += btnupdateitems_Click;
             btnstopItems.Click += btnstopItems_Click;

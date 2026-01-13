@@ -24,8 +24,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             InitializeComponent();
             this.Load += FormImportWarehouse_Load;
-            _unitBll = new UnitBLL(ConfigurationManager.ConnectionStrings["RHGROUP"].ConnectionString);
-            _voucherBll = new WarehouseVoucherBLL(ConfigurationManager.ConnectionStrings["RHGROUP"].ConnectionString);
+            _unitBll = new UnitBLL(ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString);
+            _voucherBll = new WarehouseVoucherBLL(ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString);
             _editingVoucher = editingVoucher;
         }
 

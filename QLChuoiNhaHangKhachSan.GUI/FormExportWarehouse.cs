@@ -26,7 +26,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             InitializeComponent();
             this.Load += FormExportWarehouse_Load;
 
-            var connStr = ConfigurationManager.ConnectionStrings["RHGROUP"].ConnectionString;
+            var connStr = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
             _unitBll = new UnitBLL(connStr);
             _voucherBll = new WarehouseVoucherBLL(connStr);
             _ingredientBll = new IngredientBLL(connStr);

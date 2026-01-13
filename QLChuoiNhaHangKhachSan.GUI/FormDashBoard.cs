@@ -94,7 +94,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
             try
             {
-                string connStr = ConfigurationManager.ConnectionStrings["RHGROUP"].ConnectionString; // Lấy chuỗi kết nối (nếu cần)
+                string connStr = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString; // Lấy chuỗi kết nối (nếu cần)
                 // MessageBox.Show(connStr); // Debug
             }
             catch { } // Bỏ qua nếu lỗi cấu hình

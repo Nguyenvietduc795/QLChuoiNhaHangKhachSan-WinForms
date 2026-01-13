@@ -22,7 +22,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.CenterParent;
-            var connStr = ConfigurationManager.ConnectionStrings["RHGROUP"].ConnectionString;
+            var connStr = ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString;
             _inventoryItemBll = new InventoryItemBLL(connStr);
         }
 

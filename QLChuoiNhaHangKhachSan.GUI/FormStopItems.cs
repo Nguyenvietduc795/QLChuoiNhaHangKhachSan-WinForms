@@ -11,7 +11,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
     public partial class FormStopItems : Form
     {
         private readonly InventoryItemBLL _inventoryItemBll =
-            new InventoryItemBLL(ConfigurationManager.ConnectionStrings["RHGROUP"].ConnectionString);
+            new InventoryItemBLL(ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString);
 
         private WarehouseType _currentType = WarehouseType.Ingredient;
         private List<InventoryItemDetailDTO> _listCache = new List<InventoryItemDetailDTO>();
