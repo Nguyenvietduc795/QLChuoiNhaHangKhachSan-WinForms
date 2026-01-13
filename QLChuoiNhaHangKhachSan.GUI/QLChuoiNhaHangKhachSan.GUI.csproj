@@ -176,6 +176,7 @@
     </Compile>
     <Compile Include="FormVoucherDetails.cs">
       <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormRevenue.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -383,6 +384,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUpdateItems.resx">
       <DependentUpon>FormUpdateItems.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormRevenue.resx">
       <DependentUpon>FormRevenue.cs</DependentUpon>
     </EmbeddedResource>
@@ -514,6 +516,7 @@
     <ProjectReference Include="..\QLChuoiNhaHangKhachSan.DTO\QLChuoiNhaHangKhachSan.DTO.csproj">
       <Project>{275b7d03-8d3f-4db3-9d41-e28414f15fda}</Project>
       <Name>QLChuoiNhaHangKhachSan.DTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\QLChuoiNhaHangKhachSan.DAL\QLChuoiNhaHangKhachSan.DAL.csproj">
       <Project>{ee2f359f-ed71-4c9a-8859-b1a785caaeae}</Project>
       <Name>QLChuoiNhaHangKhachSan.DAL</Name>
