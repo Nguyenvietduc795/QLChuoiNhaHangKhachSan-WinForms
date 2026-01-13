@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookingRoom_Details));
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2PictureBox7 = new Guna.UI2.WinForms.Guna2PictureBox();
@@ -51,7 +53,6 @@
             this.maphongtrong = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LoaiPhong = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.them = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.labPhongTrong = new System.Windows.Forms.Label();
             this.labPhongChon = new System.Windows.Forms.Label();
             this.cboGioiTinh = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -77,7 +78,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2VSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
-            this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.guna2Panel1.SuspendLayout();
             this.guna2Panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox7)).BeginInit();
@@ -107,6 +107,13 @@
             this.guna2Panel1.TabIndex = 0;
             this.guna2Panel1.UseTransparentBackground = true;
             this.guna2Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel1_Paint);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "pngtree-green-plus-sign-simple-logo-png-image_4402411.jpg");
+            this.imageList1.Images.SetKeyName(1, "3896.png_860.png");
             // 
             // guna2Panel3
             // 
@@ -171,12 +178,12 @@
             // 
             // guna2PictureBox7
             // 
-            this.guna2PictureBox7.Image = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.tải_xuống;
+            this.guna2PictureBox7.Image = global::QLChuoiNhaHangKhachSan.GUI.Properties.Resources.tải_xuống__1_;
             this.guna2PictureBox7.ImageFlip = Guna.UI2.WinForms.Enums.FlipOrientation.Horizontal;
             this.guna2PictureBox7.ImageRotate = 0F;
             this.guna2PictureBox7.Location = new System.Drawing.Point(3, 577);
             this.guna2PictureBox7.Name = "guna2PictureBox7";
-            this.guna2PictureBox7.Size = new System.Drawing.Size(57, 46);
+            this.guna2PictureBox7.Size = new System.Drawing.Size(45, 46);
             this.guna2PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox7.TabIndex = 38;
             this.guna2PictureBox7.TabStop = false;
@@ -358,13 +365,6 @@
             // 
             this.them.Text = "Thêm";
             this.them.Width = 124;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "pngtree-green-plus-sign-simple-logo-png-image_4402411.jpg");
-            this.imageList1.Images.SetKeyName(1, "3896.png_860.png");
             // 
             // labPhongTrong
             // 
