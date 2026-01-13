@@ -174,13 +174,19 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             dto = null;
 
-            if (!(cbNameupdateItems.SelectedValue is int id))
+            var selectedItem = cbNameupdateItems.SelectedItem as InventoryItemDetailDTO;
+            if (selectedItem == null && cbNameupdateItems.SelectedValue is int fallbackId)
+            {
+                selectedItem = _listCache?.FirstOrDefault(x => x.Id == fallbackId);
+            }
+
+            if (selectedItem == null)
             {
                 MessageBox.Show("Vui lòng chọn mặt hàng cần sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            var name = cbNameupdateItems.Text?.Trim();
+            var name = selectedItem.Name?.Trim();
             var unit = txUnitupdateItems.Text?.Trim();
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -219,7 +225,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
             dto = new InventoryItemDetailDTO
             {
-                Id = id,
+                Id = selectedItem.Id,
                 Code = txCodeupdateItems.Text,
                 Name = name,
                 Unit = unit,
