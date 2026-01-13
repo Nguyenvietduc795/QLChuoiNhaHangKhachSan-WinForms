@@ -100,8 +100,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
             DGdanhsachtonkho.RowTemplate.Height = 60;
             DGdanhsachtonkho.ColumnHeadersHeight = 48;
-            DGCanhbaotonkho.RowTemplate.Height = 44;
-            DGCanhbaotonkho.ColumnHeadersHeight = 48;
+            ApplyStockGridTheme();
+
             LoadStockFromDb();  
             LoadFakeCanhBao();
         
@@ -251,6 +251,29 @@ namespace QLChuoiNhaHangKhachSan.GUI
             DGdanhsachtonkho.AutoGenerateColumns = false;
             DGdanhsachtonkho.AllowUserToAddRows = false;
             DGdanhsachtonkho.RowHeadersVisible = false;
+
+            ApplyStockGridTheme();
+        }
+
+        private void ApplyStockGridTheme()
+        {
+            if (DGdanhsachtonkho == null) return;
+
+            var headerColor = ColorTranslator.FromHtml("#6C63FF");
+            var selectedBackColor = ColorTranslator.FromHtml("#D1FAE5");
+            var selectedForeColor = ColorTranslator.FromHtml("#065F46");
+
+            DGdanhsachtonkho.EnableHeadersVisualStyles = false;
+            DGdanhsachtonkho.ColumnHeadersDefaultCellStyle.BackColor = headerColor;
+            DGdanhsachtonkho.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            DGdanhsachtonkho.ColumnHeadersDefaultCellStyle.SelectionBackColor = headerColor;
+            DGdanhsachtonkho.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+
+            DGdanhsachtonkho.DefaultCellStyle.SelectionBackColor = selectedBackColor;
+            DGdanhsachtonkho.DefaultCellStyle.SelectionForeColor = selectedForeColor;
+            DGdanhsachtonkho.RowTemplate.DefaultCellStyle.SelectionBackColor = selectedBackColor;
+            DGdanhsachtonkho.RowTemplate.DefaultCellStyle.SelectionForeColor = selectedForeColor;
+            DGdanhsachtonkho.GridColor = headerColor;
         }
 
         private string GetSelectedWarehouseType()
@@ -511,35 +534,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             DataTable dt = new DataTable();
 
-            // 2 cột thôi: trái (2 dòng text), phải (badge số)
-            dt.Columns.Add("Mặt hàng");          // "NL001 · Cà phê hạt\nNH01 · Ngưỡng: 10"
-            dt.Columns.Add("Lượng Tồn", typeof(int));
-
-            dt.Rows.Add("NL001 · Hạt cà phê \nNH01 · Ngưỡng: 10", 8);
-            dt.Rows.Add("TB011 · Máy hút bụi\nKS01 · Ngưỡng: 5", 3);
-            dt.Rows.Add("NL009 · Sữa tươi\nNH01 · Ngưỡng: 20", 12);
-
-            DGCanhbaotonkho.AutoGenerateColumns = true;
-            DGCanhbaotonkho.DataSource = dt;
+         
 
 
 
-            // Chỉ còn 2 cột, set tỷ lệ giống UI
-           // DGCanhbaotonkho.Columns["Info"].FillWeight = 85;
-            //DGCanhbaotonkho.Columns["Badge"].FillWeight = 15;
+        
 
-            // Format cột Info: cho xuống dòng
-            DGCanhbaotonkho.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            DGCanhbaotonkho.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            DGCanhbaotonkho.RowTemplate.MinimumHeight = 52;
-
-            // Canh badge giữa
-            //DGCanhbaotonkho.Columns["Badge"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            // Font đẹp hơn
-            DGCanhbaotonkho.DefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
-            DGCanhbaotonkho.DefaultCellStyle.SelectionBackColor = Color.White;
-            DGCanhbaotonkho.DefaultCellStyle.SelectionForeColor = Color.Black;
+            
 
         }
 

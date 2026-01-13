@@ -39,6 +39,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
             InitializeFilterControls();
             LoadVouchersFromDb();
+            ApplyVoucherGridTheme();
+            ApplyDetailGridTheme();
             DGLSPhieuNhap.DataSource = null; // không dùng demo
 
             RelayoutHeaderButtons();
@@ -233,6 +235,29 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 Name = "colVoucherType",
                 Visible = false
             });
+
+            ApplyVoucherGridTheme();
+        }
+
+        private void ApplyVoucherGridTheme()
+        {
+            if (DGdgvPhieu == null) return;
+
+            var headerColor = ColorTranslator.FromHtml("#6C63FF");
+            var selectedBackColor = ColorTranslator.FromHtml("#D1FAE5");
+            var selectedForeColor = ColorTranslator.FromHtml("#065F46");
+
+            DGdgvPhieu.EnableHeadersVisualStyles = false;
+            DGdgvPhieu.ColumnHeadersDefaultCellStyle.BackColor = headerColor;
+            DGdgvPhieu.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            DGdgvPhieu.ColumnHeadersDefaultCellStyle.SelectionBackColor = headerColor;
+            DGdgvPhieu.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+
+            DGdgvPhieu.DefaultCellStyle.SelectionBackColor = selectedBackColor;
+            DGdgvPhieu.DefaultCellStyle.SelectionForeColor = selectedForeColor;
+            DGdgvPhieu.RowTemplate.DefaultCellStyle.SelectionBackColor = selectedBackColor;
+            DGdgvPhieu.RowTemplate.DefaultCellStyle.SelectionForeColor = selectedForeColor;
+            DGdgvPhieu.GridColor = headerColor;
         }
 
         private int? GetSelectedVoucherId()
@@ -327,6 +352,29 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 grid.Columns["LineTotal"].HeaderText = "Thành tiền";
                 grid.Columns["LineTotal"].DefaultCellStyle.Format = "N0";
             }
+
+            ApplyDetailGridTheme();
+        }
+
+        private void ApplyDetailGridTheme()
+        {
+            if (DGLSPhieuNhap == null) return;
+
+            var headerColor = ColorTranslator.FromHtml("#6C63FF");
+            var selectedBackColor = ColorTranslator.FromHtml("#D1FAE5");
+            var selectedForeColor = ColorTranslator.FromHtml("#065F46");
+
+            DGLSPhieuNhap.EnableHeadersVisualStyles = false;
+            DGLSPhieuNhap.ColumnHeadersDefaultCellStyle.BackColor = headerColor;
+            DGLSPhieuNhap.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            DGLSPhieuNhap.ColumnHeadersDefaultCellStyle.SelectionBackColor = headerColor;
+            DGLSPhieuNhap.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+
+            DGLSPhieuNhap.DefaultCellStyle.SelectionBackColor = selectedBackColor;
+            DGLSPhieuNhap.DefaultCellStyle.SelectionForeColor = selectedForeColor;
+            DGLSPhieuNhap.RowTemplate.DefaultCellStyle.SelectionBackColor = selectedBackColor;
+            DGLSPhieuNhap.RowTemplate.DefaultCellStyle.SelectionForeColor = selectedForeColor;
+            DGLSPhieuNhap.GridColor = headerColor;
         }
 
         private void NormalizeDetailNames(DataTable dt)
