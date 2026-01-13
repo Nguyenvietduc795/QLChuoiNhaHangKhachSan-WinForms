@@ -12,7 +12,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
     public partial class FormUpdateItems : Form
     {
         private readonly InventoryItemBLL _inventoryItemBll =
-            new InventoryItemBLL(ConfigurationManager.ConnectionStrings["QuanLyChuoiNhaHangKhachSan"].ConnectionString);
+            new InventoryItemBLL(ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString);
         private WarehouseType _currentType = WarehouseType.Ingredient;
         private List<InventoryItemDetailDTO> _listCache = new List<InventoryItemDetailDTO>();
         private bool _isBindingNames;
