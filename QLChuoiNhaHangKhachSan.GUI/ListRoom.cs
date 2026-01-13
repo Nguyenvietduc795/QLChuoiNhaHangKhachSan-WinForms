@@ -334,13 +334,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         var currentBooking = bookingsList.FirstOrDefault(b => viewTime >= b.Start && viewTime < b.End);
 
                         // Nếu chưa có booking đang diễn ra, lấy booking đặt trước trong cùng ngày (start nằm trong ngày đang xem)
-                        if (currentBooking.Equals(default(RoomBookingState)))
+                        if (currentBooking == null)
                         {
                             currentBooking = bookingsList.FirstOrDefault(b => b.Start >= startOfDay && b.Start < endOfDay);
                         }
 
                         // Nếu tìm thấy booking phù hợp
-                        if (!currentBooking.Equals(default(RoomBookingState)))
+                        if (currentBooking != null)
                         {
                             var status = (currentBooking.BookingStatus ?? string.Empty).ToLower();
 
@@ -398,7 +398,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             UpdateSearchAutocomplete();
         }
 
-        private struct RoomBookingState
+        private class RoomBookingState
         {
             public string RoomCode;
             public string Customer;
@@ -406,6 +406,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
             public DateTime End;
             // New: booking status from Booking table (Đặt / Thuê / ...)
             public string BookingStatus;
+            // Customer detailed fields to display in details dialog
+            public string IdCard;
+            public string Phone;
+            public string Email;
+            public string Gender;
+            public string Nationality;
         }
 
         private List<RoomBookingState> GetActiveBookingsFromDb(DateTime reference)
@@ -418,38 +424,44 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 using (var conn = new SqlConnection(connStr))
                 // Query bookings that overlap the selected calendar day to avoid missing bookings
-                using (var cmd = new SqlCommand(@"SELECT d.RoomID, b.Status, c.FullName, d.CheckIn, d.CheckOut
-FROM dbo.BookingDetail d
-JOIN dbo.Booking b ON d.BookingID = b.BookingID
-JOIN dbo.Customer c ON b.CustomerID = c.CustomerID
-WHERE d.CheckIn < @EndOfDay AND d.CheckOut >= @StartOfDay", conn))
-                {
-                    var startOfDay = reference.Date;
-                    var endOfDay = startOfDay.AddDays(1);
-                    // Use explicit SqlParameter types
-                    cmd.Parameters.Add(new SqlParameter("@StartOfDay", System.Data.SqlDbType.DateTime) { Value = startOfDay });
-                    cmd.Parameters.Add(new SqlParameter("@EndOfDay", System.Data.SqlDbType.DateTime) { Value = endOfDay });
-                    conn.Open();
-                    using (var rd = cmd.ExecuteReader())
-                    {
-                        while (rd.Read())
-                        {
-                            var room = rd["RoomID"]?.ToString();
-                            if (string.IsNullOrWhiteSpace(room)) continue;
-                            DateTime? start = rd["CheckIn"] != DBNull.Value ? (DateTime?)rd["CheckIn"] : null;
-                            DateTime? end = rd["CheckOut"] != DBNull.Value ? (DateTime?)rd["CheckOut"] : null;
-                            if (!start.HasValue || !end.HasValue) continue;
+                using (var cmd = new SqlCommand(@"SELECT d.RoomID, b.Status, c.FullName, d.CheckIn, d.CheckOut,
+                                                       c.IdCard, c.Phone, c.Email, c.Gender, c.Nationality
+                                                FROM dbo.BookingDetail d
+                                                JOIN dbo.Booking b ON d.BookingID = b.BookingID
+                                                JOIN dbo.Customer c ON b.CustomerID = c.CustomerID
+                                                WHERE d.CheckIn < @EndOfDay AND d.CheckOut >= @StartOfDay", conn))
+                 {
+                     var startOfDay = reference.Date;
+                     var endOfDay = startOfDay.AddDays(1);
+                     // Use explicit SqlParameter types
+                     cmd.Parameters.Add(new SqlParameter("@StartOfDay", System.Data.SqlDbType.DateTime) { Value = startOfDay });
+                     cmd.Parameters.Add(new SqlParameter("@EndOfDay", System.Data.SqlDbType.DateTime) { Value = endOfDay });
+                     conn.Open();
+                     using (var rd = cmd.ExecuteReader())
+                     {
+                         while (rd.Read())
+                         {
+                             var room = rd["RoomID"]?.ToString();
+                             if (string.IsNullOrWhiteSpace(room)) continue;
+                             DateTime? start = rd["CheckIn"] != DBNull.Value ? (DateTime?)rd["CheckIn"] : null;
+                             DateTime? end = rd["CheckOut"] != DBNull.Value ? (DateTime?)rd["CheckOut"] : null;
+                             if (!start.HasValue || !end.HasValue) continue;
                             result.Add(new RoomBookingState
                             {
                                 RoomCode = room.Trim(),
                                 Customer = rd["FullName"]?.ToString(),
                                 Start = start.Value,
                                 End = end.Value,
-                                BookingStatus = rd["Status"]?.ToString()
+                                BookingStatus = rd["Status"]?.ToString(),
+                                IdCard = rd["IdCard"]?.ToString(),
+                                Phone = rd["Phone"]?.ToString(),
+                                Email = rd["Email"]?.ToString(),
+                                Gender = rd["Gender"]?.ToString(),
+                                Nationality = rd["Nationality"]?.ToString()
                             });
-                        }
-                    }
-                }
+                         }
+                     }
+                 }
             }
             catch { }
 

@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -99,8 +100,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
       new CountryPhoneCode { Name = "Honduras", DialCode = "+504", Iso = "HN" },
       new CountryPhoneCode { Name = "Hungary", DialCode = "+36", Iso = "HU" },
       new CountryPhoneCode { Name = "Iceland", DialCode = "+354", Iso = "IS" },
-      new CountryPhoneCode { Name = "India", DialCode = "+91", Iso = "IN" },
-      new CountryPhoneCode { Name = "Indonesia", DialCode = "+62", Iso = "ID" },
+      new CountryPhoneCode { Name = "India", DialCode = "+91", Iso = "IN" }
+,      new CountryPhoneCode { Name = "Indonesia", DialCode = "+62", Iso = "ID" },
       new CountryPhoneCode { Name = "Iran", DialCode = "+98", Iso = "IR" },
       new CountryPhoneCode { Name = "Iraq", DialCode = "+964", Iso = "IQ" },
       new CountryPhoneCode { Name = "Ireland", DialCode = "+353", Iso = "IE" },
@@ -789,35 +790,70 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            // === VALIDATION ===
 
-            if (string.IsNullOrWhiteSpace(txtHoTen.Text)) // Giả sử tên textbox là txtHoTen
-            {
+            // 1. Kiểm tra Họ Tên - chỉ cho phép chữ cái và khoảng trắng
+            if (string.IsNullOrWhiteSpace(txtHoTen.Text))
+            {
                 MessageBox.Show("Vui lòng nhập họ tên khách hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtHoTen.Focus(); // Đưa con trỏ chuột về ô này để nhập
-                return; // Dừng lại, không chạy code lưu bên dưới nữa
-            }
+                txtHoTen.Focus();
+                return;
+            }
+            if (!IsValidName(txtHoTen.Text))
+            {
+                MessageBox.Show("Họ tên chỉ được chứa chữ cái và khoảng trắng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtHoTen.Focus();
+                return;
+            }
 
-            // 2. Kiểm tra CCCD
-            if (string.IsNullOrWhiteSpace(txtCCCD.Text))
+            // 2. Kiểm tra CCCD - chỉ cho phép số
+            if (string.IsNullOrWhiteSpace(txtCCCD.Text))
             {
                 MessageBox.Show("Vui lòng nhập số CCCD!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtCCCD.Focus();
                 return;
             }
+            if (!IsValidCCCD(txtCCCD.Text))
+            {
+                MessageBox.Show("CCCD chỉ được chứa số và phải có 12 ký tự!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCCCD.Focus();
+                return;
+            }
 
-            // 3. Kiểm tra Số điện thoại
-            if (string.IsNullOrWhiteSpace(txtSDT.Text))
+            // 3. Kiểm tra Số điện thoại - chỉ cho phép số và ký tự + (đầu số quốc gia)
+            if (string.IsNullOrWhiteSpace(txtSDT.Text))
             {
                 MessageBox.Show("Vui lòng nhập số điện thoại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtSDT.Focus();
                 return;
             }
-            if (txtSDT.Text.Length < 10)
+            if (!IsValidPhone(txtSDT.Text))
             {
-                MessageBox.Show("Số điện thoại không hợp lệ (phải từ 10 số)!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Số điện thoại không hợp lệ (chỉ chứa số, dấu + và khoảng trắng)!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtSDT.Focus();
                 return;
             }
+            // Kiểm tra độ dài số điện thoại (loại bỏ khoảng trắng và dấu +)
+            string phoneDigits = Regex.Replace(txtSDT.Text, @"[^\d]", "");
+            if (phoneDigits.Length < 9 || phoneDigits.Length > 15)
+            {
+                MessageBox.Show("Số điện thoại phải có từ 9-15 chữ số!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSDT.Focus();
+                return;
+            }
+
+            // 4. Kiểm tra Email (nếu có nhập)
+            if (guna2TextBox1 != null && !string.IsNullOrWhiteSpace(guna2TextBox1.Text))
+            {
+                if (!IsValidEmail(guna2TextBox1.Text))
+                {
+                    MessageBox.Show("Email không hợp lệ! Vui lòng nhập đúng định dạng (ví dụ: example@gmail.com)", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    guna2TextBox1.Focus();
+                    return;
+                }
+            }
+
+            // === KẾT THÚC VALIDATION ===
 
             if (dtChon.Rows.Count > 0)
             {
@@ -1607,6 +1643,50 @@ VALUES(@BookingID, @RoomID, @CheckIn, @CheckOut, @Price, NULL);", conn, tran))
         private void dtpGioBatDau_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        // === VALIDATION HELPER METHODS ===
+
+        /// <summary>
+        /// Kiểm tra họ tên hợp lệ - chỉ chứa chữ cái (bao gồm tiếng Việt) và khoảng trắng
+        /// </summary>
+        private bool IsValidName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) return false;
+            // Cho phép chữ cái Unicode (bao gồm tiếng Việt), khoảng trắng và dấu
+            return Regex.IsMatch(name.Trim(), @"^[\p{L}\s]+$");
+        }
+
+        /// <summary>
+        /// Kiểm tra CCCD hợp lệ - chỉ chứa số và đúng 12 ký tự
+        /// </summary>
+        private bool IsValidCCCD(string cccd)
+        {
+            if (string.IsNullOrWhiteSpace(cccd)) return false;
+            string cleaned = cccd.Trim();
+            // CCCD Việt Nam có 12 số
+            return Regex.IsMatch(cleaned, @"^\d{12}$");
+        }
+
+        /// <summary>
+        /// Kiểm tra số điện thoại hợp lệ - chỉ chứa số, dấu + và khoảng trắng
+        /// </summary>
+        private bool IsValidPhone(string phone)
+        {
+            if (string.IsNullOrWhiteSpace(phone)) return false;
+            // Cho phép số, dấu +, khoảng trắng và dấu gạch ngang
+            return Regex.IsMatch(phone.Trim(), @"^[\d\s\+\-]+$");
+        }
+
+        /// <summary>
+        /// Kiểm tra email hợp lệ theo chuẩn RFC 5322
+        /// </summary>
+        private bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email)) return false;
+            // Pattern email chuẩn
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            return Regex.IsMatch(email.Trim(), pattern, RegexOptions.IgnoreCase);
         }
     }
 }

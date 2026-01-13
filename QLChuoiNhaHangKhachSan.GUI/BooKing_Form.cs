@@ -25,20 +25,6 @@ namespace QLChuoiNhaHangKhachSan.GUI
             ConfigureDataGridView();
         }
 
-        private class BookingRowInfo
-        {
-            public string Id { get; set; }
-            public string Customer { get; set; }
-            public string Date { get; set; }
-            public string Staff { get; set; }
-            public string Detail { get; set; }
-            public string CCCD { get; set; }
-            public string SDT { get; set; }
-            public string Gender { get; set; }
-            public string Nationality { get; set; }
-            public DateTime? CreatedDate { get; set; }
-        }
-
         private void BooKing_Form_Load(object sender, EventArgs e)
         {
             LoadBookingsFromDatabase();
@@ -130,8 +116,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             try
             {
                 using (var conn = new SqlConnection(connStr))
-                using (var cmd = new SqlCommand(@"SELECT b.BookingCode, b.CreatedDate, b.EmployeeID,
-                                                 c.FullName AS CustomerName, c.IdCard, c.Phone, c.Gender, c.Nationality,
+                using (var cmd = new SqlCommand(@"SELECT b.BookingCode, b.CreatedDate, b.EmployeeID, b.Status, b.CancelReason,
+                                                 c.FullName AS CustomerName, c.IdCard, c.Phone, c.Email, c.Gender, c.Nationality,
                                                  d.RoomID, d.CheckIn, d.CheckOut
                                               FROM dbo.Booking b
                                               INNER JOIN dbo.Customer c ON b.CustomerID = c.CustomerID
@@ -162,10 +148,27 @@ namespace QLChuoiNhaHangKhachSan.GUI
                                     Staff = staff,
                                     CCCD = rd["IdCard"]?.ToString() ?? "",
                                     SDT = rd["Phone"]?.ToString() ?? "",
+                                    Email = rd["Email"]?.ToString() ?? "",
                                     Gender = rd["Gender"]?.ToString() ?? "",
                                     Nationality = rd["Nationality"]?.ToString() ?? "",
                                     CreatedDate = created
                                 };
+                                // set cancellation info if present
+                                try
+                                {
+                                    var statusObj = rd["Status"];
+                                    if (statusObj != null && statusObj != DBNull.Value)
+                                    {
+                                        var s = statusObj.ToString();
+                                        info.IsCancelled = s != null && s.ToLower().Contains("cancel");
+                                    }
+                                    var reasonObj = rd["CancelReason"];
+                                    if (reasonObj != null && reasonObj != DBNull.Value)
+                                    {
+                                        info.CancellationReason = reasonObj.ToString();
+                                    }
+                                }
+                                catch { }
                                 bookings[code] = info;
                                 order.Add(code);
                             }
@@ -296,6 +299,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
             // Xử lý Xóa
             if (e.ColumnIndex == deleteCol)
             {
+                // get the row before removal
+                var row = guna2DataGridView1.Rows[e.RowIndex];
+
                 string bookingCode = guna2DataGridView1.Rows[e.RowIndex].Cells[0].Value?.ToString();
 
                 var dr = MessageBox.Show($"Bạn có chắc chắn muốn xóa phiếu '{bookingCode}' không?\nDữ liệu sẽ bị mất vĩnh viễn.",
@@ -311,6 +317,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         // 2. Nếu xóa DB thành công thì xóa trên giao diện
                         guna2DataGridView1.Rows.RemoveAt(e.RowIndex);
                         RefreshAutocompleteSource();
+
                         MessageBox.Show("Đã xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
@@ -323,18 +330,108 @@ namespace QLChuoiNhaHangKhachSan.GUI
             else if (e.ColumnIndex == detailCol)
             {
                 var row = guna2DataGridView1.Rows[e.RowIndex];
-                var info = row.Tag as BookingRowInfo;
-                string cccd = info?.CCCD ?? "";
-                string sdt = info?.SDT ?? "";
-               
-                string gender = info?.Gender ?? "";
-                string nat = info?.Nationality ?? "";
+                string bookingCode = Convert.ToString(row.Cells[0].Value);
 
-                ShowDetailForm(row, cccd, sdt, gender, nat);
+                BookingRowInfo infoFromDb = null;
+                try
+                {
+                    infoFromDb = GetBookingInfoFromDb(bookingCode);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                // Pass the DB-loaded info (if available) to the detail form. Fallback to row.Tag inside the ShowDetailForm.
+                ShowDetailForm(row, infoFromDb);
             }
         }
 
-        private void ShowDetailForm(DataGridViewRow row, string cccd, string sdt, string gender, string nat)
+        private BookingRowInfo GetBookingInfoFromDb(string bookingCode)
+        {
+            if (string.IsNullOrWhiteSpace(bookingCode)) return null;
+            var connStr = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString;
+            if (string.IsNullOrWhiteSpace(connStr)) return null;
+
+            var info = (BookingRowInfo)null;
+            var details = new List<string>();
+
+            using (var conn = new SqlConnection(connStr))
+            using (var cmd = new SqlCommand(@"SELECT b.BookingCode, b.CreatedDate, b.EmployeeID, b.Status, b.CancelReason,
+                                                 c.FullName AS CustomerName, c.IdCard, c.Phone, c.Email, c.Gender, c.Nationality,
+                                                 d.RoomID, d.CheckIn, d.CheckOut
+                                              FROM dbo.Booking b
+                                              INNER JOIN dbo.Customer c ON b.CustomerID = c.CustomerID
+                                              LEFT JOIN dbo.BookingDetail d ON b.BookingID = d.BookingID
+                                              WHERE b.BookingCode = @Code
+                                              ORDER BY d.BookingDetailID", conn))
+            {
+                cmd.Parameters.AddWithValue("@Code", bookingCode);
+                conn.Open();
+                using (var rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        if (info == null)
+                        {
+                            DateTime? created = rd["CreatedDate"] != DBNull.Value ? (DateTime?)rd["CreatedDate"] : null;
+                            string staff = rd["EmployeeID"] != DBNull.Value ? "NV #" + rd["EmployeeID"] : string.Empty;
+                            info = new BookingRowInfo
+                            {
+                                Id = bookingCode,
+                                Customer = rd["CustomerName"]?.ToString() ?? string.Empty,
+                                Date = created.HasValue ? created.Value.ToString("dd/MM/yyyy") : string.Empty,
+                                Staff = staff,
+                                CCCD = rd["IdCard"]?.ToString() ?? string.Empty,
+                                SDT = rd["Phone"]?.ToString() ?? string.Empty,
+                                Email = rd["Email"]?.ToString() ?? string.Empty,
+                                Gender = rd["Gender"]?.ToString() ?? string.Empty,
+                                Nationality = rd["Nationality"]?.ToString() ?? string.Empty,
+                                CreatedDate = created
+                            };
+                            try
+                            {
+                                var statusObj = rd["Status"];
+                                if (statusObj != null && statusObj != DBNull.Value)
+                                {
+                                    var s = statusObj.ToString();
+                                    info.IsCancelled = s != null && s.ToLower().Contains("cancel");
+                                }
+                                var reasonObj = rd["CancelReason"];
+                                if (reasonObj != null && reasonObj != DBNull.Value)
+                                {
+                                    info.CancellationReason = reasonObj.ToString();
+                                }
+                            }
+                            catch { }
+                        }
+
+                        if (rd["RoomID"] != DBNull.Value)
+                        {
+                            DateTime? checkIn = rd["CheckIn"] != DBNull.Value ? (DateTime?)rd["CheckIn"] : null;
+                            DateTime? checkOut = rd["CheckOut"] != DBNull.Value ? (DateTime?)rd["CheckOut"] : null;
+                            var sb = new StringBuilder();
+                            sb.Append(rd["RoomID"].ToString());
+                            if (checkIn.HasValue || checkOut.HasValue)
+                            {
+                                string start = checkIn.HasValue ? checkIn.Value.ToString("dd/MM/yyyy HH:mm") : "?";
+                                string end = checkOut.HasValue ? checkOut.Value.ToString("dd/MM/yyyy HH:mm") : "?";
+                                sb.Append(" (").Append(start).Append(" - ").Append(end).Append(")");
+                            }
+                            details.Add(sb.ToString());
+                        }
+                    }
+                }
+            }
+
+            if (info != null)
+            {
+                info.Detail = details.Count > 0 ? string.Join("\r\n", details) : string.Empty;
+            }
+            return info;
+        }
+
+        private void ShowDetailForm(DataGridViewRow row, BookingRowInfo info)
         {
             using (Form f = new Form())
             {
@@ -401,18 +498,28 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     table.RowCount++;
                 }
 
-                AddRow("Nhân viên", Convert.ToString(row.Cells[3].Value));
-                AddRow("Số phiếu", Convert.ToString(row.Cells[0].Value));
-                AddRow("Khách hàng", Convert.ToString(row.Cells[1].Value));
-                AddRow("Ngày lập", Convert.ToString(row.Cells[2].Value));
-                AddRow("CCCD", cccd);
-                AddRow("SĐT", sdt);
-                AddRow("Giới tính", gender);
-                AddRow("Quốc tịch", nat);
-                var infoTag = row.Tag as BookingRowInfo;
+                // Prefer DB-loaded info; fallback to row.Tag or cell values
+                var infoTag = info ?? row.Tag as QLChuoiNhaHangKhachSan.GUI.BookingRowInfo;
+
+                AddRow("Nhân viên", infoTag?.Staff ?? Convert.ToString(row.Cells[3].Value));
+                AddRow("Số phiếu", infoTag?.Id ?? Convert.ToString(row.Cells[0].Value));
+                AddRow("Khách hàng", infoTag?.Customer ?? Convert.ToString(row.Cells[1].Value));
+                AddRow("Ngày lập", infoTag?.Date ?? Convert.ToString(row.Cells[2].Value));
+                AddRow("CCCD", infoTag?.CCCD ?? "");
+                AddRow("Email", infoTag?.Email ?? "");
+                AddRow("SĐT", infoTag?.SDT ?? "");
+                AddRow("Giới tính", infoTag?.Gender ?? "");
+                AddRow("Quốc tịch", infoTag?.Nationality ?? "");
+
                 var detailRaw = infoTag?.Detail ?? Convert.ToString(row.Cells[4].Value);
                 var phongText = detailRaw?.Replace(") ", ")\r\n");
                 AddRow("Phòng", phongText);
+
+                // show cancellation reason if any
+                if (infoTag?.IsCancelled == true)
+                {
+                    AddRow("Lý do hủy", infoTag.CancellationReason ?? "Không rõ");
+                }
 
                 var scroll = new Panel
                 {
@@ -444,6 +551,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     string khach = dlg.ResultCustomerName;
                     string cccd = dlg.ResultCCCD;
                     string sdt = dlg.ResultSDT;
+                    string email = dlg.ResultEmail;
                     string gender = dlg.ResultGender;
                     string nat = dlg.ResultNationality;
                     string phong = dlg.ResultRooms;
@@ -452,7 +560,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     DateTime endDate = dlg.ResultEndDate;
                     string detailText = dlg.ResultRoomDetails;
 
-                    AddBookingRowInternal(khach, cccd, sdt, phong, thoigian, startDate, endDate, gender, nat, detailText);
+                    var addedInfo = AddBookingRowInternal(khach, cccd, sdt, phong, thoigian, startDate, endDate, gender, nat, detailText, email);
 
                     try
                     {
@@ -469,6 +577,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
+                    }
+
+                    RefreshAutocompleteSource();
+
+                    // send confirmation email (best effort) using the created BookingRowInfo directly
+                    if (addedInfo != null && !string.IsNullOrWhiteSpace(addedInfo.Email))
+                    {
+                        EmailHelper.SendBookingConfirmation(addedInfo);
                     }
                 }
             }
@@ -516,7 +632,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             return LoadAllRoomsFromDb();
         }
 
-        private void AddBookingRowInternal(string khach, string cccd, string sdt, string phong, string thoigian, DateTime? startDate = null, DateTime? endDate = null, string gender = "", string nat = "", string detailOverride = null)
+        private BookingRowInfo AddBookingRowInternal(string khach, string cccd, string sdt, string phong, string thoigian, DateTime? startDate = null, DateTime? endDate = null, string gender = "", string nat = "", string detailOverride = null, string email = null)
         {
             int rowIndex = this.guna2DataGridView1.Rows.Add();
             var row = this.guna2DataGridView1.Rows[rowIndex];
@@ -530,7 +646,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             row.Cells[4].Value = detailText;
             row.Cells[5].Value = "     X";
 
-            row.Tag = new BookingRowInfo
+            var bookingInfo = new BookingRowInfo
             {
                 Id = id,
                 Customer = khach,
@@ -539,9 +655,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 Detail = detailText,
                 CCCD = cccd,
                 SDT = sdt,
+                Email = email,
                 Gender = gender,
                 Staff = "Trường Phi"
             };
+
+            row.Tag = bookingInfo;
 
             if (!string.IsNullOrWhiteSpace(phong) && startDate.HasValue && endDate.HasValue)
             {
@@ -555,6 +674,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
 
             RefreshAutocompleteSource();
+
+            return bookingInfo;
         }
 
         public void AddBooking(string khach, string cccd, string sdt, string phong, string thoigian)
@@ -576,7 +697,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
             row.Cells[1].Value = info.Customer;
             row.Cells[2].Value = info.Date;
             row.Cells[3].Value = info.Staff;
-            row.Cells[4].Value = info.Detail;
+            var detailText = info.Detail ?? string.Empty;
+            if (info.IsCancelled)
+            {
+                var note = $"Phòng này đã bị hủy: {info.CancellationReason ?? "Không rõ"}";
+                detailText = note + (string.IsNullOrWhiteSpace(detailText) ? string.Empty : "\r\n" + detailText);
+                try { row.DefaultCellStyle.ForeColor = Color.DarkGray; } catch { }
+            }
+            row.Cells[4].Value = detailText;
             row.Cells[5].Value = "     X";
             row.Tag = info;
         }
@@ -612,6 +740,50 @@ namespace QLChuoiNhaHangKhachSan.GUI
        
         private void btnDatPhong_Click(object sender, EventArgs e)
         {
+        }
+
+        // Public wrapper so other forms can request reload of booking list after DB changes
+        public void RefreshBookingsFromDb()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(RefreshBookingsFromDb));
+                return;
+            }
+            LoadBookingsFromDatabase();
+        }
+
+        // Mark a booking row in the grid as cancelled and attach a cancellation reason for display
+        public void MarkBookingAsCancelled(string bookingCode, string reason)
+        {
+            if (string.IsNullOrWhiteSpace(bookingCode)) return;
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => MarkBookingAsCancelled(bookingCode, reason)));
+                return;
+            }
+
+            foreach (DataGridViewRow row in guna2DataGridView1.Rows)
+            {
+                if (row.IsNewRow) continue;
+                var code = Convert.ToString(row.Cells[0].Value);
+                if (string.Equals(code, bookingCode, StringComparison.OrdinalIgnoreCase))
+                {
+                    var info = row.Tag as BookingRowInfo ?? new BookingRowInfo { Id = code };
+                    info.IsCancelled = true;
+                    info.CancellationReason = reason ?? "Không rõ";
+
+                    // Prepend cancellation note to detail column for visibility
+                    var oldDetail = Convert.ToString(row.Cells[4].Value) ?? info.Detail ?? string.Empty;
+                    var note = $"Phòng này đã bị hủy: {info.CancellationReason}";
+                    row.Cells[4].Value = note + (string.IsNullOrWhiteSpace(oldDetail) ? string.Empty : "\r\n" + oldDetail);
+                    row.Tag = info;
+
+                    // visually mark row
+                    try { row.DefaultCellStyle.ForeColor = Color.DarkGray; } catch { }
+                    break;
+                }
+            }
         }
     }
 }

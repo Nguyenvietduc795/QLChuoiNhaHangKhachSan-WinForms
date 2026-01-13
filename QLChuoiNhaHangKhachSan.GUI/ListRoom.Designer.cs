@@ -191,7 +191,7 @@
             this.dtGio.ShowUpDown = true;
             this.dtGio.Size = new System.Drawing.Size(146, 29);
             this.dtGio.TabIndex = 3;
-            this.dtGio.Value = new System.DateTime(2026, 1, 9, 11, 23, 0, 0);
+            this.dtGio.Value = new System.DateTime(2026, 1, 12, 0, 0, 0, 0);
             this.dtGio.ValueChanged += new System.EventHandler(this.dtGio_ValueChanged);
             // 
             // btnMini
@@ -229,7 +229,7 @@
             this.dtNgay.Name = "dtNgay";
             this.dtNgay.Size = new System.Drawing.Size(140, 28);
             this.dtNgay.TabIndex = 3;
-            this.dtNgay.Value = new System.DateTime(2026, 1, 9, 11, 21, 11, 0);
+            this.dtNgay.Value = new System.DateTime(2026, 1, 12, 0, 0, 0, 0);
             // 
             // btnMax
             // 

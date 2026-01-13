@@ -71,7 +71,7 @@
             this.btnThuePhong.ShadowDecoration.Color = System.Drawing.Color.RosyBrown;
             this.btnThuePhong.Size = new System.Drawing.Size(219, 56);
             this.btnThuePhong.TabIndex = 1;
-            this.btnThuePhong.Text = "Thuê Phòng";
+            this.btnThuePhong.Text = "Đặt Phòng";
             this.btnThuePhong.Click += new System.EventHandler(this.btnDatPhong_Click);
             // 
             // guna2TextBox1
