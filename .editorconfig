@@ -1,0 +1,6 @@
+root = true
+
+[*.Designer.cs]
+dotnet_diagnostic.IDE1006.severity = none
+dotnet_diagnostic.IDE0044.severity = none
+dotnet_diagnostic.IDE0019.severity = none
