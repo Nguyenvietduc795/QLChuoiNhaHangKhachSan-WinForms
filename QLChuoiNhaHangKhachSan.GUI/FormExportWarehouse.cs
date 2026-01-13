@@ -16,6 +16,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private BindingList<SelectItemDTO> _items;
         private readonly UnitBLL _unitBll;
         private readonly WarehouseVoucherBLL _voucherBll;
+        private readonly IngredientBLL _ingredientBll;
+        private readonly EquipmentBLL _equipmentBll;
         private WarehouseVoucherDTO _editingVoucher;
         private bool IsEditMode => _editingVoucher != null;
 
@@ -23,8 +25,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             InitializeComponent();
             this.Load += FormExportWarehouse_Load;
-            _unitBll = new UnitBLL(ConfigurationManager.ConnectionStrings["RHGROUP"].ConnectionString);
-            _voucherBll = new WarehouseVoucherBLL(ConfigurationManager.ConnectionStrings["RHGROUP"].ConnectionString);
+
+            var connStr = ConfigurationManager.ConnectionStrings["RHGROUP"].ConnectionString;
+            _unitBll = new UnitBLL(connStr);
+            _voucherBll = new WarehouseVoucherBLL(connStr);
+            _ingredientBll = new IngredientBLL(connStr);
+            _equipmentBll = new EquipmentBLL(connStr);
             _editingVoucher = editingVoucher;
             bnupdaterowexportKho.Click += bnupdaterowexportKho_Click;
             bndeleterowexportkho.Click += bndeleterowexportkho_Click;
@@ -144,6 +150,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             var type = string.Equals(latest.WarehouseType, "EQUIPMENT", StringComparison.OrdinalIgnoreCase)
                 ? WarehouseType.Equipment
                 : WarehouseType.Ingredient;
+            var isIngredientWarehouse = type == WarehouseType.Ingredient;
 
             cbtypekhoexport.SelectedValue = type;
             cbtypekhoexport.Enabled = false;
@@ -176,9 +183,9 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     ItemName = detail.EquipmentID.HasValue ? detail.ItemName : null,
                     Unit = detail.Unit,
                     Quantity = detail.Quantity,
-                    UnitPrice = detail.UnitPrice,
-                    StockQuantity = 0
+                    UnitPrice = detail.UnitPrice
                 };
+                PopulateStockSnapshot(item, isIngredientWarehouse);
                 _items.Add(item);
             }
 
@@ -300,6 +307,19 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 return;
             }
 
+            if (!ValidateExportLines(out var validationMessage, out var warnings))
+            {
+                MessageBox.Show(validationMessage, "Không thể tạo phiếu xuất", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (warnings != null && warnings.Count > 0)
+            {
+                var warningText = string.Join(Environment.NewLine, warnings.Select(w => "- " + w));
+                MessageBox.Show("Tồn kho đã chạm/ngang ngưỡng cảnh báo cho các mặt hàng:\n" + warningText,
+                    "Cảnh báo tồn kho", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             var voucher = new WarehouseVoucherDTO
             {
                 VoucherType = "EXPORT",
@@ -405,6 +425,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 return;
             }
             exist.Quantity += newItem.Quantity;
+            if (newItem.StockQuantity > 0)
+            {
+                exist.StockQuantity = Math.Max(exist.StockQuantity, newItem.StockQuantity);
+            }
+            if (newItem.MinStock > 0)
+            {
+                exist.MinStock = newItem.MinStock;
+            }
             DGVexportkho.Refresh();
         }
 
@@ -426,6 +454,74 @@ namespace QLChuoiNhaHangKhachSan.GUI
             }
 
             return details;
+        }
+
+        private bool ValidateExportLines(out string message, out List<string> warnings)
+        {
+            message = null;
+            warnings = new List<string>();
+            if (_items == null || _items.Count == 0) return true;
+
+            foreach (var item in _items)
+            {
+                var displayName = item.ItemName ?? item.IngredientName ?? item.ItemCode ?? item.IngredientCode ?? "(Không rõ)";
+                var stock = item.StockQuantity;
+                var minStock = item.MinStock;
+                var remaining = stock - item.Quantity;
+
+                if (stock <= 0)
+                {
+                    message = $"Mặt hàng {displayName} không còn tồn kho để xuất.";
+                    return false;
+                }
+
+                if (remaining < 0)
+                {
+                    message = $"Mặt hàng {displayName} không đủ số lượng để xuất.";
+                    return false;
+                }
+
+                if (minStock > 0 && remaining <= minStock)
+                {
+                    warnings.Add($"{displayName}: còn lại {remaining:N0}, ngưỡng cảnh báo {minStock:N0}");
+                }
+            }
+
+            return true;
+        }
+
+        private void PopulateStockSnapshot(SelectItemDTO item, bool isIngredientWarehouse)
+        {
+            if (item == null) return;
+
+            DataTable dt = null;
+            try
+            {
+                if (isIngredientWarehouse && item.IngredientID > 0)
+                {
+                    dt = _ingredientBll.GetIngredientById(item.IngredientID);
+                }
+                else if (!isIngredientWarehouse && item.ItemID > 0)
+                {
+                    dt = _equipmentBll.GetEquipmentById(item.ItemID);
+                }
+            }
+            catch
+            {
+                dt = null;
+            }
+
+            if (dt == null || dt.Rows.Count == 0) return;
+
+            var row = dt.Rows[0];
+            if (row.Table.Columns.Contains("StockQuantity") && row["StockQuantity"] != DBNull.Value)
+            {
+                item.StockQuantity = Convert.ToDecimal(row["StockQuantity"]);
+            }
+            if (row.Table.Columns.Contains("MinStock") && row["MinStock"] != DBNull.Value)
+            {
+                item.MinStock = Convert.ToDecimal(row["MinStock"]);
+            }
         }
 
         private WarehouseVoucherDetailDTO CreateDetailFromExportItem(SelectItemDTO item, bool isIngredientWarehouse)

@@ -234,10 +234,14 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     item.IngredientID = f.SelectedItem.IngredientID;
                     item.IngredientCode = f.SelectedItem.IngredientCode;
                     item.IngredientName = f.SelectedItem.IngredientName;
+                    item.ItemID = f.SelectedItem.ItemID;
+                    item.ItemCode = f.SelectedItem.ItemCode;
+                    item.ItemName = f.SelectedItem.ItemName;
                     item.Unit = f.SelectedItem.Unit;
                     item.Quantity = f.SelectedItem.Quantity;
                     item.UnitPrice = f.SelectedItem.UnitPrice;
 
+                    MergeDuplicateWithCurrent(item);
                     DGVimportkho.Refresh();
                 }
             }
@@ -393,8 +397,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             if (newItem == null) return;
 
-            // tiêu chí trùng: IngredientID (hoặc IngredientCode)
-            var exist = _items.FirstOrDefault(x => x.IngredientID == newItem.IngredientID);
+            var exist = _items.FirstOrDefault(x => IsSameItem(x, newItem));
 
             if (exist == null)
             {
@@ -402,24 +405,48 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 return;
             }
 
-            // ✅ Nếu đã có -> cộng dồn số lượng
             exist.Quantity += newItem.Quantity;
 
-            // RULE đơn giá: chọn 1 trong 2 cách dưới đây
-
-            // Cách A: giữ nguyên đơn giá cũ (khuyên dùng để ổn định)
-            // exist.UnitPrice = exist.UnitPrice;
-
-            // Cách B: nếu lần mới khác giá -> cập nhật theo giá mới
-            // exist.UnitPrice = newItem.UnitPrice;
-
-            // Cách C: tính giá trung bình theo số lượng (chuẩn nghiệp vụ)
-            // var totalOld = exist.Quantity * exist.UnitPrice;
-            // var totalNew = newItem.Quantity * newItem.UnitPrice;
-            // var qtySum = exist.Quantity + newItem.Quantity;
-            // exist.UnitPrice = qtySum == 0 ? 0 : (totalOld + totalNew) / qtySum;
+            if (newItem.UnitPrice > 0)
+            {
+                exist.UnitPrice = newItem.UnitPrice;
+            }
 
             DGVimportkho.Refresh();
+        }
+
+        private void MergeDuplicateWithCurrent(ImportWarehouseItemDTO target)
+        {
+            if (target == null || _items == null) return;
+
+            var duplicates = _items.Where(x => !ReferenceEquals(x, target) && IsSameItem(x, target)).ToList();
+            foreach (var dup in duplicates)
+            {
+                target.Quantity += dup.Quantity;
+                if (dup.UnitPrice > 0)
+                {
+                    target.UnitPrice = dup.UnitPrice;
+                }
+                _items.Remove(dup);
+            }
+        }
+
+        private bool IsSameItem(ImportWarehouseItemDTO a, ImportWarehouseItemDTO b)
+        {
+            if (a == null || b == null) return false;
+
+            if (a.IngredientID > 0 && b.IngredientID > 0)
+                return a.IngredientID == b.IngredientID;
+
+            if (a.ItemID > 0 && b.ItemID > 0)
+                return a.ItemID == b.ItemID;
+
+            var codeA = !string.IsNullOrWhiteSpace(a.IngredientCode) ? a.IngredientCode : a.ItemCode;
+            var codeB = !string.IsNullOrWhiteSpace(b.IngredientCode) ? b.IngredientCode : b.ItemCode;
+            if (!string.IsNullOrWhiteSpace(codeA) && !string.IsNullOrWhiteSpace(codeB))
+                return string.Equals(codeA, codeB, StringComparison.OrdinalIgnoreCase);
+
+            return false;
         }
 
         private List<WarehouseVoucherDetailDTO> BuildImportDetails(WarehouseType selectedType)

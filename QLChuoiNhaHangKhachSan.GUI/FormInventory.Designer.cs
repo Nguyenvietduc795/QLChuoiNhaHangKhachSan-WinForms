@@ -74,7 +74,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.pnlTopActions = new Guna.UI2.WinForms.Guna2Panel();
             this.btnadditems = new Guna.UI2.WinForms.Guna2Button();
             this.btnstopItems = new Guna.UI2.WinForms.Guna2Button();
-            this.btnupdateitems = new Guna.UI2.WinForms.Guna2Button();
+            this.btnfixitems = new Guna.UI2.WinForms.Guna2Button();
             this.flpActions = new System.Windows.Forms.FlowLayoutPanel();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
@@ -304,6 +304,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.CardSlowTotal.ShadowDecoration.Enabled = true;
             this.CardSlowTotal.Size = new System.Drawing.Size(494, 160);
             this.CardSlowTotal.TabIndex = 1;
+            this.CardSlowTotal.Paint += new System.Windows.Forms.PaintEventHandler(this.CardSlowTotal_Click);
             // 
             // lbStockLowCaption
             // 
@@ -385,7 +386,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.CardHealthyTotal.ShadowDecoration.Enabled = true;
             this.CardHealthyTotal.Size = new System.Drawing.Size(539, 160);
             this.CardHealthyTotal.TabIndex = 2;
-            this.CardHealthyTotal.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel3_Paint);
+            this.CardHealthyTotal.Paint += new System.Windows.Forms.PaintEventHandler(this.CardHealthyTotal_Click);
             // 
             // lbHealthyStockCaption
             // 
@@ -663,12 +664,13 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.lbDSTonkho.ShadowDecoration.Enabled = true;
             this.lbDSTonkho.Size = new System.Drawing.Size(2553, 931);
             this.lbDSTonkho.TabIndex = 3;
+            this.lbDSTonkho.Paint += new System.Windows.Forms.PaintEventHandler(this.lbDSTonkho_Paint);
             // 
             // pnlTopActions
             // 
             this.pnlTopActions.Controls.Add(this.btnadditems);
             this.pnlTopActions.Controls.Add(this.btnstopItems);
-            this.pnlTopActions.Controls.Add(this.btnupdateitems);
+            this.pnlTopActions.Controls.Add(this.btnfixitems);
             this.pnlTopActions.Controls.Add(this.flpActions);
             this.pnlTopActions.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(251)))));
             this.pnlTopActions.Location = new System.Drawing.Point(47, 313);
@@ -709,21 +711,21 @@ namespace QLChuoiNhaHangKhachSan.GUI
             this.btnstopItems.TabIndex = 2;
             this.btnstopItems.Text = "Ngừng sử dụng";
             // 
-            // btnupdateitems
+            // btnfixitems
             // 
-            this.btnupdateitems.BorderRadius = 12;
-            this.btnupdateitems.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnupdateitems.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnupdateitems.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnupdateitems.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnupdateitems.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(102)))), ((int)(((byte)(241)))));
-            this.btnupdateitems.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnupdateitems.ForeColor = System.Drawing.Color.White;
-            this.btnupdateitems.Location = new System.Drawing.Point(167, 19);
-            this.btnupdateitems.Name = "btnupdateitems";
-            this.btnupdateitems.Size = new System.Drawing.Size(126, 45);
-            this.btnupdateitems.TabIndex = 1;
-            this.btnupdateitems.Text = "Sửa mặt hàng";
+            this.btnfixitems.BorderRadius = 12;
+            this.btnfixitems.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnfixitems.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnfixitems.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnfixitems.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnfixitems.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(102)))), ((int)(((byte)(241)))));
+            this.btnfixitems.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnfixitems.ForeColor = System.Drawing.Color.White;
+            this.btnfixitems.Location = new System.Drawing.Point(167, 19);
+            this.btnfixitems.Name = "btnfixitems";
+            this.btnfixitems.Size = new System.Drawing.Size(126, 45);
+            this.btnfixitems.TabIndex = 1;
+            this.btnfixitems.Text = "Sửa mặt hàng";
             // 
             // flpActions
             // 
@@ -1120,7 +1122,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private Guna.UI2.WinForms.Guna2Panel pnlTopActions;
         private Guna.UI2.WinForms.Guna2Button btnadditems;
         private Guna.UI2.WinForms.Guna2Button btnstopItems;
-        private Guna.UI2.WinForms.Guna2Button btnupdateitems;
+        private Guna.UI2.WinForms.Guna2Button btnfixitems;
         private System.Windows.Forms.FlowLayoutPanel flpActions;
     }
 }

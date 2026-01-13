@@ -275,6 +275,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     return;
                 }
 
+                NormalizeDetailNames(dt);
+
                 DGLSPhieuNhap.AutoGenerateColumns = true;
                 DGLSPhieuNhap.DataSource = dt;
                 lbPhieunhapganday.Text = $"Chi tiết phiếu {voucherCode}";
@@ -298,9 +300,21 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
             HideColumn("VoucherDetailID");
             HideColumn("VoucherID");
+            HideColumn("IngredientID");
+            HideColumn("EquipmentID");
 
-            if (grid.Columns.Contains("ItemCode")) grid.Columns["ItemCode"].HeaderText = "Mã hàng";
-            if (grid.Columns.Contains("ItemName")) grid.Columns["ItemName"].HeaderText = "Tên hàng";
+            if (grid.Columns.Contains("ItemCode"))
+            {
+                var col = grid.Columns["ItemCode"];
+                col.HeaderText = "Mã hàng";
+                col.DisplayIndex = 0;
+            }
+            if (grid.Columns.Contains("ItemName"))
+            {
+                var col = grid.Columns["ItemName"];
+                col.HeaderText = "Tên hàng";
+                col.DisplayIndex = 1;
+            }
             if (grid.Columns.Contains("Unit")) grid.Columns["Unit"].HeaderText = "Đơn vị";
             if (grid.Columns.Contains("Quantity")) grid.Columns["Quantity"].HeaderText = "Số lượng";
             if (grid.Columns.Contains("UnitPrice"))
@@ -313,6 +327,49 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 grid.Columns["LineTotal"].HeaderText = "Thành tiền";
                 grid.Columns["LineTotal"].DefaultCellStyle.Format = "N0";
             }
+        }
+
+        private void NormalizeDetailNames(DataTable dt)
+        {
+            if (!dt.Columns.Contains("ItemName")) return;
+
+            var codeColumnExists = dt.Columns.Contains("ItemCode");
+            foreach (DataRow row in dt.Rows)
+            {
+                var code = codeColumnExists ? row["ItemCode"]?.ToString() : null;
+                var name = row["ItemName"]?.ToString();
+                row["ItemName"] = FormatItemName(code, name);
+            }
+        }
+
+        private string FormatItemName(string code, string rawName)
+        {
+            if (string.IsNullOrWhiteSpace(rawName)) return string.Empty;
+            var cleaned = rawName.Trim();
+            if (string.IsNullOrWhiteSpace(code)) return cleaned;
+
+            var parts = cleaned.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries)
+                               .Select(p => p.Trim())
+                               .Where(p => !string.IsNullOrWhiteSpace(p))
+                               .ToList();
+
+            if (parts.Count > 1)
+            {
+                var filtered = parts.Where(p => !string.Equals(p, code, StringComparison.OrdinalIgnoreCase)).ToList();
+                if (filtered.Count > 0)
+                {
+                    return string.Join(" - ", filtered);
+                }
+            }
+
+            if (cleaned.StartsWith(code, StringComparison.OrdinalIgnoreCase))
+            {
+                var withoutCode = cleaned.Substring(code.Length).TrimStart(' ', '-', '_');
+                if (!string.IsNullOrWhiteSpace(withoutCode))
+                    return withoutCode;
+            }
+
+            return cleaned;
         }
 
         private string MapWarehouseType(string warehouseType)

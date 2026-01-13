@@ -21,5 +21,10 @@ namespace QLChuoiNhaHangKhachSan.BLL
         {
             return _equipmentDal.GetEquipmentForExport();
         }
+
+        public DataTable GetEquipmentById(int id)
+        {
+            return _equipmentDal.GetEquipmentById(id);
+        }
     }
 }

@@ -205,10 +205,21 @@ namespace QLChuoiNhaHangKhachSan.GUI
             else
             {
                 var stock = drv.Row.Field<decimal?>("StockQuantity") ?? 0;
-                if (nudSoluong.Value > stock)
+                var minStock = drv.Row.Table.Columns.Contains("MinStock")
+                    ? (drv.Row.Field<decimal?>("MinStock") ?? 0)
+                    : 0;
+
+                var remaining = stock - nudSoluong.Value;
+                if (remaining < 0)
                 {
                     MessageBox.Show("Số lượng xuất không được vượt quá tồn kho", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
+                }
+
+                if (minStock > 0 && remaining <= minStock)
+                {
+                    MessageBox.Show("Tồn kho sẽ chạm hoặc xuống dưới ngưỡng cảnh báo sau khi xuất.",
+                        "Cảnh báo tồn kho", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 var item = new SelectItemDTO
@@ -221,6 +232,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
                     IngredientName = drv.Row.Field<string>(nameCol),
                     Unit = drv.Row.Field<string>("Unit"),
                     StockQuantity = stock,
+                    MinStock = minStock,
                     Quantity = nudSoluong.Value,
                     UnitPrice = nudDonGia.Value
                 };

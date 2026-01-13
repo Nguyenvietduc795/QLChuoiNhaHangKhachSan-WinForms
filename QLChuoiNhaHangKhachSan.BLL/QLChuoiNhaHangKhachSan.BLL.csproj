@@ -44,6 +44,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="EquipmentBLL.cs" />
     <Compile Include="IngredientBLL.cs" />
+    <Compile Include="InventoryItemBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StockBLL.cs" />
     <Compile Include="UnitBLL.cs" />

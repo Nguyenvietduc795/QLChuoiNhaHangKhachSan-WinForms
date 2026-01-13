@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookingManager.cs" />
+    <Compile Include="CreateItemResult.cs" />
     <Compile Include="ImportWarehouseItemDTO.cs" />
+    <Compile Include="InventoryItemDetailDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectItemDTO.cs" />
     <Compile Include="SelectMode.cs" />

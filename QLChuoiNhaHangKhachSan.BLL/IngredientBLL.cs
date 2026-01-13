@@ -21,5 +21,10 @@ namespace QLChuoiNhaHangKhachSan.BLL
         {
             return _ingredientDal.GetActiveIngredientsForExport();
         }
+
+        public DataTable GetIngredientById(int id)
+        {
+            return _ingredientDal.GetIngredientById(id);
+        }
     }
 }

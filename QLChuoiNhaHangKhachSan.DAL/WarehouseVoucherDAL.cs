@@ -48,7 +48,7 @@ namespace QLChuoiNhaHangKhachSan.DAL
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@VoucherType", voucherType);
                 cmd.Parameters.AddWithValue("@WarehouseType", warehouseType);
-                cmd.Parameters.AddWithValue("@UnitCode", unitCode); 
+                cmd.Parameters.AddWithValue("@BranchCode", string.IsNullOrWhiteSpace(unitCode) ? (object)DBNull.Value : unitCode);
                 cmd.Parameters.AddWithValue("@Status", status ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@Note", note ?? (object)DBNull.Value);
     
@@ -99,16 +99,30 @@ FROM dbo.WarehouseVoucher WITH (UPDLOCK, HOLDLOCK) WHERE VoucherCode LIKE @Prefi
 
                         var newCode = prefix + nextNumber.ToString("D3");
 
+                        var unitCodeValue = (object)(voucher.UnitCode ?? (object)DBNull.Value);
+                        var restaurantCodeValue = (object)DBNull.Value;
+                        var hotelCodeValue = (object)DBNull.Value;
+                        if (string.Equals(voucher.WarehouseType, "INGREDIENT", StringComparison.OrdinalIgnoreCase))
+                        {
+                            restaurantCodeValue = unitCodeValue;
+                        }
+                        else if (string.Equals(voucher.WarehouseType, "EQUIPMENT", StringComparison.OrdinalIgnoreCase))
+                        {
+                            hotelCodeValue = unitCodeValue;
+                        }
+
                         int newId;
                         using (var cmdIns = new SqlCommand(@"INSERT INTO dbo.WarehouseVoucher
-    (VoucherCode, VoucherType, WarehouseType, UnitCode, Status, Note, CreatedAt)
-VALUES (@VoucherCode, @VoucherType, @WarehouseType, @UnitCode, @Status, @Note, GETDATE());
+    (VoucherCode, VoucherType, WarehouseType, UnitCode, RestaurantsCode, HotelCode, Status, Note, CreatedAt)
+VALUES (@VoucherCode, @VoucherType, @WarehouseType, @UnitCode, @RestaurantsCode, @HotelCode, @Status, @Note, GETDATE());
 SELECT CAST(SCOPE_IDENTITY() AS INT);", conn, tran))
                         {
                             cmdIns.Parameters.AddWithValue("@VoucherCode", newCode);
                             cmdIns.Parameters.AddWithValue("@VoucherType", voucher.VoucherType);
                             cmdIns.Parameters.AddWithValue("@WarehouseType", voucher.WarehouseType);
-                            cmdIns.Parameters.AddWithValue("@UnitCode", (object)(voucher.UnitCode ?? (object)DBNull.Value));
+                            cmdIns.Parameters.AddWithValue("@UnitCode", unitCodeValue ?? (object)DBNull.Value);
+                            cmdIns.Parameters.AddWithValue("@RestaurantsCode", restaurantCodeValue);
+                            cmdIns.Parameters.AddWithValue("@HotelCode", hotelCodeValue);
                             cmdIns.Parameters.AddWithValue("@Status", (object)(voucher.Status ?? (object)DBNull.Value));
                             cmdIns.Parameters.AddWithValue("@Note", (object)(voucher.Note ?? (object)DBNull.Value));
 
@@ -164,7 +178,7 @@ VALUES (@VoucherID, @IngredientID, @EquipmentID, @Quantity, @UnitPrice);", conn,
             var list = new List<WarehouseVoucherDTO>();
             using (var conn = new SqlConnection(_connStr))
             using (var cmd = new SqlCommand(@"SELECT VoucherID, VoucherCode, VoucherType, WarehouseType,
-       UnitCode,
+       COALESCE(UnitCode, RestaurantsCode, HotelCode) AS UnitCode,
        Status, Note, CreatedAt
 FROM dbo.WarehouseVoucher ORDER BY VoucherID DESC", conn))
             {
@@ -194,7 +208,8 @@ FROM dbo.WarehouseVoucher ORDER BY VoucherID DESC", conn))
         {
             using (var conn = new SqlConnection(_connStr))
             using (var cmd = new SqlCommand(@"SELECT VoucherID, VoucherCode, VoucherType, WarehouseType,
-       UnitCode, Status, Note, CreatedAt
+       COALESCE(UnitCode, RestaurantsCode, HotelCode) AS UnitCode,
+       Status, Note, CreatedAt
 FROM dbo.WarehouseVoucher WHERE VoucherID = @VoucherID", conn))
             {
                 cmd.Parameters.AddWithValue("@VoucherID", voucherId);
@@ -310,13 +325,37 @@ VALUES (@VoucherID, @IngredientID, @EquipmentID, @Quantity, @UnitPrice);", conn,
                 {
                     try
                     {
+                        string warehouseType = null;
+                        using (var cmdType = new SqlCommand("SELECT WarehouseType FROM dbo.WarehouseVoucher WHERE VoucherID = @VoucherID", conn, tran))
+                        {
+                            cmdType.Parameters.AddWithValue("@VoucherID", voucher.VoucherID);
+                            var typeObj = cmdType.ExecuteScalar();
+                            warehouseType = typeObj as string;
+                        }
+
+                        var unitCodeValue = (object)(voucher.UnitCode ?? (object)DBNull.Value);
+                        var restaurantCodeValue = (object)DBNull.Value;
+                        var hotelCodeValue = (object)DBNull.Value;
+                        if (string.Equals(warehouseType, "INGREDIENT", StringComparison.OrdinalIgnoreCase))
+                        {
+                            restaurantCodeValue = unitCodeValue;
+                        }
+                        else if (string.Equals(warehouseType, "EQUIPMENT", StringComparison.OrdinalIgnoreCase))
+                        {
+                            hotelCodeValue = unitCodeValue;
+                        }
+
                         using (var cmdUpdate = new SqlCommand(@"UPDATE dbo.WarehouseVoucher
 SET UnitCode = @UnitCode,
+    RestaurantsCode = @RestaurantsCode,
+    HotelCode = @HotelCode,
     Status = @Status,
     Note = @Note
 WHERE VoucherID = @VoucherID", conn, tran))
                         {
-                            cmdUpdate.Parameters.AddWithValue("@UnitCode", (object)(voucher.UnitCode ?? (object)DBNull.Value));
+                            cmdUpdate.Parameters.AddWithValue("@UnitCode", unitCodeValue);
+                            cmdUpdate.Parameters.AddWithValue("@RestaurantsCode", restaurantCodeValue);
+                            cmdUpdate.Parameters.AddWithValue("@HotelCode", hotelCodeValue);
                             cmdUpdate.Parameters.AddWithValue("@Status", (object)(voucher.Status ?? (object)DBNull.Value));
                             cmdUpdate.Parameters.AddWithValue("@Note", (object)(voucher.Note ?? (object)DBNull.Value));
                             cmdUpdate.Parameters.AddWithValue("@VoucherID", voucher.VoucherID);
