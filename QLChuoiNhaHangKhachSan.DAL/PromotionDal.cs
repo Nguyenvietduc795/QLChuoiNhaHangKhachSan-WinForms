@@ -31,16 +31,18 @@ namespace QLChuoiNhaHangKhachSan.DAL
                 {
                     while (reader.Read())
                     {
+                        var promotionType = reader.GetString(3);
                         var p = new Promotion
                         {
                             PromotionId    = reader.GetInt32(0),
                             PromotionCode  = reader.IsDBNull(1) ? null : reader.GetString(1),
                             ProgramName    = reader.GetString(2),
-                            PromotionType  = reader.GetString(3),
+                            PromotionType  = promotionType,
                             TargetAudience = reader.IsDBNull(4) ? null : reader.GetString(4),
                             ExpirationDate = reader.IsDBNull(5) ? (DateTime?)null : reader.GetDateTime(5),
                             Status         = reader.GetString(6),
-                            CreatedAt      = reader.GetDateTime(7)
+                            CreatedAt      = reader.GetDateTime(7),
+                            DiscountPercent = ExtractDiscountPercent(promotionType)
                         };
                         result.Add(p);
                     }
@@ -113,6 +115,30 @@ namespace QLChuoiNhaHangKhachSan.DAL
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        /// <summary>
+        /// Trích xuất phần trăm giảm giá từ chuỗi PromotionType.
+        /// Ví dụ: "Giảm 10%" => 10, "Giảm 25%" => 25, "Tặng quà" => 0
+        /// </summary>
+        private decimal ExtractDiscountPercent(string promotionType)
+        {
+            if (string.IsNullOrWhiteSpace(promotionType))
+                return 0m;
+
+            // Tìm số trong chuỗi (ví dụ: "Giảm 10%" => 10)
+            var match = System.Text.RegularExpressions.Regex.Match(promotionType, @"(\d+(?:[.,]\d+)?)");
+            if (match.Success)
+            {
+                var numberStr = match.Groups[1].Value.Replace(',', '.');
+                if (decimal.TryParse(numberStr, System.Globalization.NumberStyles.Any,
+                    System.Globalization.CultureInfo.InvariantCulture, out decimal result))
+                {
+                    return result;
+                }
+            }
+
+            return 0m;
         }
     }
 }

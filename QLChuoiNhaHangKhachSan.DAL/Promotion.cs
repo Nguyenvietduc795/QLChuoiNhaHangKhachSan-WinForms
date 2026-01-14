@@ -13,5 +13,9 @@ namespace QLChuoiNhaHangKhachSan.DAL.Models
         public DateTime? ExpirationDate { get; set; }
         public string Status { get; set; }
         public DateTime CreatedAt { get; set; }
+        /// <summary>
+        /// Phần trăm giảm giá - được tính toán từ PromotionType
+        /// </summary>
+        public decimal DiscountPercent { get; set; }
     }
 }

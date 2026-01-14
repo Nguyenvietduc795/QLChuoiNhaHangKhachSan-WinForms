@@ -22,6 +22,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
         private readonly PrintDocument _printDocument;
         private Bitmap _billBitmap;
 
+        // Thông tin giảm giá
+        private decimal _discountPercent;
+        private decimal _discountAmount;
+        private decimal _finalAmount;
+        private string _appliedPromoCode;
+
         public frmBill()
         {
             InitializeComponent();
@@ -30,6 +36,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
             _printDocument.PrintPage += PrintDocument_PrintPage;
 
             btnPrint.Click += guna2Button1_Click; // In hóa đơn
+            guna2Button3.Click += guna2Button3_Click; // Thanh toán khi trả phòng (ghi nhận chưa thu tiền)
             this.Load += frmBill_Load;
         }
 
@@ -37,6 +44,21 @@ namespace QLChuoiNhaHangKhachSan.GUI
         {
             _orderId = orderId;
             _tableName = tableName;
+        }
+
+        /// <summary>
+        /// Thiết lập thông tin giảm giá để hiển thị trên hóa đơn
+        /// </summary>
+        /// <param name="discountPercent">Phần trăm giảm giá (0-100)</param>
+        /// <param name="discountAmount">Số tiền được giảm</param>
+        /// <param name="finalAmount">Tổng tiền sau giảm</param>
+        /// <param name="promoCode">Mã giảm giá đã áp dụng</param>
+        public void SetDiscountInfo(decimal discountPercent, decimal discountAmount, decimal finalAmount, string promoCode)
+        {
+            _discountPercent = discountPercent;
+            _discountAmount = discountAmount;
+            _finalAmount = finalAmount;
+            _appliedPromoCode = promoCode;
         }
 
         private void guna2TextBox7_TextChanged(object sender, EventArgs e)
@@ -51,12 +73,38 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void frmBill_Load(object sender, EventArgs e)
         {
             LoadBillData();
+            ApplyDiscountDisplay();
+        }
+
+        /// <summary>
+        /// Áp dụng hiển thị thông tin giảm giá lên giao diện
+        /// </summary>
+        private void ApplyDiscountDisplay()
+        {
+            if (_discountAmount > 0 && !string.IsNullOrEmpty(_appliedPromoCode))
+            {
+                // Cập nhật tổng tiền hiển thị
+                txtTotalAmount.Text = _finalAmount.ToString("N0", CultureInfo.InvariantCulture);
+
+                // Thêm dòng giảm giá vào danh sách món (nếu cần hiển thị chi tiết)
+                // Hoặc có thể tạo label riêng để hiển thị thông tin giảm giá
+                try
+                {
+                    // Thêm dòng hiển thị giảm giá ở cuối danh sách
+                    dvgDishList.Rows.Add(
+                        $"Giảm giá ({_appliedPromoCode} - {_discountPercent}%)",
+                        "",
+                        "",
+                        $"-{_discountAmount:N0}");
+                }
+                catch { }
+            }
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
@@ -239,6 +287,182 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 MessageBox.Show("Gửi email thất bại: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        /// <summary>
+        /// Ghi nhận hóa đơn ở trạng thái chưa thu tiền (trả sau), đồng bộ sang FormPayments.
+        /// </summary>
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            if (_orderId <= 0)
+            {
+                MessageBox.Show("Không xác định được OrderId để ghi nhận hóa đơn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                using (var conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    using (var tran = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            int customerId = EnsureCustomerForOrder(conn, tran, _orderId);
+                            decimal total = ParseAmount(txtTotalAmount.Text);
+
+                            int invoiceId = EnsureUnpaidInvoice(conn, tran, customerId, _orderId, total);
+
+                            // Làm sạch các giao dịch cũ để tránh hiển thị trạng thái Hoàn thành khi chưa thanh toán
+                            using (var cmdDelTran = new SqlCommand("DELETE FROM Transactions WHERE InvoiceId = @InvoiceId", conn, tran))
+                            {
+                                cmdDelTran.Parameters.AddWithValue("@InvoiceId", invoiceId);
+                                cmdDelTran.ExecuteNonQuery();
+                            }
+
+                            InsertPendingTransaction(conn, tran, invoiceId, total, _tableName);
+
+                            tran.Commit();
+                        }
+                        catch
+                        {
+                            tran.Rollback();
+                            throw;
+                        }
+                    }
+                }
+
+                MessageBox.Show("Đã ghi nhận hóa đơn chưa thu tiền.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try { NotificationCenter.RaiseInvoiceChanged(); } catch { }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể ghi nhận hóa đơn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private decimal ParseAmount(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text)) return 0m;
+            var cleaned = new string(text.Where(c => char.IsDigit(c) || c == '-' || c == '.' || c == ',').ToArray());
+            cleaned = cleaned.Replace(".", "").Replace(",", "");
+            decimal.TryParse(cleaned, NumberStyles.Number, CultureInfo.InvariantCulture, out var v);
+            return v;
+        }
+
+        private int EnsureCustomerForOrder(SqlConnection conn, SqlTransaction tran, int orderId)
+        {
+            // Lấy CustomerId từ OrderTicket nếu có
+            using (var cmd = new SqlCommand("SELECT CustomerID FROM OrderTicket WHERE OrderId = @OrderId", conn, tran))
+            {
+                cmd.Parameters.AddWithValue("@OrderId", orderId);
+                var obj = cmd.ExecuteScalar();
+                if (obj != null && obj != DBNull.Value)
+                {
+                    return Convert.ToInt32(obj);
+                }
+            }
+
+            // Không có khách -> tạo khách lẻ tạm
+            using (var cmdNewCust = new SqlCommand(@"INSERT INTO Customers (FullName, CustomerType, CustomerCode, Source, CreatedAt)
+OUTPUT INSERTED.CustomerId
+VALUES (@FullName, @CustomerType, @CustomerCode, @Source, GETDATE());", conn, tran))
+            {
+                string tempCode = "NH" + (DateTime.UtcNow.Ticks % 1_000_000_000).ToString("D9");
+                cmdNewCust.Parameters.AddWithValue("@FullName", string.IsNullOrWhiteSpace(_tableName) ? (object)"Khách lẻ" : (object)$"Khách bàn {_tableName}");
+                cmdNewCust.Parameters.AddWithValue("@CustomerType", "NH_Thường");
+                cmdNewCust.Parameters.AddWithValue("@CustomerCode", tempCode);
+                cmdNewCust.Parameters.AddWithValue("@Source", "Nhà hàng");
+                var obj = cmdNewCust.ExecuteScalar();
+                return Convert.ToInt32(obj);
+            }
+        }
+
+        private int EnsureUnpaidInvoice(SqlConnection conn, SqlTransaction tran, int customerId, int orderId, decimal total)
+        {
+            // Nếu đã có hóa đơn của Order này, cập nhật về trạng thái Unpaid và tổng tiền mới
+            using (var cmdFind = new SqlCommand("SELECT TOP 1 InvoiceId FROM Invoices WHERE RestaurantOrderId = @OrderId ORDER BY InvoiceId DESC", conn, tran))
+            {
+                cmdFind.Parameters.AddWithValue("@OrderId", orderId);
+                var obj = cmdFind.ExecuteScalar();
+                if (obj != null && obj != DBNull.Value)
+                {
+                    int invId = Convert.ToInt32(obj);
+                    using (var cmdUpd = new SqlCommand(@"UPDATE Invoices
+SET CustomerId = @CustomerId,
+    TotalAmount = @TotalAmount,
+    InvoiceStatus = N'Unpaid',
+    InvoiceDate = GETDATE()
+WHERE InvoiceId = @InvoiceId", conn, tran))
+                    {
+                        cmdUpd.Parameters.AddWithValue("@CustomerId", customerId);
+                        cmdUpd.Parameters.AddWithValue("@TotalAmount", total);
+                        cmdUpd.Parameters.AddWithValue("@InvoiceId", invId);
+                        cmdUpd.ExecuteNonQuery();
+                    }
+                    return invId;
+                }
+            }
+
+            // Chưa có -> tạo mới
+            const string sql = @"INSERT INTO Invoices (CustomerId, InvoiceType, RestaurantOrderId, TotalAmount, InvoiceStatus, InvoiceDate)
+VALUES (@CustomerId, 'Restaurant', @OrderId, @TotalAmount, N'Unpaid', GETDATE());
+SELECT CAST(SCOPE_IDENTITY() AS INT);";
+
+            using (var cmd = new SqlCommand(sql, conn, tran))
+            {
+                cmd.Parameters.AddWithValue("@CustomerId", customerId);
+                cmd.Parameters.AddWithValue("@OrderId", orderId);
+                cmd.Parameters.AddWithValue("@TotalAmount", total);
+                var obj = cmd.ExecuteScalar();
+                int newId = obj != null ? Convert.ToInt32(obj) : 0;
+
+                // Xóa các hóa đơn cũ (nếu có) của cùng Order, giữ lại hóa đơn vừa tạo
+                if (newId > 0)
+                {
+                    using (var cmdDel = new SqlCommand(@"DELETE FROM Invoices 
+WHERE RestaurantOrderId = @OrderId AND InvoiceId <> @KeepId", conn, tran))
+                    {
+                        cmdDel.Parameters.AddWithValue("@OrderId", orderId);
+                        cmdDel.Parameters.AddWithValue("@KeepId", newId);
+                        cmdDel.ExecuteNonQuery();
+                    }
+                }
+
+                return newId;
+            }
+        }
+
+        private void InsertPendingTransaction(SqlConnection conn, SqlTransaction tran, int invoiceId, decimal total, string note)
+        {
+            int statusId = GetTransactionStatusId(conn, tran, "Đang chờ", 2);
+            int methodId = 1; // Tiền mặt mặc định
+
+            using (var cmd = new SqlCommand(@"INSERT INTO Transactions (InvoiceId, PaymentDate, Amount, MethodID, StatusID, Note)
+VALUES (@InvoiceId, GETDATE(), @Amount, @MethodID, @StatusID, @Note);", conn, tran))
+            {
+                cmd.Parameters.AddWithValue("@InvoiceId", invoiceId);
+                cmd.Parameters.AddWithValue("@Amount", total);
+                cmd.Parameters.AddWithValue("@MethodID", methodId);
+                cmd.Parameters.AddWithValue("@StatusID", statusId);
+                cmd.Parameters.AddWithValue("@Note", string.IsNullOrWhiteSpace(note) ? (object)DBNull.Value : (object)$"Bàn {note} - trả sau");
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private int GetTransactionStatusId(SqlConnection conn, SqlTransaction tran, string statusName, int fallback)
+        {
+            using (var cmd = new SqlCommand("SELECT TOP 1 StatusID FROM TransactionStatus WHERE StatusName = @Name", conn, tran))
+            {
+                cmd.Parameters.AddWithValue("@Name", statusName);
+                var obj = cmd.ExecuteScalar();
+                if (obj != null && obj != DBNull.Value)
+                {
+                    return Convert.ToInt32(obj);
+                }
+            }
+            return fallback;
         }
 
         /// <summary>

@@ -473,6 +473,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
             int tableId = 0;
             int? orderId = null;
             decimal totalAmount = 0m;
+            int? customerId = null;
+            string customerType = null;
 
             try
             {
@@ -508,7 +510,7 @@ namespace QLChuoiNhaHangKhachSan.GUI
 
                     // Lấy order đang chờ thanh toán
                     using (var cmdOrder = new SqlCommand(
-                        @"SELECT TOP 1 OrderId, TotalAmount 
+                        @"SELECT TOP 1 OrderId, TotalAmount, CustomerID 
                           FROM OrderTicket 
                           WHERE TableID = @TableID AND Status = N'Pending'
                           ORDER BY OrderId DESC", conn))
@@ -522,6 +524,10 @@ namespace QLChuoiNhaHangKhachSan.GUI
                                 totalAmount = reader["TotalAmount"] == DBNull.Value
                                     ? 0m
                                     : Convert.ToDecimal(reader["TotalAmount"], CultureInfo.InvariantCulture);
+                                if (reader["CustomerID"] != DBNull.Value)
+                                {
+                                    customerId = Convert.ToInt32(reader["CustomerID"]);
+                                }
                             }
                         }
                     }
@@ -545,6 +551,20 @@ namespace QLChuoiNhaHangKhachSan.GUI
                             }
                         }
                     }
+
+                    // Lấy CustomerType để kiểm tra đối tượng áp dụng mã giảm giá
+                    if (customerId.HasValue)
+                    {
+                        using (var cmdCustType = new SqlCommand("SELECT CustomerType FROM Customers WHERE CustomerId = @Id", conn))
+                        {
+                            cmdCustType.Parameters.AddWithValue("@Id", customerId.Value);
+                            var obj = cmdCustType.ExecuteScalar();
+                            if (obj != null && obj != DBNull.Value)
+                            {
+                                customerType = obj.ToString();
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -553,8 +573,36 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 return;
             }
 
+            // Mở form áp dụng mã giảm giá
+            decimal finalAmount = totalAmount;
+            decimal discountAmount = 0m;
+            decimal discountPercent = 0m;
+            string appliedPromoCode = null;
+            string promoName = null;
+
+            using (var promoForm = new FormApplyPromotion(totalAmount, customerType))
+            {
+                promoForm.StartPosition = FormStartPosition.CenterParent;
+                if (promoForm.ShowDialog(this) != DialogResult.OK)
+                {
+                    // Người dùng hủy, không thanh toán
+                    return;
+                }
+
+                finalAmount = promoForm.FinalAmount;
+                discountAmount = promoForm.DiscountAmount;
+                discountPercent = promoForm.DiscountPercent;
+                appliedPromoCode = promoForm.AppliedPromotionCode;
+                promoName = promoForm.PromotionName;
+            }
+
             using (var billForm = new frmBill(orderId.Value, tableNumberText))
             {
+                // Cập nhật thông tin giảm giá vào bill form nếu có
+                if (!string.IsNullOrEmpty(appliedPromoCode))
+                {
+                    billForm.SetDiscountInfo(discountPercent, discountAmount, finalAmount, appliedPromoCode);
+                }
                 billForm.StartPosition = FormStartPosition.CenterParent;
                 billForm.ShowDialog(this);
             }
@@ -569,9 +617,11 @@ namespace QLChuoiNhaHangKhachSan.GUI
                         try
                         {
                             using (var cmdUpdateOrder = new SqlCommand(
-                                "UPDATE OrderTicket SET Status = N'Completed', DateCheckOut = GETDATE() WHERE OrderId = @OrderId", conn, tran))
+                                "UPDATE OrderTicket SET Status = N'Completed', DateCheckOut = GETDATE(), TotalAmount = @TotalAmount, Discount = @Discount WHERE OrderId = @OrderId", conn, tran))
                             {
                                 cmdUpdateOrder.Parameters.AddWithValue("@OrderId", orderId.Value);
+                                cmdUpdateOrder.Parameters.AddWithValue("@TotalAmount", finalAmount);
+                                cmdUpdateOrder.Parameters.AddWithValue("@Discount", discountAmount);
                                 cmdUpdateOrder.ExecuteNonQuery();
                             }
 
@@ -581,8 +631,24 @@ namespace QLChuoiNhaHangKhachSan.GUI
                                 cmdUpdate.ExecuteNonQuery();
                             }
 
+                            string customerName = (txtClient.Text ?? string.Empty).Trim();
+                            if (string.IsNullOrEmpty(customerName) && customerId.HasValue)
+                            {
+                                using (var cmdCust = new SqlCommand("SELECT FullName FROM Customers WHERE CustomerId = @Id", conn, tran))
+                                {
+                                    cmdCust.Parameters.AddWithValue("@Id", customerId.Value);
+                                    var obj = cmdCust.ExecuteScalar();
+                                    if (obj != null && obj != DBNull.Value)
+                                    {
+                                        customerName = obj.ToString();
+                                    }
+                                }
+                            }
+
+                            SaveInvoiceAndTransaction(conn, tran, finalAmount, tableNumberText, orderId.Value, customerId, customerName);
+
                             // Cộng dồn tổng chi tiêu cho khách hàng và tự động nâng hạng VIP nếu >= 30 triệu
-                            UpdateCustomerSpending(conn, tran, orderId.Value, totalAmount);
+                            UpdateCustomerSpending(conn, tran, orderId.Value, finalAmount);
 
                             tran.Commit();
                         }
@@ -612,6 +678,12 @@ namespace QLChuoiNhaHangKhachSan.GUI
             dgvDishList.Rows.Clear();
             txtTotalAmount.Text = "0";
             ClearCustomerFields();
+
+            try
+            {
+                NotificationCenter.RaiseInvoiceChanged();
+            }
+            catch { }
         }
 
         private void btnTableChoose_Click(object sender, EventArgs e)
@@ -1035,9 +1107,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 cmdInsert.Parameters.AddWithValue("@CustomerType", (object)defaultType ?? DBNull.Value);
                 cmdInsert.Parameters.AddWithValue("@CustomerCode", tempCode);
                 cmdInsert.Parameters.AddWithValue("@Source", defaultSource);
-                // Nếu không có CCCD, sinh giá trị tạm ngắn (<=20 ký tự) để tránh trùng UNIQUE và không bị truncate
-                long suffix = DateTime.UtcNow.Ticks % 1_000_000_000; // 9 chữ số
-                string cccdTemp = "TMP" + suffix.ToString("D9");
+                // Sinh CCCD tạm nhưng duy nhất để không vi phạm ràng buộc UNIQUE
+                string cccdTemp = "TMP" + Guid.NewGuid().ToString("N").Substring(0, 9);
                 cmdInsert.Parameters.AddWithValue("@CCCD", cccdTemp);
                 newId = Convert.ToInt32(cmdInsert.ExecuteScalar());
             }
@@ -1068,6 +1139,220 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 cmd.Parameters.AddWithValue("@Id", customerId);
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        /// <summary>
+        /// Tạo hóa đơn và giao dịch từ đơn nhà hàng, gắn mã hóa đơn tự sinh tuần tự.
+        /// </summary>
+        private void SaveInvoiceAndTransaction(SqlConnection conn, SqlTransaction tran, decimal totalAmount, string tableName, int orderId, int? customerId, string customerName)
+        {
+            DateTime now = DateTime.Now;
+            bool hasInvoiceSource = ColumnExists(conn, tran, "Invoices", "Source");
+            bool hasRestaurantOrderId = ColumnExists(conn, tran, "Invoices", "RestaurantOrderId");
+            bool hasHotelBookingId = ColumnExists(conn, tran, "Invoices", "HotelBookingId");
+            bool hasCustomerIdCol = ColumnExists(conn, tran, "Invoices", "CustomerId");
+            // Không set InvoiceCode để tránh xung đột với computed column/view; sẽ đọc lại sau khi INSERT
+            string generatedInvoiceCode = null;
+
+            // Đảm bảo luôn có CustomerId (bảng mới bắt buộc NOT NULL)
+            if (!customerId.HasValue)
+            {
+                using (var cmdNewCust = new SqlCommand(@"INSERT INTO Customers (FullName, CustomerType, CustomerCode, Source, CreatedAt)
+OUTPUT INSERTED.CustomerId
+VALUES (@FullName, @CustomerType, @CustomerCode, @Source, GETDATE());", conn, tran))
+                {
+                    string tempCode = "NH" + (DateTime.UtcNow.Ticks % 1_000_000_000).ToString("D9");
+                    cmdNewCust.Parameters.AddWithValue("@FullName", string.IsNullOrWhiteSpace(customerName) ? (object)"Khách lẻ" : customerName);
+                    cmdNewCust.Parameters.AddWithValue("@CustomerType", "NH_Thường");
+                    cmdNewCust.Parameters.AddWithValue("@CustomerCode", tempCode);
+                    cmdNewCust.Parameters.AddWithValue("@Source", "Nhà hàng");
+                    var objCust = cmdNewCust.ExecuteScalar();
+                    if (objCust != null && objCust != DBNull.Value)
+                    {
+                        customerId = Convert.ToInt32(objCust);
+                    }
+                }
+            }
+
+            int invoiceId = 0;
+            // Xây dựng câu lệnh INSERT động để phù hợp các cột hiện có (RestaurantOrderId để thỏa CK_Invoice_Source)
+            var colList = new System.Collections.Generic.List<string> { "InvoiceType", "InvoiceDate", "TotalAmount", "InvoiceStatus" };
+            var valList = new System.Collections.Generic.List<string> { "@type", "@date", "@amount", "@status" };
+
+            if (hasInvoiceSource)
+            {
+                colList.Add("Source");
+                valList.Add("@source");
+            }
+            if (hasRestaurantOrderId)
+            {
+                colList.Add("RestaurantOrderId");
+                valList.Add("@restaurantOrderId");
+            }
+            if (hasHotelBookingId)
+            {
+                // bảo đảm HotelBookingId NULL khi là hóa đơn nhà hàng
+                colList.Add("HotelBookingId");
+                valList.Add("@hotelBookingId");
+            }
+            // Luôn thêm CustomerId nếu cột tồn tại (bảng mới yêu cầu NOT NULL)
+            if (hasCustomerIdCol)
+            {
+                colList.Add("CustomerId");
+                valList.Add("@customerId");
+            }
+
+            string insertInvoiceSql = $"INSERT INTO Invoices ({string.Join(",", colList)}) VALUES ({string.Join(",", valList)}); SELECT CAST(SCOPE_IDENTITY() AS INT);";
+
+            using (var cmdInv = new SqlCommand(insertInvoiceSql, conn, tran))
+            {
+                cmdInv.Parameters.AddWithValue("@type", "Restaurant");
+                cmdInv.Parameters.AddWithValue("@date", now);
+                cmdInv.Parameters.AddWithValue("@amount", totalAmount);
+                cmdInv.Parameters.AddWithValue("@status", "Hoàn thành");
+                if (hasInvoiceSource)
+                {
+                    cmdInv.Parameters.AddWithValue("@source", "Restaurant");
+                }
+                if (hasRestaurantOrderId)
+                {
+                    cmdInv.Parameters.AddWithValue("@restaurantOrderId", orderId);
+                }
+                if (hasHotelBookingId)
+                {
+                    cmdInv.Parameters.AddWithValue("@hotelBookingId", DBNull.Value);
+                }
+                if (hasCustomerIdCol)
+                {
+                    cmdInv.Parameters.AddWithValue("@customerId", customerId.HasValue ? (object)customerId.Value : DBNull.Value);
+                }
+
+                var obj = cmdInv.ExecuteScalar();
+                if (obj != null)
+                {
+                    int.TryParse(obj.ToString(), out invoiceId);
+                }
+            }
+
+            if (invoiceId == 0)
+            {
+                throw new InvalidOperationException("Không tạo được hóa đơn cho thanh toán nhà hàng.");
+            }
+
+            // Lấy mã InvoiceCode nếu DB có cột này
+            if (ColumnExists(conn, tran, "Invoices", "InvoiceCode"))
+            {
+                using (var cmdCode = new SqlCommand("SELECT InvoiceCode FROM Invoices WHERE InvoiceId = @Id", conn, tran))
+                {
+                    cmdCode.Parameters.AddWithValue("@Id", invoiceId);
+                    var obj = cmdCode.ExecuteScalar();
+                    if (obj != null && obj != DBNull.Value)
+                    {
+                        generatedInvoiceCode = obj.ToString();
+                    }
+                }
+            }
+
+            bool hasCustomerNameCol = ColumnExists(conn, tran, "Transactions", "CustomerName");
+            string insertTranSql = hasCustomerNameCol
+                ? @"INSERT INTO Transactions (InvoiceId, PaymentDate, Amount, MethodID, StatusID, Note, CustomerName)
+                  VALUES (@InvoiceId, @PaymentDate, @Amount, @MethodID, @StatusID, @Note, @CustomerName);"
+                : @"INSERT INTO Transactions (InvoiceId, PaymentDate, Amount, MethodID, StatusID, Note)
+                  VALUES (@InvoiceId, @PaymentDate, @Amount, @MethodID, @StatusID, @Note);";
+
+            using (var cmdTran = new SqlCommand(insertTranSql, conn, tran))
+            {
+                cmdTran.Parameters.AddWithValue("@InvoiceId", invoiceId);
+                cmdTran.Parameters.AddWithValue("@PaymentDate", now);
+                cmdTran.Parameters.AddWithValue("@Amount", totalAmount);
+                cmdTran.Parameters.AddWithValue("@MethodID", 1); // 1 = Tiền mặt
+                cmdTran.Parameters.AddWithValue("@StatusID", 1); // 1 = Hoàn thành
+                cmdTran.Parameters.AddWithValue("@Note", string.IsNullOrWhiteSpace(tableName)
+                    ? (object)DBNull.Value
+                    : (object)$"Thanh toán bàn {tableName} - Order {orderId}");
+                if (hasCustomerNameCol)
+                {
+                    cmdTran.Parameters.AddWithValue("@CustomerName", string.IsNullOrWhiteSpace(customerName)
+                        ? (object)DBNull.Value
+                        : (object)customerName);
+                }
+
+                cmdTran.ExecuteNonQuery();
+            }
+
+            // Cập nhật CustomerID cho OrderTicket nếu chưa có (để liên kết về sau)
+            if (customerId.HasValue)
+            {
+                using (var cmdUpdateOrder = new SqlCommand("UPDATE OrderTicket SET CustomerID = ISNULL(CustomerID, @CustomerID) WHERE OrderId = @OrderId", conn, tran))
+                {
+                    cmdUpdateOrder.Parameters.AddWithValue("@CustomerID", customerId.Value);
+                    cmdUpdateOrder.Parameters.AddWithValue("@OrderId", orderId);
+                    cmdUpdateOrder.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private string GenerateNextInvoiceCode(SqlConnection conn, SqlTransaction tran)
+        {
+            int next = 1;
+            try
+            {
+                using (var cmd = new SqlCommand(
+                    "SELECT MAX(CAST(REPLACE(InvoiceCode,'INV-','') AS INT)) FROM Invoices WHERE InvoiceCode LIKE 'INV-%'", conn, tran))
+                {
+                    var obj = cmd.ExecuteScalar();
+                    if (obj != null && obj != DBNull.Value)
+                    {
+                        int.TryParse(obj.ToString(), out next);
+                        next++;
+                    }
+                }
+            }
+            catch
+            {
+                next = (int)(DateTime.Now.Ticks % 1000000);
+            }
+
+            return $"INV-{next:D4}";
+        }
+
+        private bool ColumnExists(SqlConnection conn, SqlTransaction tran, string tableName, string columnName)
+        {
+            try
+            {
+                using (var cmd = new SqlCommand(
+                    "SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @Table AND COLUMN_NAME = @Col", conn, tran))
+                {
+                    cmd.Parameters.AddWithValue("@Table", tableName);
+                    cmd.Parameters.AddWithValue("@Col", columnName);
+                    var obj = cmd.ExecuteScalar();
+                    return obj != null;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private bool IsComputedColumn(SqlConnection conn, SqlTransaction tran, string tableName, string columnName)
+        {
+            try
+            {
+                using (var cmd = new SqlCommand(
+                    "SELECT COLUMNPROPERTY(object_id(@tbl), @col, 'IsComputed')", conn, tran))
+                {
+                    cmd.Parameters.AddWithValue("@tbl", tableName);
+                    cmd.Parameters.AddWithValue("@col", columnName);
+                    var obj = cmd.ExecuteScalar();
+                    if (obj != null && obj != DBNull.Value)
+                    {
+                        return Convert.ToInt32(obj) == 1;
+                    }
+                }
+            }
+            catch { }
+            return false;
         }
 
         /// <summary>

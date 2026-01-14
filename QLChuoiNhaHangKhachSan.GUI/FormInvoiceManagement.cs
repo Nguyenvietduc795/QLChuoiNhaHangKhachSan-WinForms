@@ -20,8 +20,8 @@ namespace QLChuoiNhaHangKhachSan.GUI
 {
     public partial class FormInvoiceManagement : Form
     {
-        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["MyConn"]?.ConnectionString
-            ?? @"Data Source=LAPTOP-JF845UR9\SQLEXPRESS02;Initial Catalog=QuanLyChuoiNhaHangKhachSan;Integrated Security=True";
+        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnStr"]?.ConnectionString
+            ?? @"Data Source=192.168.10.101,1433;Initial Catalog=QuanLyChuoiNhaHangKhachSan;User Id=sa;Password=admin123@;TrustServerCertificate=True;Connect Timeout=30;";
         // Printing helpers
         private PrintDocument _printDocument;
         private string _printContent;
@@ -142,29 +142,58 @@ namespace QLChuoiNhaHangKhachSan.GUI
                 dgvTransaction.Rows.Clear();
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
-                    // Sử dụng Procedure đã tạo trong Database
-                    using (SqlCommand cmd = new SqlCommand("sp_GetAllInvoices", conn))
+                    const string sql = @"WITH inv AS (
+    SELECT i.*, ROW_NUMBER() OVER (PARTITION BY i.RestaurantOrderId ORDER BY i.InvoiceDate DESC, i.InvoiceId DESC) AS rnInv
+    FROM Invoices i
+), tx AS (
+    SELECT t.*, ROW_NUMBER() OVER (PARTITION BY t.InvoiceId ORDER BY t.PaymentDate DESC, t.TransactionId DESC) AS rnTx
+    FROM Transactions t
+)
+SELECT i.InvoiceCode,
+       i.InvoiceDate,
+       i.TotalAmount,
+       i.InvoiceStatus,
+       c.FullName AS CustomerName,
+       ts.StatusName AS TranStatus
+FROM inv i
+LEFT JOIN tx t ON i.InvoiceId = t.InvoiceId AND t.rnTx = 1
+LEFT JOIN OrderTicket ot ON i.RestaurantOrderId = ot.OrderId
+LEFT JOIN Customers c ON ot.CustomerID = c.CustomerId
+LEFT JOIN TransactionStatus ts ON t.StatusID = ts.StatusID
+WHERE i.rnInv = 1
+ORDER BY i.InvoiceDate DESC";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
                         conn.Open();
                         using (SqlDataReader rdr = cmd.ExecuteReader())
                         {
                             while (rdr.Read())
                             {
-                                // Lấy dữ liệu từ Database
-                                string id = rdr["InvoiceID"].ToString();
-                                string customer = rdr["CustomerName"].ToString();
+                                string id = rdr["InvoiceCode"]?.ToString() ?? "";
+                                string customer = rdr["CustomerName"] == DBNull.Value ? string.Empty : rdr["CustomerName"].ToString();
+                                string tranStatus = rdr["TranStatus"] == DBNull.Value ? null : rdr["TranStatus"].ToString();
 
-                                // HIỆN GIỜ BỰ RÕ: dd/MM/yyyy HH:mm:ss
-                                DateTime dateValue = Convert.ToDateTime(rdr["InvoiceDate"]);
+                                DateTime dateValue = DateTime.Today;
+                                if (rdr["InvoiceDate"] != DBNull.Value)
+                                {
+                                    DateTime.TryParse(rdr["InvoiceDate"].ToString(), out dateValue);
+                                }
                                 string dateFormatted = dateValue.ToString("dd/MM/yyyy HH:mm:ss");
 
-                                decimal amount = Convert.ToDecimal(rdr["Amount"]);
-                                // Thêm System.Globalization để hết lỗi CultureInfo
+                                decimal amount = 0;
+                                if (rdr["TotalAmount"] != DBNull.Value)
+                                {
+                                    decimal.TryParse(rdr["TotalAmount"].ToString(), out amount);
+                                }
                                 string amountText = amount.ToString("N0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) + " ₫";
-                                string status = rdr["StatusName"].ToString();
 
-                                // SỬA LỖI CS0103: Thêm trực tiếp vào Grid, không dùng biến 'row' rời rạc bên ngoài
+                                string status = rdr["InvoiceStatus"]?.ToString() ?? "";
+                                if (string.IsNullOrWhiteSpace(tranStatus)) tranStatus = null; // force pending fallback
+                                status = !string.IsNullOrWhiteSpace(tranStatus)
+                                    ? MapTransactionStatusToVN(tranStatus)
+                                    : MapInvoiceStatusToVN(status);
+
                                 dgvTransaction.Rows.Add(id, customer, dateFormatted, amountText, status);
                             }
                         }
@@ -176,6 +205,32 @@ namespace QLChuoiNhaHangKhachSan.GUI
             {
                 MessageBox.Show("Lỗi nạp dữ liệu: " + ex.Message);
             }
+        }
+
+        // Helper để map trạng thái từ tiếng Anh sang tiếng Việt
+        private string MapInvoiceStatusToVN(string status)
+        {
+            if (string.IsNullOrWhiteSpace(status)) return "Chưa thu tiền";
+            
+            var s = status.Trim().ToLowerInvariant();
+            if (s == "paid" || s.Contains("paid")) return "Đã thu tiền";
+            if (s == "unpaid" || s.Contains("unpaid")) return "Chưa thu tiền";
+            if (s == "partially paid" || s.Contains("partial")) return "Chưa thu tiền";
+            if (s.Contains("đã thu")) return "Đã thu tiền";
+            if (s.Contains("chưa thu") || s.Contains("đang chờ")) return "Chưa thu tiền";
+            if (s.Contains("quá hạn")) return "Quá hạn";
+            
+            return status; // Giữ nguyên nếu không khớp
+        }
+
+        private string MapTransactionStatusToVN(string status)
+        {
+            if (string.IsNullOrWhiteSpace(status)) return "Chưa thu tiền";
+            var s = status.Trim().ToLowerInvariant();
+            if (s.Contains("pending") || s.Contains("đang") || s.Contains("chờ") || s.Contains("cho")) return "Chưa thu tiền";
+            if (s.Contains("fail") || s.Contains("không")) return "Quá hạn";
+            if (s.Contains("success") || s.Contains("hoàn") || s.Contains("paid") || s.Contains("đã")) return "Đã thu tiền";
+            return "Chưa thu tiền";
         }
 
         private void ConfigureDataGridViewLayout()

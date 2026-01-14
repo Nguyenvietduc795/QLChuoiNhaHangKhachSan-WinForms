@@ -118,7 +118,7 @@
             this.Gn2pnlPaymentMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Gn2pnlPaymentMain.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Gn2pnlPaymentMain.Location = new System.Drawing.Point(0, 0);
-            this.Gn2pnlPaymentMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Gn2pnlPaymentMain.Margin = new System.Windows.Forms.Padding(2);
             this.Gn2pnlPaymentMain.Name = "Gn2pnlPaymentMain";
             this.Gn2pnlPaymentMain.ShadowDecoration.BorderRadius = 15;
             this.Gn2pnlPaymentMain.ShadowDecoration.Enabled = true;
@@ -154,7 +154,7 @@
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox1.IconSize = 38;
             this.iconPictureBox1.Location = new System.Drawing.Point(309, 135);
-            this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.iconPictureBox1.Name = "iconPictureBox1";
             this.iconPictureBox1.Size = new System.Drawing.Size(42, 38);
             this.iconPictureBox1.TabIndex = 8;
@@ -166,7 +166,7 @@
             this.guna2Panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.guna2Panel3.FillColor = System.Drawing.Color.Firebrick;
             this.guna2Panel3.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel3.Name = "guna2Panel3";
             this.guna2Panel3.Size = new System.Drawing.Size(8, 173);
             this.guna2Panel3.TabIndex = 7;
@@ -193,7 +193,7 @@
             this.btnUnsuccessful.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnUnsuccessful.ForeColor = System.Drawing.Color.Black;
             this.btnUnsuccessful.Location = new System.Drawing.Point(49, 63);
-            this.btnUnsuccessful.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUnsuccessful.Margin = new System.Windows.Forms.Padding(2);
             this.btnUnsuccessful.Name = "btnUnsuccessful";
             this.btnUnsuccessful.Size = new System.Drawing.Size(77, 41);
             this.btnUnsuccessful.TabIndex = 3;
@@ -220,9 +220,9 @@
             this.pnlSummary.Controls.Add(this.lblPaymentTitle);
             this.pnlSummary.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlSummary.Location = new System.Drawing.Point(0, 0);
-            this.pnlSummary.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlSummary.Margin = new System.Windows.Forms.Padding(2);
             this.pnlSummary.Name = "pnlSummary";
-            this.pnlSummary.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.pnlSummary.Padding = new System.Windows.Forms.Padding(8);
             this.pnlSummary.Size = new System.Drawing.Size(1443, 106);
             this.pnlSummary.TabIndex = 13;
             // 
@@ -312,7 +312,7 @@
             this.gpnlQuickActions.Controls.Add(this.lbQuickAction);
             this.gpnlQuickActions.FillColor = System.Drawing.Color.White;
             this.gpnlQuickActions.Location = new System.Drawing.Point(1220, 509);
-            this.gpnlQuickActions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gpnlQuickActions.Margin = new System.Windows.Forms.Padding(2);
             this.gpnlQuickActions.Name = "gpnlQuickActions";
             this.gpnlQuickActions.ShadowDecoration.Enabled = true;
             this.gpnlQuickActions.Size = new System.Drawing.Size(564, 490);
@@ -387,7 +387,7 @@
             this.btnDownload.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDownload.ImageSize = new System.Drawing.Size(30, 30);
             this.btnDownload.Location = new System.Drawing.Point(21, 76);
-            this.btnDownload.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDownload.Margin = new System.Windows.Forms.Padding(2);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.btnDownload.Size = new System.Drawing.Size(151, 37);
@@ -433,7 +433,7 @@
             this.panelTransaction.Controls.Add(this.lblTransactionTitle);
             this.panelTransaction.FillColor = System.Drawing.Color.White;
             this.panelTransaction.Location = new System.Drawing.Point(42, 509);
-            this.panelTransaction.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelTransaction.Margin = new System.Windows.Forms.Padding(2);
             this.panelTransaction.Name = "panelTransaction";
             this.panelTransaction.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.panelTransaction.ShadowDecoration.Enabled = true;
@@ -610,7 +610,7 @@
             this.iconSuccessfulPayment.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconSuccessfulPayment.IconSize = 41;
             this.iconSuccessfulPayment.Location = new System.Drawing.Point(271, 132);
-            this.iconSuccessfulPayment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.iconSuccessfulPayment.Margin = new System.Windows.Forms.Padding(2);
             this.iconSuccessfulPayment.Name = "iconSuccessfulPayment";
             this.iconSuccessfulPayment.Size = new System.Drawing.Size(44, 41);
             this.iconSuccessfulPayment.TabIndex = 8;
@@ -622,7 +622,7 @@
             this.guna2Panel7.Dock = System.Windows.Forms.DockStyle.Left;
             this.guna2Panel7.FillColor = System.Drawing.Color.LightSeaGreen;
             this.guna2Panel7.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel7.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel7.Name = "guna2Panel7";
             this.guna2Panel7.Size = new System.Drawing.Size(8, 173);
             this.guna2Panel7.TabIndex = 7;
@@ -649,7 +649,7 @@
             this.btnSuccessful.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnSuccessful.ForeColor = System.Drawing.Color.Black;
             this.btnSuccessful.Location = new System.Drawing.Point(49, 63);
-            this.btnSuccessful.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSuccessful.Margin = new System.Windows.Forms.Padding(2);
             this.btnSuccessful.Name = "btnSuccessful";
             this.btnSuccessful.Size = new System.Drawing.Size(77, 41);
             this.btnSuccessful.TabIndex = 3;
@@ -695,7 +695,7 @@
             this.iconPendingInvoice.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPendingInvoice.IconSize = 39;
             this.iconPendingInvoice.Location = new System.Drawing.Point(268, 132);
-            this.iconPendingInvoice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.iconPendingInvoice.Margin = new System.Windows.Forms.Padding(2);
             this.iconPendingInvoice.Name = "iconPendingInvoice";
             this.iconPendingInvoice.Size = new System.Drawing.Size(46, 39);
             this.iconPendingInvoice.TabIndex = 8;
@@ -707,7 +707,7 @@
             this.guna2Panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.guna2Panel5.FillColor = System.Drawing.Color.DodgerBlue;
             this.guna2Panel5.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel5.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel5.Name = "guna2Panel5";
             this.guna2Panel5.Size = new System.Drawing.Size(8, 173);
             this.guna2Panel5.TabIndex = 7;
@@ -734,7 +734,7 @@
             this.btnPending.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnPending.ForeColor = System.Drawing.Color.Black;
             this.btnPending.Location = new System.Drawing.Point(28, 65);
-            this.btnPending.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPending.Margin = new System.Windows.Forms.Padding(2);
             this.btnPending.Name = "btnPending";
             this.btnPending.Size = new System.Drawing.Size(94, 41);
             this.btnPending.TabIndex = 3;
@@ -763,7 +763,7 @@
             this.guna2Panel1.Controls.Add(this.lblRevenueTitle);
             this.guna2Panel1.FillColor = System.Drawing.Color.White;
             this.guna2Panel1.Location = new System.Drawing.Point(42, 175);
-            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.ShadowDecoration.BorderRadius = 15;
             this.guna2Panel1.ShadowDecoration.Enabled = true;
@@ -781,7 +781,7 @@
             this.iconStatus.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconStatus.IconSize = 39;
             this.iconStatus.Location = new System.Drawing.Point(269, 132);
-            this.iconStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.iconStatus.Margin = new System.Windows.Forms.Padding(2);
             this.iconStatus.Name = "iconStatus";
             this.iconStatus.Size = new System.Drawing.Size(42, 39);
             this.iconStatus.TabIndex = 8;
@@ -793,7 +793,7 @@
             this.pnlLeftAccent.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeftAccent.FillColor = System.Drawing.Color.MediumSeaGreen;
             this.pnlLeftAccent.Location = new System.Drawing.Point(0, 0);
-            this.pnlLeftAccent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlLeftAccent.Margin = new System.Windows.Forms.Padding(2);
             this.pnlLeftAccent.Name = "pnlLeftAccent";
             this.pnlLeftAccent.Size = new System.Drawing.Size(8, 173);
             this.pnlLeftAccent.TabIndex = 7;
@@ -820,7 +820,7 @@
             this.btnRevenue.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnRevenue.ForeColor = System.Drawing.Color.Black;
             this.btnRevenue.Location = new System.Drawing.Point(34, 63);
-            this.btnRevenue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRevenue.Margin = new System.Windows.Forms.Padding(2);
             this.btnRevenue.Name = "btnRevenue";
             this.btnRevenue.Size = new System.Drawing.Size(169, 50);
             this.btnRevenue.TabIndex = 3;
@@ -847,7 +847,7 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1443, 857);
             this.Controls.Add(this.Gn2pnlPaymentMain);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormPayments";
             this.Text = "FormPayments";
             this.Load += new System.EventHandler(this.FormPayments_Load_1);

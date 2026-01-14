@@ -40,6 +40,20 @@ namespace QLChuoiNhaHangKhachSan.GUI
             set => txtPromotionCode.Text = value;
         }
 
+        /// <summary>
+        /// Lấy phần trăm giảm giá từ cboPromotionType (ví dụ: "10%" => 10)
+        /// </summary>
+        public decimal DiscountPercent
+        {
+            get
+            {
+                if (cboPromotionType.SelectedItem == null) return 0m;
+                var text = cboPromotionType.SelectedItem.ToString().Replace("%", "").Trim();
+                if (decimal.TryParse(text, out var val)) return val;
+                return 0m;
+            }
+        }
+
         public PromotionAdd()
         {
             InitializeComponent();

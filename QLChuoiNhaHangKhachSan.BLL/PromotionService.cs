@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using QLChuoiNhaHangKhachSan.BLL.DTOs;
 using QLChuoiNhaHangKhachSan.DAL;
@@ -21,6 +22,83 @@ namespace QLChuoiNhaHangKhachSan.BLL
         {
             var promotions = _dal.GetAll();
             return promotions.Select(MapToDto).ToList();
+        }
+
+        /// <summary>
+        /// Kiểm tra mã giảm giá có hợp lệ và còn hạn không.
+        /// Tìm kiếm theo PromotionCode, PromotionId, hoặc ProgramName.
+        /// Trả về PromotionDto nếu hợp lệ, null nếu không tìm thấy, throws exception nếu hết hạn.
+        /// </summary>
+        /// <param name="promotionCode">Mã giảm giá, ID, hoặc tên chương trình cần kiểm tra</param>
+        /// <param name="customerType">Loại khách hàng (để kiểm tra đối tượng áp dụng)</param>
+        /// <returns>PromotionDto nếu hợp lệ</returns>
+        public PromotionDto ValidateAndGetPromotion(string promotionCode, string customerType = null)
+        {
+            if (string.IsNullOrWhiteSpace(promotionCode))
+                return null;
+
+            var searchTerm = promotionCode.Trim();
+            var allPromotions = GetAllPromotions();
+            
+            // 1. Tìm theo PromotionCode (ưu tiên cao nhất)
+            var promo = allPromotions.FirstOrDefault(p =>
+                !string.IsNullOrEmpty(p.PromotionCode) &&
+                string.Equals(p.PromotionCode, searchTerm, StringComparison.OrdinalIgnoreCase));
+
+            // 2. Nếu không tìm thấy, thử tìm theo PromotionId
+            if (promo == null && int.TryParse(searchTerm, out int promoId))
+            {
+                promo = allPromotions.FirstOrDefault(p => p.PromotionId == promoId);
+            }
+
+            // 3. Nếu vẫn không tìm thấy, thử tìm theo ProgramName (tên chương trình)
+            if (promo == null)
+            {
+                promo = allPromotions.FirstOrDefault(p =>
+                    !string.IsNullOrEmpty(p.ProgramName) &&
+                    string.Equals(p.ProgramName, searchTerm, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (promo == null)
+                return null;
+
+            // Kiểm tra ngày hết hạn
+            if (promo.ExpirationDate.HasValue && promo.ExpirationDate.Value.Date < DateTime.Today)
+            {
+                string displayCode = !string.IsNullOrEmpty(promo.PromotionCode) ? promo.PromotionCode : promo.ProgramName;
+                throw new InvalidOperationException($"Mã giảm giá '{displayCode}' đã hết hạn sử dụng (hết hạn ngày {promo.ExpirationDate.Value:dd/MM/yyyy}).");
+            }
+
+            // Kiểm tra trạng thái
+            if (!string.IsNullOrEmpty(promo.Status) &&
+                (promo.Status.Equals("Kết thúc", StringComparison.OrdinalIgnoreCase) ||
+                 promo.Status.Equals("Hết hạn", StringComparison.OrdinalIgnoreCase)))
+            {
+                string displayCode = !string.IsNullOrEmpty(promo.PromotionCode) ? promo.PromotionCode : promo.ProgramName;
+                throw new InvalidOperationException($"Mã giảm giá '{displayCode}' đã kết thúc chương trình.");
+            }
+
+            // Kiểm tra đối tượng áp dụng (nếu có chỉ định)
+            if (!string.IsNullOrEmpty(promo.TargetAudience) && !string.IsNullOrEmpty(customerType))
+            {
+                var target = promo.TargetAudience.ToUpperInvariant();
+                var custType = customerType.ToUpperInvariant();
+
+                // "Tất cả" hoặc không giới hạn thì cho qua
+                if (!target.Contains("TẤT CẢ") && !target.Contains("ALL"))
+                {
+                    bool isVipPromo = target.Contains("VIP");
+                    bool isVipCustomer = custType.Contains("VIP");
+
+                    if (isVipPromo && !isVipCustomer)
+                    {
+                        string displayCode = !string.IsNullOrEmpty(promo.PromotionCode) ? promo.PromotionCode : promo.ProgramName;
+                        throw new InvalidOperationException($"Mã giảm giá '{displayCode}' chỉ áp dụng cho khách hàng VIP.");
+                    }
+                }
+            }
+
+            return promo;
         }
 
         /// <summary>
@@ -65,7 +143,8 @@ namespace QLChuoiNhaHangKhachSan.BLL
                 TargetAudience = entity.TargetAudience,
                 ExpirationDate = entity.ExpirationDate,
                 Status = entity.Status,
-                CreatedAt = entity.CreatedAt
+                CreatedAt = entity.CreatedAt,
+                DiscountPercent = entity.DiscountPercent
             };
         }
 
@@ -83,7 +162,8 @@ namespace QLChuoiNhaHangKhachSan.BLL
                 TargetAudience = dto.TargetAudience,
                 ExpirationDate = dto.ExpirationDate,
                 Status = dto.Status,
-                CreatedAt = dto.CreatedAt
+                CreatedAt = dto.CreatedAt,
+                DiscountPercent = dto.DiscountPercent
             };
         }
 

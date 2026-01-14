@@ -16,5 +16,9 @@ namespace QLChuoiNhaHangKhachSan.BLL.DTOs
         public DateTime? ExpirationDate { get; set; }
         public string Status { get; set; }
         public DateTime CreatedAt { get; set; }
+        /// <summary>
+        /// Ph?n tr?m gi?m giá - ???c tính toán t? PromotionType
+        /// </summary>
+        public decimal DiscountPercent { get; set; }
     }
 }
